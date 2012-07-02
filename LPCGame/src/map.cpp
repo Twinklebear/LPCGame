@@ -74,7 +74,7 @@ void Map::SetCollisionMap(){
 	ClearCollisionMap();
 	for (int i = 0; i < mTiles.size(); ++i){
 		if (mTiles.at(i).Solid())
-			mCollisionMap.push_back(&Recti(mTiles.at(i).Box()));
+			mCollisionMap.push_back(&mTiles.at(i).Box());
 	}
 }
 void Map::ClearCollisionMap(){
