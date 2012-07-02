@@ -74,14 +74,12 @@ void Map::SetCollisionMap(){
 	ClearCollisionMap();
 	for (int i = 0; i < mTiles.size(); ++i){
 		if (mTiles.at(i).Solid())
-			mCollisionMap.push_back(&mTiles.at(i).Box());
+			mCollisionMap.push_back(new Recti(mTiles.at(i).Box()));
 	}
 }
 void Map::ClearCollisionMap(){
-	/*
 	for (int i = 0; i < mCollisionMap.size(); ++i)
 		delete mCollisionMap.at(i);
-	*/
 	mCollisionMap.clear();
 }
 int Map::CalculateIndex(int x, int y){
@@ -129,9 +127,9 @@ CollisionMap Map::GetLocalCollisionMap(const Recti &target, int distance){
 	std::vector<int> indices = CalculateIndex(area);
 	CollisionMap localMap;
 	//add the references
-	for (int i = 0; i < indices.size(); ++i){
+	for (int i : indices){
 		if (mTiles.at(i).Solid())
-			localMap.push_back(&mTiles.at(i).Box());
+			localMap.push_back(mCollisionMap.at(i));
 	}
 	return localMap;
 }

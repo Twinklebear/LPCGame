@@ -12,7 +12,7 @@ const int TILE_HEIGHT = 32;
 class Tile{
 public:
 	Tile(){ }
-	Tile(Recti &box, bool solid, int type){
+	Tile(Recti box, bool solid, int type){
 		mBox	= box;
 		mSolid	= solid;
 		mType	= type;
