@@ -72,14 +72,14 @@ void Map::SetClips(){
 }
 void Map::SetCollisionMap(){
 	ClearCollisionMap();
-	for (int i = 0; i < mTiles.size(); ++i){
-		if (mTiles.at(i).Solid())
-			mCollisionMap.push_back(new Recti(mTiles.at(i).Box()));
+	for (auto i : mTiles){
+		if (i.Solid())
+			mCollisionMap.push_back(new Recti(i.Box()));
 	}
 }
 void Map::ClearCollisionMap(){
-	for (int i = 0; i < mCollisionMap.size(); ++i)
-		delete mCollisionMap.at(i);
+	for (auto i : mCollisionMap)
+		delete i;
 	mCollisionMap.clear();
 }
 int Map::CalculateIndex(int x, int y){
@@ -107,7 +107,8 @@ std::vector<int> Map::CalculateIndex(Recti area){
 					tileIndices.push_back(index);
 			}
 			catch (...){
-				//the error is more of a notice to keep us adding invalid indices, so nothing more is needed here
+				//the error is more of a notice to keep us adding invalid indices, 
+				//so nothing more is needed here
 			}
 		}
 	}
