@@ -40,7 +40,7 @@ public:
 	*	@param rect: the rectangle of the object to draw
 	*	@param clip: the clip of the image to draw, default is null
 	*/
-	static void Draw(Image *image, SDL_Rect &rect, SDL_Rect *clip = NULL);
+	static void Draw(Image *image, SDL_Rect rect, SDL_Rect *clip = NULL);
 	///Flip the screen buffers
 	static void Flip();
 	///Get windowbox

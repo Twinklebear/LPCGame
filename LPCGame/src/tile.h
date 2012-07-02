@@ -27,7 +27,7 @@ public:
 	int Type(){
 		return mType;
 	}
-	void SetBox(Recti &box){
+	void SetBox(Recti box){
 		mBox = box;
 	}
 	void SetSolid(bool solid){

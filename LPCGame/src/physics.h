@@ -70,7 +70,7 @@ public:
 	void SetHorizDir(int moveDir);
 	void SetVertDir(int moveDir);
 	void SetPhysConstants(PhysicalConstants physConstants);
-	void SetMap(const CollisionMap &map);
+	void SetMap(CollisionMap map);
 
 private:
 	/**

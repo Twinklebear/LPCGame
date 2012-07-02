@@ -57,7 +57,7 @@ void Window::Draw(const float x, const float y, SDL_Surface *source, SDL_Rect *c
 	offset.y = y;
 	SDL_BlitSurface(source, clip, mScreen, &offset);
 }
-void Window::Draw(Image *image, SDL_Rect &rect, SDL_Rect *clip){
+void Window::Draw(Image *image, SDL_Rect rect, SDL_Rect *clip){
 	SDL_BlitSurface(image->Surface(), clip, mScreen, &rect);
 }
 void Window::Flip(){

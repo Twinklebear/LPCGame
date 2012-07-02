@@ -21,7 +21,7 @@ public:
 	///Destroy the gameobject
 	virtual void Destroy() {}
 	///Pass a map pointer to the physics object
-	void SetCollisionMap(CollisionMap &map){
+	void SetCollisionMap(CollisionMap map){
 		mPhysics.SetMap(map);
 	}
 

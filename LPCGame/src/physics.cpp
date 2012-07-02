@@ -143,6 +143,6 @@ void Physics::SetVertDir(int moveDir){
 void Physics::SetPhysConstants(PhysicalConstants physConstants){
 	mPhysConstants = physConstants;
 }
-void Physics::SetMap(const CollisionMap &map){
+void Physics::SetMap(CollisionMap map){
 	mCollisionMap = map;
 }
