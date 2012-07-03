@@ -29,7 +29,7 @@ public:
 	MotionState();
 	~MotionState();
 	///Update the motion state based on current action
-	void UpdateState(float deltaT, Kinematic kinematic);
+	void UpdateState(Kinematic kinematic);
 	///Setters & getters
 	int GetMotionState() const;
 	void SetMotionstate(int state);
@@ -79,16 +79,14 @@ private:
 	*/
 	void UpdateVelocity(float deltaT);
 	/**
-	*	Apply the acceleration vector to the velocity vector, factoring in time elapsed
-	*	@param deltaT: the elapsed time
+	*	Apply the acceleration vector to the velocity vector
 	*/
-	void ApplyAcceleration(float deltaT);
+	void ApplyAcceleration();
 	/**
 	*	Apply friction to the object against the direction of motion
 	*	based on its status, ground or air friction will be applied
-	*	@param deltaT: the elapsed time
 	*/
-	void ApplyFriction(float deltaT);
+	void ApplyFriction();
 
 public:
 	enum MOVE { RIGHT, LEFT, UP, DOWN, STOP };

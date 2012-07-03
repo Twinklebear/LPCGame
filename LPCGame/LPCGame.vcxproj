@@ -10,6 +10,30 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\gameobject.cpp" />
+    <ClCompile Include="src\image.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\map.cpp" />
+    <ClCompile Include="src\math.cpp" />
+    <ClCompile Include="src\physics.cpp" />
+    <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\timer.cpp" />
+    <ClCompile Include="src\window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\gameobject.h" />
+    <ClInclude Include="src\image.h" />
+    <ClInclude Include="src\map.h" />
+    <ClInclude Include="src\math.h" />
+    <ClInclude Include="src\physics.h" />
+    <ClInclude Include="src\player.h" />
+    <ClInclude Include="src\rect.h" />
+    <ClInclude Include="src\tile.h" />
+    <ClInclude Include="src\timer.h" />
+    <ClInclude Include="src\vectors.h" />
+    <ClInclude Include="src\window.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
   </PropertyGroup>
@@ -68,30 +92,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\gameobject.cpp" />
-    <ClCompile Include="Source\image.cpp" />
-    <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\map.cpp" />
-    <ClCompile Include="Source\math.cpp" />
-    <ClCompile Include="Source\physics.cpp" />
-    <ClCompile Include="Source\player.cpp" />
-    <ClCompile Include="Source\timer.cpp" />
-    <ClCompile Include="Source\window.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Source\gameobject.h" />
-    <ClInclude Include="Source\image.h" />
-    <ClInclude Include="Source\map.h" />
-    <ClInclude Include="Source\math.h" />
-    <ClInclude Include="Source\physics.h" />
-    <ClInclude Include="Source\player.h" />
-    <ClInclude Include="Source\rect.h" />
-    <ClInclude Include="Source\tile.h" />
-    <ClInclude Include="Source\timer.h" />
-    <ClInclude Include="Source\vectors.h" />
-    <ClInclude Include="Source\window.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

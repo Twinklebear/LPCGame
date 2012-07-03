@@ -1,0 +1,31 @@
+﻿Build started 7/2/2012 8:47:28 PM.
+     1>Project "C:\Users\Will\Documents\Programs\LPCGame\LPCGame\LPCGame.vcxproj" on node 2 (Build target(s)).
+     1>InitializeBuildStatus:
+         Touching "Debug\LPCGame.unsuccessfulbuild".
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\SDL\include /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\physics.cpp
+         physics.cpp
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\physics.cpp(89): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\physics.cpp(91): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\physics.cpp(95): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\physics.cpp(97): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Will\Documents\Programs\LPCGame\Debug\LPCGame.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL\lib\x86 SDL.lib SDLmain.lib SDL_image.lib SDL_mixer.lib SDL_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Will\Documents\Programs\LPCGame\Debug\LPCGame.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Will\Documents\Programs\LPCGame\Debug\LPCGame.lib" /MACHINE:X86 Debug\gameobject.obj
+         Debug\image.obj
+         Debug\main.obj
+         Debug\map.obj
+         Debug\math.obj
+         Debug\physics.obj
+         Debug\player.obj
+         Debug\timer.obj
+         Debug\window.obj
+     1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
+         LPCGame.vcxproj -> C:\Users\Will\Documents\Programs\LPCGame\Debug\LPCGame.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\LPCGame.unsuccessfulbuild".
+         Touching "Debug\LPCGame.lastbuildstate".
+     1>Done Building Project "C:\Users\Will\Documents\Programs\LPCGame\LPCGame\LPCGame.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.47

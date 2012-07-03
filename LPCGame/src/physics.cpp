@@ -5,7 +5,7 @@ MotionState::MotionState(){
 }
 MotionState::~MotionState(){
 }
-void MotionState::UpdateState(float deltaT, Kinematic kinematic){
+void MotionState::UpdateState(Kinematic kinematic){
 	//update state based on current motion
 	if (abs(kinematic.Vel.x) > 0.0 || abs(kinematic.Vel.y) >= 0.0)
 		mState = RUNNING;
@@ -58,12 +58,12 @@ void Physics::Move(float deltaT){
 	mKinematic.Pos.x = testPos.x;
 	mKinematic.Pos.y = testPos.y;
 
-	mMotionState.UpdateState(deltaT, mKinematic);
+	mMotionState.UpdateState(mKinematic);
 }
 void Physics::UpdateVelocity(float deltaT){
 	//I think the issue is that setting the velocity without checking the move is what is causing the problem
-	ApplyAcceleration(deltaT);
-	ApplyFriction(deltaT);
+	ApplyAcceleration();
+	ApplyFriction();
 	//if applying the friction would cause the velocity to flip signs, set velocity to 0
 	if (mHorizDir == MOVE::STOP && ((mKinematic.Vel.x + mKinematic.Accel.x * deltaT > 0.0 && mKinematic.Vel.x < 0.0)
 		|| (mKinematic.Vel.x + mKinematic.Accel.x * deltaT < 0.0 && mKinematic.Vel.x > 0.0)))
@@ -84,7 +84,7 @@ void Physics::UpdateVelocity(float deltaT){
 	if ((mKinematic.Vel.y > mPhysConstants.hSpeed) || (mKinematic.Vel.y < -mPhysConstants.hSpeed))
 		mKinematic.Vel.y = mPhysConstants.hSpeed * (mKinematic.Vel.y / abs(mKinematic.Vel.y));
 }
-void Physics::ApplyAcceleration(float deltaT){
+void Physics::ApplyAcceleration(){
 	if (mHorizDir == MOVE::RIGHT)
 		mKinematic.Accel.x = mPhysConstants.hAccel;
 	else if (mHorizDir == MOVE::LEFT)
@@ -98,7 +98,7 @@ void Physics::ApplyAcceleration(float deltaT){
 	else
 		mKinematic.Accel.y = 0;
 }
-void Physics::ApplyFriction(float deltaT){
+void Physics::ApplyFriction(){
 	if (mHorizDir == MOVE::STOP && mKinematic.Vel.x != 0.0){
 		mKinematic.Accel.x += GROUND_FRICTION * (-mKinematic.Vel.x / abs(mKinematic.Vel.x));
 	}
