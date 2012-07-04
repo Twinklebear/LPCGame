@@ -1,9 +1,30 @@
-﻿Build started 7/3/2012 10:09:43 PM.
-     1>Project "C:\Users\Will\Documents\Programs\LPCGame\LPCGame\LPCGame.vcxproj" on node 2 (Build target(s)).
-     1>InitializeBuildStatus:
+﻿Build started 7/3/2012 10:13:36 PM.
+     1>Project "C:\Users\Will\Documents\Programs\LPCGame\LPCGame\LPCGame.vcxproj" on node 2 (Rebuild target(s)).
+     1>_PrepareForClean:
+         Deleting file "Debug\LPCGame.lastbuildstate".
+       InitializeBuildStatus:
          Creating "Debug\LPCGame.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\SDL\include /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\map.cpp src\physics.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\SDL\include /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt src\gameobject.cpp src\image.cpp src\main.cpp src\map.cpp src\math.cpp src\physics.cpp src\player.cpp src\timer.cpp src\window.cpp
+         window.cpp
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\window.cpp(56): warning C4244: '=' : conversion from 'const float' to 'Sint16', possible loss of data
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\window.cpp(57): warning C4244: '=' : conversion from 'const float' to 'Sint16', possible loss of data
+         timer.cpp
+         player.cpp
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(32): warning C4244: '=' : conversion from 'float' to 'Sint16', possible loss of data
+                 c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(30) : while compiling class template member function 'Rect<T>::operator SDL_Rect(void)'
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\will\documents\programs\lpcgame\lpcgame\src\image.h(50) : see reference to class template instantiation 'Rect<T>' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(33): warning C4244: '=' : conversion from 'float' to 'Sint16', possible loss of data
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(34): warning C4244: '=' : conversion from 'float' to 'Uint16', possible loss of data
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(35): warning C4244: '=' : conversion from 'float' to 'Uint16', possible loss of data
          physics.cpp
      1>c:\users\will\documents\programs\lpcgame\lpcgame\src\physics.cpp(56): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\will\documents\programs\lpcgame\lpcgame\src\physics.cpp(63): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
@@ -25,9 +46,28 @@
      1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(41): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(42): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(43): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         math.cpp
          map.cpp
      1>c:\users\will\documents\programs\lpcgame\lpcgame\src\map.cpp(43): warning C4018: '<' : signed/unsigned mismatch
      1>c:\users\will\documents\programs\lpcgame\lpcgame\src\map.cpp(84): warning C4018: '<' : signed/unsigned mismatch
+         main.cpp
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(48): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+                 c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(46) : while compiling class template member function 'Rect<T>::operator Rect<int>(void)'
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\users\will\documents\programs\lpcgame\lpcgame\src\image.h(50) : see reference to class template instantiation 'Rect<T>' being compiled
+                 with
+                 [
+                     T=float
+                 ]
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(49): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(50): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\rect.h(51): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         image.cpp
+     1>c:\users\will\documents\programs\lpcgame\lpcgame\src\image.cpp(69): warning C4018: '<' : signed/unsigned mismatch
+         gameobject.cpp
          Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Will\Documents\Programs\LPCGame\Debug\LPCGame.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\SDL\lib\x86 SDL.lib SDLmain.lib SDL_image.lib SDL_mixer.lib SDL_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Will\Documents\Programs\LPCGame\Debug\LPCGame.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Will\Documents\Programs\LPCGame\Debug\LPCGame.lib" /MACHINE:X86 Debug\gameobject.obj
@@ -44,8 +84,8 @@
        FinalizeBuildStatus:
          Deleting file "Debug\LPCGame.unsuccessfulbuild".
          Touching "Debug\LPCGame.lastbuildstate".
-     1>Done Building Project "C:\Users\Will\Documents\Programs\LPCGame\LPCGame\LPCGame.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\Will\Documents\Programs\LPCGame\LPCGame\LPCGame.vcxproj" (Rebuild target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.33
+Time Elapsed 00:00:06.59
