@@ -8,7 +8,7 @@
 #include "tile.h"
 
 ///A collision map of solid tiles/objects
-typedef std::vector<Recti*> CollisionMap;
+typedef std::vector<Recti> CollisionMap;
 /*
  *	Map: handles the a tile based map and its various functions
  */
@@ -39,16 +39,10 @@ public:
 	*	Unload the active map
 	*/
 	void Unload();
-	/**
-	*	Update the collision map
-	*/
-	void UpdateCollisionMap();
 	///Calculate the index of the tile at some point & return it
 	int CalculateIndex(int x, int y);
 	///Calculate the indeces enclosed in a rectangle
 	std::vector<int> CalculateIndex(Recti area);
-	///Setters & getters
-	CollisionMap* GetCollisionMap();
 	/**
 	*	Get the collision map within distance of the target
 	*	@param target: the target to get the nearby collision map around
@@ -60,14 +54,9 @@ public:
 private:
 	///Setup clips for the image
 	void SetClips();
-	///Setup the collision map
-	void SetCollisionMap();
-	///Clear the collision map
-	void ClearCollisionMap();
 
 private:
 	std::vector<Tile> mTiles;
-	CollisionMap mCollisionMap;
 	Image mImage;
 	Recti mBox;
 };

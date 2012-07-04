@@ -12,7 +12,7 @@
 
 Player::Player(){
 	//initialize position
-	Vector2f pos(200.0, 400.0);
+	Vector2f pos(10.0, 10.0);
 	mPhysics.SetPosition(pos);
 	//setup physical constants
 	PhysicalConstants physConst;

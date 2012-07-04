@@ -1,4 +1,5 @@
 #include "physics.h"
+#include <iostream>
 
 MotionState::MotionState(){
 	mState = IDLE;
@@ -51,17 +52,25 @@ void Physics::Move(float deltaT){
 	Vector2f testPos;
 	testPos = mKinematic.Pos + (mKinematic.Vel * deltaT);
 
-	//TODO: Add collision checking before allowing the player move
-	//Collision checking should be done before accepting the change
-	//collision checks must be seperate along each axis
-
-	mKinematic.Pos.x = testPos.x;
-	mKinematic.Pos.y = testPos.y;
+	//TODO: If you go to fast and collide with wall you get stuck in it
+	if (CheckCollision(Rectf(testPos.x, mKinematic.Pos.y, mPhysConstants.w, mPhysConstants.h))){
+		mKinematic.Vel.x = 0;
+		mKinematic.Accel.x = 0;
+		std::cout << "collision" << std::endl;
+	}
+	else 
+		mKinematic.Pos.x = testPos.x;
+	if (CheckCollision(Rectf(mKinematic.Pos.x, testPos.y, mPhysConstants.w, mPhysConstants.h))){
+		mKinematic.Vel.y = 0;
+		mKinematic.Accel.y = 0;
+		std::cout << "collision" << std::endl;
+	}
+	else
+		mKinematic.Pos.y = testPos.y;
 
 	mMotionState.UpdateState(mKinematic);
 }
 void Physics::UpdateVelocity(float deltaT){
-	//I think the issue is that setting the velocity without checking the move is what is causing the problem
 	ApplyAcceleration();
 	ApplyFriction();
 	//if applying the friction would cause the velocity to flip signs, set velocity to 0
@@ -105,6 +114,13 @@ void Physics::ApplyFriction(){
 	if (mVertDir == MOVE::STOP && mKinematic.Vel.y != 0.0){
 		mKinematic.Accel.y += GROUND_FRICTION * (-mKinematic.Vel.y / abs(mKinematic.Vel.y));
 	}
+}
+bool Physics::CheckCollision(Rectf box){
+	for (Recti i : mCollisionMap){
+		if (Math::CheckCollision(box, i))
+			return true;
+	}
+	return false;
 }
 Vector2f Physics::GetFrameMove(float deltaT){
 	return (mKinematic.Vel * deltaT);

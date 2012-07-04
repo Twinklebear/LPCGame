@@ -25,6 +25,15 @@ int main(int argc, char* argv[]){
 	delta.Start();
 
 	player.SetCollisionMap(map.GetLocalCollisionMap(player.Box()));
+	/*
+	CollisionMap collMap = map.GetLocalCollisionMap(player.Box());
+	std::cout << "player box: " << player.Box().x << ", " << player.Box().y << std::endl;
+	for (Recti *i : collMap){
+		std::cout << "check vs  : " << i->x << ", " << i->y 
+			<< ", " << i->w << ", " << i->h << std::endl;
+	}
+	return 0;
+	*/
 
 	while (!quit){
 		//EVENT POLLING

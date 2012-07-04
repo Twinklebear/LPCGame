@@ -8,8 +8,8 @@
 
 Map::Map(){
 	//Generate a map with a floor for testing
-	mBox.w = Window::Box().w;
-	mBox.h = Window::Box().h;
+	mBox.w = 320;
+	mBox.h = 320;
 
 	//for setting y position
     int yPos = 0;
@@ -25,14 +25,13 @@ Map::Map(){
 		}
 		tempTile.SetBox(Recti((i % mapSize) * TILE_WIDTH, 
 							  yPos, TILE_WIDTH, TILE_HEIGHT));
-		if (tempTile.Box().y > 400){
+		if (tempTile.Box().y > 160 || tempTile.Box().x > 160){
 			tempTile.SetType(6);
 			tempTile.SetSolid(true);
 		}
 		mTiles.push_back(tempTile);
     }
 	LoadImageSheet();
-	UpdateCollisionMap();
 }
 Map::Map(std::string mapFile){
 }
@@ -52,11 +51,6 @@ void Map::LoadImageSheet(){
 }
 void Map::Unload(){
 	mTiles.clear();
-	ClearCollisionMap();
-}
-void Map::UpdateCollisionMap(){
-	ClearCollisionMap();
-	SetCollisionMap();
 }
 void Map::SetClips(){
 	std::vector<Recti> clips;
@@ -69,18 +63,6 @@ void Map::SetClips(){
 		clips.push_back(clipRect);
 	}
 	mImage.SetClips(clips);
-}
-void Map::SetCollisionMap(){
-	ClearCollisionMap();
-	for (auto i : mTiles){
-		if (i.Solid())
-			mCollisionMap.push_back(new Recti(i.Box()));
-	}
-}
-void Map::ClearCollisionMap(){
-	for (auto i : mCollisionMap)
-		delete i;
-	mCollisionMap.clear();
 }
 int Map::CalculateIndex(int x, int y){
 	//if it's in bounds calculate the index
@@ -117,20 +99,18 @@ std::vector<int> Map::CalculateIndex(Recti area){
 	else
 		throw std::runtime_error("Invalid area");
 }
-CollisionMap* Map::GetCollisionMap(){
-	return &mCollisionMap;
-}
 CollisionMap Map::GetLocalCollisionMap(const Recti &target, int distance){
 	//get the indices of the desired tiles
 	Recti area(target.x - distance * TILE_WIDTH, target.y - distance * TILE_HEIGHT,
 				((target.x + target.w + distance * TILE_WIDTH) - (target.x - distance * TILE_WIDTH)),
 				((target.y + target.h + distance * TILE_HEIGHT) - (target.y - distance * TILE_HEIGHT)));
 	std::vector<int> indices = CalculateIndex(area);
+
 	CollisionMap localMap;
-	//add the references
+	//TODO: Fix issue with collision map index being less than tilemap index
 	for (int i : indices){
 		if (mTiles.at(i).Solid())
-			localMap.push_back(mCollisionMap.at(i));
+			localMap.push_back(mTiles.at(i).Box());
 	}
 	return localMap;
 }

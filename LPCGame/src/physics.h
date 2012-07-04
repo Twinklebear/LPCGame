@@ -87,6 +87,12 @@ private:
 	*	based on its status, ground or air friction will be applied
 	*/
 	void ApplyFriction();
+	/**
+	*	Check for collision of the entity box with the local collision map
+	*	@param box: the entity's box
+	*	@return bool True if collision, False otherwise
+	*/
+	bool CheckCollision(Rectf box);
 
 public:
 	enum MOVE { RIGHT, LEFT, UP, DOWN, STOP };
