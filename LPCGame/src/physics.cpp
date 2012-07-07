@@ -1,3 +1,4 @@
+#include "math.h"
 #include "physics.h"
 #include <iostream>
 
@@ -52,18 +53,13 @@ void Physics::Move(float deltaT){
 	Vector2f testPos;
 	testPos = mKinematic.Pos + (mKinematic.Vel * deltaT);
 
-	//TODO: If you go to fast and collide with wall you get stuck in it
+	//TODO: Need to set velocity to small value in direction of motion if colliding with wall but moving away from it
 	if (CheckCollision(Rectf(testPos.x, mKinematic.Pos.y, mPhysConstants.w, mPhysConstants.h))){
-		mKinematic.Vel.x = 0;
-		mKinematic.Accel.x = 0;
-		std::cout << "collision" << std::endl;
 	}
 	else 
 		mKinematic.Pos.x = testPos.x;
+
 	if (CheckCollision(Rectf(mKinematic.Pos.x, testPos.y, mPhysConstants.w, mPhysConstants.h))){
-		mKinematic.Vel.y = 0;
-		mKinematic.Accel.y = 0;
-		std::cout << "collision" << std::endl;
 	}
 	else
 		mKinematic.Pos.y = testPos.y;
@@ -94,15 +90,15 @@ void Physics::UpdateVelocity(float deltaT){
 		mKinematic.Vel.y = mPhysConstants.hSpeed * (mKinematic.Vel.y / abs(mKinematic.Vel.y));
 }
 void Physics::ApplyAcceleration(){
-	if (mHorizDir == MOVE::RIGHT)
+	if (mHorizDir == Math::RIGHT)
 		mKinematic.Accel.x = mPhysConstants.hAccel;
-	else if (mHorizDir == MOVE::LEFT)
+	else if (mHorizDir == Math::LEFT)
 		mKinematic.Accel.x = -mPhysConstants.hAccel;
 	else
 		mKinematic.Accel.x = 0;
-	if (mVertDir == MOVE::UP)
+	if (mVertDir == Math::UP)
 		mKinematic.Accel.y = -mPhysConstants.hAccel;
-	else if (mVertDir == MOVE::DOWN)
+	else if (mVertDir == Math::DOWN)
 		mKinematic.Accel.y = mPhysConstants.hAccel;
 	else
 		mKinematic.Accel.y = 0;
@@ -117,8 +113,22 @@ void Physics::ApplyFriction(){
 }
 bool Physics::CheckCollision(Rectf box){
 	for (Recti i : mCollisionMap){
-		if (Math::CheckCollision(box, i))
+		if (Math::CheckCollision(box, i)){
+			/*
+			*	TODO: Need a way to lock out the direction of motion that created the collision until 
+			*	player moves in opposite direction
+			//if trying to move in direction of collision set vel to 0
+			if (mHorizDir != MOVE::STOP && Math::RectNearRect(box, i, 1) == mHorizDir){
+				mHorizDir = MOVE::STOP;
+				mKinematic.Vel.x = 0;
+			}
+			if (mVertDir != MOVE::STOP && Math::RectNearRect(box, i, 1) == mVertDir){
+				mVertDir = MOVE::STOP;
+				mKinematic.Vel.y = 0;
+			}
+			*/
 			return true;
+		}
 	}
 	return false;
 }
@@ -147,12 +157,12 @@ void Physics::SetAcceleration(Vector2f accel){
 	mKinematic.Accel = accel;
 }
 void Physics::SetHorizDir(int moveDir){
-	if (moveDir == MOVE::UP || moveDir == MOVE::DOWN)
+	if (moveDir == Math::UP || moveDir == Math::DOWN)
 		throw std::runtime_error("Bad Horizontal Direction");
 	mHorizDir = moveDir;
 }
 void Physics::SetVertDir(int moveDir){
-	if (moveDir == MOVE::LEFT || moveDir == MOVE::RIGHT)
+	if (moveDir == Math::LEFT || moveDir == Math::RIGHT)
 		throw std::runtime_error("Bad Vertical Direction");
 	mVertDir = moveDir;
 }

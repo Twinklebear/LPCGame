@@ -4,6 +4,7 @@
 #include "gameobject.h"
 #include "rect.h"
 #include "vectors.h"
+#include "math.h"
 #include "window.h"
 #include "image.h"
 #include "player.h"
@@ -31,16 +32,16 @@ void Player::HandleEvents(SDL_Event &event){
 	if (event.type == SDL_KEYDOWN){
 		switch (event.key.keysym.sym){
 			case SDLK_a:
-				mPhysics.SetHorizDir(Physics::MOVE::LEFT);
+				mPhysics.SetHorizDir(Math::LEFT);
 				break;
 			case SDLK_d:
-				mPhysics.SetHorizDir(Physics::MOVE::RIGHT);
+				mPhysics.SetHorizDir(Math::RIGHT);
 				break;
 			case SDLK_w:
-				mPhysics.SetVertDir(Physics::MOVE::UP);
+				mPhysics.SetVertDir(Math::UP);
 				break;
 			case SDLK_s:
-				mPhysics.SetVertDir(Physics::MOVE::DOWN);
+				mPhysics.SetVertDir(Math::DOWN);
 				break;
 			default: 
 				break;
@@ -67,7 +68,7 @@ void Player::HandleEvents(SDL_Event &event){
 }
 void Player::Move(float deltaT){
 	mPhysics.Move(deltaT);
-	mImage.Move(mPhysics.GetFrameMove(deltaT));
+	mImage.SetPos(mPhysics.GetPosition());
 }
 void Player::Draw(){
 	Window::Draw(&mImage, (SDL_Rect)mImage.Box());

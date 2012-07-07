@@ -95,7 +95,7 @@ private:
 	bool CheckCollision(Rectf box);
 
 public:
-	enum MOVE { RIGHT, LEFT, UP, DOWN, STOP };
+	enum MOVE { STOP = -1};
 private:
 	Kinematic mKinematic;
 	MotionState mMotionState;
