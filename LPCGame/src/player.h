@@ -18,9 +18,7 @@ const int PLAYER_HACCEL = 700;
 */
 class Player : public GameObject{
 public:
-	//Construct the player
 	Player();
-	//Destroy Player
 	~Player();
 	//Event handling
 	void HandleEvents(SDL_Event &event);

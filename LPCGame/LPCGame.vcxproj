@@ -16,6 +16,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\map.cpp" />
     <ClCompile Include="src\math.cpp" />
+    <ClCompile Include="src\npc.cpp" />
     <ClCompile Include="src\physics.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\timer.cpp" />
@@ -26,6 +27,7 @@
     <ClInclude Include="src\image.h" />
     <ClInclude Include="src\map.h" />
     <ClInclude Include="src\math.h" />
+    <ClInclude Include="src\npc.h" />
     <ClInclude Include="src\physics.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\rect.h" />

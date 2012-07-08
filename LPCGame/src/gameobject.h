@@ -9,21 +9,22 @@
 */
 class GameObject{
 public:
-	GameObject() {}
+	GameObject() {};
 	///Create the gameobject, initialize various stuff
-	virtual void Start() {}
+	//virtual void Start() = 0;
 	///Update the game object
-	virtual void Update() {}
+	//virtual void Update() = 0;
 	///Draw the game object
-	virtual void Draw() {}
+	virtual void Draw() = 0;
 	///Move the object
-	virtual void Move() {}
+	virtual void Move(float) = 0;
 	///Destroy the gameobject
-	virtual void Destroy() {}
+	//virtual void Destroy() = 0;
 	///Pass a map pointer to the physics object
 	void SetCollisionMap(CollisionMap map){
 		mPhysics.SetMap(map);
 	}
+	//TODO: Add a collision box to the physics object that should be transparently accessible via GameObject::Box()
 
 private:
 	//Game objects should not be copy-constructable
