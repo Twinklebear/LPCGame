@@ -50,7 +50,7 @@ private:
 };
 template<typename T> const size_t ObjectPool<T>::kDefaultChunkSize;
 
-template<typename T> ObjectPool<T>::ObjectPool(size_t chunkSize = kDefaultChunkSize)
+template<typename T> ObjectPool<T>::ObjectPool(size_t chunkSize)
 		throw(std::invalid_argument, std::bad_alloc)
 {
 	if (chunkSize <= 0)
