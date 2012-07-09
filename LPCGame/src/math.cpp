@@ -12,22 +12,22 @@ int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 	Vector2f aT, aB, aR, aL, bT, bB, bR, bL;
 
 	//setup the points
-	aT.x = (a.x + a.w) / 2.0f;
-	aT.y = a.y;
+	aT.x = (a.X() + a.W()) / 2.0f;
+	aT.y = a.Y();
 	aB.x = aT.x;
-	aB.y = a.y + a.h;
-	aL.x = a.x;
-	aL.y = (a.y + a.h) / 2.0f;
-	aR.x = a.x + a.w;
+	aB.y = a.Y() + a.H();
+	aL.x = a.X();
+	aL.y = (a.Y() + a.H()) / 2.0f;
+	aR.x = a.X() + a.W();
 	aR.y = aL.y;
 
-	bT.x = (b.x + b.w) / 2.0f;
-	bT.y = b.y;
+	bT.x = (b.X() + b.W()) / 2.0f;
+	bT.y = b.Y();
 	bB.x = bT.x;
-	bB.y = b.y + b.h;
-	bL.x = b.x;
-	bL.y = (b.y - b.h) / 2.0f;
-	bR.x = b.x + b.w;
+	bB.y = b.Y() + b.H();
+	bL.x = b.X();
+	bL.y = (b.Y() - b.H()) / 2.0f;
+	bR.x = b.X() + b.W();
 	bR.y = bL.y;
 
 	//now we check which side of A is closest to the opposite side of B
@@ -42,13 +42,13 @@ int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 }
 bool Math::CheckCollision(const Rectf &a, const Rectf &b){
 	//Do easy out checks first, as it's more likely that there isn't a collision
-	if (a.y + a.h <= b.y)
+	if (a.Y() + a.H() <= b.Y())
 		return false;
-	if (a.y >= b.y + b.h)
+	if (a.Y() >= b.Y() + b.H())
 		return false;
-	if (a.x + a.w <= b.x)
+	if (a.X() + a.Y() <= b.X())
 		return false;
-	if (a.x >= b.x + b.w)
+	if (a.X() >= b.X() + b.W())
 		return false;
 	//if no early outs trigger, there is a collision
 	return true;

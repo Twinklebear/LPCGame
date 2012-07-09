@@ -24,7 +24,9 @@ public:
 	void SetCollisionMap(CollisionMap map){
 		mPhysics.SetMap(map);
 	}
-	//TODO: Add a collision box to the physics object that should be transparently accessible via GameObject::Box()
+	Rectf Box(){
+		return mPhysics.Box();
+	}
 
 private:
 	//Game objects should not be copy-constructable

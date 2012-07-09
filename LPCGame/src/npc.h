@@ -20,7 +20,6 @@ public:
 	//Draw the player
 	void Draw();
 	//Setters & Getters
-	Rectf Box();
 	void SetMove(int moveDir);
 
 private:

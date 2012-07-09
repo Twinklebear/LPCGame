@@ -23,22 +23,19 @@ void MotionState::SetMotionstate(int state){
 
 Physics::Physics(){
 	//init kinematic values
-	mKinematic.Pos		= Vector2f(0, 0);
-	mKinematic.Vel		= Vector2f(0, 0);
-	mKinematic.Accel	= Vector2f(0, 0);
-	//init constants
-	mPhysConstants.w		= 0;
-	mPhysConstants.h		= 0;
+	mBox.Set(0, 0, 0, 0);
+	mKinematic.Vel	 = Vector2f(0, 0);
+	mKinematic.Accel = Vector2f(0, 0);
 	mPhysConstants.hAccel	= 0;
 	mPhysConstants.hSpeed	= 0;
 	mHorizDir = MOVE::STOP;
 	mVertDir  = MOVE::STOP;
 }
-Physics::Physics(PhysicalConstants physConstants){
+Physics::Physics(PhysicalConstants physConstants, Rectf box){
 	//init kinematic values
-	mKinematic.Pos		= Vector2f(0, 0);
-	mKinematic.Vel		= Vector2f(0, 0);
-	mKinematic.Accel	= Vector2f(0, 0);
+	mKinematic.Vel	 = Vector2f(0, 0);
+	mKinematic.Accel = Vector2f(0, 0);
+	mBox = box;
 	//set constants
 	mPhysConstants = physConstants;
 	mHorizDir = MOVE::STOP;
@@ -51,18 +48,20 @@ void Physics::Move(float deltaT){
 	UpdateVelocity(deltaT);
 	//test if the move is ok before applying changes
 	Vector2f testPos;
-	testPos = mKinematic.Pos + (mKinematic.Vel * deltaT);
+	testPos = mBox.Pos() + (mKinematic.Vel * deltaT);
 
 	//TODO: Need to set velocity to small value in direction of motion if colliding with wall but moving away from it
-	if (CheckCollision(Rectf(testPos.x, mKinematic.Pos.y, mPhysConstants.w, mPhysConstants.h))){
+	if (CheckCollision(Rectf(testPos.x, mBox.Y(), mBox.W(), mBox.H()))){
+		std::cout << "collision x" << std::endl;
 	}
 	else 
-		mKinematic.Pos.x = testPos.x;
+		mBox.Set(testPos.x, mBox.Y());
 
-	if (CheckCollision(Rectf(mKinematic.Pos.x, testPos.y, mPhysConstants.w, mPhysConstants.h))){
+	if (CheckCollision(Rectf(mBox.X(), testPos.y, mBox.W(), mBox.H()))){
+		std::cout << "collision y" << std::endl;
 	}
 	else
-		mKinematic.Pos.y = testPos.y;
+		mBox.Set(mBox.X(), testPos.y);
 
 	mMotionState.UpdateState(mKinematic);
 }
@@ -136,7 +135,7 @@ Vector2f Physics::GetFrameMove(float deltaT){
 	return (mKinematic.Vel * deltaT);
 }
 Vector2f Physics::GetPosition() const{
-	return mKinematic.Pos;
+	return mBox.Pos();
 }
 Vector2f Physics::GetVelocity() const{
 	return mKinematic.Vel;
@@ -144,11 +143,14 @@ Vector2f Physics::GetVelocity() const{
 Vector2f Physics::GetAcceleration() const{
 	return mKinematic.Accel;
 }
+Rectf Physics::Box() const{
+	return mBox;
+}
 int Physics::GetMotionState() const{
 	return mMotionState.GetMotionState();
 }
 void Physics::SetPosition(Vector2f pos){
-	mKinematic.Pos = pos;
+	mBox.Set(pos);
 }
 void Physics::SetVelocity(Vector2f vel){
 	mKinematic.Vel = vel;
@@ -168,6 +170,9 @@ void Physics::SetVertDir(int moveDir){
 }
 void Physics::SetPhysConstants(PhysicalConstants physConstants){
 	mPhysConstants = physConstants;
+}
+void Physics::SetBox(Rectf box){
+	mBox = box;
 }
 void Physics::SetMap(CollisionMap map){
 	mCollisionMap = map;

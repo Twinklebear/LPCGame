@@ -8,12 +8,11 @@
 
 Map::Map(){
 	//Generate a map with a floor for testing
-	mBox.w = 320;
-	mBox.h = 320;
+	mBox.Set(0, 0, 320, 320);
 
 	//for setting y position
     int yPos = 0;
-	int mapSize = mBox.w / TILE_WIDTH;
+	int mapSize = mBox.W() / TILE_WIDTH;
 
     for (int i = 0; i < pow(mapSize, 2); ++i){
         Tile tempTile;
@@ -25,7 +24,7 @@ Map::Map(){
 		}
 		tempTile.SetBox(Recti((i % mapSize) * TILE_WIDTH, 
 							  yPos, TILE_WIDTH, TILE_HEIGHT));
-		if (tempTile.Box().y > 160 || tempTile.Box().x > 160){
+		if (tempTile.Box().Y() > 8 * TILE_HEIGHT || tempTile.Box().X() > 8 * TILE_WIDTH){
 			tempTile.SetType(6);
 			tempTile.SetSolid(true);
 		}
@@ -66,8 +65,8 @@ void Map::SetClips(){
 }
 int Map::CalculateIndex(int x, int y){
 	//if it's in bounds calculate the index
-	if ((x >= 0 && x <= mBox.w) && (y >= 0 && y <= mBox.h)){
-		return (x / TILE_WIDTH + (y / TILE_HEIGHT) * (mBox.w / TILE_WIDTH)); 
+	if ((x >= 0 && x <= mBox.W()) && (y >= 0 && y <= mBox.H())){
+		return (x / TILE_WIDTH + (y / TILE_HEIGHT) * (mBox.W() / TILE_WIDTH)); 
 	}
 	else 
 		throw std::runtime_error("Point off map");
@@ -75,8 +74,8 @@ int Map::CalculateIndex(int x, int y){
 std::vector<int> Map::CalculateIndex(Recti area){
 	std::vector<int> tileIndices;
 	//run through the area
-	for (int y = area.y; y < area.y + area.h; y += TILE_HEIGHT){
-		for (int x = area.x; x < area.x + area.w; x += TILE_WIDTH){
+	for (int y = area.Y(); y < area.Y() + area.H(); y += TILE_HEIGHT){
+		for (int x = area.X(); x < area.X() + area.W(); x += TILE_WIDTH){
 			try{
 				int index = CalculateIndex(x, y);
 				//make sure it isn't already in the vector
@@ -101,13 +100,12 @@ std::vector<int> Map::CalculateIndex(Recti area){
 }
 CollisionMap Map::GetLocalCollisionMap(const Recti &target, int distance){
 	//get the indices of the desired tiles
-	Recti area(target.x - distance * TILE_WIDTH, target.y - distance * TILE_HEIGHT,
-				((target.x + target.w + distance * TILE_WIDTH) - (target.x - distance * TILE_WIDTH)),
-				((target.y + target.h + distance * TILE_HEIGHT) - (target.y - distance * TILE_HEIGHT)));
+	Recti area(target.X() - distance * TILE_WIDTH, target.Y() - distance * TILE_HEIGHT,
+				((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),
+				((target.Y() + target.H() + distance * TILE_HEIGHT) - (target.Y() - distance * TILE_HEIGHT)));
 	std::vector<int> indices = CalculateIndex(area);
 
 	CollisionMap localMap;
-	//TODO: Fix issue with collision map index being less than tilemap index
 	for (int i : indices){
 		if (mTiles.at(i).Solid())
 			localMap.push_back(mTiles.at(i).Box());

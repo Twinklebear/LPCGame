@@ -23,6 +23,11 @@ public:
 		a.y = this->y + val.y;
 		return a;
 	}
+	Vector2<T>& operator += (Vector2<T> val){
+		this->x += val.x;
+		this->y += val.y;
+		return *this;
+	}
 	Vector2<T> operator * (Vector2<T> val){
 		Vector2<T> a;
 		a.x = this->x * val.x;
@@ -34,6 +39,18 @@ public:
 		a.x = this->x * val;
 		a.y = this->y * val;
 		return a;
+	}
+	operator Vector2<int>(){
+		Vector2<int> vect(x, y);
+		return vect;
+	}
+	operator Vector2<float>(){
+		Vector2<float> vect(x, y);
+		return vect;
+	}
+	operator Vector2<double>(){
+		Vector2<double> vect(x, y);
+		return vect;
 	}
 
 public:

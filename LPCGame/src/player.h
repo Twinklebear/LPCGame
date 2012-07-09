@@ -27,7 +27,6 @@ public:
 	//Draw the player
 	void Draw();
 	//Setters and getters
-	Rectf Box();
 
 private:
 	//Disable copy-construction

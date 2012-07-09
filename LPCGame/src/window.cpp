@@ -69,6 +69,6 @@ void Window::Flip(){
 Recti Window::Box(){
 	return mWindowBox;
 }
-int Window::FrameRateLimit(){
+const int Window::FrameRateLimit(){
 	return FRAMERATE_LIMIT;
 }

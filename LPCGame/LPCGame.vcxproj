@@ -28,6 +28,7 @@
     <ClInclude Include="src\map.h" />
     <ClInclude Include="src\math.h" />
     <ClInclude Include="src\npc.h" />
+    <ClInclude Include="src\objectpool.h" />
     <ClInclude Include="src\physics.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\rect.h" />

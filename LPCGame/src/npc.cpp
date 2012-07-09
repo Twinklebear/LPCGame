@@ -13,30 +13,23 @@
 
 
 Npc::Npc(){
-	//Setup position and physical constants
-	Vector2f pos(50, 50);
-	mPhysics.SetPosition(pos);
+	//initialize box
+	Rectf box(10, 10, PLAYER_WIDTH, PLAYER_HEIGHT);
+	mPhysics.SetBox(box);
 	PhysicalConstants physConst;
-	physConst.w			= PLAYER_WIDTH;
-	physConst.h			= PLAYER_HEIGHT;
 	physConst.hSpeed	= PLAYER_HSPEED;
 	physConst.hAccel	= PLAYER_HACCEL;
 	mPhysics.SetPhysConstants(physConst);
-	//load image
+
 	mImage.LoadImage("images/image.png");
-	mImage.SetPos(pos);
 }
 Npc::~Npc(){
 }
 void Npc::Move(float deltaT){
 	mPhysics.Move(deltaT);
-	mImage.SetPos(mPhysics.GetPosition());
 }
 void Npc::Draw(){
-	Window::Draw(&mImage, (SDL_Rect)mImage.Box());
-}
-Rectf Npc::Box(){
-	return mImage.Box();
+	Window::Draw(&mImage, (SDL_Rect)mPhysics.Box());
 }
 void Npc::SetMove(int move){
 	if (move == Math::LEFT || move == Math::RIGHT)

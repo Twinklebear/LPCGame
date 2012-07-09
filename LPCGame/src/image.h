@@ -33,10 +33,7 @@ public:
 	void Move(Vector2f vect);
 	///Getters & Setters
 	SDL_Surface* Surface();
-	Rectf Box();
 	Recti Clip(int clipNum);
-	void SetPos(float x, float y);
-	void SetPos(Vector2f vec);
 	void SetClips(const std::vector<Recti> &clips);
 
 private:
@@ -47,7 +44,6 @@ private:
 private:
 	SDL_Surface *mSurface;
 	Recti *mClips;
-	Rectf mRect;
 	int mNumClips;
 };
 

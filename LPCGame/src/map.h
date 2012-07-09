@@ -25,7 +25,7 @@ public:
 	*	Draw the tiles on the screen, relative to the camera
 	*	@param camera: the camera rectangle, default is the window box
 	*/
-	void Draw(const Recti &camera = Recti(0, 0, Window::Box().w, Window::Box().h));
+	void Draw(const Recti &camera = Recti(0, 0, Window::Box().W(), Window::Box().H()));
 	/**
 	*	Load a map file
 	*	@param mapFile: the file to load

@@ -45,7 +45,7 @@ public:
 	static void Flip();
 	///Get windowbox
 	static Recti Box();
-	static int FrameRateLimit();
+	const static int FrameRateLimit();
 
 private:
 	static int SCREEN_WIDTH;
