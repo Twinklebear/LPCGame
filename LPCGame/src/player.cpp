@@ -65,8 +65,6 @@ void Player::HandleEvents(SDL_Event &event){
 }
 void Player::Move(float deltaT){
 	mPhysics.Move(deltaT);
-
-	std::cout << "Player w, h: " << mPhysics.Box().W() << ", " << mPhysics.Box().H() << std::endl;
 }
 void Player::Draw(){
 	Window::Draw(&mImage, (SDL_Rect)mPhysics.Box());

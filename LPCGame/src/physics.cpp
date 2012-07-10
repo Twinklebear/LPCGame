@@ -52,13 +52,11 @@ void Physics::Move(float deltaT){
 
 	//TODO: Need to set velocity to small value in direction of motion if colliding with wall but moving away from it
 	if (CheckCollision(Rectf(testPos.x, mBox.Y(), mBox.W(), mBox.H()))){
-		std::cout << "collision x" << std::endl;
 	}
 	else 
 		mBox.Set(testPos.x, mBox.Y());
 
 	if (CheckCollision(Rectf(mBox.X(), testPos.y, mBox.W(), mBox.H()))){
-		std::cout << "collision y" << std::endl;
 	}
 	else
 		mBox.Set(mBox.X(), testPos.y);

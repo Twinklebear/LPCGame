@@ -26,7 +26,7 @@ Map::Map(){
 							  yPos, TILE_WIDTH, TILE_HEIGHT));
 		if (tempTile.Box().Y() > 8 * TILE_HEIGHT || tempTile.Box().X() > 8 * TILE_WIDTH){
 			tempTile.SetType(6);
-			tempTile.SetSolid(true);
+			//tempTile.SetSolid(true);
 		}
 		mTiles.push_back(tempTile);
     }
@@ -45,7 +45,11 @@ void Map::Draw(const Recti &camera){
 void Map::LoadFile(std::string mapFile){
 }
 void Map::LoadImageSheet(){
-	mImage.LoadImage("images/tiles.png");
+	try{
+		mImage.LoadImage("images/tiles.png");
+	}
+	catch(std::runtime_error &e){
+	}
 	SetClips();
 }
 void Map::Unload(){
@@ -87,7 +91,7 @@ std::vector<int> Map::CalculateIndex(Recti area){
 				if (!exists)
 					tileIndices.push_back(index);
 			}
-			catch (...){
+			catch (std::runtime_error &e){
 				//the error is more of a notice to keep us adding invalid indices, 
 				//so nothing more is needed here
 			}
@@ -103,7 +107,12 @@ CollisionMap Map::GetLocalCollisionMap(const Recti &target, int distance){
 	Recti area(target.X() - distance * TILE_WIDTH, target.Y() - distance * TILE_HEIGHT,
 				((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),
 				((target.Y() + target.H() + distance * TILE_HEIGHT) - (target.Y() - distance * TILE_HEIGHT)));
-	std::vector<int> indices = CalculateIndex(area);
+	std::vector<int> indices;
+	try{
+		indices = CalculateIndex(area);
+	}
+	catch (std::runtime_error &e){
+	}
 
 	CollisionMap localMap;
 	for (int i : indices){
