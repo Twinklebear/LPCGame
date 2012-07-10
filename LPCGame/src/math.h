@@ -20,19 +20,27 @@ namespace Math{
 	float Distance(const Vector2f &a, const Vector2f &b);
 	/**
 	*	Check if two rectangles are near each other, and return the side of
-	*	@param A: the rectangle we want to see
-	*	@param B: the rectangle we want to see if a is close too
+	*	@param a: the rectangle we want to see
+	*	@param b: the rectangle we want to see if a is close too
 	*	@param tolerance: the tolerance distance to accept for "nearness"
 	*	@return: the enumerator representing the side of Rect A that's within tolerance of B, if none return -1
 	*/
 	int RectNearRect(const Rectf &a, const Rectf &b, int tolerance);
 	/**
 	*	Check collision between to rectangles
-	*	@param A first rectangle
-	*	@param B second rectangle
-	*	@param return: T if collision, F if no collision
+	*	@param a first rectangle
+	*	@param b second rectangle
+	*	@return: T if collision, F if no collision
 	*/
 	bool CheckCollision(const Rectf &a, const Rectf &b);
+	/**
+	*	Check collision between a point and a rectangle
+	*	ie. if the point is inside/on edge of the rectangle
+	*	@param p: the point
+	*	@param r: the rectangle
+	*	@return: T if point is in the rectangle
+	*/
+	bool CheckCollision(const Vector2f &p, const Rectf &r);
 }
 
 #endif

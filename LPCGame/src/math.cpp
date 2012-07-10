@@ -53,3 +53,8 @@ bool Math::CheckCollision(const Rectf &a, const Rectf &b){
 	//if no early outs trigger, there is a collision
 	return true;
 }
+bool Math::CheckCollision(const Vector2f &p, const Rectf &r){
+	if ((p.x > r.X() && p.x < r.X() + r.W()) && (p.y > r.Y() && p.y < r.Y() + r.H()))
+		return true;
+	return false;
+}

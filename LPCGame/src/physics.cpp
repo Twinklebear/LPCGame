@@ -1,5 +1,6 @@
 #include "math.h"
 #include "physics.h"
+
 #include <iostream>
 
 MotionState::MotionState(){
@@ -109,8 +110,13 @@ void Physics::ApplyFriction(){
 	}
 }
 bool Physics::CheckCollision(Rectf box){
-	for (Recti i : mCollisionMap){
-		if (Math::CheckCollision(box, i)){
+	//for (Recti i : mCollisionMap){
+	//std::cout << "player pos: " << mBox.X() << ", " << mBox.Y() << std::endl;
+	for (int i = 0; i < mCollisionMap.size(); ++i){
+		if (Math::CheckCollision(box, mCollisionMap.at(i))){
+			std::cout << "collision with rect: " << i << std::endl;
+			//TODO: player collides with tile 79 while he is at position 225, 226
+			//TODO: FIX the bad collision, what the fuck is going on?
 			/*
 			*	TODO: Need a way to lock out the direction of motion that created the collision until 
 			*	player moves in opposite direction

@@ -6,7 +6,7 @@
 #include "vectors.h"
 #include "physics.h"
 #include "map.h"
-#include "objectpool.h"
+//#include "objectpool.h"
 #include "window.h"
 #include "timer.h"
 #include "image.h"
@@ -82,6 +82,18 @@ int main(int argc, char* argv[]){
 			player->HandleEvents(event);
 			if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
 				quit = true;
+			//some debugging on tiles
+			if (event.type == SDL_MOUSEBUTTONDOWN && event.button.button == SDL_BUTTON_LEFT){
+				try{
+					int index = map->CalculateIndex(event.button.x, event.button.y);
+					std::cout << "index: " << index << " x,y: " << event.button.x
+						<< ", " << event.button.y
+						<< " solid: " << map->SolidTile(index) << std::endl;
+				}
+				catch(std::runtime_error &e){
+					std::cout << e.what() << std::endl;
+				}
+			}
 		}
 		///LOGIC
 		for (GameObject *i : objects)

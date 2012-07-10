@@ -6,6 +6,8 @@
 #include "tile.h"
 #include "map.h"
 
+#include <iostream>
+
 Map::Map(){
 	//Generate a map with a floor for testing
 	mBox.Set(0, 0, 320, 320);
@@ -26,7 +28,7 @@ Map::Map(){
 							  yPos, TILE_WIDTH, TILE_HEIGHT));
 		if (tempTile.Box().Y() > 8 * TILE_HEIGHT || tempTile.Box().X() > 8 * TILE_WIDTH){
 			tempTile.SetType(6);
-			//tempTile.SetSolid(true);
+			tempTile.SetSolid(true);
 		}
 		mTiles.push_back(tempTile);
     }
@@ -116,8 +118,16 @@ CollisionMap Map::GetLocalCollisionMap(const Recti &target, int distance){
 
 	CollisionMap localMap;
 	for (int i : indices){
-		if (mTiles.at(i).Solid())
+		if (mTiles.at(i).Solid()){
 			localMap.push_back(mTiles.at(i).Box());
+			std::cout << "tile at: " << i << " added"
+				<< " at collisionmap index: " << localMap.size() - 1 << std::endl;
+		}
 	}
 	return localMap;
+}
+bool Map::SolidTile(int index){
+	if (index > mTiles.size())
+		return false;
+	return mTiles.at(index).Solid();
 }
