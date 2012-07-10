@@ -69,7 +69,7 @@ void Map::SetClips(){
 }
 int Map::CalculateIndex(int x, int y){
 	//if it's in bounds calculate the index
-	if ((x >= 0 && x <= mBox.W()) && (y >= 0 && y <= mBox.H())){
+	if ((x > 0 && x < mBox.W()) && (y > 0 && y < mBox.H())){
 		return (x / TILE_WIDTH + (y / TILE_HEIGHT) * (mBox.W() / TILE_WIDTH)); 
 	}
 	else 
