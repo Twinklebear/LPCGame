@@ -46,7 +46,7 @@ bool Math::CheckCollision(const Rectf &a, const Rectf &b){
 		return false;
 	if (a.Y() >= b.Y() + b.H())
 		return false;
-	if (a.X() + a.Y() <= b.X())
+	if (a.X() + a.W() <= b.X())
 		return false;
 	if (a.X() >= b.X() + b.W())
 		return false;

@@ -50,8 +50,6 @@ public:
 	*	@return: the nearby collision map
 	*/
 	CollisionMap GetLocalCollisionMap(const Recti &target, int distance = 2);
-	//FOR DEBUGGING: Check if tile at some index is solid or not
-	bool SolidTile(int index);
 
 private:
 	///Setup clips for the image

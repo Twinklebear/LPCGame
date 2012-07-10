@@ -6,8 +6,6 @@
 #include "tile.h"
 #include "map.h"
 
-#include <iostream>
-
 Map::Map(){
 	//Generate a map with a floor for testing
 	mBox.Set(0, 0, 320, 320);
@@ -115,19 +113,11 @@ CollisionMap Map::GetLocalCollisionMap(const Recti &target, int distance){
 	}
 	catch (std::runtime_error &e){
 	}
-
+	//Setup the collision map
 	CollisionMap localMap;
 	for (int i : indices){
-		if (mTiles.at(i).Solid()){
+		if (mTiles.at(i).Solid())
 			localMap.push_back(mTiles.at(i).Box());
-			std::cout << "tile at: " << i << " added"
-				<< " at collisionmap index: " << localMap.size() - 1 << std::endl;
-		}
 	}
 	return localMap;
-}
-bool Map::SolidTile(int index){
-	if (index > mTiles.size())
-		return false;
-	return mTiles.at(index).Solid();
 }
