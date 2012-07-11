@@ -8,6 +8,7 @@
 #include "map.h"
 //#include "objectpool.h"
 #include "window.h"
+#include "gameobjectmanager.h"
 #include "timer.h"
 #include "image.h"
 #include "player.h"
@@ -51,25 +52,21 @@ int main(int argc, char* argv[]){
 	Timer fps, delta;
 	bool quit = false;
 
-	//Npc test
 	Map *map		= new Map();
 	Player *player	= new Player();
 	Npc *npc		= new Npc();
+	GameObjectManager *manager = new GameObjectManager();
+	//Register the objects with the manager
+	manager->Register((GameObject*)player);
+	manager->Register((GameObject*)npc);
+	//Setup initial collision maps
+	manager->SetCollisionMaps(map);
 
 	fps.Start();
 	delta.Start();
 
 	//TODO: Make all SDL_Surface*'s into std::unique_ptr's with a custom deleter to free the surface?
 	//TODO: Add collision checking between entities
-
-	//vector of gameobject for grouping repetitive calls to them
-	std::vector<GameObject*> objects;
-	objects.push_back((GameObject*)player);
-	objects.push_back((GameObject*)npc);
-
-	//setup initial collision maps
-	for (GameObject *i : objects)
-		i->SetCollisionMap(map->GetLocalCollisionMap(i->Box()));
 
 	//Start up the rendering thread
 	//std::thread *tRenderer = new std::thread(Renderer, &objects, map, quit);
@@ -84,22 +81,19 @@ int main(int argc, char* argv[]){
 				quit = true;
 		}
 		///LOGIC
-		for (GameObject *i : objects)
-			i->SetCollisionMap(map->GetLocalCollisionMap(i->Box()));
+		manager->SetCollisionMaps(map);
 
 		npc->SetMove(Math::DOWN);
 
 		float deltaT = delta.GetTicks() / 1000.f;
-		for (GameObject *i : objects)
-			i->Move(deltaT);
+		manager->Move(deltaT);
 
 		delta.Start();
 		///RENDERING
 		Window::FillWhite();
 		map->Draw();
 	
-		for (GameObject *i : objects)
-			i->Draw();
+		manager->Draw();
 
 		//refresh window
 		try{
@@ -118,6 +112,7 @@ int main(int argc, char* argv[]){
 	delete map;
 	delete player;
 	delete npc;
+	delete manager;
 
 	return 0;
 }

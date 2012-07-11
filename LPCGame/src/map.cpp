@@ -67,7 +67,7 @@ void Map::SetClips(){
 	}
 	mImage.SetClips(clips);
 }
-int Map::CalculateIndex(int x, int y){
+int Map::CalculateIndex(int x, int y) const{
 	//if it's in bounds calculate the index
 	if ((x > 0 && x < mBox.W()) && (y > 0 && y < mBox.H())){
 		return (x / TILE_WIDTH + (y / TILE_HEIGHT) * (mBox.W() / TILE_WIDTH)); 
@@ -75,7 +75,7 @@ int Map::CalculateIndex(int x, int y){
 	else 
 		throw std::runtime_error("Point off map");
 }
-std::vector<int> Map::CalculateIndex(Recti area){
+std::vector<int> Map::CalculateIndex(Recti area) const{
 	std::vector<int> tileIndices;
 	//run through the area
 	for (int y = area.Y(); y < area.Y() + area.H(); y += TILE_HEIGHT){
@@ -102,7 +102,7 @@ std::vector<int> Map::CalculateIndex(Recti area){
 	else
 		throw std::runtime_error("Invalid area");
 }
-CollisionMap Map::GetLocalCollisionMap(const Recti &target, int distance){
+CollisionMap Map::GetLocalCollisionMap(const Recti &target, int distance) const{
 	//get the indices of the desired tiles
 	Recti area(target.X() - distance * TILE_WIDTH, target.Y() - distance * TILE_HEIGHT,
 				((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),

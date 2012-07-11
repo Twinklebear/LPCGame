@@ -11,20 +11,20 @@ const int TILE_HEIGHT = 32;
 */
 class Tile{
 public:
-	Tile(){ }
+	Tile(){}
 	Tile(Recti box, bool solid, int type){
 		mBox	= box;
 		mSolid	= solid;
 		mType	= type;
 	}
 	//Setters & getters
-	Recti Box(){
+	Recti Box() const{
 		return mBox;
 	}
-	bool Solid(){
+	bool Solid() const{
 		return mSolid;
 	}
-	int Type(){
+	int Type() const{
 		return mType;
 	}
 	void SetBox(Recti box){

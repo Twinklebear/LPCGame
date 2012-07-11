@@ -40,16 +40,16 @@ public:
 	*/
 	void Unload();
 	///Calculate the index of the tile at some point & return it
-	int CalculateIndex(int x, int y);
+	int CalculateIndex(int x, int y) const;
 	///Calculate the indeces enclosed in a rectangle
-	std::vector<int> CalculateIndex(Recti area);
+	std::vector<int> CalculateIndex(Recti area) const;
 	/**
 	*	Get the collision map within distance of the target
 	*	@param target: the target to get the nearby collision map around
 	*	@param distance: the distance in tiles to return the map of
 	*	@return: the nearby collision map
 	*/
-	CollisionMap GetLocalCollisionMap(const Recti &target, int distance = 2);
+	CollisionMap GetLocalCollisionMap(const Recti &target, int distance = 2) const;
 
 private:
 	///Setup clips for the image
