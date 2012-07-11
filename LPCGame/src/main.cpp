@@ -54,17 +54,18 @@ int main(int argc, char* argv[]){
 	//Npc test
 	Map *map		= new Map();
 	Player *player	= new Player();
-	//Npc *npc		= new Npc();
+	Npc *npc		= new Npc();
 
 	fps.Start();
 	delta.Start();
 
 	//TODO: Make all SDL_Surface*'s into std::unique_ptr's with a custom deleter to free the surface?
+	//TODO: Add collision checking between entities
 
 	//vector of gameobject for grouping repetitive calls to them
 	std::vector<GameObject*> objects;
 	objects.push_back((GameObject*)player);
-	//objects.push_back((GameObject*)npc);
+	objects.push_back((GameObject*)npc);
 
 	//setup initial collision maps
 	for (GameObject *i : objects)
@@ -86,7 +87,7 @@ int main(int argc, char* argv[]){
 		for (GameObject *i : objects)
 			i->SetCollisionMap(map->GetLocalCollisionMap(i->Box()));
 
-		//npc->SetMove(Math::DOWN);
+		npc->SetMove(Math::DOWN);
 
 		float deltaT = delta.GetTicks() / 1000.f;
 		for (GameObject *i : objects)
@@ -116,7 +117,7 @@ int main(int argc, char* argv[]){
 	}
 	delete map;
 	delete player;
-	//delete npc;
+	delete npc;
 
 	return 0;
 }
