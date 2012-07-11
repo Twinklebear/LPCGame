@@ -59,7 +59,6 @@ int main(int argc, char* argv[]){
 	fps.Start();
 	delta.Start();
 
-	//TODO: Some non-solid tiles are falsely being read as solid into the collision map
 	//TODO: Make all SDL_Surface*'s into std::unique_ptr's with a custom deleter to free the surface?
 
 	//vector of gameobject for grouping repetitive calls to them

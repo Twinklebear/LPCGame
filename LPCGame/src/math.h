@@ -22,10 +22,10 @@ namespace Math{
 	*	Check if two rectangles are near each other, and return the side of
 	*	@param a: the rectangle we want to see
 	*	@param b: the rectangle we want to see if a is close too
-	*	@param tolerance: the tolerance distance to accept for "nearness"
+	*	@param tolerance: the tolerance distance to accept for "nearness", default is 0, ie 'touching'
 	*	@return: the enumerator representing the side of Rect A that's within tolerance of B, if none return -1
 	*/
-	int RectNearRect(const Rectf &a, const Rectf &b, int tolerance);
+	int RectNearRect(const Rectf &a, const Rectf &b, int tolerance = 0);
 	/**
 	*	Check collision between to rectangles
 	*	@param a first rectangle

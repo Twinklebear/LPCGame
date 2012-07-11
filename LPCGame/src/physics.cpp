@@ -52,15 +52,18 @@ void Physics::Move(float deltaT){
 	testPos = mBox.Pos() + (mKinematic.Vel * deltaT);
 
 	//TODO: Need to set velocity to small value in direction of motion if colliding with wall but moving away from it
+	//x axis collision checks
 	if (CheckCollision(Rectf(testPos.x, mBox.Y(), mBox.W(), mBox.H()))){
 	}
 	else 
 		mBox.Set(testPos.x, mBox.Y());
-
+	//y axis collision checks
 	if (CheckCollision(Rectf(mBox.X(), testPos.y, mBox.W(), mBox.H()))){
 	}
 	else
 		mBox.Set(mBox.X(), testPos.y);
+
+	std::cout << "---------END UPDATE-------\n\n";
 
 	mMotionState.UpdateState(mKinematic);
 }
@@ -110,25 +113,34 @@ void Physics::ApplyFriction(){
 	}
 }
 bool Physics::CheckCollision(Rectf box){
+	//We get rid of the benefits of early out to instead be able to check all tiles
+	//we're colliding with for a collision direction, in the hopes that one of them should almost
+	//certainly return a valid direction within our tolerance
+	//TODO: Can i have my cake and eat it too? early out + direction resolution?
+	bool colliding = false;
 	for (Recti i : mCollisionMap){
 		if (Math::CheckCollision(box, i)){
+			std::cout << "COLLISION" << std::endl;
 			/*
 			*	TODO: Need a way to lock out the direction of motion that created the collision until 
 			*	player moves in opposite direction
+			*/
 			//if trying to move in direction of collision set vel to 0
-			if (mHorizDir != MOVE::STOP && Math::RectNearRect(box, i, 1) == mHorizDir){
+			int colDir = Math::RectNearRect(box, i, 15);
+			std::cout << "colliding with box on side: " << colDir << std::endl;
+			if (mHorizDir != MOVE::STOP && colDir != -1){
+				//std::cout << "Locking x move dir" << std::endl;
 				mHorizDir = MOVE::STOP;
 				mKinematic.Vel.x = 0;
 			}
-			if (mVertDir != MOVE::STOP && Math::RectNearRect(box, i, 1) == mVertDir){
+			if (mVertDir != MOVE::STOP && colDir != -1){
 				mVertDir = MOVE::STOP;
 				mKinematic.Vel.y = 0;
 			}
-			*/
-			return true;
+			colliding = true;
 		}
 	}
-	return false;
+	return colliding;
 }
 Vector2f Physics::GetFrameMove(float deltaT){
 	return (mKinematic.Vel * deltaT);

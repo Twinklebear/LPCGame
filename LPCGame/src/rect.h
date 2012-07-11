@@ -19,7 +19,9 @@ public:
 	}
 	///Set the rect to some size
 	void Set(T pX, T pY, T pW, T pH){
-		pos = Vector2<T>(pX, pY);
+		//pos = Vector2<T>(pX, pY);
+		pos.x = pX;
+		pos.y = pY;
 		w = pW;
 		h = pH;
 	}

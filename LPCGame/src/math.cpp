@@ -1,7 +1,9 @@
 #include "math.h"
 
+#include <iostream>
+
 float Math::Distance(const Vector2f &a, const Vector2f &b){
-	return (float)sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2.0));
+	return (float)sqrt(pow(b.x - a.x, 2.0) + pow(b.y - a.y, 2.0));
 }
 int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 	//Simple enough to do:
@@ -9,33 +11,47 @@ int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 	//and compare A's top to B's bottom to see if the distance is within the tolerance, if it is, return UP
 	//to say that A's topside is close to B
 	//Point names: rect SIDE, so aT is A's Topside
-	Vector2f aT, aB, aR, aL, bT, bB, bR, bL;
+	Vector2f aSides[4], bSides[4];
 
 	//setup the points
-	aT.x = (a.X() + a.W()) / 2.0f;
-	aT.y = a.Y();
-	aB.x = aT.x;
-	aB.y = a.Y() + a.H();
-	aL.x = a.X();
-	aL.y = (a.Y() + a.H()) / 2.0f;
-	aR.x = a.X() + a.W();
-	aR.y = aL.y;
+	aSides[UP].x	= a.X() + a.W() / 2.0f;
+	aSides[UP].y	= a.Y();
+	aSides[DOWN].x	= aSides[UP].x;
+	aSides[DOWN].y	= a.Y() + a.H();
+	aSides[LEFT].x	= a.X();
+	aSides[LEFT].y	= a.Y() + a.H() / 2.0f;
+	aSides[RIGHT].x = a.X() + a.W();
+	aSides[RIGHT].y = aSides[LEFT].y;
 
-	bT.x = (b.X() + b.W()) / 2.0f;
-	bT.y = b.Y();
-	bB.x = bT.x;
-	bB.y = b.Y() + b.H();
-	bL.x = b.X();
-	bL.y = (b.Y() - b.H()) / 2.0f;
-	bR.x = b.X() + b.W();
-	bR.y = bL.y;
+	bSides[UP].x	= b.X() + b.W() / 2.0f;
+	bSides[UP].y	= b.Y();
+	bSides[DOWN].x	= bSides[UP].x;
+	bSides[DOWN].y	= b.Y() + b.H();
+	bSides[LEFT].x	= b.X();
+	bSides[LEFT].y	= b.Y() + b.H() / 2.0f;
+	bSides[RIGHT].x = b.X() + b.W();
+	bSides[RIGHT].y = bSides[LEFT].y;
 
 	//now we check which side of A is closest to the opposite side of B
 	//aT near bB, aR near bL, etc.
-	if (Distance(aT, bB) <= tolerance) return UP;
-	if (Distance(aB, bT) <= tolerance) return DOWN;
-	if (Distance(aR, bL) <= tolerance) return RIGHT;
-	if (Distance(aL, bR) <= tolerance) return LEFT;
+	std::cout << "Rect a: " << a.X() << ", " << a.Y() << ", " << a.W() << ", " << a.H() << std::endl;
+	for (int i = 0; i < 4; ++i)
+		std::cout << "[" << aSides[i].x << ", " << aSides[i].y << "] ";
+	std::cout << std::endl;
+	std::cout << "Rect b: " << b.X() << ", " << b.Y() << ", " << b.W() << ", " << b.H() << std::endl;
+	for (int i = 0; i < 4; ++i)
+		std::cout << "[" << bSides[i].x << ", " << bSides[i].y << "] ";
+	std::cout << std::endl;
+
+	std::cout << "Distance between a top and b bott: " << Distance(aSides[UP], bSides[DOWN]) << std::endl
+		<< "Dist a bott and b top: " << Distance(aSides[DOWN], bSides[UP]) << std::endl
+		<< "Dist a right and b left: " << Distance(aSides[RIGHT], bSides[LEFT]) << std::endl
+		<< "Dist a left and b right: " << Distance(aSides[LEFT], bSides[RIGHT]) << std::endl;
+
+	if (Distance(aSides[UP]	  , bSides[DOWN])  <= tolerance) return UP;
+	if (Distance(aSides[DOWN] , bSides[UP])    <= tolerance) return DOWN;
+	if (Distance(aSides[RIGHT], bSides[LEFT])  <= tolerance) return RIGHT;
+	if (Distance(aSides[LEFT] , bSides[RIGHT]) <= tolerance) return LEFT;
 
 	//if none are near return -1, for fail
 	return -1;
