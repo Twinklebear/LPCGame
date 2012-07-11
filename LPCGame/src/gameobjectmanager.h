@@ -35,6 +35,11 @@ public:
 	void Register(GameObject *obj);
 
 private:
+	//Maybe i can have a function that returns a collision map of local entities
+	//and simply add that collision map to the local collision map of the tiles
+	CollisionMap GetEntityCollisionMap(const Rectf &target, int distance = 2 * TILE_WIDTH);
+
+private:
 	GameObjectList mGameObjects;
 };
 

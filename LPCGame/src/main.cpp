@@ -57,6 +57,8 @@ int main(int argc, char* argv[]){
 	Npc *npc		= new Npc();
 	GameObjectManager *manager = new GameObjectManager();
 	//Register the objects with the manager
+	player->Start(10, 10);
+	npc->Start(100, 100);
 	manager->Register((GameObject*)player);
 	manager->Register((GameObject*)npc);
 	//Setup initial collision maps

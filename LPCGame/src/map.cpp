@@ -102,7 +102,7 @@ std::vector<int> Map::CalculateIndex(Recti area) const{
 	else
 		throw std::runtime_error("Invalid area");
 }
-CollisionMap Map::GetLocalCollisionMap(const Recti &target, int distance) const{
+CollisionMap Map::GetCollisionMap(const Recti &target, int distance) const{
 	//get the indices of the desired tiles
 	Recti area(target.X() - distance * TILE_WIDTH, target.Y() - distance * TILE_HEIGHT,
 				((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),

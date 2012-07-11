@@ -12,9 +12,11 @@
 #include "player.h"
 
 
-Npc::Npc(){
+Npc::Npc(){}
+Npc::~Npc(){}
+void Npc::Start(int x, int y){
 	//initialize box
-	Rectf box(10, 10, PLAYER_WIDTH, PLAYER_HEIGHT);
+	Rectf box(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	mPhysics.SetBox(box);
 	PhysicalConstants physConst;
 	physConst.hSpeed	= PLAYER_HSPEED;
@@ -22,8 +24,6 @@ Npc::Npc(){
 	mPhysics.SetPhysConstants(physConst);
 
 	mImage.LoadImage("images/image.png");
-}
-Npc::~Npc(){
 }
 void Npc::Move(float deltaT){
 	mPhysics.Move(deltaT);

@@ -20,6 +20,8 @@ class Player : public GameObject{
 public:
 	Player();
 	~Player();
+	//Load images/setup initial values
+	void Start(int x, int y);
 	//Event handling
 	void HandleEvents(SDL_Event &event);
 	//Move the player

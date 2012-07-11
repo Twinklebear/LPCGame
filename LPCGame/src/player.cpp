@@ -11,9 +11,10 @@
 
 #include <iostream>
 
-Player::Player(){
-	//initialize box
-	Rectf box(10, 10, PLAYER_WIDTH, PLAYER_HEIGHT);
+Player::Player(){}
+Player::~Player(){}
+void Player::Start(int x, int y){
+	Rectf box(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	mPhysics.SetBox(box);
 	//setup physical constants
 	PhysicalConstants physConst;
@@ -22,8 +23,6 @@ Player::Player(){
 	mPhysics.SetPhysConstants(physConst);
 
 	mImage.LoadImage("images/image.png");
-}
-Player::~Player(){
 }
 void Player::HandleEvents(SDL_Event &event){
 	if (event.type == SDL_KEYDOWN){

@@ -15,6 +15,8 @@ class Npc : public GameObject {
 public:
 	Npc();
 	~Npc();
+	//Load images/setup the Npc
+	void Start(int x, int y);
 	//Handle player movement
 	void Move(float deltaT);
 	//Draw the player
