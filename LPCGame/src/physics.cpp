@@ -63,8 +63,6 @@ void Physics::Move(float deltaT){
 	else
 		mBox.Set(mBox.X(), testPos.y);
 
-	std::cout << "---------END UPDATE-------\n\n";
-
 	mMotionState.UpdateState(mKinematic);
 }
 void Physics::UpdateVelocity(float deltaT){
@@ -113,31 +111,23 @@ void Physics::ApplyFriction(){
 	}
 }
 bool Physics::CheckCollision(Rectf box){
-	//We get rid of the benefits of early out to instead be able to check all tiles
-	//we're colliding with for a collision direction, in the hopes that one of them should almost
-	//certainly return a valid direction within our tolerance
-	//TODO: Can i have my cake and eat it too? early out + direction resolution?
+	//We wait to exit the loop until we've found the collision direction and
+	//checked it against our movement direction to set v to 0 if moving in direction of 
+	//the collision
 	bool colliding = false;
 	for (Recti i : mCollisionMap){
 		if (Math::CheckCollision(box, i)){
-			std::cout << "COLLISION" << std::endl;
-			/*
-			*	TODO: Need a way to lock out the direction of motion that created the collision until 
-			*	player moves in opposite direction
-			*/
-			//if trying to move in direction of collision set vel to 0
-			int colDir = Math::RectNearRect(box, i, 15);
-			std::cout << "colliding with box on side: " << colDir << std::endl;
-			if (mHorizDir != MOVE::STOP && colDir != -1){
-				//std::cout << "Locking x move dir" << std::endl;
-				mHorizDir = MOVE::STOP;
-				mKinematic.Vel.x = 0;
-			}
-			if (mVertDir != MOVE::STOP && colDir != -1){
-				mVertDir = MOVE::STOP;
-				mKinematic.Vel.y = 0;
-			}
 			colliding = true;
+			//Check collision direction against movement directions
+			int colDir = Math::RectNearRect(box, i, 15);
+			if (mHorizDir == colDir){
+				mKinematic.Vel.x = 0;
+				return colliding;
+			}
+			if (mVertDir == colDir){
+				mKinematic.Vel.y = 0;
+				return colliding;
+			}
 		}
 	}
 	return colliding;

@@ -34,20 +34,6 @@ int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 
 	//now we check which side of A is closest to the opposite side of B
 	//aT near bB, aR near bL, etc.
-	std::cout << "Rect a: " << a.X() << ", " << a.Y() << ", " << a.W() << ", " << a.H() << std::endl;
-	for (int i = 0; i < 4; ++i)
-		std::cout << "[" << aSides[i].x << ", " << aSides[i].y << "] ";
-	std::cout << std::endl;
-	std::cout << "Rect b: " << b.X() << ", " << b.Y() << ", " << b.W() << ", " << b.H() << std::endl;
-	for (int i = 0; i < 4; ++i)
-		std::cout << "[" << bSides[i].x << ", " << bSides[i].y << "] ";
-	std::cout << std::endl;
-
-	std::cout << "Distance between a top and b bott: " << Distance(aSides[UP], bSides[DOWN]) << std::endl
-		<< "Dist a bott and b top: " << Distance(aSides[DOWN], bSides[UP]) << std::endl
-		<< "Dist a right and b left: " << Distance(aSides[RIGHT], bSides[LEFT]) << std::endl
-		<< "Dist a left and b right: " << Distance(aSides[LEFT], bSides[RIGHT]) << std::endl;
-
 	if (Distance(aSides[UP]	  , bSides[DOWN])  <= tolerance) return UP;
 	if (Distance(aSides[DOWN] , bSides[UP])    <= tolerance) return DOWN;
 	if (Distance(aSides[RIGHT], bSides[LEFT])  <= tolerance) return RIGHT;
