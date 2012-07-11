@@ -1,7 +1,5 @@
 #include "math.h"
 
-#include <iostream>
-
 float Math::Distance(const Vector2f &a, const Vector2f &b){
 	return (float)sqrt(pow(b.x - a.x, 2.0) + pow(b.y - a.y, 2.0));
 }

@@ -1,8 +1,6 @@
 #include "math.h"
 #include "physics.h"
 
-#include <iostream>
-
 MotionState::MotionState(){
 	mState = IDLE;
 }
