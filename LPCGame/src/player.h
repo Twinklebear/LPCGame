@@ -22,6 +22,8 @@ public:
 	~Player();
 	//Load images/setup initial values
 	void Start(int x, int y);
+	//Run once each fram
+	void Update();
 	//Event handling
 	void HandleEvents(SDL_Event &event);
 	//Move the player

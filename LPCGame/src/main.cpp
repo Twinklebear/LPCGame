@@ -91,6 +91,7 @@ int main(int argc, char** argv){
 		}
 
 		///LOGIC
+		manager->Update();
 		manager->SetCollisionMaps(map);
 
 		npc->SetMove(Math::DOWN);

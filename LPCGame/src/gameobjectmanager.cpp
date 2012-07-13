@@ -11,6 +11,10 @@ void GameObjectManager::Draw(){
 	for (GameObject *o : mGameObjects)
 		o->Draw();
 }
+void GameObjectManager::Update(){
+	for (GameObject *o : mGameObjects)
+		o->Update();
+}
 void GameObjectManager::Move(float deltaT){
 	for (GameObject *o : mGameObjects)
 		o->Move(deltaT);

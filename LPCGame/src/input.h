@@ -18,7 +18,7 @@ public:
 
 private:
 	static SDL_Event event;
-	static bool fDown;
+	static bool fDown, wDown, aDown, sDown, dDown;
 	static bool mQuit;
 };
 

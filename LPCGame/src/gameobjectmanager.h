@@ -16,8 +16,10 @@ class GameObjectManager{
 public:
 	GameObjectManager();
 	~GameObjectManager();
-	///Draw the game objects
+	//Draw the game objects
 	void Draw();
+	//Update the objects
+	void Update();
 	/*
 	*	Move the game objects
 	*	@param deltaT: the time elapsed

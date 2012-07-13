@@ -6,6 +6,7 @@
 #include "vectors.h"
 #include "math.h"
 #include "window.h"
+#include "input.h"
 #include "image.h"
 #include "player.h"
 
@@ -23,6 +24,22 @@ void Player::Start(int x, int y){
 	mPhysics.SetPhysConstants(physConst);
 
 	mImage.LoadImage("images/image.png");
+}
+void Player::Update(){
+	//Horizontal input handling
+	if (Input::KeyDown('a'))
+		mPhysics.SetHorizDir(Math::LEFT);
+	else if (Input::KeyDown('d'))
+		mPhysics.SetHorizDir(Math::RIGHT);
+	else
+		mPhysics.SetHorizDir(Physics::MOVE::STOP);
+	//Vertical input handling
+	if (Input::KeyDown('w'))
+		mPhysics.SetVertDir(Math::UP);
+	else if (Input::KeyDown('s'))
+		mPhysics.SetVertDir(Math::DOWN);
+	else
+		mPhysics.SetVertDir(Physics::MOVE::STOP);
 }
 void Player::HandleEvents(SDL_Event &event){
 	if (event.type == SDL_KEYDOWN){

@@ -17,6 +17,8 @@ public:
 	~Npc();
 	//Load images/setup the Npc
 	void Start(int x, int y);
+	//Run once each frame
+	void Update();
 	//Handle player movement
 	void Move(float deltaT);
 	//Draw the player

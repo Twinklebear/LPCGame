@@ -25,6 +25,9 @@ void Npc::Start(int x, int y){
 
 	mImage.LoadImage("images/image.png");
 }
+void Npc::Update(){
+	
+}
 void Npc::Move(float deltaT){
 	mPhysics.Move(deltaT);
 }
