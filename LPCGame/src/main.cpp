@@ -49,9 +49,9 @@ void Renderer(std::vector<GameObject*> *objects, Map *map, bool &quit){
 */
 int main(int argc, char** argv){
 	Window::Setup();
-	SDL_Event event;
+	//SDL_Event event;
 	Timer fps, delta;
-	bool quit = false;
+	//bool quit = false;
 
 	Map *map		= new Map();
 	Player *player	= new Player();
@@ -77,6 +77,7 @@ int main(int argc, char** argv){
 
 	while (!Input::Quit()){
 		//EVENT POLLING
+		Input::PollEvent();
 		/*
 		while (SDL_PollEvent(&event)){
 			Window::HandleEvents(event);
@@ -85,10 +86,6 @@ int main(int argc, char** argv){
 				quit = true;
 		}
 		*/
-		Input::PollEvent();
-		if (Input::KeyDown('f')){
-			std::cout << "f down" << std::endl;
-		}
 
 		///LOGIC
 		manager->Update();
