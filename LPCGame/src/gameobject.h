@@ -10,6 +10,7 @@
 class GameObject{
 public:
 	GameObject() {};
+	virtual ~GameObject() {};
 	///Create the gameobject, initialize various stuff
 	virtual void Start(int x = 0, int y = 0) = 0;
 	///Update the game object
