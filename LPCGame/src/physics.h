@@ -1,5 +1,6 @@
 #ifndef PHYSICS_H
 #define PHYSICS_H
+
 #include <cmath>
 #include <vector>
 #include "math.h"

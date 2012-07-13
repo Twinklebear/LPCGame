@@ -13,6 +13,7 @@
 #include "image.h"
 #include "player.h"
 #include "npc.h"
+#include "input.h"
 
 #include <iostream>
 /*
@@ -46,7 +47,7 @@ void Renderer(std::vector<GameObject*> *objects, Map *map, bool &quit){
 	}
 }
 */
-int main(int argc, char* argv[]){
+int main(int argc, char** argv){
 	Window::Setup();
 	SDL_Event event;
 	Timer fps, delta;
@@ -74,14 +75,21 @@ int main(int argc, char* argv[]){
 	//std::thread *tRenderer = new std::thread(Renderer, &objects, map, quit);
 	//tRenderer->detach();
 
-	while (!quit){
+	while (!Input::Quit()){
 		//EVENT POLLING
+		/*
 		while (SDL_PollEvent(&event)){
 			Window::HandleEvents(event);
 			player->HandleEvents(event);
 			if (event.type == SDL_QUIT || (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_ESCAPE))
 				quit = true;
 		}
+		*/
+		Input::PollEvent();
+		if (Input::KeyDown('f')){
+			std::cout << "f down" << std::endl;
+		}
+
 		///LOGIC
 		manager->SetCollisionMaps(map);
 
