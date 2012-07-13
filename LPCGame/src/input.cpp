@@ -1,4 +1,5 @@
 #include "SDL.h"
+#include "window.h"
 #include "input.h"
 
 SDL_Event Input::event;
@@ -15,6 +16,9 @@ Input::Input(){
 Input::~Input(){}
 void Input::PollEvent(){
 	while(SDL_PollEvent(&event)){
+		//this is an ok method to do this. But maybe not the best
+		Window::HandleEvents(event);
+		
 		if (event.type == SDL_QUIT)
 			mQuit = true;
 		if (event.type == SDL_KEYDOWN){
