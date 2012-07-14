@@ -13,8 +13,11 @@ public:
 	~Input();
 	///Read event input
 	static void PollEvent();
+	//Get if a key is currently being pressed
 	static bool KeyDown(char keyCode);
+	//Check if the program has been quit out of
 	static bool Quit();
+	//TODO: How should i handle mouse events? Perhaps i can register a callback function or something?
 
 private:
 	static SDL_Event event;
