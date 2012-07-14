@@ -21,6 +21,7 @@
     <ClCompile Include="src\npc.cpp" />
     <ClCompile Include="src\physics.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\rigidbody.cpp" />
     <ClCompile Include="src\timer.cpp" />
     <ClCompile Include="src\window.cpp" />
   </ItemGroup>
@@ -36,6 +37,7 @@
     <ClInclude Include="src\physics.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\rect.h" />
+    <ClInclude Include="src\rigidbody.h" />
     <ClInclude Include="src\tile.h" />
     <ClInclude Include="src\timer.h" />
     <ClInclude Include="src\vectors.h" />
