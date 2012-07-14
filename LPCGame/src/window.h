@@ -18,6 +18,10 @@ public:
 	*	@return true false based on if setup was successful
 	*/
 	static void Setup();
+	/*
+	* Quit SDL
+	*/
+	static void Quit();
 	/**
 	*	Handle window events such as resizing
 	*	@param event: The SDL_Event queue

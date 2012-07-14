@@ -39,6 +39,9 @@ void Window::Setup(){
 	//fill the screen white
 	SDL_FillRect(mScreen, &mScreen->clip_rect, SDL_MapRGB(mScreen->format, 0xFF, 0xFF, 0xFF));
 }
+void Window::Quit(){
+	SDL_Quit();
+}
 void Window::HandleEvents(SDL_Event &event){
     if (event.type == SDL_VIDEORESIZE){
         mScreen = SDL_SetVideoMode(event.resize.w, event.resize.h, SCREEN_BPP, SDL_SWSURFACE | SDL_RESIZABLE | SDL_DOUBLEBUF);

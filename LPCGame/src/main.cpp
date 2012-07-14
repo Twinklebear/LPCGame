@@ -122,5 +122,7 @@ int main(int argc, char** argv){
 	delete npc;
 	delete manager;
 
+	Window::Quit();
+
 	return 0;
 }
