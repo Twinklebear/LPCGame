@@ -12,7 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\gameobject.cpp" />
+    <ClCompile Include="src\gameobjectmanager.cpp" />
     <ClCompile Include="src\image.cpp" />
+    <ClCompile Include="src\input.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\map.cpp" />
     <ClCompile Include="src\math.cpp" />
@@ -24,7 +26,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\gameobject.h" />
+    <ClInclude Include="src\gameobjectmanager.h" />
     <ClInclude Include="src\image.h" />
+    <ClInclude Include="src\input.h" />
     <ClInclude Include="src\map.h" />
     <ClInclude Include="src\math.h" />
     <ClInclude Include="src\npc.h" />
