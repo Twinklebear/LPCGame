@@ -1,78 +1,83 @@
+#include <string>
 #include <stdexcept>
 #include "SDL.h"
+#include "SDL_image.h"
 #include "SDL_ttf.h"
 #include "rect.h"
-#include "window.h"
 #include "image.h"
-#include <mutex>
-#include <iostream>
+#include "window.h"
 
+SDL_Window* Window::mWindow;
+SDL_Renderer* Window::mRenderer;
+Recti Window::mBox;
 int Window::SCREEN_WIDTH;
 int Window::SCREEN_HEIGHT;
-int Window::SCREEN_BPP;
-int Window::FRAMERATE_LIMIT;
-Recti Window::mWindowBox;
-SDL_Surface *Window::mScreen;
 
-void Window::Setup(){
-    //initialize all SDL subsystems
+void Window::Init(std::string title){
+	//initialize all SDL subsystems
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
 		throw std::runtime_error("SDL Init Failed");
     if (TTF_Init() == -1)
 		throw std::runtime_error("TTF Init Failed");
-    //Set screen width, height and BPP
-    SCREEN_WIDTH	= 1280;
-    SCREEN_HEIGHT	= 720;
-	SCREEN_BPP		= 32;
-	FRAMERATE_LIMIT = 60;
 
-    //setup the screen
-	mScreen = nullptr;
-	mScreen = SDL_SetVideoMode(SCREEN_WIDTH, SCREEN_HEIGHT, SCREEN_BPP, SDL_SWSURFACE | SDL_RESIZABLE | SDL_DOUBLEBUF);
-	if (mScreen == nullptr)
-		throw std::runtime_error("Failed to setup screen");
-    
-	//set the windowBox
-    mWindowBox.Set(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-	//set the window caption
-	SDL_WM_SetCaption("Game", NULL);
-	//fill the screen white
-	SDL_FillRect(mScreen, &mScreen->clip_rect, SDL_MapRGB(mScreen->format, 0xFF, 0xFF, 0xFF));
+	//Start up window
+	SCREEN_WIDTH = 1280;
+	SCREEN_HEIGHT = 720;
+	mWindow = nullptr;
+	mWindow = SDL_CreateWindow(title.c_str(), 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+	if (mWindow == nullptr)
+		throw std::runtime_error("Failed to open window");
+	//Start up the renderer
+	mRenderer = nullptr;
+	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	if (mRenderer == nullptr)
+		throw std::runtime_error("Failed to start renderer");
+	//initialize the window box
+	mBox.Set(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 void Window::Quit(){
+	SDL_DestroyRenderer(mRenderer);
+	SDL_DestroyWindow(mWindow);
 	TTF_Quit();
 	SDL_Quit();
 }
-void Window::HandleEvents(SDL_Event &event){
-    if (event.type == SDL_VIDEORESIZE){
-        mScreen = SDL_SetVideoMode(event.resize.w, event.resize.h, SCREEN_BPP, SDL_SWSURFACE | SDL_RESIZABLE | SDL_DOUBLEBUF);
-		mWindowBox.Set(0, 0, event.resize.w, event.resize.h);
-	}
+void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip){
+	SDL_Rect dstRect;
+	dstRect.x = x;
+	dstRect.y = y;
+	//Get the texture width and height
+	SDL_QueryTexture(tex, NULL, NULL, &dstRect.w, &dstRect.h);
+	//Draw the texture
+	SDL_RenderCopy(mRenderer, tex, clip, &dstRect);
 }
-void Window::FillWhite(){
-	SDL_FillRect(mScreen, &mScreen->clip_rect, SDL_MapRGB(mScreen->format, 0xFF, 0xFF, 0xFF));
+void Window::Draw(int x, int y, int w, int h, SDL_Texture *tex, SDL_Rect *clip){
+	SDL_Rect dstRect;
+	dstRect.x = x;
+	dstRect.y = y;
+	dstRect.w = w;
+	dstRect.h = h;
+	SDL_RenderCopy(mRenderer, tex, clip, &dstRect);
 }
-void Window::FillBlack(){
-	SDL_FillRect(mScreen, &mScreen->clip_rect, SDL_MapRGB(mScreen->format, 0, 0, 0));
+void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip){
+	Draw(dstRect.x, dstRect.y, dstRect.w, dstRect.h, image->Texture(), clip);
 }
-void Window::Draw(const float x, const float y, SDL_Surface *source, SDL_Rect *clip){
-	SDL_Rect offset;
-	offset.x = x;
-	offset.y = y;
-	SDL_BlitSurface(source, clip, mScreen, &offset);
+SDL_Texture* Window::LoadTexture(std::string file){
+	SDL_Texture* tex = nullptr;
+	tex = IMG_LoadTexture(mRenderer, file.c_str());
+	if (tex == nullptr)
+		throw std::runtime_error("Failed to load image: " + file);
+	return tex;
 }
-void Window::Draw(Image *image, SDL_Rect rect, SDL_Rect *clip){
-	SDL_BlitSurface(image->Surface(), clip, mScreen, &rect);
+void Window::Clear(){
+	SDL_RenderClear(mRenderer);
 }
 void Window::Flip(){
-	if (SDL_Flip(mScreen) == -1){
-		throw std::runtime_error("Window flip failed");
-		std::cout << "flip failed" << std::endl;
-	}
+	SDL_RenderPresent(mRenderer);
+}
+void Window::HandleEvents(SDL_Event &e){
 }
 Recti Window::Box(){
-	return mWindowBox;
-}
-const int Window::FrameRateLimit(){
-	return FRAMERATE_LIMIT;
+	//Update the box to match the current window w/h
+	SDL_GetWindowSize(mWindow, &mBox.w, &mBox.h);
+	return mBox;
 }

@@ -75,7 +75,7 @@ public:
 		return rect;
 	}
 
-private:
+public:
 	Vector2<T> pos;
 	T w, h;
 };

@@ -3,42 +3,35 @@
 #include "SDL_image.h"
 #include "rect.h"
 #include "image.h"
+#include "window.h"
 
 #include <iostream>
 
 Image::Image(const std::string file){
-	mSurface	= nullptr;
+	mTexture	= nullptr;
 	mClips		= nullptr;
 	mNumClips	= 0;
 	LoadImage(file);
 }
 Image::Image(){
-	mSurface	= nullptr;
+	mTexture	= nullptr;
 	mClips		= nullptr;
 	mNumClips	= 0;
 }
 Image::~Image(){
-	if (mSurface != nullptr)
-		SDL_FreeSurface(mSurface);
+	if (mTexture != nullptr)
+		SDL_DestroyTexture(mTexture);
 	if (mClips != nullptr)
 		delete[] mClips;
 }
 void Image::LoadImage(const std::string file){
 	//if another image was already loaded, free that one
-	if (mSurface != nullptr)
-		SDL_FreeSurface(mSurface);
-	SDL_Surface *loadedImage = nullptr;
-	//load image
-	loadedImage = IMG_Load(file.c_str());
-	if (!loadedImage)
-		throw std::runtime_error("LoadImage failed, could not load: " + file);
-	//optimize the image
-	mSurface = SDL_DisplayFormatAlpha(loadedImage);
-	//free unoptimized image
-	SDL_FreeSurface(loadedImage);
+	if (mTexture != nullptr)
+		SDL_DestroyTexture(mTexture);
+	mTexture = Window::LoadTexture(file);
 }
-SDL_Surface* Image::Surface(){
-	return mSurface;
+SDL_Texture* Image::Texture(){
+	return mTexture;
 }
 Recti Image::Clip(int clipNum){
 	if (clipNum > mNumClips || clipNum < 0 || mNumClips == 0)

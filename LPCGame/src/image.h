@@ -26,13 +26,8 @@ public:
 	*	@param file: the file to load
 	*/
 	void LoadImage(const std::string file);
-	/**
-	*	Move the rect by some vector
-	*	@param vect: the vector to move the position along
-	*/
-	void Move(Vector2f vect);
 	///Getters & Setters
-	SDL_Surface* Surface();
+	SDL_Texture* Texture();
 	Recti Clip(int clipNum);
 	void SetClips(const std::vector<Recti> &clips);
 
@@ -42,7 +37,7 @@ private:
 	Image& operator = (const Image &a);
 
 private:
-	SDL_Surface *mSurface;
+	SDL_Texture *mTexture;
 	Recti *mClips;
 	int mNumClips;
 };

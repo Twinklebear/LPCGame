@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "window.h"
+#include "rect.h"
 #include "image.h"
 #include "tile.h"
 

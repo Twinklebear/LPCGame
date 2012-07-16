@@ -1,63 +1,81 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 
+#include <string>
+#include <stdexcept>
 #include "SDL.h"
-#include "SDL_ttf.h"
-#include "rect.h"
 #include "image.h"
+#include "rect.h"
 
-/**
-*	The window manager class, handles window events and other such stuff
-*	related to the window
+/*
+*  Window management class, provides a simple wrapper around
+*  the SDL_Window and SDL_Renderer functionalities
 */
-
 class Window{
 public:
-	/**
-	*	Setup the window, also load a caption image and phrase if provided
-	*	@return true false based on if setup was successful
-	*/
-	static void Setup();
 	/*
-	* Quit SDL
+	*  Initialize SDL, setup the window and renderer
+	*  @param title: the window title
+	*/
+	static void Init(std::string title = "Window");
+	/*
+	*  Quit SDL and destroy the window and renderer
 	*/
 	static void Quit();
-	/**
-	*	Handle window events such as resizing
-	*	@param event: The SDL_Event queue
+	/*
+	*  Draw a texture to the screen, with no scaling applied
+	*  @param x: The x coordinate to draw too
+	*  @param y: The y coordinate to draw too
+	*  @param tex: The SDL_Texture* to draw
+	*  @param clip: The clip rect to apply to the texture, if desired
 	*/
-	static void HandleEvents(SDL_Event &event);
-	///Fill the screen a certain color, to refresh the window
-	static void FillWhite();
-	static void FillBlack();
-	/**
-	*	Draw an SDL_Surface to the screen
-	*	@param x: the x position to draw too
-	*	@param y: the y position to draw too
-	*	@param destination: the surface to draw too
-	*	@param clips: the clip of the surface to use, default is null
+	static void Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip = NULL);
+	/*
+	*  Draw a texture to the screen, with no scaling applied
+	*  @param x: The x coordinate to draw too
+	*  @param y: The y coordinate to draw too
+	*  @param w: The width to draw the texture with
+	*  @param h: The height to draw the texture with
+	*  @param tex: The SDL_Texture* to draw
+	*  @param clip: The clip rect to apply to the texture, if desired
 	*/
-	static void Draw(const float x, const float y, SDL_Surface *source, SDL_Rect *clip = NULL);
-	/**
-	*	Draw an Image to screen
-	*	@param image: the Image class to draw
-	*	@param rect: the rectangle of the object to draw
-	*	@param clip: the clip of the image to draw, default is null
+	static void Draw(int x, int y, int w, int h, SDL_Texture *tex, SDL_Rect *clip = NULL);
+	/*
+	*  Draw an image to the screen
+	*  @param image: The image to draw
+	*  @param dstRect: The destination rectangle to draw too 
+	*  @param clip: The clip rect to apply to the texture, if desired
 	*/
-	static void Draw(Image *image, SDL_Rect rect, SDL_Rect *clip = NULL);
-	///Flip the screen buffers
+	static void Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip = NULL);
+	/*
+	*  Load an image file into an SDL_Texture and return it
+	*  @param file: the image file to load
+	*  @return SDL_Texture* of the texture loaded
+	*/
+	static SDL_Texture* LoadTexture(std::string file);
+	/*
+	*  Clear the renderer
+	*/
+	static void Clear();
+	/*
+	*  Render the renderer to window
+	*/
 	static void Flip();
-	///Get windowbox
+	/*
+	*  Handle window events
+	*/
+	static void HandleEvents(SDL_Event &e);
+	/*
+	*  Return the window box
+	*/
 	static Recti Box();
-	const static int FrameRateLimit();
 
 private:
+	static SDL_Window *mWindow;
+	static SDL_Renderer *mRenderer;
+	static Recti mBox;
 	static int SCREEN_WIDTH;
 	static int SCREEN_HEIGHT;
-    static int SCREEN_BPP;
-	static int FRAMERATE_LIMIT;
-	static Recti mWindowBox;
-	static SDL_Surface *mScreen;
 };
 
 #endif

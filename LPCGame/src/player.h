@@ -8,8 +8,8 @@
 #include "window.h"
 #include "image.h"
 
-const int PLAYER_WIDTH	= 32;
-const int PLAYER_HEIGHT = 32;
+const int PLAYER_WIDTH	= 28;
+const int PLAYER_HEIGHT = 28;
 const int PLAYER_HSPEED = 300;
 const int PLAYER_HACCEL = 700;
 
