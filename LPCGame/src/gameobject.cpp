@@ -16,3 +16,6 @@ void GameObject::CheckMouseOver(const Vector2f &pos){
 		mMouseOver = false;
 	}
 }
+bool GameObject::GetMouseOver(){
+	return mMouseOver;
+}

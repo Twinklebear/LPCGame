@@ -21,7 +21,7 @@ public:
 	///Draw the game object
 	virtual void Draw() = 0;
 	///Move the object
-	virtual void Move(float) = 0;
+	virtual void Move(float deltaT) = 0;
 	///On mouse down events
 	virtual void OnMouseDown() = 0;
 	///On mouse up event
@@ -32,6 +32,8 @@ public:
 	virtual void OnMouseExit() = 0;
 	///Check if mouse entered the object's box
 	void CheckMouseOver(const Vector2f &pos);
+	///Return T/F is the mouse is over the object
+	bool GetMouseOver();
 	///Check if mouse exited the object's box
 	///Destroy the gameobject
 	//virtual void Destroy() = 0;

@@ -51,11 +51,10 @@ CollisionMap GameObjectManager::GetEntityCollisionMap(const Rectf &target, int d
 	return entityMap;
 }
 void GameObjectManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
-	Vector2f mousePos = Vector2f(mouseEvent.x, mouseEvent.y);
 	dbg->Write("Manager got mouse click");
 	//Find the object that was clicked
 	for (GameObject *o : mGameObjects){
-		if (Math::CheckCollision(mousePos, o->Box())){
+		if (o->GetMouseOver()){
 			switch (mouseEvent.type){
 				case SDL_MOUSEBUTTONDOWN:
 					o->OnMouseDown();

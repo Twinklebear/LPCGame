@@ -26,6 +26,8 @@ void Input::PollEvent(){
 		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP) && mManager != nullptr){
 			mManager->HandleMouseEvent(evt.button);
 		}
+		//This is constantly called even if the mouse isn't moving, can
+		//i set some sort of min required motion to trigger?
 		if (evt.type == SDL_MOUSEMOTION && mManager != nullptr){
 			mManager->HandleMouseEvent(evt.motion);
 		}
