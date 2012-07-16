@@ -23,6 +23,9 @@ public:
 	void Move(float deltaT);
 	//Draw the player
 	void Draw();
+	//Mouse event handling
+	void OnMouseDown();
+	void OnMouseUp();
 	//Setters & Getters
 	void SetMove(int moveDir);
 

@@ -31,9 +31,10 @@ int main(int argc, char** argv){
 	manager->Register((GameObject*)npc);
 	//Setup initial collision maps
 	manager->SetCollisionMaps(map);
+	//Register the manager with input
+	Input::RegisterManager(manager);
 
 	delta.Start();
-
 	while (!Input::Quit()){
 		//EVENT POLLING
 		Input::PollEvent();

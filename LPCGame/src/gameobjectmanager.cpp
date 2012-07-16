@@ -3,9 +3,12 @@
 #include "gameobject.h"
 #include "gameobjectmanager.h"
 
-GameObjectManager::GameObjectManager(){}
+GameObjectManager::GameObjectManager(){
+	dbg = new Debugger("Manager.txt");
+}
 GameObjectManager::~GameObjectManager(){
 	mGameObjects.clear();
+	delete dbg;
 }
 void GameObjectManager::Draw(){
 	for (GameObject *o : mGameObjects)
@@ -46,4 +49,23 @@ CollisionMap GameObjectManager::GetEntityCollisionMap(const Rectf &target, int d
 			entityMap.push_back(o->Box());
 	}
 	return entityMap;
+}
+void GameObjectManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
+	Vector2f mousePos = Vector2f(mouseEvent.x, mouseEvent.y);
+	dbg->Write("Manager got mouse event");
+	//Find the object that was clicked
+	for (GameObject *o : mGameObjects){
+		if (Math::CheckCollision(mousePos, o->Box())){
+			switch (mouseEvent.type){
+				case SDL_MOUSEBUTTONDOWN:
+					o->OnMouseDown();
+					break;
+				case SDL_MOUSEBUTTONUP:
+					o->OnMouseUp();
+					break;
+				default:
+					break;
+			}
+		}
+	}
 }

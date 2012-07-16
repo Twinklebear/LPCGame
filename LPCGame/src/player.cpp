@@ -12,8 +12,12 @@
 
 #include <iostream>
 
-Player::Player(){}
-Player::~Player(){}
+Player::Player(){
+	dbg = new Debugger("Player.txt");
+}
+Player::~Player(){
+	delete dbg;
+}
 void Player::Start(int x, int y){
 	Rectf box(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	mPhysics.SetBox(box);
@@ -84,4 +88,10 @@ void Player::Move(float deltaT){
 }
 void Player::Draw(){
 	Window::Draw(&mImage, (SDL_Rect)mPhysics.Box());
+}
+void Player::OnMouseDown(){
+	dbg->Write("Mouse down on player");
+}
+void Player::OnMouseUp(){
+	dbg->Write("Mouse up on player");
 }

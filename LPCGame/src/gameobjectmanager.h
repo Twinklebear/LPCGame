@@ -5,6 +5,8 @@
 #include "gameobject.h"
 #include "map.h"
 
+#include "debugger.h"
+
 //Typedef for a vector of GameObject pointers
 typedef std::vector<GameObject*> GameObjectList;
 
@@ -35,6 +37,12 @@ public:
 	*	@param *obj: the object pointer to add
 	*/
 	void Register(GameObject *obj);
+	/*
+	*  Handle Mouse events, run through the active game objects
+	*  find what was clicked, and call it
+	*  @param mouseEvent: The mouse event that we're processing
+	*/
+	void HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent);
 
 private:
 	//Maybe i can have a function that returns a collision map of local entities
@@ -43,6 +51,7 @@ private:
 
 private:
 	GameObjectList mGameObjects;
+	Debugger *dbg;
 };
 
 #endif

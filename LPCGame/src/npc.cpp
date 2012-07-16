@@ -11,6 +11,7 @@
 #include "npc.h"
 #include "player.h"
 
+#include <iostream>
 
 Npc::Npc(){}
 Npc::~Npc(){}
@@ -43,4 +44,10 @@ void Npc::SetMove(int move){
 		mPhysics.SetHorizDir(move);
 		mPhysics.SetVertDir(move);
 	}
+}
+void Npc::OnMouseDown(){
+	std::cout << "Npc mouse down" << std::endl;
+}
+void Npc::OnMouseUp(){
+	std::cout << "Npc mouse up" << std::endl;
 }

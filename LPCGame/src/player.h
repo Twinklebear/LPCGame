@@ -8,6 +8,8 @@
 #include "window.h"
 #include "image.h"
 
+#include "debugger.h"
+
 const int PLAYER_WIDTH	= 28;
 const int PLAYER_HEIGHT = 28;
 const int PLAYER_HSPEED = 300;
@@ -30,6 +32,9 @@ public:
 	void Move(float deltaT);
 	//Draw the player
 	void Draw();
+	//Mouse event handling
+	void OnMouseDown();
+	void OnMouseUp();
 	//Setters and getters
 
 private:
@@ -39,6 +44,7 @@ private:
 
 private:
 	Image mImage;
+	Debugger *dbg;
 };
 
 #endif

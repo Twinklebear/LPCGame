@@ -19,6 +19,10 @@ public:
 	virtual void Draw() = 0;
 	///Move the object
 	virtual void Move(float) = 0;
+	///On mouse down events
+	virtual void OnMouseDown() = 0;
+	///On mouse up event
+	virtual void OnMouseUp() = 0;
 	///Destroy the gameobject
 	//virtual void Destroy() = 0;
 	//TODO: A button wouldn't need this method, should i create a rigidbody type?

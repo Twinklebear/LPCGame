@@ -1,8 +1,10 @@
 #include "SDL.h"
 #include "window.h"
+#include "gameobjectmanager.h"
 #include "input.h"
 
-SDL_Event Input::event;
+SDL_Event Input::evt;
+GameObjectManager* Input::mManager;
 bool Input::fDown;
 bool Input::wDown;
 bool Input::aDown;
@@ -12,17 +14,18 @@ bool Input::mQuit;
 
 Input::Input(){
 	mQuit = false;
+	mManager = nullptr;
 }
 Input::~Input(){}
 void Input::PollEvent(){
-	while(SDL_PollEvent(&event)){
+	while(SDL_PollEvent(&evt)){
 		//this is an ok method to do this. But maybe not the best
-		Window::HandleEvents(event);
+		Window::HandleEvents(evt);
 		
-		if (event.type == SDL_QUIT)
+		if (evt.type == SDL_QUIT)
 			mQuit = true;
-		if (event.type == SDL_KEYDOWN){
-			switch (event.key.keysym.sym){
+		if (evt.type == SDL_KEYDOWN){
+			switch (evt.key.keysym.sym){
 				case SDLK_w:
 					wDown = true;
 					break;
@@ -45,8 +48,8 @@ void Input::PollEvent(){
 					break;
 			}
 		}
-		if (event.type == SDL_KEYUP){
-			switch (event.key.keysym.sym){
+		if (evt.type == SDL_KEYUP){
+			switch (evt.key.keysym.sym){
 				case SDLK_w:
 					wDown = false;
 					break;
@@ -66,6 +69,10 @@ void Input::PollEvent(){
 					break;
 			}
 		}
+		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP) && mManager != nullptr){
+			mManager->HandleMouseEvent(evt.button);
+		}
+
 	}
 }
 bool Input::KeyDown(char keyCode){
@@ -86,4 +93,7 @@ bool Input::KeyDown(char keyCode){
 }
 bool Input::Quit(){
 	return mQuit;
+}
+void Input::RegisterManager(GameObjectManager *manager){
+	mManager = manager;
 }
