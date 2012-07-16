@@ -35,6 +35,8 @@ public:
 	//Mouse event handling
 	void OnMouseDown();
 	void OnMouseUp();
+	void OnMouseEnter();
+	void OnMouseExit();
 	//Setters and getters
 
 private:

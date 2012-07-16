@@ -1,6 +1,9 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
+#include "SDL.h"
+#include "vectors.h"
+#include "rect.h"
 #include "physics.h"
 
 /**
@@ -9,7 +12,7 @@
 */
 class GameObject{
 public:
-	GameObject() {};
+	GameObject();
 	virtual ~GameObject() {};
 	///Create the gameobject, initialize various stuff
 	virtual void Start(int x = 0, int y = 0) = 0;
@@ -23,6 +26,13 @@ public:
 	virtual void OnMouseDown() = 0;
 	///On mouse up event
 	virtual void OnMouseUp() = 0;
+	///On mouse enter
+	virtual void OnMouseEnter() = 0;
+	///On mouse exit
+	virtual void OnMouseExit() = 0;
+	///Check if mouse entered the object's box
+	void CheckMouseOver(const Vector2f &pos);
+	///Check if mouse exited the object's box
 	///Destroy the gameobject
 	//virtual void Destroy() = 0;
 	//TODO: A button wouldn't need this method, should i create a rigidbody type?
@@ -41,6 +51,10 @@ private:
 
 protected:
 	Physics mPhysics;
+
+private:
+	//Track if mouse is over the object
+	bool mMouseOver;
 };
 
 #endif

@@ -95,3 +95,9 @@ void Player::OnMouseDown(){
 void Player::OnMouseUp(){
 	dbg->Write("Mouse up on player");
 }
+void Player::OnMouseEnter(){
+	dbg->Write("Mouse enter player");
+}
+void Player::OnMouseExit(){
+	dbg->Write("Mouse exit player");
+}

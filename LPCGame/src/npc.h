@@ -26,6 +26,8 @@ public:
 	//Mouse event handling
 	void OnMouseDown();
 	void OnMouseUp();
+	void OnMouseEnter();
+	void OnMouseExit();
 	//Setters & Getters
 	void SetMove(int moveDir);
 

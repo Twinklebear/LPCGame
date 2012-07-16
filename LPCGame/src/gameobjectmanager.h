@@ -38,11 +38,16 @@ public:
 	*/
 	void Register(GameObject *obj);
 	/*
-	*  Handle Mouse events, run through the active game objects
+	*  Handle Mouse clicks, run through the active game objects
 	*  find what was clicked, and call it
 	*  @param mouseEvent: The mouse event that we're processing
 	*/
 	void HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent);
+	/*
+	*  Handle Mouse motion, check if the mouse entered/exited an object
+	*  @param mouseEvent: The mouse event that we're processing
+	*/
+	void HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent);
 
 private:
 	//Maybe i can have a function that returns a collision map of local entities

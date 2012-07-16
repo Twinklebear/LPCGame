@@ -26,7 +26,9 @@ void Input::PollEvent(){
 		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP) && mManager != nullptr){
 			mManager->HandleMouseEvent(evt.button);
 		}
-
+		if (evt.type == SDL_MOUSEMOTION && mManager != nullptr){
+			mManager->HandleMouseEvent(evt.motion);
+		}
 	}
 }
 bool Input::KeyDown(char keyCode){
@@ -104,7 +106,7 @@ bool Input::KeyDown(char keyCode){
 			return mKeyStates[SDL_SCANCODE_N];
 		case 'm':
 			return mKeyStates[SDL_SCANCODE_M];
-		case 'space':
+		case ' ':
 			return mKeyStates[SDL_SCANCODE_SPACE];
 		default:
 			return false;

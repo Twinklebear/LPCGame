@@ -51,3 +51,7 @@ void Npc::OnMouseDown(){
 void Npc::OnMouseUp(){
 	std::cout << "Npc mouse up" << std::endl;
 }
+void Npc::OnMouseEnter(){
+}
+void Npc::OnMouseExit(){
+}
