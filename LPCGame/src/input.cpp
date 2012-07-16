@@ -104,6 +104,8 @@ bool Input::KeyDown(char keyCode){
 			return mKeyStates[SDL_SCANCODE_N];
 		case 'm':
 			return mKeyStates[SDL_SCANCODE_M];
+		case 'space':
+			return mKeyStates[SDL_SCANCODE_SPACE];
 		default:
 			return false;
 	}
