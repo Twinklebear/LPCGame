@@ -3,4 +3,4 @@ Debug/game
 Debug/LPC*
 LPCGame/Debug
 LPCGame.opensdf
-Debug/stdout.txt
+Debug/*.txt
