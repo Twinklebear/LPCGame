@@ -12,6 +12,8 @@ class Input{
 public:
 	Input();
 	~Input();
+	///Initialize the input manager
+	static void Init();
 	///Read event input
 	static void PollEvent();
 	//Get if a key is currently being pressed
@@ -24,9 +26,9 @@ public:
 
 private:
 	static SDL_Event evt;
-	static bool fDown, wDown, aDown, sDown, dDown;
 	static bool mQuit;
 	static GameObjectManager *mManager;
+	static Uint8 *mKeyStates;
 };
 
 #endif

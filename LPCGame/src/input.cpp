@@ -5,70 +5,24 @@
 
 SDL_Event Input::evt;
 GameObjectManager* Input::mManager;
-bool Input::fDown;
-bool Input::wDown;
-bool Input::aDown;
-bool Input::sDown;
-bool Input::dDown;
+Uint8* Input::mKeyStates;
 bool Input::mQuit;
 
-Input::Input(){
+Input::Input(){}
+Input::~Input(){}
+void Input::Init(){
 	mQuit = false;
 	mManager = nullptr;
+	mKeyStates = SDL_GetKeyboardState(NULL);
 }
-Input::~Input(){}
 void Input::PollEvent(){
 	while(SDL_PollEvent(&evt)){
 		//this is an ok method to do this. But maybe not the best
 		Window::HandleEvents(evt);
-		
-		if (evt.type == SDL_QUIT)
+
+		if (evt.type == SDL_QUIT || (evt.type == SDL_KEYDOWN && evt.key.keysym.sym == SDLK_ESCAPE))
 			mQuit = true;
-		if (evt.type == SDL_KEYDOWN){
-			switch (evt.key.keysym.sym){
-				case SDLK_w:
-					wDown = true;
-					break;
-				case SDLK_a:
-					aDown = true;
-					break;
-				case SDLK_s:
-					sDown = true;
-					break;
-				case SDLK_d:
-					dDown = true;
-					break;
-				case SDLK_f: 
-					fDown = true;
-					break;
-				case SDLK_ESCAPE:
-					mQuit = true;
-					break;
-				default:
-					break;
-			}
-		}
-		if (evt.type == SDL_KEYUP){
-			switch (evt.key.keysym.sym){
-				case SDLK_w:
-					wDown = false;
-					break;
-				case SDLK_a:
-					aDown = false;
-					break;
-				case SDLK_s:
-					sDown = false;
-					break;
-				case SDLK_d:
-					dDown = false;
-					break;
-				case SDLK_f: 
-					fDown = false;
-					break;
-				default:
-					break;
-			}
-		}
+
 		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP) && mManager != nullptr){
 			mManager->HandleMouseEvent(evt.button);
 		}
@@ -76,17 +30,18 @@ void Input::PollEvent(){
 	}
 }
 bool Input::KeyDown(char keyCode){
+	SDL_PumpEvents();
 	switch (keyCode){
 		case 'w':
-			return wDown;
+			return mKeyStates[SDL_SCANCODE_W];
 		case 'a':
-			return aDown;
+			return mKeyStates[SDL_SCANCODE_A];
 		case 's':
-			return sDown;
+			return mKeyStates[SDL_SCANCODE_S];
 		case 'd':
-			return dDown;
+			return mKeyStates[SDL_SCANCODE_D];
 		case 'f':
-			return fDown;
+			return mKeyStates[SDL_SCANCODE_F];
 		default:
 			return false;
 	}

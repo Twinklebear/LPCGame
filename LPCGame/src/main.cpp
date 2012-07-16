@@ -18,12 +18,16 @@
 #include <iostream>
 
 int main(int argc, char** argv){
+	//Initialize statics
 	Window::Init();
+	Input::Init();
+	//Setup our game stuff
 	Timer delta;
 	Map *map		= new Map();
 	Player *player	= new Player();
 	Npc *npc		= new Npc();
 	GameObjectManager *manager = new GameObjectManager();
+
 	//Register the objects with the manager
 	player->Start(10, 10);
 	npc->Start(100, 100);
