@@ -40,6 +40,7 @@ void Window::Setup(){
 	SDL_FillRect(mScreen, &mScreen->clip_rect, SDL_MapRGB(mScreen->format, 0xFF, 0xFF, 0xFF));
 }
 void Window::Quit(){
+	TTF_Quit();
 	SDL_Quit();
 }
 void Window::HandleEvents(SDL_Event &event){

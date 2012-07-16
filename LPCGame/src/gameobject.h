@@ -21,6 +21,7 @@ public:
 	virtual void Move(float) = 0;
 	///Destroy the gameobject
 	//virtual void Destroy() = 0;
+	//TODO: A button wouldn't need this method, should i create a rigidbody type?
 	///Pass a map pointer to the physics object
 	void SetCollisionMap(CollisionMap map){
 		mPhysics.SetMap(map);
