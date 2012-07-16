@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\button.cpp" />
     <ClCompile Include="src\debugger.cpp" />
     <ClCompile Include="src\gameobject.cpp" />
     <ClCompile Include="src\gameobjectmanager.cpp" />
@@ -26,6 +27,7 @@
     <ClCompile Include="src\window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\button.h" />
     <ClInclude Include="src\debugger.h" />
     <ClInclude Include="src\gameobject.h" />
     <ClInclude Include="src\gameobjectmanager.h" />
