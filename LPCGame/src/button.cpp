@@ -5,10 +5,12 @@
 #include "gameobject.h"
 #include "image.h"
 #include "button.h"
-/*
-Button::Button(){}
+
+Button::Button(){
+	mFunc    = nullptr;
+	mClicked = false;
+}
 Button::~Button(){}
-///Initialize the button
 void Button::Start(int x, int y){
 	Rectf box(x, y, 200, 100);
 	mPhysics.SetBox(box);
@@ -26,32 +28,39 @@ void Button::Start(int x, int y){
 	clips.push_back(Recti(0, 100, 200, 100));
 	mImage.SetClips(clips);
 }
-///Update the game object
 void Button::Update(){}
-///Draw the game object
 void Button::Draw(){
 	if (!mClicked)
 		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box(), &(SDL_Rect)mImage.Clip(0));
 	else
 		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box(), &(SDL_Rect)mImage.Clip(1));
 }
-///Move the object
 void Button::Move(float deltaT){}
-///On mouse down events
 void Button::OnMouseDown(){
 	mClicked = true;
 }
-///On mouse up event
 void Button::OnMouseUp(){
+	if (mClicked)
+		OnClick();
 	mClicked = false;
 	//Run the button activity here
 }
-///On mouse enter
 void Button::OnMouseEnter(){
 	//maybe a lighter highlight?
 }
-///On mouse exit
 void Button::OnMouseExit(){
 	mClicked = false;
 }
+void Button::OnClick(){
+	if (mFunc != nullptr)
+		mFunc();
+}
+/*
+void RegisterCallBack(object *obj, void (object::*func)()){
+	mObj = obj;
+	mObjFunc = func;
+	mFunc = nullptr;
 */
+void Button::RegisterCallBack(void (*f)()){
+	mFunc = f;
+}
