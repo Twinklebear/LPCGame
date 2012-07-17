@@ -6,7 +6,7 @@
 #include "vectors.h"
 #include "physics.h"
 #include "map.h"
-//#include "objectpool.h"
+#include "objectpool.h"
 #include "window.h"
 #include "gameobjectmanager.h"
 #include "timer.h"
