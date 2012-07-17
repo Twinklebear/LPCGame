@@ -5,7 +5,7 @@
 #include "gameobject.h"
 #include "image.h"
 #include "button.h"
-
+/*
 Button::Button(){}
 Button::~Button(){}
 ///Initialize the button
@@ -54,3 +54,4 @@ void Button::OnMouseEnter(){
 void Button::OnMouseExit(){
 	mClicked = false;
 }
+*/

@@ -16,7 +16,13 @@
 #include "input.h"
 #include "button.h"
 
+#include "debugger.h"
 #include <iostream>
+
+void CallBack(){
+	Debugger dbg("callback.txt");
+	dbg.Write("Got called");
+}
 
 int main(int argc, char** argv){
 	//Initialize statics
@@ -34,6 +40,8 @@ int main(int argc, char** argv){
 	player->Start(10, 10);
 	npc->Start(100, 100);
 	button->Start(200, 200);
+	button->RegisterCallBack(*CallBack);
+
 	manager->Register((GameObject*)player);
 	manager->Register((GameObject*)npc);
 	manager->Register((GameObject*)button);
