@@ -6,13 +6,14 @@ GameObject::GameObject(){
 	mMouseOver = false;
 }
 void GameObject::CheckMouseOver(const Vector2f &pos){
-	if (Math::CheckCollision(pos, mPhysics.Box())){
+	//Only trigger OnMouseEnter if the mouse is colliding and wasn't before
+	if (Math::CheckCollision(pos, mPhysics.Box()) && !mMouseOver){
 		OnMouseEnter();
 		mMouseOver = true;
 	}
-	else {
-		if (mMouseOver)
-			OnMouseExit();
+	//Only trigger mouse exit if the mouse was colliding, but isn't anymore
+	else if (!Math::CheckCollision(pos, mPhysics.Box()) && mMouseOver){
+		OnMouseExit();
 		mMouseOver = false;
 	}
 }

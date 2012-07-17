@@ -48,8 +48,7 @@ void Map::LoadImageSheet(){
 	try{
 		mImage.LoadImage("images/tiles.png");
 	}
-	catch(std::runtime_error &e){
-	}
+	catch(...){}
 	SetClips();
 }
 void Map::Unload(){

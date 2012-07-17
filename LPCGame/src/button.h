@@ -36,7 +36,7 @@ private:
 
 private:
 	Image mImage;
-	Debugger *dbg;
+	bool mClicked;
 };
 
 #endif
