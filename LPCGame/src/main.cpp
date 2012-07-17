@@ -81,9 +81,6 @@ int main(int argc, char** argv){
 		}
 	}
 	delete map;
-	delete player;
-	delete npc;
-	delete button;
 	delete manager;
 
 	Window::Quit();

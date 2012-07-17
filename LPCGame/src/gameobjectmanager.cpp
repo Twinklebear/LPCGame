@@ -7,6 +7,8 @@ GameObjectManager::GameObjectManager(){
 	dbg = new Debugger("Manager.txt");
 }
 GameObjectManager::~GameObjectManager(){
+	for (GameObject *o : mGameObjects)
+		delete o;
 	mGameObjects.clear();
 	delete dbg;
 }
