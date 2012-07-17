@@ -49,6 +49,12 @@ void Physics::Move(float deltaT){
 	Vector2f testPos;
 	testPos = mBox.Pos() + (mKinematic.Vel * deltaT);
 
+	//Clamp the test position x & y
+	//TODO: Change these clamp ranges to be the map range, ie. map.x min map.x + map.w max
+	//map.y min map.y + map.h max
+	testPos.x = Math::Clamp(testPos.x, 0, 320);
+	testPos.y = Math::Clamp(testPos.y, 0, 320);
+
 	//TODO: Need to set velocity to small value in direction of motion if colliding with wall but moving away from it
 	//x axis collision checks
 	if (CheckCollision(Rectf(testPos.x, mBox.Y(), mBox.W(), mBox.H()))){

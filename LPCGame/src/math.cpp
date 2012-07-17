@@ -3,6 +3,13 @@
 float Math::Distance(const Vector2f &a, const Vector2f &b){
 	return (float)sqrt(pow(b.x - a.x, 2.0) + pow(b.y - a.y, 2.0));
 }
+float Math::Clamp(const float x, const float min, const float max){
+	if (x > max)
+		return max;
+	if (x < min)
+		return min;
+	return x;
+}
 int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 	//Simple enough to do:
 	//we create 4 points for each rect, for A's top we center it in x, and put it at the y

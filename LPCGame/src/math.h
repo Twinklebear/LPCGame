@@ -19,6 +19,14 @@ namespace Math{
 	*/
 	float Distance(const Vector2f &a, const Vector2f &b);
 	/**
+	*  Clamp the value x between the range min and max
+	*  @param x: the value to clamp
+	*  @param min: the minimum value x can be
+	*  @param max: the max value x can be
+	*  @returns: x if it is in range, or max if x is above, min if x is below
+	*/
+	float Clamp(const float x, const float min, const float max);
+	/**
 	*	Check if two rectangles are near each other, and return the side of
 	*	@param a: the rectangle we want to see
 	*	@param b: the rectangle we want to see if a is close too
