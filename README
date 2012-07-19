@@ -1,6 +1,0 @@
-Working on a C++ tile based 'engine' using SDL
-
--Todo:
-	- Create button class, should inherit from GameObject so the GameObjectManager
-		can call MouseDown/MouseUp on it
-	- Simple map editor
