@@ -18,8 +18,8 @@ public:
 	//Free the memory used by the state
 	virtual void Free() = 0;
 
-private:
-	GameObjectManager *manager;
+protected:
+	GameObjectManager *mManager;
 };
 
 

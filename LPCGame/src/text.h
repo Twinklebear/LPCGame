@@ -54,12 +54,23 @@ public:
 	*  Get the texture pointer of the font for drawing
 	*  @returns: The message texture
 	*/
-	SDL_Texture* GetTexture();
+	SDL_Texture* Texture();
 	/*
 	*  Get a rect containing the message textures width and height
 	*  @returns: A Recti containing the width and height of the message
 	*/
 	Recti GetSize();
+	/*
+	*  Store the width and height values of the texture in the values passed
+	*  @param w: The value to store the width in
+	*  @param h: The value to store the height in
+	*/
+	void GetSize(int &w, int &h);
+
+private:
+	//Disable copy construction
+	Text(const Text&a);
+	Text& operator = (const Text &a);
 
 private:
 	TTF_Font *mFont;

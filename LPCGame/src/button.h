@@ -31,20 +31,7 @@ public:
 	///On mouse exit
 	void OnMouseExit();
 	//On click, run the callback function if one was registered
-	void OnClick();
-	/*
-	*  Register an object and the object function to call when the button is pressed
-	*  @param obj: The object context to call the function in
-	*  @prarm func: The function on the object to call
-	*  TODO: Need a better way to have buttons that handle non-static member functions
-	*/
-	/*
-	void RegisterCallBack(object *obj, void (object::*func)()){
-		mObj = obj;
-		mObjFunc = func;
-		mFunc = nullptr;
-	}
-	*/
+	virtual void OnClick();
 	/*
 	*  Register a non-member function as the callback function to run when the
 	*  button is pressed
@@ -57,7 +44,7 @@ private:
 	Button(const Button &a);
 	Button& operator = (const Button &a);
 
-private:
+protected:
 	Image mImage;
 	Text mText;
 	bool mClicked;

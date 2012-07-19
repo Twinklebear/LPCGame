@@ -1,20 +1,16 @@
 #include <stdexcept>
 #include <thread>
 #include <mutex>
-#include "rect.h"
-#include "vectors.h"
-#include "physics.h"
 #include "map.h"
-#include "objectpool.h"
 #include "window.h"
 #include "gameobjectmanager.h"
 #include "timer.h"
-#include "image.h"
 #include "player.h"
 #include "npc.h"
 #include "input.h"
 #include "button.h"
-#include "state.h"
+#include "menustate.h"
+#include "gamestate.h"
 
 #include "debugger.h"
 #include <iostream>
@@ -23,17 +19,27 @@ int main(int argc, char** argv){
 	//Initialize statics
 	Window::Init();
 	Input::Init();
+
+	//TESTING
+	MenuState *menuState = new MenuState();
+	menuState->Run();
+	delete menuState;
+	//Window::Quit();
+	//return 0;
+
+	GameState *gameState = new GameState();
+	gameState->Run();
+	delete gameState;
+/*
 	//Setup our game stuff
 	Timer delta;
 	Map *map		= new Map();
 	Player *player	= new Player();
-	Button *button 	= new Button(400, 400, "Button!");
 	GameObjectManager *manager = new GameObjectManager();
 
 	//Register the objects with the manager
 	player->Start(10, 10);
 	manager->Register((GameObject*)player);
-	manager->Register((GameObject*)button);
 
 	//Setup initial collision maps
 	manager->SetCollisionMaps(map);
@@ -64,7 +70,7 @@ int main(int argc, char** argv){
 	}
 	delete map;
 	delete manager;
-
+*/
 	Window::Quit();
 
 	return 0;

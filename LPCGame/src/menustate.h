@@ -3,6 +3,9 @@
 
 #include "state.h"
 #include "button.h"
+#include "objectbutton.h"
+
+#include "debugger.h"
 
 /*
 *  For making a simple menu system
@@ -18,7 +21,12 @@ public:
 	//Free the memory used by the state
 	void Free();
 
+	//TESTING
+	void CallTest();
+
 private:
+	Debugger *dbg;
+	bool mExit;
 };
 
 #endif

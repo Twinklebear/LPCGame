@@ -41,7 +41,7 @@ void Window::Quit(){
 	TTF_Quit();
 	SDL_Quit();
 }
-void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip){
+void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h){
 	SDL_Rect dstRect;
 	dstRect.x = x;
 	dstRect.y = y;
@@ -50,16 +50,12 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip){
 	//Draw the texture
 	SDL_RenderCopy(mRenderer, tex, clip, &dstRect);
 }
-void Window::Draw(int x, int y, int w, int h, SDL_Texture *tex, SDL_Rect *clip){
-	SDL_Rect dstRect;
-	dstRect.x = x;
-	dstRect.y = y;
-	dstRect.w = w;
-	dstRect.h = h;
-	SDL_RenderCopy(mRenderer, tex, clip, &dstRect);
-}
 void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip){
-	Draw(dstRect.x, dstRect.y, dstRect.w, dstRect.h, image->Texture(), clip);
+	Draw(dstRect.x, dstRect.y, image->Texture(), clip, dstRect.w, dstRect.h);
+}
+void Window::Draw(Text *text, SDL_Rect dstRect){
+	text->GetSize(dstRect.w, dstRect.h);
+	Draw(dstRect.x, dstRect.y, text->Texture(), NULL, dstRect.w, dstRect.h);
 }
 SDL_Texture* Window::LoadTexture(std::string file){
 	SDL_Texture *tex = nullptr;

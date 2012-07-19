@@ -134,5 +134,8 @@
     <ClInclude Include="src\text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\objectbutton.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

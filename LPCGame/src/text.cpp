@@ -90,11 +90,14 @@ void Text::SetColor(SDL_Color color){
 	if (mTex == nullptr)
 		throw std::runtime_error("Failed to set message texture");
 }
-SDL_Texture* Text::GetTexture(){
+SDL_Texture* Text::Texture(){
 	return mTex;
 }
 Recti Text::GetSize(){
 	Recti box(0, 0, 0, 0);
 	SDL_QueryTexture(mTex, NULL, NULL, &box.w, &box.h);
 	return box;
+}
+void Text::GetSize(int &w, int &h){
+	SDL_QueryTexture(mTex, NULL, NULL, &w, &h);
 }

@@ -42,6 +42,7 @@
     <ClInclude Include="src\math.h" />
     <ClInclude Include="src\menustate.h" />
     <ClInclude Include="src\npc.h" />
+    <ClInclude Include="src\objectbutton.h" />
     <ClInclude Include="src\objectpool.h" />
     <ClInclude Include="src\physics.h" />
     <ClInclude Include="src\player.h" />
