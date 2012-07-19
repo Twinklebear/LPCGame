@@ -22,7 +22,6 @@ void GameState::Init(){
 	player->Start(10, 10);
 	mManager->Register((GameObject*)player);
 }
-//Run the state
 void GameState::Run(){
 	Input::RegisterManager(mManager);
 	
@@ -49,9 +48,10 @@ void GameState::Run(){
 		Window::Present();
 	}
 }
-//Free the memory used by the state
 void GameState::Free(){
 	delete mMap;
 	delete mManager;
 }
-
+std::string GameState::Serialize(){
+	return "";
+}

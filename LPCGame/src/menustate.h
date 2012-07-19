@@ -20,9 +20,14 @@ public:
 	void Run();
 	//Free the memory used by the state
 	void Free();
+	/*
+	*  Serialize the state data so that it can be loaded later
+	*  @returns: The serialized data in string form
+	*/
+	std::string Serialize();
 
 	//TESTING
-	void CallTest();
+	void CallTest(int a);
 
 private:
 	Debugger *dbg;

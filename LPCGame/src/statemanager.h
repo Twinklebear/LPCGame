@@ -25,9 +25,30 @@ public:
 	*/
 	static int IdFromName(std::string name);
 	//TODO: Need functions for selecting the active state and running it
+	/*  
+	*  TODO: How will i save and load states? Perhaps i will serialize the state before
+	*  before i delete it, and then when I load the state, I'll pass the name of the state
+	*  I want to load which will bring up the associated file
+	*/
+	/*
+	*  Set a state active based on its Id number
+	*  @param id: The state id (index) to set active
+	*/
+	static void SetActiveState(int id);
+	/*
+	*  Load a from file by its name
+	*  @param name: The state name to load for the state, state and file names are same
+	*/
+	static void LoadState(std::string name);
+	/*
+	*  Save a state to a data file corresponding to its name
+	*  @param name: The state name to save, state and file names are the same
+	*/
+	static void SaveState(std::string name);
 
 private:
 	static std::vector<State> mStates;
+	int mActiveID;
 };
 
 #endif

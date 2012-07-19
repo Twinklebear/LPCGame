@@ -24,7 +24,7 @@ void MenuState::Init(){
 
 	//Testing
 	ObjectButton<MenuState> *testButton = new ObjectButton<MenuState>(200, 500, "TEST");
-	testButton->RegisterCallBack(this, &MenuState::CallTest);
+	testButton->RegisterCallBack(this, &MenuState::CallTest, 0);
 	mManager->Register((GameObject*)testButton);
 
 	dbg = new Debugger("menustate.txt");
@@ -51,6 +51,9 @@ void MenuState::Free(){
 	delete dbg;
 	delete mManager;
 }
-void MenuState::CallTest(){
+void MenuState::CallTest(int a){
 	mExit = true;
+}
+std::string MenuState::Serialize(){
+	return "";
 }
