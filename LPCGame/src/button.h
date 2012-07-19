@@ -3,6 +3,7 @@
 
 #include "gameobject.h"
 #include "image.h"
+#include "text.h"
 
 /*
 *  A simple button class, for handling mouse input will run the registered function
@@ -11,7 +12,7 @@
 class Button : public GameObject{
 public:
 	Button();
-	Button(int x, int y, std::string text = "", int w = 0, int h = 0);
+	Button(int x, int y, std::string text, int w = 0, int h = 0);
 	~Button();
 	///Initialize the button
 	void Start(int x = 0, int y = 0);
@@ -58,6 +59,7 @@ private:
 
 private:
 	Image mImage;
+	Text mText;
 	bool mClicked;
 	//The callback function pointer
 	void (*mFunc)();

@@ -59,7 +59,7 @@ public:
 	*  Get a rect containing the message textures width and height
 	*  @returns: A Recti containing the width and height of the message
 	*/
-	Recti GetTextureSize();
+	Recti GetSize();
 
 private:
 	TTF_Font *mFont;

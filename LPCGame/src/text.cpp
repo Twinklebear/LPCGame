@@ -6,6 +6,8 @@
 #include "window.h"
 #include "text.h"
 
+#include <iostream>
+
 Text::Text() : mFont(nullptr), mTex(nullptr), mMessage(""), mFontSize(0)
 {
 	mColor.r = 0;
@@ -36,7 +38,7 @@ void Text::Setup(std::string message, std::string font, SDL_Color color, int fon
 	if (mFont == nullptr)
 		throw std::runtime_error("Failed to open font: " + font);
 	//Render the message and convert to texture
-	mTex = Window::SurfaceToTexture(TTF_RenderText_Blended(mFont, mMessage.c_str(), mColor));
+	mTex = Window::SurfaceToTexture(TTF_RenderUTF8_Blended(mFont, mMessage.c_str(), mColor));
 	if (mTex == nullptr)
 		throw std::runtime_error("Failed to set message texture");
 }
@@ -49,7 +51,7 @@ void Text::SetMessage(std::string message){
 		SDL_DestroyTexture(mTex);
 		mTex = nullptr;
 	}
-	mTex = Window::SurfaceToTexture(TTF_RenderText_Blended(mFont, mMessage.c_str(), mColor));
+	mTex = Window::SurfaceToTexture(TTF_RenderUTF8_Blended(mFont, mMessage.c_str(), mColor));
 	if (mTex == nullptr)
 		throw std::runtime_error("Failed to set message texture");
 }
@@ -84,14 +86,14 @@ void Text::SetColor(SDL_Color color){
 		SDL_DestroyTexture(mTex);
 		mTex = nullptr;
 	}
-	mTex = Window::SurfaceToTexture(TTF_RenderText_Blended(mFont, mMessage.c_str(), mColor));
+	mTex = Window::SurfaceToTexture(TTF_RenderUTF8_Blended(mFont, mMessage.c_str(), mColor));
 	if (mTex == nullptr)
 		throw std::runtime_error("Failed to set message texture");
 }
 SDL_Texture* Text::GetTexture(){
 	return mTex;
 }
-Recti Text::GetTextureSize(){
+Recti Text::GetSize(){
 	Recti box(0, 0, 0, 0);
 	SDL_QueryTexture(mTex, NULL, NULL, &box.w, &box.h);
 	return box;

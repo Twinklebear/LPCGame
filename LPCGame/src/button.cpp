@@ -5,13 +5,20 @@
 #include "window.h"
 #include "gameobject.h"
 #include "image.h"
+#include "text.h"
 #include "button.h"
 
-Button::Button() : mFunc(nullptr), mClicked(false)
+Button::Button() : mClicked(false), mFunc(nullptr)
 {
 }
-Button::Button(int x, int y, std::string text, int w, int h) : mFunc(nullptr), mClicked(false)
+Button::Button(int x, int y, std::string text, int w, int h) : mClicked(false), mFunc(nullptr)
 {
+	SDL_Color col;
+	col.r = 0;
+	col.g = 0;
+	col.b = 0;
+	mText.Setup(text, "fonts/LiberationSans-Regular.ttf", col, 25);
+	Start(x, y);
 }
 Button::~Button(){}
 void Button::Start(int x, int y){
@@ -37,6 +44,12 @@ void Button::Draw(){
 		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box(), &(SDL_Rect)mImage.Clip(0));
 	else
 		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box(), &(SDL_Rect)mImage.Clip(1));
+	//Draw the text
+	Recti textBox = mText.GetSize();
+	Rectf buttonBox = mPhysics.Box();
+	textBox.pos.x = (buttonBox.X() + buttonBox.W() / 2) - textBox.W() / 2;
+	textBox.pos.y = (buttonBox.Y() + buttonBox.H() / 2) - textBox.H() / 2;
+	Window::Draw(textBox.X(), textBox.Y(), textBox.W(), textBox.H(), mText.GetTexture());
 }
 void Button::Move(float deltaT){}
 void Button::OnMouseDown(){

@@ -27,11 +27,13 @@ int main(int argc, char** argv){
 	Timer delta;
 	Map *map		= new Map();
 	Player *player	= new Player();
+	Button *button 	= new Button(400, 400, "Button!");
 	GameObjectManager *manager = new GameObjectManager();
 
 	//Register the objects with the manager
 	player->Start(10, 10);
 	manager->Register((GameObject*)player);
+	manager->Register((GameObject*)button);
 
 	//Setup initial collision maps
 	manager->SetCollisionMaps(map);
