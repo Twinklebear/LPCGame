@@ -37,6 +37,9 @@ public:
 		mType = type;
 	}
 
+		//Debugging
+	bool collMapDebug;
+
 private:
 	Recti mBox;
 	bool mSolid;

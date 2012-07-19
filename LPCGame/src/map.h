@@ -50,7 +50,7 @@ public:
 	*	@param distance: the distance in tiles to return the map of
 	*	@return: the nearby collision map
 	*/
-	CollisionMap GetCollisionMap(const Recti &target, int distance = 2) const;
+	CollisionMap GetCollisionMap(const Recti &target, int distance = 2);
 
 private:
 	///Setup clips for the image

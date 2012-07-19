@@ -45,59 +45,9 @@ void Player::Update(){
 	else
 		mPhysics.SetVertDir(Physics::MOVE::STOP);
 }
-void Player::HandleEvents(SDL_Event &event){
-	if (event.type == SDL_KEYDOWN){
-		switch (event.key.keysym.sym){
-			case SDLK_a:
-				mPhysics.SetHorizDir(Math::LEFT);
-				break;
-			case SDLK_d:
-				mPhysics.SetHorizDir(Math::RIGHT);
-				break;
-			case SDLK_w:
-				mPhysics.SetVertDir(Math::UP);
-				break;
-			case SDLK_s:
-				mPhysics.SetVertDir(Math::DOWN);
-				break;
-			default: 
-				break;
-		}
-	}
-	if (event.type == SDL_KEYUP){
-		switch (event.key.keysym.sym){
-			case SDLK_a:
-				mPhysics.SetHorizDir(Physics::MOVE::STOP);
-				break;
-			case SDLK_d:
-				mPhysics.SetHorizDir(Physics::MOVE::STOP);
-				break;
-			case SDLK_w:
-				mPhysics.SetVertDir(Physics::MOVE::STOP);
-				break;
-			case SDLK_s:
-				mPhysics.SetVertDir(Physics::MOVE::STOP);
-				break;
-			default:
-				break;
-		}
-	}
-}
 void Player::Move(float deltaT){
 	mPhysics.Move(deltaT);
 }
 void Player::Draw(){
 	Window::Draw(&mImage, (SDL_Rect)mPhysics.Box());
-}
-void Player::OnMouseDown(){
-	dbg->Write("Mouse down on player");
-}
-void Player::OnMouseUp(){
-	dbg->Write("Mouse up on player");
-}
-void Player::OnMouseEnter(){
-	dbg->Write("Mouse enter player");
-}
-void Player::OnMouseExit(){
-	dbg->Write("Mouse exit player");
 }

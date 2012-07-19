@@ -27,7 +27,7 @@ void Npc::Start(int x, int y){
 	mImage.LoadImage("images/image.png");
 }
 void Npc::Update(){
-	
+	SetMove(Math::DOWN);
 }
 void Npc::Move(float deltaT){
 	mPhysics.Move(deltaT);
@@ -44,14 +44,4 @@ void Npc::SetMove(int move){
 		mPhysics.SetHorizDir(move);
 		mPhysics.SetVertDir(move);
 	}
-}
-void Npc::OnMouseDown(){
-	std::cout << "Npc mouse down" << std::endl;
-}
-void Npc::OnMouseUp(){
-	std::cout << "Npc mouse up" << std::endl;
-}
-void Npc::OnMouseEnter(){
-}
-void Npc::OnMouseExit(){
 }

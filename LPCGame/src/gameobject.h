@@ -23,13 +23,13 @@ public:
 	///Move the object
 	virtual void Move(float deltaT) = 0;
 	///On mouse down events
-	virtual void OnMouseDown() = 0;
+	virtual void OnMouseDown();
 	///On mouse up event
-	virtual void OnMouseUp() = 0;
+	virtual void OnMouseUp();
 	///On mouse enter
-	virtual void OnMouseEnter() = 0;
+	virtual void OnMouseEnter();
 	///On mouse exit
-	virtual void OnMouseExit() = 0;
+	virtual void OnMouseExit();
 	///Check if mouse entered the object's box
 	void CheckMouseOver(const Vector2f &pos);
 	///Return T/F is the mouse is over the object

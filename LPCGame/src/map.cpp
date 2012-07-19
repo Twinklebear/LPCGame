@@ -18,6 +18,7 @@ Map::Map(){
         Tile tempTile;
 		tempTile.SetSolid(false);
 		tempTile.SetType(0);
+		tempTile.collMapDebug = false;
         //setup position
         if (i != 0 && i % mapSize == 0){
             yPos += TILE_HEIGHT;
@@ -40,7 +41,7 @@ Map::~Map(){
 void Map::Draw(const Recti &camera){
 	//TODO: Need a better way to draw the map that reduces draw calls
 	for (int i = 0; i < mTiles.size(); ++i)
-		Window::Draw(&mImage, (SDL_Rect)mTiles.at(i).Box(), &(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
+		Window::Draw(&mImage, mTiles.at(i).Box(), &(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
 }
 void Map::LoadFile(std::string mapFile){
 }
@@ -77,8 +78,8 @@ int Map::CalculateIndex(int x, int y) const{
 std::vector<int> Map::CalculateIndex(Recti area) const{
 	std::vector<int> tileIndices;
 	//run through the area
-	for (int y = area.Y(); y < area.Y() + area.H(); y += TILE_HEIGHT){
-		for (int x = area.X(); x < area.X() + area.W(); x += TILE_WIDTH){
+	for (int y = area.Y(); y <= area.Y() + area.H(); y += TILE_HEIGHT / 2){
+		for (int x = area.X(); x <= area.X() + area.W(); x += TILE_WIDTH / 2){
 			try{
 				int index = CalculateIndex(x, y);
 				//make sure it isn't already in the vector
@@ -101,11 +102,12 @@ std::vector<int> Map::CalculateIndex(Recti area) const{
 	else
 		throw std::runtime_error("Invalid area");
 }
-CollisionMap Map::GetCollisionMap(const Recti &target, int distance) const{
+CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 	//get the indices of the desired tiles
 	Recti area(target.X() - distance * TILE_WIDTH, target.Y() - distance * TILE_HEIGHT,
-				((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),
-				((target.Y() + target.H() + distance * TILE_HEIGHT) - (target.Y() - distance * TILE_HEIGHT)));
+		((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),
+		((target.Y() + target.H() + distance * TILE_HEIGHT) - (target.Y() - distance * TILE_HEIGHT)));
+
 	std::vector<int> indices;
 	try{
 		indices = CalculateIndex(area);

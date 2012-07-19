@@ -40,8 +40,7 @@ Physics::Physics(PhysicalConstants physConstants, Rectf box){
 	mHorizDir = MOVE::STOP;
 	mVertDir  = MOVE::STOP;
 }
-Physics::~Physics(){
-}
+Physics::~Physics(){}
 void Physics::Move(float deltaT){
 	//Update the velocity
 	UpdateVelocity(deltaT);
@@ -52,10 +51,9 @@ void Physics::Move(float deltaT){
 	//Clamp the test position x & y
 	//TODO: Change these clamp ranges to be the map range, ie. map.x min map.x + map.w max
 	//map.y min map.y + map.h max
-	testPos.x = Math::Clamp(testPos.x, 0, 320);
-	testPos.y = Math::Clamp(testPos.y, 0, 320);
+	testPos.x = Math::Clamp(testPos.x, 0.0, 320.0);
+	testPos.y = Math::Clamp(testPos.y, 0.0, 320.0);
 
-	//TODO: Need to set velocity to small value in direction of motion if colliding with wall but moving away from it
 	//x axis collision checks
 	if (CheckCollision(Rectf(testPos.x, mBox.Y(), mBox.W(), mBox.H()))){
 	}
@@ -66,6 +64,9 @@ void Physics::Move(float deltaT){
 	}
 	else
 		mBox.Set(mBox.X(), testPos.y);
+	
+	//Apply clamping
+	//mBox.Set(Math::Clamp(mBox.X(), 0, 320), Math::Clamp(mBox.Y(), 0, 320));
 
 	mMotionState.UpdateState(mKinematic);
 }

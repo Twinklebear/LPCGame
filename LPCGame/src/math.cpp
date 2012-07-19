@@ -4,9 +4,9 @@ float Math::Distance(const Vector2f &a, const Vector2f &b){
 	return (float)sqrt(pow(b.x - a.x, 2.0) + pow(b.y - a.y, 2.0));
 }
 float Math::Clamp(const float x, const float min, const float max){
-	if (x > max)
+	if (x >= max)
 		return max;
-	if (x < min)
+	if (x <= min)
 		return min;
 	return x;
 }

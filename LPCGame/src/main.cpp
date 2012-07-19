@@ -15,6 +15,7 @@
 #include "npc.h"
 #include "input.h"
 #include "button.h"
+#include "state.h"
 
 #include "debugger.h"
 #include <iostream>
@@ -32,19 +33,12 @@ int main(int argc, char** argv){
 	Timer delta;
 	Map *map		= new Map();
 	Player *player	= new Player();
-	Npc *npc		= new Npc();
-	Button *button	= new Button();
 	GameObjectManager *manager = new GameObjectManager();
 
 	//Register the objects with the manager
 	player->Start(10, 10);
-	npc->Start(100, 100);
-	button->Start(200, 200);
-	button->RegisterCallBack(*CallBack);
-
 	manager->Register((GameObject*)player);
-	manager->Register((GameObject*)npc);
-	manager->Register((GameObject*)button);
+
 	//Setup initial collision maps
 	manager->SetCollisionMaps(map);
 	//Register the manager with input
@@ -58,8 +52,6 @@ int main(int argc, char** argv){
 		///LOGIC
 		manager->Update();
 		manager->SetCollisionMaps(map);
-
-		npc->SetMove(Math::DOWN);
 
 		float deltaT = delta.GetTicks() / 1000.f;
 		manager->Move(deltaT);

@@ -1,5 +1,4 @@
 #include <string>
-#include <sstream>
 #include "debugger.h"
 
 Debugger::Debugger(){}
@@ -14,7 +13,5 @@ void Debugger::Write(std::string output){
 	mFileStream << output << std::endl;
 }
 void Debugger::Write(std::string output, double num){
-	std::stringstream sstream;
-	sstream << num;
-	mFileStream << output << " " << sstream.str() << std::endl;
+	mFileStream << output << " " << num << std::endl;
 }

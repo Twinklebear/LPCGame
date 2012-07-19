@@ -20,9 +20,11 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\map.cpp" />
     <ClCompile Include="src\math.cpp" />
+    <ClCompile Include="src\menustate.cpp" />
     <ClCompile Include="src\npc.cpp" />
     <ClCompile Include="src\physics.cpp" />
     <ClCompile Include="src\player.cpp" />
+    <ClCompile Include="src\state.cpp" />
     <ClCompile Include="src\timer.cpp" />
     <ClCompile Include="src\window.cpp" />
   </ItemGroup>
@@ -35,11 +37,13 @@
     <ClInclude Include="src\input.h" />
     <ClInclude Include="src\map.h" />
     <ClInclude Include="src\math.h" />
+    <ClInclude Include="src\menustate.h" />
     <ClInclude Include="src\npc.h" />
     <ClInclude Include="src\objectpool.h" />
     <ClInclude Include="src\physics.h" />
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\rect.h" />
+    <ClInclude Include="src\state.h" />
     <ClInclude Include="src\tile.h" />
     <ClInclude Include="src\timer.h" />
     <ClInclude Include="src\vectors.h" />

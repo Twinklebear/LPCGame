@@ -26,17 +26,10 @@ public:
 	void Start(int x, int y);
 	//Run once each fram
 	void Update();
-	//Event handling
-	void HandleEvents(SDL_Event &event);
 	//Move the player
 	void Move(float deltaT);
 	//Draw the player
 	void Draw();
-	//Mouse event handling
-	void OnMouseDown();
-	void OnMouseUp();
-	void OnMouseEnter();
-	void OnMouseExit();
 	//Setters and getters
 
 private:
