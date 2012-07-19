@@ -1,6 +1,7 @@
 #ifndef STATE_H
 #define STATE_H
 
+#include <string>
 #include "gameobjectmanager.h"
 
 /*
@@ -17,9 +18,16 @@ public:
 	virtual void Run() = 0;
 	//Free the memory used by the state
 	virtual void Free() = 0;
+	//Setters & Getters
+	virtual void SetId(int id);
+	virtual int Id();
+	virtual void SetName(std::string name);
+	virtual std::string Name();
 
 protected:
 	GameObjectManager *mManager;
+	int mId;
+	std::string mName;
 };
 
 

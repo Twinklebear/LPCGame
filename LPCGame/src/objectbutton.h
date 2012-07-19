@@ -33,25 +33,28 @@ public:
 	/*
 	*  Register an object and the object function to call when the button is pressed
 	*  @param obj: The object context to call the function in
-	*  @prarm func: The function on the object to call
+	*  @param func: The function on the object to call
+	*  @param param: The parameter to pass to the function when calling it
 	*  TODO: Need a better way to have buttons that handle non-static member functions
 	*/
-	void RegisterCallBack(T *obj, void (T::*func)()){
+	void RegisterCallBack(T *obj, void (T::*func)(int), int param){
 		mObj	 = obj;
 		mObjFunc = func;
+		mParam   = param;
 		mFunc    = nullptr;
 	}
 	//Run the registered callback function
 	void OnClick(){
 		if (mObj != nullptr && mObjFunc != nullptr)
-			((mObj)->*(mObjFunc))();
+			((mObj)->*(mObjFunc))(mParam);
 		else if (mFunc != nullptr)
 			mFunc();
 	}
 
 private:
 	T *mObj;
-	void (T::*mObjFunc)();
+	void (T::*mObjFunc)(int);
+	int mParam;
 };
 
 #endif

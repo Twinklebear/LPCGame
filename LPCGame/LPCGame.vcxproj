@@ -26,6 +26,7 @@
     <ClCompile Include="src\physics.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\state.cpp" />
+    <ClCompile Include="src\statemanager.cpp" />
     <ClCompile Include="src\text.cpp" />
     <ClCompile Include="src\timer.cpp" />
     <ClCompile Include="src\window.cpp" />
@@ -48,6 +49,7 @@
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\rect.h" />
     <ClInclude Include="src\state.h" />
+    <ClInclude Include="src\statemanager.h" />
     <ClInclude Include="src\text.h" />
     <ClInclude Include="src\tile.h" />
     <ClInclude Include="src\timer.h" />
