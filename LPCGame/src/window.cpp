@@ -45,8 +45,23 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h){
 	SDL_Rect dstRect;
 	dstRect.x = x;
 	dstRect.y = y;
-	//Get the texture width and height
-	SDL_QueryTexture(tex, NULL, NULL, &dstRect.w, &dstRect.h);
+	//Setup desired width and height properties
+	if (w == -1 && h == -1)
+		SDL_QueryTexture(tex, NULL, NULL, &dstRect.w, &dstRect.h);
+	else if (h == -1){
+		//Will this crash?
+		SDL_QueryTexture(tex, NULL, NULL, NULL, &dstRect.h);
+		dstRect.w = w;
+	}
+	else if (w == -1){
+		//Will this crash?
+		SDL_QueryTexture(tex, NULL, NULL, &dstRect.w, NULL);
+		dstRect.h = h;
+	}
+	else {
+		dstRect.w = w;
+		dstRect.h = h;
+	}
 	//Draw the texture
 	SDL_RenderCopy(mRenderer, tex, clip, &dstRect);
 }
