@@ -1,3 +1,4 @@
+#include <string>
 #include "SDL.h"
 #include "rect.h"
 #include "vectors.h"
@@ -6,9 +7,11 @@
 #include "image.h"
 #include "button.h"
 
-Button::Button(){
-	mFunc    = nullptr;
-	mClicked = false;
+Button::Button() : mFunc(nullptr), mClicked(false)
+{
+}
+Button::Button(int x, int y, std::string text, int w, int h) : mFunc(nullptr), mClicked(false)
+{
 }
 Button::~Button(){}
 void Button::Start(int x, int y){

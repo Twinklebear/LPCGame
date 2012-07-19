@@ -62,16 +62,24 @@ void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip){
 	Draw(dstRect.x, dstRect.y, dstRect.w, dstRect.h, image->Texture(), clip);
 }
 SDL_Texture* Window::LoadTexture(std::string file){
-	SDL_Texture* tex = nullptr;
+	SDL_Texture *tex = nullptr;
 	tex = IMG_LoadTexture(mRenderer, file.c_str());
 	if (tex == nullptr)
 		throw std::runtime_error("Failed to load image: " + file);
 	return tex;
 }
+SDL_Texture* Window::SurfaceToTexture(SDL_Surface *surf){
+	SDL_Texture *tex = nullptr;
+	tex = SDL_CreateTextureFromSurface(mRenderer, surf);
+	if (tex == nullptr)
+		throw std::runtime_error("Failed to convert surface");
+	SDL_FreeSurface(surf);
+	return tex;
+}
 void Window::Clear(){
 	SDL_RenderClear(mRenderer);
 }
-void Window::Flip(){
+void Window::Present(){
 	SDL_RenderPresent(mRenderer);
 }
 void Window::HandleEvents(SDL_Event &e){

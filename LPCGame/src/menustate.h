@@ -1,8 +1,8 @@
 #ifndef MENUSTATE_H
 #define MENUSTATE_H
 
-#include "gameobjectmanager.h"
 #include "state.h"
+#include "button.h"
 
 /*
 *  For making a simple menu system

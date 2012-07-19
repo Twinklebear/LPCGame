@@ -58,13 +58,7 @@ int main(int argc, char** argv){
 		manager->Draw();
 
 		//refresh window
-		try{
-			Window::Flip();
-		}
-		catch (const std::runtime_error &e){
-			std::cout << e.what() << std::endl;
-			return 1;
-		}
+		Window::Present();
 	}
 	delete map;
 	delete manager;

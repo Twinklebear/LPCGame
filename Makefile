@@ -11,8 +11,9 @@ EXEC=Debug/game
 DEPS=$(SRCPATH)rect.h $(SRCPATH)vectors.h $(SRCPATH)rect.h $(SRCPATH)objectpool.h
 OBJS=$(OBJPATH)math.o $(OBJPATH)timer.o $(OBJPATH)debugger.o $(OBJPATH)physics.o $(OBJPATH)image.o \
 	$(OBJPATH)window.o $(OBJPATH)gameobject.o $(OBJPATH)player.o $(OBJPATH)npc.o $(OBJPATH)button.o \
-	$(OBJPATH)gameobjectmanager.o $(OBJPATH)input.o $(OBJPATH)map.o
-
+	$(OBJPATH)gameobjectmanager.o $(OBJPATH)input.o $(OBJPATH)map.o $(OBJPATH)state.o $(OBJPATH)menustate.o \
+	$(OBJPATH)gamestate.o $(OBJPATH)text.o
+	
 %.o: %.cpp $(DEPS)
 	$(CXX) -c -o $@ $< $(CFLAGS)
 %.h:
@@ -20,6 +21,15 @@ OBJS=$(OBJPATH)math.o $(OBJPATH)timer.o $(OBJPATH)debugger.o $(OBJPATH)physics.o
 
 $(EXEC): $(SRCPATH)main.cpp $(OBJS)
 	$(CXX) -o $@ $^ $(LFLAGS)
+
+$(OBJPATH)gamestate.o: $(SRCPATH)gamestate.cpp
+	$(CXX) -o $@ $^ $(CFLAGS)
+
+$(OBJPATH)menustate.o: $(SRCPATH)menustate.cpp
+	$(CXX) -o $@ $^ $(CFLAGS)
+
+$(OBJPATH)state.o: $(SRCPATH)state.cpp
+	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJPATH)map.o: $(SRCPATH)map.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
@@ -31,6 +41,9 @@ $(OBJPATH)gameobjectmanager.o: $(SRCPATH)gameobjectmanager.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJPATH)button.o: $(SRCPATH)button.cpp
+	$(CXX) -o $@ $^ $(CFLAGS)
+
+$(OBJPATH)text.o: $(SRCPATH)text.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJPATH)npc.o: $(SRCPATH)npc.cpp

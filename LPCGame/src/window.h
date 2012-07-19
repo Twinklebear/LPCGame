@@ -54,13 +54,20 @@ public:
 	*/
 	static SDL_Texture* LoadTexture(std::string file);
 	/*
+	*  Convert an SDL_Surface to a texture and return the texture
+	*  will also free the surface
+	*  @param surf: The SDL_Surface* to be converted
+	*  @returns: The SDL_Texture* created from the surface
+	*/
+	static SDL_Texture* SurfaceToTexture(SDL_Surface *surf);
+	/*
 	*  Clear the renderer
 	*/
 	static void Clear();
 	/*
 	*  Render the renderer to window
 	*/
-	static void Flip();
+	static void Present();
 	/*
 	*  Handle window events
 	*/
