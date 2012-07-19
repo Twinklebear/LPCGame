@@ -1,7 +1,6 @@
 #include <stdexcept>
 #include <thread>
 #include <mutex>
-#include "SDL.h"
 #include "rect.h"
 #include "vectors.h"
 #include "physics.h"
@@ -19,11 +18,6 @@
 
 #include "debugger.h"
 #include <iostream>
-
-void CallBack(){
-	Debugger dbg("callback.txt");
-	dbg.Write("Got called");
-}
 
 int main(int argc, char** argv){
 	//Initialize statics

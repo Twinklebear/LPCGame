@@ -5,3 +5,4 @@ LPCGame/Debug
 LPCGame.opensdf
 Debug/*.txt
 LPCGame/obj
+Release/
