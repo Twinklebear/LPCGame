@@ -15,6 +15,7 @@
     <ClCompile Include="src\debugger.cpp" />
     <ClCompile Include="src\gameobject.cpp" />
     <ClCompile Include="src\gameobjectmanager.cpp" />
+    <ClCompile Include="src\gamestate.cpp" />
     <ClCompile Include="src\image.cpp" />
     <ClCompile Include="src\input.cpp" />
     <ClCompile Include="src\main.cpp" />
@@ -25,6 +26,7 @@
     <ClCompile Include="src\physics.cpp" />
     <ClCompile Include="src\player.cpp" />
     <ClCompile Include="src\state.cpp" />
+    <ClCompile Include="src\text.cpp" />
     <ClCompile Include="src\timer.cpp" />
     <ClCompile Include="src\window.cpp" />
   </ItemGroup>
@@ -33,6 +35,7 @@
     <ClInclude Include="src\debugger.h" />
     <ClInclude Include="src\gameobject.h" />
     <ClInclude Include="src\gameobjectmanager.h" />
+    <ClInclude Include="src\gamestate.h" />
     <ClInclude Include="src\image.h" />
     <ClInclude Include="src\input.h" />
     <ClInclude Include="src\map.h" />
@@ -44,6 +47,7 @@
     <ClInclude Include="src\player.h" />
     <ClInclude Include="src\rect.h" />
     <ClInclude Include="src\state.h" />
+    <ClInclude Include="src\text.h" />
     <ClInclude Include="src\tile.h" />
     <ClInclude Include="src\timer.h" />
     <ClInclude Include="src\vectors.h" />
