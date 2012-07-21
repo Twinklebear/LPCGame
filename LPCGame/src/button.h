@@ -37,7 +37,7 @@ public:
 	*  button is pressed
 	*  @param f: the function to call
 	*/
-	void RegisterCallBack(void (*f)());
+	void RegisterCallBack(void (*f)(int), int param);
 
 private:
 	//Disable copy-construction
@@ -48,8 +48,9 @@ protected:
 	Image mImage;
 	Text mText;
 	bool mClicked;
-	//The callback function pointer
-	void (*mFunc)();
+	//The callback function pointer & its value
+	void (*mFunc)(int);
+	int mParam;
 };
 
 #endif

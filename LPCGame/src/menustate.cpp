@@ -5,6 +5,7 @@
 #include "button.h"
 #include "objectbutton.h"
 #include "menustate.h"
+#include "statemanager.h"
 
 #include "debugger.h"
 
@@ -18,6 +19,8 @@ void MenuState::Init(){
 	//Create two buttons
 	Button *play = new Button(200, 100, "Play");
 	Button *quit = new Button(200, 300, "Quit");
+	play->RegisterCallBack(StateManager::SetActiveState, StateManager::IdFromName("game"));
+
 	mManager = new GameObjectManager();
 	mManager->Register((GameObject*)play);
 	mManager->Register((GameObject*)quit);

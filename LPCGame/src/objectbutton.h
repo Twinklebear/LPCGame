@@ -48,7 +48,7 @@ public:
 		if (mObj != nullptr && mObjFunc != nullptr)
 			((mObj)->*(mObjFunc))(mParam);
 		else if (mFunc != nullptr)
-			mFunc();
+			mFunc(mParam);
 	}
 
 private:

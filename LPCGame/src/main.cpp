@@ -11,6 +11,7 @@
 #include "button.h"
 #include "menustate.h"
 #include "gamestate.h"
+#include "statemanager.h"
 
 #include "debugger.h"
 #include <iostream>
@@ -21,15 +22,27 @@ int main(int argc, char** argv){
 	Input::Init();
 
 	//TESTING
+	//TODO: Need a way to defer getting the id of the state from button creation
+	//to when the button is actually pressed. Or else i'll have issues with having to
+	//create and register states in certain orders, and even then it may not work.
+	GameState *gameState = new GameState();
+	gameState->SetName("game");
+	StateManager::Register((State*)gameState);
+	
 	MenuState *menuState = new MenuState();
-	menuState->Run();
-	delete menuState;
+	menuState->SetName("intro");
+	StateManager::Register((State*)menuState);
+
+	StateManager::InitIntro();
+	//menuState->Run();
+	//delete menuState;
 	//Window::Quit();
 	//return 0;
 
-	GameState *gameState = new GameState();
-	gameState->Run();
-	delete gameState;
+
+	//gameState->Run();
+	//delete gameState;
+
 /*
 	//Setup our game stuff
 	Timer delta;

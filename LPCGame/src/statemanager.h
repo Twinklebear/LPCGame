@@ -13,6 +13,10 @@
 class StateManager{
 public:
 	/*
+	*  Start the first state, first state must have name intro
+	*/
+	static void InitIntro();
+	/*
 	*  Register a state with the manager, each state is assigned an id number
 	*  corresponding to its index in the vector
 	*  @param state: The state to register
@@ -47,8 +51,8 @@ public:
 	static void SaveState(std::string name);
 
 private:
-	static std::vector<State> mStates;
-	int mActiveID;
+	static std::vector<State*> mStates;
+	static int mActiveID;
 };
 
 #endif

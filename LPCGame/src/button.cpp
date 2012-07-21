@@ -69,7 +69,7 @@ void Button::OnMouseExit(){
 }
 void Button::OnClick(){
 	if (mFunc != nullptr)
-		mFunc();
+		mFunc(mParam);
 }
 /*
 void RegisterCallBack(object *obj, void (object::*func)()){
@@ -77,6 +77,7 @@ void RegisterCallBack(object *obj, void (object::*func)()){
 	mObjFunc = func;
 	mFunc = nullptr;
 */
-void Button::RegisterCallBack(void (*f)()){
+void Button::RegisterCallBack(void (*f)(int), int param){
 	mFunc = f;
+	mParam = param;
 }
