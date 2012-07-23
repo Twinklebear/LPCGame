@@ -3,6 +3,7 @@
 
 #include <string>
 #include <stdexcept>
+#include <memory>
 #include "SDL.h"
 #include "image.h"
 #include "rect.h"
@@ -77,8 +78,8 @@ public:
 	static Recti Box();
 
 private:
-	static SDL_Window *mWindow;
-	static SDL_Renderer *mRenderer;
+	static std::shared_ptr<SDL_Window> mWindow;
+	static std::shared_ptr<SDL_Renderer> mRenderer;
 	static Recti mBox;
 	static int SCREEN_WIDTH;
 	static int SCREEN_HEIGHT;

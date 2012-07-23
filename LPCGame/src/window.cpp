@@ -7,8 +7,8 @@
 #include "image.h"
 #include "window.h"
 
-SDL_Window* Window::mWindow;
-SDL_Renderer* Window::mRenderer;
+std::shared_ptr<SDL_Window> Window::mWindow;
+std::shared_ptr<SDL_Renderer> Window::mRenderer;
 Recti Window::mBox;
 int Window::SCREEN_WIDTH;
 int Window::SCREEN_HEIGHT;
@@ -24,20 +24,24 @@ void Window::Init(std::string title){
 	SCREEN_WIDTH = 1280;
 	SCREEN_HEIGHT = 720;
 	mWindow = nullptr;
-	mWindow = SDL_CreateWindow(title.c_str(), 100, 100, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+	mWindow = std::shared_ptr<SDL_Window>(SDL_CreateWindow(title.c_str(), 100, 100, 
+		SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE), 
+		SDL_DestroyWindow);
+	//if window failed to create
 	if (mWindow == nullptr)
 		throw std::runtime_error("Failed to open window");
+
 	//Start up the renderer
 	mRenderer = nullptr;
-	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+	mRenderer = std::shared_ptr<SDL_Renderer>(SDL_CreateRenderer(mWindow.get(), -1, 
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC), SDL_DestroyRenderer);
+	//Make sure it went ok
 	if (mRenderer == nullptr)
 		throw std::runtime_error("Failed to start renderer");
 	//initialize the window box
 	mBox.Set(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 void Window::Quit(){
-	SDL_DestroyRenderer(mRenderer);
-	SDL_DestroyWindow(mWindow);
 	TTF_Quit();
 	SDL_Quit();
 }
@@ -63,7 +67,7 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h){
 		dstRect.h = h;
 	}
 	//Draw the texture
-	SDL_RenderCopy(mRenderer, tex, clip, &dstRect);
+	SDL_RenderCopy(mRenderer.get(), tex, clip, &dstRect);
 }
 void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip){
 	Draw(dstRect.x, dstRect.y, image->Texture(), clip, dstRect.w, dstRect.h);
@@ -74,29 +78,29 @@ void Window::Draw(Text *text, SDL_Rect dstRect){
 }
 SDL_Texture* Window::LoadTexture(std::string file){
 	SDL_Texture *tex = nullptr;
-	tex = IMG_LoadTexture(mRenderer, file.c_str());
+	tex = IMG_LoadTexture(mRenderer.get(), file.c_str());
 	if (tex == nullptr)
 		throw std::runtime_error("Failed to load image: " + file);
 	return tex;
 }
 SDL_Texture* Window::SurfaceToTexture(SDL_Surface *surf){
 	SDL_Texture *tex = nullptr;
-	tex = SDL_CreateTextureFromSurface(mRenderer, surf);
+	tex = SDL_CreateTextureFromSurface(mRenderer.get(), surf);
 	if (tex == nullptr)
 		throw std::runtime_error("Failed to convert surface");
 	SDL_FreeSurface(surf);
 	return tex;
 }
 void Window::Clear(){
-	SDL_RenderClear(mRenderer);
+	SDL_RenderClear(mRenderer.get());
 }
 void Window::Present(){
-	SDL_RenderPresent(mRenderer);
+	SDL_RenderPresent(mRenderer.get());
 }
 void Window::HandleEvents(SDL_Event &e){
 }
 Recti Window::Box(){
 	//Update the box to match the current window w/h
-	SDL_GetWindowSize(mWindow, &mBox.w, &mBox.h);
+	SDL_GetWindowSize(mWindow.get(), &mBox.w, &mBox.h);
 	return mBox;
 }
