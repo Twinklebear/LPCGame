@@ -2,6 +2,7 @@
 #define STATEMANAGER_H
 
 #include <vector>
+#include <string>
 #include "state.h"
 #include "gamestate.h"
 #include "menustate.h"
@@ -35,10 +36,10 @@ public:
 	*  I want to load which will bring up the associated file
 	*/
 	/*
-	*  Set a state active based on its Id number
-	*  @param id: The state id (index) to set active
+	*  Set a state active based on its name
+	*  @param name: The name of the state to set active
 	*/
-	static void SetActiveState(int id);
+	static void SetActiveState(std::string name);
 	/*
 	*  Load a from file by its name
 	*  @param name: The state name to load for the state, state and file names are same

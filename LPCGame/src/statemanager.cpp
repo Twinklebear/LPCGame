@@ -1,5 +1,6 @@
 #include <vector>
 #include <stdexcept>
+#include <string>
 #include "state.h"
 #include "gamestate.h"
 #include "menustate.h"
@@ -10,7 +11,7 @@ int StateManager::mActiveID;
 
 void StateManager::InitIntro(){
 	mActiveID = -1;
-	SetActiveState(IdFromName("intro"));
+	SetActiveState("intro");
 }
 void StateManager::Register(State *state){
 	mStates.push_back(state);
@@ -22,7 +23,8 @@ int StateManager::IdFromName(std::string name){
 	}
 	return -1;
 }
-void StateManager::SetActiveState(int id){
+void StateManager::SetActiveState(std::string name){
+	int id = IdFromName(name);
 	if (mActiveID == id)
 		return;
 	if (mActiveID != -1)

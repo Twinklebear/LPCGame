@@ -25,13 +25,13 @@ int main(int argc, char** argv){
 	//TODO: Need a way to defer getting the id of the state from button creation
 	//to when the button is actually pressed. Or else i'll have issues with having to
 	//create and register states in certain orders, and even then it may not work.
-	GameState *gameState = new GameState();
-	gameState->SetName("game");
-	StateManager::Register((State*)gameState);
-	
 	MenuState *menuState = new MenuState();
 	menuState->SetName("intro");
 	StateManager::Register((State*)menuState);
+
+	GameState *gameState = new GameState();
+	gameState->SetName("game");
+	StateManager::Register((State*)gameState);
 
 	StateManager::InitIntro();
 	//menuState->Run();

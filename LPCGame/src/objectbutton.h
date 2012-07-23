@@ -1,6 +1,7 @@
 #ifndef OBJECTBUTTON_H
 #define OBJECTBUTTON_H
 
+#include <string>
 #include "gameobject.h"
 #include "image.h"
 #include "text.h"
@@ -37,7 +38,7 @@ public:
 	*  @param param: The parameter to pass to the function when calling it
 	*  TODO: Need a better way to have buttons that handle non-static member functions
 	*/
-	void RegisterCallBack(T *obj, void (T::*func)(int), int param){
+	void RegisterCallBack(T *obj, void (T::*func)(std::string), std::string param){
 		mObj	 = obj;
 		mObjFunc = func;
 		mParam   = param;
@@ -53,8 +54,8 @@ public:
 
 private:
 	T *mObj;
-	void (T::*mObjFunc)(int);
-	int mParam;
+	void (T::*mObjFunc)(std::string);
+	std::string mParam;
 };
 
 #endif

@@ -77,7 +77,7 @@ void RegisterCallBack(object *obj, void (object::*func)()){
 	mObjFunc = func;
 	mFunc = nullptr;
 */
-void Button::RegisterCallBack(void (*f)(int), int param){
+void Button::RegisterCallBack(void (*f)(std::string), std::string param){
 	mFunc = f;
 	mParam = param;
 }

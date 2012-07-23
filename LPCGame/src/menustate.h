@@ -27,7 +27,7 @@ public:
 	std::string Serialize();
 
 	//TESTING
-	void CallTest(int a);
+	void CallTest(std::string a);
 
 private:
 	Debugger *dbg;

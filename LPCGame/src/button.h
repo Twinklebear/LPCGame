@@ -37,7 +37,7 @@ public:
 	*  button is pressed
 	*  @param f: the function to call
 	*/
-	void RegisterCallBack(void (*f)(int), int param);
+	void RegisterCallBack(void (*f)(std::string), std::string param);
 
 private:
 	//Disable copy-construction
@@ -49,8 +49,8 @@ protected:
 	Text mText;
 	bool mClicked;
 	//The callback function pointer & its value
-	void (*mFunc)(int);
-	int mParam;
+	void (*mFunc)(std::string);
+	std::string mParam;
 };
 
 #endif
