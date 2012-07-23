@@ -21,6 +21,9 @@ int main(int argc, char** argv){
 	Window::Init();
 	Input::Init();
 
+	//TODO: What if i wrote wrappers around texture and such that would call
+	//the destroy when its destructor was called, then used smart pointers?
+
 	//TESTING
 	//TODO: Need a way to defer getting the id of the state from button creation
 	//to when the button is actually pressed. Or else i'll have issues with having to
