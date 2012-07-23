@@ -24,7 +24,6 @@ void Window::Init(std::string title){
 	//Start up window
 	SCREEN_WIDTH = 1280;
 	SCREEN_HEIGHT = 720;
-	mWindow = nullptr;
 	mWindow = std::shared_ptr<SDL_Window>(SDL_CreateWindow(title.c_str(), 100, 100, 
 		SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE), 
 		SDL_DestroyWindow);
@@ -33,7 +32,6 @@ void Window::Init(std::string title){
 		throw std::runtime_error("Failed to open window");
 
 	//Start up the renderer
-	mRenderer = nullptr;
 	mRenderer = std::shared_ptr<SDL_Renderer>(SDL_CreateRenderer(mWindow.get(), -1, 
 		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC), SDL_DestroyRenderer);
 	//Make sure it went ok
