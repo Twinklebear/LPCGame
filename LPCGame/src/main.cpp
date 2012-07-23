@@ -1,6 +1,5 @@
 #include <stdexcept>
-#include <thread>
-#include <mutex>
+#include <memory>
 #include "map.h"
 #include "window.h"
 #include "gameobjectmanager.h"
@@ -35,6 +34,15 @@ int main(int argc, char** argv){
 	StateManager::Register((State*)gameState);
 
 	StateManager::InitIntro();
+
+	//Example of shared pointer
+	//SDL_Texture *texture = nullptr;
+	//std::shared_ptr<SDL_Texture> shTex(texture, SDL_DestroyTexture);
+	//Image would then return a weak pointer to be drawn
+	//std::weak_ptr<SDL_Texture> wkTex = shTex;
+	//Can then use it, but weak pointer doesn't have ownership properties
+
+
 	//menuState->Run();
 	//delete menuState;
 	//Window::Quit();
