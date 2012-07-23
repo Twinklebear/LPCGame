@@ -23,11 +23,9 @@ int main(int argc, char** argv){
 
 	//TODO: What if i wrote wrappers around texture and such that would call
 	//the destroy when its destructor was called, then used smart pointers?
+	//I think the Image class should hold a shared pointer and return weak pointers
+	//when the texture pointer is requested
 
-	//TESTING
-	//TODO: Need a way to defer getting the id of the state from button creation
-	//to when the button is actually pressed. Or else i'll have issues with having to
-	//create and register states in certain orders, and even then it may not work.
 	MenuState *menuState = new MenuState();
 	menuState->SetName("intro");
 	StateManager::Register((State*)menuState);
