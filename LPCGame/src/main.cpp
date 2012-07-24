@@ -20,9 +20,7 @@ int main(int argc, char** argv){
 	Window::Init();
 	Input::Init();
 
-	//TODO: What if i wrote wrappers around texture and such that would call
-	//the destroy when its destructor was called, then used smart pointers?
-	//I think the Image class should hold a shared pointer and return weak pointers
+	//TODO: I think the Image class should hold a shared pointer and return weak pointers
 	//when the texture pointer is requested
 
 	MenuState *menuState = new MenuState();
