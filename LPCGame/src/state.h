@@ -24,10 +24,8 @@ public:
 	*/
 	virtual std::string Serialize() = 0;
 	//Setters & Getters
-	virtual void SetId(int id);
-	virtual int Id();
-	virtual void SetName(std::string name);
-	virtual std::string Name();
+	void SetName(std::string name);
+	std::string Name();
 
 protected:
 	GameObjectManager *mManager;
