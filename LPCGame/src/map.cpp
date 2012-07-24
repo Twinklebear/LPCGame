@@ -91,7 +91,7 @@ std::vector<int> Map::CalculateIndex(Recti area) const{
 				if (!exists)
 					tileIndices.push_back(index);
 			}
-			catch (std::runtime_error &e){
+			catch (...){
 				//the error is more of a notice to keep us adding invalid indices, 
 				//so nothing more is needed here
 			}
@@ -112,7 +112,7 @@ CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 	try{
 		indices = CalculateIndex(area);
 	}
-	catch (std::runtime_error &e){
+	catch (...){
 	}
 	//Setup the collision map
 	CollisionMap localMap;

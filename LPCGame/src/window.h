@@ -16,6 +16,10 @@
 class Window{
 public:
 	/*
+	*  Destructor: calls Quit to free the memory
+	*/
+	~Window();
+	/*
 	*  Initialize SDL, setup the window and renderer
 	*  @param title: the window title
 	*/
@@ -78,8 +82,9 @@ public:
 	static Recti Box();
 
 private:
-	static std::shared_ptr<SDL_Window> mWindow;
-	static std::shared_ptr<SDL_Renderer> mRenderer;
+	static std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> mWindow;
+	//static std::shared_ptr<SDL_Window> mWindow;
+	static std::unique_ptr<SDL_Renderer, void (*)(SDL_Renderer*)> mRenderer;
 	static Recti mBox;
 	static int SCREEN_WIDTH;
 	static int SCREEN_HEIGHT;

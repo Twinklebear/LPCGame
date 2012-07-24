@@ -35,6 +35,10 @@ int main(int argc, char** argv){
 
 	StateManager::InitIntro();
 
+	//Unique ptr testing
+	//SDL_Texture *texture = nullptr;
+	//std::unique_ptr<SDL_Texture, void (*)(SDL_Texture*)> unTex(texture, SDL_DestroyTexture);
+
 	//Example of shared pointer
 	//SDL_Texture *texture = nullptr;
 	//std::shared_ptr<SDL_Texture> shTex(texture, SDL_DestroyTexture);

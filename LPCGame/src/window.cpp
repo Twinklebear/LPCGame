@@ -8,12 +8,18 @@
 #include "image.h"
 #include "window.h"
 
-std::shared_ptr<SDL_Window> Window::mWindow;
-std::shared_ptr<SDL_Renderer> Window::mRenderer;
+//std::shared_ptr<SDL_Window> Window::mWindow;
+std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> Window::mWindow 
+	= std::unique_ptr<SDL_Window, void (*)(SDL_Window*)>(nullptr, SDL_DestroyWindow);
+std::unique_ptr<SDL_Renderer, void (*)(SDL_Renderer*)> Window::mRenderer
+	= std::unique_ptr<SDL_Renderer, void (*)(SDL_Renderer*)>(nullptr, SDL_DestroyRenderer);
 Recti Window::mBox;
 int Window::SCREEN_WIDTH;
 int Window::SCREEN_HEIGHT;
 
+Window::~Window(){
+	Quit();
+}
 void Window::Init(std::string title){
 	//initialize all SDL subsystems
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
@@ -24,16 +30,23 @@ void Window::Init(std::string title){
 	//Start up window
 	SCREEN_WIDTH = 1280;
 	SCREEN_HEIGHT = 720;
+	/*
 	mWindow = std::shared_ptr<SDL_Window>(SDL_CreateWindow(title.c_str(), 100, 100, 
 		SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE), 
 		SDL_DestroyWindow);
+	*/
+	//Create a unique ptr to the window & swap it into the window member
+	//std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> win(SDL_CreateWindow(title.c_str(), 100, 100, 
+	//	SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE), SDL_DestroyWindow);
+	//mWindow = std::move(win);
+	mWindow.reset(SDL_CreateWindow(title.c_str(), 100, 100, SCREEN_WIDTH, 
+		SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE));
 	//if window failed to create
 	if (mWindow == nullptr)
 		throw std::runtime_error("Failed to open window");
 
 	//Start up the renderer
-	mRenderer = std::shared_ptr<SDL_Renderer>(SDL_CreateRenderer(mWindow.get(), -1, 
-		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC), SDL_DestroyRenderer);
+	mRenderer.reset(SDL_CreateRenderer(mWindow.get(), -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC));
 	//Make sure it went ok
 	if (mRenderer == nullptr)
 		throw std::runtime_error("Failed to start renderer");
