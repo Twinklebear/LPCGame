@@ -20,9 +20,6 @@ int main(int argc, char** argv){
 	Window::Init();
 	Input::Init();
 
-	//TODO: I think the Image class should hold a shared pointer and return weak pointers
-	//when the texture pointer is requested
-
 	MenuState *menuState = new MenuState();
 	menuState->SetName("intro");
 	StateManager::Register((State*)menuState);
@@ -32,18 +29,6 @@ int main(int argc, char** argv){
 	StateManager::Register((State*)gameState);
 
 	StateManager::InitIntro();
-
-	//Unique ptr testing
-	//SDL_Texture *texture = nullptr;
-	//std::unique_ptr<SDL_Texture, void (*)(SDL_Texture*)> unTex(texture, SDL_DestroyTexture);
-
-	//Example of shared pointer
-	//SDL_Texture *texture = nullptr;
-	//std::shared_ptr<SDL_Texture> shTex(texture, SDL_DestroyTexture);
-	//Image would then return a weak pointer to be drawn
-	//std::weak_ptr<SDL_Texture> wkTex = shTex;
-	//Can then use it, but weak pointer doesn't have ownership properties
-
 
 	//menuState->Run();
 	//delete menuState;
