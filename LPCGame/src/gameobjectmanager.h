@@ -2,6 +2,7 @@
 #define GAMEOBJECTMANAGER_H
 
 #include <vector>
+#include <memory>
 #include "gameobject.h"
 #include "map.h"
 

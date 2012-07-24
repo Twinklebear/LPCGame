@@ -5,9 +5,12 @@
 
 GameObjectManager::GameObjectManager(){}
 GameObjectManager::~GameObjectManager(){
-	//for (GameObject *o : mGameObjects)
-	//	delete o;
-	//mGameObjects.clear();
+	std::cout << "about to delete game objects" << std::endl;
+	for (GameObject *o : mGameObjects)
+		delete o;
+	std::cout << "Game objects deleted" << std::endl;
+	mGameObjects.clear();
+	std::cout << "Cleared" << std::endl;
 }
 void GameObjectManager::Draw(){
 	for (GameObject *o : mGameObjects)

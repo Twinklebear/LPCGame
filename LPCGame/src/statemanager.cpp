@@ -38,11 +38,13 @@ void StateManager::SetActiveState(std::string name){
 		//mStates.at(mActiveID)->Save();
 		mStates.at(mActiveID)->Free();
 	}
+	std::cout << "About to load new state" << std::endl;
 	//Update the new id
 	mActiveID = id;
 	//Save and quit the active state, the load and start the new state
 	mStates.at(mActiveID)->Init();
 	mStates.at(mActiveID)->Run();
+	std::cout << "New state loaded" << std::endl;
 }
 void StateManager::LoadState(std::string name){
 	
