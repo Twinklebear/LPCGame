@@ -16,7 +16,9 @@ public:
 	//Initialize state memory
 	virtual void Init() = 0;
 	//Run the state
-	virtual void Run() = 0;
+	virtual std::string Run() = 0;
+	//Set the exit code for Run, and set mExit to true
+	void SetExit(std::string val);
 	//Free the memory used by the state
 	virtual void Free() = 0;
 	/*
@@ -30,6 +32,8 @@ public:
 protected:
 	GameObjectManager *mManager;
 	std::string mName;
+	bool mExit;
+	std::string mExitCode;
 };
 
 

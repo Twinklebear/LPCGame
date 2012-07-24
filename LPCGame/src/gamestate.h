@@ -17,7 +17,7 @@ public:
 	//Initialize state memory
 	void Init();
 	//Run the state
-	void Run();
+	std::string Run();
 	//Free the memory used by the state
 	void Free();
 	/*

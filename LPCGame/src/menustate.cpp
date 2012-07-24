@@ -16,9 +16,11 @@ MenuState::~MenuState(){
 }
 void MenuState::Init(){
 	//Create two buttons
-	Button *play = new Button(200, 100, "Play");
+	//Button *play = new Button(200, 100, "Play");
+	ObjectButton<MenuState> *play = new ObjectButton<MenuState>(200, 100, "Play");
+	play->RegisterCallBack(this, &MenuState::SetExit, "game");
 	Button *quit = new Button(200, 300, "Quit");
-	play->RegisterCallBack(StateManager::SetActiveState, "game");
+	//play->RegisterCallBack(StateManager::SetActiveState, "game");
 
 	mManager = new GameObjectManager();
 	mManager->Register((GameObject*)play);
@@ -26,10 +28,12 @@ void MenuState::Init(){
 
 	Input::RegisterManager(mManager);
 }
-void MenuState::Run(){
-	while (!Input::Quit()){
+std::string MenuState::Run(){
+	while (!mExit){
 		//EVENT POLLING
 		Input::PollEvent();
+		if (Input::Quit())
+			return "quit";
 
 		///LOGIC
 		mManager->Update();
@@ -42,6 +46,7 @@ void MenuState::Run(){
 		Window::Present();
 	}
 	std::cout << "Leaving menu state loop" << std::endl;
+	return mExitCode;
 }
 void MenuState::Free(){
 	std::cout << "Closing menu state" << std::endl;

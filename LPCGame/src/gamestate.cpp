@@ -27,11 +27,13 @@ void GameState::Init(){
 
 	//Input::RegisterManager(mManager);
 }
-void GameState::Run(){
+std::string GameState::Run(){
 	mDelta.Start();
-	while (!Input::Quit()){
+	while (!mExit){
 		//EVENT POLLING
 		Input::PollEvent();
+		if (Input::Quit())
+			return "quit";
 
 		///LOGIC
 		mManager->Update();
@@ -51,6 +53,7 @@ void GameState::Run(){
 		Window::Present();
 	}
 	std::cout << "Game state finished running" << std::endl;
+	return mExitCode;
 }
 void GameState::Free(){
 	Input::RemoveManager();
