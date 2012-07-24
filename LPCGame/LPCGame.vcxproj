@@ -18,6 +18,7 @@
     <ClCompile Include="src\gamestate.cpp" />
     <ClCompile Include="src\image.cpp" />
     <ClCompile Include="src\input.cpp" />
+    <ClCompile Include="src\jsoncpp.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\map.cpp" />
     <ClCompile Include="src\math.cpp" />
@@ -39,6 +40,8 @@
     <ClInclude Include="src\gamestate.h" />
     <ClInclude Include="src\image.h" />
     <ClInclude Include="src\input.h" />
+    <ClInclude Include="src\json\json-forwards.h" />
+    <ClInclude Include="src\json\json.h" />
     <ClInclude Include="src\map.h" />
     <ClInclude Include="src\math.h" />
     <ClInclude Include="src\menustate.h" />
