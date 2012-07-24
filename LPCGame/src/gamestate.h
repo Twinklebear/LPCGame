@@ -1,6 +1,7 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include "json/json.h"
 #include "state.h"
 #include "timer.h"
 #include "map.h"
@@ -20,10 +21,9 @@ public:
 	//Free the memory used by the state
 	void Free();
 	/*
-	*  Serialize the state data so that it can be loaded later
-	*  @returns: The serialized data in string form
+	*  Save the state data so that it can be loaded later
 	*/
-	std::string Serialize();
+	void Save();
 
 private:
 	Map *mMap;

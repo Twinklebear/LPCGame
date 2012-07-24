@@ -1,3 +1,6 @@
+#include <fstream>
+#include <string>
+#include "json/json.h"
 #include "gameobject.h"
 #include "gameobjectmanager.h"
 #include "window.h"
@@ -16,7 +19,7 @@ GameState::~GameState(){
 }
 void GameState::Init(){
 	mMap = new Map();
-	Player *player	= new Player();
+	Player *player = new Player();
 	mManager = new GameObjectManager();
 
 	player->Start(10, 10);
@@ -52,6 +55,18 @@ void GameState::Free(){
 	delete mMap;
 	delete mManager;
 }
-std::string GameState::Serialize(){
-	return "";
+void GameState::Save(){
+	Json::Value root;
+	root["map"] = mMap->Save();
+
+	//Write the data to string
+	Json::StyledWriter writer;
+	std::string data = writer.write(root);
+
+	//Save the file to a file named the state's name
+	std::ofstream file(("states/" + mName + ".json").c_str());
+	file << data << std::endl;
+	file.close();
+
+	return root;
 }

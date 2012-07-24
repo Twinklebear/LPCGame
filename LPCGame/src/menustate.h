@@ -1,11 +1,10 @@
 #ifndef MENUSTATE_H
 #define MENUSTATE_H
 
+#include "json/json.h"
 #include "state.h"
 #include "button.h"
 #include "objectbutton.h"
-
-#include "debugger.h"
 
 /*
 *  For making a simple menu system
@@ -21,16 +20,11 @@ public:
 	//Free the memory used by the state
 	void Free();
 	/*
-	*  Serialize the state data so that it can be loaded later
-	*  @returns: The serialized data in string form
+	*  Save the state data so that it can be loaded later
 	*/
-	std::string Serialize();
-
-	//TESTING
-	void CallTest(std::string a);
+	void Save();
 
 private:
-	Debugger *dbg;
 	bool mExit;
 };
 

@@ -18,7 +18,6 @@ Map::Map(){
         Tile tempTile;
 		tempTile.SetSolid(false);
 		tempTile.SetType(0);
-		tempTile.collMapDebug = false;
         //setup position
         if (i != 0 && i % mapSize == 0){
             yPos += TILE_HEIGHT;
@@ -44,6 +43,21 @@ void Map::Draw(const Recti &camera){
 		Window::Draw(&mImage, mTiles.at(i).Box(), &(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
 }
 void Map::LoadFile(std::string mapFile){
+}
+Json::Value Map::Save(){
+	Json::Value map;
+	//Save the map width and height
+	map["mBox"]["w"] = mBox.w;
+	map["mBox"]["h"] = mBox.h;
+	//Save the tiles
+	for (int i = 0; i < mTiles.size(); ++i){
+		map["tiles"][i]["x"] 	 = mTiles.at(i).Box().X();
+		map["tiles"][i]["y"]  	 = mTiles.at(i).Box().Y();
+		map["tiles"][i]["type"]  = mTiles.at(i).Type();
+		map["tiles"][i]["solid"] = mTiles.at(i).Solid();
+	}
+	
+	return map;
 }
 void Map::LoadImageSheet(){
 	try{

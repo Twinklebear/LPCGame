@@ -27,6 +27,7 @@ int main(int argc, char** argv){
 	GameState *gameState = new GameState();
 	gameState->SetName("game");
 	StateManager::Register((State*)gameState);
+	gameState->Save();
 
 	StateManager::InitIntro();
 

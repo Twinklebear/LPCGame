@@ -11,7 +11,7 @@ EXEC=Debug/game
 OBJS=$(OBJPATH)math.o $(OBJPATH)timer.o $(OBJPATH)debugger.o $(OBJPATH)physics.o $(OBJPATH)image.o \
 	$(OBJPATH)window.o $(OBJPATH)gameobject.o $(OBJPATH)player.o $(OBJPATH)npc.o $(OBJPATH)button.o \
 	$(OBJPATH)gameobjectmanager.o $(OBJPATH)input.o $(OBJPATH)map.o $(OBJPATH)state.o $(OBJPATH)menustate.o \
-	$(OBJPATH)gamestate.o $(OBJPATH)text.o $(OBJPATH)statemanager.o
+	$(OBJPATH)gamestate.o $(OBJPATH)text.o $(OBJPATH)statemanager.o $(OBJPATH)json.o
 	
 %.o: %.cpp $(DEPS)
 	$(CXX) -c -o $@ $< $(CFLAGS)
@@ -73,6 +73,9 @@ $(OBJPATH)timer.o: $(SRCPATH)timer.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJPATH)math.o: $(SRCPATH)math.cpp
+	$(CXX) -o $@ $^ $(CFLAGS)
+
+$(OBJPATH)json.o: $(SRCPATH)jsoncpp.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 clean:

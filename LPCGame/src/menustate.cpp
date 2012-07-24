@@ -1,3 +1,4 @@
+#include "json/json.h"
 #include "gameobject.h"
 #include "gameobjectmanager.h"
 #include "window.h"
@@ -7,10 +8,8 @@
 #include "menustate.h"
 #include "statemanager.h"
 
-#include "debugger.h"
-
 MenuState::MenuState(){
-	Init();	
+	Init();
 }
 MenuState::~MenuState(){
 	Free();
@@ -24,13 +23,6 @@ void MenuState::Init(){
 	mManager = new GameObjectManager();
 	mManager->Register((GameObject*)play);
 	mManager->Register((GameObject*)quit);
-
-	//Testing
-	ObjectButton<MenuState> *testButton = new ObjectButton<MenuState>(200, 500, "TEST");
-	testButton->RegisterCallBack(this, &MenuState::CallTest, "");
-	mManager->Register((GameObject*)testButton);
-
-	dbg = new Debugger("menustate.txt");
 }
 void MenuState::Run(){
 	Input::RegisterManager(mManager);
@@ -51,12 +43,8 @@ void MenuState::Run(){
 	}
 }
 void MenuState::Free(){
-	delete dbg;
 	delete mManager;
 }
-void MenuState::CallTest(std::string a){
-	mExit = true;
-}
-std::string MenuState::Serialize(){
-	return "";
+void MenuState::Save(){
+
 }

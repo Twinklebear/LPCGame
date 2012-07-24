@@ -2,6 +2,7 @@
 #define STATE_H
 
 #include <string>
+#include "json/json.h"
 #include "gameobjectmanager.h"
 
 /*
@@ -19,10 +20,9 @@ public:
 	//Free the memory used by the state
 	virtual void Free() = 0;
 	/*
-	*  Serialize the state data so that it can be loaded later
-	*  @returns: The serialized data in string form
+	*  Save the state data so that it can be loaded later
 	*/
-	virtual std::string Serialize() = 0;
+	virtual void Save() = 0;
 	//Setters & Getters
 	void SetName(std::string name);
 	std::string Name();
