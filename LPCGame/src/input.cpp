@@ -231,3 +231,6 @@ bool Input::Quit(){
 void Input::RegisterManager(GameObjectManager *manager){
 	mManager = manager;
 }
+void Input::RemoveManager(){
+	mManager = nullptr;
+}

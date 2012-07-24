@@ -21,19 +21,28 @@ int StateManager::IdFromName(std::string name){
 		if (mStates.at(i)->Name() == name)
 			return i;
 	}
-	return -1;
+	throw std::runtime_error("Failed to find state" + name);
 }
 void StateManager::SetActiveState(std::string name){
-	int id = IdFromName(name);
+	int id;
+	try {
+		id = IdFromName(name);
+	}
+	catch (...){
+		return;
+	}
 	if (mActiveID == id)
 		return;
-	if (id == -1)
-		throw std::runtime_error("Failed to find state");
-	if (mActiveID != -1)
+	//Free previous state if one was running
+	if (mActiveID != -1){
+		//mStates.at(mActiveID)->Save();
 		mStates.at(mActiveID)->Free();
+	}
+	//Update the new id
+	mActiveID = id;
 	//Save and quit the active state, the load and start the new state
-	mStates.at(id)->Init();
-	mStates.at(id)->Run();
+	mStates.at(mActiveID)->Init();
+	mStates.at(mActiveID)->Run();
 }
 void StateManager::LoadState(std::string name){
 	

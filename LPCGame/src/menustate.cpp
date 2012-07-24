@@ -23,9 +23,10 @@ void MenuState::Init(){
 	mManager = new GameObjectManager();
 	mManager->Register((GameObject*)play);
 	mManager->Register((GameObject*)quit);
+
+	Input::RegisterManager(mManager);
 }
 void MenuState::Run(){
-	Input::RegisterManager(mManager);
 	mExit = false;
 	while (!Input::Quit() && !mExit){
 		//EVENT POLLING
@@ -43,6 +44,7 @@ void MenuState::Run(){
 	}
 }
 void MenuState::Free(){
+	Input::RemoveManager();
 	delete mManager;
 }
 void MenuState::Save(){

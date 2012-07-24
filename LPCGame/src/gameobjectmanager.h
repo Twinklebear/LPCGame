@@ -5,8 +5,6 @@
 #include "gameobject.h"
 #include "map.h"
 
-#include "debugger.h"
-
 //Typedef for a vector of GameObject pointers
 typedef std::vector<GameObject*> GameObjectList;
 
@@ -56,7 +54,6 @@ private:
 
 private:
 	GameObjectList mGameObjects;
-	Debugger *dbg;
 };
 
 #endif

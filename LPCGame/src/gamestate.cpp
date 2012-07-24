@@ -24,10 +24,10 @@ void GameState::Init(){
 
 	player->Start(10, 10);
 	mManager->Register((GameObject*)player);
+
+	//Input::RegisterManager(mManager);
 }
 void GameState::Run(){
-	Input::RegisterManager(mManager);
-	
 	mDelta.Start();
 	while (!Input::Quit()){
 		//EVENT POLLING
@@ -52,6 +52,7 @@ void GameState::Run(){
 	}
 }
 void GameState::Free(){
+	Input::RemoveManager();
 	delete mMap;
 	delete mManager;
 }
@@ -67,6 +68,4 @@ void GameState::Save(){
 	std::ofstream file(("states/" + mName + ".json").c_str());
 	file << data << std::endl;
 	file.close();
-
-	return root;
 }
