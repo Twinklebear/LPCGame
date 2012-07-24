@@ -23,10 +23,7 @@ Text::Text(std::string message, std::string font, SDL_Color color, int fontSize)
 		throw e;
 	}
 }
-Text::~Text(){
-	//SDL_DestroyTexture(mTex);
-	//TTF_CloseFont(mFont);
-}
+Text::~Text(){}
 void Text::Setup(std::string message, std::string font, SDL_Color color, int fontSize){
 	//Set the class variables to match desired setup
 	mMessage  = message;
