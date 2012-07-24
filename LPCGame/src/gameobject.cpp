@@ -2,8 +2,7 @@
 #include "math.h"
 #include "gameobject.h"
 
-GameObject::GameObject(){
-	mMouseOver = false;
+GameObject::GameObject() : mMouseOver(false){
 }
 void GameObject::OnMouseDown(){}
 void GameObject::OnMouseUp(){}

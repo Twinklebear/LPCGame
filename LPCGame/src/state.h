@@ -29,7 +29,6 @@ public:
 
 protected:
 	GameObjectManager *mManager;
-	int mId;
 	std::string mName;
 };
 

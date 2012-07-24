@@ -50,11 +50,14 @@ void GameState::Run(){
 		//refresh window
 		Window::Present();
 	}
+	std::cout << "Game state finished running" << std::endl;
 }
 void GameState::Free(){
 	Input::RemoveManager();
 	delete mMap;
 	delete mManager;
+
+	std::cout << "Game state freed" << std::endl;
 }
 void GameState::Save(){
 	Json::Value root;

@@ -25,7 +25,6 @@ public:
 	void Save();
 
 private:
-	bool mExit;
 };
 
 #endif

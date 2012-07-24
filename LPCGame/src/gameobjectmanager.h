@@ -7,7 +7,8 @@
 #include "map.h"
 
 //Typedef for a vector of GameObject pointers
-typedef std::vector<GameObject*> GameObjectList;
+//typedef std::vector<GameObject*> GameObjectList;
+typedef std::vector<std::shared_ptr<GameObject>> GameObjectList;
 
 /*
  * A class to simplify handling of the objects, and simple
@@ -36,6 +37,8 @@ public:
 	*	@param *obj: the object pointer to add
 	*/
 	void Register(GameObject *obj);
+	//Add a shared pointer to the vector
+	void Register(std::shared_ptr<GameObject> obj);
 	/*
 	*  Handle Mouse clicks, run through the active game objects
 	*  find what was clicked, and call it

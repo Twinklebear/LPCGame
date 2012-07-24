@@ -27,8 +27,7 @@ void MenuState::Init(){
 	Input::RegisterManager(mManager);
 }
 void MenuState::Run(){
-	mExit = false;
-	while (!Input::Quit() && !mExit){
+	while (!Input::Quit()){
 		//EVENT POLLING
 		Input::PollEvent();
 
@@ -42,10 +41,14 @@ void MenuState::Run(){
 		//refresh window
 		Window::Present();
 	}
+	std::cout << "Leaving menu state loop" << std::endl;
 }
 void MenuState::Free(){
+	std::cout << "Closing menu state" << std::endl;
 	Input::RemoveManager();
 	delete mManager;
+
+	std::cout << "menu state quit" << std::endl;
 }
 void MenuState::Save(){
 

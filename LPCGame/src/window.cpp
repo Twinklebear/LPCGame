@@ -8,6 +8,8 @@
 #include "image.h"
 #include "window.h"
 
+#include <iostream>
+
 //Initialize the unique_ptr's deleters here
 std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> Window::mWindow 
 	= std::unique_ptr<SDL_Window, void (*)(SDL_Window*)>(nullptr, SDL_DestroyWindow);
@@ -44,6 +46,7 @@ void Window::Init(std::string title){
 	mBox.Set(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 void Window::Quit(){
+	std::cout << "Quitting window" << std::endl;
 	TTF_Quit();
 	SDL_Quit();
 }
