@@ -1,11 +1,9 @@
 #include <array>
+#include <memory>
 #include "SDL.h"
-#include "SDL_image.h"
 #include "rect.h"
 #include "image.h"
 #include "window.h"
-
-#include <iostream>
 
 Image::Image(const std::string file){
 	mTexture	= nullptr;
@@ -19,19 +17,14 @@ Image::Image(){
 	mNumClips	= 0;
 }
 Image::~Image(){
-	if (mTexture != nullptr)
-		SDL_DestroyTexture(mTexture);
 	if (mClips != nullptr)
 		delete[] mClips;
 }
 void Image::LoadImage(const std::string file){
-	//if another image was already loaded, free that one
-	if (mTexture != nullptr)
-		SDL_DestroyTexture(mTexture);
-	mTexture = Window::LoadTexture(file);
+	mTexture.reset(Window::LoadTexture(file), SDL_DestroyTexture);
 }
 SDL_Texture* Image::Texture(){
-	return mTexture;
+	return mTexture.get();
 }
 Recti Image::Clip(int clipNum){
 	if (clipNum > mNumClips || clipNum < 0 || mNumClips == 0)

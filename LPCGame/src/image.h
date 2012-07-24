@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 #include "SDL.h"
 #include "SDL_image.h"
 #include "rect.h"
@@ -37,7 +38,8 @@ private:
 	Image& operator = (const Image &a);
 
 private:
-	SDL_Texture *mTexture;
+	//SDL_Texture *mTexture;
+	std::shared_ptr<SDL_Texture> mTexture;
 	Recti *mClips;
 	int mNumClips;
 };

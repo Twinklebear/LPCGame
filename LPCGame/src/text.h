@@ -3,6 +3,7 @@
 
 #include <string>
 #include <stdexcept>
+#include <memory>
 #include "SDL.h"
 #include "SDL_ttf.h"
 #include "rect.h"
@@ -73,8 +74,10 @@ private:
 	Text& operator = (const Text &a);
 
 private:
-	TTF_Font *mFont;
-	SDL_Texture *mTex;
+	//TTF_Font *mFont;
+	//SDL_Texture *mTex;
+	std::shared_ptr<TTF_Font> mFont;
+	std::shared_ptr<SDL_Texture> mTex;
 	SDL_Color mColor;
 	std::string mMessage, mFontFile;
 	int mFontSize;

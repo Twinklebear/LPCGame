@@ -83,7 +83,6 @@ public:
 
 private:
 	static std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> mWindow;
-	//static std::shared_ptr<SDL_Window> mWindow;
 	static std::unique_ptr<SDL_Renderer, void (*)(SDL_Renderer*)> mRenderer;
 	static Recti mBox;
 	static int SCREEN_WIDTH;
