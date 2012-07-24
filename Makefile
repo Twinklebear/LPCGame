@@ -8,7 +8,6 @@ LFLAGS=$(RELEASE) $(INCLUDEDIR) $(LIBDIR) $(LINKLIB)
 SRCPATH=LPCGame/src/
 OBJPATH=LPCGame/obj/
 EXEC=Debug/game
-DEPS=$(SRCPATH)rect.h $(SRCPATH)vectors.h $(SRCPATH)rect.h $(SRCPATH)objectpool.h
 OBJS=$(OBJPATH)math.o $(OBJPATH)timer.o $(OBJPATH)debugger.o $(OBJPATH)physics.o $(OBJPATH)image.o \
 	$(OBJPATH)window.o $(OBJPATH)gameobject.o $(OBJPATH)player.o $(OBJPATH)npc.o $(OBJPATH)button.o \
 	$(OBJPATH)gameobjectmanager.o $(OBJPATH)input.o $(OBJPATH)map.o $(OBJPATH)state.o $(OBJPATH)menustate.o \
