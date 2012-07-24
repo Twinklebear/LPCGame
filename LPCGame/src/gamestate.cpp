@@ -18,6 +18,9 @@ GameState::~GameState(){
 	Free();
 }
 void GameState::Init(){
+	//Cleanup any previous exit settings
+	UnsetExit();
+
 	mMap = new Map();
 	Player *player = new Player();
 	mManager = new GameObjectManager();
@@ -25,16 +28,18 @@ void GameState::Init(){
 	player->Start(10, 10);
 	mManager->Register((GameObject*)player);
 
-	//Input::RegisterManager(mManager);
+	Input::RegisterManager(mManager);
 }
 std::string GameState::Run(){
+	//Unset quits from earlier
+	Input::ClearQuit();
+
 	mDelta.Start();
 	while (!mExit){
 		//EVENT POLLING
 		Input::PollEvent();
 		if (Input::Quit())
-			return "quit";
-
+			SetExit("intro");
 		///LOGIC
 		mManager->Update();
 		mManager->SetCollisionMaps(mMap);
@@ -52,15 +57,12 @@ std::string GameState::Run(){
 		//refresh window
 		Window::Present();
 	}
-	std::cout << "Game state finished running" << std::endl;
 	return mExitCode;
 }
 void GameState::Free(){
 	Input::RemoveManager();
 	delete mMap;
 	delete mManager;
-
-	std::cout << "Game state freed" << std::endl;
 }
 void GameState::Save(){
 	Json::Value root;

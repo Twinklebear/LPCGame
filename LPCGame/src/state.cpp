@@ -9,6 +9,10 @@ void State::SetExit(std::string val){
 	mExit = true;
 	mExitCode = val;
 }
+void State::UnsetExit(){
+	mExit = false;
+	mExitCode = "quit";
+}
 void State::SetName(std::string name){
 	mName = name;
 }

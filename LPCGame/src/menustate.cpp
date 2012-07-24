@@ -15,12 +15,16 @@ MenuState::~MenuState(){
 	Free();
 }
 void MenuState::Init(){
+	//Clean up any previous exit settings
+	UnsetExit();
+
 	//Create two buttons
-	//Button *play = new Button(200, 100, "Play");
+	//Button to play the game
 	ObjectButton<MenuState> *play = new ObjectButton<MenuState>(200, 100, "Play");
 	play->RegisterCallBack(this, &MenuState::SetExit, "game");
-	Button *quit = new Button(200, 300, "Quit");
-	//play->RegisterCallBack(StateManager::SetActiveState, "game");
+	//Button to quit
+	ObjectButton<MenuState> *quit = new ObjectButton<MenuState>(200, 300, "Quit");
+	quit->RegisterCallBack(this, &MenuState::SetExit, "quit");
 
 	mManager = new GameObjectManager();
 	mManager->Register((GameObject*)play);
@@ -29,11 +33,14 @@ void MenuState::Init(){
 	Input::RegisterManager(mManager);
 }
 std::string MenuState::Run(){
+	//Unset quits from earlier
+	Input::ClearQuit();
+
 	while (!mExit){
 		//EVENT POLLING
 		Input::PollEvent();
 		if (Input::Quit())
-			return "quit";
+			SetExit("quit");
 
 		///LOGIC
 		mManager->Update();
@@ -45,15 +52,11 @@ std::string MenuState::Run(){
 		//refresh window
 		Window::Present();
 	}
-	std::cout << "Leaving menu state loop" << std::endl;
 	return mExitCode;
 }
 void MenuState::Free(){
-	std::cout << "Closing menu state" << std::endl;
 	Input::RemoveManager();
 	delete mManager;
-
-	std::cout << "menu state quit" << std::endl;
 }
 void MenuState::Save(){
 

@@ -20,6 +20,8 @@ public:
 	static bool KeyDown(char keyCode);
 	//Check if the program has been quit out of
 	static bool Quit();
+	//Reset quit
+	static void ClearQuit();
 	//TODO: How should i handle mouse events? Perhaps i can register a callback function or something?
 	//Trying an idea for mouse handling
 	static void RegisterManager(GameObjectManager *manager);

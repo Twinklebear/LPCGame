@@ -32,24 +32,12 @@ void StateManager::SetActiveState(std::string name){
 		std::cout << e.what() << std::endl;
 		return;
 	}
-	if (mActiveID == id)
-		return;
-	//Free previous state if one was running
-	if (mActiveID != -1){
-		//mStates.at(mActiveID)->Save();
-		//mStates.at(mActiveID)->Free();
-	}
-	std::cout << "About to load new state, name: " << mStates.at(id)->Name() << std::endl;
 	//Update the new id
 	mActiveID = id;
 	//Save and quit the active state, the load and start the new state
 	mStates.at(mActiveID)->Init();
 	std::string stateCode = mStates.at(mActiveID)->Run();
-
-	std::cout << mStates.at(mActiveID)->Name() << " finished running" << std::endl;
-
 	mStates.at(mActiveID)->Free();
-	std::cout << "State freed name: " << mStates.at(mActiveID)->Name();
 
 	if (stateCode == "quit")
 		return;

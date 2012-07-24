@@ -19,6 +19,8 @@ public:
 	virtual std::string Run() = 0;
 	//Set the exit code for Run, and set mExit to true
 	void SetExit(std::string val);
+	//Reset the exit values to default
+	void UnsetExit();
 	//Free the memory used by the state
 	virtual void Free() = 0;
 	/*

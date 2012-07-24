@@ -6,11 +6,9 @@
 
 GameObjectManager::GameObjectManager(){}
 GameObjectManager::~GameObjectManager(){
-	std::cout << "about to delete game objects" << std::endl;
 	//for (GameObject *o : mGameObjects)
 	//	delete o;
 	mGameObjects.clear();
-	std::cout << "Game objects deleted" << std::endl;
 }
 void GameObjectManager::Draw(){
 	for (std::shared_ptr<GameObject> o : mGameObjects)
@@ -57,6 +55,11 @@ CollisionMap GameObjectManager::GetEntityCollisionMap(const Rectf &target, int d
 	return entityMap;
 }
 void GameObjectManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
+	//Update the mouse over
+	SDL_MouseMotionEvent tempEvt;
+	tempEvt.x = mouseEvent.x;
+	tempEvt.y = mouseEvent.y;
+	HandleMouseEvent(tempEvt);
 	//Find the object that was clicked
 	for (std::shared_ptr<GameObject> o : mGameObjects){
 		if (o->GetMouseOver()){

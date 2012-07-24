@@ -20,6 +20,7 @@ int main(int argc, char** argv){
 	Window::Init();
 	Input::Init();
 
+	//Create and register the states
 	MenuState *menuState = new MenuState();
 	menuState->SetName("intro");
 	StateManager::Register((State*)menuState);
@@ -32,8 +33,5 @@ int main(int argc, char** argv){
 	StateManager::InitIntro();
 
 	Window::Quit();
-
-	std::cout << "Quitting complete" << std::endl;
-
 	return 0;
 }

@@ -228,6 +228,9 @@ bool Input::KeyDown(char keyCode){
 bool Input::Quit(){
 	return mQuit;
 }
+void Input::ClearQuit(){
+	mQuit = false;
+}
 void Input::RegisterManager(GameObjectManager *manager){
 	mManager = manager;
 }
