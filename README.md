@@ -2,7 +2,8 @@
 
 ### Todo:
 - Finish setting up the state machine, I hacked together a rudimentary system however I need to finish setting up the full a nice version with ability to transfer cleanly and many times between states
-	- Write load function
+	- Write load functions
+	- Move Init and Free to protected access level
 - Implement moving camera to follow player
 - Simple map editor
 

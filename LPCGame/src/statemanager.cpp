@@ -70,14 +70,24 @@ bool StateManager::LoadState(std::string name){
 			return false;
 		//load menu state
 		MenuState *menu = new MenuState();
-		menu->Init();
+		//menu->Init();
 		menu->Load(root);
 		Register((State*)menu);
 
 		return true;
 	}
 	else if (name.at(0) == 'g'){
+		std::ifstream fileIn((mStatesDir + name + ".json").c_str(), std::ifstream::binary);
+		//Make sure the file opened ok		
+		if (!fileIn || !reader.parse(fileIn, root, false))
+			return false;
 		//load game state
+		GameState *game = new GameState();
+		//game->Init();
+		game->Load(root);
+		Register((State*)game);
+
+		return true;
 	}
 	return false;
 }
