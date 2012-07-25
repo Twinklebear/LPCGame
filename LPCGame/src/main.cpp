@@ -21,13 +21,15 @@ int main(int argc, char** argv){
 	Input::Init();
 
 	//Create and register the states
+	/*
 	MenuState *menuState = new MenuState();
 	menuState->SetName("mIntro");
+	menuState->Init();
 	StateManager::Register((State*)menuState);
-
-	GameState *gameState = new GameState();
-	gameState->SetName("gGame");
-	StateManager::Register((State*)gameState);
+	*/
+	//GameState *gameState = new GameState();
+	//gameState->SetName("gGame");
+	//StateManager::Register((State*)gameState);
 	//gameState->Save();
 
 	StateManager::InitIntro();

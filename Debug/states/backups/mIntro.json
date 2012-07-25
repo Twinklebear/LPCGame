@@ -1,5 +1,4 @@
 {
-   "name" : "mIntro",
    "objects" : [
       {
          "param" : "gGame",
@@ -35,4 +34,3 @@
       }
    ]
 }
-

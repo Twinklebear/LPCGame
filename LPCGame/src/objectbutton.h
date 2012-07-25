@@ -73,7 +73,9 @@ public:
 	*  @param value: The json value to load from
 	*/
 	void Load(Json::Value value){
-		
+		mParam = value["param"].asString();
+		mText.Load(value["text"]);
+		Start(value["x"].asInt(), value["y"].asInt());
 	}
 
 private:

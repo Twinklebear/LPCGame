@@ -82,8 +82,15 @@ void Button::RegisterCallBack(void (*f)(std::string), std::string param){
 	mParam = param;
 }
 Json::Value Button::Save(){
-
+		Json::Value val;
+		val["type"]	 = "button";
+		val["text"]  = mText.Save();
+		val["x"]	 = mPhysics.Box().X();
+		val["y"]	 = mPhysics.Box().Y();
+		val["param"] = mParam;
+		
+		return val;
 }
 void Button::Load(Json::Value value){
-	
+
 }

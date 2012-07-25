@@ -57,6 +57,7 @@ CollisionMap GameObjectManager::GetEntityCollisionMap(const Rectf &target, int d
 }
 void GameObjectManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	//Update the mouse over
+	//TODO: Fix this so it works on starting new game too, a mouse over check should be done
 	SDL_MouseMotionEvent tempEvt;
 	tempEvt.x = mouseEvent.x;
 	tempEvt.y = mouseEvent.y;

@@ -65,15 +65,16 @@ void GameState::Free(){
 }
 Json::Value GameState::Save(){
 	Json::Value val;
-	val["map"] = mMap->Save();
+	val["map"] 	   = mMap->Save();
 	val["objects"] = mManager->Save();
+	val["name"]	   = mName;
 
 	//Write the data to string
 	//Json::StyledWriter writer;
 	//std::string data = writer.write(root);
-	
+	Free();
 	return val;
 }
 void GameState::Load(Json::Value value){
-
+	Init();
 }

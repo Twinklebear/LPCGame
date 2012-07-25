@@ -15,7 +15,8 @@ MenuState::~MenuState(){
 	Free();
 }
 void MenuState::Init(){
-	//Create two buttons
+	mManager = new GameObjectManager();
+	/*
 	//Button to play the game
 	ObjectButton<MenuState> *play = new ObjectButton<MenuState>(200, 100, "Play");
 	play->RegisterCallBack(this, &MenuState::SetExit, "gGame");
@@ -23,10 +24,9 @@ void MenuState::Init(){
 	ObjectButton<MenuState> *quit = new ObjectButton<MenuState>(200, 300, "Quit");
 	quit->RegisterCallBack(this, &MenuState::SetExit, "quit");
 
-	mManager = new GameObjectManager();
 	mManager->Register((GameObject*)play);
 	mManager->Register((GameObject*)quit);
-
+*/
 	Input::RegisterManager(mManager);
 }
 std::string MenuState::Run(){
@@ -60,12 +60,26 @@ void MenuState::Free(){
 Json::Value MenuState::Save(){
 	Json::Value val;
 	val["objects"] = mManager->Save();
+	val["name"]	   = mName;
 	//Write the data to string
 	//Json::StyledWriter writer;
 	//std::string data = writer.write(root);
-	
+	Free();
 	return val;
 }
 void MenuState::Load(Json::Value value){
-	
+	Init();
+
+	mName = value["name"].asString();
+	//Load the objects
+	Json::Value objects = value["objects"];
+	for (int i = 0; i < objects.size(); ++i){
+		//Loading object buttons
+		if (objects[i]["type"].asString() == "objectbutton"){
+			ObjectButton<MenuState> *b = new ObjectButton<MenuState>;
+			b->RegisterCallBack(this, &MenuState::SetExit, "");
+			b->Load(objects[i]);
+			mManager->Register((GameObject*)b);
+		}
+	}
 }
