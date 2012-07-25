@@ -93,6 +93,3 @@ Json::Value GameObjectManager::Save(){
 	}
 	return val;
 }
-void GameObjectManager::Load(Json::Value value){
-
-}

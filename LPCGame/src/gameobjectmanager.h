@@ -56,11 +56,6 @@ public:
 	*  @returns: The Json::Value containing the gameobject data
 	*/
 	Json::Value Save();
-	/*
-	*  Load the gameobjects from a Json::Value
-	*  @param value: The Json::Value to load from
-	*/
-	void Load(Json::Value value);
 
 private:
 	//Maybe i can have a function that returns a collision map of local entities
