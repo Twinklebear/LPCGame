@@ -6,6 +6,7 @@
 #include <memory>
 #include "SDL.h"
 #include "SDL_ttf.h"
+#include "json/json.h"
 #include "rect.h"
 
 /*
@@ -67,6 +68,16 @@ public:
 	*  @param h: The value to store the height in
 	*/
 	void GetSize(int &w, int &h);
+	/*
+	*  Save the text data to a Json::Value
+	*  @returns: The Json::Value containing information about the text
+	*/
+	Json::Value Save();
+	/*
+	*  Load the text data from a Json::Value
+	*  @param value: The Json::Value to load from
+	*/
+	void Load(Json::Value value);
 
 private:
 	//Disable copy construction
@@ -74,8 +85,6 @@ private:
 	Text& operator = (const Text &a);
 
 private:
-	//TTF_Font *mFont;
-	//SDL_Texture *mTex;
 	std::shared_ptr<TTF_Font> mFont;
 	std::shared_ptr<SDL_Texture> mTex;
 	SDL_Color mColor;

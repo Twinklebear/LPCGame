@@ -59,7 +59,7 @@ void MenuState::Free(){
 }
 Json::Value MenuState::Save(){
 	Json::Value val;
-	
+	val["objects"] = mManager->Save();
 	//Write the data to string
 	//Json::StyledWriter writer;
 	//std::string data = writer.write(root);

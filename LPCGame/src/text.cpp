@@ -3,6 +3,7 @@
 #include <memory>
 #include "SDL.h"
 #include "SDL_ttf.h"
+#include "json/json.h"
 #include "rect.h"
 #include "window.h"
 #include "text.h"
@@ -86,4 +87,24 @@ Recti Text::GetSize(){
 }
 void Text::GetSize(int &w, int &h){
 	SDL_QueryTexture(mTex.get(), NULL, NULL, &w, &h);
+}
+Json::Value Text::Save(){
+	Json::Value val;
+	val["message"] 	  = mMessage;
+	val["font"]	   	  = mFontFile;
+	val["fontsize"]   = mFontSize;
+	val["color"]["r"] = mColor.r;
+	val["color"]["g"] = mColor.g;
+	val["color"]["b"] = mColor.b;
+
+	return val;	
+}
+void Text::Load(Json::Value value){
+	SDL_Color col;
+	col.r = value["color"]["r"].asInt();
+	col.g = value["color"]["g"].asInt();
+	col.b = value["color"]["b"].asInt();
+
+	Setup(value["message"].asString(), value["font"].asString(), 
+		col, value["fontsize"].asInt());
 }

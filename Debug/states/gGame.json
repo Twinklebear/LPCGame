@@ -1,12 +1,4 @@
 {
-   "gameobjects" : [
-      {
-         "image" : "images/image.png",
-         "obj" : "player",
-         "x" : 10.0,
-         "y" : 10.0
-      }
-   ],
    "map" : {
       "mBox" : {
          "h" : 320,
@@ -614,6 +606,14 @@
             "y" : 288
          }
       ]
-   }
+   },
+   "objects" : [
+      {
+         "image" : "images/image.png",
+         "obj" : "player",
+         "x" : 10.0,
+         "y" : 10.0
+      }
+   ]
 }
 

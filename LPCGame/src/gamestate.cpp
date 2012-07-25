@@ -66,7 +66,7 @@ void GameState::Free(){
 Json::Value GameState::Save(){
 	Json::Value val;
 	val["map"] = mMap->Save();
-	val["gameobjects"] = mManager->Save();
+	val["objects"] = mManager->Save();
 
 	//Write the data to string
 	//Json::StyledWriter writer;

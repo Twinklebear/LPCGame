@@ -2,6 +2,7 @@
 #define OBJECTBUTTON_H
 
 #include <string>
+#include "json/json.h"
 #include "gameobject.h"
 #include "image.h"
 #include "text.h"
@@ -56,7 +57,16 @@ public:
 	*  @returns: The json value containing the object data
 	*/
 	Json::Value Save(){
-
+		//Unfortunately I can't change the function that's pointed to via loading json
+		//as it's code not data, so instead we just save the param
+		Json::Value val;
+		val["type"]	 = "objectbutton";
+		val["text"]  = mText.Save();
+		val["x"]	 = mPhysics.Box().X();
+		val["y"]	 = mPhysics.Box().Y();
+		val["param"] = mParam;
+		
+		return val;
 	}
 	/*
 	*  Load the object from a json value

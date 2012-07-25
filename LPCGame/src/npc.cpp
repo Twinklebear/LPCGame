@@ -25,7 +25,7 @@ void Npc::Start(int x, int y){
 	physConst.hAccel	= PLAYER_HACCEL;
 	mPhysics.SetPhysConstants(physConst);
 
-	mImage.LoadImage("images/image.png");
+	//mImage.LoadImage("images/image.png");
 }
 void Npc::Update(){
 	SetMove(Math::DOWN);
@@ -59,5 +59,8 @@ Json::Value Npc::Save(){
 	return val;
 }
 void Npc::Load(Json::Value value){
-	
+	//Will setup other properties here as well, for now just calling to start
+	//at the x, y pos
+	mImage.LoadImage(value["image"].asString().c_str());
+	Start(value["x"].asInt(), value["y"].asInt());
 }
