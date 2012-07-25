@@ -17,11 +17,7 @@ GameState::~GameState(){
 }
 void GameState::Init(){
 	mMap = new Map();
-	//Player *player = new Player();
 	mManager = new GameObjectManager();
-
-	//player->Start(10, 10);
-	//mManager->Register((GameObject*)player);
 
 	Input::RegisterManager(mManager);
 }
@@ -67,9 +63,6 @@ Json::Value GameState::Save(){
 	val["objects"] = mManager->Save();
 	val["name"]	   = mName;
 
-	//Write the data to string
-	//Json::StyledWriter writer;
-	//std::string data = writer.write(root);
 	Free();
 	return val;
 }
