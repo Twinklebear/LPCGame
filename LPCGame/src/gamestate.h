@@ -14,12 +14,8 @@ class GameState : public State{
 public:
 	GameState();
 	~GameState();
-	//Initialize state memory
-	void Init();
 	//Run the state
 	std::string Run();
-	//Free the memory used by the state
-	void Free();
 	/*
 	*  Write the state data to a Json Value and return it so that
 	*  it can be saved and loaded later
@@ -30,6 +26,12 @@ public:
 	*  @param value: the Json::Value containing the data to load
 	*/
 	void Load(Json::Value value);
+
+protected:
+	//Initialize state memory
+	void Init();
+	//Free state memory
+	void Free();
 
 private:
 	Map *mMap;

@@ -29,15 +29,15 @@ public:
 	*/
 	void Draw(const Recti &camera = Recti(0, 0, Window::Box().W(), Window::Box().H()));
 	/**
-	*  Load a map file
-	*  @param mapFile: the file to load
-	*/
-	void LoadFile(std::string mapFile);
-	/**
 	*  Save the map data to a Json::Value
 	*  @return: The serialized map data as a Json::Value
 	*/
 	Json::Value Save();
+	/*
+	*  Load the map from a Json::Value
+	*  @param value: The Json::Value to load from
+	*/
+	void Load(Json::Value value);
 	/**
 	*  Load the image file
 	*/

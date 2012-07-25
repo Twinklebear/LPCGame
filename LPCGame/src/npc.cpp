@@ -61,6 +61,6 @@ Json::Value Npc::Save(){
 void Npc::Load(Json::Value value){
 	//Will setup other properties here as well, for now just calling to start
 	//at the x, y pos
-	mImage.LoadImage(value["image"].asString().c_str());
+	mImage.LoadImage(value["image"].asString());
 	Start(value["x"].asInt(), value["y"].asInt());
 }

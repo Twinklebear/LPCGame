@@ -7,6 +7,7 @@
 #include "map.h"
 
 Map::Map(){
+/*
 	//Generate a map with a floor for testing
 	mBox.Set(0, 0, 320, 320);
 
@@ -30,7 +31,8 @@ Map::Map(){
 		}
 		mTiles.push_back(tempTile);
     }
-	LoadImageSheet();
+    */
+	//LoadImageSheet();
 }
 Map::Map(std::string mapFile){
 }
@@ -41,8 +43,6 @@ void Map::Draw(const Recti &camera){
 	//TODO: Need a better way to draw the map that reduces draw calls
 	for (int i = 0; i < mTiles.size(); ++i)
 		Window::Draw(&mImage, mTiles.at(i).Box(), &(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
-}
-void Map::LoadFile(std::string mapFile){
 }
 Json::Value Map::Save(){
 	Json::Value map;
@@ -58,6 +58,22 @@ Json::Value Map::Save(){
 	}
 	
 	return map;
+}
+void Map::Load(Json::Value value){
+	mBox.Set(0, 0, value["mBox"]["w"].asInt(), value["mBox"]["h"].asInt());
+
+	//Load the tiles
+	Json::Value tiles = value["tiles"];
+	for (int i = 0; i < tiles.size(); ++i){
+		Tile tempTile;
+		tempTile.SetBox(Recti(tiles[i]["x"].asInt(), tiles[i]["y"].asInt(),
+			TILE_WIDTH, TILE_HEIGHT));
+		tempTile.SetType(tiles[i]["type"].asInt());
+		tempTile.SetSolid(tiles[i]["solid"].asBool());
+
+		mTiles.push_back(tempTile);
+	}
+	LoadImageSheet();
 }
 void Map::LoadImageSheet(){
 	try{

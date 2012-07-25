@@ -17,18 +17,6 @@ public:
 	*  Start the first state, first state must have name intro
 	*/
 	static void InitIntro();
-	/*
-	*  Register a state with the manager, each state is assigned an id number
-	*  corresponding to its index in the vector
-	*  @param state: The state to register
-	*/
-	static void Register(State *state);
-	/*
-	*  Get a state's Id number based on its name
-	*  @param name: The state's name
-	*  @returns: The state's ID number
-	*/
-	static int IdFromName(std::string name);
 	//TODO: Need functions for selecting the active state and running it
 	/*  
 	*  TODO: How will i save and load states? Perhaps i will serialize the state before
@@ -53,8 +41,14 @@ public:
 	static void SaveState(std::string name);
 
 private:
-	static std::vector<State*> mStates;
-	static int mActiveID;
+	/*
+	*  Set the mActiveState as the State pointer passed
+	*  @param state: The state to run
+	*/
+	static void SetState(State* state);
+
+private:
+	static State* mActiveState;
 	const static std::string mStatesDir;
 };
 

@@ -22,7 +22,7 @@ void Player::Start(int x, int y){
 	physConst.hAccel	= PLAYER_HACCEL;
 	mPhysics.SetPhysConstants(physConst);
 
-	mImage.LoadImage("images/image.png");
+	//mImage.LoadImage("images/image.png");
 }
 void Player::Update(){
 	//Horizontal input handling
@@ -58,5 +58,6 @@ Json::Value Player::Save(){
 	return val;
 }
 void Player::Load(Json::Value value){
-
+	mImage.LoadImage(value["image"].asString());
+	Start(value["x"].asInt(), value["y"].asInt());
 }

@@ -12,18 +12,16 @@
 #include "gamestate.h"
 
 GameState::GameState(){
-	Init();
 }
 GameState::~GameState(){
-	Free();
 }
 void GameState::Init(){
 	mMap = new Map();
-	Player *player = new Player();
+	//Player *player = new Player();
 	mManager = new GameObjectManager();
 
-	player->Start(10, 10);
-	mManager->Register((GameObject*)player);
+	//player->Start(10, 10);
+	//mManager->Register((GameObject*)player);
 
 	Input::RegisterManager(mManager);
 }
@@ -77,4 +75,20 @@ Json::Value GameState::Save(){
 }
 void GameState::Load(Json::Value value){
 	Init();
+	mName = value["name"].asString();
+	mMap->Load(value["map"]);
+	//Load the objects
+	Json::Value objects = value["objects"];
+	for (int i = 0; i < objects.size(); ++i){
+		if (objects[i]["obj"].asString() == "player"){
+			Player *p = new Player();
+			p->Load(objects[i]);
+			mManager->Register((GameObject*)p);
+		}
+		if (objects[i]["obj"].asString() == "npc"){
+			Npc *n = new Npc();
+			n->Load(objects[i]);
+			mManager->Register((GameObject*)n);
+		}
+	}
 }
