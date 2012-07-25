@@ -22,11 +22,11 @@ int main(int argc, char** argv){
 
 	//Create and register the states
 	MenuState *menuState = new MenuState();
-	menuState->SetName("intro");
+	menuState->SetName("mIntro");
 	StateManager::Register((State*)menuState);
 
 	GameState *gameState = new GameState();
-	gameState->SetName("game");
+	gameState->SetName("gGame");
 	StateManager::Register((State*)gameState);
 	//gameState->Save();
 

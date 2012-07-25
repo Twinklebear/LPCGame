@@ -43,8 +43,9 @@ public:
 	/*
 	*  Load a from file by its name
 	*  @param name: The state name to load for the state, state and file names are same
+	*  @returns: True if state was successfully loaded
 	*/
-	static void LoadState(std::string name);
+	static bool LoadState(std::string name);
 	/*
 	*  Save a state to a data file corresponding to its name
 	*  @param name: The state name to save, state and file names are the same
@@ -54,6 +55,7 @@ public:
 private:
 	static std::vector<State*> mStates;
 	static int mActiveID;
+	const static std::string mStatesDir;
 };
 
 #endif

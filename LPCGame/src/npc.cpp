@@ -1,6 +1,7 @@
 #include <cmath>
 #include <sstream>
 #include "SDL.h"
+#include "json/json.h"
 #include "gameobject.h"
 #include "rect.h"
 #include "vectors.h"
@@ -44,4 +45,19 @@ void Npc::SetMove(int move){
 		mPhysics.SetHorizDir(move);
 		mPhysics.SetVertDir(move);
 	}
+}
+Json::Value Npc::Save(){
+	Json::Value val;
+	val["obj"]    = "npc";
+	val["type"]   = "0";
+	val["x"] 	  = mPhysics.Box().X();
+	val["y"] 	  = mPhysics.Box().Y();
+	//val["speed"]  = phys constant speed
+	//val["accel"]  = phys constant accell
+	val["image"]  = "images/image.png";
+
+	return val;
+}
+void Npc::Load(Json::Value value){
+	
 }

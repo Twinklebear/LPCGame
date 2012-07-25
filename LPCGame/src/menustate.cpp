@@ -15,13 +15,10 @@ MenuState::~MenuState(){
 	Free();
 }
 void MenuState::Init(){
-	//Clean up any previous exit settings
-	UnsetExit();
-
 	//Create two buttons
 	//Button to play the game
 	ObjectButton<MenuState> *play = new ObjectButton<MenuState>(200, 100, "Play");
-	play->RegisterCallBack(this, &MenuState::SetExit, "game");
+	play->RegisterCallBack(this, &MenuState::SetExit, "gGame");
 	//Button to quit
 	ObjectButton<MenuState> *quit = new ObjectButton<MenuState>(200, 300, "Quit");
 	quit->RegisterCallBack(this, &MenuState::SetExit, "quit");
@@ -35,6 +32,8 @@ void MenuState::Init(){
 std::string MenuState::Run(){
 	//Unset quits from earlier
 	Input::ClearQuit();
+	//Clean up any previous exit settings
+	UnsetExit();
 
 	while (!mExit){
 		//EVENT POLLING
@@ -58,6 +57,15 @@ void MenuState::Free(){
 	Input::RemoveManager();
 	delete mManager;
 }
-void MenuState::Save(){
-
+Json::Value MenuState::Save(){
+	Json::Value val;
+	
+	//Write the data to string
+	//Json::StyledWriter writer;
+	//std::string data = writer.write(root);
+	
+	return val;
+}
+void MenuState::Load(Json::Value value){
+	
 }

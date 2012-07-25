@@ -20,9 +20,15 @@ public:
 	//Free the memory used by the state
 	void Free();
 	/*
-	*  Save the state data so that it can be loaded later
+	*  Write the state data to a Json Value and return it so that
+	*  it can be saved and loaded later
 	*/
-	void Save();
+	Json::Value Save();
+	/*
+	*  Load the state data from a json value
+	*  @param value: the Json::Value containing the data to load
+	*/
+	void Load(Json::Value value);
 
 private:
 };

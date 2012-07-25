@@ -1,5 +1,6 @@
 #include <vector>
 #include <memory>
+#include "json/json.h"
 #include "map.h"
 #include "gameobject.h"
 #include "gameobjectmanager.h"
@@ -82,4 +83,15 @@ void GameObjectManager::HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent)
 	for (std::shared_ptr<GameObject> o : mGameObjects){
 		o->CheckMouseOver(mousePos);
 	}
+}
+Json::Value GameObjectManager::Save(){
+	Json::Value val;
+	//Run through and save all the game objects
+	for (int i = 0; i < mGameObjects.size(); ++i){
+		val[i] = mGameObjects.at(i)->Save();
+	}
+	return val;
+}
+void GameObjectManager::Load(Json::Value value){
+
 }

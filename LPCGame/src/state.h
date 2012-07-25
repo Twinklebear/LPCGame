@@ -25,8 +25,14 @@ public:
 	virtual void Free() = 0;
 	/*
 	*  Save the state data so that it can be loaded later
+	*  @returns: Json::Value containing the state data
 	*/
-	virtual void Save() = 0;
+	virtual Json::Value Save() = 0;
+	/*
+	*  Load the state from a Json::Value
+	*  @param value: The Json::Value to load from
+	*/
+	virtual void Load(Json::Value) = 0;
 	//Setters & Getters
 	void SetName(std::string name);
 	std::string Name();

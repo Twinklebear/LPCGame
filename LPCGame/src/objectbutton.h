@@ -51,6 +51,20 @@ public:
 		else if (mFunc != nullptr)
 			mFunc(mParam);
 	}
+	/*
+	*  Save the object data to a json value and return it
+	*  @returns: The json value containing the object data
+	*/
+	Json::Value Save(){
+
+	}
+	/*
+	*  Load the object from a json value
+	*  @param value: The json value to load from
+	*/
+	void Load(Json::Value value){
+		
+	}
 
 private:
 	T *mObj;

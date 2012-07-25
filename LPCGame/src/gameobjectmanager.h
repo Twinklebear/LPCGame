@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <memory>
+#include "json/json.h"
 #include "gameobject.h"
 #include "map.h"
 
@@ -50,6 +51,16 @@ public:
 	*  @param mouseEvent: The mouse event that we're processing
 	*/
 	void HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent);
+	/*
+	*  Serialize all the game object data to a Json::Value and return it
+	*  @returns: The Json::Value containing the gameobject data
+	*/
+	Json::Value Save();
+	/*
+	*  Load the gameobjects from a Json::Value
+	*  @param value: The Json::Value to load from
+	*/
+	void Load(Json::Value value);
 
 private:
 	//Maybe i can have a function that returns a collision map of local entities

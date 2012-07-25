@@ -2,13 +2,12 @@
 #define PLAYER_H
 
 #include "SDL.h"
+#include "json/json.h"
 #include "gameobject.h"
 #include "rect.h"
 #include "vectors.h"
 #include "window.h"
 #include "image.h"
-
-#include "debugger.h"
 
 const int PLAYER_WIDTH	= 28;
 const int PLAYER_HEIGHT = 28;
@@ -30,7 +29,16 @@ public:
 	void Move(float deltaT);
 	//Draw the player
 	void Draw();
-	//Setters and getters
+	/*
+	*  Save the object data to a json value and return it
+	*  @returns: The json value containing the object data
+	*/
+	Json::Value Save();
+	/*
+	*  Load the object from a json value
+	*  @param value: The json value to load from
+	*/
+	void Load(Json::Value value);
 
 private:
 	//Disable copy-construction
@@ -39,7 +47,6 @@ private:
 
 private:
 	Image mImage;
-	Debugger *dbg;
 };
 
 #endif

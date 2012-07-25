@@ -18,9 +18,6 @@ GameState::~GameState(){
 	Free();
 }
 void GameState::Init(){
-	//Cleanup any previous exit settings
-	UnsetExit();
-
 	mMap = new Map();
 	Player *player = new Player();
 	mManager = new GameObjectManager();
@@ -33,13 +30,15 @@ void GameState::Init(){
 std::string GameState::Run(){
 	//Unset quits from earlier
 	Input::ClearQuit();
+	//Cleanup any previous exit settings
+	UnsetExit();
 
 	mDelta.Start();
 	while (!mExit){
 		//EVENT POLLING
 		Input::PollEvent();
 		if (Input::Quit())
-			SetExit("intro");
+			SetExit("mIntro");
 		///LOGIC
 		mManager->Update();
 		mManager->SetCollisionMaps(mMap);
@@ -64,16 +63,17 @@ void GameState::Free(){
 	delete mMap;
 	delete mManager;
 }
-void GameState::Save(){
-	Json::Value root;
-	root["map"] = mMap->Save();
+Json::Value GameState::Save(){
+	Json::Value val;
+	val["map"] = mMap->Save();
+	val["gameobjects"] = mManager->Save();
 
 	//Write the data to string
-	Json::StyledWriter writer;
-	std::string data = writer.write(root);
+	//Json::StyledWriter writer;
+	//std::string data = writer.write(root);
+	
+	return val;
+}
+void GameState::Load(Json::Value value){
 
-	//Save the file to a file named the state's name
-	std::ofstream file(("states/" + mName + ".json").c_str());
-	file << data << std::endl;
-	file.close();
 }

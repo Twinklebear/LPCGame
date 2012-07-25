@@ -2,6 +2,7 @@
 #define GAMEOBJECT_H
 
 #include "SDL.h"
+#include "json/json.h"
 #include "vectors.h"
 #include "rect.h"
 #include "physics.h"
@@ -30,6 +31,16 @@ public:
 	virtual void OnMouseEnter();
 	///On mouse exit
 	virtual void OnMouseExit();
+	/*
+	*  Save the gameobject data to a json value and return it
+	*  @returns: The json value containing the gameobject data
+	*/
+	virtual Json::Value Save() = 0;
+	/*
+	*  Load the gameobject from a json value
+	*  @param value: The json value to load from
+	*/
+	virtual void Load(Json::Value value) = 0;
 	///Check if mouse entered the object's box
 	void CheckMouseOver(const Vector2f &pos);
 	///Return T/F is the mouse is over the object

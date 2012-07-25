@@ -1,6 +1,7 @@
 #include <cmath>
 #include <sstream>
 #include "SDL.h"
+#include "json/json.h"
 #include "gameobject.h"
 #include "rect.h"
 #include "vectors.h"
@@ -10,14 +11,8 @@
 #include "image.h"
 #include "player.h"
 
-#include <iostream>
-
-Player::Player(){
-	dbg = new Debugger("Player.txt");
-}
-Player::~Player(){
-	delete dbg;
-}
+Player::Player(){}
+Player::~Player(){}
 void Player::Start(int x, int y){
 	Rectf box(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
 	mPhysics.SetBox(box);
@@ -50,4 +45,18 @@ void Player::Move(float deltaT){
 }
 void Player::Draw(){
 	Window::Draw(&mImage, (SDL_Rect)mPhysics.Box());
+}
+Json::Value Player::Save(){
+	Json::Value val;
+	val["obj"]    = "player";
+	val["x"] 	  = mPhysics.Box().X();
+	val["y"] 	  = mPhysics.Box().Y();
+	//val["speed"]  = phys constant speed
+	//val["accel"]  = phys constant accell
+	val["image"]  = "images/image.png";
+
+	return val;
+}
+void Player::Load(Json::Value value){
+
 }

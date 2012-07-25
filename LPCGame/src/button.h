@@ -38,6 +38,16 @@ public:
 	*  @param f: the function to call
 	*/
 	void RegisterCallBack(void (*f)(std::string), std::string param);
+	/*
+	*  Save the object data to a json value and return it
+	*  @returns: The json value containing the object data
+	*/
+	virtual Json::Value Save();
+	/*
+	*  Load the object from a json value
+	*  @param value: The json value to load from
+	*/
+	virtual void Load(Json::Value value);
 
 private:
 	//Disable copy-construction

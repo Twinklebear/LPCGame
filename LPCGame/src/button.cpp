@@ -81,3 +81,9 @@ void Button::RegisterCallBack(void (*f)(std::string), std::string param){
 	mFunc = f;
 	mParam = param;
 }
+Json::Value Button::Save(){
+
+}
+void Button::Load(Json::Value value){
+	
+}
