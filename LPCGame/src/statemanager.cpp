@@ -64,18 +64,12 @@ bool StateManager::LoadState(std::string name){
 	return false;
 }
 void StateManager::SaveState(std::string name){
-	try {
-		//Json::Value val = mStates.at(IdFromName(name))->Save();
-		Json::Value val = mActiveState->Save();
-		std::ofstream fileOut((mStatesDir + name + ".json").c_str());
+	Json::Value val = mActiveState->Save();
+	std::ofstream fileOut((mStatesDir + name + ".json").c_str());
 
-		Json::StyledWriter writer;
-		std::string data = writer.write(val);
-		fileOut << data << std::endl;
+	Json::StyledWriter writer;
+	std::string data = writer.write(val);
+	fileOut << data << std::endl;
 
-		fileOut.close();
-	}
-	catch (const std::runtime_error &e){
-		std::cout << e.what() << std::endl;
-	}
+	fileOut.close();
 }
