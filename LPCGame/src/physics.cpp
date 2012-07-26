@@ -22,22 +22,8 @@ void MotionState::SetMotionstate(int state){
 }
 
 Physics::Physics(){
-	//init kinematic values
-	//mBox.Set(0, 0, 0, 0);
 	mKinematic.Vel	 = Vector2f(0, 0);
 	mKinematic.Accel = Vector2f(0, 0);
-	//mPhysConstants.hAccel	= 0;
-	//mPhysConstants.hSpeed	= 0;
-	mHorizDir = MOVE::STOP;
-	mVertDir  = MOVE::STOP;
-}
-Physics::Physics(PhysicalConstants physConstants, Rectf box){
-	//init kinematic values
-	mKinematic.Vel	 = Vector2f(0, 0);
-	mKinematic.Accel = Vector2f(0, 0);
-	mBox = box;
-	//set constants
-	mPhysConstants = physConstants;
 	mHorizDir = MOVE::STOP;
 	mVertDir  = MOVE::STOP;
 }
@@ -65,9 +51,6 @@ void Physics::Move(float deltaT){
 	}
 	else
 		mBox.Set(mBox.X(), testPos.y);
-	
-	//Apply clamping
-	//mBox.Set(Math::Clamp(mBox.X(), 0, 320), Math::Clamp(mBox.Y(), 0, 320));
 
 	mMotionState.UpdateState(mKinematic);
 }

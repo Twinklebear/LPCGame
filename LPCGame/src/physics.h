@@ -47,7 +47,6 @@ private:
 class Physics{
 public:
 	Physics();
-	Physics(PhysicalConstants physConstants, Rectf box);
 	~Physics();
 	/**
 	*	Update the state of the object
