@@ -53,6 +53,7 @@ Json::Value Button::Save(){
 	Json::Value val;
 	val["type"]	   = "button";
 	val["text"]    = mText.Save();
+	val["image"]   = mImage.Save();
 	val["physics"] = mPhysics.Save();
 	val["param"]   = mParam;
 	
