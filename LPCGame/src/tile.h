@@ -1,6 +1,7 @@
 #ifndef TILE_H
 #define TILE_H
 
+#include "json/json.h"
 #include "rect.h"
 
 const int TILE_WIDTH  = 32;
@@ -35,6 +36,27 @@ public:
 	}
 	void SetType(int type){
 		mType = type;
+	}
+	/*
+	*  Save the tile data to a json value
+	*  @returns: The Json::Value containing the tile data
+	*/
+	Json::Value Save(){
+		Json::Value val;
+		val["box"]   = mBox.Save();
+		val["type"]  = mType;
+		val["solid"] = mSolid;
+
+		return val;
+	}
+	/*
+	*  Load the tile from a Json::Value
+	*  @param val: The Json::Value to load from
+	*/
+	void Load(Json::Value val){
+		mBox.Load(val["box"]);
+		mType = val["type"].asInt();
+		mSolid = val["solid"].asBool();
 	}
 
 private:

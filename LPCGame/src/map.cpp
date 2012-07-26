@@ -24,10 +24,7 @@ Json::Value Map::Save(){
 	map["image"] = mImage.Save();
 	//Save the tiles
 	for (int i = 0; i < mTiles.size(); ++i){
-		map["tiles"][i]["x"] 	 = mTiles.at(i).Box().X();
-		map["tiles"][i]["y"]  	 = mTiles.at(i).Box().Y();
-		map["tiles"][i]["type"]  = mTiles.at(i).Type();
-		map["tiles"][i]["solid"] = mTiles.at(i).Solid();
+		map["tiles"][i] = mTiles.at(i).Save();
 	}
 	
 	return map;
@@ -40,10 +37,7 @@ void Map::Load(Json::Value val){
 	Json::Value tiles = val["tiles"];
 	for (int i = 0; i < tiles.size(); ++i){
 		Tile tempTile;
-		tempTile.SetBox(Recti(tiles[i]["x"].asInt(), tiles[i]["y"].asInt(),
-			TILE_WIDTH, TILE_HEIGHT));
-		tempTile.SetType(tiles[i]["type"].asInt());
-		tempTile.SetSolid(tiles[i]["solid"].asBool());
+		tempTile.Load(tiles[i]);
 
 		mTiles.push_back(tempTile);
 	}

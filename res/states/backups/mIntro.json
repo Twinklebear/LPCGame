@@ -1,36 +1,88 @@
 {
+   "name" : "mIntro",
    "objects" : [
       {
+         "image" : {
+            "clips" : [
+               {
+                  "h" : 100,
+                  "w" : 200,
+                  "x" : 0,
+                  "y" : 0
+               },
+               {
+                  "h" : 100,
+                  "w" : 200,
+                  "x" : 0,
+                  "y" : 100
+               }
+            ],
+            "file" : "../res/images/200x100button.png"
+         },
          "param" : "gGame",
+         "physics" : {
+            "box" : {
+               "h" : 100.0,
+               "w" : 200.0,
+               "x" : 200.0,
+               "y" : 100.0
+            },
+            "hAccel" : 0,
+            "hSpeed" : 0
+         },
          "text" : {
             "color" : {
                "b" : 0,
                "g" : 0,
                "r" : 0
             },
-            "font" : "fonts/LiberationSans-Regular.ttf",
+            "font" : "../res/fonts/LiberationSans-Regular.ttf",
             "fontsize" : 25,
             "message" : "Play"
          },
-         "type" : "objectbutton",
-         "x" : 200.0,
-         "y" : 100.0
+         "type" : "objectbutton"
       },
       {
+         "image" : {
+            "clips" : [
+               {
+                  "h" : 100,
+                  "w" : 200,
+                  "x" : 0,
+                  "y" : 0
+               },
+               {
+                  "h" : 100,
+                  "w" : 200,
+                  "x" : 0,
+                  "y" : 100
+               }
+            ],
+            "file" : "../res/images/200x100button.png"
+         },
          "param" : "quit",
+         "physics" : {
+            "box" : {
+               "h" : 100.0,
+               "w" : 200.0,
+               "x" : 200.0,
+               "y" : 300.0
+            },
+            "hAccel" : 0,
+            "hSpeed" : 0
+         },
          "text" : {
             "color" : {
                "b" : 0,
                "g" : 0,
                "r" : 0
             },
-            "font" : "fonts/LiberationSans-Regular.ttf",
+            "font" : "../res/fonts/LiberationSans-Regular.ttf",
             "fontsize" : 25,
             "message" : "Quit"
          },
-         "type" : "objectbutton",
-         "x" : 200.0,
-         "y" : 300.0
+         "type" : "objectbutton"
       }
    ]
 }
+
