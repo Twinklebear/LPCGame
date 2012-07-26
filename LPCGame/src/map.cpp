@@ -100,7 +100,7 @@ void Map::SetClips(){
 	}
 	mImage.SetClips(clips);
 	*/
-	mImage.GenClips(TILE_WIDTH, TILE_HEIGHT);
+	//mImage.GenClips(TILE_WIDTH, TILE_HEIGHT);
 }
 int Map::CalculateIndex(int x, int y) const{
 	//if it's in bounds calculate the index

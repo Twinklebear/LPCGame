@@ -37,10 +37,10 @@ void Button::Start(int x, int y){
 	mImage.LoadImage((mResFolder + "images/200x100button.png"));
 	//Setup image clips
 	*/
-	std::vector<Recti> clips;
-	clips.push_back(Recti(0, 0, 200, 100));
-	clips.push_back(Recti(0, 100, 200, 100));
-	mImage.SetClips(clips);
+	//std::vector<Recti> clips;
+	//clips.push_back(Recti(0, 0, 200, 100));
+	//clips.push_back(Recti(0, 100, 200, 100));
+	//mImage.SetClips(clips);
 }
 void Button::Update(){}
 void Button::Draw(){
