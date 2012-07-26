@@ -1088,15 +1088,15 @@
    "objects" : [
       {
          "image" : {
-            "file" : "../res/images/image.png"
+            "file" : "../res/images/player.png"
          },
          "obj" : "player",
          "physics" : {
             "box" : {
                "h" : 28.0,
                "w" : 28.0,
-               "x" : 257.6892700195312,
-               "y" : 165.1856689453125
+               "x" : 202.7258911132812,
+               "y" : 110.7460403442383
             },
             "hAccel" : 700,
             "hSpeed" : 300
@@ -1104,7 +1104,7 @@
       },
       {
          "image" : {
-            "file" : "../res/images/image.png"
+            "file" : "../res/images/npc.png"
          },
          "obj" : "npc",
          "physics" : {
