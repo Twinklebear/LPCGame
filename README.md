@@ -1,8 +1,6 @@
 # Working on a C++ tile based 'engine' using SDL
 
 ### Todo:
-- Need to add Save and load functionality to a few more GameObject classes, such as Button, also would like to rework clipping to be more automated based off the for loop in Map, which can be generalized to allow for automated clip rect setup of any clipsheet given w/h of sprites to clip and w/h of sheet.
-- Add tile w/h to saved map data
 - Some functions in the window class could to with a bit of refactoring
 - Implement moving camera to follow player
 - Simple map editor
@@ -14,3 +12,4 @@
 - States are now loaded from file when needed, saved when they exit, deleted from the statemanager and a new state is loaded, only one state is tracked by the StateManager at a time instead of the vector like before, because they're loaded from file only when they're needed.
 - State Manager is looking good, state system seems to be running well
 - Image is able to generate uniform clips and can also Load/Save clips to file
+- Tile's box, type and solid are now saved and loaded
