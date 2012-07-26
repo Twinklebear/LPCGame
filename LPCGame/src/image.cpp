@@ -6,6 +6,8 @@
 #include "image.h"
 #include "window.h"
 
+#include <iostream>
+
 Image::Image(const std::string file)
 	: mTexture(nullptr), mClips(nullptr), mNumClips(0)
 {
@@ -46,4 +48,25 @@ void Image::SetClips(const std::vector<Recti> &clips){
 	mClips = new Recti[clips.size()];
 	for (int i = 0; i < clips.size(); ++i)
 		mClips[i] = clips.at(i);
+}
+void Image::GenClips(int cW, int cH){
+	//Make sure we've got a texture to query
+	if (mTexture == nullptr)
+		throw std::runtime_error("Must load texture before genning clips");
+	
+	int iW, iH;
+	SDL_QueryTexture(mTexture.get(), NULL, NULL, &iW, &iH);
+	//The number of clips is iW / cW * iH / cH
+	mNumClips = (iW / cW) * (iH / cH);
+	mClips = new Recti[mNumClips];
+	//Generate the clip rects
+	int col = 0;
+	//Clips per column
+	int cPerCol = (iH / cH);
+	for (int i = 0; i < mNumClips; ++i){
+		if (i != 0 && i % cPerCol == 0)
+			++col;
+		Recti cRect(col * cW, i % cPerCol * cH, cW, cH);
+		mClips[i] = cRect;
+	}
 }

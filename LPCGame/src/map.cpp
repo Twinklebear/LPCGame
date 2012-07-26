@@ -88,6 +88,7 @@ void Map::Unload(){
 	mTiles.clear();
 }
 void Map::SetClips(){
+	/*
 	std::vector<Recti> clips;
 	int column = 0;
 	for (int i = 0; i < 8; ++i){
@@ -98,6 +99,8 @@ void Map::SetClips(){
 		clips.push_back(clipRect);
 	}
 	mImage.SetClips(clips);
+	*/
+	mImage.GenClips(TILE_WIDTH, TILE_HEIGHT);
 }
 int Map::CalculateIndex(int x, int y) const{
 	//if it's in bounds calculate the index

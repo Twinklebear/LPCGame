@@ -13,15 +13,18 @@ Button::Button() : mClicked(false), mFunc(nullptr)
 }
 Button::Button(int x, int y, std::string text, int w, int h) : mClicked(false), mFunc(nullptr)
 {
+	/*
 	SDL_Color col;
 	col.r = 0;
 	col.g = 0;
 	col.b = 0;
 	mText.Setup(text, "fonts/LiberationSans-Regular.ttf", col, 25);
 	Start(x, y);
+	*/
 }
 Button::~Button(){}
 void Button::Start(int x, int y){
+	/*
 	Rectf box(x, y, 200, 100);
 	mPhysics.SetBox(box);
 	//setup physical constants
@@ -33,6 +36,7 @@ void Button::Start(int x, int y){
 
 	mImage.LoadImage((mResFolder + "images/200x100button.png"));
 	//Setup image clips
+	*/
 	std::vector<Recti> clips;
 	clips.push_back(Recti(0, 0, 200, 100));
 	clips.push_back(Recti(0, 100, 200, 100));

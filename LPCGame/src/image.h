@@ -44,6 +44,13 @@ public:
 	Recti Clip(int clipNum);
 	//TODO: Rework the way clips are handled
 	void SetClips(const std::vector<Recti> &clips);
+	/*
+	*  Generate clips based on the desired width and height of each clip
+	*  and the size of the image
+	*  @param cW: The desired width of each clip
+	*  @param cH: The desired height of each clip
+	*/
+	void GenClips(int cW, int cH);
 
 private:
 	//We do this so to block out copy-construction, which can cause many issues

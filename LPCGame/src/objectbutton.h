@@ -22,6 +22,7 @@ public:
 	ObjectButton(int x, int y, std::string text, int w = 0, int h = 0)
 		: mObj(nullptr), mObjFunc(nullptr)
 	{
+		/*
 		mFunc = nullptr;
 		SDL_Color col;
 		col.r = 0;
@@ -29,6 +30,7 @@ public:
 		col.b = 0;
 		mText.Setup(text, "fonts/LiberationSans-Regular.ttf", col, 25);
 		Start(x, y);
+		*/
 	}
 	~ObjectButton(){
 	}
@@ -60,22 +62,26 @@ public:
 		//Unfortunately I can't change the function that's pointed to via loading json
 		//as it's code not data, so instead we just save the param
 		Json::Value val;
-		val["type"]	 = "objectbutton";
-		val["text"]  = mText.Save();
-		val["x"]	 = mPhysics.Box().X();
-		val["y"]	 = mPhysics.Box().Y();
-		val["param"] = mParam;
+		val["type"]	   = "objectbutton";
+		val["text"]    = mText.Save();
+		val["physics"] = mPhysics.Save();
+		val["image"]   = mImage.Save();
+		val["param"]   = mParam;
 		
 		return val;
 	}
 	/*
 	*  Load the object from a json value
-	*  @param value: The json value to load from
+	*  @param val: The json value to load from
 	*/
-	void Load(Json::Value value){
-		mParam = value["param"].asString();
-		mText.Load(value["text"]);
-		Start(value["x"].asInt(), value["y"].asInt());
+	void Load(Json::Value val){
+		mParam = val["param"].asString();
+		mText.Load(val["text"]);
+		mPhysics.Load(val["physics"]);
+		mImage.Load(val["image"]);
+		//Must be called at the moment for clipping
+		Start(0, 0);
+		//Start(value["x"].asInt(), value["y"].asInt());
 	}
 
 private:
