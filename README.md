@@ -1,7 +1,6 @@
 # Working on a C++ tile based 'engine' using SDL
 
 ### Todo:
-- Some functions in the window class could to with a bit of refactoring
 - Implement moving camera to follow player
 - Simple map editor
 - I should move the fonts, images and states directories up to a res directory in the top level and then remove Debug from git
