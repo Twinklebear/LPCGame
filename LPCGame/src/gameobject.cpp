@@ -1,9 +1,6 @@
-#include <string>
 #include "SDL.h"
 #include "math.h"
 #include "gameobject.h"
-
-std::string GameObject::mResFolder = "../res/";
 
 GameObject::GameObject() : mMouseOver(false){
 }

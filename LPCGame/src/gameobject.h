@@ -1,7 +1,6 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
-#include <string>
 #include "SDL.h"
 #include "json/json.h"
 #include "vectors.h"
@@ -65,8 +64,6 @@ private:
 
 protected:
 	Physics mPhysics;
-	//To track head resource folder, same for all objects
-	static std::string mResFolder;
 
 private:
 	//Track if mouse is over the object
