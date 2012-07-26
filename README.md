@@ -2,7 +2,7 @@
 
 ### Todo:
 - Need to add Save and load functionality to a few more GameObject classes, such as Button, also would like to rework clipping to be more automated based off the for loop in Map, which can be generalized to allow for automated clip rect setup of any clipsheet given w/h of sprites to clip and w/h of sheet.
-- Add sprite sheet clip sizing to json data, try and get all configurable options to be serializable
+- Add tile w/h to saved map data
 - Implement moving camera to follow player
 - Simple map editor
 - I should move the fonts, images and states directories up to a res directory in the top level and then remove Debug from git
@@ -12,3 +12,4 @@
 - GameObjects now have Save and Load functions, along with States. Save returns a Json::Value containing the information about the object, whereas Load will take a Json::Value and setup the appropriate configuration. I have yet to write load
 - States are now loaded from file when needed, saved when they exit, deleted from the statemanager and a new state is loaded, only one state is tracked by the StateManager at a time instead of the vector like before, because they're loaded from file only when they're needed.
 - State Manager is looking good, state system seems to be running well
+- Image is able to generate uniform clips and can also Load/Save clips to file
