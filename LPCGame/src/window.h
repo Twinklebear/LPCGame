@@ -50,7 +50,7 @@ public:
 	*  @param text: The text type to draw
 	*  @param dstRect: The destination rect to draw too, w and h vals will be queried from texture
 	*/
-	static void Draw(Text *text, SDL_Rect dstRect);
+	static void Draw(Text *text, const SDL_Rect &dstRect);
 	/*
 	*  Load an image file into an SDL_Texture and return it
 	*  @param file: the image file to load

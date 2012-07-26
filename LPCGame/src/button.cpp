@@ -33,7 +33,6 @@ void Button::OnMouseUp(){
 	if (mClicked)
 		OnClick();
 	mClicked = false;
-	//Run the button activity here
 }
 void Button::OnMouseEnter(){
 	//maybe a lighter highlight?

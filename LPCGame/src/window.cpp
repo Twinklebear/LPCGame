@@ -54,16 +54,6 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h){
 	//Setup desired width and height properties
 	if (w == -1 && h == -1)
 		SDL_QueryTexture(tex, NULL, NULL, &dstRect.w, &dstRect.h);
-	else if (h == -1){
-		//Will this crash?
-		SDL_QueryTexture(tex, NULL, NULL, NULL, &dstRect.h);
-		dstRect.w = w;
-	}
-	else if (w == -1){
-		//Will this crash?
-		SDL_QueryTexture(tex, NULL, NULL, &dstRect.w, NULL);
-		dstRect.h = h;
-	}
 	else {
 		dstRect.w = w;
 		dstRect.h = h;
@@ -74,7 +64,7 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h){
 void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip){
 	Draw(dstRect.x, dstRect.y, image->Texture(), clip, dstRect.w, dstRect.h);
 }
-void Window::Draw(Text *text, SDL_Rect dstRect){
+void Window::Draw(Text *text, const SDL_Rect &dstRect){
 	text->GetSize(dstRect.w, dstRect.h);
 	Draw(dstRect.x, dstRect.y, text->Texture(), NULL, dstRect.w, dstRect.h);
 }
