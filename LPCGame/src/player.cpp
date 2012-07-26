@@ -13,9 +13,6 @@
 
 Player::Player(){}
 Player::~Player(){}
-void Player::Start(int x, int y){
-
-}
 void Player::Update(){
 	//Horizontal input handling
 	if (Input::KeyDown('a'))

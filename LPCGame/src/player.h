@@ -9,11 +9,6 @@
 #include "window.h"
 #include "image.h"
 
-const int PLAYER_WIDTH	= 28;
-const int PLAYER_HEIGHT = 28;
-const int PLAYER_HSPEED = 300;
-const int PLAYER_HACCEL = 700;
-
 /*
 *	The player class, for handling the player
 */
@@ -21,8 +16,6 @@ class Player : public GameObject{
 public:
 	Player();
 	~Player();
-	//Load images/setup initial values
-	void Start(int x, int y);
 	//Run once each fram
 	void Update();
 	//Move the player

@@ -19,19 +19,6 @@ public:
 	{
 		mFunc = nullptr;
 	}
-	ObjectButton(int x, int y, std::string text, int w = 0, int h = 0)
-		: mObj(nullptr), mObjFunc(nullptr)
-	{
-		/*
-		mFunc = nullptr;
-		SDL_Color col;
-		col.r = 0;
-		col.g = 0;
-		col.b = 0;
-		mText.Setup(text, "fonts/LiberationSans-Regular.ttf", col, 25);
-		Start(x, y);
-		*/
-	}
 	~ObjectButton(){
 	}
 	/*
@@ -79,9 +66,6 @@ public:
 		mText.Load(val["text"]);
 		mPhysics.Load(val["physics"]);
 		mImage.Load(val["image"]);
-		//Must be called at the moment for clipping
-		Start(0, 0);
-		//Start(value["x"].asInt(), value["y"].asInt());
 	}
 
 private:

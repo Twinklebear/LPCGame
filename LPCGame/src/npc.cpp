@@ -16,9 +16,6 @@
 
 Npc::Npc(){}
 Npc::~Npc(){}
-void Npc::Start(int x, int y){
-
-}
 void Npc::Update(){
 
 }

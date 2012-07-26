@@ -11,37 +11,7 @@
 Button::Button() : mClicked(false), mFunc(nullptr)
 {
 }
-Button::Button(int x, int y, std::string text, int w, int h) : mClicked(false), mFunc(nullptr)
-{
-	/*
-	SDL_Color col;
-	col.r = 0;
-	col.g = 0;
-	col.b = 0;
-	mText.Setup(text, "fonts/LiberationSans-Regular.ttf", col, 25);
-	Start(x, y);
-	*/
-}
 Button::~Button(){}
-void Button::Start(int x, int y){
-	/*
-	Rectf box(x, y, 200, 100);
-	mPhysics.SetBox(box);
-	//setup physical constants
-	PhysicalConstants physConst;
-	physConst.hSpeed	= 0;
-	physConst.hAccel	= 0;
-	mPhysics.SetPhysConstants(physConst);
-	mClicked = false;
-
-	mImage.LoadImage((mResFolder + "images/200x100button.png"));
-	//Setup image clips
-	*/
-	//std::vector<Recti> clips;
-	//clips.push_back(Recti(0, 0, 200, 100));
-	//clips.push_back(Recti(0, 100, 200, 100));
-	//mImage.SetClips(clips);
-}
 void Button::Update(){}
 void Button::Draw(){
 	if (!mClicked)
@@ -75,26 +45,22 @@ void Button::OnClick(){
 	if (mFunc != nullptr)
 		mFunc(mParam);
 }
-/*
-void RegisterCallBack(object *obj, void (object::*func)()){
-	mObj = obj;
-	mObjFunc = func;
-	mFunc = nullptr;
-*/
 void Button::RegisterCallBack(void (*f)(std::string), std::string param){
 	mFunc = f;
 	mParam = param;
 }
 Json::Value Button::Save(){
 	Json::Value val;
-	val["type"]	 = "button";
-	val["text"]  = mText.Save();
-	val["x"]	 = mPhysics.Box().X();
-	val["y"]	 = mPhysics.Box().Y();
-	val["param"] = mParam;
+	val["type"]	   = "button";
+	val["text"]    = mText.Save();
+	val["physics"] = mPhysics.Save();
+	val["param"]   = mParam;
 	
 	return val;
 }
-void Button::Load(Json::Value value){
-
+void Button::Load(Json::Value val){
+	mParam = val["param"].asString();
+	mText.Load(val["text"]);
+	mPhysics.Load(val["physics"]);
+	mImage.Load(val["image"]);
 }

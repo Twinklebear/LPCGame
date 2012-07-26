@@ -3,6 +3,7 @@
 ### Todo:
 - Need to add Save and load functionality to a few more GameObject classes, such as Button, also would like to rework clipping to be more automated based off the for loop in Map, which can be generalized to allow for automated clip rect setup of any clipsheet given w/h of sprites to clip and w/h of sheet.
 - Add tile w/h to saved map data
+- Some functions in the window class could to with a bit of refactoring
 - Implement moving camera to follow player
 - Simple map editor
 - I should move the fonts, images and states directories up to a res directory in the top level and then remove Debug from git

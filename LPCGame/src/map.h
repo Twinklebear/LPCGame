@@ -17,11 +17,6 @@ typedef std::vector<Recti> CollisionMap;
 class Map{
 public:
 	Map();
-	/**
-	*  Construct map and load a mapfile
-	*  @param mapFile: the file to load
-	*/
-	Map(std::string mapFile);
 	~Map();
 	/**
 	*  Draw the tiles on the screen, relative to the camera
@@ -39,10 +34,6 @@ public:
 	*/
 	void Load(Json::Value val);
 	/**
-	*  Load the image file
-	*/
-	void LoadImageSheet();
-	/**
 	*  Unload the active map
 	*/
 	void Unload();
@@ -57,10 +48,6 @@ public:
 	*  @return: the nearby collision map
 	*/
 	CollisionMap GetCollisionMap(const Recti &target, int distance = 2);
-
-private:
-	///Setup clips for the image
-	void SetClips();
 
 private:
 	std::vector<Tile> mTiles;

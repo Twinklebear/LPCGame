@@ -12,10 +12,7 @@
 class Button : public GameObject{
 public:
 	Button();
-	Button(int x, int y, std::string text, int w = 0, int h = 0);
 	~Button();
-	///Initialize the button
-	void Start(int x = 0, int y = 0);
 	///Update the game object
 	void Update();
 	///Draw the game object
@@ -47,7 +44,7 @@ public:
 	*  Load the object from a json value
 	*  @param value: The json value to load from
 	*/
-	virtual void Load(Json::Value value);
+	virtual void Load(Json::Value val);
 
 private:
 	//Disable copy-construction

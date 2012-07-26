@@ -16,8 +16,6 @@ class Npc : public GameObject {
 public:
 	Npc();
 	~Npc();
-	//Load images/setup the Npc
-	void Start(int x, int y);
 	//Run once each frame
 	void Update();
 	//Handle player movement
