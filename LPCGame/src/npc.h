@@ -35,7 +35,7 @@ public:
 	*  Load the object from a json value
 	*  @param value: The json value to load from
 	*/
-	void Load(Json::Value value);
+	void Load(Json::Value val);
 
 private:
 	//Disable copy construction

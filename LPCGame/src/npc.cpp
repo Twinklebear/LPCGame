@@ -17,18 +17,10 @@
 Npc::Npc(){}
 Npc::~Npc(){}
 void Npc::Start(int x, int y){
-	//initialize box
-	Rectf box(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
-	mPhysics.SetBox(box);
-	PhysicalConstants physConst;
-	physConst.hSpeed	= PLAYER_HSPEED;
-	physConst.hAccel	= PLAYER_HACCEL;
-	mPhysics.SetPhysConstants(physConst);
 
-	//mImage.LoadImage("images/image.png");
 }
 void Npc::Update(){
-	SetMove(Math::DOWN);
+
 }
 void Npc::Move(float deltaT){
 	mPhysics.Move(deltaT);
@@ -48,19 +40,14 @@ void Npc::SetMove(int move){
 }
 Json::Value Npc::Save(){
 	Json::Value val;
-	val["obj"]    = "npc";
-	val["type"]   = "0";
-	val["x"] 	  = mPhysics.Box().X();
-	val["y"] 	  = mPhysics.Box().Y();
-	//val["speed"]  = phys constant speed
-	//val["accel"]  = phys constant accell
-	val["image"]  = "images/image.png";
+	val["obj"]     = "npc";
+	val["type"]    = "0";
+	val["physics"] = mPhysics.Save();
+	val["image"]   = mImage.Save();
 
 	return val;
 }
-void Npc::Load(Json::Value value){
-	//Will setup other properties here as well, for now just calling to start
-	//at the x, y pos
-	mImage.LoadImage(value["image"].asString());
-	Start(value["x"].asInt(), value["y"].asInt());
+void Npc::Load(Json::Value val){
+	mImage.Load(val["image"]);
+	mPhysics.Load(val["physics"]);
 }

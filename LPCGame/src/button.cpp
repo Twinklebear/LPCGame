@@ -31,7 +31,7 @@ void Button::Start(int x, int y){
 	mPhysics.SetPhysConstants(physConst);
 	mClicked = false;
 
-	mImage.LoadImage("images/200x100button.png");
+	mImage.LoadImage((mResFolder + "images/200x100button.png"));
 	//Setup image clips
 	std::vector<Recti> clips;
 	clips.push_back(Recti(0, 0, 200, 100));
@@ -82,14 +82,14 @@ void Button::RegisterCallBack(void (*f)(std::string), std::string param){
 	mParam = param;
 }
 Json::Value Button::Save(){
-		Json::Value val;
-		val["type"]	 = "button";
-		val["text"]  = mText.Save();
-		val["x"]	 = mPhysics.Box().X();
-		val["y"]	 = mPhysics.Box().Y();
-		val["param"] = mParam;
-		
-		return val;
+	Json::Value val;
+	val["type"]	 = "button";
+	val["text"]  = mText.Save();
+	val["x"]	 = mPhysics.Box().X();
+	val["y"]	 = mPhysics.Box().Y();
+	val["param"] = mParam;
+	
+	return val;
 }
 void Button::Load(Json::Value value){
 

@@ -9,7 +9,7 @@
                "g" : 0,
                "r" : 0
             },
-            "font" : "fonts/LiberationSans-Regular.ttf",
+            "font" : "../res/fonts/LiberationSans-Regular.ttf",
             "fontsize" : 25,
             "message" : "Play"
          },
@@ -25,7 +25,7 @@
                "g" : 0,
                "r" : 0
             },
-            "font" : "fonts/LiberationSans-Regular.ttf",
+            "font" : "../res/fonts/LiberationSans-Regular.ttf",
             "fontsize" : 25,
             "message" : "Quit"
          },

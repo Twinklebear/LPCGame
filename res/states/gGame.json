@@ -1,5 +1,8 @@
 {
    "map" : {
+      "image" : {
+         "file" : "../res/images/tiles.png"
+      },
       "mBox" : {
          "h" : 320,
          "w" : 320
@@ -610,17 +613,37 @@
    "name" : "gGame",
    "objects" : [
       {
-         "image" : "images/image.png",
+         "image" : {
+            "file" : "../res/images/image.png"
+         },
          "obj" : "player",
-         "x" : 133.0,
-         "y" : 76.0
+         "physics" : {
+            "box" : {
+               "h" : 28.0,
+               "w" : 28.0,
+               "x" : 45.29162979125977,
+               "y" : 28.07932662963867
+            },
+            "hAccel" : 700,
+            "hSpeed" : 300
+         }
       },
       {
-         "image" : "images/image.png",
+         "image" : {
+            "file" : "../res/images/image.png"
+         },
          "obj" : "npc",
-         "type" : "0",
-         "x" : 10.0,
-         "y" : 259.9807128906250
+         "physics" : {
+            "box" : {
+               "h" : 28.0,
+               "w" : 28.0,
+               "x" : 10.0,
+               "y" : 0.0
+            },
+            "hAccel" : 700,
+            "hSpeed" : 300
+         },
+         "type" : "0"
       }
    ]
 }

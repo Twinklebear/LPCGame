@@ -2,6 +2,7 @@
 #define RECT_H
 
 #include <stdexcept>
+#include "json/json.h"
 #include "SDL.h"
 #include "vectors.h"
 
@@ -51,6 +52,26 @@ public:
 	}
 	T H() const{
 		return h;
+	}
+	/*
+	*  Save the box's properties to a Json::Value and return it
+	*  @returns: The Json::Value containing the box's properties
+	*/
+	Json::Value Save(){
+		Json::Value val;
+		val["x"] = pos.x;
+		val["y"] = pos.y;
+		val["w"] = w;
+		val["h"] = h;
+		return val;
+	}
+	/*
+	*  Load the box's properties from a Json::Value
+	*  @param val: The Json::Value containing the properties to load
+	*/
+	void Load(Json::Value val){
+		Set(val["x"].asInt(), val["y"].asInt(),
+			val["w"].asInt(), val["h"].asInt());
 	}
 	///Operators
 	Rect<T>& operator += (Vector2f vec){

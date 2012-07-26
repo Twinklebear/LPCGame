@@ -49,6 +49,7 @@ Json::Value Map::Save(){
 	//Save the map width and height
 	map["mBox"]["w"] = mBox.w;
 	map["mBox"]["h"] = mBox.h;
+	map["image"] = mImage.Save();
 	//Save the tiles
 	for (int i = 0; i < mTiles.size(); ++i){
 		map["tiles"][i]["x"] 	 = mTiles.at(i).Box().X();
@@ -59,11 +60,12 @@ Json::Value Map::Save(){
 	
 	return map;
 }
-void Map::Load(Json::Value value){
-	mBox.Set(0, 0, value["mBox"]["w"].asInt(), value["mBox"]["h"].asInt());
+void Map::Load(Json::Value val){
+	mBox.Set(0, 0, val["mBox"]["w"].asInt(), val["mBox"]["h"].asInt());
+	mImage.Load(val["image"]);
 
 	//Load the tiles
-	Json::Value tiles = value["tiles"];
+	Json::Value tiles = val["tiles"];
 	for (int i = 0; i < tiles.size(); ++i){
 		Tile tempTile;
 		tempTile.SetBox(Recti(tiles[i]["x"].asInt(), tiles[i]["y"].asInt(),
@@ -76,10 +78,10 @@ void Map::Load(Json::Value value){
 	LoadImageSheet();
 }
 void Map::LoadImageSheet(){
-	try{
-		mImage.LoadImage("images/tiles.png");
-	}
-	catch(...){}
+	//try{
+	//	mImage.LoadImage("images/tiles.png");
+	//}
+	//catch(...){}
 	SetClips();
 }
 void Map::Unload(){

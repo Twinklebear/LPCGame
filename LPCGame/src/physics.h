@@ -3,6 +3,7 @@
 
 #include <cmath>
 #include <vector>
+#include "json/json.h"
 #include "math.h"
 #include "map.h"
 
@@ -73,6 +74,16 @@ public:
 	void SetPhysConstants(PhysicalConstants physConstants);
 	void SetBox(Rectf box);
 	void SetMap(CollisionMap map);
+	/*
+	*  Save the physical properties of the object to a Json::Value
+	*  @returns: The Json::Value containing the object's physical properties
+	*/
+	Json::Value Save();
+	/*
+	*  Load the object's physical properties from a Json::Value
+	*  @param val: The Json::Value containing the properties to load
+	*/
+	void Load(Json::Value val);
 
 private:
 	/**

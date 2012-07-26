@@ -14,15 +14,7 @@
 Player::Player(){}
 Player::~Player(){}
 void Player::Start(int x, int y){
-	Rectf box(x, y, PLAYER_WIDTH, PLAYER_HEIGHT);
-	mPhysics.SetBox(box);
-	//setup physical constants
-	PhysicalConstants physConst;
-	physConst.hSpeed	= PLAYER_HSPEED;
-	physConst.hAccel	= PLAYER_HACCEL;
-	mPhysics.SetPhysConstants(physConst);
 
-	//mImage.LoadImage("images/image.png");
 }
 void Player::Update(){
 	//Horizontal input handling
@@ -48,16 +40,13 @@ void Player::Draw(){
 }
 Json::Value Player::Save(){
 	Json::Value val;
-	val["obj"]    = "player";
-	val["x"] 	  = mPhysics.Box().X();
-	val["y"] 	  = mPhysics.Box().Y();
-	//val["speed"]  = phys constant speed
-	//val["accel"]  = phys constant accell
-	val["image"]  = "images/image.png";
+	val["obj"]     = "player";
+	val["physics"] = mPhysics.Save();
+	val["image"]   = mImage.Save();
 
 	return val;
 }
-void Player::Load(Json::Value value){
-	mImage.LoadImage(value["image"].asString());
-	Start(value["x"].asInt(), value["y"].asInt());
+void Player::Load(Json::Value val){
+	mImage.Load(val["image"]);
+	mPhysics.Load(val["physics"]);
 }

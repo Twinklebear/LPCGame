@@ -35,9 +35,9 @@ public:
 	Json::Value Save();
 	/*
 	*  Load the map from a Json::Value
-	*  @param value: The Json::Value to load from
+	*  @param val: The Json::Value to load from
 	*/
-	void Load(Json::Value value);
+	void Load(Json::Value val);
 	/**
 	*  Load the image file
 	*/

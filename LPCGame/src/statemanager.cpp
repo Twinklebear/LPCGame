@@ -8,7 +8,7 @@
 #include "statemanager.h"
 
 State* StateManager::mActiveState;
-const std::string StateManager::mStatesDir = "states/";
+const std::string StateManager::mStatesDir = "../res/states/";
 
 void StateManager::InitIntro(){
 	SetActiveState("mIntro");

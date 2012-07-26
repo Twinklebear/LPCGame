@@ -1,3 +1,4 @@
+#include "json/json.h"
 #include "math.h"
 #include "physics.h"
 
@@ -22,11 +23,11 @@ void MotionState::SetMotionstate(int state){
 
 Physics::Physics(){
 	//init kinematic values
-	mBox.Set(0, 0, 0, 0);
+	//mBox.Set(0, 0, 0, 0);
 	mKinematic.Vel	 = Vector2f(0, 0);
 	mKinematic.Accel = Vector2f(0, 0);
-	mPhysConstants.hAccel	= 0;
-	mPhysConstants.hSpeed	= 0;
+	//mPhysConstants.hAccel	= 0;
+	//mPhysConstants.hSpeed	= 0;
 	mHorizDir = MOVE::STOP;
 	mVertDir  = MOVE::STOP;
 }
@@ -182,4 +183,23 @@ void Physics::SetBox(Rectf box){
 }
 void Physics::SetMap(CollisionMap map){
 	mCollisionMap = map;
+}
+Json::Value Physics::Save(){
+	//Save the object's physical constants and box
+	Json::Value val;
+	val["box"] 	  = mBox.Save();
+	val["hSpeed"] = mPhysConstants.hSpeed;
+	val["hAccel"] = mPhysConstants.hAccel;
+	return val;
+}
+void Physics::Load(Json::Value val){
+	mBox.Load(val["box"]);
+	mPhysConstants.hAccel = val["hAccel"].asInt();
+	mPhysConstants.hSpeed = val["hSpeed"].asInt();
+
+	//Setup motion values
+	mKinematic.Vel	 = Vector2f(0, 0);
+	mKinematic.Accel = Vector2f(0, 0);
+	mHorizDir = MOVE::STOP;
+	mVertDir  = MOVE::STOP;
 }
