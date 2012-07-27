@@ -15,7 +15,6 @@ class GameObject{
 public:
 	GameObject();
 	virtual ~GameObject() {};
-	///Create the gameobject, initialize various stuff
 	///Update the game object
 	virtual void Update() = 0;
 	///Draw the game object
@@ -44,9 +43,6 @@ public:
 	void CheckMouseOver(const Vector2f &pos);
 	///Return T/F is the mouse is over the object
 	bool GetMouseOver();
-	///Check if mouse exited the object's box
-	///Destroy the gameobject
-	//virtual void Destroy() = 0;
 	//TODO: A button wouldn't need this method, should i create a rigidbody type?
 	///Pass a map pointer to the physics object
 	void SetCollisionMap(CollisionMap map){
