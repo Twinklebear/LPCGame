@@ -34,7 +34,7 @@ public:
 	Vector2f Offset() const;
 
 private:
-	std::shared_ptr<GameObject> mFocus;
+	std::weak_ptr<GameObject> mFocus;
 	Rectf mBox;
 };
 

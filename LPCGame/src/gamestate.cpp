@@ -17,9 +17,9 @@ GameState::GameState(){
 GameState::~GameState(){
 }
 void GameState::Init(){
-	mMap.reset(new Map());
-	mManager.reset(new GameObjectManager());
-	mCamera.reset(new Camera());
+	mMap 	 = std::shared_ptr<Map>(new Map());
+	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
+	mCamera  = std::shared_ptr<Camera>(new Camera());
 
 	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
@@ -36,7 +36,9 @@ std::string GameState::Run(){
 		Input::PollEvent();
 		if (Input::Quit())
 			SetExit("mIntro");
+
 		///LOGIC
+		mCamera->Update();
 		mManager->Update();
 		mManager->SetCollisionMaps(mMap.get());
 

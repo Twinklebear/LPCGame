@@ -14,8 +14,8 @@ MenuState::MenuState(){
 MenuState::~MenuState(){
 }
 void MenuState::Init(){
-	mManager.reset(new GameObjectManager());
-	mCamera.reset(new Camera());
+	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
+	mCamera  = std::shared_ptr<Camera>(new Camera());
 
 	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
@@ -33,6 +33,7 @@ std::string MenuState::Run(){
 			SetExit("quit");
 
 		///LOGIC
+		mCamera->Update();
 		mManager->Update();
 
 		///RENDERING
