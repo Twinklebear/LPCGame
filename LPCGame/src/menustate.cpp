@@ -1,3 +1,4 @@
+#include <memory>
 #include "json/json.h"
 #include "gameobject.h"
 #include "gameobjectmanager.h"
@@ -64,7 +65,8 @@ void MenuState::Load(Json::Value value){
 			ObjectButton<MenuState> *b = new ObjectButton<MenuState>();
 			b->RegisterCallBack(this, &MenuState::SetExit, "");
 			b->Load(objects[i]);
-			mManager->Register((GameObject*)b);
+			std::shared_ptr<GameObject> sObj(b);
+			mManager->Register(sObj);
 		}
 	}
 }

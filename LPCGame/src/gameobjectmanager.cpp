@@ -37,10 +37,6 @@ void GameObjectManager::SetCollisionMaps(Map *map){
 		entityMap.clear();
 	}
 }
-void GameObjectManager::Register(GameObject *obj){
-	std::shared_ptr<GameObject> shObj(obj);
-	mGameObjects.push_back(shObj);
-}
 void GameObjectManager::Register(std::shared_ptr<GameObject> obj){
 	mGameObjects.push_back(obj);
 }
@@ -92,4 +88,7 @@ Json::Value GameObjectManager::Save(){
 		val[i] = mGameObjects.at(i)->Save();
 	}
 	return val;
+}
+void GameObjectManager::SetCameraFocus(std::shared_ptr<GameObject> obj){
+	mCamera.SetFocus(obj);
 }

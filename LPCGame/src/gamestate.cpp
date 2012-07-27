@@ -1,5 +1,6 @@
 #include <fstream>
 #include <string>
+#include <memory>
 #include "json/json.h"
 #include "gameobject.h"
 #include "gameobjectmanager.h"
@@ -47,7 +48,6 @@ std::string GameState::Run(){
 		mMap->Draw();
 		mManager->Draw();
 
-		//refresh window
 		Window::Present();
 	}
 	return mExitCode;
@@ -76,12 +76,14 @@ void GameState::Load(Json::Value value){
 		if (objects[i]["obj"].asString() == "player"){
 			Player *p = new Player();
 			p->Load(objects[i]);
-			mManager->Register((GameObject*)p);
+			std::shared_ptr<GameObject> sObj(p);
+			mManager->Register(sObj);
 		}
 		if (objects[i]["obj"].asString() == "npc"){
 			Npc *n = new Npc();
 			n->Load(objects[i]);
-			mManager->Register((GameObject*)n);
+			std::shared_ptr<GameObject> sObj(n);
+			mManager->Register(sObj);
 		}
 	}
 }

@@ -6,6 +6,7 @@
 #include "json/json.h"
 #include "gameobject.h"
 #include "map.h"
+#include "camera.h"
 
 //Typedef for a vector of GameObject pointers
 //typedef std::vector<GameObject*> GameObjectList;
@@ -37,8 +38,6 @@ public:
 	*	Add a gameobject pointer to the list
 	*	@param *obj: the object pointer to add
 	*/
-	void Register(GameObject *obj);
-	//Add a shared pointer to the vector
 	void Register(std::shared_ptr<GameObject> obj);
 	/*
 	*  Handle Mouse clicks, run through the active game objects
@@ -56,6 +55,11 @@ public:
 	*  @returns: The Json::Value containing the gameobject data
 	*/
 	Json::Value Save();
+	/*
+	*  Register an object with the manager's camera
+	*  @param obj: the object to pass to the camera for focusing
+	*/
+	void SetCameraFocus(std::shared_ptr<GameObject> obj);
 
 private:
 	//Maybe i can have a function that returns a collision map of local entities
@@ -64,6 +68,7 @@ private:
 
 private:
 	GameObjectList mGameObjects;
+	Camera mCamera;
 };
 
 #endif
