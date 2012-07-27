@@ -7,8 +7,6 @@
 
 GameObjectManager::GameObjectManager(){}
 GameObjectManager::~GameObjectManager(){
-	//for (GameObject *o : mGameObjects)
-	//	delete o;
 	mGameObjects.clear();
 }
 void GameObjectManager::Draw(){
@@ -88,7 +86,4 @@ Json::Value GameObjectManager::Save(){
 		val[i] = mGameObjects.at(i)->Save();
 	}
 	return val;
-}
-void GameObjectManager::SetCameraFocus(std::shared_ptr<GameObject> obj){
-	mCamera.SetFocus(obj);
 }

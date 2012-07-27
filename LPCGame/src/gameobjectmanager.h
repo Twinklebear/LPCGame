@@ -6,10 +6,8 @@
 #include "json/json.h"
 #include "gameobject.h"
 #include "map.h"
-#include "camera.h"
 
 //Typedef for a vector of GameObject pointers
-//typedef std::vector<GameObject*> GameObjectList;
 typedef std::vector<std::shared_ptr<GameObject>> GameObjectList;
 
 /*
@@ -68,7 +66,6 @@ private:
 
 private:
 	GameObjectList mGameObjects;
-	Camera mCamera;
 };
 
 #endif

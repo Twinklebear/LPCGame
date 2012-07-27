@@ -4,6 +4,7 @@
 #include <string>
 #include "json/json.h"
 #include "gameobjectmanager.h"
+#include "camera.h"
 
 /*
 *  The base class for our state machine, provides functions
@@ -41,6 +42,7 @@ protected:
 
 protected:
 	GameObjectManager *mManager;
+	Camera mCamera;
 	std::string mName;
 	bool mExit;
 	std::string mExitCode;
