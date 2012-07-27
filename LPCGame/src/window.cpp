@@ -64,7 +64,7 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h){
 void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip){
 	Draw(dstRect.x, dstRect.y, image->Texture(), clip, dstRect.w, dstRect.h);
 }
-void Window::Draw(Text *text, SDL_Rect &dstRect){
+void Window::Draw(Text *text, SDL_Rect dstRect){
 	text->GetSize(dstRect.w, dstRect.h);
 	Draw(dstRect.x, dstRect.y, text->Texture(), NULL, dstRect.w, dstRect.h);
 }
