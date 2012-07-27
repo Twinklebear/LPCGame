@@ -3,7 +3,6 @@
 ### Todo:
 - Implement moving camera to follow player
 - Simple map editor
-- I should move the fonts, images and states directories up to a res directory in the top level and then remove Debug from git
 
 ### Done:
 - State's Run() function now returns a string corresponding to the state that should be loaded next, 'quit' specifies that the program should exit completely. ObjectButtons can register a callback SetExit(std::string) for the class's function, which when called will exit Run() and return the desired string as the return code.
