@@ -3,6 +3,7 @@
 ### Todo:
 - Implement moving camera to follow player
 	- Camera is member of State, can be registered with GameObjectManager, which will ignore objects that are off-camera, need to add camera offset application to tiles by passing it to Map, other objects(?), and make sure panning/following works.
+	- In drawing the map, should use the camera box to calculate the index list of tiles that are viewable and draw those, skipping the camera-tile collision checking which will be very slow if run over all tiles.
 	- Need to enable objects to take the camera parameter to their draw functions to check if they're in camera and apply the appropriate offset
 	- Need a way to get the scene's width and height for the camera, this would be the map dimensions in game states and the menu dimensions in menu states. Then with this i can center the camera in the screen if choosing a camera w/h smaller than the window.
 - Simple map editor
