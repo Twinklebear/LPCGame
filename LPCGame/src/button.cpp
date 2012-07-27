@@ -23,7 +23,7 @@ void Button::Draw(){
 	Rectf buttonBox = mPhysics.Box();
 	textBox.pos.x = (buttonBox.X() + buttonBox.W() / 2) - textBox.W() / 2;
 	textBox.pos.y = (buttonBox.Y() + buttonBox.H() / 2) - textBox.H() / 2;
-	Window::Draw(&mText, textBox);
+	Window::Draw(&mText, (SDL_Rect)textBox);
 }
 void Button::Move(float deltaT){}
 void Button::OnMouseDown(){
