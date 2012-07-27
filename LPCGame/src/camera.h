@@ -26,12 +26,12 @@ public:
 	*  @param box: the box to check if it's in the camera
 	*  @returns: True if object is in camera
 	*/
-	bool InCamera(Rectf box);
+	bool InCamera(Rectf box) const;
 	//Setters & Getters
 	void SetBox(Rectf box);
-	Rectf Box();
+	Rectf Box() const;
 	//Returns the offset to apply to objects that should be scrolling
-	Vector2f Offset();
+	Vector2f Offset() const;
 
 private:
 	std::shared_ptr<GameObject> mFocus;

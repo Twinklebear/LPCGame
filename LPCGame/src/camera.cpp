@@ -38,15 +38,15 @@ void Camera::Update(){
 
 	mBox.Set(x, y);
 }
-bool Camera::InCamera(Rectf box){
+bool Camera::InCamera(Rectf box) const{
 	return Math::CheckCollision(mBox, box);
 }
 void Camera::SetBox(Rectf box){
 	mBox = box;
 }
-Rectf Camera::Box(){
+Rectf Camera::Box() const{
 	return mBox;
 }
-Vector2f Camera::Offset(){
+Vector2f Camera::Offset() const{
 	return Vector2f(mBox.X(), mBox.Y());
 }
