@@ -14,7 +14,7 @@ MenuState::MenuState(){
 MenuState::~MenuState(){
 }
 void MenuState::Init(){
-	mManager = new GameObjectManager();
+	mManager.reset(new GameObjectManager);
 	Input::RegisterManager(mManager);
 }
 std::string MenuState::Run(){
@@ -43,7 +43,7 @@ std::string MenuState::Run(){
 }
 void MenuState::Free(){
 	Input::RemoveManager();
-	delete mManager;
+	mManager.reset();
 }
 Json::Value MenuState::Save(){
 	Json::Value val;

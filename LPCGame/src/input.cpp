@@ -1,18 +1,17 @@
+#include <memory>
 #include "SDL.h"
 #include "window.h"
 #include "gameobjectmanager.h"
 #include "input.h"
 
 SDL_Event Input::evt;
-GameObjectManager* Input::mManager;
+std::weak_ptr<GameObjectManager> Input::mManager;
 Uint8* Input::mKeyStates;
-bool Input::mQuit;
+bool Input::mQuit = false;
 
 Input::Input(){}
 Input::~Input(){}
 void Input::Init(){
-	mQuit = false;
-	mManager = nullptr;
 	mKeyStates = SDL_GetKeyboardState(NULL);
 }
 void Input::PollEvent(){
@@ -22,14 +21,15 @@ void Input::PollEvent(){
 
 		if (evt.type == SDL_QUIT || (evt.type == SDL_KEYDOWN && evt.key.keysym.sym == SDLK_ESCAPE))
 			mQuit = true;
-
-		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP) && mManager != nullptr){
-			mManager->HandleMouseEvent(evt.button);
+		//Try to lock the manager for use
+		std::shared_ptr<GameObjectManager> sp = mManager.lock();
+		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP) && sp){
+			sp->HandleMouseEvent(evt.button);
 		}
 		//This is constantly called even if the mouse isn't moving, can
 		//i set some sort of min required motion to trigger?
-		if (evt.type == SDL_MOUSEMOTION && mManager != nullptr){
-			mManager->HandleMouseEvent(evt.motion);
+		if (evt.type == SDL_MOUSEMOTION && sp){
+			sp->HandleMouseEvent(evt.motion);
 		}
 	}
 }
@@ -231,9 +231,10 @@ bool Input::Quit(){
 void Input::ClearQuit(){
 	mQuit = false;
 }
-void Input::RegisterManager(GameObjectManager *manager){
+void Input::RegisterManager(std::shared_ptr<GameObjectManager> manager){
+	RemoveManager();
 	mManager = manager;
 }
 void Input::RemoveManager(){
-	mManager = nullptr;
+	mManager.reset();
 }

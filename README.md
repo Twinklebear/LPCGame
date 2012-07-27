@@ -2,7 +2,6 @@
 
 ### Todo:
 - Implement moving camera to follow player
-	- Created camera class, is currently part of the GameObjectManager, has methods for setting a focus, updating position to re-center on focus, checking if something is in camera, getting offset to apply
 	- Need to enable objects to take the camera parameter to their draw functions to check if they're in camera and apply the appropriate offset
 	- Need a way to get the scene's width and height for the camera, this would be the map dimensions in game states and the menu dimensions in menu states. Then with this i can center the camera in the screen if choosing a camera w/h smaller than the window.
 - Simple map editor

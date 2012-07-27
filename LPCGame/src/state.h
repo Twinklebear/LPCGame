@@ -2,6 +2,7 @@
 #define STATE_H
 
 #include <string>
+#include <memory>
 #include "json/json.h"
 #include "gameobjectmanager.h"
 #include "camera.h"
@@ -41,8 +42,8 @@ protected:
 	virtual void Free() = 0;
 
 protected:
-	GameObjectManager *mManager;
-	Camera mCamera;
+	std::shared_ptr<GameObjectManager> mManager;
+	std::shared_ptr<Camera> mCamera;
 	std::string mName;
 	bool mExit;
 	std::string mExitCode;

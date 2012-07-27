@@ -17,8 +17,13 @@ GameState::GameState(){
 GameState::~GameState(){
 }
 void GameState::Init(){
-	mMap = new Map();
-	mManager = new GameObjectManager();
+	//map = new Map();
+	mMap.reset(new Map());
+	//mMap = new Map();
+	//manager = new GameObjectManager();
+	//mManager(manager);
+	mManager.reset(new GameObjectManager());
+	//mManager = new GameObjectManager();
 
 	Input::RegisterManager(mManager);
 }
@@ -36,7 +41,7 @@ std::string GameState::Run(){
 			SetExit("mIntro");
 		///LOGIC
 		mManager->Update();
-		mManager->SetCollisionMaps(mMap);
+		mManager->SetCollisionMaps(mMap.get());
 
 		float deltaT = mDelta.GetTicks() / 1000.f;
 		mManager->Move(deltaT);
@@ -54,8 +59,8 @@ std::string GameState::Run(){
 }
 void GameState::Free(){
 	Input::RemoveManager();
-	delete mMap;
-	delete mManager;
+	mMap.reset();
+	mManager.reset();
 }
 Json::Value GameState::Save(){
 	Json::Value val;

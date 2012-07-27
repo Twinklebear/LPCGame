@@ -2,19 +2,20 @@
 #include <stdexcept>
 #include <string>
 #include <fstream>
+#include <memory>
 #include "state.h"
 #include "gamestate.h"
 #include "menustate.h"
 #include "statemanager.h"
 
-State* StateManager::mActiveState;
+std::shared_ptr<State> StateManager::mActiveState;
 const std::string StateManager::mStatesDir = "../res/states/";
 
 void StateManager::InitIntro(){
 	SetActiveState("mIntro");
 }
 void StateManager::SetState(State* state){
-	mActiveState = state;
+	mActiveState.reset(state);
 }
 void StateManager::SetActiveState(std::string name){
 	if (!LoadState(name))
@@ -22,9 +23,7 @@ void StateManager::SetActiveState(std::string name){
 
 	std::string stateCode = mActiveState->Run();
 	SaveState(mActiveState->Name());
-	//Delete the state we quit
-	delete mActiveState;
-	
+
 	if (stateCode == "quit")
 		return;
 	else (SetActiveState(stateCode));

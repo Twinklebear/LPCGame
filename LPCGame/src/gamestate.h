@@ -1,6 +1,7 @@
 #ifndef GAMESTATE_H
 #define GAMESTATE_H
 
+#include <memory>
 #include "json/json.h"
 #include "state.h"
 #include "timer.h"
@@ -34,7 +35,7 @@ protected:
 	void Free();
 
 private:
-	Map *mMap;
+	std::shared_ptr<Map> mMap;
 	Timer mDelta;
 };
 

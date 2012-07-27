@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <memory>
 #include "state.h"
 #include "gamestate.h"
 #include "menustate.h"
@@ -48,7 +49,7 @@ private:
 	static void SetState(State* state);
 
 private:
-	static State* mActiveState;
+	static std::shared_ptr<State> mActiveState;
 	const static std::string mStatesDir;
 };
 
