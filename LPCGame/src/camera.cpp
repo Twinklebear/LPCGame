@@ -24,8 +24,8 @@ void Camera::Update(){
 
 	Rectf focBox = s->Box();
 	//Update width and height to match window size
+	//TODO: Window size in this context SHOULD be the scene size
 	Rectf winBox = Window::Box();
-	//TODO: winbox here 
 	mBox.w = winBox.w;
 	mBox.h = winBox.h;
 	//Adjust camera position
