@@ -6,6 +6,7 @@
 #include "json/json.h"
 #include "gameobject.h"
 #include "map.h"
+#include "camera.h"
 
 //Typedef for a vector of GameObject pointers
 typedef std::vector<std::shared_ptr<GameObject>> GameObjectList;
@@ -38,6 +39,12 @@ public:
 	*/
 	void Register(std::shared_ptr<GameObject> obj);
 	/*
+	*  Register the scene camera with the manager so that 
+	*  it can be used in checking which objects to deal with
+	*  @param camera: the scene camera
+	*/
+	void Register(std::shared_ptr<Camera> camera);
+	/*
 	*  Handle Mouse clicks, run through the active game objects
 	*  find what was clicked, and call it
 	*  @param mouseEvent: The mouse event that we're processing
@@ -66,6 +73,7 @@ private:
 
 private:
 	GameObjectList mGameObjects;
+	std::shared_ptr<Camera> mCamera;
 };
 
 #endif

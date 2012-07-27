@@ -14,7 +14,10 @@ MenuState::MenuState(){
 MenuState::~MenuState(){
 }
 void MenuState::Init(){
-	mManager.reset(new GameObjectManager);
+	mManager.reset(new GameObjectManager());
+	mCamera.reset(new Camera());
+
+	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
 }
 std::string MenuState::Run(){

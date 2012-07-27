@@ -8,6 +8,7 @@
 Camera::Camera()
 	: mFocus(nullptr)
 {
+	mBox.Set(0, 0, Window::Box().W(), Window::Box().H());
 }
 Camera::~Camera(){
 	mFocus.reset();

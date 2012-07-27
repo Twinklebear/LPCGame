@@ -17,14 +17,11 @@ GameState::GameState(){
 GameState::~GameState(){
 }
 void GameState::Init(){
-	//map = new Map();
 	mMap.reset(new Map());
-	//mMap = new Map();
-	//manager = new GameObjectManager();
-	//mManager(manager);
 	mManager.reset(new GameObjectManager());
-	//mManager = new GameObjectManager();
+	mCamera.reset(new Camera());
 
+	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
 }
 std::string GameState::Run(){
@@ -82,12 +79,16 @@ void GameState::Load(Json::Value value){
 			Player *p = new Player();
 			p->Load(objects[i]);
 			std::shared_ptr<GameObject> sObj(p);
+			//Set player as camera focuse
+			mCamera->SetFocus(sObj);
+			//Register with manager
 			mManager->Register(sObj);
 		}
 		if (objects[i]["obj"].asString() == "npc"){
 			Npc *n = new Npc();
 			n->Load(objects[i]);
 			std::shared_ptr<GameObject> sObj(n);
+			//Register with manager
 			mManager->Register(sObj);
 		}
 	}
