@@ -1,8 +1,9 @@
 # Working on a C++ tile based 'engine' using SDL
 
 ### Documentation:
-Engine documentation can be found at the [Github Page](http://twinklebear.github.com/LPCGame/)
-However, ignore the json documentation on the page, I need to filter it out from doxygen. The library I'm using for json is [JsonCPP](http://jsoncpp.sourceforge.net/)
+- [Code](http://twinklebear.github.com/LPCGame/)
+- [JsonCPP](http://jsoncpp.sourceforge.net/)
+- [SDL 2.0](http://wiki.libsdl.org/moin.cgi/FrontPage)
 
 ### Todo:
 - Restructure code directories, my code should move to a top-level src/ directory, external code should move to top-level directory externals/
