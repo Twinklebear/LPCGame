@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="LPCGame : Working on a C++ tile based engine using SDL" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>LPCGame</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Twinklebear/LPCGame">View on GitHub</a>
+
+          <h1 id="project_title">LPCGame</h1>
+          <h2 id="project_tagline">Working on a C++ tile based engine using SDL</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Twinklebear/LPCGame/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Twinklebear/LPCGame/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>Working on a C++ tile based 'engine' using SDL</h1>
+
+<h3>Todo:</h3>
+
+<ul>
+<li>Simple map editor</li>
+</ul><h3>Done:</h3>
+
+<ul>
+<li>State's Run() function now returns a string corresponding to the state that should be loaded next, 'quit' specifies that the program should exit completely. ObjectButtons can register a callback SetExit(std::string) for the class's function, which when called will exit Run() and return the desired string as the return code.</li>
+<li>GameObjects now have Save and Load functions, along with States. Save returns a Json::Value containing the information about the object, whereas Load will take a Json::Value and setup the appropriate configuration. I have yet to write load</li>
+<li>States are now loaded from file when needed, saved when they exit, deleted from the statemanager and a new state is loaded, only one state is tracked by the StateManager at a time instead of the vector like before, because they're loaded from file only when they're needed.</li>
+<li>State Manager is looking good, state system seems to be running well</li>
+<li>Image is able to generate uniform clips and can also Load/Save clips to file</li>
+<li>Tile's box, type and solid are now saved and loaded</li>
+<li>Moving camera now implemented
+
+<ul>
+<li>Also can set a width and height for the current scene being drawn, in gamestates it's the map w/h in menu statues it can be specified as desired. The scene will be centered on screen</li>
+<li>New math functions available for converting vectors and rects to and from scene space</li>
+<li>Would like to test camera on more cases but it seems good.</li>
+<li>ISSUE: Resizing window doesn't seem to update the drawing of objects, ie. the scene doesn't recenter which is annoying
+
+<ul>
+<li>In addition: Resizing window while playing a gamestate and then trying to quit causes a crash</li>
+</ul>
+</li>
+<li>Also: the scene must be same size or bigger than the camera, checks are in place to make sure of this (I believe?)
+
+<ul>
+<li>check again</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">LPCGame maintained by <a href="https://github.com/Twinklebear">Twinklebear</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
