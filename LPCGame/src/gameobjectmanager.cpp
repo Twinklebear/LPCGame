@@ -5,8 +5,6 @@
 #include "gameobject.h"
 #include "gameobjectmanager.h"
 
-#include "debugger.h"
-
 GameObjectManager::GameObjectManager(){}
 GameObjectManager::~GameObjectManager(){
 	mGameObjects.clear();

@@ -10,44 +10,53 @@
 #include "tile.h"
 #include "camera.h"
 
-/*
- *	Map: handles the a tile based map and its various functions
- */
+/**
+*  Takes care of a simple tile based map
+*  TODO: I need to add mapobject types
+*/
 class Map{
 public:
 	Map();
 	~Map();
 	/**
 	*  Draw the tiles on the screen, relative to the camera
-	*  @param cam: the camera rectangle, default is the window box
+	*  @param cam The camera so we can get the offsets/check if things are in camera
 	*/
 	void Draw(Camera *cam = nullptr);
 	/**
 	*  Save the map data to a Json::Value
-	*  @return: The serialized map data as a Json::Value
+	*  @return The map data as a Json::Value
 	*/
 	Json::Value Save();
-	/*
+	/**
 	*  Load the map from a Json::Value
-	*  @param val: The Json::Value to load from
+	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-	/**
-	*  Unload the active map
-	*/
+	///Unload the active map
 	void Unload();
-	///Calculate the index of the tile at some point & return it
+	/**
+	*  Calculate the index of the tile at the point
+	*  @param x The point's x coordinate
+	*  @param y The point's y coordinate
+	*  @return The index of the tile at the point
+	*  @throw Runtime Error if the point is off the map, must catch this
+	*/
 	int CalculateIndex(int x, int y) const;
-	///Calculate the indeces enclosed in a rectangle
+	/**
+	*  Calculate the indices of all the tiles within an area
+	*  @param area The area to get tile indices in
+	*  @return A vector of ints containing the tile indices
+	*/
 	std::vector<int> CalculateIndex(Recti area) const;
 	/**
 	*  Get the collision map within distance of the target
-	*  @param target: the target to get the nearby collision map around
-	*  @param distance: the distance in tiles to return the map of
-	*  @return: the nearby collision map
+	*  @param target The target to get the nearby collision map around
+	*  @param distance The distance in tiles to return the map of
+	*  @return The collision map of local tiles
 	*/
 	CollisionMap GetCollisionMap(const Recti &target, int distance = 2);
-	//Get the box
+	///Get the map's box
 	Recti Box() const;
 
 private:

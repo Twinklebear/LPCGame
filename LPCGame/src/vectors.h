@@ -1,17 +1,28 @@
 #ifndef VECTORS_H
 #define VECTORS_H
 
-///A simple vector
+/**
+*  A 2D vector
+*/
 template<class T>
 class Vector2{
 public:
-	Vector2(T pX, T pY){
-		Set(pX, pY);
-	}
 	Vector2(){
 		Set(0, 0);
 	}
-	///Set the vector to some value
+	/**
+	*  Setup the vector with an x & y value
+	*  @param pX The x value to set
+	*  @param pY The y value to set
+	*/
+	Vector2(T pX, T pY){
+		Set(pX, pY);
+	}
+	/**
+	*  Setup the vector with an x & y value
+	*  @param pX The x value to set
+	*  @param pY The y value to set
+	*/
 	void Set(T pX, T pY){
 		x = pX;
 		y = pY;
@@ -40,6 +51,7 @@ public:
 		a.y = this->y * val;
 		return a;
 	}
+	///Conversions
 	operator Vector2<int>() const{
 		Vector2<int> vect(x, y);
 		return vect;

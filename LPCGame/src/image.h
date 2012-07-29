@@ -11,49 +11,63 @@
 #include "vectors.h"
 
 /**
-*	An image handler, cna be used with FloatRect or IntRect for positioning
+*  A wrapper around the SDL_Texture class to make using images
+*  and setting clips or loading/saving them easier
 */
 class Image{
 public:
 	/**
-	*	Setup the image class, if a filename is passed load the image
-	*	@param file: the filename
-	*	@see LoadImage for the loading function
+	*  Setup the image class, if a filename is passed load the image
+	*  @param file The filename
+	*  @see Window::LoadImage for the loading function
 	*/
 	Image(const std::string file);
 	Image();
 	~Image();
-	/*
+	/**
 	*  Save an image's properties to a Json::Value and return it
-	*  Todo: Should i also save clip information here?
-	*  @returns: Json::Value containing the information about the image
+	*  @return Json::Value containing the information about the image
 	*/
 	Json::Value Save();
-	/*
+	/**
 	*  Load an image and its properties from a Json::Value
-	*  @param val: The Json::Value to load from
+	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-	/*
-	*	Load an image from a file to an SDL_Surface*
-	*	@param file: the file to load
+	/**
+	*  Load an image from a file
+	*  @param file The file to load
+	*  @see Window::LoadImage for the loading function
 	*/
 	void LoadImage(const std::string file);
-	///Getters & Setters
-	SDL_Texture* Texture();
-	Recti Clip(int clipNum);
-	//TODO: Rework the way clips are handled
+	/**
+	*  Set the image's clips to the vector passed
+	*  @param clips The clips to use for the image
+	*/
 	void SetClips(const std::vector<Recti> &clips);
-	/*
+	/**
 	*  Generate clips based on the desired width and height of each clip
-	*  and the size of the image
-	*  @param cW: The desired width of each clip
-	*  @param cH: The desired height of each clip
+	*  and the size of the image, note that this will only work for uniform
+	*  clip sizes
+	*  @param cW The desired width of each clip
+	*  @param cH The desired height of each clip
 	*/
 	void GenClips(int cW, int cH);
+	/**
+	*  Get the raw SDL_Texture pointer, this is only used inside the Window's draw
+	*  functions as SDL expects a regular SDL_Texture pointer to draw
+	*  @see Window
+	*  @return SDL_Texture pointer to the image's texture
+	*/
+	SDL_Texture* Texture();
+	/**
+	*  Get the rect for a desired clipnum
+	*  @param clipNum The clip number to get the box of
+	*/
+	Recti Clip(int clipNum);
 
 private:
-	//We do this so to block out copy-construction, which can cause many issues
+	///Disable image copy construction
 	Image(const Image &a);
 	Image& operator = (const Image &a);
 

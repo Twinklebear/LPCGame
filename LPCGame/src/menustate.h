@@ -6,30 +6,34 @@
 #include "button.h"
 #include "objectbutton.h"
 
-/*
-*  For making a simple menu system
+/**
+*  For creating and using a simple menu state
 */
 class MenuState : public State{
 public:
 	MenuState();
 	~MenuState();
-	//Run the state
+	/**
+	*  Run the state
+	*  @return The next state to run, returning quit exits program
+	*/
 	std::string Run();
-	/*
+	/**
 	*  Write the state data to a Json Value and return it so that
 	*  it can be saved and loaded later
+	*  @return Json::Value containing the state's save data
 	*/
 	Json::Value Save();
-	/*
+	/**
 	*  Load the state data from a json value
-	*  @param val: the Json::Value containing the data to load
+	*  @param val The Json::Value containing the data to load
 	*/
 	void Load(Json::Value val);
 
 protected:
-	//Initialize state memory
+	///Initialize state memory
 	void Init();
-	//Free state memory
+	///Free state memory
 	void Free();
 
 private:

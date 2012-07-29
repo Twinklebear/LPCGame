@@ -8,7 +8,7 @@
 *  A file for forward declarations of classes or
 *  various widely used types
 */
-///A collision map of solid tiles/objects
+///A collision map of solid tiles/objects, it's just a vector of Recti
 typedef std::vector<Recti> CollisionMap;
 class GameObject;
 class Camera;

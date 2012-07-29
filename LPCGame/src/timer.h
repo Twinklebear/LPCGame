@@ -2,20 +2,18 @@
 #define TIMER_H
 
 #include "SDL.h"
+
 /**
-*   Timer: A simple timer, needed for calculating FPS, time passed and etc.
+*  A simple timer
 */
 class Timer{
 public:
     Timer();
-    ///Start the time
+    ///Start the timer
 	void Start();
 	///Stop the timer
 	void Stop();
-	/**
-	*	Restart the timer & return the elapsed time
-	*	@return the elapsed time
-	*/
+	///Restart the timer and return the elapsed ticks
 	int Restart();
 	///Pause the timer
     void Pause();
@@ -23,7 +21,9 @@ public:
     void Unpause();
     ///Get the elapsed ticks
     int GetTicks() const;
+	///Check if timer is started
 	bool Started() const;
+	///Check if timer is paused
 	bool Paused() const;
 private:
 	int mStartTicks, mPausedTicks;

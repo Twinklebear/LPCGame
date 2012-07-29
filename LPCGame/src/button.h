@@ -5,7 +5,7 @@
 #include "image.h"
 #include "text.h"
 
-/*
+/**
 *  A simple button class, for handling mouse input will run the registered function
 *  when pressed, the button inherites its mouse event reading functionality from GameObject
 */
@@ -15,12 +15,15 @@ public:
 	~Button();
 	///Update the game object
 	void Update();
-	/*
+	/**
 	*  Draw the object, apply an adjustment for the camera if one is desired
-	*  @param cam: the camera to adjust for
+	*  @param cam The camera to adjust for
 	*/
 	void Draw(Camera *cam = nullptr);
-	///Move the object
+	/**
+	*  Move the object
+	*  @param deltaT The elapsed time
+	*/
 	void Move(float deltaT);
 	///On mouse down events
 	void OnMouseDown();
@@ -30,27 +33,26 @@ public:
 	void OnMouseEnter();
 	///On mouse exit
 	void OnMouseExit();
-	//On click, run the callback function if one was registered
+	///On click, run the callback function if one was registered
 	virtual void OnClick();
-	/*
+	/**
 	*  Register a non-member function as the callback function to run when the
 	*  button is pressed
-	*  @param f: the function to call
+	*  @param f The function to call
 	*/
 	void RegisterCallBack(void (*f)(std::string), std::string param);
-	/*
+	/**
 	*  Save the object data to a json value and return it
-	*  @returns: The json value containing the object data
+	*  @return The Json::Value containing the object data
 	*/
 	virtual Json::Value Save();
-	/*
+	/**
 	*  Load the object from a json value
-	*  @param value: The json value to load from
+	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
 
 private:
-	//Disable copy-construction
 	Button(const Button &a);
 	Button& operator = (const Button &a);
 
@@ -58,7 +60,7 @@ protected:
 	Image mImage;
 	Text mText;
 	bool mClicked;
-	//The callback function pointer & its value
+	///The callback function pointer & its value
 	void (*mFunc)(std::string);
 	std::string mParam;
 };

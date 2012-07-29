@@ -9,37 +9,43 @@
 #include "window.h"
 #include "image.h"
 
-/*
-*	The base NPC class
+/**
+*  The base NPC class
 */
 class Npc : public GameObject {
 public:
 	Npc();
 	~Npc();
-	//Run once each frame
+	///Run once each frame
 	void Update();
-	//Handle player movement
+	/**
+	*  Move the object
+	*  @param deltaT The elapsed time
+	*/
 	void Move(float deltaT);
-	/*
-	*  Draw the object, apply an adjustment for the camera if one is desired
-	*  @param cam: the camera to adjust for
+	/**
+	*  Draw the gameobject, apply an adjustment for the camera if one is desired
+	*  @param cam The camera to adjust for
 	*/
 	void Draw(Camera *cam = nullptr);
-	//Setters & Getters
+	/**
+	*  Give the npc a direction to move in
+	*  @param moveDir The direction to move in @see Math enum
+	*/
 	void SetMove(int moveDir);
-	/*
-	*  Save the object data to a json value and return it
-	*  @returns: The json value containing the object data
+	/**
+	*  Save the gameobject data to a json value and return it
+	*  @return Json::Value containing the gameobject data
 	*/
 	Json::Value Save();
-	/*
-	*  Load the object from a json value
-	*  @param value: The json value to load from
+	/**
+	*  Load the gameobject from a json value
+	*  @param value The json value to load from
 	*/
 	void Load(Json::Value val);
 
 private:
-	//Disable copy construction
+	///Disable copy construction
 	Npc(const Npc &a);
 	Npc& operator = (const Npc &a);
 

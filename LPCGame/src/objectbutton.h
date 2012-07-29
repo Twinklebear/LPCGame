@@ -8,7 +8,7 @@
 #include "text.h"
 #include "button.h"
 
-/*
+/**
 *  A button that is able to register class member functions as its callback
 */
 template<class T>
@@ -21,12 +21,11 @@ public:
 	}
 	~ObjectButton(){
 	}
-	/*
+	/**
 	*  Register an object and the object function to call when the button is pressed
-	*  @param obj: The object context to call the function in
-	*  @param func: The function on the object to call
-	*  @param param: The parameter to pass to the function when calling it
-	*  TODO: Need a better way to have buttons that handle non-static member functions
+	*  @param obj The object context to call the function in
+	*  @param func The function on the object to call
+	*  @param param The parameter to pass to the function when calling it
 	*/
 	void RegisterCallBack(T *obj, void (T::*func)(std::string), std::string param){
 		mObj	 = obj;
@@ -34,16 +33,16 @@ public:
 		mParam   = param;
 		mFunc    = nullptr;
 	}
-	//Run the registered callback function
+	///Run the registered callback function
 	void OnClick(){
 		if (mObj != nullptr && mObjFunc != nullptr)
 			((mObj)->*(mObjFunc))(mParam);
 		else if (mFunc != nullptr)
 			mFunc(mParam);
 	}
-	/*
+	/**
 	*  Save the object data to a json value and return it
-	*  @returns: The json value containing the object data
+	*  @return Json::Value containing the object data
 	*/
 	Json::Value Save(){
 		//Unfortunately I can't change the function that's pointed to via loading json
@@ -57,9 +56,9 @@ public:
 		
 		return val;
 	}
-	/*
-	*  Load the object from a json value
-	*  @param val: The json value to load from
+	/**
+	*  Load the object from a Json::Value
+	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val){
 		mParam = val["param"].asString();

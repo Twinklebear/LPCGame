@@ -7,29 +7,29 @@
 #include <thread>
 
 /**
-*	ObjectPool: a simple object pool where users can request objects,
-*	run them, and return them too the pool
-*	Note: i'm doing this first then trying it with threads so i can learn pooling
-*	first then deal with the extra complexities of threads
+*  ObjectPool: a simple object pool where users can request objects,
+*  run them, and return them too the pool
 */
 template<typename T>
 class ObjectPool{
 public:
 	/**
-	*	Initialize an object pool with chunkSize objects
-	*	@throw invalid_argument if chunksize is 0
-	*	@throw bad_alloc if allocation fails
+	*  Initialize an object pool with chunkSize objects
+	*  @throw invalid_argument if chunksize is 0
+	*  @throw bad_alloc if allocation fails
 	*/
 	ObjectPool(size_t chunkSize = kDefaultChunkSize)
 		throw(std::invalid_argument, std::bad_alloc);
 	/**
-	*	Reserve an object for use
-	*	Note: Users must NOT free the object
+	*  Reserve an object for use
+	*  Note: Users must NOT free the object
+	*  @return The object's shared pointer
 	*/
 	std::shared_ptr<T> AcquireObject();
 	/**
-	*	Return an object to the pool
-	*	Note: Users must NOT use the object after returning
+	*  Return an object to the pool
+	*  Note: Users must NOT use the object after returning
+	*  @param obj The object to return to the pool
 	*/
 	void ReturnObject(std::shared_ptr<T> obj);
 

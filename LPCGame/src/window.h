@@ -9,76 +9,66 @@
 #include "rect.h"
 #include "text.h"
 
-/*
+/**
 *  Window management class, provides a simple wrapper around
 *  the SDL_Window and SDL_Renderer functionalities
 */
 class Window{
 public:
-	/*
-	*  Destructor: calls Quit to free the memory
-	*/
+	///Destructor: calls Quit to free the memory
 	~Window();
-	/*
+	/**
 	*  Initialize SDL, setup the window and renderer
-	*  @param title: the window title
+	*  @param title The window title
 	*/
 	static void Init(std::string title = "Window");
-	/*
-	*  Quit SDL and destroy the window and renderer
-	*/
+	///Quit SDL and destroy the window and renderer
 	static void Quit();
-	/*
-	*  Draw a texture to the screen, with no scaling applied
-	*  @param x: The x coordinate to draw too
-	*  @param y: The y coordinate to draw too
-	*  @param tex: The SDL_Texture* to draw
-	*  @param clip: The clip rect to apply to the texture, if desired
-	*  @param w: The width to draw the texture with, def val -1 is flag to get val from the texture
-	*  @param h: The height to draw the texture with, def val -1 is flag to get val from the texture
+	/**
+	*  Draw a texture to the screen with optional stretching applied
+	*  @param x The x coordinate to draw too
+	*  @param y The y coordinate to draw too
+	*  @param tex The SDL_Texture* to draw
+	*  @param clip The clip rect to apply to the texture, if desired
+	*  @param w The width to draw the texture with, def val is flag to get it from the texture
+	*  @param h The height to draw the texture with, def val is flag to get it from the texture
 	*/
 	static void Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip = NULL, int w = -1, int h = -1);
-	/*
-	*  Draw an image to the screen
-	*  @param image: The image to draw
-	*  @param dstRect: The destination rectangle to draw too 
-	*  @param clip: The clip rect to apply to the texture, if desired
+	/**
+	*  Draw an image type to the screen
+	*  @param image The image to draw
+	*  @param dstRect The destination rectangle to draw too 
+	*  @param clip The clip rect to apply to the texture, if desired
 	*/
 	static void Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip = NULL);
-	/*
+	/**
 	*  Draw a text type to the screen at some position
-	*  @param text: The text type to draw
-	*  @param dstRect: The destination rect to draw too, w and h vals will be queried from texture
+	*  @param text The text type to draw
+	*  @param dstRect The destination rect to draw too, w and h vals will be queried from texture
 	*/
 	static void Draw(Text *text, SDL_Rect dstRect);
-	/*
-	*  Load an image file into an SDL_Texture and return it
-	*  @param file: the image file to load
+	/**
+	*  Load an image file as a SDL_Texture and return it
+	*  @param file The image file to load
 	*  @return SDL_Texture* of the texture loaded
 	*/
 	static SDL_Texture* LoadTexture(std::string file);
-	/*
-	*  Convert an SDL_Surface to a texture and return the texture
-	*  will also free the surface
-	*  @param surf: The SDL_Surface* to be converted
-	*  @returns: The SDL_Texture* created from the surface
+	/**
+	*  Convert an SDL_Surface to a texture and return the texture and free the surface
+	*  @param surf The SDL_Surface* to be converted
+	*  @return The SDL_Texture* created from the surface
 	*/
 	static SDL_Texture* SurfaceToTexture(SDL_Surface *surf);
-	/*
-	*  Clear the renderer
-	*/
+	///Clear the renderer
 	static void Clear();
-	/*
-	*  Render the renderer to window
-	*/
+	///Present the renderer, ie. update screen
 	static void Present();
-	/*
+	/**
 	*  Handle window events
+	*  @param e The SDL_Event to handle
 	*/
 	static void HandleEvents(SDL_Event &e);
-	/*
-	*  Return the window box
-	*/
+	///Get the window's box
 	static Recti Box();
 
 private:

@@ -99,12 +99,12 @@ Json::Value Text::Save(){
 
 	return val;	
 }
-void Text::Load(Json::Value value){
+void Text::Load(Json::Value val){
 	SDL_Color col;
-	col.r = value["color"]["r"].asInt();
-	col.g = value["color"]["g"].asInt();
-	col.b = value["color"]["b"].asInt();
+	col.r = val["color"]["r"].asInt();
+	col.g = val["color"]["g"].asInt();
+	col.b = val["color"]["b"].asInt();
 
-	Setup(value["message"].asString(), value["font"].asString(), 
-		col, value["fontsize"].asInt());
+	Setup(val["message"].asString(), val["font"].asString(), 
+		col, val["fontsize"].asInt());
 }
