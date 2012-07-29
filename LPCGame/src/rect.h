@@ -78,6 +78,9 @@ public:
 		this->pos += vec;
 		return *this;
 	}
+	Rect<T> operator + (Vector2f vec){
+		return Rect<T>(pos + vec, w, h);
+	}
 	///For conversions
 	operator SDL_Rect(){
 		SDL_Rect rect;

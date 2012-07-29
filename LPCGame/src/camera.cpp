@@ -4,8 +4,6 @@
 #include "gameobject.h"
 #include "camera.h"
 
-#include "debugger.h"
-
 Camera::Camera(){
 	mBox.Set(0, 0, Window::Box().W(), Window::Box().H());
 }

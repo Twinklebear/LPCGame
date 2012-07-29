@@ -4,8 +4,8 @@
 #include <cmath>
 #include <vector>
 #include "json/json.h"
+#include "base.h"
 #include "math.h"
-#include "map.h"
 
 const int GROUND_FRICTION = 800;
 

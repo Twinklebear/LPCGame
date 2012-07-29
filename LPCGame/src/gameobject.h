@@ -3,8 +3,9 @@
 
 #include "SDL.h"
 #include "json/json.h"
-#include "vectors.h"
+#include "base.h"
 #include "physics.h"
+#include "map.h"
 
 /**
 *	Basic definition for a gameobject, has methods for intialization, updating

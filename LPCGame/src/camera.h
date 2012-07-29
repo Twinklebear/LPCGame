@@ -2,8 +2,8 @@
 #define CAMERA_H
 
 #include <memory>
+#include "base.h"
 #include "window.h"
-#include "rect.h"
 #include "gameobject.h"
 
 /*

@@ -8,15 +8,15 @@
 
 #include <iostream>
 
+Image::Image()
+	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0)
+{
+}
 Image::Image(const std::string file)
-	: mTexture(nullptr), mClips(nullptr), mNumClips(0)
+	: mTexture(nullptr, SDL_DestroyTexture), mClips(nullptr), mNumClips(0)
 {
 	mFile = file;
 	LoadImage(file);
-}
-Image::Image()
-	: mTexture(nullptr), mFile(""), mClips(nullptr), mNumClips(0)
-{
 }
 Image::~Image(){
 	if (mClips != nullptr)

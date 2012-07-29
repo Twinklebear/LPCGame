@@ -4,14 +4,12 @@
 #include <vector>
 #include <string>
 #include "json/json.h"
+#include "base.h"
 #include "window.h"
-#include "rect.h"
 #include "image.h"
 #include "tile.h"
 #include "camera.h"
 
-///A collision map of solid tiles/objects
-typedef std::vector<Recti> CollisionMap;
 /*
  *	Map: handles the a tile based map and its various functions
  */
