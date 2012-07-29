@@ -2,8 +2,7 @@
 #define MATH_H
 
 #include <cmath>
-#include "vectors.h"
-#include "rect.h"
+#include "base.h"
 
 /**
 *	A math utility function namespace
@@ -49,6 +48,30 @@ namespace Math{
 	*	@return: T if point is in the rectangle
 	*/
 	bool CheckCollision(const Vector2f &p, const Rectf &r);
+	/*
+	*  Transform a vector from window space into scene space
+	*  @param cam: the camera/scene space to convert the vector to
+	*  @param v: the vector to convert to scene space
+	*/
+	Vector2f ToSceneSpace(const Camera *cam, const Vector2f &v);
+	/*
+	*  Transform a rect into scene space from window space
+	*  @param cam: the camera/scene space to convert the vector to
+	*  @param v: the vector to convert to scene space
+	*/
+	Rectf ToSceneSpace(const Camera *cam, const Rectf &r);
+	/*
+	*  Transform a vector from scene space into window space
+	*  @param cam: the camera/scene space to convert the vector to
+	*  @param v: the vector to convert to scene space
+	*/
+	Vector2f FromSceneSpace(const Camera *cam, const Vector2f &v);
+	/*
+	*  Transform a rect from scene space to window space
+	*  @param cam: the camera/scene space to convert the vector to
+	*  @param v: the vector to convert to scene space
+	*/
+	Rectf FromSceneSpace(const Camera *cam, const Rectf &r);
 }
 
 #endif

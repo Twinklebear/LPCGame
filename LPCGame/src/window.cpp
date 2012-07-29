@@ -8,6 +8,8 @@
 #include "image.h"
 #include "window.h"
 
+#include "debugger.h"
+
 //Initialize the unique_ptr's deleters here
 std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> Window::mWindow 
 	= std::unique_ptr<SDL_Window, void (*)(SDL_Window*)>(nullptr, SDL_DestroyWindow);
@@ -29,8 +31,9 @@ void Window::Init(std::string title){
 	//Start up window
 	SCREEN_WIDTH = 1280;
 	SCREEN_HEIGHT = 720;
+	//TODO: Solve the resized window issues
 	mWindow.reset(SDL_CreateWindow(title.c_str(), 100, 100, SCREEN_WIDTH, 
-		SCREEN_HEIGHT, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE));
+		SCREEN_HEIGHT, SDL_WINDOW_SHOWN));// | SDL_WINDOW_RESIZABLE));
 	//if window failed to create
 	if (mWindow == nullptr)
 		throw std::runtime_error("Failed to open window");
@@ -90,6 +93,8 @@ void Window::Present(){
 	SDL_RenderPresent(mRenderer.get());
 }
 void Window::HandleEvents(SDL_Event &e){
+	if (e.type == SDL_WINDOWEVENT && e.window.event == SDL_WINDOWEVENT_RESIZED)
+		Debugger::Write("Window resized");
 }
 Recti Window::Box(){
 	//Update the box to match the current window w/h

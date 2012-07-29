@@ -16,9 +16,7 @@ void Map::Draw(Camera *cam){
 	//TODO: Need a better way to draw the map that reduces draw calls
 	for (int i = 0; i < mTiles.size(); ++i){
 		if (cam != nullptr && cam->InCamera(mTiles.at(i).Box())){
-			Rectf pos(mTiles.at(i).Box().X() - cam->Offset().x + cam->Centering().x, 
-				mTiles.at(i).Box().Y() - cam->Offset().y + cam->Centering().y,
-				mTiles.at(i).Box().w, mTiles.at(i).Box().h);
+			Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
 
 			Window::Draw(&mImage, pos, &(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
 		}
@@ -107,4 +105,7 @@ CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 			localMap.push_back(mTiles.at(i).Box());
 	}
 	return localMap;
+}
+Recti Map::Box() const{
+	return mBox;
 }

@@ -1,10 +1,6 @@
 # Working on a C++ tile based 'engine' using SDL
 
 ### Todo:
-- Implement moving camera to follow player
-	- I'm not happy with applying camera effects by only changing the draw location, the real box of the object should be moved, b/c buttons for example won't register clicks on the image b/c the collision box isn't actually there, but rather at its un-offset position
-	- Also made the game center itself with a centering offset, also calculated by the camera.
-	- Believe I have the camera offsets and centering ok, but now i need to test with proper scene boxes and more cases/maps
 - Simple map editor
 
 ### Done:
@@ -14,3 +10,11 @@
 - State Manager is looking good, state system seems to be running well
 - Image is able to generate uniform clips and can also Load/Save clips to file
 - Tile's box, type and solid are now saved and loaded
+- Moving camera now implemented
+	- Also can set a width and height for the current scene being drawn, in gamestates it's the map w/h in menu statues it can be specified as desired. The scene will be centered on screen
+	- New math functions available for converting vectors and rects to and from scene space
+	- Would like to test camera on more cases but it seems good.
+	- ISSUE: Resizing window doesn't seem to update the drawing of objects, ie. the scene doesn't recenter which is annoying
+		- In addition: Resizing window while playing a gamestate and then trying to quit causes a crash
+	- Also: the scene must be same size or bigger than the camera, checks are in place to make sure of this (I believe?)
+		- check again

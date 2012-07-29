@@ -47,6 +47,8 @@ public:
 	*  @return: the nearby collision map
 	*/
 	CollisionMap GetCollisionMap(const Recti &target, int distance = 2);
+	//Get the box
+	Recti Box() const;
 
 private:
 	std::vector<Tile> mTiles;

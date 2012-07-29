@@ -15,13 +15,9 @@ Button::~Button(){}
 void Button::Update(){}
 void Button::Draw(Camera *cam){
 	Rectf pos = mPhysics.Box();
-	/*
-	if (cam != nullptr){
-		pos.Set(mPhysics.Box().X() + cam->Centering().x - cam->Offset().x, 
-			mPhysics.Box().Y() + cam->Centering().y - cam->Offset().y,
-			mPhysics.Box().w, mPhysics.Box().h);
-	}
-	*/
+	if (cam != nullptr)
+		pos = Math::FromSceneSpace(cam, pos);
+	//Apply appropriate clip for button's state
 	if (!mClicked)
 		Window::Draw(&mImage, pos, &(SDL_Rect)mImage.Clip(0));
 	else

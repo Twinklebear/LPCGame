@@ -21,7 +21,6 @@ void GameState::Init(){
 	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
-	//Testing: restricting the scene box
 	mCamera->SetBox(Rectf(0, 0, Window::Box().w, Window::Box().h));
 
 	mManager->Register(mCamera);
@@ -73,15 +72,16 @@ Json::Value GameState::Save(){
 	Free();
 	return val;
 }
-void GameState::Load(Json::Value value){
+void GameState::Load(Json::Value val){
 	Init();
-	mName = value["name"].asString();
-	mMap->Load(value["map"]);
-	mSceneBox.Set(0, 0, value["map"]["mBox"]["w"].asInt(),
-		value["map"]["mBox"]["h"].asInt());
+	mName = val["name"].asString();
+	//Load the scene box
+	mMap->Load(val["map"]);
+	mSceneBox.Set(0, 0, mMap->Box().w, mMap->Box().h);
 	mCamera->SetSceneBox(mSceneBox);
+
 	//Load the objects
-	Json::Value objects = value["objects"];
+	Json::Value objects = val["objects"];
 	for (int i = 0; i < objects.size(); ++i){
 		if (objects[i]["obj"].asString() == "player"){
 			Player *p = new Player();

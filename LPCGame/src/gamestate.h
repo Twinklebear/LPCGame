@@ -24,9 +24,9 @@ public:
 	Json::Value Save();
 	/*
 	*  Load the state data from a json value
-	*  @param value: the Json::Value containing the data to load
+	*  @param val: the Json::Value containing the data to load
 	*/
-	void Load(Json::Value value);
+	void Load(Json::Value val);
 
 protected:
 	//Initialize state memory

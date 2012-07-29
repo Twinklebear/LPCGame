@@ -17,10 +17,6 @@ void MenuState::Init(){
 	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
-	//Setup a scene box
-	mSceneBox.Set(0, 0, 500, 700);
-	mCamera->SetSceneBox(mSceneBox);
-
 	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
 }
@@ -55,18 +51,21 @@ void MenuState::Free(){
 }
 Json::Value MenuState::Save(){
 	Json::Value val;
-	val["objects"] = mManager->Save();
-	val["name"]	   = mName;
+	val["objects"]  = mManager->Save();
+	val["name"]	    = mName;
+	val["sceneBox"] = mSceneBox.Save();
 
 	Free();
 	return val;
 }
-void MenuState::Load(Json::Value value){
+void MenuState::Load(Json::Value val){
 	Init();
+	mName = val["name"].asString();
+	mSceneBox.Load(val["sceneBox"]);
+	mCamera->SetSceneBox(mSceneBox);
 
-	mName = value["name"].asString();
 	//Load the objects
-	Json::Value objects = value["objects"];
+	Json::Value objects = val["objects"];
 	for (int i = 0; i < objects.size(); ++i){
 		//Loading object buttons
 		if (objects[i]["type"].asString() == "objectbutton"){

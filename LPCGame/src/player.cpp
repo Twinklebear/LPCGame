@@ -33,14 +33,11 @@ void Player::Move(float deltaT){
 	mPhysics.Move(deltaT);
 }
 void Player::Draw(Camera *cam){
-	if (cam == nullptr)
-		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box());
-	else {
-		Rectf pos(mPhysics.Box().X() + cam->Centering().x - cam->Offset().x, 
-			mPhysics.Box().Y() + cam->Centering().y - cam->Offset().y,
-			mPhysics.Box().w, mPhysics.Box().h);
-		Window::Draw(&mImage, pos);
-	}
+	Rectf pos = mPhysics.Box();
+	if (cam != nullptr)
+		pos = Math::FromSceneSpace(cam, pos);
+
+	Window::Draw(&mImage, pos);
 }
 Json::Value Player::Save(){
 	Json::Value val;

@@ -1,3 +1,5 @@
+#include "base.h"
+#include "camera.h"
 #include "math.h"
 
 float Math::Distance(const Vector2f &a, const Vector2f &b){
@@ -64,4 +66,16 @@ bool Math::CheckCollision(const Vector2f &p, const Rectf &r){
 	if ((p.x > r.X() && p.x < r.X() + r.W()) && (p.y > r.Y() && p.y < r.Y() + r.H()))
 		return true;
 	return false;
+}
+Vector2f Math::ToSceneSpace(const Camera *cam, const Vector2f &v){
+	return v + cam->Offset();
+}
+Rectf Math::ToSceneSpace(const Camera *cam, const Rectf &r){
+	return Rectf(ToSceneSpace(cam, r.pos), r.w, r.h);
+}
+Vector2f Math::FromSceneSpace(const Camera *cam, const Vector2f &v){
+	return v - cam->Offset();
+}
+Rectf Math::FromSceneSpace(const Camera *cam, const Rectf &r){
+	return Rectf(FromSceneSpace(cam, r.pos), r.w, r.h);
 }

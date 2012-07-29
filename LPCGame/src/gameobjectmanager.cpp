@@ -5,6 +5,8 @@
 #include "gameobject.h"
 #include "gameobjectmanager.h"
 
+#include "debugger.h"
+
 GameObjectManager::GameObjectManager(){}
 GameObjectManager::~GameObjectManager(){
 	mGameObjects.clear();
@@ -86,7 +88,7 @@ void GameObjectManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent)
 	}
 }
 void GameObjectManager::HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent){
-	Vector2f mousePos = Vector2f(mouseEvent.x, mouseEvent.y);
+	Vector2f mousePos = Math::ToSceneSpace(mCamera.get(), Vector2f(mouseEvent.x, mouseEvent.y));
 	//Find the object that was clicked
 	for (std::shared_ptr<GameObject> o : mGameObjects){
 		if (mCamera->InCamera(o->Box()))

@@ -23,15 +23,11 @@ void Npc::Move(float deltaT){
 	mPhysics.Move(deltaT);
 }
 void Npc::Draw(Camera *cam){
-	if (cam == nullptr)
-		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box());
-	else {
-		Rectf pos(mPhysics.Box().X() + cam->Centering().x - cam->Offset().x, 
-			mPhysics.Box().Y() + cam->Centering().y - cam->Offset().y,
-			mPhysics.Box().w, mPhysics.Box().h);
+	Rectf pos = mPhysics.Box();
+	if (cam != nullptr)
+		pos = Math::FromSceneSpace(cam, pos);
 
-		Window::Draw(&mImage, pos);
-	}
+	Window::Draw(&mImage, pos);
 }
 void Npc::SetMove(int move){
 	if (move == Math::LEFT || move == Math::RIGHT)
