@@ -1,9 +1,10 @@
 #include <memory>
 #include "math.h"
 #include "window.h"
-#include "rect.h"
 #include "gameobject.h"
 #include "camera.h"
+
+#include "debugger.h"
 
 Camera::Camera(){
 	mBox.Set(0, 0, Window::Box().W(), Window::Box().H());
@@ -25,22 +26,24 @@ void Camera::Update(){
 	Rectf focBox = s->Box();
 	//Update width and height to match window size
 	//TODO: Window size in this context SHOULD be the scene size
-	Rectf winBox = Window::Box();
-	mBox.w = winBox.w;
-	mBox.h = winBox.h;
+	//mBox.w = mSceneBox.w;
+	//mBox.h = mSceneBox.h;
 	//Adjust camera position
 	float x, y;
-	x = (mBox.w + focBox.w / 2) - mBox.w / 2;
-	y = (mBox.h + focBox.h / 2) - mBox.h / 2;
+	x = (focBox.X() + focBox.w / 2) - mBox.w / 2;
+	y = (focBox.Y() + focBox.h / 2) - mBox.h / 2;
 	//Clamp the camera values to keep them in range
-	mBox.Set(Math::Clamp(x, 0, winBox.w - mBox.w), 
-		Math::Clamp(y, 0, winBox.h - mBox.h));
+	mBox.Set(Math::Clamp(x, 0, mSceneBox.w - mBox.w), 
+		Math::Clamp(y, 0, mSceneBox.h - mBox.h));
 }
 bool Camera::InCamera(Rectf box) const{
 	return Math::CheckCollision(mBox, box);
 }
 void Camera::SetBox(Rectf box){
 	mBox = box;
+}
+void Camera::SetSceneBox(Rectf box){
+	mSceneBox = box;
 }
 Rectf Camera::Box() const{
 	return mBox;

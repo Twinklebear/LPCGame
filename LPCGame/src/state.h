@@ -44,6 +44,7 @@ protected:
 protected:
 	std::shared_ptr<GameObjectManager> mManager;
 	std::shared_ptr<Camera> mCamera;
+	Rectf mSceneBox;
 	std::string mName;
 	bool mExit;
 	std::string mExitCode;

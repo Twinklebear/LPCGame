@@ -4,7 +4,6 @@
 #include "SDL.h"
 #include "json/json.h"
 #include "vectors.h"
-#include "rect.h"
 #include "physics.h"
 
 /**

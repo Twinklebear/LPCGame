@@ -17,6 +17,10 @@ void MenuState::Init(){
 	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
+	//Setup a scene box
+	mSceneBox.Set(0, 0, Window::Box().W(), Window::Box().H());
+	mCamera->SetSceneBox(mSceneBox);
+
 	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
 }

@@ -8,6 +8,7 @@
 #include "rect.h"
 #include "image.h"
 #include "tile.h"
+#include "camera.h"
 
 ///A collision map of solid tiles/objects
 typedef std::vector<Recti> CollisionMap;
@@ -20,9 +21,9 @@ public:
 	~Map();
 	/**
 	*  Draw the tiles on the screen, relative to the camera
-	*  @param camera: the camera rectangle, default is the window box
+	*  @param cam: the camera rectangle, default is the window box
 	*/
-	void Draw(const Recti &camera = Recti(0, 0, Window::Box().W(), Window::Box().H()));
+	void Draw(Camera *cam = nullptr);
 	/**
 	*  Save the map data to a Json::Value
 	*  @return: The serialized map data as a Json::Value

@@ -21,6 +21,11 @@ void GameState::Init(){
 	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
+	//Testing: restricting the scene box
+	mCamera->SetBox(Rectf(0, 0, 150, 150));
+	mSceneBox.Set(0, 0, 320, 320);
+	mCamera->SetSceneBox(mSceneBox);
+
 	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
 }

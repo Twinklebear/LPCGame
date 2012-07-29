@@ -30,12 +30,15 @@ public:
 	//Setters & Getters
 	void SetBox(Rectf box);
 	Rectf Box() const;
+	void SetSceneBox(Rectf box);
 	//Returns the offset to apply to objects that should be scrolling
 	Vector2f Offset() const;
 
 private:
 	std::weak_ptr<GameObject> mFocus;
-	Rectf mBox;
+	//TODO: Should scene box be a pointer to the state's scene box?
+	//that way if it's updated the camera will update as well
+	Rectf mBox, mSceneBox;
 };
 
 #endif

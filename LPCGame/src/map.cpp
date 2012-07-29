@@ -4,6 +4,7 @@
 #include "window.h"
 #include "image.h"
 #include "tile.h"
+#include "camera.h"
 #include "map.h"
 
 Map::Map(){
@@ -11,10 +12,12 @@ Map::Map(){
 Map::~Map(){
 	Unload();
 }
-void Map::Draw(const Recti &camera){
+void Map::Draw(Camera *cam){
 	//TODO: Need a better way to draw the map that reduces draw calls
-	for (int i = 0; i < mTiles.size(); ++i)
-		Window::Draw(&mImage, mTiles.at(i).Box(), &(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
+	for (int i = 0; i < mTiles.size(); ++i){
+		if (cam->InCamera(mTiles.at(i).Box()))
+			Window::Draw(&mImage, (mTiles.at(i).Box() + cam->Offset()), &(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
+	}
 }
 Json::Value Map::Save(){
 	Json::Value map;

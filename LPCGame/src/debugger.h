@@ -10,21 +10,24 @@
 */
 class Debugger{
 public:
-	Debugger();
+	//Debugger();
 	//open file, filename
-	Debugger(std::string fileName);
+	//Debugger(std::string fileName);
 	//close file
 	~Debugger();
+	//For static version of class
+	static void Init();
+	static void Close();
 	//write data output to file
-	void Write(std::string output);
+	static void Write(std::string output);
 	//write a string and int/float/double
-	void Write(std::string output, double num);
+	static void Write(std::string output, double num);
 
 private:
 	//filename
-	std::string mFileName;
+	static std::string mFileName;
 	//the file output stream
-	std::ofstream mFileStream;
+	static std::ofstream mFileStream;
 };
 
 #endif
