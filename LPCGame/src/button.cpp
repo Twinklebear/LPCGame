@@ -14,16 +14,23 @@ Button::Button() : mClicked(false), mFunc(nullptr)
 Button::~Button(){}
 void Button::Update(){}
 void Button::Draw(Camera *cam){
+	Rectf pos = mPhysics.Box();
+	/*
+	if (cam != nullptr){
+		pos.Set(mPhysics.Box().X() + cam->Centering().x - cam->Offset().x, 
+			mPhysics.Box().Y() + cam->Centering().y - cam->Offset().y,
+			mPhysics.Box().w, mPhysics.Box().h);
+	}
+	*/
 	if (!mClicked)
-		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box(), &(SDL_Rect)mImage.Clip(0));
+		Window::Draw(&mImage, pos, &(SDL_Rect)mImage.Clip(0));
 	else
-		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box(), &(SDL_Rect)mImage.Clip(1));
+		Window::Draw(&mImage, pos, &(SDL_Rect)mImage.Clip(1));
 	//Draw the text
 	Recti textBox = mText.GetSize();
-	Rectf buttonBox = mPhysics.Box();
-	textBox.pos.x = (buttonBox.X() + buttonBox.W() / 2) - textBox.W() / 2;
-	textBox.pos.y = (buttonBox.Y() + buttonBox.H() / 2) - textBox.H() / 2;
-	Window::Draw(&mText, (SDL_Rect)textBox);
+	textBox.pos.x = (pos.X() + pos.W() / 2) - textBox.W() / 2;
+	textBox.pos.y = (pos.Y() + pos.H() / 2) - textBox.H() / 2;
+	Window::Draw(&mText, textBox);
 }
 void Button::Move(float deltaT){}
 void Button::OnMouseDown(){

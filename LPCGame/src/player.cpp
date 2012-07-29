@@ -36,7 +36,8 @@ void Player::Draw(Camera *cam){
 	if (cam == nullptr)
 		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box());
 	else {
-		Rectf pos(mPhysics.Box().X() + cam->Centering().x, mPhysics.Box().Y() + cam->Centering().y,
+		Rectf pos(mPhysics.Box().X() + cam->Centering().x - cam->Offset().x, 
+			mPhysics.Box().Y() + cam->Centering().y - cam->Offset().y,
 			mPhysics.Box().w, mPhysics.Box().h);
 		Window::Draw(&mImage, pos);
 	}

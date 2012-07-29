@@ -1,9 +1,11 @@
 # Working on a C++ tile based 'engine' using SDL
 
 ### Todo:
+- Add Rect +/- vector operators
 - Implement moving camera to follow player
-	- Features for camera are in, but it needs more tuning to work right, as of now it's pretty terrible
+	- I'm not happy with applying camera effects by only changing the draw location, the real box of the object should be moved, b/c buttons for example won't register clicks on the image b/c the collision box isn't actually there, but rather at its un-offset position
 	- Also made the game center itself with a centering offset, also calculated by the camera.
+	- Believe I have the camera offsets and centering ok, but now i need to test with proper scene boxes and more cases/maps
 - Simple map editor
 
 ### Done:

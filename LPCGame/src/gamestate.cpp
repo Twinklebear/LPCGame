@@ -22,9 +22,7 @@ void GameState::Init(){
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
 	//Testing: restricting the scene box
-	mCamera->SetBox(Rectf(0, 0, 250, 250));
-	mSceneBox.Set(0, 0, 320, 320);
-	mCamera->SetSceneBox(mSceneBox);
+	mCamera->SetBox(Rectf(0, 0, Window::Box().w, Window::Box().h));
 
 	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
@@ -79,6 +77,9 @@ void GameState::Load(Json::Value value){
 	Init();
 	mName = value["name"].asString();
 	mMap->Load(value["map"]);
+	mSceneBox.Set(0, 0, value["map"]["mBox"]["w"].asInt(),
+		value["map"]["mBox"]["h"].asInt());
+	mCamera->SetSceneBox(mSceneBox);
 	//Load the objects
 	Json::Value objects = value["objects"];
 	for (int i = 0; i < objects.size(); ++i){

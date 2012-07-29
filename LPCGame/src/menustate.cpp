@@ -18,7 +18,7 @@ void MenuState::Init(){
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
 	//Setup a scene box
-	mSceneBox.Set(0, 0, Window::Box().W(), Window::Box().H());
+	mSceneBox.Set(0, 0, 500, 700);
 	mCamera->SetSceneBox(mSceneBox);
 
 	mManager->Register(mCamera);
