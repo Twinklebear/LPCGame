@@ -15,8 +15,11 @@ public:
 	~Button();
 	///Update the game object
 	void Update();
-	///Draw the game object
-	void Draw();
+	/*
+	*  Draw the object, apply an adjustment for the camera if one is desired
+	*  @param cam: the camera to adjust for
+	*/
+	void Draw(Camera *cam = nullptr);
 	///Move the object
 	void Move(float deltaT);
 	///On mouse down events

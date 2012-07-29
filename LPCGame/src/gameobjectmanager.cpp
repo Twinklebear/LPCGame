@@ -12,7 +12,7 @@ GameObjectManager::~GameObjectManager(){
 void GameObjectManager::Draw(){
 	for (std::shared_ptr<GameObject> o : mGameObjects){
 		if (mCamera->InCamera(o->Box()))
-			o->Draw();
+			o->Draw(mCamera.get());
 	}
 }
 void GameObjectManager::Update(){

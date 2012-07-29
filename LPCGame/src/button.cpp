@@ -13,7 +13,7 @@ Button::Button() : mClicked(false), mFunc(nullptr)
 }
 Button::~Button(){}
 void Button::Update(){}
-void Button::Draw(){
+void Button::Draw(Camera *cam){
 	if (!mClicked)
 		Window::Draw(&mImage, (SDL_Rect)mPhysics.Box(), &(SDL_Rect)mImage.Clip(0));
 	else

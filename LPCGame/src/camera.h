@@ -33,6 +33,8 @@ public:
 	void SetSceneBox(Rectf box);
 	//Returns the offset to apply to objects that should be scrolling
 	Vector2f Offset() const;
+	//An offset to center the images
+	Vector2f Centering() const;
 
 private:
 	std::weak_ptr<GameObject> mFocus;

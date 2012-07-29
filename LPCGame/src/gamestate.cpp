@@ -22,7 +22,7 @@ void GameState::Init(){
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
 	//Testing: restricting the scene box
-	mCamera->SetBox(Rectf(0, 0, 150, 150));
+	mCamera->SetBox(Rectf(0, 0, 250, 250));
 	mSceneBox.Set(0, 0, 320, 320);
 	mCamera->SetSceneBox(mSceneBox);
 
@@ -54,7 +54,7 @@ std::string GameState::Run(){
 
 		///RENDERING
 		Window::Clear();
-		mMap->Draw();
+		mMap->Draw(mCamera.get());
 		mManager->Draw();
 
 		Window::Present();

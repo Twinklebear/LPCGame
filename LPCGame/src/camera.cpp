@@ -47,5 +47,10 @@ Rectf Camera::Box() const{
 	return mBox;
 }
 Vector2f Camera::Offset() const{
+	//TESTING centering the map
 	return Vector2f(mBox.X(), mBox.Y());
+}
+Vector2f Camera::Centering() const{
+	return Vector2f((Window::Box().w / 2 - mBox.w / 2), 
+		(Window::Box().h / 2 - mBox.h / 2));	
 }

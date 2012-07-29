@@ -8,6 +8,8 @@
 #include "menustate.h"
 #include "statemanager.h"
 
+#include "debugger.h"
+
 std::shared_ptr<State> StateManager::mActiveState;
 const std::string StateManager::mStatesDir = "../res/states/";
 
@@ -19,7 +21,7 @@ void StateManager::SetState(State* state){
 }
 void StateManager::SetActiveState(std::string name){
 	if (!LoadState(name))
-		std::cout << "Failed to load state: " << name << std::endl;
+		Debugger::Write("Failed to load state: " + name);
 
 	std::string stateCode = mActiveState->Run();
 	SaveState(mActiveState->Name());

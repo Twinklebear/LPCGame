@@ -20,8 +20,11 @@ public:
 	void Update();
 	//Move the player
 	void Move(float deltaT);
-	//Draw the player
-	void Draw();
+	/*
+	*  Draw the object, apply an adjustment for the camera if one is desired
+	*  @param cam: the camera to adjust for
+	*/
+	void Draw(Camera *cam = nullptr);
 	/*
 	*  Save the object data to a json value and return it
 	*  @returns: The json value containing the object data

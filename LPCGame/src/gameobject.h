@@ -17,8 +17,11 @@ public:
 	virtual ~GameObject() {};
 	///Update the game object
 	virtual void Update() = 0;
-	///Draw the game object
-	virtual void Draw() = 0;
+	/*
+	*  Draw the gameobject, apply an adjustment for the camera if one is desired
+	*  @param cam: the camera to adjust for
+	*/
+	virtual void Draw(Camera *cam = nullptr) = 0;
 	///Move the object
 	virtual void Move(float deltaT) = 0;
 	///On mouse down events

@@ -20,8 +20,11 @@ public:
 	void Update();
 	//Handle player movement
 	void Move(float deltaT);
-	//Draw the player
-	void Draw();
+	/*
+	*  Draw the object, apply an adjustment for the camera if one is desired
+	*  @param cam: the camera to adjust for
+	*/
+	void Draw(Camera *cam = nullptr);
 	//Setters & Getters
 	void SetMove(int moveDir);
 	/*
