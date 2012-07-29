@@ -8,14 +8,14 @@
 #include "window.h"
 #include "text.h"
 
-Text::Text() : mFont(nullptr), mTex(nullptr), mMessage(""), mFontSize(0)
+Text::Text() : mFont(nullptr, TTF_CloseFont), mTex(nullptr, SDL_DestroyTexture), mMessage(""), mFontSize(0)
 {
 	mColor.r = 0;
 	mColor.g = 0;
 	mColor.b = 0;
 }
 Text::Text(std::string message, std::string font, SDL_Color color, int fontSize) 
-	: mFont(nullptr), mTex(nullptr)
+	: mFont(nullptr, TTF_CloseFont), mTex(nullptr, SDL_DestroyTexture)
 {
 	try {
 		Setup(message, font, color, fontSize);

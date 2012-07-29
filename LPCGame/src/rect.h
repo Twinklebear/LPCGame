@@ -78,8 +78,13 @@ public:
 		this->pos += vec;
 		return *this;
 	}
-	//TODO: Define rect +/- vector operations that will compile...
-	///For conversions
+	Rect<T> operator + (const Vector2f v) const{
+		return Rect<T>(pos.x + v.x, pos.y + v.y, w, h);
+	}
+	Rect<T> operator - (const Vector2f v) const{
+		return Rect<T>(pos.x - v.x, pos.y - v.y, w, h);
+	}
+	//For conversions
 	operator SDL_Rect(){
 		SDL_Rect rect;
 		rect.x = pos.x;
