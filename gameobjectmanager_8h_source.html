@@ -61,7 +61,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -69,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,45 +87,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">gameobjectmanager.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="gameobjectmanager_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef GAMEOBJECTMANAGER_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef GAMEOBJECTMANAGER_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define GAMEOBJECTMANAGER_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="gameobject_8h.html">gameobject.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="map_8h.html">map.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="camera_8h.html">camera.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;gameobject.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;map.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;camera.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="gameobjectmanager_8h.html#a3511e7b1e6ae39c42c02a19b883bdd11">   12</a></span>&#160;<span class="keyword">typedef</span> std::vector&lt;std::shared_ptr&lt;GameObject&gt;&gt; <a class="code" href="gameobjectmanager_8h.html#a3511e7b1e6ae39c42c02a19b883bdd11" title="Typedef for a vector of GameObject shared pointers.">GameObjectList</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">typedef</span> std::vector&lt;std::shared_ptr&lt;GameObject&gt;&gt; GameObjectList;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="class_game_object_manager.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_game_object_manager.html">GameObjectManager</a>{</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_game_object_manager.html#a58cbaec4182cda7c6d48eef7b14885e8">GameObjectManager</a>();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="class_game_object_manager.html#a91d57baff47ce5090e5e4590f531051d">~GameObjectManager</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a0549bd4b6575ee28803c0ff8fd2be2ee" title="Draw the game objects.">Draw</a>();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a6f053b1c655de6ca1c9a8fa9b6e118ae" title="Update the objects.">Update</a>();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a3285efb51ae012ff2d91e3d7b5673689">Move</a>(<span class="keywordtype">float</span> deltaT);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a5c2085cf872dcfb3c5d148026a32bb8f">SetCollisionMaps</a>(<a class="code" href="class_map.html">Map</a> *map);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#ae0e153903163b0caa8386b3e99491ee8">Register</a>(std::shared_ptr&lt;GameObject&gt; obj);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#ae0e153903163b0caa8386b3e99491ee8">Register</a>(std::shared_ptr&lt;Camera&gt; camera);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a90e4da9307e0cd53498f1e746ecd64f6">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseButtonEvent &amp;mouseEvent);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a90e4da9307e0cd53498f1e746ecd64f6">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseMotionEvent &amp;mouseEvent);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        Json::Value <a class="code" href="class_game_object_manager.html#a2a53df3e1900099bb4b01828703361d9">Save</a>();</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="base_8h.html#a9f9733a49b8f313ba6659ffc58abd436" title="A collision map of solid tiles/objects, it&#39;s just a vector of Recti.">CollisionMap</a> GetEntityCollisionMap(<span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;target, <span class="keywordtype">int</span> distance = 2 * <a class="code" href="tile_8h.html#a9308a8ccab88ca272b896567bf38e736">TILE_WIDTH</a>);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="gameobjectmanager_8h.html#a3511e7b1e6ae39c42c02a19b883bdd11" title="Typedef for a vector of GameObject shared pointers.">GameObjectList</a> mGameObjects;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        std::shared_ptr&lt;Camera&gt; mCamera;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;};</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="class_game_object_manager.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_game_object_manager.html" title="Handles the GameObjects in the active state.">GameObjectManager</a>{</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <a class="code" href="class_game_object_manager.html" title="Handles the GameObjects in the active state.">GameObjectManager</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        ~<a class="code" href="class_game_object_manager.html" title="Handles the GameObjects in the active state.">GameObjectManager</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a0549bd4b6575ee28803c0ff8fd2be2ee" title="Draw the game objects.">Draw</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a6f053b1c655de6ca1c9a8fa9b6e118ae" title="Update the objects.">Update</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a3285efb51ae012ff2d91e3d7b5673689">Move</a>(<span class="keywordtype">float</span> deltaT);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a5c2085cf872dcfb3c5d148026a32bb8f">SetCollisionMaps</a>(<a class="code" href="class_map.html" title="Handles the tile map.">Map</a> *map);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#ae0e153903163b0caa8386b3e99491ee8">Register</a>(std::shared_ptr&lt;GameObject&gt; obj);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#ae0e153903163b0caa8386b3e99491ee8">Register</a>(std::shared_ptr&lt;Camera&gt; camera);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a90e4da9307e0cd53498f1e746ecd64f6">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseButtonEvent &amp;mouseEvent);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_manager.html#a90e4da9307e0cd53498f1e746ecd64f6">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseMotionEvent &amp;mouseEvent);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        Json::Value <a class="code" href="class_game_object_manager.html#a2a53df3e1900099bb4b01828703361d9">Save</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        CollisionMap GetEntityCollisionMap(<span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;target, <span class="keywordtype">int</span> distance = 2 * TILE_WIDTH);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        GameObjectList mGameObjects;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        std::shared_ptr&lt;Camera&gt; mCamera;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;};</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:15 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:21 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

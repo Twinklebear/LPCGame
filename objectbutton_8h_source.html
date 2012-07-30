@@ -61,7 +61,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -69,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,68 +87,69 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">objectbutton.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="objectbutton_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef OBJECTBUTTON_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef OBJECTBUTTON_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define OBJECTBUTTON_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="gameobject_8h.html">gameobject.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="image_8h.html">image.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="text_8h.html">text.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="button_8h.html">button.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;gameobject.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;image.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;text.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;button.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="class_object_button.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_object_button.html">ObjectButton</a> : <span class="keyword">public</span> <a class="code" href="class_button.html">Button</a>{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="class_object_button.html#a72bc1c3d30fa0961258318d56f1554bd">   17</a></span>&#160;        <a class="code" href="class_object_button.html#a72bc1c3d30fa0961258318d56f1554bd">ObjectButton</a>() </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                : mObj(nullptr), mObjFunc(nullptr)</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;                <a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a> = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="code" href="class_object_button.html#aeddfc84ed49a3b79ca7368c84388dc1f">   22</a></span>&#160;        <a class="code" href="class_object_button.html#aeddfc84ed49a3b79ca7368c84388dc1f">~ObjectButton</a>(){</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
-<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="class_object_button.html#a7c2e66da0a2bbfbc9cddbaa8c535b870">   30</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_object_button.html#a7c2e66da0a2bbfbc9cddbaa8c535b870">RegisterCallBack</a>(T *obj, <span class="keywordtype">void</span> (T::*func)(std::string), std::string param){</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                mObj     = obj;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                mObjFunc = func;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                mParam   = param;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                <a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a>    = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        }</div>
-<div class="line"><a name="l00037"></a><span class="lineno"><a class="code" href="class_object_button.html#ac482967f8b880bf12cf67004f7adbd55">   37</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_object_button.html#ac482967f8b880bf12cf67004f7adbd55" title="Run the registered callback function.">OnClick</a>(){</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keywordflow">if</span> (mObj != <span class="keyword">nullptr</span> &amp;&amp; mObjFunc != <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                        ((mObj)-&gt;*(mObjFunc))(mParam);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a> != <span class="keyword">nullptr</span>)</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                        <a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a>(mParam);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        }</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="code" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">   47</a></span>&#160;        Json::Value <a class="code" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">Save</a>(){</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="comment">//Unfortunately I can&#39;t change the function that&#39;s pointed to via loading json</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="comment">//as it&#39;s code not data, so instead we just save the param</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                Json::Value val;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                val[<span class="stringliteral">&quot;type&quot;</span>]        = <span class="stringliteral">&quot;objectbutton&quot;</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                val[<span class="stringliteral">&quot;text&quot;</span>]    = <a class="code" href="class_button.html#a84647ac29e63b8bb5cc917e4e34558e1">mText</a>.<a class="code" href="class_text.html#ac2e60e57e1e86263b90474b7b76e3317">Save</a>();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                val[<span class="stringliteral">&quot;physics&quot;</span>] = <a class="code" href="class_game_object.html#a334fd0a70198e858f759f90fee7201a6">mPhysics</a>.<a class="code" href="class_physics.html#a4f93204305fb89e79ccc86e7731303c6">Save</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                val[<span class="stringliteral">&quot;image&quot;</span>]   = <a class="code" href="class_button.html#a8b097be23fca0b73d665bd1a748170da">mImage</a>.<a class="code" href="class_image.html#ad78e03ea7db39fa401056bd8ae86c036">Save</a>();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                val[<span class="stringliteral">&quot;param&quot;</span>]   = mParam;</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordflow">return</span> val;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">   63</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">Load</a>(Json::Value val){</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;                mParam = val[<span class="stringliteral">&quot;param&quot;</span>].asString();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <a class="code" href="class_button.html#a84647ac29e63b8bb5cc917e4e34558e1">mText</a>.<a class="code" href="class_text.html#a4c3bfb942b0f1b0c2bfb3160cff2540e">Load</a>(val[<span class="stringliteral">&quot;text&quot;</span>]);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <a class="code" href="class_game_object.html#a334fd0a70198e858f759f90fee7201a6">mPhysics</a>.<a class="code" href="class_physics.html#a4f3c17b426110578c06395c3594eb2b6">Load</a>(val[<span class="stringliteral">&quot;physics&quot;</span>]);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                <a class="code" href="class_button.html#a8b097be23fca0b73d665bd1a748170da">mImage</a>.<a class="code" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Load</a>(val[<span class="stringliteral">&quot;image&quot;</span>]);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        T *mObj;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        void (T::*mObjFunc)(std::string);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        std::string mParam;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="class_object_button.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_object_button.html" title="A button that can register class member functions.">ObjectButton</a> : <span class="keyword">public</span> <a class="code" href="class_button.html" title="A clickable ui Button, can run a static/non-member function when clicked.">Button</a>{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="class_object_button.html" title="A button that can register class member functions.">ObjectButton</a>() </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                : mObj(<span class="keyword">nullptr</span>), mObjFunc(<span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                <a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        ~<a class="code" href="class_object_button.html" title="A button that can register class member functions.">ObjectButton</a>(){</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        }</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="code" href="class_object_button.html#a7c2e66da0a2bbfbc9cddbaa8c535b870">   31</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_object_button.html#a7c2e66da0a2bbfbc9cddbaa8c535b870">RegisterCallBack</a>(T *obj, <span class="keywordtype">void</span> (T::*func)(std::string), std::string param){</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;                mObj     = obj;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;                mObjFunc = func;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;                mParam   = param;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a>    = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        }</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="class_object_button.html#ac482967f8b880bf12cf67004f7adbd55">   38</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_object_button.html#ac482967f8b880bf12cf67004f7adbd55" title="Run the registered callback function.">OnClick</a>(){</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                <span class="keywordflow">if</span> (mObj != <span class="keyword">nullptr</span> &amp;&amp; mObjFunc != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                        ((mObj)-&gt;*(mObjFunc))(mParam);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a> != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                        <a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a>(mParam);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">   48</a></span>&#160;        Json::Value <a class="code" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">Save</a>(){</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="comment">//Unfortunately I can&#39;t change the function that&#39;s pointed to via loading json</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="comment">//as it&#39;s code not data, so instead we just save the param</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                Json::Value val;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                val[<span class="stringliteral">&quot;type&quot;</span>]        = <span class="stringliteral">&quot;objectbutton&quot;</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                val[<span class="stringliteral">&quot;text&quot;</span>]    = mText.<a class="code" href="class_text.html#ac2e60e57e1e86263b90474b7b76e3317">Save</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                val[<span class="stringliteral">&quot;physics&quot;</span>] = mPhysics.<a class="code" href="class_physics.html#a4f93204305fb89e79ccc86e7731303c6">Save</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                val[<span class="stringliteral">&quot;image&quot;</span>]   = mImage.<a class="code" href="class_image.html#ad78e03ea7db39fa401056bd8ae86c036">Save</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                val[<span class="stringliteral">&quot;param&quot;</span>]   = mParam;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">return</span> val;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">   64</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">Load</a>(Json::Value val){</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                mParam = val[<span class="stringliteral">&quot;param&quot;</span>].asString();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                mText.<a class="code" href="class_text.html#a4c3bfb942b0f1b0c2bfb3160cff2540e">Load</a>(val[<span class="stringliteral">&quot;text&quot;</span>]);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                mPhysics.<a class="code" href="class_physics.html#a4f3c17b426110578c06395c3594eb2b6">Load</a>(val[<span class="stringliteral">&quot;physics&quot;</span>]);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                mImage.<a class="code" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Load</a>(val[<span class="stringliteral">&quot;image&quot;</span>]);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        T *mObj;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        void (T::*mObjFunc)(std::string);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        std::string mParam;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:15 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:21 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

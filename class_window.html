@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,102 +91,43 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Handles the window.  
+ <a href="class_window.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="window_8h_source.html">window.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a245d821e6016fa1f6970ccbbedd635f6"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a245d821e6016fa1f6970ccbbedd635f6">~Window</a> ()</td></tr>
-<tr class="memdesc:a245d821e6016fa1f6970ccbbedd635f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: calls Quit to free the memory.  <a href="#a245d821e6016fa1f6970ccbbedd635f6"></a><br/></td></tr>
+<tr class="memitem:a245d821e6016fa1f6970ccbbedd635f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a245d821e6016fa1f6970ccbbedd635f6"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a245d821e6016fa1f6970ccbbedd635f6">~Window</a> ()</td></tr>
+<tr class="memdesc:a245d821e6016fa1f6970ccbbedd635f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor: calls Quit to free the memory. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a71f6d92fc4a7b09a5a4b02a4ed2a4742"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a71f6d92fc4a7b09a5a4b02a4ed2a4742">Init</a> (std::string title=&quot;Window&quot;)</td></tr>
-<tr class="memitem:a57d28573876dd89be70cd78b9302f461"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a57d28573876dd89be70cd78b9302f461">Quit</a> ()</td></tr>
-<tr class="memdesc:a57d28573876dd89be70cd78b9302f461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quit SDL and destroy the window and renderer.  <a href="#a57d28573876dd89be70cd78b9302f461"></a><br/></td></tr>
+<tr class="memitem:a57d28573876dd89be70cd78b9302f461"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57d28573876dd89be70cd78b9302f461"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a57d28573876dd89be70cd78b9302f461">Quit</a> ()</td></tr>
+<tr class="memdesc:a57d28573876dd89be70cd78b9302f461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quit SDL and destroy the window and renderer. <br/></td></tr>
 <tr class="memitem:a39b675a93ad2d923f8872b74dddaddee"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a39b675a93ad2d923f8872b74dddaddee">Draw</a> (int x, int y, SDL_Texture *tex, SDL_Rect *clip=NULL, int w=-1, int h=-1)</td></tr>
 <tr class="memitem:aa51a299900b61baf10ebc2be63c4dc34"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aa51a299900b61baf10ebc2be63c4dc34">Draw</a> (<a class="el" href="class_image.html">Image</a> *image, const SDL_Rect &amp;dstRect, SDL_Rect *clip=NULL)</td></tr>
 <tr class="memitem:acb32c0012c150a98de85d200123a4e61"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#acb32c0012c150a98de85d200123a4e61">Draw</a> (<a class="el" href="class_text.html">Text</a> *text, SDL_Rect dstRect)</td></tr>
 <tr class="memitem:afc4185743b1244c49c8657f13af31096"><td class="memItemLeft" align="right" valign="top">static SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#afc4185743b1244c49c8657f13af31096">LoadTexture</a> (std::string file)</td></tr>
 <tr class="memitem:a9a6dfef3bbd4dcf07af6862048167855"><td class="memItemLeft" align="right" valign="top">static SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a9a6dfef3bbd4dcf07af6862048167855">SurfaceToTexture</a> (SDL_Surface *surf)</td></tr>
-<tr class="memitem:a9904449165571eff36b106148ec1279f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a9904449165571eff36b106148ec1279f">Clear</a> ()</td></tr>
-<tr class="memdesc:a9904449165571eff36b106148ec1279f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the renderer.  <a href="#a9904449165571eff36b106148ec1279f"></a><br/></td></tr>
-<tr class="memitem:aca0d8246c2fbf1bdf0a0ae04eab73809"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aca0d8246c2fbf1bdf0a0ae04eab73809">Present</a> ()</td></tr>
-<tr class="memdesc:aca0d8246c2fbf1bdf0a0ae04eab73809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Present the renderer, ie. update screen.  <a href="#aca0d8246c2fbf1bdf0a0ae04eab73809"></a><br/></td></tr>
+<tr class="memitem:a9904449165571eff36b106148ec1279f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9904449165571eff36b106148ec1279f"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a9904449165571eff36b106148ec1279f">Clear</a> ()</td></tr>
+<tr class="memdesc:a9904449165571eff36b106148ec1279f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear the renderer. <br/></td></tr>
+<tr class="memitem:aca0d8246c2fbf1bdf0a0ae04eab73809"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca0d8246c2fbf1bdf0a0ae04eab73809"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aca0d8246c2fbf1bdf0a0ae04eab73809">Present</a> ()</td></tr>
+<tr class="memdesc:aca0d8246c2fbf1bdf0a0ae04eab73809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Present the renderer, ie. update screen. <br/></td></tr>
 <tr class="memitem:ab1c8fdb0fbcd7ad31ddc9a5aad4576a8"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#ab1c8fdb0fbcd7ad31ddc9a5aad4576a8">HandleEvents</a> (SDL_Event &amp;e)</td></tr>
-<tr class="memitem:a233b3469e0bd6ab08ad7bfefd1137081"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a233b3469e0bd6ab08ad7bfefd1137081">Box</a> ()</td></tr>
-<tr class="memdesc:a233b3469e0bd6ab08ad7bfefd1137081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the window's box.  <a href="#a233b3469e0bd6ab08ad7bfefd1137081"></a><br/></td></tr>
+<tr class="memitem:a233b3469e0bd6ab08ad7bfefd1137081"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a233b3469e0bd6ab08ad7bfefd1137081"></a>
+static <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a233b3469e0bd6ab08ad7bfefd1137081">Box</a> ()</td></tr>
+<tr class="memdesc:a233b3469e0bd6ab08ad7bfefd1137081"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the window's box. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_window.html">Window</a> management class, provides a simple wrapper around the SDL_Window and SDL_Renderer functionalities </p>
-</div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a245d821e6016fa1f6970ccbbedd635f6"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Window::~Window </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Destructor: calls Quit to free the memory. </p>
-
-</div>
-</div>
-<h2>Member Function Documentation</h2>
-<a class="anchor" id="a233b3469e0bd6ab08ad7bfefd1137081"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a> Window::Box </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the window's box. </p>
-
-</div>
-</div>
-<a class="anchor" id="a9904449165571eff36b106148ec1279f"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Window::Clear </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Clear the renderer. </p>
-
-</div>
-</div>
+<div class="textblock"><p>Handles the window. </p>
+<p><a class="el" href="class_window.html" title="Handles the window.">Window</a> management class, provides a simple wrapper around the SDL_Window and SDL_Renderer functionalities </p>
+</div><h2>Member Function Documentation</h2>
 <a class="anchor" id="a39b675a93ad2d923f8872b74dddaddee"></a>
 <div class="memitem">
 <div class="memproto">
@@ -442,56 +383,6 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aca0d8246c2fbf1bdf0a0ae04eab73809"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Window::Present </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Present the renderer, ie. update screen. </p>
-
-</div>
-</div>
-<a class="anchor" id="a57d28573876dd89be70cd78b9302f461"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Window::Quit </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Quit SDL and destroy the window and renderer. </p>
-
-</div>
-</div>
 <a class="anchor" id="a9a6dfef3bbd4dcf07af6862048167855"></a>
 <div class="memitem">
 <div class="memproto">
@@ -526,12 +417,12 @@ Static Public Member Functions</h2></td></tr>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="window_8h_source.html">window.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="window_8cpp.html">window.cpp</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/window.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

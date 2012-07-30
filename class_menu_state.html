@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,133 +91,58 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>A state for running a menu system.  
+ <a href="class_menu_state.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="menustate_8h_source.html">menustate.h</a>&gt;</code></p>
 
 <p>Inherits <a class="el" href="class_state.html">State</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa8c0b7495397c6c46d137f6c5b3167d3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_state.html#aa8c0b7495397c6c46d137f6c5b3167d3">MenuState</a> ()</td></tr>
-<tr class="memitem:a58aea91a44436c5bba575c5de755a5bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_state.html#a58aea91a44436c5bba575c5de755a5bc">~MenuState</a> ()</td></tr>
 <tr class="memitem:a9951aef99ac4058f8fd63dabcfb0b508"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_state.html#a9951aef99ac4058f8fd63dabcfb0b508">Run</a> ()</td></tr>
 <tr class="memitem:ad8debd1fc392403df42b38f1570d5646"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_state.html#ad8debd1fc392403df42b38f1570d5646">Save</a> ()</td></tr>
 <tr class="memitem:ad4fedfbe352a52c7e91ebdc27f124cb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_state.html#ad4fedfbe352a52c7e91ebdc27f124cb4">Load</a> (Json::Value val)</td></tr>
 <tr class="inherit_header pub_methods_class_state"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_state')"><img src="closed.png" alt="-"/>&nbsp;Public Member Functions inherited from <a class="el" href="class_state.html">State</a></td></tr>
-<tr class="memitem:ab91bb1dd5aa6260ab2a456581daf9ec2 inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#ab91bb1dd5aa6260ab2a456581daf9ec2">State</a> ()</td></tr>
-<tr class="memitem:afab438d92b90dc18d194dbd9c9c8bab3 inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#afab438d92b90dc18d194dbd9c9c8bab3">~State</a> ()</td></tr>
 <tr class="memitem:a595415c02961abb82336a90bf36b0ffb inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#a595415c02961abb82336a90bf36b0ffb">SetExit</a> (std::string val)</td></tr>
-<tr class="memitem:a849ac807e588196dd073a0e27f514bae inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#a849ac807e588196dd073a0e27f514bae">UnsetExit</a> ()</td></tr>
-<tr class="memdesc:a849ac807e588196dd073a0e27f514bae inherit pub_methods_class_state"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set exit to false.  <a href="#a849ac807e588196dd073a0e27f514bae"></a><br/></td></tr>
+<tr class="memitem:a849ac807e588196dd073a0e27f514bae inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a849ac807e588196dd073a0e27f514bae"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#a849ac807e588196dd073a0e27f514bae">UnsetExit</a> ()</td></tr>
+<tr class="memdesc:a849ac807e588196dd073a0e27f514bae inherit pub_methods_class_state"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set exit to false. <br/></td></tr>
 <tr class="memitem:a0aa838bac877e885a40846b40f7fb3f7 inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#a0aa838bac877e885a40846b40f7fb3f7">SetName</a> (std::string name)</td></tr>
-<tr class="memitem:a00204bb2dd5bd89611f38be66cc4af34 inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#a00204bb2dd5bd89611f38be66cc4af34">Name</a> ()</td></tr>
-<tr class="memdesc:a00204bb2dd5bd89611f38be66cc4af34 inherit pub_methods_class_state"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the state's name.  <a href="#a00204bb2dd5bd89611f38be66cc4af34"></a><br/></td></tr>
+<tr class="memitem:a00204bb2dd5bd89611f38be66cc4af34 inherit pub_methods_class_state"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a00204bb2dd5bd89611f38be66cc4af34"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#a00204bb2dd5bd89611f38be66cc4af34">Name</a> ()</td></tr>
+<tr class="memdesc:a00204bb2dd5bd89611f38be66cc4af34 inherit pub_methods_class_state"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the state's name. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a5603e838c507c706575c0c5ae5960902"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_state.html#a5603e838c507c706575c0c5ae5960902">Init</a> ()</td></tr>
-<tr class="memdesc:a5603e838c507c706575c0c5ae5960902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize state memory.  <a href="#a5603e838c507c706575c0c5ae5960902"></a><br/></td></tr>
-<tr class="memitem:aca7e5902cc9d50bea8442bb5e65f119b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_state.html#aca7e5902cc9d50bea8442bb5e65f119b">Free</a> ()</td></tr>
-<tr class="memdesc:aca7e5902cc9d50bea8442bb5e65f119b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free state memory.  <a href="#aca7e5902cc9d50bea8442bb5e65f119b"></a><br/></td></tr>
+<tr class="memitem:a5603e838c507c706575c0c5ae5960902"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5603e838c507c706575c0c5ae5960902"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_state.html#a5603e838c507c706575c0c5ae5960902">Init</a> ()</td></tr>
+<tr class="memdesc:a5603e838c507c706575c0c5ae5960902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize state memory. <br/></td></tr>
+<tr class="memitem:aca7e5902cc9d50bea8442bb5e65f119b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aca7e5902cc9d50bea8442bb5e65f119b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_menu_state.html#aca7e5902cc9d50bea8442bb5e65f119b">Free</a> ()</td></tr>
+<tr class="memdesc:aca7e5902cc9d50bea8442bb5e65f119b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Free state memory. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_state"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_state')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="class_state.html">State</a></td></tr>
-<tr class="memitem:abc01986f8f1ef28cf7b44782875a6e22 inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top">std::shared_ptr<br class="typebreak"/>
-&lt; <a class="el" href="class_game_object_manager.html">GameObjectManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#abc01986f8f1ef28cf7b44782875a6e22">mManager</a></td></tr>
-<tr class="memitem:a6f3d0774e7ecffcfb49fc792fe14b791 inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; <a class="el" href="class_camera.html">Camera</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#a6f3d0774e7ecffcfb49fc792fe14b791">mCamera</a></td></tr>
-<tr class="memitem:a155ad3509af17a0fe01bd262f4d156e9 inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#a155ad3509af17a0fe01bd262f4d156e9">mSceneBox</a></td></tr>
-<tr class="memitem:af2a52379c7053f2744f1ee701448d64e inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#af2a52379c7053f2744f1ee701448d64e">mName</a></td></tr>
-<tr class="memitem:ad1c610285765f051453dd78b935fde7f inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#ad1c610285765f051453dd78b935fde7f">mExit</a></td></tr>
-<tr class="memitem:aef93078202d00866969aae2cffefe834 inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_state.html#aef93078202d00866969aae2cffefe834">mExitCode</a></td></tr>
+<tr class="memitem:abc01986f8f1ef28cf7b44782875a6e22 inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abc01986f8f1ef28cf7b44782875a6e22"></a>
+std::shared_ptr<br class="typebreak"/>
+&lt; <a class="el" href="class_game_object_manager.html">GameObjectManager</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mManager</b></td></tr>
+<tr class="memitem:a6f3d0774e7ecffcfb49fc792fe14b791 inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f3d0774e7ecffcfb49fc792fe14b791"></a>
+std::shared_ptr&lt; <a class="el" href="class_camera.html">Camera</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mCamera</b></td></tr>
+<tr class="memitem:a155ad3509af17a0fe01bd262f4d156e9 inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a155ad3509af17a0fe01bd262f4d156e9"></a>
+<a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mSceneBox</b></td></tr>
+<tr class="memitem:af2a52379c7053f2744f1ee701448d64e inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2a52379c7053f2744f1ee701448d64e"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>mName</b></td></tr>
+<tr class="memitem:ad1c610285765f051453dd78b935fde7f inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad1c610285765f051453dd78b935fde7f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>mExit</b></td></tr>
+<tr class="memitem:aef93078202d00866969aae2cffefe834 inherit pro_attribs_class_state"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aef93078202d00866969aae2cffefe834"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>mExitCode</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>For creating and using a simple menu state </p>
-</div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aa8c0b7495397c6c46d137f6c5b3167d3"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MenuState::MenuState </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a58aea91a44436c5bba575c5de755a5bc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MenuState::~MenuState </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2>Member Function Documentation</h2>
-<a class="anchor" id="aca7e5902cc9d50bea8442bb5e65f119b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MenuState::Free </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Free state memory. </p>
-
-<p>Implements <a class="el" href="class_state.html#a334a2b77a5be92940bdc43e01ebc9b81">State</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="a5603e838c507c706575c0c5ae5960902"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MenuState::Init </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Initialize state memory. </p>
-
-<p>Implements <a class="el" href="class_state.html#a7ab4d8c6aa239a17ed579d89a209b156">State</a>.</p>
-
-</div>
-</div>
+<div class="textblock"><p>A state for running a menu system. </p>
+<p>For creating and using a simple menu state </p>
+</div><h2>Member Function Documentation</h2>
 <a class="anchor" id="ad4fedfbe352a52c7e91ebdc27f124cb4"></a>
 <div class="memitem">
 <div class="memproto">
@@ -309,12 +234,12 @@ Additional Inherited Members</h2></td></tr>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="menustate_8h_source.html">menustate.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="menustate_8cpp.html">menustate.cpp</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/menustate.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

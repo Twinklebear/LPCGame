@@ -69,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -87,58 +87,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Math Namespace Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A math utility function namespace.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a7436d9682eac6b791a06ec11b1187a09"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="namespace_math.html#a7436d9682eac6b791a06ec11b1187a09a52baf9fd57ffe954f9ced2373434a308">UP</a>, 
-<a class="el" href="namespace_math.html#a7436d9682eac6b791a06ec11b1187a09aaa9d99a0d871f5746fd55c0ffc39e50a">DOWN</a>, 
-<a class="el" href="namespace_math.html#a7436d9682eac6b791a06ec11b1187a09a0e724269f642f402f5936f76d9060778">LEFT</a>, 
-<a class="el" href="namespace_math.html#a7436d9682eac6b791a06ec11b1187a09a9b02519c3b92cba444adc5ff4838d28d">RIGHT</a>
+<tr class="memitem:a7436d9682eac6b791a06ec11b1187a09"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>UP</b>, 
+<b>DOWN</b>, 
+<b>LEFT</b>, 
+<b>RIGHT</b>
  }</td></tr>
-<tr class="memdesc:a7436d9682eac6b791a06ec11b1187a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a direction.  <a href="namespace_math.html#a7436d9682eac6b791a06ec11b1187a09">More...</a><br/></td></tr>
+<tr class="memdesc:a7436d9682eac6b791a06ec11b1187a09"><td class="mdescLeft">&#160;</td><td class="mdescRight">Describes a direction. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a3caada48e8fdeef772a97173478ddd17"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a3caada48e8fdeef772a97173478ddd17">Distance</a> (const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;a, const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;b)</td></tr>
+<tr class="memitem:a3caada48e8fdeef772a97173478ddd17"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a3caada48e8fdeef772a97173478ddd17">Distance</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;a, const <a class="el" href="class_vector2.html">Vector2f</a> &amp;b)</td></tr>
 <tr class="memitem:accf92ae46293735b9ec67e7b53eda32f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#accf92ae46293735b9ec67e7b53eda32f">Clamp</a> (const float x, const float min, const float max)</td></tr>
-<tr class="memitem:a729df13db67f5fdc154dd8d03f95d643"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a729df13db67f5fdc154dd8d03f95d643">RectNearRect</a> (const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;a, const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;b, int tolerance=0)</td></tr>
-<tr class="memitem:a0dcddce5d37b62846254ce98c62d8c02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a0dcddce5d37b62846254ce98c62d8c02">CheckCollision</a> (const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;a, const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;b)</td></tr>
-<tr class="memitem:a65a013ea488f4bf1c18e0ff3abce5f12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a65a013ea488f4bf1c18e0ff3abce5f12">CheckCollision</a> (const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;p, const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;r)</td></tr>
-<tr class="memitem:a9bea8b44094830e0c96b3505ef2402bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a9bea8b44094830e0c96b3505ef2402bf">ToSceneSpace</a> (const <a class="el" href="class_camera.html">Camera</a> *cam, const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;v)</td></tr>
-<tr class="memitem:ab93dbfe8152303d4b35bc77a35192468"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ab93dbfe8152303d4b35bc77a35192468">ToSceneSpace</a> (const <a class="el" href="class_camera.html">Camera</a> *cam, const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;r)</td></tr>
-<tr class="memitem:a8ab20b6ad8b2004779ea5835fcb37648"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a8ab20b6ad8b2004779ea5835fcb37648">FromSceneSpace</a> (const <a class="el" href="class_camera.html">Camera</a> *cam, const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;v)</td></tr>
-<tr class="memitem:a68623903d73079faa1f09f7ff043e2ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a68623903d73079faa1f09f7ff043e2ed">FromSceneSpace</a> (const <a class="el" href="class_camera.html">Camera</a> *cam, const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;r)</td></tr>
+<tr class="memitem:a729df13db67f5fdc154dd8d03f95d643"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a729df13db67f5fdc154dd8d03f95d643">RectNearRect</a> (const <a class="el" href="class_rect.html">Rectf</a> &amp;a, const <a class="el" href="class_rect.html">Rectf</a> &amp;b, int tolerance=0)</td></tr>
+<tr class="memitem:a0dcddce5d37b62846254ce98c62d8c02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a0dcddce5d37b62846254ce98c62d8c02">CheckCollision</a> (const <a class="el" href="class_rect.html">Rectf</a> &amp;a, const <a class="el" href="class_rect.html">Rectf</a> &amp;b)</td></tr>
+<tr class="memitem:a65a013ea488f4bf1c18e0ff3abce5f12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a65a013ea488f4bf1c18e0ff3abce5f12">CheckCollision</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;p, const <a class="el" href="class_rect.html">Rectf</a> &amp;r)</td></tr>
+<tr class="memitem:a9bea8b44094830e0c96b3505ef2402bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a9bea8b44094830e0c96b3505ef2402bf">ToSceneSpace</a> (const <a class="el" href="class_camera.html">Camera</a> *cam, const <a class="el" href="class_vector2.html">Vector2f</a> &amp;v)</td></tr>
+<tr class="memitem:ab93dbfe8152303d4b35bc77a35192468"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#ab93dbfe8152303d4b35bc77a35192468">ToSceneSpace</a> (const <a class="el" href="class_camera.html">Camera</a> *cam, const <a class="el" href="class_rect.html">Rectf</a> &amp;r)</td></tr>
+<tr class="memitem:a8ab20b6ad8b2004779ea5835fcb37648"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a8ab20b6ad8b2004779ea5835fcb37648">FromSceneSpace</a> (const <a class="el" href="class_camera.html">Camera</a> *cam, const <a class="el" href="class_vector2.html">Vector2f</a> &amp;v)</td></tr>
+<tr class="memitem:a68623903d73079faa1f09f7ff043e2ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a68623903d73079faa1f09f7ff043e2ed">FromSceneSpace</a> (const <a class="el" href="class_camera.html">Camera</a> *cam, const <a class="el" href="class_rect.html">Rectf</a> &amp;r)</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>A math utility function namespace </p>
-</div><h2>Enumeration Type Documentation</h2>
-<a class="anchor" id="a7436d9682eac6b791a06ec11b1187a09"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">anonymous enum</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Describes a direction. </p>
-<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a7436d9682eac6b791a06ec11b1187a09a52baf9fd57ffe954f9ced2373434a308"></a>UP</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a7436d9682eac6b791a06ec11b1187a09aaa9d99a0d871f5746fd55c0ffc39e50a"></a>DOWN</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a7436d9682eac6b791a06ec11b1187a09a0e724269f642f402f5936f76d9060778"></a>LEFT</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="a7436d9682eac6b791a06ec11b1187a09a9b02519c3b92cba444adc5ff4838d28d"></a>RIGHT</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dd>
-</dl>
-
-</div>
-</div>
-<h2>Function Documentation</h2>
+<div class="textblock"><p>A math utility function namespace. </p>
+<p>A math utility function namespace </p>
+</div><h2>Function Documentation</h2>
 <a class="anchor" id="a0dcddce5d37b62846254ce98c62d8c02"></a>
 <div class="memitem">
 <div class="memproto">
@@ -146,13 +123,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">bool Math::CheckCollision </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_rect.html">Rectf</a> &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_rect.html">Rectf</a> &amp;&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
@@ -165,8 +142,8 @@ Functions</h2></td></tr>
 <p>Check collision between two rectangles </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>First <a class="el" href="class_rect.html">Rect</a> </td></tr>
-    <tr><td class="paramname">b</td><td>Second <a class="el" href="class_rect.html">Rect</a> </td></tr>
+    <tr><td class="paramname">a</td><td>First <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> </td></tr>
+    <tr><td class="paramname">b</td><td>Second <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -181,13 +158,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">bool Math::CheckCollision </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_vector2.html">Vector2f</a> &amp;&#160;</td>
           <td class="paramname"><em>p</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_rect.html">Rectf</a> &amp;&#160;</td>
           <td class="paramname"><em>r</em>&#160;</td>
         </tr>
         <tr>
@@ -200,8 +177,8 @@ Functions</h2></td></tr>
 <p>Check collision between a Vector and a rectangle ie. if the point is inside/on edge of the rectangle </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">p</td><td>The Vector (point) </td></tr>
-    <tr><td class="paramname">r</td><td>The <a class="el" href="class_rect.html">Rect</a> </td></tr>
+    <tr><td class="paramname">p</td><td>The <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> (point) </td></tr>
+    <tr><td class="paramname">r</td><td>The <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> </td></tr>
   </table>
   </dd>
 </dl>
@@ -258,13 +235,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">float Math::Distance </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_vector2.html">Vector2f</a> &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_vector2.html">Vector2f</a> &amp;&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
@@ -291,7 +268,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> Math::FromSceneSpace </td>
+          <td class="memname"><a class="el" href="class_vector2.html">Vector2f</a> Math::FromSceneSpace </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> *&#160;</td>
           <td class="paramname"><em>cam</em>, </td>
@@ -299,7 +276,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_vector2.html">Vector2f</a> &amp;&#160;</td>
           <td class="paramname"><em>v</em>&#160;</td>
         </tr>
         <tr>
@@ -313,11 +290,11 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cam</td><td>The camera/scene space to convert the vector to </td></tr>
-    <tr><td class="paramname">v</td><td>The vector to convert to window space </td></tr>
+    <tr><td class="paramname">v</td><td>The <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> to convert to window space </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The vector transformed to window space </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> transformed to window space </dd></dl>
 
 </div>
 </div>
@@ -326,7 +303,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> Math::FromSceneSpace </td>
+          <td class="memname"><a class="el" href="class_rect.html">Rectf</a> Math::FromSceneSpace </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> *&#160;</td>
           <td class="paramname"><em>cam</em>, </td>
@@ -334,7 +311,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_rect.html">Rectf</a> &amp;&#160;</td>
           <td class="paramname"><em>r</em>&#160;</td>
         </tr>
         <tr>
@@ -348,11 +325,11 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cam</td><td>The camera/scene space to convert the vector to </td></tr>
-    <tr><td class="paramname">r</td><td>The <a class="el" href="class_rect.html">Rect</a> to convert to window space </td></tr>
+    <tr><td class="paramname">r</td><td>The <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> to convert to window space </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_rect.html">Rect</a> with its pos value converted to window space </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> with its pos value converted to window space </dd></dl>
 
 </div>
 </div>
@@ -363,13 +340,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int Math::RectNearRect </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_rect.html">Rectf</a> &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_rect.html">Rectf</a> &amp;&#160;</td>
           <td class="paramname"><em>b</em>, </td>
         </tr>
         <tr>
@@ -388,13 +365,13 @@ Functions</h2></td></tr>
 <p>Check if two rectangles are near each other and return the side of a that's near b TODO: Implement an early out for this function if the rect's are too far </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">a</td><td>The first <a class="el" href="class_rect.html">Rect</a> </td></tr>
-    <tr><td class="paramname">b</td><td>The <a class="el" href="class_rect.html">Rect</a> to see if a is near </td></tr>
-    <tr><td class="paramname">tolerance</td><td>The max distance the <a class="el" href="class_rect.html">Rect</a>'s can be from each other, default is 0 </td></tr>
+    <tr><td class="paramname">a</td><td>The first <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> </td></tr>
+    <tr><td class="paramname">b</td><td>The <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> to see if a is near </td></tr>
+    <tr><td class="paramname">tolerance</td><td>The max distance the <a class="el" href="class_rect.html" title="A rectangle.">Rect</a>'s can be from each other, default is 0 </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The enumerator representing the side of <a class="el" href="class_rect.html">Rect</a> A that's within tolerance of B, if none return -1 </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The enumerator representing the side of <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> A that's within tolerance of B, if none return -1 </dd></dl>
 
 </div>
 </div>
@@ -403,7 +380,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> Math::ToSceneSpace </td>
+          <td class="memname"><a class="el" href="class_vector2.html">Vector2f</a> Math::ToSceneSpace </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> *&#160;</td>
           <td class="paramname"><em>cam</em>, </td>
@@ -411,7 +388,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_vector2.html">Vector2f</a> &amp;&#160;</td>
           <td class="paramname"><em>v</em>&#160;</td>
         </tr>
         <tr>
@@ -425,11 +402,11 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cam</td><td>The camera/scene space to convert the vector to </td></tr>
-    <tr><td class="paramname">v</td><td>The vector to convert to scene space </td></tr>
+    <tr><td class="paramname">v</td><td>The <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> to convert to scene space </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The vector transformed to scene space </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> transformed to scene space </dd></dl>
 
 </div>
 </div>
@@ -438,7 +415,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> Math::ToSceneSpace </td>
+          <td class="memname"><a class="el" href="class_rect.html">Rectf</a> Math::ToSceneSpace </td>
           <td>(</td>
           <td class="paramtype">const <a class="el" href="class_camera.html">Camera</a> *&#160;</td>
           <td class="paramname"><em>cam</em>, </td>
@@ -446,7 +423,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_rect.html">Rectf</a> &amp;&#160;</td>
           <td class="paramname"><em>r</em>&#160;</td>
         </tr>
         <tr>
@@ -460,18 +437,18 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cam</td><td>The camera/scene space to convert the vector to </td></tr>
-    <tr><td class="paramname">r</td><td>The <a class="el" href="class_rect.html">Rect</a> to convert to scene space </td></tr>
+    <tr><td class="paramname">r</td><td>The <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> to convert to scene space </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_rect.html">Rect</a> with its pos value transformed to scene space </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_rect.html" title="A rectangle.">Rect</a> with its pos value transformed to scene space </dd></dl>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
