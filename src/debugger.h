@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 
+///Not really a debugger, it's a simple log file
 /**
 *	A simple class to help with debugging, will print 
 *	string data passed to it to a desired text file

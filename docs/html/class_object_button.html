@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,112 +90,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>A button that can register class member functions.  
+ <a href="class_object_button.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="objectbutton_8h_source.html">objectbutton.h</a>&gt;</code></p>
 
 <p>Inherits <a class="el" href="class_button.html">Button</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a72bc1c3d30fa0961258318d56f1554bd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_button.html#a72bc1c3d30fa0961258318d56f1554bd">ObjectButton</a> ()</td></tr>
-<tr class="memitem:aeddfc84ed49a3b79ca7368c84388dc1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_button.html#aeddfc84ed49a3b79ca7368c84388dc1f">~ObjectButton</a> ()</td></tr>
 <tr class="memitem:a7c2e66da0a2bbfbc9cddbaa8c535b870"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_button.html#a7c2e66da0a2bbfbc9cddbaa8c535b870">RegisterCallBack</a> (T *obj, void(T::*func)(std::string), std::string param)</td></tr>
-<tr class="memitem:ac482967f8b880bf12cf67004f7adbd55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_button.html#ac482967f8b880bf12cf67004f7adbd55">OnClick</a> ()</td></tr>
-<tr class="memdesc:ac482967f8b880bf12cf67004f7adbd55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the registered callback function.  <a href="#ac482967f8b880bf12cf67004f7adbd55"></a><br/></td></tr>
+<tr class="memitem:ac482967f8b880bf12cf67004f7adbd55"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac482967f8b880bf12cf67004f7adbd55"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_button.html#ac482967f8b880bf12cf67004f7adbd55">OnClick</a> ()</td></tr>
+<tr class="memdesc:ac482967f8b880bf12cf67004f7adbd55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run the registered callback function. <br/></td></tr>
 <tr class="memitem:a6ea3e851d2e798eb81d28727a3a55d97"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">Save</a> ()</td></tr>
 <tr class="memitem:a3ccd04f0a02451837c1ed1563fd0b48b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">Load</a> (Json::Value val)</td></tr>
 <tr class="inherit_header pub_methods_class_button"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_button')"><img src="closed.png" alt="-"/>&nbsp;Public Member Functions inherited from <a class="el" href="class_button.html">Button</a></td></tr>
-<tr class="memitem:a3b36df1ae23c58aedb9e15a713159459 inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a3b36df1ae23c58aedb9e15a713159459">Button</a> ()</td></tr>
-<tr class="memitem:a2a001eb9c3cc8ae54768a850dd345002 inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a2a001eb9c3cc8ae54768a850dd345002">~Button</a> ()</td></tr>
-<tr class="memitem:a23e8bc9ad05142244ea4e79a406a6c9c inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a23e8bc9ad05142244ea4e79a406a6c9c">Update</a> ()</td></tr>
-<tr class="memdesc:a23e8bc9ad05142244ea4e79a406a6c9c inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the game object.  <a href="#a23e8bc9ad05142244ea4e79a406a6c9c"></a><br/></td></tr>
+<tr class="memitem:a23e8bc9ad05142244ea4e79a406a6c9c inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a23e8bc9ad05142244ea4e79a406a6c9c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a23e8bc9ad05142244ea4e79a406a6c9c">Update</a> ()</td></tr>
+<tr class="memdesc:a23e8bc9ad05142244ea4e79a406a6c9c inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the game object. <br/></td></tr>
 <tr class="memitem:a06460f5cb500807ff377b60b68e7a0dc inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a06460f5cb500807ff377b60b68e7a0dc">Draw</a> (<a class="el" href="class_camera.html">Camera</a> *cam=nullptr)</td></tr>
 <tr class="memitem:a4d56591088110eaaaf1eef5fc5cbff06 inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a4d56591088110eaaaf1eef5fc5cbff06">Move</a> (float deltaT)</td></tr>
-<tr class="memitem:a245041fab5ab6b79123bf17174e170ed inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a245041fab5ab6b79123bf17174e170ed">OnMouseDown</a> ()</td></tr>
-<tr class="memdesc:a245041fab5ab6b79123bf17174e170ed inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse down events.  <a href="#a245041fab5ab6b79123bf17174e170ed"></a><br/></td></tr>
-<tr class="memitem:abd3979ee1893fee58499fa4bf01d505c inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#abd3979ee1893fee58499fa4bf01d505c">OnMouseUp</a> ()</td></tr>
-<tr class="memdesc:abd3979ee1893fee58499fa4bf01d505c inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse up event.  <a href="#abd3979ee1893fee58499fa4bf01d505c"></a><br/></td></tr>
-<tr class="memitem:a69408b048737143eba5ab348e9208405 inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a69408b048737143eba5ab348e9208405">OnMouseEnter</a> ()</td></tr>
-<tr class="memdesc:a69408b048737143eba5ab348e9208405 inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse enter.  <a href="#a69408b048737143eba5ab348e9208405"></a><br/></td></tr>
-<tr class="memitem:a13ee48e556415dd9ce6b6e8ccdcb8a2c inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a13ee48e556415dd9ce6b6e8ccdcb8a2c">OnMouseExit</a> ()</td></tr>
-<tr class="memdesc:a13ee48e556415dd9ce6b6e8ccdcb8a2c inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse exit.  <a href="#a13ee48e556415dd9ce6b6e8ccdcb8a2c"></a><br/></td></tr>
+<tr class="memitem:a245041fab5ab6b79123bf17174e170ed inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a245041fab5ab6b79123bf17174e170ed"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a245041fab5ab6b79123bf17174e170ed">OnMouseDown</a> ()</td></tr>
+<tr class="memdesc:a245041fab5ab6b79123bf17174e170ed inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse down events. <br/></td></tr>
+<tr class="memitem:abd3979ee1893fee58499fa4bf01d505c inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd3979ee1893fee58499fa4bf01d505c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#abd3979ee1893fee58499fa4bf01d505c">OnMouseUp</a> ()</td></tr>
+<tr class="memdesc:abd3979ee1893fee58499fa4bf01d505c inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse up event. <br/></td></tr>
+<tr class="memitem:a69408b048737143eba5ab348e9208405 inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69408b048737143eba5ab348e9208405"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a69408b048737143eba5ab348e9208405">OnMouseEnter</a> ()</td></tr>
+<tr class="memdesc:a69408b048737143eba5ab348e9208405 inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse enter. <br/></td></tr>
+<tr class="memitem:a13ee48e556415dd9ce6b6e8ccdcb8a2c inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a13ee48e556415dd9ce6b6e8ccdcb8a2c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a13ee48e556415dd9ce6b6e8ccdcb8a2c">OnMouseExit</a> ()</td></tr>
+<tr class="memdesc:a13ee48e556415dd9ce6b6e8ccdcb8a2c inherit pub_methods_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse exit. <br/></td></tr>
 <tr class="memitem:ad3a3442eae1a189d01b164465a2652ce inherit pub_methods_class_button"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#ad3a3442eae1a189d01b164465a2652ce">RegisterCallBack</a> (void(*f)(std::string), std::string param)</td></tr>
 <tr class="inherit_header pub_methods_class_game_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_game_object')"><img src="closed.png" alt="-"/>&nbsp;Public Member Functions inherited from <a class="el" href="class_game_object.html">GameObject</a></td></tr>
-<tr class="memitem:a0348e3ee2e83d56eafca7a3547f432c4 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a0348e3ee2e83d56eafca7a3547f432c4">GameObject</a> ()</td></tr>
-<tr class="memitem:a224d4f6d9dd75c8a6f9d022eaf586fd9 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a224d4f6d9dd75c8a6f9d022eaf586fd9">~GameObject</a> ()</td></tr>
-<tr class="memitem:a7e515dac7293c13f64cc826398d46586 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a7e515dac7293c13f64cc826398d46586">CheckMouseOver</a> (const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;pos)</td></tr>
-<tr class="memitem:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af3d005b7cd181f11618c638abd43eb21">GetMouseOver</a> ()</td></tr>
-<tr class="memdesc:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return T/F is the mouse is over the object.  <a href="#af3d005b7cd181f11618c638abd43eb21"></a><br/></td></tr>
-<tr class="memitem:a1d71ba2226edad1424d4a9ebb6e68570 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a1d71ba2226edad1424d4a9ebb6e68570">SetCollisionMap</a> (<a class="el" href="base_8h.html#a9f9733a49b8f313ba6659ffc58abd436">CollisionMap</a> map)</td></tr>
-<tr class="memitem:af25bdab0cfbc55ae979484cef21b11ca inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af25bdab0cfbc55ae979484cef21b11ca">Box</a> ()</td></tr>
-<tr class="memdesc:af25bdab0cfbc55ae979484cef21b11ca inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the object's box.  <a href="#af25bdab0cfbc55ae979484cef21b11ca"></a><br/></td></tr>
+<tr class="memitem:a7e515dac7293c13f64cc826398d46586 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a7e515dac7293c13f64cc826398d46586">CheckMouseOver</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;pos)</td></tr>
+<tr class="memitem:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3d005b7cd181f11618c638abd43eb21"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af3d005b7cd181f11618c638abd43eb21">GetMouseOver</a> ()</td></tr>
+<tr class="memdesc:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return T/F is the mouse is over the object. <br/></td></tr>
+<tr class="memitem:a1d71ba2226edad1424d4a9ebb6e68570 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a1d71ba2226edad1424d4a9ebb6e68570">SetCollisionMap</a> (CollisionMap map)</td></tr>
+<tr class="memitem:af25bdab0cfbc55ae979484cef21b11ca inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af25bdab0cfbc55ae979484cef21b11ca"></a>
+<a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af25bdab0cfbc55ae979484cef21b11ca">Box</a> ()</td></tr>
+<tr class="memdesc:af25bdab0cfbc55ae979484cef21b11ca inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the object's box. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_button"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_button')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="class_button.html">Button</a></td></tr>
-<tr class="memitem:a8b097be23fca0b73d665bd1a748170da inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_image.html">Image</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a8b097be23fca0b73d665bd1a748170da">mImage</a></td></tr>
-<tr class="memitem:a84647ac29e63b8bb5cc917e4e34558e1 inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_text.html">Text</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a84647ac29e63b8bb5cc917e4e34558e1">mText</a></td></tr>
-<tr class="memitem:a6d43a3440c9f9330d203a6816f159156 inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a6d43a3440c9f9330d203a6816f159156">mClicked</a></td></tr>
-<tr class="memitem:add9dd816f30403630bc48df237b00416 inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#add9dd816f30403630bc48df237b00416">mFunc</a> )(std::string)</td></tr>
-<tr class="memdesc:add9dd816f30403630bc48df237b00416 inherit pro_attribs_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">The callback function pointer &amp; its value.  <a href="#add9dd816f30403630bc48df237b00416"></a><br/></td></tr>
-<tr class="memitem:a71a53d72ee8d0d87a86036615174b7dc inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#a71a53d72ee8d0d87a86036615174b7dc">mParam</a></td></tr>
+<tr class="memitem:a8b097be23fca0b73d665bd1a748170da inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b097be23fca0b73d665bd1a748170da"></a>
+<a class="el" href="class_image.html">Image</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mImage</b></td></tr>
+<tr class="memitem:a84647ac29e63b8bb5cc917e4e34558e1 inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84647ac29e63b8bb5cc917e4e34558e1"></a>
+<a class="el" href="class_text.html">Text</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mText</b></td></tr>
+<tr class="memitem:a6d43a3440c9f9330d203a6816f159156 inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d43a3440c9f9330d203a6816f159156"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>mClicked</b></td></tr>
+<tr class="memitem:add9dd816f30403630bc48df237b00416 inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="add9dd816f30403630bc48df237b00416"></a>
+void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_button.html#add9dd816f30403630bc48df237b00416">mFunc</a> )(std::string)</td></tr>
+<tr class="memdesc:add9dd816f30403630bc48df237b00416 inherit pro_attribs_class_button"><td class="mdescLeft">&#160;</td><td class="mdescRight">The callback function pointer &amp; its value. <br/></td></tr>
+<tr class="memitem:a71a53d72ee8d0d87a86036615174b7dc inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71a53d72ee8d0d87a86036615174b7dc"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>mParam</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><h3>template&lt;class T&gt;<br/>
 class ObjectButton&lt; T &gt;</h3>
 
+<p>A button that can register class member functions. </p>
 <p>A button that is able to register class member functions as its callback </p>
-</div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a72bc1c3d30fa0961258318d56f1554bd"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_object_button.html">ObjectButton</a>&lt; T &gt;::<a class="el" href="class_object_button.html">ObjectButton</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="aeddfc84ed49a3b79ca7368c84388dc1f"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_object_button.html">ObjectButton</a>&lt; T &gt;::~<a class="el" href="class_object_button.html">ObjectButton</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2>Member Function Documentation</h2>
+</div><h2>Member Function Documentation</h2>
 <a class="anchor" id="a3ccd04f0a02451837c1ed1563fd0b48b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -228,35 +188,6 @@ template&lt;class T &gt; </div>
 </dl>
 
 <p>Reimplemented from <a class="el" href="class_button.html#a91c2e9c9bc1297453479b0aa65fdd42d">Button</a>.</p>
-
-</div>
-</div>
-<a class="anchor" id="ac482967f8b880bf12cf67004f7adbd55"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="class_object_button.html">ObjectButton</a>&lt; T &gt;::OnClick </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Run the registered callback function. </p>
-
-<p>Reimplemented from <a class="el" href="class_button.html#aebc7af2bd8e9c39a8563499dac0f93f7">Button</a>.</p>
 
 </div>
 </div>
@@ -346,7 +277,7 @@ template&lt;class T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

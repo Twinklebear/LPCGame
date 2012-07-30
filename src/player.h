@@ -8,6 +8,7 @@
 #include "base.h"
 #include "image.h"
 
+///The player
 /**
 *  The player class, for handling the player
 */

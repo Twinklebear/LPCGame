@@ -7,6 +7,7 @@
 #include "physics.h"
 #include "map.h"
 
+///A base class for GameObjects to inherit from
 /**
 *  Base class for gameobjects, has methods for intialization, updating
 *  setting colliison maps, mouse interaction, etc.

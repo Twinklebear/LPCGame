@@ -7,6 +7,7 @@
 #include "gameobjectmanager.h"
 #include "camera.h"
 
+///Base class for states
 /**
 *  The base class for our state machine, provides functions
 *  for initializing state, running the state and memory clean-up

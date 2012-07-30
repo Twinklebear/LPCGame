@@ -6,8 +6,9 @@
 #include <stdexcept>
 #include <thread>
 
+///An object pool
 /**
-*  ObjectPool: a simple object pool where users can request objects,
+*  An object pool where users can request objects,
 *  run them, and return them too the pool
 */
 template<typename T>

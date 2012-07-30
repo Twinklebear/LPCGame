@@ -10,6 +10,7 @@
 #include "tile.h"
 #include "camera.h"
 
+///Handles the tile map
 /**
 *  Takes care of a simple tile based map
 *  TODO: I need to add mapobject types

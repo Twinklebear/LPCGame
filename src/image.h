@@ -10,6 +10,7 @@
 #include "rect.h"
 #include "vectors.h"
 
+///Wrapper around the SDL_Texture to make things easier
 /**
 *  A wrapper around the SDL_Texture class to make using images
 *  and setting clips or loading/saving them easier

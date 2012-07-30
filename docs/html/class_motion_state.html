@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -91,82 +91,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>For tracking an object's motion state.  
+ <a href="class_motion_state.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="physics_8h_source.html">physics.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:ac7c2880c2d3f328ca8fc402f335da38b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <a class="el" href="class_motion_state.html#ac7c2880c2d3f328ca8fc402f335da38ba1e66cc2b4976b9bdbd8fde53d7b7ab29">IDLE</a>, 
-<a class="el" href="class_motion_state.html#ac7c2880c2d3f328ca8fc402f335da38baae58444106197bba219307dd1f8aa960">RUNNING</a>
+<tr class="memitem:ac7c2880c2d3f328ca8fc402f335da38b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>IDLE</b>, 
+<b>RUNNING</b>
  }</td></tr>
-<tr class="memdesc:ac7c2880c2d3f328ca8fc402f335da38b"><td class="mdescLeft">&#160;</td><td class="mdescRight">enum for describing motion states  <a href="class_motion_state.html#ac7c2880c2d3f328ca8fc402f335da38b">More...</a><br/></td></tr>
+<tr class="memdesc:ac7c2880c2d3f328ca8fc402f335da38b"><td class="mdescLeft">&#160;</td><td class="mdescRight">enum for describing motion states <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a137651f20d2e18da050248a760fdd42f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_motion_state.html#a137651f20d2e18da050248a760fdd42f">MotionState</a> ()</td></tr>
-<tr class="memitem:ae99ccbc5dbc61fb677e1a1eba49d8db1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_motion_state.html#ae99ccbc5dbc61fb677e1a1eba49d8db1">~MotionState</a> ()</td></tr>
 <tr class="memitem:adfacb2050b0ed1d40787ae4a234a6526"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_motion_state.html#adfacb2050b0ed1d40787ae4a234a6526">UpdateState</a> (<a class="el" href="struct_kinematic.html">Kinematic</a> kinematic)</td></tr>
 <tr class="memitem:a9e8f3d7fa3afe0cc9592f73c989897d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_motion_state.html#a9e8f3d7fa3afe0cc9592f73c989897d9">GetMotionState</a> () const </td></tr>
 <tr class="memdesc:a9e8f3d7fa3afe0cc9592f73c989897d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the motion state,.  <a href="#a9e8f3d7fa3afe0cc9592f73c989897d9"></a><br/></td></tr>
-<tr class="memitem:aaca60c482aa496c02c75a199c4de782f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_motion_state.html#aaca60c482aa496c02c75a199c4de782f">SetMotionstate</a> (int state)</td></tr>
-<tr class="memdesc:aaca60c482aa496c02c75a199c4de782f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the motion state.  <a href="#aaca60c482aa496c02c75a199c4de782f"></a><br/></td></tr>
+<tr class="memitem:aaca60c482aa496c02c75a199c4de782f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaca60c482aa496c02c75a199c4de782f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_motion_state.html#aaca60c482aa496c02c75a199c4de782f">SetMotionstate</a> (int state)</td></tr>
+<tr class="memdesc:aaca60c482aa496c02c75a199c4de782f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the motion state. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Describes the state of an object's motion This isn't really used much at the motion, but will come into play when showing animations for the object's actions </p>
-</div><h2>Member Enumeration Documentation</h2>
-<a class="anchor" id="ac7c2880c2d3f328ca8fc402f335da38b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">anonymous enum</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>enum for describing motion states </p>
-<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="ac7c2880c2d3f328ca8fc402f335da38ba1e66cc2b4976b9bdbd8fde53d7b7ab29"></a>IDLE</em>&nbsp;</td><td>
-</td></tr>
-<tr><td valign="top"><em><a class="anchor" id="ac7c2880c2d3f328ca8fc402f335da38baae58444106197bba219307dd1f8aa960"></a>RUNNING</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dd>
-</dl>
-
-</div>
-</div>
-<h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a137651f20d2e18da050248a760fdd42f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MotionState::MotionState </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae99ccbc5dbc61fb677e1a1eba49d8db1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">MotionState::~MotionState </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2>Member Function Documentation</h2>
+<div class="textblock"><p>For tracking an object's motion state. </p>
+<p>Describes the state of an object's motion This isn't really used much at the motion, but will come into play when showing animations for the object's actions </p>
+</div><h2>Member Function Documentation</h2>
 <a class="anchor" id="a9e8f3d7fa3afe0cc9592f73c989897d9"></a>
 <div class="memitem">
 <div class="memproto">
@@ -181,25 +130,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Get the motion state,. </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_motion_state.html">MotionState</a> enum </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="aaca60c482aa496c02c75a199c4de782f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void MotionState::SetMotionstate </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>state</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Set the motion state. </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_motion_state.html" title="For tracking an object&#39;s motion state.">MotionState</a> enum </dd></dl>
 
 </div>
 </div>
@@ -228,12 +159,12 @@ Public Member Functions</h2></td></tr>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="physics_8h_source.html">physics.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="physics_8cpp.html">physics.cpp</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/physics.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

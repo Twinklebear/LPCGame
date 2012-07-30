@@ -6,6 +6,7 @@
 #include "image.h"
 #include "text.h"
 
+///A clickable ui Button, can run a static/non-member function when clicked
 /**
 *  A simple button class, for handling mouse input will run the registered function
 *  when pressed, the button inherites its mouse event reading functionality from GameObject

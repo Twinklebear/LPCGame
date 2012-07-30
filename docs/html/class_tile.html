@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,119 +90,40 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>A map tile.  
+ <a href="class_tile.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="tile_8h_source.html">tile.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aeeb5593bb6b75aae2edfcccbc84ab378"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#aeeb5593bb6b75aae2edfcccbc84ab378">Tile</a> ()</td></tr>
-<tr class="memitem:ace6a711381949d0dd8f4db08c4679920"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ace6a711381949d0dd8f4db08c4679920">Tile</a> (<a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a> box, bool solid, int type)</td></tr>
-<tr class="memitem:a2a112d3fa9d6f02b90885adb08a101be"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a2a112d3fa9d6f02b90885adb08a101be">Box</a> () const </td></tr>
-<tr class="memdesc:a2a112d3fa9d6f02b90885adb08a101be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the tile's box.  <a href="#a2a112d3fa9d6f02b90885adb08a101be"></a><br/></td></tr>
-<tr class="memitem:ac59d1e235b82c4e7a39e0339a8b079c5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ac59d1e235b82c4e7a39e0339a8b079c5">Solid</a> () const </td></tr>
-<tr class="memdesc:ac59d1e235b82c4e7a39e0339a8b079c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the tile's solid value (T/F)  <a href="#ac59d1e235b82c4e7a39e0339a8b079c5"></a><br/></td></tr>
-<tr class="memitem:a6d69884cc26de0c4c099e712ee88f3b7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a6d69884cc26de0c4c099e712ee88f3b7">Type</a> () const </td></tr>
-<tr class="memdesc:a6d69884cc26de0c4c099e712ee88f3b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the tile's type.  <a href="#a6d69884cc26de0c4c099e712ee88f3b7"></a><br/></td></tr>
-<tr class="memitem:a9003595cbb5434af5c7004ac0e99a74e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9003595cbb5434af5c7004ac0e99a74e">SetBox</a> (<a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a> box)</td></tr>
-<tr class="memdesc:a9003595cbb5434af5c7004ac0e99a74e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the tile's box.  <a href="#a9003595cbb5434af5c7004ac0e99a74e"></a><br/></td></tr>
-<tr class="memitem:a943265f18e08d49e176b2590ed5ec502"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a943265f18e08d49e176b2590ed5ec502">SetSolid</a> (bool solid)</td></tr>
-<tr class="memdesc:a943265f18e08d49e176b2590ed5ec502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the tile's solid property.  <a href="#a943265f18e08d49e176b2590ed5ec502"></a><br/></td></tr>
-<tr class="memitem:ab36ac27aa9f710e7f67c392f57f5d4d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ab36ac27aa9f710e7f67c392f57f5d4d7">SetType</a> (int type)</td></tr>
-<tr class="memdesc:ab36ac27aa9f710e7f67c392f57f5d4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the tile's type.  <a href="#ab36ac27aa9f710e7f67c392f57f5d4d7"></a><br/></td></tr>
+<tr class="memitem:ace6a711381949d0dd8f4db08c4679920"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace6a711381949d0dd8f4db08c4679920"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Tile</b> (<a class="el" href="class_rect.html">Recti</a> box, bool solid, int type)</td></tr>
+<tr class="memitem:a2a112d3fa9d6f02b90885adb08a101be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a112d3fa9d6f02b90885adb08a101be"></a>
+<a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a2a112d3fa9d6f02b90885adb08a101be">Box</a> () const </td></tr>
+<tr class="memdesc:a2a112d3fa9d6f02b90885adb08a101be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the tile's box. <br/></td></tr>
+<tr class="memitem:ac59d1e235b82c4e7a39e0339a8b079c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac59d1e235b82c4e7a39e0339a8b079c5"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ac59d1e235b82c4e7a39e0339a8b079c5">Solid</a> () const </td></tr>
+<tr class="memdesc:ac59d1e235b82c4e7a39e0339a8b079c5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the tile's solid value (T/F) <br/></td></tr>
+<tr class="memitem:a6d69884cc26de0c4c099e712ee88f3b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d69884cc26de0c4c099e712ee88f3b7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a6d69884cc26de0c4c099e712ee88f3b7">Type</a> () const </td></tr>
+<tr class="memdesc:a6d69884cc26de0c4c099e712ee88f3b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the tile's type. <br/></td></tr>
+<tr class="memitem:a9003595cbb5434af5c7004ac0e99a74e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9003595cbb5434af5c7004ac0e99a74e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a9003595cbb5434af5c7004ac0e99a74e">SetBox</a> (<a class="el" href="class_rect.html">Recti</a> box)</td></tr>
+<tr class="memdesc:a9003595cbb5434af5c7004ac0e99a74e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the tile's box. <br/></td></tr>
+<tr class="memitem:a943265f18e08d49e176b2590ed5ec502"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a943265f18e08d49e176b2590ed5ec502"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a943265f18e08d49e176b2590ed5ec502">SetSolid</a> (bool solid)</td></tr>
+<tr class="memdesc:a943265f18e08d49e176b2590ed5ec502"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the tile's solid property. <br/></td></tr>
+<tr class="memitem:ab36ac27aa9f710e7f67c392f57f5d4d7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab36ac27aa9f710e7f67c392f57f5d4d7"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#ab36ac27aa9f710e7f67c392f57f5d4d7">SetType</a> (int type)</td></tr>
+<tr class="memdesc:ab36ac27aa9f710e7f67c392f57f5d4d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the tile's type. <br/></td></tr>
 <tr class="memitem:a61ed303736b6c9a8e63c8e84a2259be5"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a61ed303736b6c9a8e63c8e84a2259be5">Save</a> ()</td></tr>
 <tr class="memitem:a5e53eaaceecf56b81c0a701d3889b8cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_tile.html#a5e53eaaceecf56b81c0a701d3889b8cb">Load</a> (Json::Value val)</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>Describes a simple map tile </p>
-</div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="aeeb5593bb6b75aae2edfcccbc84ab378"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Tile::Tile </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ace6a711381949d0dd8f4db08c4679920"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">Tile::Tile </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a>&#160;</td>
-          <td class="paramname"><em>box</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>solid</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>type</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2>Member Function Documentation</h2>
-<a class="anchor" id="a2a112d3fa9d6f02b90885adb08a101be"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a> Tile::Box </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the tile's box. </p>
-
-</div>
-</div>
+<div class="textblock"><p>A map tile. </p>
+<p>Describes a simple map tile </p>
+</div><h2>Member Function Documentation</h2>
 <a class="anchor" id="a5e53eaaceecf56b81c0a701d3889b8cb"></a>
 <div class="memitem">
 <div class="memproto">
@@ -259,141 +180,13 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9003595cbb5434af5c7004ac0e99a74e"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Tile::SetBox </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a>&#160;</td>
-          <td class="paramname"><em>box</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the tile's box. </p>
-
-</div>
-</div>
-<a class="anchor" id="a943265f18e08d49e176b2590ed5ec502"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Tile::SetSolid </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>solid</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the tile's solid property. </p>
-
-</div>
-</div>
-<a class="anchor" id="ab36ac27aa9f710e7f67c392f57f5d4d7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Tile::SetType </td>
-          <td>(</td>
-          <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>type</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Set the tile's type. </p>
-
-</div>
-</div>
-<a class="anchor" id="ac59d1e235b82c4e7a39e0339a8b079c5"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Tile::Solid </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the tile's solid value (T/F) </p>
-
-</div>
-</div>
-<a class="anchor" id="a6d69884cc26de0c4c099e712ee88f3b7"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Tile::Type </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Get the tile's type. </p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="tile_8h_source.html">tile.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

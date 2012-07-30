@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,78 +90,55 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>A simple npc.  
+ <a href="class_npc.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="npc_8h_source.html">npc.h</a>&gt;</code></p>
 
 <p>Inherits <a class="el" href="class_game_object.html">GameObject</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a748bee1d096f0dc38a80f2db64186644"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_npc.html#a748bee1d096f0dc38a80f2db64186644">Npc</a> ()</td></tr>
-<tr class="memitem:a2249c5155af3d692e51ff610064e81fe"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_npc.html#a2249c5155af3d692e51ff610064e81fe">~Npc</a> ()</td></tr>
-<tr class="memitem:a9796465219c591403c4eb3f132d7e408"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_npc.html#a9796465219c591403c4eb3f132d7e408">Update</a> ()</td></tr>
-<tr class="memdesc:a9796465219c591403c4eb3f132d7e408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run once each frame.  <a href="#a9796465219c591403c4eb3f132d7e408"></a><br/></td></tr>
+<tr class="memitem:a9796465219c591403c4eb3f132d7e408"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9796465219c591403c4eb3f132d7e408"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_npc.html#a9796465219c591403c4eb3f132d7e408">Update</a> ()</td></tr>
+<tr class="memdesc:a9796465219c591403c4eb3f132d7e408"><td class="mdescLeft">&#160;</td><td class="mdescRight">Run once each frame. <br/></td></tr>
 <tr class="memitem:a61e1541dbb9850ea5c840b460de562a4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_npc.html#a61e1541dbb9850ea5c840b460de562a4">Move</a> (float deltaT)</td></tr>
 <tr class="memitem:a92c680c6a3a391cde00b3a176151d39d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_npc.html#a92c680c6a3a391cde00b3a176151d39d">Draw</a> (<a class="el" href="class_camera.html">Camera</a> *cam=nullptr)</td></tr>
 <tr class="memitem:abe3d49b926f9deecd5da589a8b1d9f47"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_npc.html#abe3d49b926f9deecd5da589a8b1d9f47">SetMove</a> (int moveDir)</td></tr>
 <tr class="memitem:a26d82d3d58e2ca0361b64c373146a123"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_npc.html#a26d82d3d58e2ca0361b64c373146a123">Save</a> ()</td></tr>
 <tr class="memitem:a19374d0a0b3a20f8ea5fd7b61077cc84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_npc.html#a19374d0a0b3a20f8ea5fd7b61077cc84">Load</a> (Json::Value val)</td></tr>
 <tr class="inherit_header pub_methods_class_game_object"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_game_object')"><img src="closed.png" alt="-"/>&nbsp;Public Member Functions inherited from <a class="el" href="class_game_object.html">GameObject</a></td></tr>
-<tr class="memitem:a0348e3ee2e83d56eafca7a3547f432c4 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a0348e3ee2e83d56eafca7a3547f432c4">GameObject</a> ()</td></tr>
-<tr class="memitem:a224d4f6d9dd75c8a6f9d022eaf586fd9 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a224d4f6d9dd75c8a6f9d022eaf586fd9">~GameObject</a> ()</td></tr>
-<tr class="memitem:a96e41f279dafa10c64b53d7d5261e469 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a96e41f279dafa10c64b53d7d5261e469">OnMouseDown</a> ()</td></tr>
-<tr class="memdesc:a96e41f279dafa10c64b53d7d5261e469 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse down events.  <a href="#a96e41f279dafa10c64b53d7d5261e469"></a><br/></td></tr>
-<tr class="memitem:a091db9cdd771f523762f353a58ba9807 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a091db9cdd771f523762f353a58ba9807">OnMouseUp</a> ()</td></tr>
-<tr class="memdesc:a091db9cdd771f523762f353a58ba9807 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse up event.  <a href="#a091db9cdd771f523762f353a58ba9807"></a><br/></td></tr>
-<tr class="memitem:aad053a0658b5cd70558d0a659f0dc844 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#aad053a0658b5cd70558d0a659f0dc844">OnMouseEnter</a> ()</td></tr>
-<tr class="memdesc:aad053a0658b5cd70558d0a659f0dc844 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse enter.  <a href="#aad053a0658b5cd70558d0a659f0dc844"></a><br/></td></tr>
-<tr class="memitem:adcb966c782b523fcea199989950c73f5 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#adcb966c782b523fcea199989950c73f5">OnMouseExit</a> ()</td></tr>
-<tr class="memdesc:adcb966c782b523fcea199989950c73f5 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse exit.  <a href="#adcb966c782b523fcea199989950c73f5"></a><br/></td></tr>
-<tr class="memitem:a7e515dac7293c13f64cc826398d46586 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a7e515dac7293c13f64cc826398d46586">CheckMouseOver</a> (const <a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> &amp;pos)</td></tr>
-<tr class="memitem:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af3d005b7cd181f11618c638abd43eb21">GetMouseOver</a> ()</td></tr>
-<tr class="memdesc:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return T/F is the mouse is over the object.  <a href="#af3d005b7cd181f11618c638abd43eb21"></a><br/></td></tr>
-<tr class="memitem:a1d71ba2226edad1424d4a9ebb6e68570 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a1d71ba2226edad1424d4a9ebb6e68570">SetCollisionMap</a> (<a class="el" href="base_8h.html#a9f9733a49b8f313ba6659ffc58abd436">CollisionMap</a> map)</td></tr>
-<tr class="memitem:af25bdab0cfbc55ae979484cef21b11ca inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af25bdab0cfbc55ae979484cef21b11ca">Box</a> ()</td></tr>
-<tr class="memdesc:af25bdab0cfbc55ae979484cef21b11ca inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the object's box.  <a href="#af25bdab0cfbc55ae979484cef21b11ca"></a><br/></td></tr>
+<tr class="memitem:a96e41f279dafa10c64b53d7d5261e469 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96e41f279dafa10c64b53d7d5261e469"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a96e41f279dafa10c64b53d7d5261e469">OnMouseDown</a> ()</td></tr>
+<tr class="memdesc:a96e41f279dafa10c64b53d7d5261e469 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse down events. <br/></td></tr>
+<tr class="memitem:a091db9cdd771f523762f353a58ba9807 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a091db9cdd771f523762f353a58ba9807"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a091db9cdd771f523762f353a58ba9807">OnMouseUp</a> ()</td></tr>
+<tr class="memdesc:a091db9cdd771f523762f353a58ba9807 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse up event. <br/></td></tr>
+<tr class="memitem:aad053a0658b5cd70558d0a659f0dc844 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad053a0658b5cd70558d0a659f0dc844"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#aad053a0658b5cd70558d0a659f0dc844">OnMouseEnter</a> ()</td></tr>
+<tr class="memdesc:aad053a0658b5cd70558d0a659f0dc844 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse enter. <br/></td></tr>
+<tr class="memitem:adcb966c782b523fcea199989950c73f5 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcb966c782b523fcea199989950c73f5"></a>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#adcb966c782b523fcea199989950c73f5">OnMouseExit</a> ()</td></tr>
+<tr class="memdesc:adcb966c782b523fcea199989950c73f5 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse exit. <br/></td></tr>
+<tr class="memitem:a7e515dac7293c13f64cc826398d46586 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a7e515dac7293c13f64cc826398d46586">CheckMouseOver</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;pos)</td></tr>
+<tr class="memitem:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3d005b7cd181f11618c638abd43eb21"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af3d005b7cd181f11618c638abd43eb21">GetMouseOver</a> ()</td></tr>
+<tr class="memdesc:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return T/F is the mouse is over the object. <br/></td></tr>
+<tr class="memitem:a1d71ba2226edad1424d4a9ebb6e68570 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a1d71ba2226edad1424d4a9ebb6e68570">SetCollisionMap</a> (CollisionMap map)</td></tr>
+<tr class="memitem:af25bdab0cfbc55ae979484cef21b11ca inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af25bdab0cfbc55ae979484cef21b11ca"></a>
+<a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af25bdab0cfbc55ae979484cef21b11ca">Box</a> ()</td></tr>
+<tr class="memdesc:af25bdab0cfbc55ae979484cef21b11ca inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the object's box. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_game_object"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_game_object')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="class_game_object.html">GameObject</a></td></tr>
-<tr class="memitem:a334fd0a70198e858f759f90fee7201a6 inherit pro_attribs_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_physics.html">Physics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a334fd0a70198e858f759f90fee7201a6">mPhysics</a></td></tr>
+<tr class="memitem:a334fd0a70198e858f759f90fee7201a6 inherit pro_attribs_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a334fd0a70198e858f759f90fee7201a6"></a>
+<a class="el" href="class_physics.html">Physics</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mPhysics</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>The base NPC class </p>
-</div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a748bee1d096f0dc38a80f2db64186644"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Npc::Npc </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2249c5155af3d692e51ff610064e81fe"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Npc::~Npc </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2>Member Function Documentation</h2>
+<div class="textblock"><p>A simple npc. </p>
+<p>The base NPC class </p>
+</div><h2>Member Function Documentation</h2>
 <a class="anchor" id="a92c680c6a3a391cde00b3a176151d39d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -308,45 +285,18 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespace_math.html">Math</a> enum </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a9796465219c591403c4eb3f132d7e408"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Npc::Update </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Run once each frame. </p>
-
-<p>Implements <a class="el" href="class_game_object.html#a7f5c1336131d246a1e4ec9047996cab8">GameObject</a>.</p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="namespace_math.html" title="A math utility function namespace.">Math</a> enum </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="npc_8h_source.html">npc.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="npc_8cpp.html">npc.cpp</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/npc.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

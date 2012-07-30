@@ -7,6 +7,7 @@
 #include "timer.h"
 #include "map.h"
 
+///A state for running a game level
 /**
 *  A simple game state that can run a level of the game
 */

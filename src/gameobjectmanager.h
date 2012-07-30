@@ -11,6 +11,7 @@
 ///Typedef for a vector of GameObject shared pointers
 typedef std::vector<std::shared_ptr<GameObject>> GameObjectList;
 
+///Handles the GameObjects in the active state
 /**
  * A class to simplify handling of the objects, and simple
  * collision interactions between them

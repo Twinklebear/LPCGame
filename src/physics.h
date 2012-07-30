@@ -9,12 +9,15 @@
 
 const int GROUND_FRICTION = 800;
 
+///Struct to track velocity and acceleration
 /**
 *  A kinematics structure, describes an object's velocity and acceleration
 */
 struct Kinematic{
 	Vector2f Vel, Accel;
 };
+
+///Track object's various physical constants
 /**
 *  Describes the various physical constants of an object, such
 *  as max speed and acceleration
@@ -23,6 +26,7 @@ struct PhysicalConstants{
 	int hAccel, hSpeed;
 };
 
+///For tracking an object's motion state
 /**
 *  Describes the state of an object's motion
 *  This isn't really used much at the motion, but will come into
@@ -48,8 +52,10 @@ private:
 	int mState;
 };
 
+///Provides physics functions for an object
 /**
-*  Handles an objects physics
+*  Handles an objects physics, collision checking, friction
+*  motion, etc.
 */
 class Physics{
 public:

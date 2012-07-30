@@ -9,6 +9,7 @@
 #include "gamestate.h"
 #include "menustate.h"
 
+///Handles picking a state to run and loading/saveing them
 /**
 *  Handles loading a state, running it and then based on 
 *  on the value returned from the state loading the next state 

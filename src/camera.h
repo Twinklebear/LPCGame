@@ -6,6 +6,7 @@
 #include "window.h"
 #include "gameobject.h"
 
+///A camera to draw the scene in
 /**
 *  A simple camera that can be given a gameobject to focus on
 *  and follow, or can be moved manually

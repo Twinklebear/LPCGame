@@ -1,6 +1,7 @@
 #ifndef VECTORS_H
 #define VECTORS_H
 
+///A 2D vector
 /**
 *  A 2D vector
 */

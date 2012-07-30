@@ -8,6 +8,7 @@
 #include "text.h"
 #include "button.h"
 
+///A button that can register class member functions
 /**
 *  A button that is able to register class member functions as its callback
 */

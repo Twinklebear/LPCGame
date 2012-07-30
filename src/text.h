@@ -9,6 +9,7 @@
 #include "../externals/json/json.h"
 #include "rect.h"
 
+///Handles drawing some text
 /**
 *  A simple class for drawing a string to a texture with some color
 *  and a specified TTF_Font and font size

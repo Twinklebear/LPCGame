@@ -6,6 +6,7 @@
 #include "button.h"
 #include "objectbutton.h"
 
+///A state for running a menu system
 /**
 *  For creating and using a simple menu state
 */

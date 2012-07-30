@@ -3,6 +3,7 @@
 
 #include "SDL.h"
 
+///Measures time, it's a timer
 /**
 *  A simple timer
 */

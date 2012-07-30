@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,42 +90,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>Handles drawing some text.  
+ <a href="class_text.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="text_8h_source.html">text.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab3e26143fccc52699bcc5149cae852bc"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ab3e26143fccc52699bcc5149cae852bc">Text</a> ()</td></tr>
 <tr class="memitem:a0b4fb431ed09d2910c555c50e51d7948"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a0b4fb431ed09d2910c555c50e51d7948">Text</a> (std::string message, std::string font, SDL_Color color, int fontSize=30)</td></tr>
-<tr class="memitem:a2d49e5c280e205125b149f7777ae30c7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a2d49e5c280e205125b149f7777ae30c7">~Text</a> ()</td></tr>
 <tr class="memitem:ac7293b94e3e46ec0ef3cf74a6ac72d9b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ac7293b94e3e46ec0ef3cf74a6ac72d9b">Setup</a> (std::string message, std::string font, SDL_Color color, int fontSize=30)</td></tr>
 <tr class="memitem:a3d796d5e3cbde9da0e74860ebad8de5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a3d796d5e3cbde9da0e74860ebad8de5d">SetMessage</a> (std::string message)</td></tr>
 <tr class="memitem:a50567dafbb91e3bf8e552222a1aed823"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a50567dafbb91e3bf8e552222a1aed823">SetFont</a> (std::string font)</td></tr>
 <tr class="memitem:a0d37b9c067e62e10ebd1f0f74dbb5e66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a0d37b9c067e62e10ebd1f0f74dbb5e66">SetFontSize</a> (int fontSize)</td></tr>
 <tr class="memitem:a16b351605f583b6ece8c93fc8c4df279"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a16b351605f583b6ece8c93fc8c4df279">SetColor</a> (SDL_Color color)</td></tr>
 <tr class="memitem:a7bd7531c6e5ce7173996afbf53e5b66d"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a7bd7531c6e5ce7173996afbf53e5b66d">Texture</a> ()</td></tr>
-<tr class="memitem:ac60e01f81befe3923c45abb2156e1236"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ac60e01f81befe3923c45abb2156e1236">GetSize</a> ()</td></tr>
+<tr class="memitem:ac60e01f81befe3923c45abb2156e1236"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ac60e01f81befe3923c45abb2156e1236">GetSize</a> ()</td></tr>
 <tr class="memitem:a55882459b19cce34db66e8259fded7d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a55882459b19cce34db66e8259fded7d5">GetSize</a> (int &amp;w, int &amp;h)</td></tr>
 <tr class="memitem:ac2e60e57e1e86263b90474b7b76e3317"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#ac2e60e57e1e86263b90474b7b76e3317">Save</a> ()</td></tr>
 <tr class="memitem:a4c3bfb942b0f1b0c2bfb3160cff2540e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_text.html#a4c3bfb942b0f1b0c2bfb3160cff2540e">Load</a> (Json::Value val)</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p>A simple class for drawing a string to a texture with some color and a specified TTF_Font and font size </p>
+<div class="textblock"><p>Handles drawing some text. </p>
+<p>A simple class for drawing a string to a texture with some color and a specified TTF_Font and font size </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ab3e26143fccc52699bcc5149cae852bc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Text::Text </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a0b4fb431ed09d2910c555c50e51d7948"></a>
 <div class="memitem">
 <div class="memproto">
@@ -174,28 +161,13 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a2d49e5c280e205125b149f7777ae30c7"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Text::~Text </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2>Member Function Documentation</h2>
 <a class="anchor" id="ac60e01f81befe3923c45abb2156e1236"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a> Text::GetSize </td>
+          <td class="memname"><a class="el" href="class_rect.html">Recti</a> Text::GetSize </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -434,19 +406,19 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Get the texture pointer of the font, used for the window's draw functions </p>
-<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_window.html">Window</a> </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_window.html" title="Handles the window.">Window</a> </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>The message's SDL_Texture pointer </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="text_8h_source.html">text.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="text_8cpp.html">text.cpp</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/text.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

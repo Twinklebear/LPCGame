@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['rect',['Rect',['../class_rect.html#a9b1e5f6a356fa4d264d697f15fdcd8c6',1,'Rect::Rect()'],['../class_rect.html#acd526ebf8e5e4451d886847f6f3d02d7',1,'Rect::Rect(T pX, T pY, T pW, T pH)'],['../class_rect.html#af16ac5b607b54c77febfc02de48e76b5',1,'Rect::Rect(Vector2&lt; T &gt; pPos, T pW, T pH)']]],
+  ['rect',['Rect',['../class_rect.html#acd526ebf8e5e4451d886847f6f3d02d7',1,'Rect::Rect(T pX, T pY, T pW, T pH)'],['../class_rect.html#af16ac5b607b54c77febfc02de48e76b5',1,'Rect::Rect(Vector2&lt; T &gt; pPos, T pW, T pH)']]],
   ['rectnearrect',['RectNearRect',['../namespace_math.html#a729df13db67f5fdc154dd8d03f95d643',1,'Math']]],
   ['register',['Register',['../class_game_object_manager.html#ae0e153903163b0caa8386b3e99491ee8',1,'GameObjectManager::Register(std::shared_ptr&lt; GameObject &gt; obj)'],['../class_game_object_manager.html#add1ae25bae66c775265163a11d10d87d',1,'GameObjectManager::Register(std::shared_ptr&lt; Camera &gt; camera)']]],
   ['registercallback',['RegisterCallBack',['../class_button.html#ad3a3442eae1a189d01b164465a2652ce',1,'Button::RegisterCallBack()'],['../class_object_button.html#a7c2e66da0a2bbfbc9cddbaa8c535b870',1,'ObjectButton::RegisterCallBack()']]],

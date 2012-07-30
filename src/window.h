@@ -9,6 +9,7 @@
 #include "rect.h"
 #include "text.h"
 
+///Handles the window
 /**
 *  Window management class, provides a simple wrapper around
 *  the SDL_Window and SDL_Renderer functionalities

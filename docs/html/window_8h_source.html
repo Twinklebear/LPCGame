@@ -61,7 +61,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -69,7 +68,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,45 +87,46 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">window.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="window_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef WINDOW_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef WINDOW_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define WINDOW_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;SDL.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="image_8h.html">image.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rect_8h.html">rect.h</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="text_8h.html">text.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;image.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;rect.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;text.h&quot;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="class_window.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_window.html">Window</a>{</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="class_window.html#a245d821e6016fa1f6970ccbbedd635f6" title="Destructor: calls Quit to free the memory.">~Window</a>();</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a71f6d92fc4a7b09a5a4b02a4ed2a4742">Init</a>(std::string title = <span class="stringliteral">&quot;Window&quot;</span>);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a57d28573876dd89be70cd78b9302f461" title="Quit SDL and destroy the window and renderer.">Quit</a>();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a39b675a93ad2d923f8872b74dddaddee">Draw</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, SDL_Texture *tex, SDL_Rect *clip = NULL, <span class="keywordtype">int</span> w = -1, <span class="keywordtype">int</span> h = -1);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a39b675a93ad2d923f8872b74dddaddee">Draw</a>(<a class="code" href="class_image.html">Image</a> *image, <span class="keyword">const</span> SDL_Rect &amp;dstRect, SDL_Rect *clip = NULL);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a39b675a93ad2d923f8872b74dddaddee">Draw</a>(<a class="code" href="class_text.html">Text</a> *text, SDL_Rect dstRect);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">static</span> SDL_Texture* <a class="code" href="class_window.html#afc4185743b1244c49c8657f13af31096">LoadTexture</a>(std::string file);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keyword">static</span> SDL_Texture* <a class="code" href="class_window.html#a9a6dfef3bbd4dcf07af6862048167855">SurfaceToTexture</a>(SDL_Surface *surf);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a9904449165571eff36b106148ec1279f" title="Clear the renderer.">Clear</a>();</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#aca0d8246c2fbf1bdf0a0ae04eab73809" title="Present the renderer, ie. update screen.">Present</a>();</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#ab1c8fdb0fbcd7ad31ddc9a5aad4576a8">HandleEvents</a>(SDL_Event &amp;e);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_rect.html">Recti</a> <a class="code" href="class_window.html#a233b3469e0bd6ab08ad7bfefd1137081" title="Get the window&#39;s box.">Box</a>();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">static</span> std::unique_ptr&lt;SDL_Window, void (*)(SDL_Window*)&gt; mWindow;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">static</span> std::unique_ptr&lt;SDL_Renderer, void (*)(SDL_Renderer*)&gt; mRenderer;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_rect.html">Recti</a> mBox;</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> SCREEN_WIDTH;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> SCREEN_HEIGHT;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;};</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="class_window.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_window.html" title="Handles the window.">Window</a>{</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_window.html#a245d821e6016fa1f6970ccbbedd635f6" title="Destructor: calls Quit to free the memory.">~Window</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a71f6d92fc4a7b09a5a4b02a4ed2a4742">Init</a>(std::string title = <span class="stringliteral">&quot;Window&quot;</span>);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a57d28573876dd89be70cd78b9302f461" title="Quit SDL and destroy the window and renderer.">Quit</a>();</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a39b675a93ad2d923f8872b74dddaddee">Draw</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, SDL_Texture *tex, SDL_Rect *clip = NULL, <span class="keywordtype">int</span> w = -1, <span class="keywordtype">int</span> h = -1);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a39b675a93ad2d923f8872b74dddaddee">Draw</a>(<a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> *image, <span class="keyword">const</span> SDL_Rect &amp;dstRect, SDL_Rect *clip = NULL);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a39b675a93ad2d923f8872b74dddaddee">Draw</a>(<a class="code" href="class_text.html" title="Handles drawing some text.">Text</a> *text, SDL_Rect dstRect);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keyword">static</span> SDL_Texture* <a class="code" href="class_window.html#afc4185743b1244c49c8657f13af31096">LoadTexture</a>(std::string file);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keyword">static</span> SDL_Texture* <a class="code" href="class_window.html#a9a6dfef3bbd4dcf07af6862048167855">SurfaceToTexture</a>(SDL_Surface *surf);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#a9904449165571eff36b106148ec1279f" title="Clear the renderer.">Clear</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#aca0d8246c2fbf1bdf0a0ae04eab73809" title="Present the renderer, ie. update screen.">Present</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_window.html#ab1c8fdb0fbcd7ad31ddc9a5aad4576a8">HandleEvents</a>(SDL_Event &amp;e);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_rect.html">Recti</a> <a class="code" href="class_window.html#a233b3469e0bd6ab08ad7bfefd1137081" title="Get the window&#39;s box.">Box</a>();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keyword">static</span> std::unique_ptr&lt;SDL_Window, void (*)(SDL_Window*)&gt; mWindow;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        <span class="keyword">static</span> std::unique_ptr&lt;SDL_Renderer, void (*)(SDL_Renderer*)&gt; mRenderer;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <span class="keyword">static</span> <a class="code" href="class_rect.html">Recti</a> mBox;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> SCREEN_WIDTH;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keyword">static</span> <span class="keywordtype">int</span> SCREEN_HEIGHT;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:15 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:21 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

@@ -6,6 +6,7 @@
 #include "SDL.h"
 #include "vectors.h"
 
+///A rectangle
 /**
 *  Describes a rectangle, can use ints, floats or doubles
 *  to represent its values

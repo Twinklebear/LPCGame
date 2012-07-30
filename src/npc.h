@@ -9,6 +9,7 @@
 #include "window.h"
 #include "image.h"
 
+///A simple npc 
 /**
 *  The base NPC class
 */

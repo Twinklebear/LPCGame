@@ -5,6 +5,7 @@
 #include "SDL.h"
 #include "gameobjectmanager.h"
 
+///Input handler wrapper
 /**
 *  A simple wrapper around SDL's input handling system
 */

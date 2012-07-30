@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,34 +93,42 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!--header-->
 <div class="contents">
 
+<p>An object pool.  
+ <a href="class_object_pool.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="objectpool_8h_source.html">objectpool.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aa0445cb80c21b9885af0ee90d5bbdf28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#aa0445cb80c21b9885af0ee90d5bbdf28">ObjectPool</a> (size_t chunkSize=<a class="el" href="class_object_pool.html#a9587ef28e54c12b35c7a2373e75db064">kDefaultChunkSize</a>)  throw (std::invalid_argument, std::bad_alloc)</td></tr>
+<tr class="memitem:aa0445cb80c21b9885af0ee90d5bbdf28"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#aa0445cb80c21b9885af0ee90d5bbdf28">ObjectPool</a> (size_t chunkSize=kDefaultChunkSize)  throw (std::invalid_argument, std::bad_alloc)</td></tr>
 <tr class="memitem:ab46af3dd374d6757ea6dd969e0ca2236"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#ab46af3dd374d6757ea6dd969e0ca2236">AcquireObject</a> ()</td></tr>
 <tr class="memitem:a2fffed2f3d0c94997f567e9b695f3100"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#a2fffed2f3d0c94997f567e9b695f3100">ReturnObject</a> (std::shared_ptr&lt; T &gt; obj)</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a180cde561c9b92bbd5edd83ffd32d182"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#a180cde561c9b92bbd5edd83ffd32d182">AllocateChunk</a> ()</td></tr>
-<tr class="memdesc:a180cde561c9b92bbd5edd83ffd32d182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate mChunkSize objects for the pool to use.  <a href="#a180cde561c9b92bbd5edd83ffd32d182"></a><br/></td></tr>
+<tr class="memitem:a180cde561c9b92bbd5edd83ffd32d182"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a180cde561c9b92bbd5edd83ffd32d182"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#a180cde561c9b92bbd5edd83ffd32d182">AllocateChunk</a> ()</td></tr>
+<tr class="memdesc:a180cde561c9b92bbd5edd83ffd32d182"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocate mChunkSize objects for the pool to use. <br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ae4d4954ee51afb5d4bbcf2be631534ac"><td class="memItemLeft" align="right" valign="top">std::queue&lt; std::shared_ptr&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#ae4d4954ee51afb5d4bbcf2be631534ac">mFreeList</a></td></tr>
-<tr class="memdesc:ae4d4954ee51afb5d4bbcf2be631534ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of objects not currently in use.  <a href="#ae4d4954ee51afb5d4bbcf2be631534ac"></a><br/></td></tr>
-<tr class="memitem:acc65a9f209d1a76c0ee25206cf56b68b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#acc65a9f209d1a76c0ee25206cf56b68b">mChunkSize</a></td></tr>
+<tr class="memitem:ae4d4954ee51afb5d4bbcf2be631534ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae4d4954ee51afb5d4bbcf2be631534ac"></a>
+std::queue&lt; std::shared_ptr&lt; T &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#ae4d4954ee51afb5d4bbcf2be631534ac">mFreeList</a></td></tr>
+<tr class="memdesc:ae4d4954ee51afb5d4bbcf2be631534ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of objects not currently in use. <br/></td></tr>
+<tr class="memitem:acc65a9f209d1a76c0ee25206cf56b68b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acc65a9f209d1a76c0ee25206cf56b68b"></a>
+size_t&#160;</td><td class="memItemRight" valign="bottom"><b>mChunkSize</b></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-static-attribs"></a>
 Static Protected Attributes</h2></td></tr>
-<tr class="memitem:a9587ef28e54c12b35c7a2373e75db064"><td class="memItemLeft" align="right" valign="top">static const size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_object_pool.html#a9587ef28e54c12b35c7a2373e75db064">kDefaultChunkSize</a> = 10</td></tr>
+<tr class="memitem:a9587ef28e54c12b35c7a2373e75db064"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9587ef28e54c12b35c7a2373e75db064"></a>
+static const size_t&#160;</td><td class="memItemRight" valign="bottom"><b>kDefaultChunkSize</b> = 10</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><h3>template&lt;typename T&gt;<br/>
 class ObjectPool&lt; T &gt;</h3>
 
-<p><a class="el" href="class_object_pool.html">ObjectPool</a>: a simple object pool where users can request objects, run them, and return them too the pool </p>
+<p>An object pool. </p>
+<p>An object pool where users can request objects, run them, and return them too the pool </p>
 </div><h2>Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aa0445cb80c21b9885af0ee90d5bbdf28"></a>
 <div class="memitem">
@@ -132,7 +140,7 @@ template&lt;typename T &gt; </div>
           <td class="memname"><a class="el" href="class_object_pool.html">ObjectPool</a>&lt; T &gt;::<a class="el" href="class_object_pool.html">ObjectPool</a> </td>
           <td>(</td>
           <td class="paramtype">size_t&#160;</td>
-          <td class="paramname"><em>chunkSize</em> = <code><a class="el" href="class_object_pool.html#a9587ef28e54c12b35c7a2373e75db064">kDefaultChunkSize</a></code></td><td>)</td>
+          <td class="paramname"><em>chunkSize</em> = <code>kDefaultChunkSize</code></td><td>)</td>
           <td>  throw (std::invalid_argument, std::bad_alloc)</td>
         </tr>
       </table>
@@ -168,33 +176,6 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<a class="anchor" id="a180cde561c9b92bbd5edd83ffd32d182"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T &gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void <a class="el" href="class_object_pool.html">ObjectPool</a>&lt; T &gt;::AllocateChunk </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Allocate mChunkSize objects for the pool to use. </p>
-
-</div>
-</div>
 <a class="anchor" id="a2fffed2f3d0c94997f567e9b695f3100"></a>
 <div class="memitem">
 <div class="memproto">
@@ -220,82 +201,13 @@ template&lt;typename T &gt; </div>
 
 </div>
 </div>
-<h2>Member Data Documentation</h2>
-<a class="anchor" id="a9587ef28e54c12b35c7a2373e75db064"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">const size_t <a class="el" href="class_object_pool.html">ObjectPool</a>&lt; T &gt;::kDefaultChunkSize = 10</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="acc65a9f209d1a76c0ee25206cf56b68b"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">size_t <a class="el" href="class_object_pool.html">ObjectPool</a>&lt; T &gt;::mChunkSize</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae4d4954ee51afb5d4bbcf2be631534ac"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::queue&lt;std::shared_ptr&lt;T&gt; &gt; <a class="el" href="class_object_pool.html">ObjectPool</a>&lt; T &gt;::mFreeList</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>The list of objects not currently in use. </p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="objectpool_8h_source.html">objectpool.h</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

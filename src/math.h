@@ -4,6 +4,7 @@
 #include <cmath>
 #include "base.h"
 
+///A math utility function namespace
 /**
 *  A math utility function namespace
 */
@@ -45,7 +46,7 @@ namespace Math{
 	/**
 	*  Check collision between a Vector and a rectangle
 	*  ie. if the point is inside/on edge of the rectangle
-	*  @param p The Vector (point)
+	*  @param p The Vector2 (point)
 	*  @param r The Rect
 	*  @return T if point is in the rectangle
 	*/
@@ -53,8 +54,8 @@ namespace Math{
 	/**
 	*  Transform a vector from window space into scene space
 	*  @param cam The camera/scene space to convert the vector to
-	*  @param v The vector to convert to scene space
-	*  @return The vector transformed to scene space
+	*  @param v The Vector2 to convert to scene space
+	*  @return The Vector2 transformed to scene space
 	*/
 	Vector2f ToSceneSpace(const Camera *cam, const Vector2f &v);
 	/**
@@ -67,8 +68,8 @@ namespace Math{
 	/**
 	*  Transform a vector from scene space into window space
 	*  @param cam The camera/scene space to convert the vector to
-	*  @param v The vector to convert to window space
-	*  @return The vector transformed to window space
+	*  @param v The Vector2 to convert to window space
+	*  @return The Vector2 transformed to window space
 	*/
 	Vector2f FromSceneSpace(const Camera *cam, const Vector2f &v);
 	/**
