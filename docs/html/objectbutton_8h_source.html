@@ -120,36 +120,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a> != <span class="keyword">nullptr</span>)</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                        <a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a>(mParam);</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        }</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="code" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">   48</a></span>&#160;        Json::Value <a class="code" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">Save</a>(){</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="comment">//Unfortunately I can&#39;t change the function that&#39;s pointed to via loading json</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="comment">//as it&#39;s code not data, so instead we just save the param</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                Json::Value val;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                val[<span class="stringliteral">&quot;type&quot;</span>]        = <span class="stringliteral">&quot;objectbutton&quot;</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                val[<span class="stringliteral">&quot;text&quot;</span>]    = mText.<a class="code" href="class_text.html#ac2e60e57e1e86263b90474b7b76e3317">Save</a>();</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                val[<span class="stringliteral">&quot;physics&quot;</span>] = mPhysics.<a class="code" href="class_physics.html#a4f93204305fb89e79ccc86e7731303c6">Save</a>();</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                val[<span class="stringliteral">&quot;image&quot;</span>]   = mImage.<a class="code" href="class_image.html#ad78e03ea7db39fa401056bd8ae86c036">Save</a>();</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                val[<span class="stringliteral">&quot;param&quot;</span>]   = mParam;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                <span class="keywordflow">return</span> val;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="code" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">   49</a></span>&#160;        Json::Value <a class="code" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">Save</a>(){</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="comment">//Unfortunately I can&#39;t change the function that&#39;s pointed to via loading json</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="comment">//as it&#39;s code not data, so instead we just save the param</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                Json::Value val = <a class="code" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">GameObject::Save</a>();</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                val[<span class="stringliteral">&quot;type&quot;</span>]        = <span class="stringliteral">&quot;objectbutton&quot;</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                val[<span class="stringliteral">&quot;text&quot;</span>]    = mText.<a class="code" href="class_text.html#ac2e60e57e1e86263b90474b7b76e3317">Save</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                val[<span class="stringliteral">&quot;param&quot;</span>]   = mParam;</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                <span class="keywordflow">return</span> val;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        }</div>
 <div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">   64</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">Load</a>(Json::Value val){</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                mParam = val[<span class="stringliteral">&quot;param&quot;</span>].asString();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                mText.<a class="code" href="class_text.html#a4c3bfb942b0f1b0c2bfb3160cff2540e">Load</a>(val[<span class="stringliteral">&quot;text&quot;</span>]);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                mPhysics.<a class="code" href="class_physics.html#a4f3c17b426110578c06395c3594eb2b6">Load</a>(val[<span class="stringliteral">&quot;physics&quot;</span>]);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;                mImage.<a class="code" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Load</a>(val[<span class="stringliteral">&quot;image&quot;</span>]);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        T *mObj;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        void (T::*mObjFunc)(std::string);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        std::string mParam;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;};</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;                <a class="code" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">GameObject::Load</a>(val);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                mParam = val[<span class="stringliteral">&quot;param&quot;</span>].asString();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;                mText.<a class="code" href="class_text.html#a4c3bfb942b0f1b0c2bfb3160cff2540e">Load</a>(val[<span class="stringliteral">&quot;text&quot;</span>]);</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        T *mObj;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        void (T::*mObjFunc)(std::string);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        std::string mParam;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;};</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:51:21 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 30 2012 00:07:18 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

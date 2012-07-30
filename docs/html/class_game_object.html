@@ -117,12 +117,13 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:adcb966c782b523fcea199989950c73f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcb966c782b523fcea199989950c73f5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#adcb966c782b523fcea199989950c73f5">OnMouseExit</a> ()</td></tr>
 <tr class="memdesc:adcb966c782b523fcea199989950c73f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse exit. <br/></td></tr>
-<tr class="memitem:a14def8841f53c1d88999c5b7b67da547"><td class="memItemLeft" align="right" valign="top">virtual Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a14def8841f53c1d88999c5b7b67da547">Save</a> ()=0</td></tr>
-<tr class="memitem:a91268350a88e69cba18f5e216aa80000"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a91268350a88e69cba18f5e216aa80000">Load</a> (Json::Value value)=0</td></tr>
 <tr class="memitem:a7e515dac7293c13f64cc826398d46586"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a7e515dac7293c13f64cc826398d46586">CheckMouseOver</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;pos)</td></tr>
 <tr class="memitem:af3d005b7cd181f11618c638abd43eb21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3d005b7cd181f11618c638abd43eb21"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af3d005b7cd181f11618c638abd43eb21">GetMouseOver</a> ()</td></tr>
 <tr class="memdesc:af3d005b7cd181f11618c638abd43eb21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return T/F is the mouse is over the object. <br/></td></tr>
+<tr class="memitem:a174bed233f5541745b6703342b3e4722"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a174bed233f5541745b6703342b3e4722">HasTag</a> (std::string tag)</td></tr>
+<tr class="memitem:a9ca06c2acccf406c6c11df6610926b37"><td class="memItemLeft" align="right" valign="top">virtual Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a9ca06c2acccf406c6c11df6610926b37">Save</a> ()</td></tr>
+<tr class="memitem:a70415b5220d2cddc03f77cc08c2ee1df"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a70415b5220d2cddc03f77cc08c2ee1df">Load</a> (Json::Value val)</td></tr>
 <tr class="memitem:a1d71ba2226edad1424d4a9ebb6e68570"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a1d71ba2226edad1424d4a9ebb6e68570">SetCollisionMap</a> (CollisionMap map)</td></tr>
 <tr class="memitem:af25bdab0cfbc55ae979484cef21b11ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af25bdab0cfbc55ae979484cef21b11ca"></a>
 <a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af25bdab0cfbc55ae979484cef21b11ca">Box</a> ()</td></tr>
@@ -130,8 +131,14 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
+<tr class="memitem:aea14bee13024e358bb02bf809d0a47f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aea14bee13024e358bb02bf809d0a47f5"></a>
+<a class="el" href="class_image.html">Image</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mImage</b></td></tr>
 <tr class="memitem:a334fd0a70198e858f759f90fee7201a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a334fd0a70198e858f759f90fee7201a6"></a>
-<a class="el" href="class_physics.html">Physics</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mPhysics</b></td></tr>
+<a class="el" href="class_physics.html">Physics</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a334fd0a70198e858f759f90fee7201a6">mPhysics</a></td></tr>
+<tr class="memdesc:a334fd0a70198e858f759f90fee7201a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Handle's the objects physics. <br/></td></tr>
+<tr class="memitem:a218eab564270c2f6b179976c4cd2c928"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a218eab564270c2f6b179976c4cd2c928"></a>
+std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a218eab564270c2f6b179976c4cd2c928">mTags</a></td></tr>
+<tr class="memdesc:a218eab564270c2f6b179976c4cd2c928"><td class="mdescLeft">&#160;</td><td class="mdescRight">To store tags to identify the object. <br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A base class for GameObjects to inherit from. </p>
@@ -193,7 +200,31 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a91268350a88e69cba18f5e216aa80000"></a>
+<a class="anchor" id="a174bed233f5541745b6703342b3e4722"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool GameObject::HasTag </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>tag</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Check if the gameobject has the tag </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tag</td><td>The tag to check for </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the object has the tag </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a70415b5220d2cddc03f77cc08c2ee1df"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -201,28 +232,28 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual void GameObject::Load </td>
+          <td class="memname">void GameObject::Load </td>
           <td>(</td>
           <td class="paramtype">Json::Value&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Load the gameobject from a json value </p>
+<p>Load the gameobject from a Json::Value The <a class="el" href="class_game_object.html" title="A base class for GameObjects to inherit from.">GameObject</a> instance of the function takes care of loading the base object members, physics, image and tags </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>The json value to load from </td></tr>
+    <tr><td class="paramname">val</td><td>The Json::Value to load from </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">ObjectButton&lt; T &gt;</a>, <a class="el" href="class_button.html#a91c2e9c9bc1297453479b0aa65fdd42d">Button</a>, <a class="el" href="class_npc.html#a19374d0a0b3a20f8ea5fd7b61077cc84">Npc</a>, and <a class="el" href="class_player.html#adfdb99b05cf16e412c30624edc16403b">Player</a>.</p>
+<p>Reimplemented in <a class="el" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">ObjectButton&lt; T &gt;</a>, <a class="el" href="class_button.html#a91c2e9c9bc1297453479b0aa65fdd42d">Button</a>, <a class="el" href="class_npc.html#a19374d0a0b3a20f8ea5fd7b61077cc84">Npc</a>, and <a class="el" href="class_player.html#adfdb99b05cf16e412c30624edc16403b">Player</a>.</p>
 
 </div>
 </div>
@@ -259,7 +290,7 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a14def8841f53c1d88999c5b7b67da547"></a>
+<a class="anchor" id="a9ca06c2acccf406c6c11df6610926b37"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -267,7 +298,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual Json::Value GameObject::Save </td>
+          <td class="memname">Json::Value GameObject::Save </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -275,14 +306,14 @@ Protected Attributes</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Save the gameobject data to a json value and return it </p>
+<p>Save the gameobject data to a json value and return it The <a class="el" href="class_game_object.html" title="A base class for GameObjects to inherit from.">GameObject</a> instance of the function takes care of saving the base object members, physics, image and tags </p>
 <dl class="section return"><dt>Returns</dt><dd>Json::Value containing the gameobject data </dd></dl>
 
-<p>Implemented in <a class="el" href="class_button.html#a78575d27f94b5a34f085e381e3777c1c">Button</a>, <a class="el" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">ObjectButton&lt; T &gt;</a>, <a class="el" href="class_npc.html#a26d82d3d58e2ca0361b64c373146a123">Npc</a>, and <a class="el" href="class_player.html#a2a0d9bd1abff4b8f7557fe55c7dcc146">Player</a>.</p>
+<p>Reimplemented in <a class="el" href="class_button.html#a78575d27f94b5a34f085e381e3777c1c">Button</a>, <a class="el" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">ObjectButton&lt; T &gt;</a>, <a class="el" href="class_npc.html#a26d82d3d58e2ca0361b64c373146a123">Npc</a>, and <a class="el" href="class_player.html#a2a0d9bd1abff4b8f7557fe55c7dcc146">Player</a>.</p>
 
 </div>
 </div>
@@ -324,7 +355,7 @@ Protected Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:51:21 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 30 2012 00:07:18 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

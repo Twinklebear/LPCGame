@@ -129,6 +129,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3d005b7cd181f11618c638abd43eb21"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af3d005b7cd181f11618c638abd43eb21">GetMouseOver</a> ()</td></tr>
 <tr class="memdesc:af3d005b7cd181f11618c638abd43eb21 inherit pub_methods_class_game_object"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return T/F is the mouse is over the object. <br/></td></tr>
+<tr class="memitem:a174bed233f5541745b6703342b3e4722 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a174bed233f5541745b6703342b3e4722">HasTag</a> (std::string tag)</td></tr>
 <tr class="memitem:a1d71ba2226edad1424d4a9ebb6e68570 inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a1d71ba2226edad1424d4a9ebb6e68570">SetCollisionMap</a> (CollisionMap map)</td></tr>
 <tr class="memitem:af25bdab0cfbc55ae979484cef21b11ca inherit pub_methods_class_game_object"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af25bdab0cfbc55ae979484cef21b11ca"></a>
 <a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af25bdab0cfbc55ae979484cef21b11ca">Box</a> ()</td></tr>
@@ -137,8 +138,6 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="heading"><td colspan="2"><h2><a name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_attribs_class_button"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_class_button')"><img src="closed.png" alt="-"/>&nbsp;Protected Attributes inherited from <a class="el" href="class_button.html">Button</a></td></tr>
-<tr class="memitem:a8b097be23fca0b73d665bd1a748170da inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8b097be23fca0b73d665bd1a748170da"></a>
-<a class="el" href="class_image.html">Image</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mImage</b></td></tr>
 <tr class="memitem:a84647ac29e63b8bb5cc917e4e34558e1 inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a84647ac29e63b8bb5cc917e4e34558e1"></a>
 <a class="el" href="class_text.html">Text</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mText</b></td></tr>
 <tr class="memitem:a6d43a3440c9f9330d203a6816f159156 inherit pro_attribs_class_button"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6d43a3440c9f9330d203a6816f159156"></a>
@@ -180,6 +179,7 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Load the object from a Json::Value </p>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_game_object.html#a70415b5220d2cddc03f77cc08c2ee1df">GameObject::Load</a> for loading of inherited members </dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">val</td><td>The Json::Value to load from </td></tr>
@@ -265,7 +265,8 @@ template&lt;class T &gt; </div>
 </table>
 </div><div class="memdoc">
 <p>Save the object data to a json value and return it </p>
-<dl class="section return"><dt>Returns</dt><dd>Json::Value containing the object data </dd></dl>
+<dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_game_object.html#a9ca06c2acccf406c6c11df6610926b37">GameObject::Save</a> for saving of inherited members </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The Json::Value containing the object data </dd></dl>
 
 <p>Reimplemented from <a class="el" href="class_button.html#a78575d27f94b5a34f085e381e3777c1c">Button</a>.</p>
 
@@ -277,7 +278,7 @@ template&lt;class T &gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 30 2012 00:07:18 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

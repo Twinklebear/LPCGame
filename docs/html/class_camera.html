@@ -109,6 +109,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a2b9e3f03ffc39c1269f54d405e014c28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a2b9e3f03ffc39c1269f54d405e014c28">SetSceneBox</a> (<a class="el" href="class_rect.html">Rectf</a> box)</td></tr>
 <tr class="memitem:a30f709a528d2ced072fcbf83c8c316dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a30f709a528d2ced072fcbf83c8c316dc">Offset</a> () const </td></tr>
 <tr class="memitem:abc0ccf084f53237f740bc242efa6e77d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#abc0ccf084f53237f740bc242efa6e77d">Centering</a> () const </td></tr>
+<tr class="memitem:a390a882cd59378c794c480c20e33f934"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a390a882cd59378c794c480c20e33f934">Save</a> ()</td></tr>
+<tr class="memitem:a414fa361742dec72c9c9b3e3c06d0280"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a414fa361742dec72c9c9b3e3c06d0280">Load</a> (Json::Value val)</td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A camera to draw the scene in. </p>
@@ -155,6 +157,29 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a class="anchor" id="a414fa361742dec72c9c9b3e3c06d0280"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::Load </td>
+          <td>(</td>
+          <td class="paramtype">Json::Value&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Load the camera configuration from a Json::Value </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The Json::Value to load from </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a30f709a528d2ced072fcbf83c8c316dc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -169,6 +194,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 <p>Get the offset needed to apply to objects in the camera, this offset includes the centering offset and any offset added from moving the camera </p>
 <dl class="section return"><dt>Returns</dt><dd>a Vector2f that is the offset to apply </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a390a882cd59378c794c480c20e33f934"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Json::Value Camera::Save </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Save the camera information to file </p>
+<dl class="section return"><dt>Returns</dt><dd>Json::Value containing the camera's information </dd></dl>
 
 </div>
 </div>
@@ -248,7 +290,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:51:21 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 30 2012 00:07:18 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

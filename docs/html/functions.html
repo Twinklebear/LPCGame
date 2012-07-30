@@ -221,7 +221,10 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_window.html#ab1c8fdb0fbcd7ad31ddc9a5aad4576a8">Window</a>
 </li>
 <li>HandleMouseEvent()
-: <a class="el" href="class_game_object_manager.html#a90e4da9307e0cd53498f1e746ecd64f6">GameObjectManager</a>
+: <a class="el" href="class_game_object_manager.html#a192d33c74f88a0aafac1ef4294fefb92">GameObjectManager</a>
+</li>
+<li>HasTag()
+: <a class="el" href="class_game_object.html#a174bed233f5541745b6703342b3e4722">GameObject</a>
 </li>
 </ul>
 
@@ -257,18 +260,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_l"></a>- l -</h3><ul>
 <li>Load()
 : <a class="el" href="class_button.html#a91c2e9c9bc1297453479b0aa65fdd42d">Button</a>
-, <a class="el" href="class_game_object.html#a91268350a88e69cba18f5e216aa80000">GameObject</a>
-, <a class="el" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Image</a>
-, <a class="el" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">ObjectButton&lt; T &gt;</a>
+, <a class="el" href="class_camera.html#a414fa361742dec72c9c9b3e3c06d0280">Camera</a>
+, <a class="el" href="class_game_state.html#a36c5b048971af84d3e9eb9a176bda0fb">GameState</a>
+, <a class="el" href="class_npc.html#a19374d0a0b3a20f8ea5fd7b61077cc84">Npc</a>
 , <a class="el" href="class_tile.html#a5e53eaaceecf56b81c0a701d3889b8cb">Tile</a>
 , <a class="el" href="class_text.html#a4c3bfb942b0f1b0c2bfb3160cff2540e">Text</a>
-, <a class="el" href="class_state.html#a67ee87d1e16f9c4d385b3d9fdf04b501">State</a>
+, <a class="el" href="class_state.html#a1488ba46f5478ce4b18e84fc93c7d9b8">State</a>
 , <a class="el" href="class_player.html#adfdb99b05cf16e412c30624edc16403b">Player</a>
 , <a class="el" href="class_physics.html#a4f3c17b426110578c06395c3594eb2b6">Physics</a>
-, <a class="el" href="class_map.html#a646a6a38ddee85398dae73e9569b0dec">Map</a>
-, <a class="el" href="class_npc.html#a19374d0a0b3a20f8ea5fd7b61077cc84">Npc</a>
+, <a class="el" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">ObjectButton&lt; T &gt;</a>
+, <a class="el" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Image</a>
 , <a class="el" href="class_menu_state.html#ad4fedfbe352a52c7e91ebdc27f124cb4">MenuState</a>
-, <a class="el" href="class_game_state.html#a36c5b048971af84d3e9eb9a176bda0fb">GameState</a>
+, <a class="el" href="class_map.html#a646a6a38ddee85398dae73e9569b0dec">Map</a>
+, <a class="el" href="class_game_object.html#a70415b5220d2cddc03f77cc08c2ee1df">GameObject</a>
 </li>
 <li>LoadImage()
 : <a class="el" href="class_image.html#a82a713e1f7a4b6cd3b64b73648a0b730">Image</a>
@@ -290,15 +294,21 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_button.html#add9dd816f30403630bc48df237b00416">Button</a>
 </li>
 <li>Move()
-: <a class="el" href="class_player.html#a733cb37efd897bed9719a85ec83e9c4d">Player</a>
+: <a class="el" href="class_button.html#a4d56591088110eaaaf1eef5fc5cbff06">Button</a>
 , <a class="el" href="class_physics.html#a584d0abb66d0126b5e7b4a882ab644ec">Physics</a>
+, <a class="el" href="class_player.html#a733cb37efd897bed9719a85ec83e9c4d">Player</a>
 , <a class="el" href="class_npc.html#a61e1541dbb9850ea5c840b460de562a4">Npc</a>
 , <a class="el" href="class_game_object_manager.html#a3285efb51ae012ff2d91e3d7b5673689">GameObjectManager</a>
 , <a class="el" href="class_game_object.html#a101bf320ce9f1d67747175cf06b41fc3">GameObject</a>
-, <a class="el" href="class_button.html#a4d56591088110eaaaf1eef5fc5cbff06">Button</a>
 </li>
 <li>MOVE
 : <a class="el" href="class_physics.html#a8146f5776a9b7eaec85b2f15cb814a54">Physics</a>
+</li>
+<li>mPhysics
+: <a class="el" href="class_game_object.html#a334fd0a70198e858f759f90fee7201a6">GameObject</a>
+</li>
+<li>mTags
+: <a class="el" href="class_game_object.html#a218eab564270c2f6b179976c4cd2c928">GameObject</a>
 </li>
 </ul>
 
@@ -413,18 +423,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>Save()
 : <a class="el" href="class_button.html#a78575d27f94b5a34f085e381e3777c1c">Button</a>
-, <a class="el" href="class_game_object.html#a14def8841f53c1d88999c5b7b67da547">GameObject</a>
-, <a class="el" href="class_game_state.html#ab08875b5a73d038bdfa514267cb7d2f5">GameState</a>
-, <a class="el" href="class_npc.html#a26d82d3d58e2ca0361b64c373146a123">Npc</a>
-, <a class="el" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">ObjectButton&lt; T &gt;</a>
-, <a class="el" href="class_image.html#ad78e03ea7db39fa401056bd8ae86c036">Image</a>
-, <a class="el" href="class_physics.html#a4f93204305fb89e79ccc86e7731303c6">Physics</a>
-, <a class="el" href="class_player.html#a2a0d9bd1abff4b8f7557fe55c7dcc146">Player</a>
+, <a class="el" href="class_camera.html#a390a882cd59378c794c480c20e33f934">Camera</a>
 , <a class="el" href="class_game_object_manager.html#a2a53df3e1900099bb4b01828703361d9">GameObjectManager</a>
-, <a class="el" href="class_map.html#a4c23bd890dee8f19499c6479e5277b08">Map</a>
-, <a class="el" href="class_state.html#af77043b19ca891b6d6569525e65c18a1">State</a>
-, <a class="el" href="class_text.html#ac2e60e57e1e86263b90474b7b76e3317">Text</a>
 , <a class="el" href="class_menu_state.html#ad8debd1fc392403df42b38f1570d5646">MenuState</a>
+, <a class="el" href="class_npc.html#a26d82d3d58e2ca0361b64c373146a123">Npc</a>
+, <a class="el" href="class_game_state.html#ab08875b5a73d038bdfa514267cb7d2f5">GameState</a>
+, <a class="el" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">ObjectButton&lt; T &gt;</a>
+, <a class="el" href="class_physics.html#a4f93204305fb89e79ccc86e7731303c6">Physics</a>
+, <a class="el" href="class_game_object.html#a9ca06c2acccf406c6c11df6610926b37">GameObject</a>
+, <a class="el" href="class_image.html#ad78e03ea7db39fa401056bd8ae86c036">Image</a>
+, <a class="el" href="class_player.html#a2a0d9bd1abff4b8f7557fe55c7dcc146">Player</a>
+, <a class="el" href="class_state.html#a77223c07d360c260b4b3890627a71c01">State</a>
+, <a class="el" href="class_map.html#a4c23bd890dee8f19499c6479e5277b08">Map</a>
+, <a class="el" href="class_text.html#ac2e60e57e1e86263b90474b7b76e3317">Text</a>
 , <a class="el" href="class_tile.html#a61ed303736b6c9a8e63c8e84a2259be5">Tile</a>
 </li>
 <li>SaveState()
@@ -596,7 +607,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:51:22 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 30 2012 00:07:19 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
