@@ -22,5 +22,3 @@
 	- Would like to test camera on more cases but it seems good.
 	- ISSUE: Resizing window doesn't seem to update the drawing of objects, ie. the scene doesn't recenter which is annoying
 		- In addition: Resizing window while playing a gamestate and then trying to quit causes a crash
-	- Also: the scene must be same size or bigger than the camera, checks are in place to make sure of this (I believe?)
-		- check again
