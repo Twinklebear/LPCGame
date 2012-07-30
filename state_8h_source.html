@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Documentation for C++/SDL 2.0 Tile Engine: C:/Users/Will/Documents/Programs/LPCGame/LPCGame/src/state.h Source File</title>
+<title>Documentation for C++/SDL 2.0 Tile Engine: C:/Users/Will/Documents/Programs/LPCGame/src/state.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,6 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -79,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7347b8f284bfc116608da52ae7584be7.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_33fd4fcbc38ba42cb401620c60a82c8a.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -87,19 +88,19 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">state.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef STATE_H</span></div>
+<a href="state_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef STATE_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define STATE_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;json/json.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;gameobjectmanager.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;camera.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="gameobjectmanager_8h.html">gameobjectmanager.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="camera_8h.html">camera.h</a>&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="class_state.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_state.html">State</a>{</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="class_state.html">State</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">virtual</span> ~<a class="code" href="class_state.html">State</a>();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="class_state.html#ab91bb1dd5aa6260ab2a456581daf9ec2">State</a>();</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">virtual</span> <a class="code" href="class_state.html#afab438d92b90dc18d194dbd9c9c8bab3">~State</a>();</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keyword">virtual</span> std::string <a class="code" href="class_state.html#a7ebb549f48125d457304345290480a0a">Run</a>() = 0;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_state.html#a595415c02961abb82336a90bf36b0ffb">SetExit</a>(std::string val);</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_state.html#a849ac807e588196dd073a0e27f514bae" title="Set exit to false.">UnsetExit</a>();</div>
@@ -113,12 +114,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_state.html#a334a2b77a5be92940bdc43e01ebc9b81" title="Free the memory used by the state.">Free</a>() = 0;</div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        std::shared_ptr&lt;GameObjectManager&gt; mManager;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        std::shared_ptr&lt;Camera&gt; mCamera;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_rect.html">Rectf</a> mSceneBox;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        std::string mName;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">bool</span> mExit;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        std::string mExitCode;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="class_state.html#abc01986f8f1ef28cf7b44782875a6e22">   56</a></span>&#160;        std::shared_ptr&lt;GameObjectManager&gt; <a class="code" href="class_state.html#abc01986f8f1ef28cf7b44782875a6e22">mManager</a>;</div>
+<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="class_state.html#a6f3d0774e7ecffcfb49fc792fe14b791">   57</a></span>&#160;        std::shared_ptr&lt;Camera&gt; <a class="code" href="class_state.html#a6f3d0774e7ecffcfb49fc792fe14b791">mCamera</a>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="code" href="class_state.html#a155ad3509af17a0fe01bd262f4d156e9">   58</a></span>&#160;        <a class="code" href="class_rect.html">Rectf</a> <a class="code" href="class_state.html#a155ad3509af17a0fe01bd262f4d156e9">mSceneBox</a>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno"><a class="code" href="class_state.html#af2a52379c7053f2744f1ee701448d64e">   59</a></span>&#160;        std::string <a class="code" href="class_state.html#af2a52379c7053f2744f1ee701448d64e">mName</a>;</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="class_state.html#ad1c610285765f051453dd78b935fde7f">   60</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_state.html#ad1c610285765f051453dd78b935fde7f">mExit</a>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="code" href="class_state.html#aef93078202d00866969aae2cffefe834">   61</a></span>&#160;        std::string <a class="code" href="class_state.html#aef93078202d00866969aae2cffefe834">mExitCode</a>;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
@@ -126,7 +127,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 17:34:55 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:17:15 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

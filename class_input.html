@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_input-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -92,29 +93,110 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><code>#include &lt;<a class="el" href="input_8h_source.html">input.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:abae3f379d3f157cf42dc857309832dba"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#abae3f379d3f157cf42dc857309832dba">Input</a> ()</td></tr>
+<tr class="memitem:af2db35ba67c8a8ccd23bef6a482fc291"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#af2db35ba67c8a8ccd23bef6a482fc291">~Input</a> ()</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a5197114da7299198826ff7277ee12bff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5197114da7299198826ff7277ee12bff"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a5197114da7299198826ff7277ee12bff">Init</a> ()</td></tr>
-<tr class="memdesc:a5197114da7299198826ff7277ee12bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the input manager. <br/></td></tr>
-<tr class="memitem:a495f9772bf0daaccca4330ff8d1aef4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a495f9772bf0daaccca4330ff8d1aef4b"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a495f9772bf0daaccca4330ff8d1aef4b">PollEvent</a> ()</td></tr>
-<tr class="memdesc:a495f9772bf0daaccca4330ff8d1aef4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read event input. <br/></td></tr>
+<tr class="memitem:a5197114da7299198826ff7277ee12bff"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a5197114da7299198826ff7277ee12bff">Init</a> ()</td></tr>
+<tr class="memdesc:a5197114da7299198826ff7277ee12bff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the input manager.  <a href="#a5197114da7299198826ff7277ee12bff"></a><br/></td></tr>
+<tr class="memitem:a495f9772bf0daaccca4330ff8d1aef4b"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a495f9772bf0daaccca4330ff8d1aef4b">PollEvent</a> ()</td></tr>
+<tr class="memdesc:a495f9772bf0daaccca4330ff8d1aef4b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read event input.  <a href="#a495f9772bf0daaccca4330ff8d1aef4b"></a><br/></td></tr>
 <tr class="memitem:a3deb23ebf38ff6304b2290e4c78ed790"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a3deb23ebf38ff6304b2290e4c78ed790">KeyDown</a> (char keyCode)</td></tr>
-<tr class="memitem:a65c1295c0eb07525e236bee2f28dc762"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65c1295c0eb07525e236bee2f28dc762"></a>
-static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a65c1295c0eb07525e236bee2f28dc762">Quit</a> ()</td></tr>
-<tr class="memdesc:a65c1295c0eb07525e236bee2f28dc762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the program has been quit out of. <br/></td></tr>
-<tr class="memitem:a552409034601d2d842f7e04df6b3ef7d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a552409034601d2d842f7e04df6b3ef7d"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a552409034601d2d842f7e04df6b3ef7d">ClearQuit</a> ()</td></tr>
-<tr class="memdesc:a552409034601d2d842f7e04df6b3ef7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset quit. <br/></td></tr>
+<tr class="memitem:a65c1295c0eb07525e236bee2f28dc762"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a65c1295c0eb07525e236bee2f28dc762">Quit</a> ()</td></tr>
+<tr class="memdesc:a65c1295c0eb07525e236bee2f28dc762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if the program has been quit out of.  <a href="#a65c1295c0eb07525e236bee2f28dc762"></a><br/></td></tr>
+<tr class="memitem:a552409034601d2d842f7e04df6b3ef7d"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a552409034601d2d842f7e04df6b3ef7d">ClearQuit</a> ()</td></tr>
+<tr class="memdesc:a552409034601d2d842f7e04df6b3ef7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset quit.  <a href="#a552409034601d2d842f7e04df6b3ef7d"></a><br/></td></tr>
 <tr class="memitem:af9debe25dbf5f39adde4e5c79fc7d166"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#af9debe25dbf5f39adde4e5c79fc7d166">RegisterManager</a> (std::shared_ptr&lt; <a class="el" href="class_game_object_manager.html">GameObjectManager</a> &gt; manager)</td></tr>
-<tr class="memitem:a8bf57405fd0b079c2535da5303f7f0e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bf57405fd0b079c2535da5303f7f0e6"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a8bf57405fd0b079c2535da5303f7f0e6">RemoveManager</a> ()</td></tr>
-<tr class="memdesc:a8bf57405fd0b079c2535da5303f7f0e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregister the active manager. <br/></td></tr>
+<tr class="memitem:a8bf57405fd0b079c2535da5303f7f0e6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_input.html#a8bf57405fd0b079c2535da5303f7f0e6">RemoveManager</a> ()</td></tr>
+<tr class="memdesc:a8bf57405fd0b079c2535da5303f7f0e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unregister the active manager.  <a href="#a8bf57405fd0b079c2535da5303f7f0e6"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="class_input.html">Input</a>: a simple wrapper around SDL's input handling system </p>
-</div><h2>Member Function Documentation</h2>
+<div class="textblock"><p>A simple wrapper around SDL's input handling system </p>
+</div><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="abae3f379d3f157cf42dc857309832dba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Input::Input </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af2db35ba67c8a8ccd23bef6a482fc291"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Input::~Input </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2>Member Function Documentation</h2>
+<a class="anchor" id="a552409034601d2d842f7e04df6b3ef7d"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::ClearQuit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Reset quit. </p>
+
+</div>
+</div>
+<a class="anchor" id="a5197114da7299198826ff7277ee12bff"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initialize the input manager. </p>
+
+</div>
+</div>
 <a class="anchor" id="a3deb23ebf38ff6304b2290e4c78ed790"></a>
 <div class="memitem">
 <div class="memproto">
@@ -144,6 +226,56 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>T/F whether key is down or not </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a495f9772bf0daaccca4330ff8d1aef4b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::PollEvent </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read event input. </p>
+
+</div>
+</div>
+<a class="anchor" id="a65c1295c0eb07525e236bee2f28dc762"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Input::Quit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if the program has been quit out of. </p>
 
 </div>
 </div>
@@ -178,14 +310,39 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 
 </div>
 </div>
+<a class="anchor" id="a8bf57405fd0b079c2535da5303f7f0e6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::RemoveManager </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Unregister the active manager. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Will/Documents/Programs/LPCGame/LPCGame/src/<a class="el" href="input_8h_source.html">input.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/LPCGame/src/input.cpp</li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="input_8h_source.html">input.h</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="input_8cpp.html">input.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 17:34:55 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

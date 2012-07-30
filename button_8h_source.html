@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>Documentation for C++/SDL 2.0 Tile Engine: C:/Users/Will/Documents/Programs/LPCGame/LPCGame/src/button.h Source File</title>
+<title>Documentation for C++/SDL 2.0 Tile Engine: C:/Users/Will/Documents/Programs/LPCGame/src/button.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -61,6 +61,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 <!-- window showing the filter options -->
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -79,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_7347b8f284bfc116608da52ae7584be7.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_33fd4fcbc38ba42cb401620c60a82c8a.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -87,46 +88,47 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">button.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef BUTTON_H</span></div>
+<a href="button_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef BUTTON_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define BUTTON_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;gameobject.h&quot;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;image.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;text.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="class_button.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_button.html">Button</a> : <span class="keyword">public</span> <a class="code" href="class_game_object.html">GameObject</a>{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        <a class="code" href="class_button.html">Button</a>();</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        ~<a class="code" href="class_button.html">Button</a>();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a23e8bc9ad05142244ea4e79a406a6c9c" title="Update the game object.">Update</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a06460f5cb500807ff377b60b68e7a0dc">Draw</a>(<a class="code" href="class_camera.html">Camera</a> *cam = <span class="keyword">nullptr</span>);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a4d56591088110eaaaf1eef5fc5cbff06">Move</a>(<span class="keywordtype">float</span> deltaT);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a245041fab5ab6b79123bf17174e170ed" title="On mouse down events.">OnMouseDown</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#abd3979ee1893fee58499fa4bf01d505c" title="On mouse up event.">OnMouseUp</a>();</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a69408b048737143eba5ab348e9208405" title="On mouse enter.">OnMouseEnter</a>();</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a13ee48e556415dd9ce6b6e8ccdcb8a2c" title="On mouse exit.">OnMouseExit</a>();</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_button.html#aebc7af2bd8e9c39a8563499dac0f93f7" title="On click, run the callback function if one was registered.">OnClick</a>();</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#ad3a3442eae1a189d01b164465a2652ce">RegisterCallBack</a>(<span class="keywordtype">void</span> (*f)(std::string), std::string param);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keyword">virtual</span> Json::Value <a class="code" href="class_button.html#a78575d27f94b5a34f085e381e3777c1c">Save</a>();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_button.html#a91c2e9c9bc1297453479b0aa65fdd42d">Load</a>(Json::Value val);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <a class="code" href="class_button.html">Button</a>(<span class="keyword">const</span> <a class="code" href="class_button.html">Button</a> &amp;a);</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="class_button.html">Button</a>&amp; operator = (<span class="keyword">const</span> <a class="code" href="class_button.html">Button</a> &amp;a);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <a class="code" href="class_image.html">Image</a> mImage;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <a class="code" href="class_text.html">Text</a> mText;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="keywordtype">bool</span> mClicked;</div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416">   64</a></span>&#160;        void (*<a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a>)(std::string);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        std::string mParam;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;};</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="gameobject_8h.html">gameobject.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="image_8h.html">image.h</a>&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="text_8h.html">text.h</a>&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="class_button.html">   13</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_button.html">Button</a> : <span class="keyword">public</span> <a class="code" href="class_game_object.html">GameObject</a>{</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <a class="code" href="class_button.html#a3b36df1ae23c58aedb9e15a713159459">Button</a>();</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="class_button.html#a2a001eb9c3cc8ae54768a850dd345002">~Button</a>();</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a23e8bc9ad05142244ea4e79a406a6c9c" title="Update the game object.">Update</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a06460f5cb500807ff377b60b68e7a0dc">Draw</a>(<a class="code" href="class_camera.html">Camera</a> *cam = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a4d56591088110eaaaf1eef5fc5cbff06">Move</a>(<span class="keywordtype">float</span> deltaT);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a245041fab5ab6b79123bf17174e170ed" title="On mouse down events.">OnMouseDown</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#abd3979ee1893fee58499fa4bf01d505c" title="On mouse up event.">OnMouseUp</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a69408b048737143eba5ab348e9208405" title="On mouse enter.">OnMouseEnter</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#a13ee48e556415dd9ce6b6e8ccdcb8a2c" title="On mouse exit.">OnMouseExit</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_button.html#aebc7af2bd8e9c39a8563499dac0f93f7" title="On click, run the callback function if one was registered.">OnClick</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_button.html#ad3a3442eae1a189d01b164465a2652ce">RegisterCallBack</a>(<span class="keywordtype">void</span> (*f)(std::string), std::string param);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keyword">virtual</span> Json::Value <a class="code" href="class_button.html#a78575d27f94b5a34f085e381e3777c1c">Save</a>();</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_button.html#a91c2e9c9bc1297453479b0aa65fdd42d">Load</a>(Json::Value val);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_button.html#a3b36df1ae23c58aedb9e15a713159459">Button</a>(<span class="keyword">const</span> <a class="code" href="class_button.html">Button</a> &amp;a);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="class_button.html">Button</a>&amp; operator = (<span class="keyword">const</span> <a class="code" href="class_button.html">Button</a> &amp;a);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="code" href="class_button.html#a8b097be23fca0b73d665bd1a748170da">   62</a></span>&#160;        <a class="code" href="class_image.html">Image</a> <a class="code" href="class_button.html#a8b097be23fca0b73d665bd1a748170da">mImage</a>;</div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="code" href="class_button.html#a84647ac29e63b8bb5cc917e4e34558e1">   63</a></span>&#160;        <a class="code" href="class_text.html">Text</a> <a class="code" href="class_button.html#a84647ac29e63b8bb5cc917e4e34558e1">mText</a>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="code" href="class_button.html#a6d43a3440c9f9330d203a6816f159156">   64</a></span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_button.html#a6d43a3440c9f9330d203a6816f159156">mClicked</a>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416">   66</a></span>&#160;        void (*<a class="code" href="class_button.html#add9dd816f30403630bc48df237b00416" title="The callback function pointer &amp; its value.">mFunc</a>)(std::string);</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="code" href="class_button.html#a71a53d72ee8d0d87a86036615174b7dc">   67</a></span>&#160;        std::string <a class="code" href="class_button.html#a71a53d72ee8d0d87a86036615174b7dc">mParam</a>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;};</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 17:34:55 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:17:15 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
