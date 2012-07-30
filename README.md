@@ -6,7 +6,6 @@
 - [SDL 2.0](http://wiki.libsdl.org/moin.cgi/FrontPage)
 
 ### Todo:
-- Restructure code directories, my code should move to a top-level src/ directory, external code should move to top-level directory externals/
 - Simple map editor
 
 ### Done:
