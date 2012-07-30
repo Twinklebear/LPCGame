@@ -50,19 +50,14 @@ void MenuState::Free(){
 	mManager.reset();
 }
 Json::Value MenuState::Save(){
-	Json::Value val;
-	val["objects"]  = mManager->Save();
-	val["name"]	    = mName;
-	val["sceneBox"] = mSceneBox.Save();
+	Json::Value val = State::Save();
 
 	Free();
 	return val;
 }
 void MenuState::Load(Json::Value val){
 	Init();
-	mName = val["name"].asString();
-	mSceneBox.Load(val["sceneBox"]);
-	mCamera->SetSceneBox(mSceneBox);
+	State::Load(val);
 
 	//Load the objects
 	Json::Value objects = val["objects"];

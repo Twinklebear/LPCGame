@@ -23,11 +23,14 @@ public:
 	/**
 	*  Write the state data to a Json Value and return it so that
 	*  it can be saved and loaded later
+	*  @see State::Save for saving inherited members
 	*  @return Json::Value containing the state's save data
 	*/
 	Json::Value Save();
 	/**
 	*  Load the state data from a json value
+	*  @see State::Load for loading inherited members, besides the 
+	*  manager as it must be loaded differently for each state type
 	*  @param val The Json::Value containing the data to load
 	*/
 	void Load(Json::Value val);

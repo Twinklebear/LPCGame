@@ -38,6 +38,20 @@ public:
 	///On mouse exit
 	virtual void OnMouseExit();
 	/**
+	*  Check if mouse entered the object's box
+	*  Updates mMouseOver accordingly
+	*  @param pos The mouse pos to check 
+	*/
+	void CheckMouseOver(const Vector2f &pos);
+	///Return T/F is the mouse is over the object
+	bool GetMouseOver();
+	/**
+	*  Check if the gameobject has the tag
+	*  @param tag The tag to check for
+	*  @return True if the object has the tag
+	*/
+	bool HasTag(std::string tag);
+	/**
 	*  Save the gameobject data to a json value and return it
 	*  The GameObject instance of the function takes care of saving
 	*  the base object members, physics, image and tags
@@ -51,14 +65,6 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
-	/**
-	*  Check if mouse entered the object's box
-	*  Updates mMouseOver accordingly
-	*  @param pos The mouse pos to check 
-	*/
-	void CheckMouseOver(const Vector2f &pos);
-	///Return T/F is the mouse is over the object
-	bool GetMouseOver();
 	/**
 	*  Set a collision map for the physics member to check against
 	*  @param map The collision map

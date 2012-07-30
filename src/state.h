@@ -33,12 +33,12 @@ public:
 	*  Save the state data so that it can be loaded later
 	*  @return Json::Value containing the state data
 	*/
-	virtual Json::Value Save() = 0;
+	virtual Json::Value Save();
 	/**
 	*  Load the state from a Json::Value
 	*  @param val The Json::Value to load from
 	*/
-	virtual void Load(Json::Value val) = 0;
+	virtual void Load(Json::Value val);
 	/**
 	*  Set the state's name
 	*  @param name The name to set
@@ -56,7 +56,6 @@ protected:
 protected:
 	std::shared_ptr<GameObjectManager> mManager;
 	std::shared_ptr<Camera> mCamera;
-	Rectf mSceneBox;
 	std::string mName;
 	bool mExit;
 	std::string mExitCode;

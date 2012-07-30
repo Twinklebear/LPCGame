@@ -22,6 +22,14 @@ void GameObject::CheckMouseOver(const Vector2f &pos){
 }
 bool GameObject::GetMouseOver(){
 	return mMouseOver;
+
+}
+bool GameObject::HasTag(std::string tag){
+	for (int i = 0; i < mTags.size(); ++i){
+		if (tag == mTags.at(i))
+			return true;
+	}
+	return false;
 }
 Json::Value GameObject::Save(){
 	Json::Value val;

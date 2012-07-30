@@ -21,8 +21,6 @@ void GameState::Init(){
 	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
-	mCamera->SetBox(Rectf(0, 0, Window::Box().w, Window::Box().h));
-
 	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
 }
@@ -64,21 +62,18 @@ void GameState::Free(){
 	mManager.reset();
 }
 Json::Value GameState::Save(){
-	Json::Value val;
+	Json::Value val = State::Save();
 	val["map"] 	   = mMap->Save();
-	val["objects"] = mManager->Save();
-	val["name"]	   = mName;
 
 	Free();
 	return val;
 }
 void GameState::Load(Json::Value val){
 	Init();
-	mName = val["name"].asString();
-	//Load the scene box
+	State::Load(val);
 	mMap->Load(val["map"]);
-	mSceneBox.Set(0, 0, mMap->Box().w, mMap->Box().h);
-	mCamera->SetSceneBox(mSceneBox);
+	//Set scene box
+	mCamera->SetSceneBox(Rectf(0, 0, mMap->Box().w, mMap->Box().h));
 
 	//Load the objects
 	Json::Value objects = val["objects"];
@@ -87,8 +82,10 @@ void GameState::Load(Json::Value val){
 			Player *p = new Player();
 			p->Load(objects[i]);
 			std::shared_ptr<GameObject> sObj(p);
+			if (sObj->HasTag("focus"))
+				mCamera->SetFocus(sObj);
 			//Set player as camera focuse
-			mCamera->SetFocus(sObj);
+			//mCamera->SetFocus(sObj);
 			//Register with manager
 			mManager->Register(sObj);
 		}

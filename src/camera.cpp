@@ -75,8 +75,15 @@ Vector2f Camera::Centering() const{
 }
 Json::Value Camera::Save(){
 	Json::Value val;
+	val["mBox"]		= mBox.Save();
+	val["sceneBox"] = mSceneBox.Save();
+
 	return val;
 }
 void Camera::Load(Json::Value val){
-	
+	mSceneBox.Load(val["sceneBox"]);
+	//We need to make sure the camera box is a valid size
+	Rectf box;
+	box.Load(val["mBox"]);
+	SetBox(box);
 }
