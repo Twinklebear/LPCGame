@@ -34,6 +34,11 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
+	/**
+	*  Generate a stress testing map with a specified number of tiles
+	*  @param val The Json::Value to load the stress test from
+	*/
+	void GenerateStressMap(Json::Value val);
 	///Unload the active map
 	void Unload();
 	/**
