@@ -104,8 +104,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keyword">virtual</span> std::string <a class="code" href="class_state.html#a7ebb549f48125d457304345290480a0a">Run</a>() = 0;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_state.html#a595415c02961abb82336a90bf36b0ffb">SetExit</a>(std::string val);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_state.html#a849ac807e588196dd073a0e27f514bae" title="Set exit to false.">UnsetExit</a>();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">virtual</span> Json::Value <a class="code" href="class_state.html#af77043b19ca891b6d6569525e65c18a1">Save</a>() = 0;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_state.html#a67ee87d1e16f9c4d385b3d9fdf04b501">Load</a>(Json::Value val) = 0;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keyword">virtual</span> Json::Value <a class="code" href="class_state.html#a77223c07d360c260b4b3890627a71c01">Save</a>();</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_state.html#a1488ba46f5478ce4b18e84fc93c7d9b8">Load</a>(Json::Value val);</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_state.html#a0aa838bac877e885a40846b40f7fb3f7">SetName</a>(std::string name);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::string <a class="code" href="class_state.html#a00204bb2dd5bd89611f38be66cc4af34" title="Get the state&#39;s name.">Name</a>();</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
@@ -116,18 +116,17 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        std::shared_ptr&lt;GameObjectManager&gt; mManager;</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        std::shared_ptr&lt;Camera&gt; mCamera;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="class_rect.html">Rectf</a> mSceneBox;</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        std::string mName;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordtype">bool</span> mExit;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        std::string mExitCode;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        std::string mName;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">bool</span> mExit;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        std::string mExitCode;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:51:21 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Jul 30 2012 00:07:18 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
