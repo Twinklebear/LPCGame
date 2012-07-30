@@ -14,14 +14,21 @@ Map::~Map(){
 	Unload();
 }
 void Map::Draw(Camera *cam){
-	//TODO: Need a better way to draw the map that reduces draw calls
-	for (int i = 0; i < mTiles.size(); ++i){
-		if (cam != nullptr && cam->InCamera(mTiles.at(i).Box())){
+	//Use the camera box to get the indices of all the tiles in visible in camera
+	if (cam != nullptr){
+		std::vector<int> indices = CalculateIndex(cam->Box());
+		for (int i : indices){
 			Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
-
-			Window::Draw(&mImage, pos, &(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
+			Window::Draw(&mImage, pos,
+				&(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
 		}
 	}
+	//If no camera we default to drawing all tiles
+	else
+		for (int i = 0; i < mTiles.size(); ++i){
+			Window::Draw(&mImage, mTiles.at(i).Box(), 
+				&(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
+		}
 }
 Json::Value Map::Save(){
 	Json::Value map;
