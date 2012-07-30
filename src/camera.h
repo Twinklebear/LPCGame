@@ -2,6 +2,7 @@
 #define CAMERA_H
 
 #include <memory>
+#include "../externals/json/json.h"
 #include "base.h"
 #include "window.h"
 #include "gameobject.h"
@@ -55,6 +56,16 @@ public:
 	*  @return a Vector2f containing the offset to apply
 	*/
 	Vector2f Centering() const;
+	/**
+	*  Save the camera information to file
+	*  @return Json::Value containing the camera's information
+	*/
+	Json::Value Save();
+	/**
+	*  Load the camera configuration from a Json::Value
+	*  @param val The Json::Value to load from
+	*/
+	void Load(Json::Value val);
 
 private:
 	std::weak_ptr<GameObject> mFocus;

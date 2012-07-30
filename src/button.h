@@ -46,11 +46,13 @@ public:
 	void RegisterCallBack(void (*f)(std::string), std::string param);
 	/**
 	*  Save the object data to a json value and return it
+	*  @see GameObject::Save for saving of inherited members
 	*  @return The Json::Value containing the object data
 	*/
 	virtual Json::Value Save();
 	/**
-	*  Load the object from a json value
+	*  Load the object from a Json::Value
+	*  @see GameObject::Load for loading of inherited members
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
@@ -60,7 +62,6 @@ private:
 	Button& operator = (const Button &a);
 
 protected:
-	Image mImage;
 	Text mText;
 	bool mClicked;
 	///The callback function pointer & its value

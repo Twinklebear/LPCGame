@@ -40,15 +40,12 @@ void Npc::SetMove(int move){
 	}
 }
 Json::Value Npc::Save(){
-	Json::Value val;
+	Json::Value val = GameObject::Save();
 	val["obj"]     = "npc";
 	val["type"]    = "0";
-	val["physics"] = mPhysics.Save();
-	val["image"]   = mImage.Save();
 
 	return val;
 }
 void Npc::Load(Json::Value val){
-	mImage.Load(val["image"]);
-	mPhysics.Load(val["physics"]);
+	GameObject::Load(val);
 }

@@ -1,4 +1,5 @@
 #include <memory>
+#include "../externals/json/json.h"
 #include "math.h"
 #include "window.h"
 #include "gameobject.h"
@@ -71,4 +72,11 @@ Vector2f Camera::Centering() const{
 	Recti winBox = Window::Box();
 	return Vector2f((winBox.w / 2 - mSceneBox.w / 2), 
 		(winBox.h / 2 - mSceneBox.h / 2));	
+}
+Json::Value Camera::Save(){
+	Json::Value val;
+	return val;
+}
+void Camera::Load(Json::Value val){
+	
 }

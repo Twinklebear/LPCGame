@@ -6,6 +6,7 @@
 #include "base.h"
 #include "physics.h"
 #include "map.h"
+#include "image.h"
 
 ///A base class for GameObjects to inherit from
 /**
@@ -38,14 +39,18 @@ public:
 	virtual void OnMouseExit();
 	/**
 	*  Save the gameobject data to a json value and return it
+	*  The GameObject instance of the function takes care of saving
+	*  the base object members, physics, image and tags
 	*  @return Json::Value containing the gameobject data
 	*/
-	virtual Json::Value Save() = 0;
+	virtual Json::Value Save();
 	/**
-	*  Load the gameobject from a json value
-	*  @param value The json value to load from
+	*  Load the gameobject from a Json::Value
+	*  The GameObject instance of the function takes care of loading
+	*  the base object members, physics, image and tags
+	*  @param val The Json::Value to load from
 	*/
-	virtual void Load(Json::Value value) = 0;
+	virtual void Load(Json::Value val);
 	/**
 	*  Check if mouse entered the object's box
 	*  Updates mMouseOver accordingly
@@ -72,7 +77,11 @@ private:
 	GameObject& operator = (const GameObject &a);
 
 protected:
+	Image mImage;
+	///Handle's the objects physics
 	Physics mPhysics;
+	///To store tags to identify the object
+	std::vector<std::string> mTags;
 
 private:
 	bool mMouseOver;

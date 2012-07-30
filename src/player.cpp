@@ -39,14 +39,11 @@ void Player::Draw(Camera *cam){
 	Window::Draw(&mImage, pos);
 }
 Json::Value Player::Save(){
-	Json::Value val;
-	val["obj"]     = "player";
-	val["physics"] = mPhysics.Save();
-	val["image"]   = mImage.Save();
+	Json::Value val = GameObject::Save();
+	val["obj"]      = "player";
 
 	return val;
 }
 void Player::Load(Json::Value val){
-	mImage.Load(val["image"]);
-	mPhysics.Load(val["physics"]);
+	GameObject::Load(val);
 }

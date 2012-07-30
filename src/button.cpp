@@ -52,18 +52,15 @@ void Button::RegisterCallBack(void (*f)(std::string), std::string param){
 	mParam = param;
 }
 Json::Value Button::Save(){
-	Json::Value val;
+	Json::Value val = GameObject::Save();
 	val["type"]	   = "button";
 	val["text"]    = mText.Save();
-	val["image"]   = mImage.Save();
-	val["physics"] = mPhysics.Save();
 	val["param"]   = mParam;
-	
+
 	return val;
 }
 void Button::Load(Json::Value val){
+	GameObject::Load(val);
 	mParam = val["param"].asString();
 	mText.Load(val["text"]);
-	mPhysics.Load(val["physics"]);
-	mImage.Load(val["image"]);
 }

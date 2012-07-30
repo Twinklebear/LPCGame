@@ -29,13 +29,15 @@ public:
 	*/
 	void Draw(Camera *cam = nullptr);
 	/**
-	*  Save the gameobject data to a json value and return it
-	*  @return Json::Value containing the gameobject data
+	*  Save the object data to a json value and return it
+	*  @see GameObject::Save for saving of inherited members
+	*  @return The Json::Value containing the object data
 	*/
 	Json::Value Save();
 	/**
-	*  Load the gameobject from a json value
-	*  @param val The json value to load from
+	*  Load the object from a Json::Value
+	*  @see GameObject::Load for loading of inherited members
+	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
 
@@ -43,9 +45,6 @@ private:
 	///Disable copy-construction
 	Player(const Player &a);
 	Player& operator = (const Player &a);
-
-private:
-	Image mImage;
 };
 
 #endif

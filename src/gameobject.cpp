@@ -23,3 +23,18 @@ void GameObject::CheckMouseOver(const Vector2f &pos){
 bool GameObject::GetMouseOver(){
 	return mMouseOver;
 }
+Json::Value GameObject::Save(){
+	Json::Value val;
+	val["image"]   = mImage.Save();
+	val["physics"] = mPhysics.Save();
+	for (int i = 0; i < mTags.size(); ++i)
+		val["tags"][i] = mTags.at(i);
+
+	return val;
+}
+void GameObject::Load(Json::Value val){
+	mPhysics.Load(val["physics"]);
+	mImage.Load(val["image"]);
+	for (int i = 0; i < val["tags"].size(); ++i)
+		mTags.push_back(val["tags"][i].asString());
+}

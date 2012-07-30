@@ -43,29 +43,28 @@ public:
 	}
 	/**
 	*  Save the object data to a json value and return it
-	*  @return Json::Value containing the object data
+	*  @see GameObject::Save for saving of inherited members
+	*  @return The Json::Value containing the object data
 	*/
 	Json::Value Save(){
 		//Unfortunately I can't change the function that's pointed to via loading json
 		//as it's code not data, so instead we just save the param
-		Json::Value val;
+		Json::Value val = GameObject::Save();
 		val["type"]	   = "objectbutton";
 		val["text"]    = mText.Save();
-		val["physics"] = mPhysics.Save();
-		val["image"]   = mImage.Save();
 		val["param"]   = mParam;
 		
 		return val;
 	}
 	/**
 	*  Load the object from a Json::Value
+	*  @see GameObject::Load for loading of inherited members
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val){
+		GameObject::Load(val);
 		mParam = val["param"].asString();
 		mText.Load(val["text"]);
-		mPhysics.Load(val["physics"]);
-		mImage.Load(val["image"]);
 	}
 
 private:
