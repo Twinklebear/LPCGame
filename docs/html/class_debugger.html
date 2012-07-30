@@ -71,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -95,34 +95,158 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a12f822c5d6749212d35a6ff006edcf31"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12f822c5d6749212d35a6ff006edcf31"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_debugger.html#a12f822c5d6749212d35a6ff006edcf31">~Debugger</a> ()</td></tr>
-<tr class="memdesc:a12f822c5d6749212d35a6ff006edcf31"><td class="mdescLeft">&#160;</td><td class="mdescRight">close file <br/></td></tr>
+<tr class="memitem:a12f822c5d6749212d35a6ff006edcf31"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_debugger.html#a12f822c5d6749212d35a6ff006edcf31">~Debugger</a> ()</td></tr>
+<tr class="memdesc:a12f822c5d6749212d35a6ff006edcf31"><td class="mdescLeft">&#160;</td><td class="mdescRight">close file  <a href="#a12f822c5d6749212d35a6ff006edcf31"></a><br/></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
-<tr class="memitem:afcba0531ef7c68289d9a2f03b7e5d666"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afcba0531ef7c68289d9a2f03b7e5d666"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_debugger.html#afcba0531ef7c68289d9a2f03b7e5d666">Init</a> ()</td></tr>
-<tr class="memdesc:afcba0531ef7c68289d9a2f03b7e5d666"><td class="mdescLeft">&#160;</td><td class="mdescRight">For static version of class. <br/></td></tr>
-<tr class="memitem:a8985f31f8c89033fa206dbeff4bbaa53"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8985f31f8c89033fa206dbeff4bbaa53"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><b>Close</b> ()</td></tr>
-<tr class="memitem:ae35d279091e243e7a3b1a5361cac80a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae35d279091e243e7a3b1a5361cac80a7"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_debugger.html#ae35d279091e243e7a3b1a5361cac80a7">Write</a> (std::string output)</td></tr>
-<tr class="memdesc:ae35d279091e243e7a3b1a5361cac80a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">write data output to file <br/></td></tr>
-<tr class="memitem:a3deb66e4afcd05b76d1a9510a389de22"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3deb66e4afcd05b76d1a9510a389de22"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_debugger.html#a3deb66e4afcd05b76d1a9510a389de22">Write</a> (std::string output, double num)</td></tr>
-<tr class="memdesc:a3deb66e4afcd05b76d1a9510a389de22"><td class="mdescLeft">&#160;</td><td class="mdescRight">write a string and int/float/double <br/></td></tr>
+<tr class="memitem:afcba0531ef7c68289d9a2f03b7e5d666"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_debugger.html#afcba0531ef7c68289d9a2f03b7e5d666">Init</a> ()</td></tr>
+<tr class="memdesc:afcba0531ef7c68289d9a2f03b7e5d666"><td class="mdescLeft">&#160;</td><td class="mdescRight">For static version of class.  <a href="#afcba0531ef7c68289d9a2f03b7e5d666"></a><br/></td></tr>
+<tr class="memitem:a8985f31f8c89033fa206dbeff4bbaa53"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_debugger.html#a8985f31f8c89033fa206dbeff4bbaa53">Close</a> ()</td></tr>
+<tr class="memitem:ae35d279091e243e7a3b1a5361cac80a7"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_debugger.html#ae35d279091e243e7a3b1a5361cac80a7">Write</a> (std::string output)</td></tr>
+<tr class="memdesc:ae35d279091e243e7a3b1a5361cac80a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">write data output to file  <a href="#ae35d279091e243e7a3b1a5361cac80a7"></a><br/></td></tr>
+<tr class="memitem:a3deb66e4afcd05b76d1a9510a389de22"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_debugger.html#a3deb66e4afcd05b76d1a9510a389de22">Write</a> (std::string output, double num)</td></tr>
+<tr class="memdesc:a3deb66e4afcd05b76d1a9510a389de22"><td class="mdescLeft">&#160;</td><td class="mdescRight">write a string and int/float/double  <a href="#a3deb66e4afcd05b76d1a9510a389de22"></a><br/></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>A simple class to help with debugging, will print string data passed to it to a desired text file </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Will/Documents/Programs/LPCGame/LPCGame/src/<a class="el" href="debugger_8h_source.html">debugger.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/LPCGame/src/debugger.cpp</li>
+</div><h2>Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a12f822c5d6749212d35a6ff006edcf31"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Debugger::~Debugger </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>close file </p>
+
+</div>
+</div>
+<h2>Member Function Documentation</h2>
+<a class="anchor" id="a8985f31f8c89033fa206dbeff4bbaa53"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Debugger::Close </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="afcba0531ef7c68289d9a2f03b7e5d666"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Debugger::Init </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>For static version of class. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae35d279091e243e7a3b1a5361cac80a7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Debugger::Write </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>output</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>write data output to file </p>
+
+</div>
+</div>
+<a class="anchor" id="a3deb66e4afcd05b76d1a9510a389de22"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Debugger::Write </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>output</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>num</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>write a string and int/float/double </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="debugger_8h_source.html">debugger.h</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="debugger_8cpp.html">debugger.cpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 17:34:55 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Jul 29 2012 21:17:16 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
