@@ -5,8 +5,9 @@ LIBDIR=-L /usr/local/lib/
 LINKLIB=-lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf 
 CFLAGS=$(RELEASE) -c $(INCLUDEDIR)
 LFLAGS=$(RELEASE) $(INCLUDEDIR) $(LIBDIR) $(LINKLIB)
-SRCPATH=LPCGame/src/
-OBJPATH=LPCGame/obj/
+SRCPATH=src/
+OBJPATH=obj/
+EXTERNALS=externals/
 EXEC=Debug/game
 OBJS=$(OBJPATH)math.o $(OBJPATH)timer.o $(OBJPATH)debugger.o $(OBJPATH)physics.o $(OBJPATH)image.o \
 	$(OBJPATH)window.o $(OBJPATH)gameobject.o $(OBJPATH)player.o $(OBJPATH)npc.o $(OBJPATH)button.o \
@@ -78,7 +79,7 @@ $(OBJPATH)timer.o: $(SRCPATH)timer.cpp
 $(OBJPATH)math.o: $(SRCPATH)math.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
-$(OBJPATH)json.o: $(SRCPATH)jsoncpp.cpp
+$(OBJPATH)json.o: $(EXTERNALS)jsoncpp.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 clean:
