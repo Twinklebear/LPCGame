@@ -23,3 +23,6 @@
 	- Would like to test camera on more cases but it seems good.
 	- ISSUE: Resizing window doesn't seem to update the drawing of objects, ie. the scene doesn't recenter which is annoying
 		- In addition: Resizing window while playing a gamestate and then trying to quit causes a crash
+
+### Some stress test results [30.7.2012]
+Not very impressive, 12k tiles at about 60% CPU usage on my laptop with a Intel Core 2 Duo @ 2.4GHz and ATI Mobility Radeon HD 3870 X2
