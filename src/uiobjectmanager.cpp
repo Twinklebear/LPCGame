@@ -50,11 +50,3 @@ void UiObjectManager::HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent){
 			o->CheckMouseOver(mousePos);
 	}
 }
-Json::Value UiObjectManager::Save(){
-	Json::Value val;
-	//Run through and save all the game objects
-	for (int i = 0; i < mGameObjects.size(); ++i){
-		val[i] = mGameObjects.at(i)->Save();
-	}
-	return val;
-}

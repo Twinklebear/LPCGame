@@ -9,7 +9,7 @@
 #include "timer.h"
 #include "player.h"
 #include "npc.h"
-#include "button.h"
+#include "objectbutton.h"
 #include "gamestate.h"
 
 GameState::GameState(){
@@ -24,6 +24,7 @@ void GameState::Init(){
 
 	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
+	Input::RegisterManager(mUiManager);
 }
 std::string GameState::Run(){
 	//Unset quits from earlier
@@ -42,9 +43,11 @@ std::string GameState::Run(){
 		mCamera->Update();
 		mManager->Update();
 		mManager->SetCollisionMaps(mMap.get());
+		mUiManager->Update();
 
 		float deltaT = mDelta.GetTicks() / 1000.f;
 		mManager->Move(deltaT);
+		mUiManager->Move(deltaT);
 
 		mDelta.Start();
 
@@ -52,6 +55,7 @@ std::string GameState::Run(){
 		Window::Clear();
 		mMap->Draw(mCamera.get());
 		mManager->Draw();
+		mUiManager->Draw();
 
 		Window::Present();
 	}
@@ -61,10 +65,12 @@ void GameState::Free(){
 	Input::FreeManagers();
 	mMap.reset();
 	mManager.reset();
+	mUiManager.reset();
 }
 Json::Value GameState::Save(){
 	Json::Value val = State::Save();
-	val["map"] 	   = mMap->Save();
+	val["map"] = mMap->Save();
+	val["ui"]  =  mUiManager->Save();
 
 	Free();
 	return val;
@@ -83,11 +89,10 @@ void GameState::Load(Json::Value val){
 			Player *p = new Player();
 			p->Load(objects[i]);
 			std::shared_ptr<GameObject> sObj(p);
+			//Check for focus tag
 			if (sObj->HasTag("focus"))
 				mCamera->SetFocus(sObj);
-			//Set player as camera focuse
-			//mCamera->SetFocus(sObj);
-			//Register with manager
+			//Register
 			mManager->Register(sObj);
 		}
 		if (objects[i]["obj"].asString() == "npc"){
@@ -96,6 +101,18 @@ void GameState::Load(Json::Value val){
 			std::shared_ptr<GameObject> sObj(n);
 			//Register with manager
 			mManager->Register(sObj);
+		}
+	}
+	//Load the ui elements
+	Json::Value uiObj = val["ui"];
+	for (int i = 0; i < uiObj.size(); ++i){
+		//Loading object buttons
+		if (uiObj[i]["type"].asString() == "objectbutton"){
+			ObjectButton<State> *b = new ObjectButton<State>();
+			b->RegisterCallBack(this, &State::SetExit, "");
+			b->Load(uiObj[i]);
+			std::shared_ptr<GameObject> sObj(b);
+			mUiManager->Register(sObj);
 		}
 	}
 }

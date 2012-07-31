@@ -37,11 +37,6 @@ public:
 	*  @param mouseEvent The mouse event that we're processing
 	*/
 	void HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent);
-	/**
-	*  Serialize all the game object data to a Json::Value and return it
-	*  @return Json::Value containing the gameobject data
-	*/
-	Json::Value Save();
 };
 
 #endif

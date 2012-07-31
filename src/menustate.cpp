@@ -64,8 +64,8 @@ void MenuState::Load(Json::Value val){
 	for (int i = 0; i < objects.size(); ++i){
 		//Loading object buttons
 		if (objects[i]["type"].asString() == "objectbutton"){
-			ObjectButton<MenuState> *b = new ObjectButton<MenuState>();
-			b->RegisterCallBack(this, &MenuState::SetExit, "");
+			ObjectButton<State> *b = new ObjectButton<State>();
+			b->RegisterCallBack(this, &State::SetExit, "");
 			b->Load(objects[i]);
 			std::shared_ptr<GameObject> sObj(b);
 			mManager->Register(sObj);

@@ -60,7 +60,7 @@ public:
 	*  Serialize all the game object data to a Json::Value and return it
 	*  @return Json::Value containing the gameobject data
 	*/
-	virtual Json::Value Save();
+	Json::Value Save();
 
 private:
 	/**
