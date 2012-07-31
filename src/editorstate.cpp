@@ -37,7 +37,7 @@ std::string EditorState::Run(){
 			SetExit("mIntro");
 
 		///LOGIC
-		//mCamera->Update();
+		mCamera->Update();
 		mManager->Update();
 		mUiManager->Update();
 

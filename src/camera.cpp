@@ -94,4 +94,6 @@ void Camera::Load(Json::Value val){
 	std::cout << writer.write(val["mBox"]) << std::endl;
 
 	SetBox(box);
+	std::cout << "Load Box: " << box.w << ", " << box.h << std::endl;
+	std::cout << "Cam Box: " << mBox.w << ", " << mBox.h << std::endl;
 }
