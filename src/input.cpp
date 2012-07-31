@@ -229,11 +229,6 @@ bool Input::KeyDown(char keyCode){
 				return true;
 			else 
 				return false;
-		case ' ':
-			if (mKeyStates[SDL_SCANCODE_SPACE] == 1)
-				return true;
-			else 
-				return false;
 		default:
 			return false;
 	}
