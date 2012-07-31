@@ -18,6 +18,7 @@ void Camera::SetFocus(std::shared_ptr<GameObject> obj){
 	mFocus = obj;
 }
 void Camera::Update(){
+	std::cout << "Shitty width: " << mBox.w << " h: " << mBox.h << std::endl;
 	//TODO: Update camera offsets to apply window centering on resize? The centering offset doesn't
 	//seem to work. I tried also applying it to the camera but that didn't seem to help.. Hmm
 
@@ -58,7 +59,7 @@ void Camera::SetBox(Rectf box){
 void Camera::SetSceneBox(Rectf box){
 	mSceneBox = box;
 	//Make sure the camera is smaller than the scene box
-	mBox.Set(mBox.X(), mBox.Y(), 
+	mBox.Set(mBox.X(), mBox.Y(),
 		Math::Clamp(mBox.w, 0, mSceneBox.w),
 		Math::Clamp(mBox.h, 0, mSceneBox.h));
 }
@@ -81,9 +82,16 @@ Json::Value Camera::Save(){
 	return val;
 }
 void Camera::Load(Json::Value val){
+	Json::StyledWriter writer;
+
 	mSceneBox.Load(val["sceneBox"]);
+	std::cout << writer.write(val["sceneBox"]) << std::endl;
+
 	//We need to make sure the camera box is a valid size
 	Rectf box;
 	box.Load(val["mBox"]);
+
+	std::cout << writer.write(val["mBox"]) << std::endl;
+
 	SetBox(box);
 }
