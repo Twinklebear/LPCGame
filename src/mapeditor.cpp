@@ -15,10 +15,13 @@ MapEditor::~MapEditor(){
 	mTiles.clear();
 }
 void MapEditor::GenerateBlank(int x, int y){
+	//Setup the tiles
 	int tW = 32, tH = 32;
+	//Set the mapbox
+	mBox.Set(0, 0, x * tW, y * tH);
 	int tPerRow = x;
 	int row = 0;
-	
+
 	for (int i = 0; i < x * y; ++i){
 		if (i != 0 && i % tPerRow == 0)
 			++row;

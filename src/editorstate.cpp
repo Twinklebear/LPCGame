@@ -23,9 +23,6 @@ std::string EditorState::Run(){
 	//Cleanup any previous exit settings
 	UnsetExit();
 
-	std::cout << "Piece of shit camera w,h: " << mCamera->Box().w 
-		<< ", " << mCamera->Box().h << std::endl;
-
 	Timer delta;
 	delta.Start();
 	while (!mExit){
