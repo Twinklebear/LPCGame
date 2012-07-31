@@ -71,14 +71,20 @@ void EditorState::Load(Json::Value val){
 	mMapEditor->Load(val["map"]);
 	mMapEditor->GenerateBlank(20, 20);
 	mCamera->SetSceneBox(Rectf(0, 0, mMapEditor->Box().w, mMapEditor->Box().h));
+	mCamera->SetBox(Rectf(0, 0, mMapEditor->Box().w, mMapEditor->Box().h));
 }
 void EditorState::Init(){
 	mMapEditor = std::shared_ptr<MapEditor>(new MapEditor());
-	mManager   = std::shared_ptr<GameObjectManager>(new GameObjectEditor());
 	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
 	mCamera    = std::shared_ptr<Camera>(new Camera());
 
+	GameObjectEditor *objEditor  = new GameObjectEditor();
+	objEditor->Register(mMapEditor);
+	//objEditor->Register(mCamera); //Why doesn't this work?
+
+	mManager = std::shared_ptr<GameObjectManager>(objEditor);
 	mManager->Register(mCamera);
+
 	Input::RegisterManager(mManager);
 	Input::RegisterManager(mUiManager);
 }

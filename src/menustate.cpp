@@ -31,6 +31,8 @@ std::string MenuState::Run(){
 		Input::PollEvent();
 		if (Input::Quit())
 			SetExit("quit");
+		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
+			SetExit("quit");
 
 		///LOGIC
 		mCamera->Update();

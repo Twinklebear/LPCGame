@@ -4,6 +4,7 @@
 #include "gameobject.h"
 #include "camera.h"
 #include "gameobjectmanager.h"
+#include "tile.h"
 #include "mapeditor.h"
 #include "gameobjecteditor.h"
 
@@ -54,6 +55,13 @@ void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 					break;
 			}
 		}
+	}
+	//Place a tile on map
+	std::shared_ptr<MapEditor> s = mMapEditor.lock();
+	if (s){
+		Vector2f mousePos = Math::ToSceneSpace(mCamera.get(), Vector2f(tempEvt.x, tempEvt.y));
+		Tile temp(Recti(mousePos.x, mousePos.y, 32, 32), 5, true);
+		s->Insert(mousePos.x, mousePos.y, temp);
 	}
 }
 void GameObjectEditor::HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent){
