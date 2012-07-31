@@ -13,7 +13,7 @@ OBJS=$(OBJPATH)math.o $(OBJPATH)timer.o $(OBJPATH)debugger.o $(OBJPATH)physics.o
 	$(OBJPATH)window.o $(OBJPATH)gameobject.o $(OBJPATH)player.o $(OBJPATH)npc.o $(OBJPATH)button.o \
 	$(OBJPATH)gameobjectmanager.o $(OBJPATH)input.o $(OBJPATH)map.o $(OBJPATH)state.o $(OBJPATH)menustate.o \
 	$(OBJPATH)gamestate.o $(OBJPATH)text.o $(OBJPATH)statemanager.o $(OBJPATH)json.o $(OBJPATH)camera.o \
-	$(OBJPATH)uiobjectmanager.o
+	$(OBJPATH)uiobjectmanager.o $(OBJPATH)mapeditor.o $(OBJPATH)editorstate.o
 	
 %.o: %.cpp $(DEPS)
 	$(CXX) -c -o $@ $< $(CFLAGS)
@@ -26,6 +26,9 @@ $(EXEC): $(SRCPATH)main.cpp $(OBJS)
 $(OBJPATH)statemanager.o: $(SRCPATH)statemanager.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
+$(OBJPATH)editorstate.o: $(SRCPATH)editorstate.cpp
+	$(CXX) -o $@ $^ $(CFLAGS)
+
 $(OBJPATH)gamestate.o: $(SRCPATH)gamestate.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
@@ -33,6 +36,9 @@ $(OBJPATH)menustate.o: $(SRCPATH)menustate.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJPATH)state.o: $(SRCPATH)state.cpp
+	$(CXX) -o $@ $^ $(CFLAGS)
+
+$(OBJPATH)mapeditor.o: $(SRCPATH)mapeditor.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJPATH)map.o: $(SRCPATH)map.cpp

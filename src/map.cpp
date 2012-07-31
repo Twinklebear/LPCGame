@@ -11,7 +11,7 @@
 Map::Map(){
 }
 Map::~Map(){
-	Unload();
+	mTiles.clear();
 }
 void Map::Draw(Camera *cam){
 	//Use the camera box to get the indices of all the tiles in visible in camera
@@ -77,9 +77,6 @@ void Map::GenerateStressMap(Json::Value val){
 		tempTile.SetType(0);
 		mTiles.push_back(tempTile);
 	}
-}
-void Map::Unload(){
-	mTiles.clear();
 }
 int Map::CalculateIndex(int x, int y) const{
 	//if it's in bounds calculate the index

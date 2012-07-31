@@ -39,8 +39,6 @@ public:
 	*  @param val The Json::Value to load the stress test from
 	*/
 	void GenerateStressMap(Json::Value val);
-	///Unload the active map
-	void Unload();
 	/**
 	*  Calculate the index of the tile at the point
 	*  @param x The point's x coordinate
@@ -65,7 +63,7 @@ public:
 	///Get the map's box
 	Recti Box() const;
 
-private:
+protected:
 	std::vector<Tile> mTiles;
 	Image mImage;
 	Recti mBox;
