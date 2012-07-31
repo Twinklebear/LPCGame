@@ -14,6 +14,22 @@ MapEditor::MapEditor(){
 MapEditor::~MapEditor(){
 	mTiles.clear();
 }
+void MapEditor::GenerateBlank(int x, int y){
+	int tW = 32, tH = 32;
+	int tPerRow = x;
+	int row = 0;
+	
+	for (int i = 0; i < x * y; ++i){
+		if (i != 0 && i % tPerRow == 0)
+			++row;
+		Recti tRect(i % tPerRow * tW, row * tH, tW, tH);
+		Tile tempTile;
+		tempTile.SetBox(tRect);
+		tempTile.SetSolid(false);
+		tempTile.SetType(0);
+		mTiles.push_back(tempTile);
+	}
+}
 void MapEditor::Insert(int x, int y, Tile tile){
 	try {
 		int i = CalculateIndex(x, y);

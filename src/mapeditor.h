@@ -12,8 +12,16 @@
 #include "map.h"
 
 class MapEditor : public Map{
+public:
 	MapEditor();
 	~MapEditor();
+	/**
+	*  Generate a blank map that is x tiles wide and
+	*  y tiles tall
+	*  @param x The width of the map, in tiles
+	*  @param y The height of the map, in tiles
+	*/
+	void GenerateBlank(int x, int y);
 	/**
 	*  Insert a tile at the tile located at some x, y point
 	*  @param x The x coordinate to insert tile at

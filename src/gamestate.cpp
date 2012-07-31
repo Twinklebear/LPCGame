@@ -15,23 +15,14 @@ GameState::GameState(){
 }
 GameState::~GameState(){
 }
-void GameState::Init(){
-	mMap 	   = std::shared_ptr<Map>(new Map());
-	mManager   = std::shared_ptr<GameObjectManager>(new GameObjectManager());
-	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
-	mCamera    = std::shared_ptr<Camera>(new Camera());
-
-	mManager->Register(mCamera);
-	Input::RegisterManager(mManager);
-	Input::RegisterManager(mUiManager);
-}
 std::string GameState::Run(){
 	//Unset quits from earlier
 	Input::ClearQuit();
 	//Cleanup any previous exit settings
 	UnsetExit();
 
-	mDelta.Start();
+	Timer delta;
+	delta.Start();
 	while (!mExit){
 		//EVENT POLLING
 		Input::PollEvent();
@@ -46,11 +37,11 @@ std::string GameState::Run(){
 		mManager->SetCollisionMaps(mMap.get());
 		mUiManager->Update();
 
-		float deltaT = mDelta.GetTicks() / 1000.f;
+		float deltaT = delta.GetTicks() / 1000.f;
 		mManager->Move(deltaT);
 		mUiManager->Move(deltaT);
 
-		mDelta.Start();
+		delta.Start();
 
 		///RENDERING
 		Window::Clear();
@@ -61,6 +52,16 @@ std::string GameState::Run(){
 		Window::Present();
 	}
 	return mExitCode;
+}
+void GameState::Init(){
+	mMap 	   = std::shared_ptr<Map>(new Map());
+	mManager   = std::shared_ptr<GameObjectManager>(new GameObjectManager());
+	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
+	mCamera    = std::shared_ptr<Camera>(new Camera());
+
+	mManager->Register(mCamera);
+	Input::RegisterManager(mManager);
+	Input::RegisterManager(mUiManager);
 }
 void GameState::Free(){
 	Input::FreeManagers();

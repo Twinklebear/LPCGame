@@ -9,6 +9,7 @@
 - Simple map editor
 	- Planning: MapEditor inherits from map, will also have an object editor inherit from map object manager or whatnot later, also will need a GameObjectEditor class inheriting from GameObjectManager which can then register the various Editor classes so that they can recieve and handle mouse input
 	- Will need an EditorState as well
+- Should i change how Input handles mouse events? I think something where I didn't need to register managers with the Input class but could instead simply read them from anywhere like I do with the key states would be much better.
 
 ### "Done":
 - State's Run() function now returns a string corresponding to the state that should be loaded next, 'quit' specifies that the program should exit completely. ObjectButtons can register a callback SetExit(std::string) for the class's function, which when called will exit Run() and return the desired string as the return code.

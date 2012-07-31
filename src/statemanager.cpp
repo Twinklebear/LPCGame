@@ -6,6 +6,7 @@
 #include "state.h"
 #include "gamestate.h"
 #include "menustate.h"
+#include "editorstate.h"
 #include "statemanager.h"
 
 #include "debugger.h"
@@ -60,6 +61,20 @@ bool StateManager::LoadState(std::string name){
 
 		fileIn.close();
 
+		return true;
+	}
+	//Testing editor
+	else if (name.at(0) == 'e'){
+		std::ifstream fileIn((mStatesDir + name + ".json").c_str(), std::ifstream::binary);
+		//Make sure file opened ok
+		if (!fileIn || !reader.parse(fileIn, root, false))
+			return false;
+		//Load the editor state
+		EditorState *editor = new EditorState();
+		editor->Load(root);
+		SetState((State*)editor);
+
+		fileIn.close();
 		return true;
 	}
 	return false;

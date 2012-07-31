@@ -45,7 +45,6 @@ protected:
 private:
 	std::shared_ptr<Map> mMap;
 	std::shared_ptr<UiObjectManager> mUiManager;
-	Timer mDelta;
 };
 
 #endif
