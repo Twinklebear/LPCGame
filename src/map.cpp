@@ -18,9 +18,11 @@ void Map::Draw(Camera *cam){
 	if (cam != nullptr){
 		std::vector<int> indices = CalculateIndex(cam->Box());
 		for (int i : indices){
-			Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
-			Window::Draw(&mImage, pos,
-				&(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
+			if (i < mTiles.size()){
+				Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
+				Window::Draw(&mImage, pos,
+					&(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
+			}
 		}
 	}
 	//If no camera we default to drawing all tiles
@@ -53,6 +55,26 @@ void Map::Load(Json::Value val){
 		Tile tempTile;
 		tempTile.Load(tiles[i]);
 
+		mTiles.push_back(tempTile);
+	}
+}
+void Map::GenerateStressMap(Json::Value val){
+	int numTiles = val["numTiles"].asInt();
+	mImage.Load(val["image"]);
+	mBox.Set(0, 0, Window::Box().w, Window::Box().h);
+	//Determine the tile w/h to fill the window with numTiles
+	int tileSize = sqrt((Window::Box().w * Window::Box().h) / numTiles);
+	//Generate the map
+	int tPerCol = Window::Box().w / tileSize;
+	int col = 0;
+	for (int i = 0; i < numTiles; ++i){
+		if (i != 0 && i % tPerCol == 0)
+			++col;
+		Recti tRect(col * tileSize, i % tPerCol * tileSize, tileSize, tileSize);
+		Tile tempTile;
+		tempTile.SetBox(tRect);
+		tempTile.SetSolid(false);
+		tempTile.SetType(0);
 		mTiles.push_back(tempTile);
 	}
 }
@@ -109,7 +131,7 @@ CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 	//Setup the collision map
 	CollisionMap localMap;
 	for (int i : indices){
-		if (mTiles.at(i).Solid())
+		if (i < mTiles.size() && mTiles.at(i).Solid())
 			localMap.push_back(mTiles.at(i).Box());
 	}
 	return localMap;
