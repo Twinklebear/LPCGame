@@ -46,7 +46,7 @@ std::string MenuState::Run(){
 	return mExitCode;
 }
 void MenuState::Free(){
-	Input::RemoveManager();
+	Input::FreeManagers();
 	mManager.reset();
 }
 Json::Value MenuState::Save(){

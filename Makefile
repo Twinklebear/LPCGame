@@ -12,7 +12,8 @@ EXEC=Debug/game
 OBJS=$(OBJPATH)math.o $(OBJPATH)timer.o $(OBJPATH)debugger.o $(OBJPATH)physics.o $(OBJPATH)image.o \
 	$(OBJPATH)window.o $(OBJPATH)gameobject.o $(OBJPATH)player.o $(OBJPATH)npc.o $(OBJPATH)button.o \
 	$(OBJPATH)gameobjectmanager.o $(OBJPATH)input.o $(OBJPATH)map.o $(OBJPATH)state.o $(OBJPATH)menustate.o \
-	$(OBJPATH)gamestate.o $(OBJPATH)text.o $(OBJPATH)statemanager.o $(OBJPATH)json.o $(OBJPATH)camera.o
+	$(OBJPATH)gamestate.o $(OBJPATH)text.o $(OBJPATH)statemanager.o $(OBJPATH)json.o $(OBJPATH)camera.o \
+	$(OBJPATH)uiobjectmanager.o
 	
 %.o: %.cpp $(DEPS)
 	$(CXX) -c -o $@ $< $(CFLAGS)
@@ -38,6 +39,9 @@ $(OBJPATH)map.o: $(SRCPATH)map.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJPATH)input.o: $(SRCPATH)input.cpp
+	$(CXX) -o $@ $^ $(CFLAGS)
+
+$(OBJPATH)uiobjectmanager.o: $(SRCPATH)uiobjectmanager.cpp
 	$(CXX) -o $@ $^ $(CFLAGS)
 
 $(OBJPATH)gameobjectmanager.o: $(SRCPATH)gameobjectmanager.cpp

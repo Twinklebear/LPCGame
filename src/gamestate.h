@@ -6,6 +6,7 @@
 #include "state.h"
 #include "timer.h"
 #include "map.h"
+#include "uiobjectmanager.h"
 
 ///A state for running a game level
 /**
@@ -43,6 +44,7 @@ protected:
 
 private:
 	std::shared_ptr<Map> mMap;
+	std::shared_ptr<UiObjectManager> mUiManager;
 	Timer mDelta;
 };
 

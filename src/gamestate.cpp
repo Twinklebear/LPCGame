@@ -17,9 +17,10 @@ GameState::GameState(){
 GameState::~GameState(){
 }
 void GameState::Init(){
-	mMap 	 = std::shared_ptr<Map>(new Map());
-	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
-	mCamera  = std::shared_ptr<Camera>(new Camera());
+	mMap 	   = std::shared_ptr<Map>(new Map());
+	mManager   = std::shared_ptr<GameObjectManager>(new GameObjectManager());
+	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
+	mCamera    = std::shared_ptr<Camera>(new Camera());
 
 	mManager->Register(mCamera);
 	Input::RegisterManager(mManager);
@@ -57,7 +58,7 @@ std::string GameState::Run(){
 	return mExitCode;
 }
 void GameState::Free(){
-	Input::RemoveManager();
+	Input::FreeManagers();
 	mMap.reset();
 	mManager.reset();
 }

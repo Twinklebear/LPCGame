@@ -21,14 +21,14 @@ public:
 	GameObjectManager();
 	~GameObjectManager();
 	///Draw the game objects
-	void Draw();
+	virtual void Draw();
 	///Update the objects
-	void Update();
+	virtual void Update();
 	/**
 	*  Move the game objects
 	*  @param deltaT The time elapsed
 	*/
-	void Move(float deltaT);
+	virtual void Move(float deltaT);
 	/**
 	*  Setup object collision maps
 	*  @param map The map to get the collision maps from
@@ -50,17 +50,17 @@ public:
 	*  find what was clicked, and call it
 	*  @param mouseEvent The mouse event that we're processing
 	*/
-	void HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent);
+	virtual void HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent);
 	/**
 	*  Handle Mouse motion, check if the mouse entered/exited an object
 	*  @param mouseEvent The mouse event that we're processing
 	*/
-	void HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent);
+	virtual void HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent);
 	/**
 	*  Serialize all the game object data to a Json::Value and return it
 	*  @return Json::Value containing the gameobject data
 	*/
-	Json::Value Save();
+	virtual Json::Value Save();
 
 private:
 	/**
@@ -71,7 +71,8 @@ private:
 	*/
 	CollisionMap GetEntityCollisionMap(const Rectf &target, int distance = 2 * TILE_WIDTH);
 
-private:
+protected:
+	///The list of objects in the scene
 	GameObjectList mGameObjects;
 	std::shared_ptr<Camera> mCamera;
 };

@@ -4,6 +4,7 @@
 #include <memory>
 #include "SDL.h"
 #include "gameobjectmanager.h"
+#include "uiobjectmanager.h"
 
 ///Input handler wrapper
 /**
@@ -15,6 +16,8 @@ public:
 	~Input();
 	///Initialize the input manager
 	static void Init();
+	///Free the active managers
+	static void FreeManagers();
 	///Read event input
 	static void PollEvent();
 	/**
@@ -35,13 +38,17 @@ public:
 	*  @param manager The gameobject manager to send events too
 	*/
 	static void RegisterManager(std::shared_ptr<GameObjectManager> manager);
-	///Unregister the active manager
-	static void RemoveManager();
+	/**
+	*  Register the ui object manager with the input handler
+	*  @param manager The ui object manager
+	*/
+	static void RegisterManager(std::shared_ptr<UiObjectManager> manager);
 
 private:
 	static SDL_Event evt;
 	static bool mQuit;
-	static std::weak_ptr<GameObjectManager> mManager;
+	static std::weak_ptr<GameObjectManager> mGameObjectManager;
+	static std::weak_ptr<UiObjectManager> mUiObjectManager;
 	static Uint8 *mKeyStates;
 };
 

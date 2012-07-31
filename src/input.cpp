@@ -2,10 +2,12 @@
 #include "SDL.h"
 #include "window.h"
 #include "gameobjectmanager.h"
+#include "uiobjectmanager.h"
 #include "input.h"
 
 SDL_Event Input::evt;
-std::weak_ptr<GameObjectManager> Input::mManager;
+std::weak_ptr<GameObjectManager> Input::mGameObjectManager;
+std::weak_ptr<UiObjectManager> Input::mUiObjectManager;
 Uint8* Input::mKeyStates;
 bool Input::mQuit = false;
 
@@ -13,6 +15,10 @@ Input::Input(){}
 Input::~Input(){}
 void Input::Init(){
 	mKeyStates = SDL_GetKeyboardState(NULL);
+}
+void Input::FreeManagers(){
+	mGameObjectManager.reset();
+	mUiObjectManager.reset();
 }
 void Input::PollEvent(){
 	while(SDL_PollEvent(&evt)){
@@ -22,14 +28,21 @@ void Input::PollEvent(){
 		if (evt.type == SDL_QUIT || (evt.type == SDL_KEYDOWN && evt.key.keysym.sym == SDLK_ESCAPE))
 			mQuit = true;
 		//Try to lock the manager for use
-		std::shared_ptr<GameObjectManager> sp = mManager.lock();
-		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP) && sp){
-			sp->HandleMouseEvent(evt.button);
+		std::shared_ptr<GameObjectManager> sG = mGameObjectManager.lock();
+		std::shared_ptr<UiObjectManager> sU = mUiObjectManager.lock();
+		//Send mouse click events
+		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP)){
+			if (sG)
+				sG->HandleMouseEvent(evt.button);
+			if (sU)
+				sU->HandleMouseEvent(evt.button);
 		}
-		//This is constantly called even if the mouse isn't moving, can
-		//i set some sort of min required motion to trigger?
-		if (evt.type == SDL_MOUSEMOTION && sp){
-			sp->HandleMouseEvent(evt.motion);
+		//Send mouse movement events
+		if (evt.type == SDL_MOUSEMOTION){
+			if (sG)
+				sG->HandleMouseEvent(evt.motion);
+			if (sU)
+				sU->HandleMouseEvent(evt.motion);
 		}
 	}
 }
@@ -232,9 +245,10 @@ void Input::ClearQuit(){
 	mQuit = false;
 }
 void Input::RegisterManager(std::shared_ptr<GameObjectManager> manager){
-	RemoveManager();
-	mManager = manager;
+	mGameObjectManager.reset();
+	mGameObjectManager = manager;
 }
-void Input::RemoveManager(){
-	mManager.reset();
+void Input::RegisterManager(std::shared_ptr<UiObjectManager> manager){
+	mUiObjectManager.reset();
+	mUiObjectManager = manager;
 }
