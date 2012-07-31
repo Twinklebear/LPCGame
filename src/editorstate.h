@@ -8,8 +8,12 @@
 #include "timer.h"
 #include "mapeditor.h"
 #include "uiobjectmanager.h"
-//#include "gamobjecteditor.h"
 
+///Runs the editor state
+/**
+*  Runs the editing state, which allows for map creation
+*  and addition or removal of gameobjects
+*/
 class EditorState : public State{
 public:
 	EditorState();

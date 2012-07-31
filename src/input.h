@@ -34,6 +34,13 @@ public:
 	*  @return T if key is down
 	*/
 	static bool KeyDown(int keyCode);
+	/**
+	*  
+	*/
+	///Check if the mouse was clicked
+	static bool MouseClick();
+	///Check if the mouse moved
+	static bool MouseMotion();
 	///Check if the program has been quit out of
 	static bool Quit();
 	///Reset quit
@@ -52,10 +59,15 @@ public:
 
 private:
 	static SDL_Event evt;
-	static bool mQuit;
+	static bool mQuit;//, mMouseClick, mMouseMove;
 	static std::weak_ptr<GameObjectManager> mGameObjectManager;
 	static std::weak_ptr<UiObjectManager> mUiObjectManager;
 	static Uint8 *mKeyStates;
+	//How would i determine if the event was recent or not?
+	//ie. if i use these to track the event, after the event happened
+	//they need to be reset along with the bool values
+	//static SDL_MouseButtonEvent mButtonEvt;
+	//static SDL_MouseMotionEvent mMotionEvt;
 };
 
 #endif

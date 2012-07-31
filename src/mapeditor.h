@@ -11,6 +11,10 @@
 #include "camera.h"
 #include "map.h"
 
+///Allows for editing of a map
+/**
+*  Lets you edit the map by inserting or removing tiles
+*/
 class MapEditor : public Map{
 public:
 	MapEditor();
