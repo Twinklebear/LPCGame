@@ -18,6 +18,13 @@ class GameObjectEditor : public GameObjectManager{
 public:
 	GameObjectEditor();
 	~GameObjectEditor();
+	///Draw the game objects
+	void Draw();
+	/**
+	*  Move the game objects
+	*  @param deltaT The time elapsed
+	*/
+	void Move(float deltaT);
 	///Update the objects
 	void Update();
 	/**

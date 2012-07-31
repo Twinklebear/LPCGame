@@ -14,6 +14,8 @@ Map::~Map(){
 	mTiles.clear();
 }
 void Map::Draw(Camera *cam){
+	std::cout << "Cam x,y,w,h: " << cam->Box().X() << ", " << cam->Box().Y()
+		<< ", " << cam->Box().w << ", " << cam->Box().h << std::endl;
 	//Use the camera box to get the indices of all the tiles in visible in camera
 	if (cam != nullptr){
 		std::vector<int> indices = CalculateIndex(cam->Box());

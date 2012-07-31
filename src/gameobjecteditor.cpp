@@ -8,9 +8,28 @@
 #include "gameobjecteditor.h"
 
 GameObjectEditor::GameObjectEditor(){
+
 }
 GameObjectEditor::~GameObjectEditor(){
 	mGameObjects.clear();
+}
+void GameObjectEditor::Draw(){
+	for (std::shared_ptr<GameObject> o : mGameObjects){
+		if (mCamera->InCamera(o->Box()))
+			o->Draw(mCamera.get());
+	}
+}
+void GameObjectEditor::Update(){
+	for (std::shared_ptr<GameObject> o : mGameObjects){
+		if (mCamera->InCamera(o->Box()))
+			o->Update();
+	}
+}
+void GameObjectEditor::Move(float deltaT){
+	for (std::shared_ptr<GameObject> o : mGameObjects){
+		if (mCamera->InCamera(o->Box()))
+			o->Move(deltaT);
+	}
 }
 void GameObjectEditor::Register(std::shared_ptr<MapEditor> mapEditor){
 	mMapEditor = mapEditor;

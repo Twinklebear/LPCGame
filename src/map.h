@@ -51,6 +51,7 @@ public:
 	*  Calculate the indices of all the tiles within an area
 	*  @param area The area to get tile indices in
 	*  @return A vector of ints containing the tile indices
+	*  @throw Runtime error if the vector is empty
 	*/
 	std::vector<int> CalculateIndex(Recti area) const;
 	/**

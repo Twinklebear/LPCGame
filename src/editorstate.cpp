@@ -23,6 +23,9 @@ std::string EditorState::Run(){
 	//Cleanup any previous exit settings
 	UnsetExit();
 
+	std::cout << "Piece of shit camera w,h: " << mCamera->Box().w 
+		<< ", " << mCamera->Box().h << std::endl;
+
 	Timer delta;
 	delta.Start();
 	while (!mExit){
@@ -47,7 +50,6 @@ std::string EditorState::Run(){
 		///RENDERING
 		Window::Clear();
 		mMapEditor->Draw(mCamera.get());
-		//mMapEditor->Draw();
 		mManager->Draw();
 		mUiManager->Draw();
 
@@ -76,7 +78,6 @@ void EditorState::Load(Json::Value val){
 void EditorState::Init(){
 	mMapEditor = std::shared_ptr<MapEditor>(new MapEditor());
 	mManager   = std::shared_ptr<GameObjectManager>(new GameObjectEditor());
-	mManager   = std::shared_ptr<GameObjectManager>(new GameObjectManager());
 	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
 	mCamera    = std::shared_ptr<Camera>(new Camera());
 
