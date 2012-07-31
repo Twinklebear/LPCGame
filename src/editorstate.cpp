@@ -72,6 +72,19 @@ void EditorState::Load(Json::Value val){
 	mMapEditor->GenerateBlank(20, 20);
 	mCamera->SetSceneBox(Rectf(0, 0, mMapEditor->Box().w, mMapEditor->Box().h));
 	mCamera->SetBox(Rectf(0, 0, mMapEditor->Box().w, mMapEditor->Box().h));
+
+	//Load the ui elements
+	Json::Value uiObj = val["ui"];
+	for (int i = 0; i < uiObj.size(); ++i){
+		//Loading object buttons
+		if (uiObj[i]["type"].asString() == "objectbutton"){
+			ObjectButton<State> *b = new ObjectButton<State>();
+			b->RegisterCallBack(this, &State::SetExit, "");
+			b->Load(uiObj[i]);
+			std::shared_ptr<GameObject> sObj(b);
+			mUiManager->Register(sObj);
+		}
+	}
 }
 void EditorState::Init(){
 	mMapEditor = std::shared_ptr<MapEditor>(new MapEditor());

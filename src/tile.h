@@ -20,7 +20,7 @@ public:
 	*  @param solid The tile's solid property
 	*  @param type The tile's type, corresponds to its clip number for drawing
 	*/
-	Tile(Recti box, bool solid, int type){
+	Tile(Recti box, int type, bool solid){
 		mBox	= box;
 		mSolid	= solid;
 		mType	= type;

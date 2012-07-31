@@ -60,7 +60,8 @@ void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	std::shared_ptr<MapEditor> s = mMapEditor.lock();
 	if (s){
 		Vector2f mousePos = Math::ToSceneSpace(mCamera.get(), Vector2f(tempEvt.x, tempEvt.y));
-		Tile temp(Recti(mousePos.x, mousePos.y, 32, 32), 5, true);
+		//The MapEditor will setup the correct box for us
+		Tile temp(Recti(0, 0, 0, 0), 7, true);
 		s->Insert(mousePos.x, mousePos.y, temp);
 	}
 }

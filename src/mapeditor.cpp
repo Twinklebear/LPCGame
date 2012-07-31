@@ -15,6 +15,7 @@ MapEditor::~MapEditor(){
 	mTiles.clear();
 }
 void MapEditor::GenerateBlank(int x, int y){
+	mTiles.clear();
 	//Setup the tiles
 	int tW = 32, tH = 32;
 	//Set the mapbox
