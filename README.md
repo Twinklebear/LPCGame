@@ -6,10 +6,6 @@
 - [SDL 2.0](http://wiki.libsdl.org/moin.cgi/FrontPage)
 
 ### Todo:
-- UI Elements
-	- Inherit from gameobject? Clickable ones can inherite from Button or ObjectButton
-	- When should they be called? Perhaps register with the manager to run them
-		- Need to make manager ignore them for collisons, perhaps a "ui" tag?
 - Simple map editor
 	- Planning: MapEditor inherits from map, will also have an object editor inherit from map object manager or whatnot later, also will need a GameObjectEditor class inheriting from GameObjectManager which can then register the various Editor classes so that they can recieve and handle mouse input
 	- Will need an EditorState as well
@@ -27,6 +23,10 @@
 	- Would like to test camera on more cases but it seems good.
 	- ISSUE: Resizing window doesn't seem to update the drawing of objects, ie. the scene doesn't recenter which is annoying
 		- In addition: Resizing window while playing a gamestate and then trying to quit causes a crash
+- UI Elements
+	- UiObjectManager written, inherits from GameObjectManager and runs the same functions, but without camera checking and positions objects in window space.
+	- Note: For menu states you should use the GameObjectManager to register your buttons, as the buttons in this case are the scene and as such should be positioned in scene space, Ui elements are intended to be in game things.
+	- This method of ui management may not be the best, will probably revist it later. But this is ok for now
 
 ### Some stress test results [30.7.2012]
 Not very impressive, 12k tiles at about 60% CPU usage on my laptop with a Intel Core 2 Duo @ 2.4GHz and ATI Mobility Radeon HD 3870 X2
