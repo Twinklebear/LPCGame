@@ -37,6 +37,8 @@ std::string GameState::Run(){
 		//EVENT POLLING
 		Input::PollEvent();
 		if (Input::Quit())
+			SetExit("quit");
+		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
 			SetExit("mIntro");
 
 		///LOGIC

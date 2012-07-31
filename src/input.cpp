@@ -25,7 +25,7 @@ void Input::PollEvent(){
 		//this is an ok method to do this. But maybe not the best
 		Window::HandleEvents(evt);
 
-		if (evt.type == SDL_QUIT || (evt.type == SDL_KEYDOWN && evt.key.keysym.sym == SDLK_ESCAPE))
+		if (evt.type == SDL_QUIT)
 			mQuit = true;
 		//Try to lock the manager for use
 		std::shared_ptr<GameObjectManager> sG = mGameObjectManager.lock();
@@ -237,6 +237,11 @@ bool Input::KeyDown(char keyCode){
 		default:
 			return false;
 	}
+}
+bool Input::KeyDown(int keyCode){
+	if (mKeyStates[keyCode] == 1)
+		return true;
+	return false;
 }
 bool Input::Quit(){
 	return mQuit;

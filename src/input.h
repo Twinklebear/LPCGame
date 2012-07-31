@@ -25,9 +25,15 @@ public:
 	*  TODO: I need a way to handle special keys, perhaps a version of this
 	*  that takes the SDL_SCANCODE?
 	*  @param keyCode The char of the key to check, ex: 'a'
-	*  @return T/F whether key is down or not
+	*  @return T if key is down
 	*/
 	static bool KeyDown(char keyCode);
+	/**
+	*  Check if a key is being pressed down
+	*  @param keyCode The SDL_SCANCODE of the key
+	*  @return T if key is down
+	*/
+	static bool KeyDown(int keyCode);
 	///Check if the program has been quit out of
 	static bool Quit();
 	///Reset quit
