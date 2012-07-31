@@ -25,24 +25,18 @@ bool GameObject::GetMouseOver(){
 
 }
 bool GameObject::HasTag(std::string tag){
-	for (int i = 0; i < mTags.size(); ++i){
-		if (tag == mTags.at(i))
-			return true;
-	}
-	return false;
+	return (mTag == tag);
 }
 Json::Value GameObject::Save(){
 	Json::Value val;
 	val["image"]   = mImage.Save();
 	val["physics"] = mPhysics.Save();
-	for (int i = 0; i < mTags.size(); ++i)
-		val["tags"][i] = mTags.at(i);
+	val["tag"]	   = mTag;
 
 	return val;
 }
 void GameObject::Load(Json::Value val){
 	mPhysics.Load(val["physics"]);
 	mImage.Load(val["image"]);
-	for (int i = 0; i < val["tags"].size(); ++i)
-		mTags.push_back(val["tags"][i].asString());
+	mTag = val["tag"].asString();
 }

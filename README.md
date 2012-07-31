@@ -6,6 +6,10 @@
 - [SDL 2.0](http://wiki.libsdl.org/moin.cgi/FrontPage)
 
 ### Todo:
+- UI Elements
+	- Inherit from gameobject? Clickable ones can inherite from Button or ObjectButton
+	- When should they be called? Perhaps register with the manager to run them
+		- Need to make manager ignore them for collisons, perhaps a "ui" tag?
 - Simple map editor
 	- Planning: MapEditor inherits from map, will also have an object editor inherit from map object manager or whatnot later, also will need a GameObjectEditor class inheriting from GameObjectManager which can then register the various Editor classes so that they can recieve and handle mouse input
 	- Will need an EditorState as well

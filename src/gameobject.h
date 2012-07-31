@@ -87,7 +87,7 @@ protected:
 	///Handle's the objects physics
 	Physics mPhysics;
 	///To store tags to identify the object
-	std::vector<std::string> mTags;
+	std::string mTag;
 
 private:
 	bool mMouseOver;

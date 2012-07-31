@@ -44,6 +44,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
+         "tag" : "",
          "text" : {
             "color" : {
                "b" : 0,
@@ -85,6 +86,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
+         "tag" : "",
          "text" : {
             "color" : {
                "b" : 0,
