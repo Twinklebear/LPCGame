@@ -17,12 +17,15 @@
     <ClInclude Include="..\src\button.h" />
     <ClInclude Include="..\src\camera.h" />
     <ClInclude Include="..\src\debugger.h" />
+    <ClInclude Include="..\src\editorstate.h" />
     <ClInclude Include="..\src\gameobject.h" />
+    <ClInclude Include="..\src\gameobjecteditor.h" />
     <ClInclude Include="..\src\gameobjectmanager.h" />
     <ClInclude Include="..\src\gamestate.h" />
     <ClInclude Include="..\src\image.h" />
     <ClInclude Include="..\src\input.h" />
     <ClInclude Include="..\src\map.h" />
+    <ClInclude Include="..\src\mapeditor.h" />
     <ClInclude Include="..\src\math.h" />
     <ClInclude Include="..\src\menustate.h" />
     <ClInclude Include="..\src\npc.h" />
@@ -36,6 +39,7 @@
     <ClInclude Include="..\src\text.h" />
     <ClInclude Include="..\src\tile.h" />
     <ClInclude Include="..\src\timer.h" />
+    <ClInclude Include="..\src\uiobjectmanager.h" />
     <ClInclude Include="..\src\vectors.h" />
     <ClInclude Include="..\src\window.h" />
   </ItemGroup>
@@ -44,13 +48,16 @@
     <ClCompile Include="..\src\button.cpp" />
     <ClCompile Include="..\src\camera.cpp" />
     <ClCompile Include="..\src\debugger.cpp" />
+    <ClCompile Include="..\src\editorstate.cpp" />
     <ClCompile Include="..\src\gameobject.cpp" />
+    <ClCompile Include="..\src\gameobjecteditor.cpp" />
     <ClCompile Include="..\src\gameobjectmanager.cpp" />
     <ClCompile Include="..\src\gamestate.cpp" />
     <ClCompile Include="..\src\image.cpp" />
     <ClCompile Include="..\src\input.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\map.cpp" />
+    <ClCompile Include="..\src\mapeditor.cpp" />
     <ClCompile Include="..\src\math.cpp" />
     <ClCompile Include="..\src\menustate.cpp" />
     <ClCompile Include="..\src\npc.cpp" />
@@ -60,6 +67,7 @@
     <ClCompile Include="..\src\statemanager.cpp" />
     <ClCompile Include="..\src\text.cpp" />
     <ClCompile Include="..\src\timer.cpp" />
+    <ClCompile Include="..\src\uiobjectmanager.cpp" />
     <ClCompile Include="..\src\window.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
