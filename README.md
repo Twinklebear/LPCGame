@@ -13,6 +13,7 @@
 - Better comments documenting code
 - When exiting a state with escape the menu loop reads the key as well and quits out, need to block it out for a bit
 - I believe there are some memory leaks to be addressed
+	- Memory is not being freed when changing state
 
 ## "Done":
 - State's Run() function now returns a string corresponding to the state that should be loaded next, 'quit' specifies that the program should exit completely. ObjectButtons can register a callback SetExit(std::string) for the class's function, which when called will exit Run() and return the desired string as the return code.
