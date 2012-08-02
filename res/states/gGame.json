@@ -1173,7 +1173,7 @@
                "g" : 0,
                "r" : 0
             },
-            "font" : "../res/fonts/LiberationSans-Regular.ttf",
+            "font" : "../res/fonts/SourceSansPro-Regular.ttf",
             "fontsize" : 25,
             "message" : "Return"
          },
