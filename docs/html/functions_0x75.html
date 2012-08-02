@@ -72,7 +72,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
-      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -109,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -119,11 +118,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
+<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
-<li>Unload()
-: <a class="el" href="class_map.html#ab7882f63fbff2ae6027dace8de6aa0eb">Map</a>
+<li>UiObjectManager()
+: <a class="el" href="class_ui_object_manager.html#a0ca3291645339d2d97821ad8ff547825">UiObjectManager</a>
 </li>
 <li>Unpause()
 : <a class="el" href="class_timer.html#a18bae6d4516c122edd3489b7dccefa70">Timer</a>
@@ -132,12 +131,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_state.html#a849ac807e588196dd073a0e27f514bae">State</a>
 </li>
 <li>Update()
-: <a class="el" href="class_button.html#a23e8bc9ad05142244ea4e79a406a6c9c">Button</a>
-, <a class="el" href="class_game_object_manager.html#a6f053b1c655de6ca1c9a8fa9b6e118ae">GameObjectManager</a>
+: <a class="el" href="class_player.html#a05b60cac1922c5be5c1be16baffa4497">Player</a>
+, <a class="el" href="class_npc.html#a9796465219c591403c4eb3f132d7e408">Npc</a>
+, <a class="el" href="class_button.html#a23e8bc9ad05142244ea4e79a406a6c9c">Button</a>
+, <a class="el" href="class_game_object_editor.html#a7d45474220746422b033642dbeeb43ac">GameObjectEditor</a>
 , <a class="el" href="class_game_object.html#a7f5c1336131d246a1e4ec9047996cab8">GameObject</a>
 , <a class="el" href="class_camera.html#a4a596a3ea1fdc7d244ba4268031a360b">Camera</a>
-, <a class="el" href="class_npc.html#a9796465219c591403c4eb3f132d7e408">Npc</a>
-, <a class="el" href="class_player.html#a05b60cac1922c5be5c1be16baffa4497">Player</a>
+, <a class="el" href="class_game_object_manager.html#a6f053b1c655de6ca1c9a8fa9b6e118ae">GameObjectManager</a>
+, <a class="el" href="class_ui_object_manager.html#aa250cddb20ffce394d3f9464637156fe">UiObjectManager</a>
 </li>
 <li>UpdateState()
 : <a class="el" href="class_motion_state.html#adfacb2050b0ed1d40787ae4a234a6526">MotionState</a>
@@ -146,7 +147,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:17 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 1 2012 22:04:58 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
