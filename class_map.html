@@ -84,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_map-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Map Class Reference</div>  </div>
@@ -94,21 +95,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="class_map.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="map_8h_source.html">map.h</a>&gt;</code></p>
+
+<p>Inherited by <a class="el" href="class_map_editor.html">MapEditor</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a518f7dce3735568b9fc2e3da6120ea13"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a518f7dce3735568b9fc2e3da6120ea13">Draw</a> (<a class="el" href="class_camera.html">Camera</a> *cam=nullptr)</td></tr>
 <tr class="memitem:a4c23bd890dee8f19499c6479e5277b08"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a4c23bd890dee8f19499c6479e5277b08">Save</a> ()</td></tr>
 <tr class="memitem:a646a6a38ddee85398dae73e9569b0dec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a646a6a38ddee85398dae73e9569b0dec">Load</a> (Json::Value val)</td></tr>
-<tr class="memitem:ab7882f63fbff2ae6027dace8de6aa0eb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab7882f63fbff2ae6027dace8de6aa0eb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#ab7882f63fbff2ae6027dace8de6aa0eb">Unload</a> ()</td></tr>
-<tr class="memdesc:ab7882f63fbff2ae6027dace8de6aa0eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Unload the active map. <br/></td></tr>
+<tr class="memitem:ac2b3cd885ea1c00e349771408c66020c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#ac2b3cd885ea1c00e349771408c66020c">GenerateStressMap</a> (Json::Value val)</td></tr>
 <tr class="memitem:a02523b07d2df892382be95e296b47cac"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a02523b07d2df892382be95e296b47cac">CalculateIndex</a> (int x, int y) const </td></tr>
 <tr class="memitem:a0dc3a2e46f6864c4f8b1dbed586dd280"><td class="memItemLeft" align="right" valign="top">std::vector&lt; int &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a0dc3a2e46f6864c4f8b1dbed586dd280">CalculateIndex</a> (<a class="el" href="class_rect.html">Recti</a> area) const </td></tr>
 <tr class="memitem:ab9eda52143af41b422e88b7eb993cf6a"><td class="memItemLeft" align="right" valign="top">CollisionMap&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#ab9eda52143af41b422e88b7eb993cf6a">GetCollisionMap</a> (const <a class="el" href="class_rect.html">Recti</a> &amp;target, int distance=2)</td></tr>
 <tr class="memitem:a3aea75988f570a42f0d3cd2c20b3fa88"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3aea75988f570a42f0d3cd2c20b3fa88"></a>
 <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_map.html#a3aea75988f570a42f0d3cd2c20b3fa88">Box</a> () const </td></tr>
 <tr class="memdesc:a3aea75988f570a42f0d3cd2c20b3fa88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the map's box. <br/></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a54d1fedcfd04afa99e5f73b58340a9ac"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54d1fedcfd04afa99e5f73b58340a9ac"></a>
+std::vector&lt; <a class="el" href="class_tile.html">Tile</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mTiles</b></td></tr>
+<tr class="memitem:a1d00e5bc95d06eec1f41a45025292117"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1d00e5bc95d06eec1f41a45025292117"></a>
+<a class="el" href="class_image.html">Image</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mImage</b></td></tr>
+<tr class="memitem:a0b806d11fe99ff3a83e6ae328c5094df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0b806d11fe99ff3a83e6ae328c5094df"></a>
+<a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><b>mBox</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Handles the tile map. </p>
@@ -176,6 +186,12 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A vector of ints containing the tile indices </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">Runtime</td><td>error if the vector is empty </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -196,6 +212,29 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">cam</td><td>The camera so we can get the offsets/check if things are in camera </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ac2b3cd885ea1c00e349771408c66020c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Map::GenerateStressMap </td>
+          <td>(</td>
+          <td class="paramtype">Json::Value&#160;</td>
+          <td class="paramname"><em>val</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Generate a stress testing map with a specified number of tiles </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td>The Json::Value to load the stress test from </td></tr>
   </table>
   </dd>
 </dl>
@@ -284,7 +323,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 30 2012 00:07:18 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

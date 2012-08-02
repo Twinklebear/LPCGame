@@ -84,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_game_object_manager-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">GameObjectManager Class Reference</div>  </div>
@@ -94,22 +95,32 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="class_game_object_manager.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="gameobjectmanager_8h_source.html">gameobjectmanager.h</a>&gt;</code></p>
+
+<p>Inherited by <a class="el" href="class_game_object_editor.html">GameObjectEditor</a>, and <a class="el" href="class_ui_object_manager.html">UiObjectManager</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0549bd4b6575ee28803c0ff8fd2be2ee"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0549bd4b6575ee28803c0ff8fd2be2ee"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a0549bd4b6575ee28803c0ff8fd2be2ee">Draw</a> ()</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a0549bd4b6575ee28803c0ff8fd2be2ee">Draw</a> ()</td></tr>
 <tr class="memdesc:a0549bd4b6575ee28803c0ff8fd2be2ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draw the game objects. <br/></td></tr>
 <tr class="memitem:a6f053b1c655de6ca1c9a8fa9b6e118ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6f053b1c655de6ca1c9a8fa9b6e118ae"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a6f053b1c655de6ca1c9a8fa9b6e118ae">Update</a> ()</td></tr>
+virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a6f053b1c655de6ca1c9a8fa9b6e118ae">Update</a> ()</td></tr>
 <tr class="memdesc:a6f053b1c655de6ca1c9a8fa9b6e118ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the objects. <br/></td></tr>
-<tr class="memitem:a3285efb51ae012ff2d91e3d7b5673689"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a3285efb51ae012ff2d91e3d7b5673689">Move</a> (float deltaT)</td></tr>
+<tr class="memitem:a3285efb51ae012ff2d91e3d7b5673689"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a3285efb51ae012ff2d91e3d7b5673689">Move</a> (float deltaT)</td></tr>
 <tr class="memitem:a5c2085cf872dcfb3c5d148026a32bb8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a5c2085cf872dcfb3c5d148026a32bb8f">SetCollisionMaps</a> (<a class="el" href="class_map.html">Map</a> *map)</td></tr>
 <tr class="memitem:ae0e153903163b0caa8386b3e99491ee8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#ae0e153903163b0caa8386b3e99491ee8">Register</a> (std::shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; obj)</td></tr>
 <tr class="memitem:add1ae25bae66c775265163a11d10d87d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#add1ae25bae66c775265163a11d10d87d">Register</a> (std::shared_ptr&lt; <a class="el" href="class_camera.html">Camera</a> &gt; camera)</td></tr>
-<tr class="memitem:a90e4da9307e0cd53498f1e746ecd64f6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a90e4da9307e0cd53498f1e746ecd64f6">HandleMouseEvent</a> (const SDL_MouseButtonEvent &amp;mouseEvent)</td></tr>
-<tr class="memitem:a192d33c74f88a0aafac1ef4294fefb92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a192d33c74f88a0aafac1ef4294fefb92">HandleMouseEvent</a> (const SDL_MouseMotionEvent &amp;mouseEvent)</td></tr>
+<tr class="memitem:a90e4da9307e0cd53498f1e746ecd64f6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a90e4da9307e0cd53498f1e746ecd64f6">HandleMouseEvent</a> (const SDL_MouseButtonEvent &amp;mouseEvent)</td></tr>
+<tr class="memitem:a192d33c74f88a0aafac1ef4294fefb92"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a192d33c74f88a0aafac1ef4294fefb92">HandleMouseEvent</a> (const SDL_MouseMotionEvent &amp;mouseEvent)</td></tr>
 <tr class="memitem:a2a53df3e1900099bb4b01828703361d9"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a2a53df3e1900099bb4b01828703361d9">Save</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a5f28c1150a52d09e2759397ee39dfde9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5f28c1150a52d09e2759397ee39dfde9"></a>
+GameObjectList&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a5f28c1150a52d09e2759397ee39dfde9">mGameObjects</a></td></tr>
+<tr class="memdesc:a5f28c1150a52d09e2759397ee39dfde9"><td class="mdescLeft">&#160;</td><td class="mdescRight">The list of objects in the scene. <br/></td></tr>
+<tr class="memitem:a6e4eaf37154b816a1696ec084f63dd68"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e4eaf37154b816a1696ec084f63dd68"></a>
+std::shared_ptr&lt; <a class="el" href="class_camera.html">Camera</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mCamera</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Handles the GameObjects in the active state. </p>
@@ -118,6 +129,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <a class="anchor" id="a90e4da9307e0cd53498f1e746ecd64f6"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GameObjectManager::HandleMouseEvent </td>
@@ -127,6 +141,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Handle mouse clicks, run through the active game objects find what was clicked, and call it </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -136,11 +155,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
+<p>Reimplemented in <a class="el" href="class_game_object_editor.html#a4d566ffead2987b69711c4a5e04d02f0">GameObjectEditor</a>, and <a class="el" href="class_ui_object_manager.html#ab73f965bf695fae741f7439214ad14be">UiObjectManager</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a192d33c74f88a0aafac1ef4294fefb92"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GameObjectManager::HandleMouseEvent </td>
@@ -150,6 +174,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Handle Mouse motion, check if the mouse entered/exited an object </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -159,11 +188,16 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 
+<p>Reimplemented in <a class="el" href="class_game_object_editor.html#a183ca7ab9e7e65596877559201403b78">GameObjectEditor</a>, and <a class="el" href="class_ui_object_manager.html#a69f38a88e100567b26a3c99131ae5851">UiObjectManager</a>.</p>
+
 </div>
 </div>
 <a class="anchor" id="a3285efb51ae012ff2d91e3d7b5673689"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GameObjectManager::Move </td>
@@ -173,6 +207,11 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Move the game objects </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -181,6 +220,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </table>
   </dd>
 </dl>
+
+<p>Reimplemented in <a class="el" href="class_ui_object_manager.html#afdd86c495df5be0c7866b202e4fc684c">UiObjectManager</a>, and <a class="el" href="class_game_object_editor.html#a66edf109e754911bb9628dada0eeb49c">GameObjectEditor</a>.</p>
 
 </div>
 </div>
@@ -277,7 +318,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jul 30 2012 00:07:18 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

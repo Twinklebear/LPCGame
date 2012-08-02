@@ -4,11 +4,11 @@ var searchData=
   ['rect_3c_20float_20_3e',['Rect&lt; float &gt;',['../class_rect.html',1,'']]],
   ['rect_3c_20int_20_3e',['Rect&lt; int &gt;',['../class_rect.html',1,'']]],
   ['rectnearrect',['RectNearRect',['../namespace_math.html#a729df13db67f5fdc154dd8d03f95d643',1,'Math']]],
-  ['register',['Register',['../class_game_object_manager.html#ae0e153903163b0caa8386b3e99491ee8',1,'GameObjectManager::Register(std::shared_ptr&lt; GameObject &gt; obj)'],['../class_game_object_manager.html#add1ae25bae66c775265163a11d10d87d',1,'GameObjectManager::Register(std::shared_ptr&lt; Camera &gt; camera)']]],
+  ['register',['Register',['../class_game_object_editor.html#ada407b2c1c782146d04306f0fe815f6e',1,'GameObjectEditor::Register()'],['../class_game_object_manager.html#ae0e153903163b0caa8386b3e99491ee8',1,'GameObjectManager::Register(std::shared_ptr&lt; GameObject &gt; obj)'],['../class_game_object_manager.html#add1ae25bae66c775265163a11d10d87d',1,'GameObjectManager::Register(std::shared_ptr&lt; Camera &gt; camera)']]],
   ['registercallback',['RegisterCallBack',['../class_button.html#ad3a3442eae1a189d01b164465a2652ce',1,'Button::RegisterCallBack()'],['../class_object_button.html#a7c2e66da0a2bbfbc9cddbaa8c535b870',1,'ObjectButton::RegisterCallBack()']]],
-  ['registermanager',['RegisterManager',['../class_input.html#af9debe25dbf5f39adde4e5c79fc7d166',1,'Input']]],
-  ['removemanager',['RemoveManager',['../class_input.html#a8bf57405fd0b079c2535da5303f7f0e6',1,'Input']]],
+  ['registermanager',['RegisterManager',['../class_input.html#af9debe25dbf5f39adde4e5c79fc7d166',1,'Input::RegisterManager(std::shared_ptr&lt; GameObjectManager &gt; manager)'],['../class_input.html#aea1cb450d41a939386178b1e0e068403',1,'Input::RegisterManager(std::shared_ptr&lt; UiObjectManager &gt; manager)']]],
+  ['remove',['Remove',['../class_map_editor.html#ab9f8f48ecea94fb61bb0234f5ba3d1a5',1,'MapEditor']]],
   ['restart',['Restart',['../class_timer.html#a29d6e9c64403f7f48db2edf7a949ba6f',1,'Timer']]],
   ['returnobject',['ReturnObject',['../class_object_pool.html#a2fffed2f3d0c94997f567e9b695f3100',1,'ObjectPool']]],
-  ['run',['Run',['../class_game_state.html#aeeb8529030041289607f93b51c757ed8',1,'GameState::Run()'],['../class_menu_state.html#a9951aef99ac4058f8fd63dabcfb0b508',1,'MenuState::Run()'],['../class_state.html#a7ebb549f48125d457304345290480a0a',1,'State::Run()']]]
+  ['run',['Run',['../class_editor_state.html#a7221681fb9bb3291d9522cbb0258638a',1,'EditorState::Run()'],['../class_game_state.html#aeeb8529030041289607f93b51c757ed8',1,'GameState::Run()'],['../class_menu_state.html#a9951aef99ac4058f8fd63dabcfb0b508',1,'MenuState::Run()'],['../class_state.html#a7ebb549f48125d457304345290480a0a',1,'State::Run()']]]
 ];

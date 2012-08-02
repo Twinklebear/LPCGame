@@ -72,7 +72,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
-      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -109,7 +108,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -119,12 +118,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
+<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a class="anchor" id="index_o"></a>- o -</h3><ul>
-<li>ObjectButton()
-: <a class="el" href="class_object_button.html#a72bc1c3d30fa0961258318d56f1554bd">ObjectButton&lt; T &gt;</a>
-</li>
 <li>ObjectPool()
 : <a class="el" href="class_object_pool.html#aa0445cb80c21b9885af0ee90d5bbdf28">ObjectPool&lt; T &gt;</a>
 </li>
@@ -132,16 +128,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_camera.html#a30f709a528d2ced072fcbf83c8c316dc">Camera</a>
 </li>
 <li>OnClick()
-: <a class="el" href="class_button.html#aebc7af2bd8e9c39a8563499dac0f93f7">Button</a>
-, <a class="el" href="class_object_button.html#ac482967f8b880bf12cf67004f7adbd55">ObjectButton&lt; T &gt;</a>
+: <a class="el" href="class_object_button.html#ac482967f8b880bf12cf67004f7adbd55">ObjectButton&lt; T &gt;</a>
+, <a class="el" href="class_button.html#aebc7af2bd8e9c39a8563499dac0f93f7">Button</a>
 </li>
 <li>OnMouseDown()
 : <a class="el" href="class_button.html#a245041fab5ab6b79123bf17174e170ed">Button</a>
 , <a class="el" href="class_game_object.html#a96e41f279dafa10c64b53d7d5261e469">GameObject</a>
 </li>
 <li>OnMouseEnter()
-: <a class="el" href="class_button.html#a69408b048737143eba5ab348e9208405">Button</a>
-, <a class="el" href="class_game_object.html#aad053a0658b5cd70558d0a659f0dc844">GameObject</a>
+: <a class="el" href="class_game_object.html#aad053a0658b5cd70558d0a659f0dc844">GameObject</a>
+, <a class="el" href="class_button.html#a69408b048737143eba5ab348e9208405">Button</a>
 </li>
 <li>OnMouseExit()
 : <a class="el" href="class_button.html#a13ee48e556415dd9ce6b6e8ccdcb8a2c">Button</a>
@@ -151,44 +147,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="class_button.html#abd3979ee1893fee58499fa4bf01d505c">Button</a>
 , <a class="el" href="class_game_object.html#a091db9cdd771f523762f353a58ba9807">GameObject</a>
 </li>
-<li>operator Rect&lt; float &gt;()
-: <a class="el" href="class_rect.html#ab69591e0dcf80cfecdd70ce837dd1b84">Rect&lt; T &gt;</a>
-</li>
-<li>operator Rect&lt; int &gt;()
-: <a class="el" href="class_rect.html#a5a324851ff437e75def0de39f7ed478a">Rect&lt; T &gt;</a>
-</li>
 <li>operator SDL_Rect()
 : <a class="el" href="class_rect.html#a943480017d401a9fd6c4827c04115e35">Rect&lt; T &gt;</a>
-</li>
-<li>operator Vector2&lt; double &gt;()
-: <a class="el" href="class_vector2.html#a69a40beb702437a92a3d17f99f0207c5">Vector2&lt; T &gt;</a>
-</li>
-<li>operator Vector2&lt; float &gt;()
-: <a class="el" href="class_vector2.html#ad7ab2584b6b931b488768af70fa0a8f2">Vector2&lt; T &gt;</a>
 </li>
 <li>operator Vector2&lt; int &gt;()
 : <a class="el" href="class_vector2.html#a4d98b7d91fc9fbf7e221a71c53fb9c03">Vector2&lt; T &gt;</a>
 </li>
-<li>operator*()
-: <a class="el" href="class_vector2.html#abceb71ed3198f444e91bc1a777a3f04c">Vector2&lt; T &gt;</a>
-</li>
 <li>operator+()
 : <a class="el" href="class_vector2.html#a7095179b0dc975a8cf15bec086c2347b">Vector2&lt; T &gt;</a>
-, <a class="el" href="class_rect.html#a07c1723b5690d1f3c88b1ec98002ce02">Rect&lt; T &gt;</a>
 </li>
 <li>operator+=()
-: <a class="el" href="class_vector2.html#adbd9e4ce8adfe2163f5c6dc9ccb3375d">Vector2&lt; T &gt;</a>
-, <a class="el" href="class_rect.html#aa68dea5adaf1a015148c42a3e8005e53">Rect&lt; T &gt;</a>
-</li>
-<li>operator-()
-: <a class="el" href="class_vector2.html#a10c44d910cafe1332881fe103972a7ef">Vector2&lt; T &gt;</a>
-, <a class="el" href="class_rect.html#a29e519b697659479c8e405326fbd84d3">Rect&lt; T &gt;</a>
+: <a class="el" href="class_rect.html#aa68dea5adaf1a015148c42a3e8005e53">Rect&lt; T &gt;</a>
 </li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Jul 29 2012 21:17:17 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Aug 1 2012 22:04:58 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
