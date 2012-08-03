@@ -9,6 +9,8 @@
 #include "menustate.h"
 #include "statemanager.h"
 
+#include "debugger.h"
+
 MenuState::MenuState(){
 }
 MenuState::~MenuState(){
@@ -21,8 +23,8 @@ void MenuState::Init(){
 	Input::RegisterManager(mManager);
 }
 std::string MenuState::Run(){
-	//Unset quits from earlier
-	Input::ClearQuit();
+	//Unset events from earlier
+	Input::Clear();
 	//Clean up any previous exit settings
 	UnsetExit();
 
@@ -33,6 +35,36 @@ std::string MenuState::Run(){
 			SetExit("quit");
 		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
 			SetExit("quit");
+		if (Input::MouseClick(Input::MOUSE::LEFT)){
+			Debugger::Write("Left clicked!");
+			Debugger::Write("At location: ");
+			Vector2i pos = Input::MousePos();
+			Debugger::Write("\tx: ", pos.x);
+			Debugger::Write("\ty: ", pos.y);
+		}
+		if (Input::MouseClick(Input::MOUSE::MIDDLE)){
+			Debugger::Write("Middle click");
+			Debugger::Write("At location: ");
+			Vector2i pos = Input::MousePos();
+			Debugger::Write("\tx: ", pos.x);
+			Debugger::Write("\ty: ", pos.y);
+		}
+		if (Input::MouseClick(Input::MOUSE::RIGHT)){
+			Debugger::Write("Right click");
+			Debugger::Write("At location: ");
+			Vector2i pos = Input::MousePos();
+			Debugger::Write("\tx: ", pos.x);
+			Debugger::Write("\ty: ", pos.y);
+		}
+		if (Input::MouseMotionOccured()){
+			Debugger::Write("Mouse Motion!");
+			Debugger::Write("Mouse pos: ");
+			SDL_MouseMotionEvent e = Input::MouseMotion();
+			Debugger::Write("\tPos x: ", e.x);
+			Debugger::Write("\tPos y: ", e.y);
+			Debugger::Write("\tRel x: ", e.xrel);
+			Debugger::Write("\tRel y: ", e.yrel);
+		}
 
 		///LOGIC
 		mCamera->Update();
@@ -45,8 +77,6 @@ std::string MenuState::Run(){
 		//refresh window
 		Window::Present();
 	}
-	Input::ClearKeys();
-
 	return mExitCode;
 }
 void MenuState::Free(){

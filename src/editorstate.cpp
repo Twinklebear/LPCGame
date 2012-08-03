@@ -18,8 +18,8 @@ EditorState::EditorState(){
 EditorState::~EditorState(){
 }
 std::string EditorState::Run(){
-	//Unset quits from earlier
-	Input::ClearQuit();
+	//Unset events from earlier
+	Input::Clear();
 	//Cleanup any previous exit settings
 	UnsetExit();
 
@@ -52,8 +52,6 @@ std::string EditorState::Run(){
 
 		Window::Present();
 	}
-	Input::ClearKeys();
-
 	return mExitCode;
 }
 Json::Value EditorState::Save(){

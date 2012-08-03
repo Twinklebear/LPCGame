@@ -9,7 +9,11 @@ SDL_Event Input::evt;
 std::weak_ptr<GameObjectManager> Input::mGameObjectManager;
 std::weak_ptr<UiObjectManager> Input::mUiObjectManager;
 Uint8* Input::mKeyStates;
+SDL_MouseButtonEvent Input::mButtonEvt;
+SDL_MouseMotionEvent Input::mMotionEvt;
 bool Input::mQuit = false;
+bool Input::mMouseMove = false;
+bool Input::mMouseClick = false;
 
 Input::Input(){}
 Input::~Input(){}
@@ -21,6 +25,10 @@ void Input::FreeManagers(){
 	mUiObjectManager.reset();
 }
 void Input::PollEvent(){
+	//Clear mouse data
+	ClearMouse();
+
+	//Read the event stack
 	while(SDL_PollEvent(&evt)){
 		//this is an ok method to do this. But maybe not the best
 		Window::HandleEvents(evt);
@@ -32,6 +40,8 @@ void Input::PollEvent(){
 		std::shared_ptr<UiObjectManager> sU = mUiObjectManager.lock();
 		//Send mouse click events
 		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP)){
+			mMouseClick = true;
+			mButtonEvt = evt.button;
 			if (sG)
 				sG->HandleMouseEvent(evt.button);
 			if (sU)
@@ -39,6 +49,8 @@ void Input::PollEvent(){
 		}
 		//Send mouse movement events
 		if (evt.type == SDL_MOUSEMOTION){
+			mMouseMove = true;
+			mMotionEvt = evt.motion;
 			if (sG)
 				sG->HandleMouseEvent(evt.motion);
 			if (sU)
@@ -47,7 +59,6 @@ void Input::PollEvent(){
 	}
 }
 bool Input::KeyDown(char keyCode){
-	SDL_PumpEvents();
 	switch (keyCode){
 		case '1':
 			if (mKeyStates[SDL_SCANCODE_1] == 1)
@@ -238,8 +249,30 @@ bool Input::KeyDown(int keyCode){
 		return true;
 	return false;
 }
+bool Input::MouseClick(int button){
+	return (mMouseClick && evt.button.button == button);
+}
+bool Input::MouseMotionOccured(){
+	//We can filter out the first event, which has false motion data by testing
+	//if x == xrel and y = yrel, which only happens when starting the program
+	return (mMouseMove && (mMotionEvt.x != mMotionEvt.xrel 
+		&& mMotionEvt.y != mMotionEvt.yrel));
+}
+SDL_MouseMotionEvent Input::MouseMotion(){
+	return mMotionEvt;
+}
+Vector2f Input::MousePos(){
+	Vector2i pos(0, 0);
+	SDL_GetMouseState(&pos.x, &pos.y);
+	return pos;
+}
 bool Input::Quit(){
 	return mQuit;
+}
+void Input::Clear(){
+	ClearQuit();
+	ClearKeys();
+	ClearMouse();
 }
 void Input::ClearQuit(){
 	mQuit = false;
@@ -249,6 +282,10 @@ void Input::ClearKeys(){
 	//for now this will do
 	for (int i = 0; i < 282; ++i)
 		mKeyStates[i] = 0;
+}
+void Input::ClearMouse(){
+	mMouseClick = false;
+	mMouseMove = false;
 }
 void Input::RegisterManager(std::shared_ptr<GameObjectManager> manager){
 	mGameObjectManager.reset();

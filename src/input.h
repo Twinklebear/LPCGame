@@ -35,18 +35,20 @@ public:
 	*/
 	static bool KeyDown(int keyCode);
 	/**
-	*  
+	*  Check if the mouse button is clicked
+	*  @param button The button to check
 	*/
-	///Check if the mouse was clicked
-	static bool MouseClick();
+	static bool MouseClick(int button);
 	///Check if the mouse moved
-	static bool MouseMotion();
+	static bool MouseMotionOccured();
+	///Get the mouse motion
+	static SDL_MouseMotionEvent MouseMotion();
+	///Get the current mouse position
+	static Vector2f MousePos();
 	///Check if the program has been quit out of
 	static bool Quit();
-	///Reset quit
-	static void ClearQuit();
-	///Clear the keystates
-	static void ClearKeys();
+	///Clear input data, used when changing states to clear old input
+	static void Clear();
 	/**
 	*  Register the gameobject manager with the input handler so 
 	*  that we can pass it mouse events easily
@@ -60,16 +62,24 @@ public:
 	static void RegisterManager(std::shared_ptr<UiObjectManager> manager);
 
 private:
+	static void ClearQuit();
+	///Clear the keystates
+	static void ClearKeys();
+	///Clear the mouse
+	static void ClearMouse();
+
+public:
+	///Enum for the 3 mouse buttons
+	enum MOUSE { LEFT = 1, MIDDLE = 2, RIGHT = 3 };
+
+private:
 	static SDL_Event evt;
-	static bool mQuit;//, mMouseClick, mMouseMove;
+	static bool mQuit, mMouseMove, mMouseClick;
 	static std::weak_ptr<GameObjectManager> mGameObjectManager;
 	static std::weak_ptr<UiObjectManager> mUiObjectManager;
 	static Uint8 *mKeyStates;
-	//How would i determine if the event was recent or not?
-	//ie. if i use these to track the event, after the event happened
-	//they need to be reset along with the bool values
-	//static SDL_MouseButtonEvent mButtonEvt;
-	//static SDL_MouseMotionEvent mMotionEvt;
+	static SDL_MouseButtonEvent mButtonEvt;
+	static SDL_MouseMotionEvent mMotionEvt;
 };
 
 #endif

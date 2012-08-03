@@ -16,8 +16,8 @@ GameState::GameState(){
 GameState::~GameState(){
 }
 std::string GameState::Run(){
-	//Unset quits from earlier
-	Input::ClearQuit();
+	//Unset events from earlier
+	Input::Clear();
 	//Cleanup any previous exit settings
 	UnsetExit();
 
@@ -51,8 +51,6 @@ std::string GameState::Run(){
 
 		Window::Present();
 	}
-	Input::ClearKeys();
-
 	return mExitCode;
 }
 void GameState::Init(){
