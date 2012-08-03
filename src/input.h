@@ -45,6 +45,8 @@ public:
 	static bool Quit();
 	///Reset quit
 	static void ClearQuit();
+	///Clear the keystates
+	static void ClearKeys();
 	/**
 	*  Register the gameobject manager with the input handler so 
 	*  that we can pass it mouse events easily

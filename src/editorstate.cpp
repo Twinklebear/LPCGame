@@ -52,6 +52,8 @@ std::string EditorState::Run(){
 
 		Window::Present();
 	}
+	Input::ClearKeys();
+
 	return mExitCode;
 }
 Json::Value EditorState::Save(){

@@ -51,6 +51,8 @@ std::string GameState::Run(){
 
 		Window::Present();
 	}
+	Input::ClearKeys();
+
 	return mExitCode;
 }
 void GameState::Init(){

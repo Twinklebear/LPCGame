@@ -244,6 +244,12 @@ bool Input::Quit(){
 void Input::ClearQuit(){
 	mQuit = false;
 }
+void Input::ClearKeys(){
+	//I'm not sure if there's a better way to 0 out the values
+	//for now this will do
+	for (int i = 0; i < 282; ++i)
+		mKeyStates[i] = 0;
+}
 void Input::RegisterManager(std::shared_ptr<GameObjectManager> manager){
 	mGameObjectManager.reset();
 	mGameObjectManager = manager;

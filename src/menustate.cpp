@@ -31,11 +31,8 @@ std::string MenuState::Run(){
 		Input::PollEvent();
 		if (Input::Quit())
 			SetExit("quit");
-		//Commented out for now, b/c when hitting escape to quit a state
-		//the key gets read here as well. Maybe i should clear the key states
-		//upon state transition?
-		//if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
-		//	SetExit("quit");
+		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
+			SetExit("quit");
 
 		///LOGIC
 		mCamera->Update();
@@ -48,6 +45,8 @@ std::string MenuState::Run(){
 		//refresh window
 		Window::Present();
 	}
+	Input::ClearKeys();
+
 	return mExitCode;
 }
 void MenuState::Free(){
