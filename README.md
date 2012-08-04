@@ -9,8 +9,6 @@
 - Simple map editor
 	- Planning: MapEditor inherits from map, will also have an object editor inherit from map object manager or whatnot later, also will need a GameObjectEditor class inheriting from GameObjectManager which can then register the various Editor classes so that they can recieve and handle mouse input
 	- Will need an EditorState as well
-- Should i change how Input handles mouse events? I think something where I didn't need to register managers with the Input class but could instead simply read them from anywhere like I do with the key states would be much better.
-	- I've been trying out some ideas, I think I've found something I like, just need to see how it works running compared to registering the managers with Input. Testing looked good though, the test code is still in, under MenuState::Run
 - Better comments documenting code
 - When exiting a state with escape the menu loop reads the key as well and quits out, need to block it out for a bit
 - I believe there are some memory leaks to be addressed
@@ -37,6 +35,11 @@
 	- UiObjectManager written, inherits from GameObjectManager and runs the same functions, but without camera checking and positions objects in window space.
 	- Note: For menu states you should use the GameObjectManager to register your buttons, as the buttons in this case are the scene and as such should be positioned in scene space, Ui elements are intended to be in game things.
 	- This method of ui management may not be the best, will probably revist it later. But this is ok for now
+- Input mouse handling has been reworked to function similar to how keyboard is currently handled
+	- No longer need to register managers with Input, mouse events are readable from anywhere that includes input.h
+	- Can use MouseClick(int button) to check if a mouse button was clicked and GetClick to get the button event
+	- Can use MouseMotion() to check if there was mouse motion and GetMotion to get the motion event.
+	- Mouse events are unset each time PollEvent is called to prevent reading the same event multiple times, since we only want to read each click once, and mouse motion will continously register a fresh event each frame
 
 ## Some stress test results [30.7.2012]
 Not very impressive, 12k tiles at about 60% CPU usage on my laptop with a Intel Core 2 Duo @ 2.4GHz and ATI Mobility Radeon HD 3870 X2

@@ -14,6 +14,9 @@ void UiObjectManager::Draw(){
 		o->Draw();
 }
 void UiObjectManager::Update(){
+	//Check for mouse events
+	CheckMouseEvents();
+	//Update objects
 	for (std::shared_ptr<GameObject> o : mGameObjects)
 		o->Update();
 }

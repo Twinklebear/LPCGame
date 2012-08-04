@@ -1,9 +1,12 @@
 #include <vector>
 #include <memory>
 #include "../externals/json/json.h"
+#include "input.h"
 #include "map.h"
 #include "gameobject.h"
 #include "gameobjectmanager.h"
+
+#include "debugger.h"
 
 GameObjectManager::GameObjectManager()
 	: mCamera(nullptr)
@@ -18,6 +21,9 @@ void GameObjectManager::Draw(){
 	}
 }
 void GameObjectManager::Update(){
+	//Check for mouse events
+	CheckMouseEvents();
+	//Call object's update functions
 	for (std::shared_ptr<GameObject> o : mGameObjects){
 		if (mCamera->InCamera(o->Box()))
 			o->Update();
@@ -64,6 +70,14 @@ CollisionMap GameObjectManager::GetEntityCollisionMap(const Rectf &target, int d
 		}
 	}
 	return entityMap;
+}
+void GameObjectManager::CheckMouseEvents(){
+	//Check for mouse motion
+	if (Input::MouseMotionOccured())
+		HandleMouseEvent(Input::GetMotion());
+	//Check for clicks
+	if (Input::MouseClick(Input::MOUSE::LEFT))
+		HandleMouseEvent(Input::GetClick());
 }
 void GameObjectManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	//Update the mouse over before checking for clicks

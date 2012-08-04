@@ -6,8 +6,6 @@
 #include "input.h"
 
 SDL_Event Input::evt;
-std::weak_ptr<GameObjectManager> Input::mGameObjectManager;
-std::weak_ptr<UiObjectManager> Input::mUiObjectManager;
 Uint8* Input::mKeyStates;
 SDL_MouseButtonEvent Input::mButtonEvt;
 SDL_MouseMotionEvent Input::mMotionEvt;
@@ -20,10 +18,6 @@ Input::~Input(){}
 void Input::Init(){
 	mKeyStates = SDL_GetKeyboardState(NULL);
 }
-void Input::FreeManagers(){
-	mGameObjectManager.reset();
-	mUiObjectManager.reset();
-}
 void Input::PollEvent(){
 	//Clear mouse data
 	ClearMouse();
@@ -35,26 +29,15 @@ void Input::PollEvent(){
 
 		if (evt.type == SDL_QUIT)
 			mQuit = true;
-		//Try to lock the manager for use
-		std::shared_ptr<GameObjectManager> sG = mGameObjectManager.lock();
-		std::shared_ptr<UiObjectManager> sU = mUiObjectManager.lock();
 		//Send mouse click events
 		if ((evt.type == SDL_MOUSEBUTTONDOWN || evt.type == SDL_MOUSEBUTTONUP)){
 			mMouseClick = true;
 			mButtonEvt = evt.button;
-			if (sG)
-				sG->HandleMouseEvent(evt.button);
-			if (sU)
-				sU->HandleMouseEvent(evt.button);
 		}
 		//Send mouse movement events
 		if (evt.type == SDL_MOUSEMOTION){
 			mMouseMove = true;
 			mMotionEvt = evt.motion;
-			if (sG)
-				sG->HandleMouseEvent(evt.motion);
-			if (sU)
-				sU->HandleMouseEvent(evt.motion);
 		}
 	}
 }
@@ -250,7 +233,10 @@ bool Input::KeyDown(int keyCode){
 	return false;
 }
 bool Input::MouseClick(int button){
-	return (mMouseClick && evt.button.button == button);
+	return (mMouseClick && mButtonEvt.button == button);
+}
+SDL_MouseButtonEvent Input::GetClick(){
+	return mButtonEvt;
 }
 bool Input::MouseMotionOccured(){
 	//We can filter out the first event, which has false motion data by testing
@@ -258,7 +244,7 @@ bool Input::MouseMotionOccured(){
 	return (mMouseMove && (mMotionEvt.x != mMotionEvt.xrel 
 		&& mMotionEvt.y != mMotionEvt.yrel));
 }
-SDL_MouseMotionEvent Input::MouseMotion(){
+SDL_MouseMotionEvent Input::GetMotion(){
 	return mMotionEvt;
 }
 Vector2f Input::MousePos(){
@@ -286,12 +272,4 @@ void Input::ClearKeys(){
 void Input::ClearMouse(){
 	mMouseClick = false;
 	mMouseMove = false;
-}
-void Input::RegisterManager(std::shared_ptr<GameObjectManager> manager){
-	mGameObjectManager.reset();
-	mGameObjectManager = manager;
-}
-void Input::RegisterManager(std::shared_ptr<UiObjectManager> manager){
-	mUiObjectManager.reset();
-	mUiObjectManager = manager;
 }

@@ -60,11 +60,8 @@ void GameState::Init(){
 	mCamera    = std::shared_ptr<Camera>(new Camera());
 
 	mManager->Register(mCamera);
-	Input::RegisterManager(mManager);
-	Input::RegisterManager(mUiManager);
 }
 void GameState::Free(){
-	Input::FreeManagers();
 	mMap.reset();
 	mManager.reset();
 	mUiManager.reset();

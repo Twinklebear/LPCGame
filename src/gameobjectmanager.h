@@ -46,6 +46,10 @@ public:
 	*/
 	void Register(std::shared_ptr<Camera> camera);
 	/**
+	*  Testing the new method for mouse handling
+	*/
+	virtual void CheckMouseEvents();
+	/**
 	*  Handle mouse clicks, run through the active game objects
 	*  find what was clicked, and call it
 	*  @param mouseEvent The mouse event that we're processing

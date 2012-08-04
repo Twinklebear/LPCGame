@@ -16,8 +16,6 @@ public:
 	~Input();
 	///Initialize the input manager
 	static void Init();
-	///Free the active managers
-	static void FreeManagers();
 	///Read event input
 	static void PollEvent();
 	/**
@@ -39,27 +37,18 @@ public:
 	*  @param button The button to check
 	*/
 	static bool MouseClick(int button);
+	///Get the mouse button event
+	static SDL_MouseButtonEvent GetClick();
 	///Check if the mouse moved
 	static bool MouseMotionOccured();
 	///Get the mouse motion
-	static SDL_MouseMotionEvent MouseMotion();
+	static SDL_MouseMotionEvent GetMotion();
 	///Get the current mouse position
 	static Vector2f MousePos();
 	///Check if the program has been quit out of
 	static bool Quit();
 	///Clear input data, used when changing states to clear old input
 	static void Clear();
-	/**
-	*  Register the gameobject manager with the input handler so 
-	*  that we can pass it mouse events easily
-	*  @param manager The gameobject manager to send events too
-	*/
-	static void RegisterManager(std::shared_ptr<GameObjectManager> manager);
-	/**
-	*  Register the ui object manager with the input handler
-	*  @param manager The ui object manager
-	*/
-	static void RegisterManager(std::shared_ptr<UiObjectManager> manager);
 
 private:
 	static void ClearQuit();
@@ -75,8 +64,6 @@ public:
 private:
 	static SDL_Event evt;
 	static bool mQuit, mMouseMove, mMouseClick;
-	static std::weak_ptr<GameObjectManager> mGameObjectManager;
-	static std::weak_ptr<UiObjectManager> mUiObjectManager;
 	static Uint8 *mKeyStates;
 	static SDL_MouseButtonEvent mButtonEvt;
 	static SDL_MouseMotionEvent mMotionEvt;

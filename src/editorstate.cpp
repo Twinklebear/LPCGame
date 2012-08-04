@@ -97,12 +97,8 @@ void EditorState::Init(){
 
 	mManager = std::shared_ptr<GameObjectManager>(objEditor);
 	mManager->Register(mCamera);
-
-	Input::RegisterManager(mManager);
-	Input::RegisterManager(mUiManager);
 }
 void EditorState::Free(){
-	Input::FreeManagers();
 	mMapEditor.reset();
 	mManager.reset();
 	mUiManager.reset();
