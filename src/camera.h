@@ -42,12 +42,17 @@ public:
 	*/
 	bool InCamera(Rectf box) const;
 	/**
-	*  Move the camera by some Vector2, or if panning use the time elapsed and
-	*  move at some speed defined by the CameraPan
+	*  Move the camera by some Vector2
+	*  This is used for dragging the camera with the mouse
 	*  @param v The distance to move the camera
-	*  @param deltaT The time elapsed, default 0 so that moving with a vector only is still valid
 	*/
-	void Move(Vector2f v = Vector2f(0, 0), float deltaT = 0);
+	void Move(Vector2f v);
+	/**
+	*  Move the camera taking into account some elapsed time deltaT
+	*  This is used for pan animations
+	*  @param deltaT The elapsed time
+	*/
+	void Move(float deltaT);
 	/**
 	*  Instruct the camera to play some pre-defined panning
 	*  @param name The name of the animation to play, if name not found nothing will happen

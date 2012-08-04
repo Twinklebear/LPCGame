@@ -48,7 +48,7 @@ std::string MenuState::Run(){
 		mManager->Update();
 
 		float deltaT = delta.Restart() / 1000.f;
-		mCamera->Move(Vector2f(0, 0), deltaT);
+		mCamera->Move(deltaT);
 
 
 

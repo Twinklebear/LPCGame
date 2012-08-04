@@ -49,10 +49,10 @@ public:
 		Set(val["x"].asFloat(), val["y"].asFloat());
 	}
 	///Operators
-	Vector2<T> operator + (Vector2<T> val) const{
+	Vector2<T> operator + (Vector2<T> val) const {
 		return Vector2<T>(this->x + val.x, this->y + val.y);
 	}
-	Vector2<T> operator - (Vector2<T> val) const{
+	Vector2<T> operator - (Vector2<T> val) const {
 		return Vector2<T>(this->x - val.x, this->y - val.y);
 	}
 	Vector2<T>& operator += (Vector2<T> val){
@@ -60,34 +60,40 @@ public:
 		this->y += val.y;
 		return *this;
 	}
-	Vector2<T> operator * (Vector2<T> val) const{
+	Vector2<T> operator * (Vector2<T> val) const {
 		Vector2<T> a;
 		a.x = this->x * val.x;
 		a.y = this->y * val.y;
 		return a;
 	}
-	Vector2<T> operator * (float val) const{
+	Vector2<T> operator * (float val) const {
 		Vector2<T> a;
 		a.x = this->x * val;
 		a.y = this->y * val;
 		return a;
 	}
-	Vector2<T> operator / (Vector2<T> val) const{
+	Vector2<T> operator / (Vector2<T> val) const {
 		Vector2<T> a;
 		a.x = this->x / val.x;
 		a.y = this->y / val.y;
 		return a;
 	}
+	Vector2<T> operator / (float val) const {
+		Vector2<T> a;
+		a.x = this->x / val;
+		a.y = this->y / val;
+		return a;
+	}
 	///Conversions
-	operator Vector2<int>() const{
+	operator Vector2<int>() const {
 		Vector2<int> vect(x, y);
 		return vect;
 	}
-	operator Vector2<float>() const{
+	operator Vector2<float>() const {
 		Vector2<float> vect(x, y);
 		return vect;
 	}
-	operator Vector2<double>() const{
+	operator Vector2<double>() const {
 		Vector2<double> vect(x, y);
 		return vect;
 	}

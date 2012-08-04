@@ -12,6 +12,15 @@ float Math::Clamp(const float x, const float min, const float max){
 		return min;
 	return x;
 }
+float Math::Magnitude(const Vector2f &v){
+	return sqrt(pow(v.x, 2) + pow(v.y, 2));
+}
+Vector2f Math::Normalize(const Vector2f &v){
+	return (v / Magnitude(v));
+}
+Vector2f Math::Lerp(const Vector2f &start, const Vector2f &end, float percent){
+	return (start + (end - start) * percent);
+}
 int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 	//Simple enough to do:
 	//we create 4 points for each rect, for A's top we center it in x, and put it at the y

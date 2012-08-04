@@ -47,20 +47,21 @@ bool Camera::InCamera(Rectf box) const{
 	//return Math::CheckCollision(Math::ToSceneSpace(this, mBox), box);
 	return Math::CheckCollision(mBox, box);
 }
-void Camera::Move(Vector2f v, float deltaT){
-	if (mActivePan == -1){
-		mBox += v;
-		return;
+void Camera::Move(Vector2f v){
+	mBox += v;
+}
+void Camera::Move(float deltaT){
+	if (mActivePan != -1){
+		//If the distance between the camera and destination is less than the distance moved in a frame,
+		//set the camera to the destination
+		if (Math::Distance(mBox.pos, mPans.at(mActivePan).destination) <= mPans.at(mActivePan).speed * deltaT){
+			mBox.Set(mPans.at(mActivePan).destination);
+			mActivePan = -1;
+			return;
+		}
+		//If we haven't arrived, continue moving
+		mBox.pos += Math::Normalize(mPans.at(mActivePan).destination - mBox.pos) * mPans.at(mActivePan).speed * deltaT;
 	}
-	//If a pan is set do it
-	//If we're within some distance, say that we've arrived and reset mActivePan
-	if (Math::Distance(mBox.pos, mPans.at(mActivePan).destination) <= 2){
-		mBox.Set(mPans.at(mActivePan).destination);
-		return;
-	}
-	//If we haven't arrived, continue moving
-	//This isn't right, because as distance decreases we'll move slower
-	mBox.pos += (mPans.at(mActivePan).destination - mBox.pos)* mPans.at(mActivePan).speed * deltaT;
 }
 void Camera::Pan(std::string name){
 	//Try to find the animation with the name

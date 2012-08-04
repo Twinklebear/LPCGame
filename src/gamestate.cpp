@@ -37,11 +37,9 @@ std::string GameState::Run(){
 		mManager->SetCollisionMaps(mMap.get());
 		mUiManager->Update();
 
-		float deltaT = delta.GetTicks() / 1000.f;
+		float deltaT = delta.Restart() / 1000.f;
 		mManager->Move(deltaT);
 		mUiManager->Move(deltaT);
-
-		delta.Start();
 
 		//RENDERING
 		Window::Clear();

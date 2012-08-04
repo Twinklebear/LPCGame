@@ -27,6 +27,26 @@ namespace Math{
 	*/
 	float Clamp(const float x, const float min, const float max);
 	/**
+	*  Calculate the magnitude of a Vector2
+	*  @param v The Vector2 to calculate the magnitude of
+	*  @return The magnitude of the vector
+	*/
+	float Magnitude(const Vector2f &v);
+	/**
+	*  Normalize a Vector2
+	*  @param v The Vector2 to normalize
+	*  @return The normalized Vector2
+	*/
+	Vector2f Normalize(const Vector2f &v);
+	/**
+	*  A standard Lerp function for Vector2
+	*  Get the Vector2 that is some percent between start and end
+	*  @param start The starting point
+	*  @param end The ending point
+	*  @param percent The percent distance to return between the points, 0 -> start, 1 -> end
+	*/
+	Vector2f Lerp(const Vector2f &start, const Vector2f &end, float percent);
+	/**
 	*  Check if two rectangles are near each other and
 	*  return the side of a that's near b
 	*  TODO: Implement an early out for this function if the rect's are too far
