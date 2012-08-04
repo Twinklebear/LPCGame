@@ -28,6 +28,8 @@ std::string MenuState::Run(){
 	//Clean up any previous exit settings
 	UnsetExit();
 
+	Timer delta;
+	delta.Start();
 	while (!mExit){
 		//EVENT POLLING
 		Input::PollEvent();
@@ -36,9 +38,19 @@ std::string MenuState::Run(){
 		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
 			SetExit("quit");
 
+		//Testing camera panning
+		if (Input::KeyDown('q')){
+			mCamera->Pan("test");
+		}
+
 		//LOGIC
 		mCamera->Update();
 		mManager->Update();
+
+		float deltaT = delta.Restart() / 1000.f;
+		mCamera->Move(Vector2f(0, 0), deltaT);
+
+
 
 		//RENDERING
 		Window::Clear();

@@ -2,10 +2,22 @@
 #define CAMERA_H
 
 #include <memory>
+#include <vector>
 #include "../externals/json/json.h"
 #include "base.h"
 #include "window.h"
 #include "gameobject.h"
+
+///Describes a simple Camera animation
+/**
+*  Describes a Camera motion animation, the destination Vector2
+*  and the spee to travel there at
+*/
+struct CameraPan{
+	std::string name;
+	Vector2i destination;
+	int speed;
+};
 
 ///A camera to draw the scene in
 /**
@@ -30,10 +42,17 @@ public:
 	*/
 	bool InCamera(Rectf box) const;
 	/**
-	*  Move the camera by some Vector2
+	*  Move the camera by some Vector2, or if panning use the time elapsed and
+	*  move at some speed defined by the CameraPan
 	*  @param v The distance to move the camera
+	*  @param deltaT The time elapsed, default 0 so that moving with a vector only is still valid
 	*/
-	void Move(Vector2f v);
+	void Move(Vector2f v = Vector2f(0, 0), float deltaT = 0);
+	/**
+	*  Instruct the camera to play some pre-defined panning
+	*  @param name The name of the animation to play, if name not found nothing will happen
+	*/
+	void Pan(std::string name);
 	/**
 	*  Set the camera box equal to the Rect passed, a check is performed
 	*  to make sure that the camera box isn't bigger than the scene box
@@ -75,6 +94,8 @@ public:
 private:
 	std::weak_ptr<GameObject> mFocus;
 	Rectf mBox, mSceneBox;
+	std::vector<CameraPan> mPans;
+	int mActivePan;
 };
 
 #endif

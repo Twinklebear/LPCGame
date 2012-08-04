@@ -7,7 +7,7 @@
 
 #include "debugger.h"
 
-Camera::Camera(){
+Camera::Camera() : mActivePan(-1){
 	mBox.Set(0, 0, Window::Box().W(), Window::Box().H());
 	mSceneBox.Set(0, 0, 0, 0);
 }
@@ -20,6 +20,10 @@ void Camera::SetFocus(std::shared_ptr<GameObject> obj){
 void Camera::Update(){
 	//TODO: Update camera offsets to apply window centering on resize? The centering offset doesn't
 	//seem to work. I tried also applying it to the camera but that didn't seem to help.. Hmm
+
+	//If a pan is set, do that instead of following focus
+	if (mActivePan != -1)
+		return;
 
 	//Try to lock the focus weak pointer, ie. check to see if
 	//the camera should be following something
@@ -43,8 +47,31 @@ bool Camera::InCamera(Rectf box) const{
 	//return Math::CheckCollision(Math::ToSceneSpace(this, mBox), box);
 	return Math::CheckCollision(mBox, box);
 }
-void Camera::Move(Vector2f v){
-	mBox += v;
+void Camera::Move(Vector2f v, float deltaT){
+	if (mActivePan == -1){
+		mBox += v;
+		return;
+	}
+	//If a pan is set do it
+	//If we're within some distance, say that we've arrived and reset mActivePan
+	if (Math::Distance(mBox.pos, mPans.at(mActivePan).destination) <= 2){
+		mBox.Set(mPans.at(mActivePan).destination);
+		return;
+	}
+	//If we haven't arrived, continue moving
+	//This isn't right, because as distance decreases we'll move slower
+	mBox.pos += (mPans.at(mActivePan).destination - mBox.pos)* mPans.at(mActivePan).speed * deltaT;
+}
+void Camera::Pan(std::string name){
+	//Try to find the animation with the name
+	for (int i = 0; i < mPans.size(); ++i){
+		if (mPans.at(i).name == name){
+			mActivePan = i;
+			return;
+		}
+	}
+	//If lookup failed set active to -1, ie none
+	mActivePan = -1;
 }
 void Camera::SetBox(Rectf box){
 	//The camera box can't be bigger than the scene box
@@ -80,6 +107,12 @@ Json::Value Camera::Save(){
 	Json::Value val;
 	val["mBox"]		= mBox.Save();
 	val["sceneBox"] = mSceneBox.Save();
+	//save the pan instructions
+	for (int i = 0; i < mPans.size(); ++i){
+		val["pans"][i]["name"]  = mPans.at(i).name;
+		val["pans"][i]["speed"] = mPans.at(i).speed;
+		val["pans"][i]["dest"]  = mPans.at(i).destination.Save();
+	}
 
 	return val;
 }
@@ -89,4 +122,15 @@ void Camera::Load(Json::Value val){
 	Rectf box;
 	box.Load(val["mBox"]);
 	SetBox(box);
+
+	//Load pan instructions
+	for (int i = 0; i < val["pans"].size(); ++i){
+		CameraPan pan;
+		pan.name = val["pans"][i]["name"].asString();
+		pan.speed = val["pans"][i]["speed"].asInt();
+		pan.destination.Load(val["pans"][i]["dest"]);
+		
+		mPans.push_back(pan);
+	}
+
 }

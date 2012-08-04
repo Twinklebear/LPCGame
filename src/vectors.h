@@ -1,6 +1,8 @@
 #ifndef VECTORS_H
 #define VECTORS_H
 
+#include "../externals/json/json.h"
+
 ///A 2D vector
 /**
 *  A 2D vector
@@ -28,6 +30,24 @@ public:
 		x = pX;
 		y = pY;
 	}
+	/**
+	*  Save the vector to a Json::Value
+	*  @return The Json::Value containg the vector data
+	*/
+	Json::Value Save(){
+		Json::Value val;
+		val["x"] = x;
+		val["y"] = y;
+
+		return val;
+	}
+	/**
+	*  Load the vector from a Json::Value
+	*  @param val The Json::Value to load from
+	*/
+	void Load(Json::Value val){
+		Set(val["x"].asFloat(), val["y"].asFloat());
+	}
 	///Operators
 	Vector2<T> operator + (Vector2<T> val) const{
 		return Vector2<T>(this->x + val.x, this->y + val.y);
@@ -50,6 +70,12 @@ public:
 		Vector2<T> a;
 		a.x = this->x * val;
 		a.y = this->y * val;
+		return a;
+	}
+	Vector2<T> operator / (Vector2<T> val) const{
+		Vector2<T> a;
+		a.x = this->x / val.x;
+		a.y = this->y / val.y;
 		return a;
 	}
 	///Conversions

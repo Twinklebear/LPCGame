@@ -38,6 +38,7 @@
     <ClInclude Include="..\src\statemanager.h" />
     <ClInclude Include="..\src\text.h" />
     <ClInclude Include="..\src\tile.h" />
+    <ClInclude Include="..\src\tilebar.h" />
     <ClInclude Include="..\src\timer.h" />
     <ClInclude Include="..\src\uiobjectmanager.h" />
     <ClInclude Include="..\src\vectors.h" />
@@ -66,6 +67,7 @@
     <ClCompile Include="..\src\state.cpp" />
     <ClCompile Include="..\src\statemanager.cpp" />
     <ClCompile Include="..\src\text.cpp" />
+    <ClCompile Include="..\src\tilebar.cpp" />
     <ClCompile Include="..\src\timer.cpp" />
     <ClCompile Include="..\src\uiobjectmanager.cpp" />
     <ClCompile Include="..\src\window.cpp" />
