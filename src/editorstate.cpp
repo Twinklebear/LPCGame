@@ -24,6 +24,7 @@ std::string EditorState::Run(){
 	UnsetExit();
 
 	Timer delta;
+	bool dragCamera = false;
 	delta.Start();
 	while (!mExit){
 		//EVENT POLLING
@@ -32,6 +33,17 @@ std::string EditorState::Run(){
 			SetExit("quit");
 		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
 			SetExit("mIntro");
+		//Check for mouse dragging of camera
+		if (Input::MouseClick(Input::MOUSE::RIGHT)){
+			if (Input::GetClick().type == SDL_MOUSEBUTTONDOWN)
+				dragCamera = true;
+			else
+				dragCamera = false;
+		}
+		if (Input::MouseMotion() && dragCamera){
+			Vector2f pan(-Input::GetMotion().xrel, -Input::GetMotion().yrel);
+			mCamera->Move(pan);
+		}
 
 		///LOGIC
 		mCamera->Update();

@@ -73,7 +73,7 @@ CollisionMap GameObjectManager::GetEntityCollisionMap(const Rectf &target, int d
 }
 void GameObjectManager::CheckMouseEvents(){
 	//Check for mouse motion
-	if (Input::MouseMotionOccured())
+	if (Input::MouseMotion())
 		HandleMouseEvent(Input::GetMotion());
 	//Check for clicks
 	if (Input::MouseClick(Input::MOUSE::LEFT))

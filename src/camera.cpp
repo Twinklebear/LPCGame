@@ -43,6 +43,9 @@ bool Camera::InCamera(Rectf box) const{
 	//return Math::CheckCollision(Math::ToSceneSpace(this, mBox), box);
 	return Math::CheckCollision(mBox, box);
 }
+void Camera::Move(Vector2f v){
+	mBox += v;
+}
 void Camera::SetBox(Rectf box){
 	//The camera box can't be bigger than the scene box
 	if (mSceneBox.w != 0 && mSceneBox.h != 0){

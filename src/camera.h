@@ -30,6 +30,11 @@ public:
 	*/
 	bool InCamera(Rectf box) const;
 	/**
+	*  Move the camera by some Vector2
+	*  @param v The distance to move the camera
+	*/
+	void Move(Vector2f v);
+	/**
 	*  Set the camera box equal to the Rect passed, a check is performed
 	*  to make sure that the camera box isn't bigger than the scene box
 	*  if no scene box is set no problem, the check is also done when setting a scene box

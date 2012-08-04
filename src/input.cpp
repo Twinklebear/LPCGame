@@ -238,7 +238,7 @@ bool Input::MouseClick(int button){
 SDL_MouseButtonEvent Input::GetClick(){
 	return mButtonEvt;
 }
-bool Input::MouseMotionOccured(){
+bool Input::MouseMotion(){
 	//We can filter out the first event, which has false motion data by testing
 	//if x == xrel and y = yrel, which only happens when starting the program
 	return (mMouseMove && (mMotionEvt.x != mMotionEvt.xrel 

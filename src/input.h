@@ -40,7 +40,7 @@ public:
 	///Get the mouse button event
 	static SDL_MouseButtonEvent GetClick();
 	///Check if the mouse moved
-	static bool MouseMotionOccured();
+	static bool MouseMotion();
 	///Get the mouse motion
 	static SDL_MouseMotionEvent GetMotion();
 	///Get the current mouse position
