@@ -16,6 +16,10 @@
 - I believe there are some memory leaks to be addressed
 	- Memory is not being freed when changing state
 
+## SDL 2.0 Issues:
+- I can't seem to compile SDL_Mixer or SDL_Net from the Mercurials under VS11. Will try VS10 shortly, SDL_Mixer compiled under g++ though, so I'm not sure what VS hates about it.
+	- SDL_Net 1.2 seems to work with SDL 2.0 though. At least in a simple test of opening and closing a TCP socket
+
 ## "Done":
 - State's Run() function now returns a string corresponding to the state that should be loaded next, 'quit' specifies that the program should exit completely. ObjectButtons can register a callback SetExit(std::string) for the class's function, which when called will exit Run() and return the desired string as the return code.
 - GameObjects now have Save and Load functions, along with States. Save returns a Json::Value containing the information about the object, whereas Load will take a Json::Value and setup the appropriate configuration. I have yet to write load
