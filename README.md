@@ -7,8 +7,8 @@
 
 ## Todo:
 - Simple map editor
-	- Planning: MapEditor inherits from map, will also have an object editor inherit from map object manager or whatnot later, also will need a GameObjectEditor class inheriting from GameObjectManager which can then register the various Editor classes so that they can recieve and handle mouse input
-	- Will need an EditorState as well
+	- Need to add a UI element to select tile to place
+	- Camera can now be dragged in the editor state
 - Better comments documenting code
 - When exiting a state with escape the menu loop reads the key as well and quits out, need to block it out for a bit
 - I believe there are some memory leaks to be addressed
