@@ -9,8 +9,9 @@
 - Simple map editor
 	- Need to add a UI element to select tile to place
 	- Camera can now be dragged in the editor state
+- Set movement commands for the camera, ie. a destination point and speed/time to take going to the point and a call to play a certain camera motion
+- Animated Image class able to play desired animations at some speed from clips passed
 - Better comments documenting code
-- When exiting a state with escape the menu loop reads the key as well and quits out, need to block it out for a bit
 - I believe there are some memory leaks to be addressed
 	- Memory is not being freed when changing state
 
