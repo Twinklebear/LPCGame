@@ -31,7 +31,7 @@ std::string GameState::Run(){
 		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
 			SetExit("mIntro");
 
-		///LOGIC
+		//LOGIC
 		mCamera->Update();
 		mManager->Update();
 		mManager->SetCollisionMaps(mMap.get());
@@ -43,7 +43,7 @@ std::string GameState::Run(){
 
 		delta.Start();
 
-		///RENDERING
+		//RENDERING
 		Window::Clear();
 		mMap->Draw(mCamera.get());
 		mManager->Draw();

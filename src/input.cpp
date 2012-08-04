@@ -5,6 +5,8 @@
 #include "uiobjectmanager.h"
 #include "input.h"
 
+#include "debugger.h"
+
 SDL_Event Input::evt;
 Uint8* Input::mKeyStates;
 SDL_MouseButtonEvent Input::mButtonEvt;
@@ -235,6 +237,10 @@ bool Input::KeyDown(int keyCode){
 bool Input::MouseClick(int button){
 	return (mMouseClick && mButtonEvt.button == button);
 }
+bool Input::MouseDown(int button){
+	return ((SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(button)) != 0);
+}
+
 SDL_MouseButtonEvent Input::GetClick(){
 	return mButtonEvt;
 }

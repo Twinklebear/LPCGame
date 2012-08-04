@@ -6,6 +6,9 @@
 #include "gameobjectmanager.h"
 #include "uiobjectmanager.h"
 
+///Enum for the 3 mouse buttons
+enum MOUSE { LEFT = 1, MIDDLE = 2, RIGHT = 3 };
+
 ///Input handler wrapper
 /**
 *  A simple wrapper around SDL's input handling system
@@ -37,6 +40,11 @@ public:
 	*  @param button The button to check
 	*/
 	static bool MouseClick(int button);
+	/**
+	*  Check if the mouse button is currently down
+	*  @param button The button to check
+	*/
+	static bool MouseDown(int button);
 	///Get the mouse button event
 	static SDL_MouseButtonEvent GetClick();
 	///Check if the mouse moved
@@ -56,10 +64,6 @@ private:
 	static void ClearKeys();
 	///Clear the mouse
 	static void ClearMouse();
-
-public:
-	///Enum for the 3 mouse buttons
-	enum MOUSE { LEFT = 1, MIDDLE = 2, RIGHT = 3 };
 
 private:
 	static SDL_Event evt;

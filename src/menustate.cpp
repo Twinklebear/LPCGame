@@ -36,11 +36,11 @@ std::string MenuState::Run(){
 		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
 			SetExit("quit");
 
-		///LOGIC
+		//LOGIC
 		mCamera->Update();
 		mManager->Update();
 
-		///RENDERING
+		//RENDERING
 		Window::Clear();
 		mManager->Draw();
 

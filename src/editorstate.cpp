@@ -34,18 +34,12 @@ std::string EditorState::Run(){
 		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
 			SetExit("mIntro");
 		//Check for mouse dragging of camera
-		if (Input::MouseClick(Input::MOUSE::RIGHT)){
-			if (Input::GetClick().type == SDL_MOUSEBUTTONDOWN)
-				dragCamera = true;
-			else
-				dragCamera = false;
-		}
-		if (Input::MouseMotion() && dragCamera){
+		if (Input::MouseDown(MOUSE::RIGHT) && Input::MouseMotion()){
 			Vector2f pan(-Input::GetMotion().xrel, -Input::GetMotion().yrel);
 			mCamera->Move(pan);
 		}
 
-		///LOGIC
+		//LOGIC
 		mCamera->Update();
 		mManager->Update();
 		mUiManager->Update();
@@ -56,7 +50,7 @@ std::string EditorState::Run(){
 
 		delta.Start();
 
-		///RENDERING
+		//RENDERING
 		Window::Clear();
 		mMapEditor->Draw(mCamera.get());
 		mManager->Draw();

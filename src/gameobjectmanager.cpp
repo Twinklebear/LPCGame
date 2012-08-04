@@ -76,7 +76,7 @@ void GameObjectManager::CheckMouseEvents(){
 	if (Input::MouseMotion())
 		HandleMouseEvent(Input::GetMotion());
 	//Check for clicks
-	if (Input::MouseClick(Input::MOUSE::LEFT))
+	if (Input::MouseClick(MOUSE::LEFT))
 		HandleMouseEvent(Input::GetClick());
 }
 void GameObjectManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){

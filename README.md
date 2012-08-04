@@ -39,6 +39,7 @@
 	- No longer need to register managers with Input, mouse events are readable from anywhere that includes input.h
 	- Can use MouseClick(int button) to check if a mouse button was clicked and GetClick to get the button event
 	- Can use MouseMotion() to check if there was mouse motion and GetMotion to get the motion event.
+	- Can use MouseDown(int button) to check if a mouse button is being pressed
 	- Mouse events are unset each time PollEvent is called to prevent reading the same event multiple times, since we only want to read each click once, and mouse motion will continously register a fresh event each frame
 
 ## Some stress test results [30.7.2012]
