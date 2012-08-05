@@ -60,9 +60,11 @@ void GameState::Init(){
 	mManager->Register(mCamera);
 }
 void GameState::Free(){
-	mMap.reset();
-	mManager.reset();
-	mUiManager.reset();
+	//We don't reset the shared pts b/c then they don't delete the object
+	//when destroyed, and we get leaks
+	//mMap.reset();
+	//mManager.reset();
+	//mUiManager.reset();
 }
 Json::Value GameState::Save(){
 	Json::Value val = State::Save();

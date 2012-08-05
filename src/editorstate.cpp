@@ -60,6 +60,25 @@ std::string EditorState::Run(){
 	}
 	return mExitCode;
 }
+void EditorState::Init(){
+	mMapEditor = std::shared_ptr<MapEditor>(new MapEditor());
+	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
+	mCamera    = std::shared_ptr<Camera>(new Camera());
+
+	GameObjectEditor *objEditor  = new GameObjectEditor();
+	objEditor->Register(mMapEditor);
+	//objEditor->Register(mCamera); //Why doesn't this work?
+
+	mManager = std::shared_ptr<GameObjectManager>(objEditor);
+	mManager->Register(mCamera);
+}
+void EditorState::Free(){
+	//We don't reset the shared pts b/c then they don't delete the object
+	//when destroyed, and we get leaks
+	//mMapEditor.reset();
+	//mManager.reset();
+	//mUiManager.reset();
+}
 Json::Value EditorState::Save(){
 	Json::Value val = State::Save();
 	val["map"] = mMapEditor->Save();
@@ -91,21 +110,4 @@ void EditorState::Load(Json::Value val){
 			mUiManager->Register(sObj);
 		}
 	}
-}
-void EditorState::Init(){
-	mMapEditor = std::shared_ptr<MapEditor>(new MapEditor());
-	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
-	mCamera    = std::shared_ptr<Camera>(new Camera());
-
-	GameObjectEditor *objEditor  = new GameObjectEditor();
-	objEditor->Register(mMapEditor);
-	//objEditor->Register(mCamera); //Why doesn't this work?
-
-	mManager = std::shared_ptr<GameObjectManager>(objEditor);
-	mManager->Register(mCamera);
-}
-void EditorState::Free(){
-	mMapEditor.reset();
-	mManager.reset();
-	mUiManager.reset();
 }

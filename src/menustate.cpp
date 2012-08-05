@@ -15,12 +15,6 @@ MenuState::MenuState(){
 }
 MenuState::~MenuState(){
 }
-void MenuState::Init(){
-	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
-	mCamera  = std::shared_ptr<Camera>(new Camera());
-
-	mManager->Register(mCamera);
-}
 std::string MenuState::Run(){
 	//Unset events from earlier
 	Input::Clear();
@@ -63,8 +57,17 @@ std::string MenuState::Run(){
 	}
 	return mExitCode;
 }
+void MenuState::Init(){
+	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
+	mCamera  = std::shared_ptr<Camera>(new Camera());
+
+	mManager->Register(mCamera);
+}
 void MenuState::Free(){
-	mManager.reset();
+	//We don't reset the shared pts b/c then they don't delete the object
+	//when destroyed, and we get leaks
+	//mCamera.reset()
+	//mManager.reset();
 }
 Json::Value MenuState::Save(){
 	Json::Value val = State::Save();
