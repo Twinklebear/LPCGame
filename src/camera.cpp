@@ -7,7 +7,7 @@
 
 #include "debugger.h"
 
-Camera::Camera() : mActivePan(-1){
+Camera::Camera() : mActivePan(-1), mScene("def"){
 	mBox.Set(0, 0, Window::Box().W(), Window::Box().H());
 	mSceneBox.Set(0, 0, 0, 0);
 }
@@ -44,7 +44,6 @@ void Camera::Update(){
 		Math::Clamp(y, 0, mSceneBox.h - mBox.h));
 }
 bool Camera::InCamera(Rectf box) const{
-	//return Math::CheckCollision(Math::ToSceneSpace(this, mBox), box);
 	return Math::CheckCollision(mBox, box);
 }
 void Camera::Move(Vector2f v){
@@ -56,6 +55,7 @@ void Camera::Move(float deltaT){
 		//set the camera to the destination
 		if (Math::Distance(mBox.pos, mPans.at(mActivePan).destination) <= mPans.at(mActivePan).speed * deltaT){
 			mBox.Set(mPans.at(mActivePan).destination);
+			mScene = mPans.at(mActivePan).name;
 			mActivePan = -1;
 			return;
 		}
@@ -68,12 +68,18 @@ void Camera::Pan(std::string name){
 	for (int i = 0; i < mPans.size(); ++i){
 		if (mPans.at(i).name == name){
 			mActivePan = i;
+			mScene = "busy";
 			return;
 		}
 	}
 	//If lookup failed set active to -1, ie none
 	mActivePan = -1;
+	mScene = "";
 }
+std::string Camera::Scene(){
+	return mScene;
+}
+
 void Camera::SetBox(Rectf box){
 	//The camera box can't be bigger than the scene box
 	if (mSceneBox.w != 0 && mSceneBox.h != 0){
@@ -92,6 +98,9 @@ void Camera::SetSceneBox(Rectf box){
 	mBox.Set(mBox.X(), mBox.Y(),
 		Math::Clamp(mBox.w, 0, mSceneBox.w),
 		Math::Clamp(mBox.h, 0, mSceneBox.h));
+}
+Rectf Camera::SceneBox(){
+	return mSceneBox;
 }
 Rectf Camera::Box() const{
 	return mBox;

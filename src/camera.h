@@ -59,6 +59,11 @@ public:
 	*/
 	void Pan(std::string name);
 	/**
+	*  Get the active scene
+	*  @return The name of the scene, "busy" means the camera is panning
+	*/
+	std::string Scene();
+	/**
 	*  Set the camera box equal to the Rect passed, a check is performed
 	*  to make sure that the camera box isn't bigger than the scene box
 	*  if no scene box is set no problem, the check is also done when setting a scene box
@@ -73,6 +78,8 @@ public:
 	*  @param box The box to set the scene box too
 	*/
 	void SetSceneBox(Rectf box);
+	///Get the scene box
+	Rectf SceneBox();
 	/**
 	*  Get the offset needed to apply to objects in the camera,
 	*  this offset includes the centering offset and any offset added
@@ -101,6 +108,7 @@ private:
 	Rectf mBox, mSceneBox;
 	std::vector<CameraPan> mPans;
 	int mActivePan;
+	std::string mScene;
 };
 
 #endif

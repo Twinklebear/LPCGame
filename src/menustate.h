@@ -41,6 +41,7 @@ protected:
 	void Free();
 
 private:
+	Image mBackground;
 };
 
 #endif

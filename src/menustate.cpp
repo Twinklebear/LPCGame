@@ -20,13 +20,15 @@ void MenuState::Init(){
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
 	mManager->Register(mCamera);
-	//Input::RegisterManager(mManager);
 }
 std::string MenuState::Run(){
 	//Unset events from earlier
 	Input::Clear();
 	//Clean up any previous exit settings
 	UnsetExit();
+
+	//Setup the background destination
+	SDL_Rect bkgndPos = Math::FromSceneSpace(mCamera.get(), mCamera->SceneBox());
 
 	Timer delta;
 	delta.Start();
@@ -39,9 +41,10 @@ std::string MenuState::Run(){
 			SetExit("quit");
 
 		//Testing camera panning
-		if (Input::KeyDown('q')){
+		if (Input::KeyDown(SDL_SCANCODE_SPACE) && mCamera->Scene() == "def")
 			mCamera->Pan("test");
-		}
+		else if (Input::KeyDown(SDL_SCANCODE_SPACE) && mCamera->Scene() == "test")
+			mCamera->Pan("def");
 
 		//LOGIC
 		mCamera->Update();
@@ -50,10 +53,9 @@ std::string MenuState::Run(){
 		float deltaT = delta.Restart() / 1000.f;
 		mCamera->Move(deltaT);
 
-
-
 		//RENDERING
 		Window::Clear();
+		Window::Draw(&mBackground, bkgndPos, &(SDL_Rect)mCamera->Box());
 		mManager->Draw();
 
 		//refresh window
@@ -66,6 +68,7 @@ void MenuState::Free(){
 }
 Json::Value MenuState::Save(){
 	Json::Value val = State::Save();
+	val["background"] = mBackground.Save();
 
 	Free();
 	return val;
@@ -73,6 +76,7 @@ Json::Value MenuState::Save(){
 void MenuState::Load(Json::Value val){
 	Init();
 	State::Load(val);
+	mBackground.Load(val["background"]);
 
 	//Load the objects
 	Json::Value objects = val["objects"];
