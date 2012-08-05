@@ -74,7 +74,6 @@ void Camera::Pan(std::string name){
 	}
 	//If lookup failed set active to -1, ie none
 	mActivePan = -1;
-	mScene = "";
 }
 std::string Camera::Scene(){
 	return mScene;
