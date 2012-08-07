@@ -3,7 +3,7 @@
 #include "math.h"
 
 float Math::Distance(const Vector2f &a, const Vector2f &b){
-	return (float)sqrt(pow(b.x - a.x, 2.0) + pow(b.y - a.y, 2.0));
+	return sqrtf(powf(b.x - a.x, 2.0) + powf(b.y - a.y, 2.0));
 }
 float Math::Clamp(const float x, const float min, const float max){
 	if (x >= max)
@@ -13,7 +13,7 @@ float Math::Clamp(const float x, const float min, const float max){
 	return x;
 }
 float Math::Magnitude(const Vector2f &v){
-	return sqrt(pow(v.x, 2) + pow(v.y, 2));
+	return sqrtf(powf(v.x, 2) + powf(v.y, 2));
 }
 Vector2f Math::Normalize(const Vector2f &v){
 	return (v / Magnitude(v));

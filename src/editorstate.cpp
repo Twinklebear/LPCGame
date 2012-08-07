@@ -67,7 +67,6 @@ void EditorState::Init(){
 
 	GameObjectEditor *objEditor  = new GameObjectEditor();
 	objEditor->Register(mMapEditor);
-	//objEditor->Register(mCamera); //Why doesn't this work?
 
 	mManager = std::shared_ptr<GameObjectManager>(objEditor);
 	mManager->Register(mCamera);

@@ -63,7 +63,7 @@ void Map::GenerateStressMap(Json::Value val){
 	mImage.Load(val["image"]);
 	mBox.Set(0, 0, Window::Box().w, Window::Box().h);
 	//Determine the tile w/h to fill the window with numTiles
-	int tileSize = sqrt((Window::Box().w * Window::Box().h) / numTiles);
+	int tileSize = sqrtf((Window::Box().w * Window::Box().h) / numTiles);
 	//Generate the map
 	int tPerCol = Window::Box().w / tileSize;
 	int col = 0;

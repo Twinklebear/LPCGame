@@ -126,6 +126,9 @@ Json::Value Camera::Save(){
 	return val;
 }
 void Camera::Load(Json::Value val){
+	//TOOD: is it possible to store the tag of the focus, and have the 
+	//Camera request the focus from the manager?
+	
 	mSceneBox.Load(val["sceneBox"]);
 	//We need to make sure the camera box is a valid size
 	Rectf box;
