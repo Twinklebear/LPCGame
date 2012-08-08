@@ -33,21 +33,36 @@ public:
 	*  @param clip The clip rect to apply to the texture, if desired
 	*  @param w The width to draw the texture with, def val is flag to get it from the texture
 	*  @param h The height to draw the texture with, def val is flag to get it from the texture
+	*  @param angle The angle to rotate the image in degrees, default is 0
+	*  @param pivot The point to rotate around, default (0, 0) corresponds to destination rect center,
+	*               offsets correspond to distance from image center
+	*  @param flip The flip to apply to the image, default is none
 	*/
-	static void Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip = NULL, int w = -1, int h = -1);
+	static void Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip = NULL, int w = -1, int h = -1,
+		float angle = 0.0, Vector2f pivot = Vector2f(0, 0), SDL_RendererFlip flip = SDL_FLIP_NONE);
 	/**
 	*  Draw an image type to the screen
 	*  @param image The image to draw
 	*  @param dstRect The destination rectangle to draw too 
 	*  @param clip The clip rect to apply to the texture, if desired
+	*  @param angle The angle to rotate the image in degrees, default is 0
+	*  @param pivot The point to rotate around, default (0, 0) corresponds to destination rect center,
+	*               offsets correspond to distance from image center
+	*  @param flip The flip to apply to the image, default is none
 	*/
-	static void Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip = NULL);
+	static void Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip = NULL,
+		float angle = 0.0, Vector2f pivot = Vector2f(0, 0), SDL_RendererFlip flip = SDL_FLIP_NONE);
 	/**
 	*  Draw a text type to the screen at some position
 	*  @param text The text type to draw
 	*  @param dstRect The destination rect to draw too, w and h vals will be queried from texture
+	*  @param angle The angle to rotate the image in degrees, default is 0
+	*  @param pivot The point to rotate around, default (0, 0) corresponds to destination rect center,
+	*               offsets correspond to distance from image center
+	*  @param flip The flip to apply to the image, default is none
 	*/
-	static void Draw(Text *text, SDL_Rect dstRect);
+	static void Draw(Text *text, SDL_Rect dstRect, float angle = 0.0, Vector2f pivot = Vector2f(0, 0),
+		SDL_RendererFlip flip = SDL_FLIP_NONE);
 	/**
 	*  Load an image file as a SDL_Texture and return it
 	*  @param file The image file to load

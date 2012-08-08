@@ -97,6 +97,13 @@ public:
 		Vector2<double> vect(x, y);
 		return vect;
 	}
+	operator SDL_Point() const {
+		SDL_Point p;
+		p.x = x;
+		p.y = y;
+		return p;
+	}
+
 
 public:
 	T x, y;

@@ -48,7 +48,9 @@ void Window::Quit(){
 	TTF_Quit();
 	SDL_Quit();
 }
-void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h){
+void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h,
+				  float angle, Vector2f pivot, SDL_RendererFlip flip)
+{
 	SDL_Rect dstRect;
 	dstRect.x = x;
 	dstRect.y = y;
@@ -59,13 +61,21 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h){
 		dstRect.w = w;
 		dstRect.h = h;
 	}
+	//Calculate the pivot point as an offset from image center
+	pivot.x = dstRect.w / 2 + pivot.x;
+	pivot.y = dstRect.h / 2 + pivot.y;
+
 	//Draw the texture
-	SDL_RenderCopy(mRenderer.get(), tex, clip, &dstRect);
+	SDL_RenderCopyEx(mRenderer.get(), tex, clip, &dstRect, angle, &(SDL_Point)pivot, flip);
 }
-void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip){
+void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip, float angle, 
+				  Vector2f pivot, SDL_RendererFlip flip)
+{
 	Draw(dstRect.x, dstRect.y, image->Texture(), clip, dstRect.w, dstRect.h);
 }
-void Window::Draw(Text *text, SDL_Rect dstRect){
+void Window::Draw(Text *text, SDL_Rect dstRect, float angle,
+				  Vector2f pivot, SDL_RendererFlip flip)
+{
 	text->GetSize(dstRect.w, dstRect.h);
 	Draw(dstRect.x, dstRect.y, text->Texture(), NULL, dstRect.w, dstRect.h);
 }
