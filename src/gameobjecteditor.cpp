@@ -8,8 +8,6 @@
 #include "mapeditor.h"
 #include "gameobjecteditor.h"
 
-#include "debugger.h"
-
 GameObjectEditor::GameObjectEditor(){
 
 }
@@ -49,10 +47,7 @@ void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	}
 	//Place a tile on map
 	std::shared_ptr<MapEditor> mapEditor = mMapEditor.lock();
-	if (mTileBar == nullptr)
-		Debugger::Write("Tile bar is nullptr!");
 	if (mapEditor && mTileBar){
-		Debugger::Write("Placing a tile");
 		Vector2f mousePos = Math::ToSceneSpace(mCamera.get(), Vector2f(tempEvt.x, tempEvt.y));
 		mapEditor->Insert(mousePos.x, mousePos.y, mTileBar->GetSelection());
 	}

@@ -72,7 +72,7 @@ private:
 	Image(const Image &a);
 	Image& operator = (const Image &a);
 
-private:
+protected:
 	std::shared_ptr<SDL_Texture> mTexture;
 	std::string mFile;
 	Recti *mClips;

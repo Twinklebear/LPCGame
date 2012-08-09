@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="..\externals\json\json-forwards.h" />
     <ClInclude Include="..\externals\json\json.h" />
+    <ClInclude Include="..\src\animatedimage.h" />
     <ClInclude Include="..\src\base.h" />
     <ClInclude Include="..\src\button.h" />
     <ClInclude Include="..\src\camera.h" />
@@ -46,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\externals\jsoncpp.cpp" />
+    <ClCompile Include="..\src\animatedimage.cpp" />
     <ClCompile Include="..\src\button.cpp" />
     <ClCompile Include="..\src\camera.cpp" />
     <ClCompile Include="..\src\debugger.cpp" />
