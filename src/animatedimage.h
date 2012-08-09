@@ -10,12 +10,21 @@
 
 ///Describes an animation sequence
 struct AnimationSequence {
+	/**
+	*  Save the sequence to a Json::Value
+	*  @return The sequence information as a Json::Value
+	*/
+	Json::Value Save();
+	/**
+	*  Load the sequence from a Json::Value
+	*  @param val The Json::Value to load from
+	*/
+	void Load(Json::Value val);
+
 	///The clips in the animated image clip array
 	std::vector<int> clipIndices;
 	///The framerate to play the animation at
 	int frameRate;
-	///The current frame being shown
-	int currentFrame;
 	///The sequence name
 	std::string name;
 };
@@ -52,18 +61,18 @@ public:
 	*  Save an image's properties to a Json::Value and return it
 	*  @return Json::Value containing the information about the image
 	*/
-	virtual Json::Value Save();
+	Json::Value Save();
 	/**
 	*  Load an image and its properties from a Json::Value
 	*  @param val The Json::Value to load from
 	*/
-	virtual void Load(Json::Value val);
+	void Load(Json::Value val);
 
 private:
 	std::vector<AnimationSequence> mSequences;
 	int mActiveAnimation;
 	///Count the frames elapsed
-	int mFrameCounter;
+	int mFrame;
 };
 
 #endif

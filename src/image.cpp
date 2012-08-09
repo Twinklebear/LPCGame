@@ -22,26 +22,6 @@ Image::~Image(){
 	if (mClips != nullptr)
 		delete[] mClips;
 }
-Json::Value Image::Save(){
-	Json::Value val;
-	val["file"]  = mFile;
-	for (int i = 0; i < mNumClips; ++i){
-		val["clips"][i] = mClips[i].Save();
-	}
-
-	return val;
-}
-void Image::Load(Json::Value val){
-	LoadImage(val["file"].asString());
-	//Read in clips if they exist
-	if (val["clips"].size() != 0){
-		mNumClips = val["clips"].size();
-		mClips = new Recti[mNumClips];
-		for (int i = 0; i < val["clips"].size(); ++i){
-			mClips[i].Load(val["clips"][i]);
-		}
-	}
-}
 void Image::LoadImage(const std::string file){
 	mFile = file;
 	mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
@@ -79,5 +59,24 @@ void Image::GenClips(int cW, int cH){
 			++col;
 		Recti cRect(col * cW, i % cPerCol * cH, cW, cH);
 		mClips[i] = cRect;
+	}
+}
+Json::Value Image::Save(){
+	Json::Value val;
+	val["file"]  = mFile;
+	for (int i = 0; i < mNumClips; ++i){
+		val["clips"][i] = mClips[i].Save();
+	}
+	return val;
+}
+void Image::Load(Json::Value val){
+	LoadImage(val["file"].asString());
+	//Read in clips if they exist
+	if (val["clips"].size() != 0){
+		mNumClips = val["clips"].size();
+		mClips = new Recti[mNumClips];
+		for (int i = 0; i < val["clips"].size(); ++i){
+			mClips[i].Load(val["clips"][i]);
+		}
 	}
 }

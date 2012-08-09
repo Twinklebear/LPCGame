@@ -7,10 +7,9 @@
 
 ## Todo:
 - Simple map editor
-	- Need to add a UI element to select tile to place
-	- Camera can now be dragged in the editor state
-- Set movement commands for the camera, ie. a destination point and speed/time to take going to the point and a call to play a certain camera motion
+	- Expand TileBar to allow for placing of GameObjects
 - Animated Image class able to play desired animations at some speed from clips passed
+	- Have written an AnimatedImage class, need to test it out
 - Implement Lua for scripting objects behavior
 - Better comments documenting code
 - I believe there are some memory leaks to be addressed
