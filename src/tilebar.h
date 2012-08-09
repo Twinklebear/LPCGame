@@ -1,6 +1,10 @@
 #ifndef TILEBAR_H
 #define TILEBAR_H
 
+#include "base.h"
+#include "window.h"
+#include "image.h"
+#include "tile.h"
 #include "gameobject.h"
 
 ///A class for selecting which tile to place in the editor
@@ -9,13 +13,49 @@
 *  tiles/objects/etc to be placed into the map while editing
 */
 ///Planning: Can probably make this class similar to how I did it previously
-class TileBar: GameObject {
+class TileBar: public GameObject {
 public:
 	TileBar();
 	~TileBar();
+	///Update the game object
+	void Update();
+	/**
+	*  Move the object
+	*  @param deltaT The elapsed time
+	*/
+	void Move(float deltaT);
+	/**
+	*  Draw the gameobject, apply an adjustment for the camera if one is desired
+	*  @param cam The camera to adjust for
+	*/
+	void Draw(Camera *cam = nullptr);
+	///On mouse up event
+	void OnMouseUp();
+	/**
+	*  Get the selected tile type
+	*  @return The tile type that is currently selected
+	*/
+	Tile GetSelection();
+	/**
+	*  Save the gameobject data to a json value and return it
+	*  The GameObject instance of the function takes care of saving
+	*  the base object members, physics, image and tags
+	*  @return Json::Value containing the gameobject data
+	*/
+	Json::Value Save();
+	/**
+	*  Load the gameobject from a Json::Value
+	*  The GameObject instance of the function takes care of loading
+	*  the base object members, physics, image and tags
+	*  @param val The Json::Value to load from
+	*/
+	void Load(Json::Value val);
 
 private:
-
+	Image mTileImage;
+	Image mSelector;
+	std::vector<Tile> mTiles;
+	int mSelectedTile;
 };
 
 #endif

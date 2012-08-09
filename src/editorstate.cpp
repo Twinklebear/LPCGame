@@ -11,6 +11,7 @@
 #include "npc.h"
 #include "objectbutton.h"
 #include "mapeditor.h"
+#include "tilebar.h"
 #include "editorstate.h"
 
 EditorState::EditorState(){
@@ -38,6 +39,12 @@ std::string EditorState::Run(){
 			Vector2f pan(-Input::GetMotion().xrel, -Input::GetMotion().yrel);
 			mCamera->Move(pan);
 		}
+		/*
+		if (Input::MouseDown(MOUSE::LEFT)){
+			mMapEditor->Insert(Input::MousePos().x, Input::MousePos().y, mTileBar->GetSelection());
+		}
+		*/
+
 
 		//LOGIC
 		mCamera->Update();
@@ -107,6 +114,14 @@ void EditorState::Load(Json::Value val){
 			b->Load(uiObj[i]);
 			std::shared_ptr<GameObject> sObj(b);
 			mUiManager->Register(sObj);
+		}
+		if (uiObj[i]["type"].asString() == "tilebar"){
+			TileBar *tBar = new TileBar();
+			tBar->Load(uiObj[i]);
+			std::shared_ptr<GameObject> sObj(tBar);
+			mUiManager->Register(sObj);
+			//Register the tilebar with the editor state as well
+			//mTileBar = std::shared_ptr<TileBar>(tBar);
 		}
 	}
 }

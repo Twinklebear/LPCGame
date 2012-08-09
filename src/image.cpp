@@ -1,6 +1,6 @@
 #include <array>
 #include <memory>
-#include "SDL.h"
+#include <SDL.h>
 #include "../externals/json/json.h"
 #include "rect.h"
 #include "image.h"

@@ -42,7 +42,7 @@ public:
 	*  Updates mMouseOver accordingly
 	*  @param pos The mouse pos to check 
 	*/
-	void CheckMouseOver(const Vector2f &pos);
+	virtual void CheckMouseOver(const Vector2f &pos);
 	///Return T/F is the mouse is over the object
 	bool GetMouseOver();
 	/**

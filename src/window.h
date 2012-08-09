@@ -4,7 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <memory>
-#include "SDL.h"
+#include <SDL.h>
 #include "image.h"
 #include "rect.h"
 #include "text.h"

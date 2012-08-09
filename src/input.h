@@ -2,7 +2,7 @@
 #define INPUT_H
 
 #include <memory>
-#include "SDL.h"
+#include <SDL.h>
 #include "gameobjectmanager.h"
 #include "uiobjectmanager.h"
 

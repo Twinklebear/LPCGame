@@ -32,7 +32,6 @@ Json::Value GameObject::Save(){
 	val["image"]   = mImage.Save();
 	val["physics"] = mPhysics.Save();
 	val["tag"]	   = mTag;
-
 	return val;
 }
 void GameObject::Load(Json::Value val){

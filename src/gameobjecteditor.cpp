@@ -44,6 +44,7 @@ void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 			}
 		}
 	}
+	/*
 	//Place a tile on map
 	std::shared_ptr<MapEditor> s = mMapEditor.lock();
 	if (s){
@@ -52,4 +53,5 @@ void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 		Tile temp(Recti(0, 0, 0, 0), 7, true);
 		s->Insert(mousePos.x, mousePos.y, temp);
 	}
+	*/
 }

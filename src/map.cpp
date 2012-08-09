@@ -54,7 +54,6 @@ void Map::Load(Json::Value val){
 	for (int i = 0; i < tiles.size(); ++i){
 		Tile tempTile;
 		tempTile.Load(tiles[i]);
-
 		mTiles.push_back(tempTile);
 	}
 }

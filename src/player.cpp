@@ -41,7 +41,6 @@ void Player::Draw(Camera *cam){
 Json::Value Player::Save(){
 	Json::Value val = GameObject::Save();
 	val["obj"]      = "player";
-
 	return val;
 }
 void Player::Load(Json::Value val){
