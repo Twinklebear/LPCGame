@@ -3,8 +3,8 @@
       "mBox" : {
          "h" : 640.0,
          "w" : 640.0,
-         "x" : -1.0,
-         "y" : -1.0
+         "x" : 0.0,
+         "y" : 0.0
       },
       "sceneBox" : {
          "h" : 640.0,
@@ -1613,8 +1613,8 @@
                "x" : 352,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "solid" : true,
+            "type" : 7
          },
          {
             "box" : {
@@ -1783,8 +1783,8 @@
                "x" : 256,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "solid" : true,
+            "type" : 7
          },
          {
             "box" : {
@@ -2183,8 +2183,8 @@
                "x" : 256,
                "y" : 320
             },
-            "solid" : false,
-            "type" : 0
+            "solid" : true,
+            "type" : 7
          },
          {
             "box" : {
@@ -2413,8 +2413,8 @@
                "x" : 352,
                "y" : 352
             },
-            "solid" : false,
-            "type" : 0
+            "solid" : true,
+            "type" : 7
          },
          {
             "box" : {
@@ -2433,8 +2433,8 @@
                "x" : 416,
                "y" : 352
             },
-            "solid" : false,
-            "type" : 0
+            "solid" : true,
+            "type" : 7
          },
          {
             "box" : {
@@ -2943,8 +2943,8 @@
                "x" : 128,
                "y" : 448
             },
-            "solid" : false,
-            "type" : 0
+            "solid" : true,
+            "type" : 7
          },
          {
             "box" : {
@@ -2963,8 +2963,8 @@
                "x" : 192,
                "y" : 448
             },
-            "solid" : false,
-            "type" : 0
+            "solid" : true,
+            "type" : 7
          },
          {
             "box" : {
@@ -3013,8 +3013,8 @@
                "x" : 352,
                "y" : 448
             },
-            "solid" : false,
-            "type" : 0
+            "solid" : true,
+            "type" : 7
          },
          {
             "box" : {

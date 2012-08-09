@@ -18,13 +18,6 @@ class GameObjectEditor : public GameObjectManager{
 public:
 	GameObjectEditor();
 	~GameObjectEditor();
-	///Draw the game objects
-	void Draw();
-	/**
-	*  Move the game objects
-	*  @param deltaT The time elapsed
-	*/
-	void Move(float deltaT);
 	///Update the objects
 	void Update();
 	/**
@@ -40,11 +33,6 @@ public:
 	*  @param mouseEvent The mouse event that we're processing
 	*/
 	void HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent);
-	/**
-	*  Handle Mouse motion, check if the mouse entered/exited an object
-	*  @param mouseEvent The mouse event that we're processing
-	*/
-	void HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent);
 
 private:
 	std::weak_ptr<MapEditor> mMapEditor;

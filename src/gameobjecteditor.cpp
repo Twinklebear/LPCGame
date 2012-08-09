@@ -8,29 +8,17 @@
 #include "mapeditor.h"
 #include "gameobjecteditor.h"
 
+#include "debugger.h"
+
 GameObjectEditor::GameObjectEditor(){
 
 }
 GameObjectEditor::~GameObjectEditor(){
 	mGameObjects.clear();
 }
-void GameObjectEditor::Draw(){
-	for (std::shared_ptr<GameObject> o : mGameObjects){
-		if (mCamera->InCamera(o->Box()))
-			o->Draw(mCamera.get());
-	}
-}
 void GameObjectEditor::Update(){
-	for (std::shared_ptr<GameObject> o : mGameObjects){
-		if (mCamera->InCamera(o->Box()))
-			o->Update();
-	}
-}
-void GameObjectEditor::Move(float deltaT){
-	for (std::shared_ptr<GameObject> o : mGameObjects){
-		if (mCamera->InCamera(o->Box()))
-			o->Move(deltaT);
-	}
+	GameObjectManager::Update();
+	//Will maybe overide update later, so I'm keeping it around for now
 }
 void GameObjectEditor::Register(std::shared_ptr<MapEditor> mapEditor){
 	mMapEditor = mapEditor;
@@ -40,7 +28,7 @@ void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	SDL_MouseMotionEvent tempEvt;
 	tempEvt.x = mouseEvent.x;
 	tempEvt.y = mouseEvent.y;
-	HandleMouseEvent(tempEvt);
+	GameObjectManager::HandleMouseEvent(tempEvt);
 	//Find the object that was clicked
 	for (std::shared_ptr<GameObject> o : mGameObjects){
 		if (mCamera->InCamera(o->Box()) && o->GetMouseOver()){
@@ -63,13 +51,5 @@ void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 		//The MapEditor will setup the correct box for us
 		Tile temp(Recti(0, 0, 0, 0), 7, true);
 		s->Insert(mousePos.x, mousePos.y, temp);
-	}
-}
-void GameObjectEditor::HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent){
-	Vector2f mousePos = Math::ToSceneSpace(mCamera.get(), Vector2f(mouseEvent.x, mouseEvent.y));
-	//Find the object that has the mouse over it
-	for (std::shared_ptr<GameObject> o : mGameObjects){
-		if (mCamera->InCamera(o->Box()))
-			o->CheckMouseOver(mousePos);
 	}
 }
