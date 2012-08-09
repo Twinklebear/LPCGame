@@ -30,7 +30,7 @@ void Window::Init(std::string title){
 	SCREEN_WIDTH = 1280;
 	SCREEN_HEIGHT = 720;
 	//TODO: Solve the resized window issues
-	mWindow.reset(SDL_CreateWindow(title.c_str(), 100, 100, SCREEN_WIDTH, 
+	mWindow.reset(SDL_CreateWindow(title.c_str(), SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, 
 		SCREEN_HEIGHT, SDL_WINDOW_SHOWN));// | SDL_WINDOW_RESIZABLE));
 	//if window failed to create
 	if (mWindow == nullptr)
