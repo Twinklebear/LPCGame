@@ -96,7 +96,7 @@ public:
 	T H() const{
 		return h;
 	}
-	/*
+	/**
 	*  Save the box's properties to a Json::Value and return it
 	*  @return Json::Value containing the box's properties
 	*/
@@ -108,7 +108,7 @@ public:
 		val["h"] = h;
 		return val;
 	}
-	/*
+	/**
 	*  Load the box's properties from a Json::Value
 	*  @param val The Json::Value containing the properties to load
 	*/
