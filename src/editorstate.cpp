@@ -14,7 +14,7 @@
 #include "tilebar.h"
 #include "editorstate.h"
 
-EditorState::EditorState(){
+EditorState::EditorState() : mTileBar(nullptr){
 }
 EditorState::~EditorState(){
 }
@@ -39,12 +39,6 @@ std::string EditorState::Run(){
 			Vector2f pan(-Input::GetMotion().xrel, -Input::GetMotion().yrel);
 			mCamera->Move(pan);
 		}
-		/*
-		if (Input::MouseDown(MOUSE::LEFT)){
-			mMapEditor->Insert(Input::MousePos().x, Input::MousePos().y, mTileBar->GetSelection());
-		}
-		*/
-
 
 		//LOGIC
 		mCamera->Update();
@@ -73,7 +67,9 @@ void EditorState::Init(){
 	mCamera    = std::shared_ptr<Camera>(new Camera());
 
 	GameObjectEditor *objEditor  = new GameObjectEditor();
+	mTileBar = new TileBar();
 	objEditor->Register(mMapEditor);
+	objEditor->Register(mTileBar);
 
 	mManager = std::shared_ptr<GameObjectManager>(objEditor);
 	mManager->Register(mCamera);
@@ -116,12 +112,9 @@ void EditorState::Load(Json::Value val){
 			mUiManager->Register(sObj);
 		}
 		if (uiObj[i]["type"].asString() == "tilebar"){
-			TileBar *tBar = new TileBar();
-			tBar->Load(uiObj[i]);
-			std::shared_ptr<GameObject> sObj(tBar);
+			mTileBar->Load(uiObj[i]);
+			std::shared_ptr<GameObject> sObj(mTileBar);
 			mUiManager->Register(sObj);
-			//Register the tilebar with the editor state as well
-			//mTileBar = std::shared_ptr<TileBar>(tBar);
 		}
 	}
 }

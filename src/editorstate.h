@@ -47,9 +47,9 @@ protected:
 private:
 	std::shared_ptr<MapEditor> mMapEditor;
 	std::shared_ptr<UiObjectManager> mUiManager;
-	//tilebar is unique item, I'm hacking it in for now. Perhaps I can
-	//try to come up with something better later
-	std::shared_ptr<TileBar> mTileBar;
+	//So we can get the tilebar into the gameobjecteditor
+	//NEED A BETTER WAY
+	TileBar* mTileBar;
 };
 
 #endif

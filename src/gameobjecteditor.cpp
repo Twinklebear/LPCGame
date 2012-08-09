@@ -23,6 +23,9 @@ void GameObjectEditor::Update(){
 void GameObjectEditor::Register(std::shared_ptr<MapEditor> mapEditor){
 	mMapEditor = mapEditor;
 }
+void GameObjectEditor::Register(TileBar* tileBar){
+	mTileBar = tileBar;
+}
 void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	//Update the mouse over before checking for clicks
 	SDL_MouseMotionEvent tempEvt;
@@ -44,14 +47,13 @@ void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 			}
 		}
 	}
-	/*
 	//Place a tile on map
-	std::shared_ptr<MapEditor> s = mMapEditor.lock();
-	if (s){
+	std::shared_ptr<MapEditor> mapEditor = mMapEditor.lock();
+	if (mTileBar == nullptr)
+		Debugger::Write("Tile bar is nullptr!");
+	if (mapEditor && mTileBar){
+		Debugger::Write("Placing a tile");
 		Vector2f mousePos = Math::ToSceneSpace(mCamera.get(), Vector2f(tempEvt.x, tempEvt.y));
-		//The MapEditor will setup the correct box for us
-		Tile temp(Recti(0, 0, 0, 0), 7, true);
-		s->Insert(mousePos.x, mousePos.y, temp);
+		mapEditor->Insert(mousePos.x, mousePos.y, mTileBar->GetSelection());
 	}
-	*/
 }
