@@ -29,7 +29,25 @@ class AnimatedImage : public Image {
 public:
 	AnimatedImage();
 	~AnimatedImage();
-
+	/**
+	*  Update the animation, called every frame
+	*/
+	void Update();
+	/**
+	*  Play the desired animation
+	*  @param name The animation name to play
+	*/
+	void Play(std::string name);
+	/**
+	*  Get the name of the active animation
+	*  @return The name of the animation currently playing
+	*/
+	std::string Playing();
+	/**
+	*  Get the clip to apply to the image to show the right frame
+	*  @return The current clip to show the right image
+	*/
+	int ActiveFrame();
 	/**
 	*  Save an image's properties to a Json::Value and return it
 	*  @return Json::Value containing the information about the image
@@ -40,8 +58,10 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
+
 private:
 	std::vector<AnimationSequence> mSequences;
+	int mActiveAnimation;
 	///Count the frames elapsed
 	int mFrameCounter;
 };
