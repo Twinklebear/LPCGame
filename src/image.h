@@ -4,8 +4,7 @@
 #include <string>
 #include <vector>
 #include <memory>
-#include "SDL.h"
-#include "SDL_image.h"
+#include <SDL.h>
 #include "../externals/json/json.h"
 #include "rect.h"
 #include "vectors.h"
@@ -15,7 +14,7 @@
 *  A wrapper around the SDL_Texture class to make using images
 *  and setting clips or loading/saving them easier
 */
-class Image{
+class Image {
 public:
 	/**
 	*  Setup the image class, if a filename is passed load the image
@@ -25,16 +24,6 @@ public:
 	Image(const std::string file);
 	Image();
 	~Image();
-	/**
-	*  Save an image's properties to a Json::Value and return it
-	*  @return Json::Value containing the information about the image
-	*/
-	Json::Value Save();
-	/**
-	*  Load an image and its properties from a Json::Value
-	*  @param val The Json::Value to load from
-	*/
-	void Load(Json::Value val);
 	/**
 	*  Load an image from a file
 	*  @param file The file to load
@@ -66,6 +55,16 @@ public:
 	*  @param clipNum The clip number to get the box of
 	*/
 	Recti Clip(int clipNum);
+	/**
+	*  Save an image's properties to a Json::Value and return it
+	*  @return Json::Value containing the information about the image
+	*/
+	virtual Json::Value Save();
+	/**
+	*  Load an image and its properties from a Json::Value
+	*  @param val The Json::Value to load from
+	*/
+	virtual void Load(Json::Value val);
 
 private:
 	///Disable image copy construction
