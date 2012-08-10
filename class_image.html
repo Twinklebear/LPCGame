@@ -84,6 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_image-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Image Class Reference</div>  </div>
@@ -94,17 +95,30 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
  <a href="class_image.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="image_8h_source.html">image.h</a>&gt;</code></p>
+
+<p>Inherited by <a class="el" href="class_animated_image.html">AnimatedImage</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a33bcb59a1b431a9a90b48cef147d57b2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a33bcb59a1b431a9a90b48cef147d57b2">Image</a> (const std::string file)</td></tr>
-<tr class="memitem:ad78e03ea7db39fa401056bd8ae86c036"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ad78e03ea7db39fa401056bd8ae86c036">Save</a> ()</td></tr>
-<tr class="memitem:a9e4cfdd1f0582a6e1f17a344d6e10f8a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Load</a> (Json::Value val)</td></tr>
 <tr class="memitem:a82a713e1f7a4b6cd3b64b73648a0b730"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a82a713e1f7a4b6cd3b64b73648a0b730">LoadImage</a> (const std::string file)</td></tr>
 <tr class="memitem:adde1729339310e43975360e80fbaf047"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#adde1729339310e43975360e80fbaf047">SetClips</a> (const std::vector&lt; <a class="el" href="class_rect.html">Recti</a> &gt; &amp;clips)</td></tr>
 <tr class="memitem:ac4fa0d3229083625644d5dbd7456f6d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ac4fa0d3229083625644d5dbd7456f6d3">GenClips</a> (int cW, int cH)</td></tr>
 <tr class="memitem:ac9e9ce4acaefbb70716ab080b91fed6f"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ac9e9ce4acaefbb70716ab080b91fed6f">Texture</a> ()</td></tr>
 <tr class="memitem:a864dedd2edc18372750e305f5624af8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a864dedd2edc18372750e305f5624af8d">Clip</a> (int clipNum)</td></tr>
+<tr class="memitem:ad78e03ea7db39fa401056bd8ae86c036"><td class="memItemLeft" align="right" valign="top">virtual Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ad78e03ea7db39fa401056bd8ae86c036">Save</a> ()</td></tr>
+<tr class="memitem:a9e4cfdd1f0582a6e1f17a344d6e10f8a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Load</a> (Json::Value val)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a2c1dba2048324c175a5b52686631d982"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c1dba2048324c175a5b52686631d982"></a>
+std::shared_ptr&lt; SDL_Texture &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mTexture</b></td></tr>
+<tr class="memitem:a393d4018bc1b1d35174e4b1a742a424b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a393d4018bc1b1d35174e4b1a742a424b"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>mFile</b></td></tr>
+<tr class="memitem:a087550ea42538abe7cf0cb1e5afc6d0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a087550ea42538abe7cf0cb1e5afc6d0c"></a>
+<a class="el" href="class_rect.html">Recti</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mClips</b></td></tr>
+<tr class="memitem:a068d3056b75c45e59f616bb0f673bc37"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a068d3056b75c45e59f616bb0f673bc37"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>mNumClips</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2>Detailed Description</h2>
 <div class="textblock"><p>Wrapper around the SDL_Texture to make things easier. </p>
@@ -195,6 +209,9 @@ Public Member Functions</h2></td></tr>
 <a class="anchor" id="a9e4cfdd1f0582a6e1f17a344d6e10f8a"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void Image::Load </td>
@@ -204,6 +221,11 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Load an image and its properties from a Json::Value </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -212,6 +234,8 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p>Reimplemented in <a class="el" href="class_animated_image.html#a232ef67bfeefd78b34ca125c26a1034f">AnimatedImage</a>.</p>
 
 </div>
 </div>
@@ -242,6 +266,9 @@ Public Member Functions</h2></td></tr>
 <a class="anchor" id="ad78e03ea7db39fa401056bd8ae86c036"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Json::Value Image::Save </td>
@@ -250,9 +277,16 @@ Public Member Functions</h2></td></tr>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Save an image's properties to a Json::Value and return it </p>
 <dl class="section return"><dt>Returns</dt><dd>Json::Value containing the information about the image </dd></dl>
+
+<p>Reimplemented in <a class="el" href="class_animated_image.html#a4b9a0177d254fdf32b40697785b176c6">AnimatedImage</a>.</p>
 
 </div>
 </div>
@@ -304,7 +338,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 14:02:30 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

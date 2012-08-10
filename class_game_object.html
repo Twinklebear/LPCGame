@@ -96,7 +96,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p><code>#include &lt;<a class="el" href="gameobject_8h_source.html">gameobject.h</a>&gt;</code></p>
 
-<p>Inherited by <a class="el" href="class_button.html">Button</a>, <a class="el" href="class_npc.html">Npc</a>, and <a class="el" href="class_player.html">Player</a>.</p>
+<p>Inherited by <a class="el" href="class_button.html">Button</a>, <a class="el" href="class_npc.html">Npc</a>, <a class="el" href="class_player.html">Player</a>, and <a class="el" href="class_tile_bar.html">TileBar</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -117,7 +117,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:adcb966c782b523fcea199989950c73f5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adcb966c782b523fcea199989950c73f5"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#adcb966c782b523fcea199989950c73f5">OnMouseExit</a> ()</td></tr>
 <tr class="memdesc:adcb966c782b523fcea199989950c73f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">On mouse exit. <br/></td></tr>
-<tr class="memitem:a7e515dac7293c13f64cc826398d46586"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a7e515dac7293c13f64cc826398d46586">CheckMouseOver</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;pos)</td></tr>
+<tr class="memitem:a7e515dac7293c13f64cc826398d46586"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#a7e515dac7293c13f64cc826398d46586">CheckMouseOver</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;pos)</td></tr>
 <tr class="memitem:af3d005b7cd181f11618c638abd43eb21"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af3d005b7cd181f11618c638abd43eb21"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object.html#af3d005b7cd181f11618c638abd43eb21">GetMouseOver</a> ()</td></tr>
 <tr class="memdesc:af3d005b7cd181f11618c638abd43eb21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return T/F is the mouse is over the object. <br/></td></tr>
@@ -147,6 +147,9 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <a class="anchor" id="a7e515dac7293c13f64cc826398d46586"></a>
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void GameObject::CheckMouseOver </td>
@@ -156,6 +159,11 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 <p>Check if mouse entered the object's box Updates mMouseOver accordingly </p>
 <dl class="params"><dt>Parameters</dt><dd>
@@ -196,7 +204,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_npc.html#a92c680c6a3a391cde00b3a176151d39d">Npc</a>, <a class="el" href="class_player.html#a6ce490d8253e340f60616e20051f9aed">Player</a>, and <a class="el" href="class_button.html#a06460f5cb500807ff377b60b68e7a0dc">Button</a>.</p>
+<p>Implemented in <a class="el" href="class_npc.html#a92c680c6a3a391cde00b3a176151d39d">Npc</a>, <a class="el" href="class_player.html#a6ce490d8253e340f60616e20051f9aed">Player</a>, <a class="el" href="class_tile_bar.html#a9b1bfffc6a948b4d5e10c0f1d3e1918a">TileBar</a>, and <a class="el" href="class_button.html#a06460f5cb500807ff377b60b68e7a0dc">Button</a>.</p>
 
 </div>
 </div>
@@ -253,7 +261,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">ObjectButton&lt; T &gt;</a>, <a class="el" href="class_button.html#a91c2e9c9bc1297453479b0aa65fdd42d">Button</a>, <a class="el" href="class_npc.html#a19374d0a0b3a20f8ea5fd7b61077cc84">Npc</a>, and <a class="el" href="class_player.html#adfdb99b05cf16e412c30624edc16403b">Player</a>.</p>
+<p>Reimplemented in <a class="el" href="class_object_button.html#a3ccd04f0a02451837c1ed1563fd0b48b">ObjectButton&lt; T &gt;</a>, <a class="el" href="class_button.html#a91c2e9c9bc1297453479b0aa65fdd42d">Button</a>, <a class="el" href="class_tile_bar.html#abad2bf459d5c6cb92ae7b02bd7cb0f42">TileBar</a>, <a class="el" href="class_npc.html#a19374d0a0b3a20f8ea5fd7b61077cc84">Npc</a>, and <a class="el" href="class_player.html#adfdb99b05cf16e412c30624edc16403b">Player</a>.</p>
 
 </div>
 </div>
@@ -286,7 +294,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </dd>
 </dl>
 
-<p>Implemented in <a class="el" href="class_button.html#a4d56591088110eaaaf1eef5fc5cbff06">Button</a>, <a class="el" href="class_npc.html#a61e1541dbb9850ea5c840b460de562a4">Npc</a>, and <a class="el" href="class_player.html#a733cb37efd897bed9719a85ec83e9c4d">Player</a>.</p>
+<p>Implemented in <a class="el" href="class_button.html#a4d56591088110eaaaf1eef5fc5cbff06">Button</a>, <a class="el" href="class_npc.html#a61e1541dbb9850ea5c840b460de562a4">Npc</a>, <a class="el" href="class_player.html#a733cb37efd897bed9719a85ec83e9c4d">Player</a>, and <a class="el" href="class_tile_bar.html#ad94d765545d80b0cb1c8429605c2d24f">TileBar</a>.</p>
 
 </div>
 </div>
@@ -313,7 +321,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <p>Save the gameobject data to a json value and return it The <a class="el" href="class_game_object.html" title="A base class for GameObjects to inherit from.">GameObject</a> instance of the function takes care of saving the base object members, physics, image and tags </p>
 <dl class="section return"><dt>Returns</dt><dd>Json::Value containing the gameobject data </dd></dl>
 
-<p>Reimplemented in <a class="el" href="class_button.html#a78575d27f94b5a34f085e381e3777c1c">Button</a>, <a class="el" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">ObjectButton&lt; T &gt;</a>, <a class="el" href="class_npc.html#a26d82d3d58e2ca0361b64c373146a123">Npc</a>, and <a class="el" href="class_player.html#a2a0d9bd1abff4b8f7557fe55c7dcc146">Player</a>.</p>
+<p>Reimplemented in <a class="el" href="class_button.html#a78575d27f94b5a34f085e381e3777c1c">Button</a>, <a class="el" href="class_object_button.html#a6ea3e851d2e798eb81d28727a3a55d97">ObjectButton&lt; T &gt;</a>, <a class="el" href="class_tile_bar.html#aca66f8082ae5304e7f8a02f067cbb069">TileBar</a>, <a class="el" href="class_npc.html#a26d82d3d58e2ca0361b64c373146a123">Npc</a>, and <a class="el" href="class_player.html#a2a0d9bd1abff4b8f7557fe55c7dcc146">Player</a>.</p>
 
 </div>
 </div>
@@ -355,7 +363,7 @@ std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 14:02:30 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

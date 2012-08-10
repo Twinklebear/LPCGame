@@ -104,6 +104,9 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a3caada48e8fdeef772a97173478ddd17"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a3caada48e8fdeef772a97173478ddd17">Distance</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;a, const <a class="el" href="class_vector2.html">Vector2f</a> &amp;b)</td></tr>
 <tr class="memitem:accf92ae46293735b9ec67e7b53eda32f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#accf92ae46293735b9ec67e7b53eda32f">Clamp</a> (const float x, const float min, const float max)</td></tr>
+<tr class="memitem:a1908cd0d6a79f390463252a398a7b076"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a1908cd0d6a79f390463252a398a7b076">Magnitude</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;v)</td></tr>
+<tr class="memitem:a93d3bd69c05d09514d5b674f94dc180f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a93d3bd69c05d09514d5b674f94dc180f">Normalize</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;v)</td></tr>
+<tr class="memitem:abda933ff6b76891acd5f18f6b50f65dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#abda933ff6b76891acd5f18f6b50f65dd">Lerp</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;start, const <a class="el" href="class_vector2.html">Vector2f</a> &amp;end, float percent)</td></tr>
 <tr class="memitem:a729df13db67f5fdc154dd8d03f95d643"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a729df13db67f5fdc154dd8d03f95d643">RectNearRect</a> (const <a class="el" href="class_rect.html">Rectf</a> &amp;a, const <a class="el" href="class_rect.html">Rectf</a> &amp;b, int tolerance=0)</td></tr>
 <tr class="memitem:a0dcddce5d37b62846254ce98c62d8c02"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a0dcddce5d37b62846254ce98c62d8c02">CheckCollision</a> (const <a class="el" href="class_rect.html">Rectf</a> &amp;a, const <a class="el" href="class_rect.html">Rectf</a> &amp;b)</td></tr>
 <tr class="memitem:a65a013ea488f4bf1c18e0ff3abce5f12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespace_math.html#a65a013ea488f4bf1c18e0ff3abce5f12">CheckCollision</a> (const <a class="el" href="class_vector2.html">Vector2f</a> &amp;p, const <a class="el" href="class_rect.html">Rectf</a> &amp;r)</td></tr>
@@ -333,6 +336,95 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="abda933ff6b76891acd5f18f6b50f65dd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vector2.html">Vector2f</a> Math::Lerp </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vector2.html">Vector2f</a> &amp;&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="class_vector2.html">Vector2f</a> &amp;&#160;</td>
+          <td class="paramname"><em>end</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>percent</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A standard Lerp function for <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> Get the <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> that is some percent between start and end </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">start</td><td>The starting point </td></tr>
+    <tr><td class="paramname">end</td><td>The ending point </td></tr>
+    <tr><td class="paramname">percent</td><td>The percent distance to return between the points, 0 -&gt; start, 1 -&gt; end </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1908cd0d6a79f390463252a398a7b076"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Math::Magnitude </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vector2.html">Vector2f</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Calculate the magnitude of a <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> to calculate the magnitude of </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The magnitude of the vector </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a93d3bd69c05d09514d5b674f94dc180f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_vector2.html">Vector2f</a> Math::Normalize </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_vector2.html">Vector2f</a> &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Normalize a <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> to normalize </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>The normalized <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> </dd></dl>
+
+</div>
+</div>
 <a class="anchor" id="a729df13db67f5fdc154dd8d03f95d643"></a>
 <div class="memitem">
 <div class="memproto">
@@ -448,7 +540,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:58 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 14:02:31 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

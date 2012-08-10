@@ -97,28 +97,31 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;camera.h&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;gameobjectmanager.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;mapeditor.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="class_game_object_editor.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_game_object_editor.html" title="Allows for editing of the GameObjects on a map.">GameObjectEditor</a> : <span class="keyword">public</span> <a class="code" href="class_game_object_manager.html" title="Handles the GameObjects in the active state.">GameObjectManager</a>{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="class_game_object_editor.html" title="Allows for editing of the GameObjects on a map.">GameObjectEditor</a>();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        ~<a class="code" href="class_game_object_editor.html" title="Allows for editing of the GameObjects on a map.">GameObjectEditor</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_editor.html#ac22df558cab8cb2575fbf1e719fec36b" title="Draw the game objects.">Draw</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_editor.html#a66edf109e754911bb9628dada0eeb49c">Move</a>(<span class="keywordtype">float</span> deltaT);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_editor.html#a7d45474220746422b033642dbeeb43ac" title="Update the objects.">Update</a>();</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_editor.html#ada407b2c1c782146d04306f0fe815f6e">Register</a>(std::shared_ptr&lt;MapEditor&gt; mapEditor);</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;tilebar.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="class_game_object_editor.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_game_object_editor.html" title="Allows for editing of the GameObjects on a map.">GameObjectEditor</a> : <span class="keyword">public</span> <a class="code" href="class_game_object_manager.html" title="Handles the GameObjects in the active state.">GameObjectManager</a>{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_game_object_editor.html" title="Allows for editing of the GameObjects on a map.">GameObjectEditor</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        ~<a class="code" href="class_game_object_editor.html" title="Allows for editing of the GameObjects on a map.">GameObjectEditor</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_editor.html#a7d45474220746422b033642dbeeb43ac" title="Update the objects.">Update</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_editor.html#ada407b2c1c782146d04306f0fe815f6e">Register</a>(std::shared_ptr&lt;MapEditor&gt; mapEditor);</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_editor.html#ada407b2c1c782146d04306f0fe815f6e">Register</a>(<a class="code" href="class_tile_bar.html" title="A class for selecting which tile to place in the editor.">TileBar</a>* tileBar);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_editor.html#a4d566ffead2987b69711c4a5e04d02f0">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseButtonEvent &amp;mouseEvent);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_game_object_editor.html#a4d566ffead2987b69711c4a5e04d02f0">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseMotionEvent &amp;mouseEvent);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        std::weak_ptr&lt;MapEditor&gt; mMapEditor;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        std::weak_ptr&lt;MapEditor&gt; mMapEditor;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="comment">//We use a non-managed pointer because we don&#39;t want to have to make</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <span class="comment">//a shared tilebar pointer b/c it&#39;s managed as a GameObject shared ptr with</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">//the ui object manager</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <a class="code" href="class_tile_bar.html" title="A class for selecting which tile to place in the editor.">TileBar</a>* mTileBar;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;};</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 14:02:29 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

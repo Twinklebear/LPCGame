@@ -110,6 +110,7 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memitem:a5c2085cf872dcfb3c5d148026a32bb8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a5c2085cf872dcfb3c5d148026a32bb8f">SetCollisionMaps</a> (<a class="el" href="class_map.html">Map</a> *map)</td></tr>
 <tr class="memitem:ae0e153903163b0caa8386b3e99491ee8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#ae0e153903163b0caa8386b3e99491ee8">Register</a> (std::shared_ptr&lt; <a class="el" href="class_game_object.html">GameObject</a> &gt; obj)</td></tr>
 <tr class="memitem:add1ae25bae66c775265163a11d10d87d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#add1ae25bae66c775265163a11d10d87d">Register</a> (std::shared_ptr&lt; <a class="el" href="class_camera.html">Camera</a> &gt; camera)</td></tr>
+<tr class="memitem:af134846a13ae4ef4f98b6d7f20616a68"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#af134846a13ae4ef4f98b6d7f20616a68">CheckMouseEvents</a> ()</td></tr>
 <tr class="memitem:a90e4da9307e0cd53498f1e746ecd64f6"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a90e4da9307e0cd53498f1e746ecd64f6">HandleMouseEvent</a> (const SDL_MouseButtonEvent &amp;mouseEvent)</td></tr>
 <tr class="memitem:a192d33c74f88a0aafac1ef4294fefb92"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a192d33c74f88a0aafac1ef4294fefb92">HandleMouseEvent</a> (const SDL_MouseMotionEvent &amp;mouseEvent)</td></tr>
 <tr class="memitem:a2a53df3e1900099bb4b01828703361d9"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_game_object_manager.html#a2a53df3e1900099bb4b01828703361d9">Save</a> ()</td></tr>
@@ -126,6 +127,30 @@ std::shared_ptr&lt; <a class="el" href="class_camera.html">Camera</a> &gt;&#160;
 <div class="textblock"><p>Handles the GameObjects in the active state. </p>
 <p>A class to simplify handling of the objects, and simple collision interactions between them </p>
 </div><h2>Member Function Documentation</h2>
+<a class="anchor" id="af134846a13ae4ef4f98b6d7f20616a68"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void GameObjectManager::CheckMouseEvents </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Testing the new method for mouse handling </p>
+
+</div>
+</div>
 <a class="anchor" id="a90e4da9307e0cd53498f1e746ecd64f6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -188,7 +213,7 @@ std::shared_ptr&lt; <a class="el" href="class_camera.html">Camera</a> &gt;&#160;
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_game_object_editor.html#a183ca7ab9e7e65596877559201403b78">GameObjectEditor</a>, and <a class="el" href="class_ui_object_manager.html#a69f38a88e100567b26a3c99131ae5851">UiObjectManager</a>.</p>
+<p>Reimplemented in <a class="el" href="class_ui_object_manager.html#a69f38a88e100567b26a3c99131ae5851">UiObjectManager</a>.</p>
 
 </div>
 </div>
@@ -221,7 +246,7 @@ std::shared_ptr&lt; <a class="el" href="class_camera.html">Camera</a> &gt;&#160;
   </dd>
 </dl>
 
-<p>Reimplemented in <a class="el" href="class_ui_object_manager.html#afdd86c495df5be0c7866b202e4fc684c">UiObjectManager</a>, and <a class="el" href="class_game_object_editor.html#a66edf109e754911bb9628dada0eeb49c">GameObjectEditor</a>.</p>
+<p>Reimplemented in <a class="el" href="class_ui_object_manager.html#afdd86c495df5be0c7866b202e4fc684c">UiObjectManager</a>.</p>
 
 </div>
 </div>
@@ -318,7 +343,7 @@ std::shared_ptr&lt; <a class="el" href="class_camera.html">Camera</a> &gt;&#160;
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 14:02:30 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

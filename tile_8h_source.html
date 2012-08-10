@@ -131,14 +131,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        }</div>
 <div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="class_tile.html#a61ed303736b6c9a8e63c8e84a2259be5">   56</a></span>&#160;        Json::Value <a class="code" href="class_tile.html#a61ed303736b6c9a8e63c8e84a2259be5">Save</a>(){</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;                Json::Value val;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                val[<span class="stringliteral">&quot;box&quot;</span>]   = mBox.Save();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                val[<span class="stringliteral">&quot;box&quot;</span>]   = mBox.<a class="code" href="class_rect.html#adc4110a3e57f7d0273da2f0f53d4234f">Save</a>();</div>
 <div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                val[<span class="stringliteral">&quot;type&quot;</span>]  = mType;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;                val[<span class="stringliteral">&quot;solid&quot;</span>] = mSolid;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordflow">return</span> val;</div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        }</div>
 <div class="line"><a name="l00068"></a><span class="lineno"><a class="code" href="class_tile.html#a5e53eaaceecf56b81c0a701d3889b8cb">   68</a></span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_tile.html#a5e53eaaceecf56b81c0a701d3889b8cb">Load</a>(Json::Value val){</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                mBox.Load(val[<span class="stringliteral">&quot;box&quot;</span>]);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                mBox.<a class="code" href="class_rect.html#a93bf30ad2ed1860fe58fa735dccab700">Load</a>(val[<span class="stringliteral">&quot;box&quot;</span>]);</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;                mType = val[<span class="stringliteral">&quot;type&quot;</span>].asInt();</div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;                mSolid = val[<span class="stringliteral">&quot;solid&quot;</span>].asBool();</div>
 <div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
@@ -153,7 +153,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 14:02:30 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
