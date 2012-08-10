@@ -6,8 +6,6 @@
 #include "gameobject.h"
 #include "tilebar.h"
 
-#include "debugger.h"
-
 TileBar::TileBar() : mSelectedTile(0){
 }
 TileBar::~TileBar(){
