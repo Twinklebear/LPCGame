@@ -9,9 +9,9 @@ MotionState::~MotionState(){
 }
 void MotionState::UpdateState(Kinematic kinematic){
 	//update state based on current motion
-	if (abs(kinematic.Vel.x) > 0.0 || abs(kinematic.Vel.y) >= 0.0)
+	if (abs(kinematic.Vel.x) > 0.05 || abs(kinematic.Vel.y) >= 0.05)
 		mState = RUNNING;
-	else if (kinematic.Vel.x == 0.0 && kinematic.Vel.y == 0.0)
+	else
 		mState = IDLE;
 }
 int MotionState::GetMotionState() const{

@@ -56,7 +56,7 @@ public:
 	*  Get the clip to apply to the image to show the right frame
 	*  @return The current clip to show the right image
 	*/
-	int ActiveFrame();
+	int ActiveClip();
 	/**
 	*  Save an image's properties to a Json::Value and return it
 	*  @return Json::Value containing the information about the image
@@ -73,6 +73,8 @@ private:
 	int mActiveAnimation;
 	///Count the frames elapsed
 	int mFrame;
+	///Count the frame the animation is on
+	int mAnimationFrame;
 };
 
 #endif

@@ -33,8 +33,13 @@ AnimatedImage::~AnimatedImage(){
 void AnimatedImage::Update(){
 	++mFrame;
 	//Reset animation if we go over # of frames in the animation
-	if (mFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
+	//THIS DOES NOT CORRESPOND TO FRAMES PER SECOND
+	if (mFrame >= mSequences.at(mActiveAnimation).frameRate){
 		mFrame = 0;
+		++mAnimationFrame;
+	}
+	if (mAnimationFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
+		mAnimationFrame = 0;
 }
 void AnimatedImage::Play(std::string name){
 	for (int i = 0; i < mSequences.size(); ++i){
@@ -47,8 +52,8 @@ void AnimatedImage::Play(std::string name){
 std::string AnimatedImage::Playing(){
 	return mSequences.at(mActiveAnimation).name;
 }
-int AnimatedImage::ActiveFrame(){
-	return mSequences.at(mActiveAnimation).clipIndices.at(mFrame);
+int AnimatedImage::ActiveClip(){
+	return mSequences.at(mActiveAnimation).clipIndices.at(mAnimationFrame);
 }
 Json::Value AnimatedImage::Save(){
 	//Save base class (file and clips)

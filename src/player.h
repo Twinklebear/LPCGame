@@ -7,6 +7,7 @@
 #include "window.h"
 #include "base.h"
 #include "image.h"
+#include "animatedimage.h"
 
 ///The player
 /**
@@ -45,6 +46,9 @@ private:
 	///Disable copy-construction
 	Player(const Player &a);
 	Player& operator = (const Player &a);
+
+private:
+	AnimatedImage mAnimatedImage;
 };
 
 #endif

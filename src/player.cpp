@@ -10,6 +10,8 @@
 #include "image.h"
 #include "player.h"
 
+#include "debugger.h"
+
 Player::Player(){}
 Player::~Player(){}
 void Player::Update(){
@@ -27,6 +29,19 @@ void Player::Update(){
 		mPhysics.SetVertDir(Math::DOWN);
 	else
 		mPhysics.SetVertDir(Physics::MOVE::STOP);
+
+	//Update active animation
+	Debugger::Write("Motion state:", mPhysics.GetMotionState());
+	if (mPhysics.GetMotionState() == MotionState::IDLE && mAnimatedImage.Playing() != "idle"){
+		mAnimatedImage.Play("idle");
+		Debugger::Write("Playing idle animation");
+	}
+	else if (mPhysics.GetMotionState() == MotionState::RUNNING && mAnimatedImage.Playing() != "run"){
+		mAnimatedImage.Play("run");
+		Debugger::Write("Playing run animation");
+	}
+	//Update animation from
+	mAnimatedImage.Update();
 }
 void Player::Move(float deltaT){
 	mPhysics.Move(deltaT);
@@ -36,13 +51,27 @@ void Player::Draw(Camera *cam){
 	if (cam != nullptr)
 		pos = Math::FromSceneSpace(cam, pos);
 
-	Window::Draw(&mImage, pos);
+	//Window::Draw(&mImage, pos);
+	//Draw animation
+	Window::Draw(&mAnimatedImage, pos, &(SDL_Rect)mAnimatedImage.Clip(mAnimatedImage.ActiveClip()));
+	Debugger::Write("active clip: ", mAnimatedImage.ActiveClip());
 }
 Json::Value Player::Save(){
-	Json::Value val = GameObject::Save();
-	val["obj"]      = "player";
+	//Json::Value val = GameObject::Save();
+	//Overriding to test my animated image
+	Json::Value val;
+	val["physics"] = mPhysics.Save();
+	val["tag"]	   = mTag;
+	val["obj"]     = "player";
+	val["image"]   = mAnimatedImage.Save();
 	return val;
 }
 void Player::Load(Json::Value val){
-	GameObject::Load(val);
+	//GameObject::Load(val);
+	//Overriding to test my animated image
+	mPhysics.Load(val["physics"]);
+	mAnimatedImage.Load(val["image"]);
+	mTag = val["tag"].asString();
+	//start idle animation
+	mAnimatedImage.Play("idle");
 }
