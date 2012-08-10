@@ -79,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_7347b8f284bfc116608da52ae7584be7.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_33fd4fcbc38ba42cb401620c60a82c8a.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -96,31 +96,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;state.h&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;timer.h&quot;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;mapeditor.h&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;uiobjectmanager.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="class_editor_state.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_editor_state.html" title="Runs the editor state.">EditorState</a> : <span class="keyword">public</span> <a class="code" href="class_state.html" title="Base class for states.">State</a>{</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <a class="code" href="class_editor_state.html" title="Runs the editor state.">EditorState</a>();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        ~<a class="code" href="class_editor_state.html" title="Runs the editor state.">EditorState</a>();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        std::string <a class="code" href="class_editor_state.html#a7221681fb9bb3291d9522cbb0258638a">Run</a>();</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        Json::Value <a class="code" href="class_editor_state.html#a2061ebd10922653f5c429ce3d03061cd">Save</a>();</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_editor_state.html#aa76d820dd526989087c7d35d49c6b490">Load</a>(Json::Value val);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_editor_state.html#a6ff3a8e8757617a7186f63318413e209" title="Initialize state memory.">Init</a>();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_editor_state.html#adb9aaa67c46e4a290eb7f6c92c6c547b" title="Free state memory.">Free</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        std::shared_ptr&lt;MapEditor&gt; mMapEditor;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::shared_ptr&lt;UiObjectManager&gt; mUiManager;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;};</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;tilebar.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;uiobjectmanager.h&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="class_editor_state.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_editor_state.html" title="Runs the editor state.">EditorState</a> : <span class="keyword">public</span> <a class="code" href="class_state.html" title="Base class for states.">State</a>{</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        <a class="code" href="class_editor_state.html" title="Runs the editor state.">EditorState</a>();</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        ~<a class="code" href="class_editor_state.html" title="Runs the editor state.">EditorState</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;        std::string <a class="code" href="class_editor_state.html#a7221681fb9bb3291d9522cbb0258638a">Run</a>();</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        Json::Value <a class="code" href="class_editor_state.html#a2061ebd10922653f5c429ce3d03061cd">Save</a>();</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_editor_state.html#aa76d820dd526989087c7d35d49c6b490">Load</a>(Json::Value val);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_editor_state.html#a6ff3a8e8757617a7186f63318413e209" title="Initialize state memory.">Init</a>();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_editor_state.html#adb9aaa67c46e4a290eb7f6c92c6c547b" title="Free state memory.">Free</a>();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::shared_ptr&lt;MapEditor&gt; mMapEditor;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        std::shared_ptr&lt;UiObjectManager&gt; mUiManager;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="comment">//So we can get the tilebar into the gameobjecteditor</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="comment">//NEED A BETTER WAY</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="class_tile_bar.html" title="A class for selecting which tile to place in the editor.">TileBar</a>* mTileBar;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;};</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 13:59:59 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

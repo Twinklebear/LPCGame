@@ -108,9 +108,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a57d28573876dd89be70cd78b9302f461"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a57d28573876dd89be70cd78b9302f461"></a>
 static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a57d28573876dd89be70cd78b9302f461">Quit</a> ()</td></tr>
 <tr class="memdesc:a57d28573876dd89be70cd78b9302f461"><td class="mdescLeft">&#160;</td><td class="mdescRight">Quit SDL and destroy the window and renderer. <br/></td></tr>
-<tr class="memitem:a39b675a93ad2d923f8872b74dddaddee"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a39b675a93ad2d923f8872b74dddaddee">Draw</a> (int x, int y, SDL_Texture *tex, SDL_Rect *clip=NULL, int w=-1, int h=-1)</td></tr>
-<tr class="memitem:aa51a299900b61baf10ebc2be63c4dc34"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aa51a299900b61baf10ebc2be63c4dc34">Draw</a> (<a class="el" href="class_image.html">Image</a> *image, const SDL_Rect &amp;dstRect, SDL_Rect *clip=NULL)</td></tr>
-<tr class="memitem:acb32c0012c150a98de85d200123a4e61"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#acb32c0012c150a98de85d200123a4e61">Draw</a> (<a class="el" href="class_text.html">Text</a> *text, SDL_Rect dstRect)</td></tr>
+<tr class="memitem:a18b17a7904eec1a80c36a8fa73bd8002"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a18b17a7904eec1a80c36a8fa73bd8002">Draw</a> (int x, int y, SDL_Texture *tex, SDL_Rect *clip=NULL, int w=-1, int h=-1, float angle=0.0, <a class="el" href="class_vector2.html">Vector2f</a> pivot=<a class="el" href="class_vector2.html">Vector2f</a>(0, 0), SDL_RendererFlip flip=SDL_FLIP_NONE)</td></tr>
+<tr class="memitem:a905c29a3373a90613859731f04d54e35"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a905c29a3373a90613859731f04d54e35">Draw</a> (<a class="el" href="class_image.html">Image</a> *image, const SDL_Rect &amp;dstRect, SDL_Rect *clip=NULL, float angle=0.0, <a class="el" href="class_vector2.html">Vector2f</a> pivot=<a class="el" href="class_vector2.html">Vector2f</a>(0, 0), SDL_RendererFlip flip=SDL_FLIP_NONE)</td></tr>
+<tr class="memitem:aadcb85500ad48686eb218c734b4122d1"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#aadcb85500ad48686eb218c734b4122d1">Draw</a> (<a class="el" href="class_text.html">Text</a> *text, SDL_Rect dstRect, float angle=0.0, <a class="el" href="class_vector2.html">Vector2f</a> pivot=<a class="el" href="class_vector2.html">Vector2f</a>(0, 0), SDL_RendererFlip flip=SDL_FLIP_NONE)</td></tr>
 <tr class="memitem:afc4185743b1244c49c8657f13af31096"><td class="memItemLeft" align="right" valign="top">static SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#afc4185743b1244c49c8657f13af31096">LoadTexture</a> (std::string file)</td></tr>
 <tr class="memitem:a9a6dfef3bbd4dcf07af6862048167855"><td class="memItemLeft" align="right" valign="top">static SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a9a6dfef3bbd4dcf07af6862048167855">SurfaceToTexture</a> (SDL_Surface *surf)</td></tr>
 <tr class="memitem:a9904449165571eff36b106148ec1279f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9904449165571eff36b106148ec1279f"></a>
@@ -128,7 +128,7 @@ static <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memIt
 <div class="textblock"><p>Handles the window. </p>
 <p><a class="el" href="class_window.html" title="Handles the window.">Window</a> management class, provides a simple wrapper around the SDL_Window and SDL_Renderer functionalities </p>
 </div><h2>Member Function Documentation</h2>
-<a class="anchor" id="a39b675a93ad2d923f8872b74dddaddee"></a>
+<a class="anchor" id="a18b17a7904eec1a80c36a8fa73bd8002"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -169,7 +169,25 @@ static <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memIt
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">int&#160;</td>
-          <td class="paramname"><em>h</em> = <code>-1</code>&#160;</td>
+          <td class="paramname"><em>h</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td>
+          <td class="paramname"><em>pivot</em> = <code><a class="el" href="class_vector2.html">Vector2f</a>(0,&#160;0)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_RendererFlip&#160;</td>
+          <td class="paramname"><em>flip</em> = <code>SDL_FLIP_NONE</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -192,13 +210,16 @@ static <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memIt
     <tr><td class="paramname">clip</td><td>The clip rect to apply to the texture, if desired </td></tr>
     <tr><td class="paramname">w</td><td>The width to draw the texture with, def val is flag to get it from the texture </td></tr>
     <tr><td class="paramname">h</td><td>The height to draw the texture with, def val is flag to get it from the texture </td></tr>
+    <tr><td class="paramname">angle</td><td>The angle to rotate the image in degrees, default is 0 </td></tr>
+    <tr><td class="paramname">pivot</td><td>The point to rotate around, default (0, 0) corresponds to destination rect center, offsets correspond to distance from image center </td></tr>
+    <tr><td class="paramname">flip</td><td>The flip to apply to the image, default is none </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="aa51a299900b61baf10ebc2be63c4dc34"></a>
+<a class="anchor" id="a905c29a3373a90613859731f04d54e35"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -221,7 +242,25 @@ static <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memIt
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">SDL_Rect *&#160;</td>
-          <td class="paramname"><em>clip</em> = <code>NULL</code>&#160;</td>
+          <td class="paramname"><em>clip</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td>
+          <td class="paramname"><em>pivot</em> = <code><a class="el" href="class_vector2.html">Vector2f</a>(0,&#160;0)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_RendererFlip&#160;</td>
+          <td class="paramname"><em>flip</em> = <code>SDL_FLIP_NONE</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -241,13 +280,16 @@ static <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memIt
     <tr><td class="paramname">image</td><td>The image to draw </td></tr>
     <tr><td class="paramname">dstRect</td><td>The destination rectangle to draw too </td></tr>
     <tr><td class="paramname">clip</td><td>The clip rect to apply to the texture, if desired </td></tr>
+    <tr><td class="paramname">angle</td><td>The angle to rotate the image in degrees, default is 0 </td></tr>
+    <tr><td class="paramname">pivot</td><td>The point to rotate around, default (0, 0) corresponds to destination rect center, offsets correspond to distance from image center </td></tr>
+    <tr><td class="paramname">flip</td><td>The flip to apply to the image, default is none </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a class="anchor" id="acb32c0012c150a98de85d200123a4e61"></a>
+<a class="anchor" id="aadcb85500ad48686eb218c734b4122d1"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -264,7 +306,25 @@ static <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memIt
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">SDL_Rect&#160;</td>
-          <td class="paramname"><em>dstRect</em>&#160;</td>
+          <td class="paramname"><em>dstRect</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>angle</em> = <code>0.0</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td>
+          <td class="paramname"><em>pivot</em> = <code><a class="el" href="class_vector2.html">Vector2f</a>(0,&#160;0)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_RendererFlip&#160;</td>
+          <td class="paramname"><em>flip</em> = <code>SDL_FLIP_NONE</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -283,6 +343,9 @@ static <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memIt
   <table class="params">
     <tr><td class="paramname">text</td><td>The text type to draw </td></tr>
     <tr><td class="paramname">dstRect</td><td>The destination rect to draw too, w and h vals will be queried from texture </td></tr>
+    <tr><td class="paramname">angle</td><td>The angle to rotate the image in degrees, default is 0 </td></tr>
+    <tr><td class="paramname">pivot</td><td>The point to rotate around, default (0, 0) corresponds to destination rect center, offsets correspond to distance from image center </td></tr>
+    <tr><td class="paramname">flip</td><td>The flip to apply to the image, default is none </td></tr>
   </table>
   </dd>
 </dl>
@@ -422,7 +485,7 @@ static <a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memIt
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:58 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 14:00:00 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

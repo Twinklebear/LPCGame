@@ -79,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_7347b8f284bfc116608da52ae7584be7.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_33fd4fcbc38ba42cb401620c60a82c8a.html">src</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -91,37 +91,53 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define CAMERA_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;base.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;window.h&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;gameobject.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="class_camera.html">   15</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a>{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        ~<a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#ac696ee7f18a17be3d081dd3efee46156">SetFocus</a>(std::shared_ptr&lt;GameObject&gt; obj);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a4a596a3ea1fdc7d244ba4268031a360b" title="Update the camera&#39;s position to keep the object centered.">Update</a>();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_camera.html#a13a3a0fa441df9cf793ec209ba538340">InCamera</a>(<a class="code" href="class_rect.html">Rectf</a> box) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a8d7728da233afdeee1baf82392151453">SetBox</a>(<a class="code" href="class_rect.html">Rectf</a> box);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <a class="code" href="class_rect.html">Rectf</a> <a class="code" href="class_camera.html#ad2b387efc4f2cdf8ad265a689858658d" title="Returns the camera&#39;s box.">Box</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a2b9e3f03ffc39c1269f54d405e014c28">SetSceneBox</a>(<a class="code" href="class_rect.html">Rectf</a> box);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_camera.html#a30f709a528d2ced072fcbf83c8c316dc">Offset</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_camera.html#abc0ccf084f53237f740bc242efa6e77d">Centering</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        Json::Value <a class="code" href="class_camera.html#a390a882cd59378c794c480c20e33f934">Save</a>();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a414fa361742dec72c9c9b3e3c06d0280">Load</a>(Json::Value val);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        std::weak_ptr&lt;GameObject&gt; mFocus;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="class_rect.html">Rectf</a> mBox, mSceneBox;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;base.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;window.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;gameobject.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="struct_camera_pan.html">   16</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_camera_pan.html" title="Describes a simple Camera animation.">CameraPan</a>{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        std::string name;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="class_vector2.html">Vector2i</a> destination;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        <span class="keywordtype">int</span> speed;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;};</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="code" href="class_camera.html">   27</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a>{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        ~<a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#ac696ee7f18a17be3d081dd3efee46156">SetFocus</a>(std::shared_ptr&lt;GameObject&gt; obj);</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a4a596a3ea1fdc7d244ba4268031a360b" title="Update the camera&#39;s position to keep the object centered.">Update</a>();</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">bool</span> <a class="code" href="class_camera.html#a13a3a0fa441df9cf793ec209ba538340">InCamera</a>(<a class="code" href="class_rect.html">Rectf</a> box) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a73dbe7ba01c2adeff49db363cb5b8e75">Move</a>(<a class="code" href="class_vector2.html">Vector2f</a> v);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a73dbe7ba01c2adeff49db363cb5b8e75">Move</a>(<span class="keywordtype">float</span> deltaT);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#ab5c274ae0609f8b2567dd5771eee0598">Pan</a>(std::string name);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        std::string <a class="code" href="class_camera.html#a65699bfef1ad853e494d500f0e88f292">Scene</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a8d7728da233afdeee1baf82392151453">SetBox</a>(<a class="code" href="class_rect.html">Rectf</a> box);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="class_rect.html">Rectf</a> <a class="code" href="class_camera.html#ad2b387efc4f2cdf8ad265a689858658d" title="Returns the camera&#39;s box.">Box</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a2b9e3f03ffc39c1269f54d405e014c28">SetSceneBox</a>(<a class="code" href="class_rect.html">Rectf</a> box);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_rect.html">Rectf</a> <a class="code" href="class_camera.html#a68abf1cf16b6b10ee65238bf09333eb7" title="Get the scene box.">SceneBox</a>();</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;        <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_camera.html#a30f709a528d2ced072fcbf83c8c316dc">Offset</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_camera.html#abc0ccf084f53237f740bc242efa6e77d">Centering</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        Json::Value <a class="code" href="class_camera.html#a390a882cd59378c794c480c20e33f934">Save</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="class_camera.html#a414fa361742dec72c9c9b3e3c06d0280">Load</a>(Json::Value val);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        std::weak_ptr&lt;GameObject&gt; mFocus;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;        <a class="code" href="class_rect.html">Rectf</a> mBox, mSceneBox;</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        std::vector&lt;CameraPan&gt; mPans;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        <span class="keywordtype">int</span> mActivePan;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        std::string mScene;</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;};</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 13:59:59 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>

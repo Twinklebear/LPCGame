@@ -102,11 +102,18 @@ Public Member Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a4a596a3ea1fdc7d244ba4268031a360b">Update</a> ()</td></tr>
 <tr class="memdesc:a4a596a3ea1fdc7d244ba4268031a360b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the camera's position to keep the object centered. <br/></td></tr>
 <tr class="memitem:a13a3a0fa441df9cf793ec209ba538340"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a13a3a0fa441df9cf793ec209ba538340">InCamera</a> (<a class="el" href="class_rect.html">Rectf</a> box) const </td></tr>
+<tr class="memitem:a73dbe7ba01c2adeff49db363cb5b8e75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a73dbe7ba01c2adeff49db363cb5b8e75">Move</a> (<a class="el" href="class_vector2.html">Vector2f</a> v)</td></tr>
+<tr class="memitem:a24864538f46aad662ff3b5d420ad0717"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a24864538f46aad662ff3b5d420ad0717">Move</a> (float deltaT)</td></tr>
+<tr class="memitem:ab5c274ae0609f8b2567dd5771eee0598"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ab5c274ae0609f8b2567dd5771eee0598">Pan</a> (std::string name)</td></tr>
+<tr class="memitem:a65699bfef1ad853e494d500f0e88f292"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a65699bfef1ad853e494d500f0e88f292">Scene</a> ()</td></tr>
 <tr class="memitem:a8d7728da233afdeee1baf82392151453"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a8d7728da233afdeee1baf82392151453">SetBox</a> (<a class="el" href="class_rect.html">Rectf</a> box)</td></tr>
 <tr class="memitem:ad2b387efc4f2cdf8ad265a689858658d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2b387efc4f2cdf8ad265a689858658d"></a>
 <a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ad2b387efc4f2cdf8ad265a689858658d">Box</a> () const </td></tr>
 <tr class="memdesc:ad2b387efc4f2cdf8ad265a689858658d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the camera's box. <br/></td></tr>
 <tr class="memitem:a2b9e3f03ffc39c1269f54d405e014c28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a2b9e3f03ffc39c1269f54d405e014c28">SetSceneBox</a> (<a class="el" href="class_rect.html">Rectf</a> box)</td></tr>
+<tr class="memitem:a68abf1cf16b6b10ee65238bf09333eb7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a68abf1cf16b6b10ee65238bf09333eb7"></a>
+<a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a68abf1cf16b6b10ee65238bf09333eb7">SceneBox</a> ()</td></tr>
+<tr class="memdesc:a68abf1cf16b6b10ee65238bf09333eb7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the scene box. <br/></td></tr>
 <tr class="memitem:a30f709a528d2ced072fcbf83c8c316dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a30f709a528d2ced072fcbf83c8c316dc">Offset</a> () const </td></tr>
 <tr class="memitem:abc0ccf084f53237f740bc242efa6e77d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#abc0ccf084f53237f740bc242efa6e77d">Centering</a> () const </td></tr>
 <tr class="memitem:a390a882cd59378c794c480c20e33f934"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a390a882cd59378c794c480c20e33f934">Save</a> ()</td></tr>
@@ -180,6 +187,52 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a class="anchor" id="a73dbe7ba01c2adeff49db363cb5b8e75"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::Move </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Move the camera by some <a class="el" href="class_vector2.html" title="A 2D vector.">Vector2</a> This is used for dragging the camera with the mouse </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The distance to move the camera </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a24864538f46aad662ff3b5d420ad0717"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::Move </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>deltaT</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Move the camera taking into account some elapsed time deltaT This is used for pan animations </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">deltaT</td><td>The elapsed time </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a30f709a528d2ced072fcbf83c8c316dc"></a>
 <div class="memitem">
 <div class="memproto">
@@ -197,6 +250,29 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a class="anchor" id="ab5c274ae0609f8b2567dd5771eee0598"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Camera::Pan </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Instruct the camera to play some pre-defined panning </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the animation to play, if name not found nothing will happen </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a390a882cd59378c794c480c20e33f934"></a>
 <div class="memitem">
 <div class="memproto">
@@ -211,6 +287,23 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><div class="memdoc">
 <p>Save the camera information to file </p>
 <dl class="section return"><dt>Returns</dt><dd>Json::Value containing the camera's information </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a65699bfef1ad853e494d500f0e88f292"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Camera::Scene </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get the active scene </p>
+<dl class="section return"><dt>Returns</dt><dd>The name of the scene, "busy" means the camera is panning </dd></dl>
 
 </div>
 </div>
@@ -290,7 +383,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 1 2012 22:04:57 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Aug 10 2012 13:59:59 for Documentation for C++/SDL 2.0 Tile Engine by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.1.2
 </small></address>
