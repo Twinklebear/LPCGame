@@ -13,6 +13,7 @@
 		- Changed name to framPerAnimFrame to better reflect what it actually means, until i figure out how to setup true framerate playing for animations
 - Multithreading
 	- Split into three threads: Physics, Rendering and Input (main)
+	- Split GameState into 3 threads, seems ok at the moment it's pretty unsafe. Also, pushing the return button to quit sometimes plays the click recieved animation, but doesn't set exit. This is clearly a sign that while the current setup works, it needs to be made into a non-hacked together version
 - Implement Lua for scripting objects behavior
 - Better comments documenting code
 - I believe there are some memory leaks to be addressed

@@ -2,7 +2,8 @@
 #include "state.h"
 
 State::State() 
-	: mManager(nullptr), mCamera(nullptr), mName(""), mExit(false), mExitCode("quit")
+	: mManager(nullptr), mCamera(nullptr), mName(""), mExit(false), 
+	  mExitCode("quit")//, mCondBool(false)
 {
 }
 State::~State(){}

@@ -1,5 +1,8 @@
 #include <string>
 #include <memory>
+#include <thread>
+#include <condition_variable>
+#include <mutex>
 #include "../externals/json/json.h"
 #include "gameobject.h"
 #include "gameobjectmanager.h"
@@ -16,13 +19,15 @@ GameState::GameState(){
 GameState::~GameState(){
 }
 std::string GameState::Run(){
+	//Start the render and physics threads
+	std::thread tRend(&GameState::RenderThread, this);
+	std::thread tPhys(&GameState::PhysicsThread, this);
+
+	std::mutex m;
 	//Unset events from earlier
 	Input::Clear();
 	//Cleanup any previous exit settings
 	UnsetExit();
-
-	Timer delta;
-	delta.Start();
 	while (!mExit){
 		//EVENT POLLING
 		Input::PollEvent();
@@ -30,8 +35,44 @@ std::string GameState::Run(){
 			SetExit("quit");
 		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
 			SetExit("mIntro");
+		
+		//Wait for notification
+		std::unique_lock<std::mutex> lock(m);
+		mCondVar.wait(lock);
+	}
+	//Join the threads back in
+	tRend.join();
+	tPhys.join();
 
-		//LOGIC
+	return mExitCode;
+}
+/**
+*  The state's rendering thread, takes care of drawing all objects
+*  and providing framerate limiting condition variable notifications
+*  to all other threads
+*/
+void GameState::RenderThread(){
+	while (!mExit){
+		Window::Clear();
+		mMap->Draw(mCamera.get());
+		mManager->Draw();
+		mUiManager->Draw();
+
+		Window::Present();
+		//Notify waiting threads
+		mCondVar.notify_all();
+	}
+}
+/**
+*  The state's physics thread, takes care of updating and moving
+*  all objects and managing physics between the objects
+*/
+void GameState::PhysicsThread(){
+	Timer delta;
+	std::mutex m;
+	//Start timer and loop
+	delta.Start();
+	while (!mExit){
 		mCamera->Update();
 		mManager->Update();
 		mManager->SetCollisionMaps(mMap.get());
@@ -41,15 +82,10 @@ std::string GameState::Run(){
 		mManager->Move(deltaT);
 		mUiManager->Move(deltaT);
 
-		//RENDERING
-		Window::Clear();
-		mMap->Draw(mCamera.get());
-		mManager->Draw();
-		mUiManager->Draw();
-
-		Window::Present();
+		//Wait for notification
+		std::unique_lock<std::mutex> lock(m);
+		mCondVar.wait(lock);
 	}
-	return mExitCode;
 }
 void GameState::Init(){
 	mMap 	   = std::shared_ptr<Map>(new Map());

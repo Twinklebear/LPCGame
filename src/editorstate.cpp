@@ -61,6 +61,19 @@ std::string EditorState::Run(){
 	}
 	return mExitCode;
 }
+/**
+*  The state's rendering thread, takes care of drawing all objects
+*  and providing framerate limiting condition variable notifications
+*  to all other threads
+*/
+void EditorState::RenderThread(){
+}
+/**
+*  The state's physics thread, takes care of updating and moving
+*  all objects and managing physics between the objects
+*/
+void EditorState::PhysicsThread(){
+}
 void EditorState::Init(){
 	mMapEditor = std::shared_ptr<MapEditor>(new MapEditor());
 	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());

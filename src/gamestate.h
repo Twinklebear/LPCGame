@@ -17,7 +17,8 @@ public:
 	GameState();
 	~GameState();
 	/**
-	*  Run the state
+	*  Run the state, this function becomes the main Input thread
+	*  after starting up the physics and rendering threads
 	*  @return The next state to run, returning quit exits program
 	*/
 	std::string Run();
@@ -37,6 +38,17 @@ public:
 	void Load(Json::Value val);
 
 protected:
+	/**
+	*  The state's rendering thread, takes care of drawing all objects
+	*  and providing framerate limiting condition variable notifications
+	*  to all other threads
+	*/
+	void RenderThread();
+	/**
+	*  The state's physics thread, takes care of updating and moving
+	*  all objects and managing physics between the objects
+	*/
+	void PhysicsThread();
 	///Initialize state memory
 	void Init();
 	///Free state memory

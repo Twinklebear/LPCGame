@@ -3,6 +3,8 @@
 
 #include <string>
 #include <memory>
+#include <atomic>
+#include <condition_variable>
 #include "../externals/json/json.h"
 #include "gameobjectmanager.h"
 #include "camera.h"
@@ -17,7 +19,8 @@ public:
 	State();
 	virtual ~State();
 	/**
-	*  Run the state
+	*  Run the state, this function becomes the main Input thread
+	*  after starting up the physics and rendering threads
 	*  @return The next state to run, returning quit exits program
 	*/
 	virtual std::string Run() = 0;
@@ -48,6 +51,17 @@ public:
 	std::string Name();
 
 protected:
+	/**
+	*  The state's rendering thread, takes care of drawing all objects
+	*  and providing framerate limiting condition variable notifications
+	*  to all other threads
+	*/
+	virtual void RenderThread() = 0;
+	/**
+	*  The state's physics thread, takes care of updating and moving
+	*  all objects and managing physics between the objects
+	*/
+	virtual void PhysicsThread() = 0;
 	///Initialize state memory
 	virtual void Init() = 0;
 	///Free the memory used by the state
@@ -57,8 +71,13 @@ protected:
 	std::shared_ptr<GameObjectManager> mManager;
 	std::shared_ptr<Camera> mCamera;
 	std::string mName;
+	//Should this be atomic?
 	bool mExit;
 	std::string mExitCode;
+	///Condition variable and double check bool variable
+	std::condition_variable mCondVar;
+	//Do i need this?
+	//std::atomic<bool> mCondBool;
 };
 
 
