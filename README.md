@@ -10,6 +10,7 @@
 	- Expand TileBar to allow for placing of GameObjects
 - Animated Image class able to play desired animations at some speed from clips passed
 	- Also framerate doesn't actually mean framerate. It's how many frames to increment the animation frame. Need to change this? Or maybe just clearer name
+		- Changed name to framPerAnimFrame to better reflect what it actually means, until i figure out how to setup true framerate playing for animations
 - Implement Lua for scripting objects behavior
 - Better comments documenting code
 - I believe there are some memory leaks to be addressed

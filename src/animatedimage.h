@@ -24,7 +24,8 @@ struct AnimationSequence {
 	///The clips in the animated image clip array
 	std::vector<int> clipIndices;
 	///The framerate to play the animation at
-	int frameRate;
+	//int frameRate;
+	int framePerAnimFrame;
 	///The sequence name
 	std::string name;
 };
@@ -42,6 +43,11 @@ public:
 	*  Update the animation, called every frame
 	*/
 	void Update();
+	/**
+	*  Move the animation frame
+	*  @param deltaT The time period to play animation over
+	*/
+	void Move(float deltaT);
 	/**
 	*  Play the desired animation
 	*  @param name The animation name to play

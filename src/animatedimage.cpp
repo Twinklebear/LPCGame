@@ -8,7 +8,7 @@
 
 Json::Value AnimationSequence::Save(){
 	Json::Value val;
-	val["framerate"] = frameRate;
+	val["framePerAnimFrame"] = framePerAnimFrame;
 	val["name"] = name;
 	//Save the indices
 	for (int i = 0; i < clipIndices.size(); ++i)
@@ -17,7 +17,7 @@ Json::Value AnimationSequence::Save(){
 	return val;
 }
 void AnimationSequence::Load(Json::Value val){
-	frameRate = val["framerate"].asInt();
+	framePerAnimFrame = val["framePerAnimFrame"].asInt();
 	name = val["name"].asString();
 	//Load the indices
 	for (int i = 0; i < val["frames"].size(); ++i){
@@ -34,12 +34,15 @@ void AnimatedImage::Update(){
 	++mFrame;
 	//Reset animation if we go over # of frames in the animation
 	//THIS DOES NOT CORRESPOND TO FRAMES PER SECOND
-	if (mFrame >= mSequences.at(mActiveAnimation).frameRate){
+	if (mFrame >= mSequences.at(mActiveAnimation).framePerAnimFrame){
 		mFrame = 0;
 		++mAnimationFrame;
 	}
 	if (mAnimationFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
 		mAnimationFrame = 0;
+}
+void AnimatedImage::Move(float deltaT){
+
 }
 void AnimatedImage::Play(std::string name){
 	for (int i = 0; i < mSequences.size(); ++i){
