@@ -55,13 +55,15 @@ protected:
 	*  The state's rendering thread, takes care of drawing all objects
 	*  and providing framerate limiting condition variable notifications
 	*  to all other threads
+	*  NOT USED AT THE MOMENT
 	*/
-	virtual void RenderThread() = 0;
+	//virtual void RenderThread() = 0;
 	/**
 	*  The state's physics thread, takes care of updating and moving
 	*  all objects and managing physics between the objects
+	*  NOT USED AT THE MOMENT
 	*/
-	virtual void PhysicsThread() = 0;
+	//virtual void PhysicsThread() = 0;
 	///Initialize state memory
 	virtual void Init() = 0;
 	///Free the memory used by the state
@@ -75,7 +77,7 @@ protected:
 	bool mExit;
 	std::string mExitCode;
 	///Condition variable and double check bool variable
-	std::condition_variable mCondVar;
+	//std::condition_variable mCondVar;
 	//Do i need this?
 	//std::atomic<bool> mCondBool;
 };

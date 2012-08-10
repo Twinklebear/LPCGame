@@ -57,19 +57,6 @@ std::string MenuState::Run(){
 	}
 	return mExitCode;
 }
-/**
-*  The state's rendering thread, takes care of drawing all objects
-*  and providing framerate limiting condition variable notifications
-*  to all other threads
-*/
-void MenuState::RenderThread(){
-}
-/**
-*  The state's physics thread, takes care of updating and moving
-*  all objects and managing physics between the objects
-*/
-void MenuState::PhysicsThread(){
-}
 void MenuState::Init(){
 	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
 	mCamera  = std::shared_ptr<Camera>(new Camera());

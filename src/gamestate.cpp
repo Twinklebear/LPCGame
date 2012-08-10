@@ -67,9 +67,9 @@ std::string GameState::Run(){
 
 	return mExitCode;
 }
-
+/*
 void GameState::RenderThread(){
-/*	while (!mExit){
+	while (!mExit){
 		Window::Clear();
 		mMap->Draw(mCamera.get());
 		mManager->Draw();
@@ -79,10 +79,10 @@ void GameState::RenderThread(){
 		//Notify waiting threads
 		mCondVar.notify_all();
 	}
-*/
 }
-void GameState::PhysicsThread(){
+*/
 /*
+void GameState::PhysicsThread(){
 	Timer delta;
 	std::mutex m;
 	//Start timer and loop
@@ -101,8 +101,8 @@ void GameState::PhysicsThread(){
 		std::unique_lock<std::mutex> lock(m);
 		mCondVar.wait(lock);
 	}
-*/
 }
+*/
 void GameState::Init(){
 	mMap 	   = std::shared_ptr<Map>(new Map());
 	mManager   = std::shared_ptr<GameObjectManager>(new GameObjectManager());

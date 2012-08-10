@@ -43,13 +43,15 @@ protected:
 	*  The state's rendering thread, takes care of drawing all objects
 	*  and providing framerate limiting condition variable notifications
 	*  to all other threads
+	*  NOT USED AT THE MOMENT
 	*/
-	void RenderThread();
+	//void RenderThread();
 	/**
 	*  The state's physics thread, takes care of updating and moving
 	*  all objects and managing physics between the objects
+	*  NOT USED AT THE MOMENT
 	*/
-	void PhysicsThread();
+	//void PhysicsThread();
 	///Initialize state memory
 	void Init();
 	///Free state memory
