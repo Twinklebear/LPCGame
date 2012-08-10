@@ -9,7 +9,6 @@
 - Simple map editor
 	- Expand TileBar to allow for placing of GameObjects
 - Animated Image class able to play desired animations at some speed from clips passed
-	- Plays but for some reason flashes a blank image on occasion, is this just the image I gave it? Or is it a bug in the code
 	- Also framerate doesn't actually mean framerate. It's how many frames to increment the animation frame. Need to change this? Or maybe just clearer name
 - Implement Lua for scripting objects behavior
 - Better comments documenting code
