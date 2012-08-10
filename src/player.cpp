@@ -10,8 +10,6 @@
 #include "image.h"
 #include "player.h"
 
-#include "debugger.h"
-
 Player::Player(){}
 Player::~Player(){}
 void Player::Update(){
@@ -31,15 +29,11 @@ void Player::Update(){
 		mPhysics.SetVertDir(Physics::MOVE::STOP);
 
 	//Update active animation
-	Debugger::Write("Motion state:", mPhysics.GetMotionState());
-	if (mPhysics.GetMotionState() == MotionState::IDLE && mAnimatedImage.Playing() != "idle"){
+	if (mPhysics.GetMotionState() == MotionState::IDLE && mAnimatedImage.Playing() != "idle")
 		mAnimatedImage.Play("idle");
-		Debugger::Write("Playing idle animation");
-	}
-	else if (mPhysics.GetMotionState() == MotionState::RUNNING && mAnimatedImage.Playing() != "run"){
+	else if (mPhysics.GetMotionState() == MotionState::RUNNING && mAnimatedImage.Playing() != "run")
 		mAnimatedImage.Play("run");
-		Debugger::Write("Playing run animation");
-	}
+
 	//Update animation from
 	mAnimatedImage.Update();
 }
@@ -54,7 +48,6 @@ void Player::Draw(Camera *cam){
 	//Window::Draw(&mImage, pos);
 	//Draw animation
 	Window::Draw(&mAnimatedImage, pos, &(SDL_Rect)mAnimatedImage.Clip(mAnimatedImage.ActiveClip()));
-	Debugger::Write("active clip: ", mAnimatedImage.ActiveClip());
 }
 Json::Value Player::Save(){
 	//Json::Value val = GameObject::Save();

@@ -32,8 +32,7 @@ AnimatedImage::~AnimatedImage(){
 }
 void AnimatedImage::Update(){
 	++mFrame;
-	//Reset animation if we go over # of frames in the animation
-	//THIS DOES NOT CORRESPOND TO FRAMES PER SECOND
+	//Update animation frame when we hit the increment value, framePerAnimFrame
 	if (mFrame >= mSequences.at(mActiveAnimation).framePerAnimFrame){
 		mFrame = 0;
 		++mAnimationFrame;

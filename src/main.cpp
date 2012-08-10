@@ -4,8 +4,6 @@
 #include "input.h"
 #include "statemanager.h"
 
-
-#include "animatedimage.h"
 #include "debugger.h"
 
 int main(int argc, char** argv){

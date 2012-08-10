@@ -44,7 +44,7 @@ public:
 private:
 	std::weak_ptr<MapEditor> mMapEditor;
 	//We use a non-managed pointer because we don't want to have to make
-	//a shared tilebar pointer b/c it's managed as a GameObject shared ptr by 
+	//a shared tilebar pointer b/c it's managed as a GameObject shared ptr with
 	//the ui object manager
 	TileBar* mTileBar;
 };
