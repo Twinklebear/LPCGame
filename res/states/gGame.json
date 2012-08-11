@@ -1161,8 +1161,8 @@
             "file" : "../res/images/animtest.png",
             "sequences" : [
                {
-                  "framePerAnimFrame" : 0,
-                  "frames" : [ 0 ],
+                  "framePerAnimFrame" : 60,
+                  "frames" : [ 0, 1 ],
                   "name" : "idle"
                },
                {
@@ -1177,8 +1177,8 @@
             "box" : {
                "h" : 28.0,
                "w" : 28.0,
-               "x" : 108.6494216918945,
-               "y" : 128.0215759277344
+               "x" : 80.65476989746094,
+               "y" : 249.0147552490234
             },
             "hAccel" : 700,
             "hSpeed" : 300

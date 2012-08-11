@@ -87,6 +87,7 @@ int Map::CalculateIndex(int x, int y) const{
 }
 std::vector<int> Map::CalculateIndex(Recti area) const{
 	std::vector<int> tileIndices;
+	//TODO: How can this be done without all the for loops?
 	//run through the area
 	for (int y = area.Y(); y <= area.Y() + area.H(); y += TILE_HEIGHT / 2){
 		for (int x = area.X(); x <= area.X() + area.W(); x += TILE_WIDTH / 2){
