@@ -5,6 +5,7 @@ LPCGame/Debug
 LPCGame.opensdf
 Debug/*.txt
 LPCGame/obj
+LPCGame/*.txt
 Release/
 
 # ignore my doxygen file
