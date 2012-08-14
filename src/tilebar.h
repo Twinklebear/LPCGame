@@ -37,6 +37,32 @@ public:
 	*/
 	Tile GetSelection();
 	/**
+	*  Check if the tile selection bar is active
+	*  @return T/F if the tile pane is active
+	*/
+	bool TilePaneActive();
+	/**
+	*  Get the selected object
+	*  @return The selected MapObject to place
+	*  Note: Not currently used, as MapObjects aren't implemented
+	*/
+	//Object GetObjectSelection();
+	/**
+	*  Check if the object selection bar is active
+	*  @return T/F if the object pane is active
+	*/
+	//bool ObjectPaneActive();
+	/**
+	*  Get the selected entity (GameObject) to place on the map
+	*  @return The GameObject to add to the map
+	*/
+	//GameObject GetEntitySelection();
+	/**
+	*  Check if the entity selection bar is active
+	*  @return T/F if the entity bar is active
+	*/
+	//bool EntityPaneActive();
+	/**
 	*  Save the gameobject data to a json value and return it
 	*  The GameObject instance of the function takes care of saving
 	*  the base object members, physics, image and tags
@@ -52,10 +78,14 @@ public:
 	void Load(Json::Value val);
 
 private:
+	enum Pane { TILE, OBJECT, ENTITY };
+
+private:
 	Image mTileImage;
 	Image mSelector;
 	std::vector<Tile> mTiles;
 	int mSelectedTile;
+	int mActivePane;
 };
 
 #endif

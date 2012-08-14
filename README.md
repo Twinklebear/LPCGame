@@ -8,6 +8,7 @@
 ## Todo:
 - Simple map editor
 	- Expand TileBar to allow for placing of GameObjects
+		- I think to do this well, I should integrate scripting for behaviors first, thus all entities can simply be a gameobject with any special behaviors defined in the script.
 - Animated Image class able to play desired animations at some speed from clips passed
 	- Also framerate doesn't actually mean framerate. It's how many frames to increment the animation frame. Need to change this? Or maybe just clearer name
 		- Changed name to framPerAnimFrame to better reflect what it actually means, until i figure out how to setup true framerate playing for animations
