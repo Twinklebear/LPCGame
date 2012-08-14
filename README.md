@@ -6,6 +6,9 @@
 - [SDL 2.0](http://wiki.libsdl.org/moin.cgi/FrontPage)
 
 ## Todo:
+- Implement Lua for scripting objects behavior
+	- Each class will have a RegisterLua or something named function, and when that is called and passed a lua_State* it will expose the class to the Lua script.
+- Rename GameObject to Entity, then an Object class will also be introduced for management of actual objects, such as items and whatnot. Entity will be for player, npc, living/moving things in the level. Entities heh.
 - Simple map editor
 	- Expand TileBar to allow for placing of GameObjects
 		- I think to do this well, I should integrate scripting for behaviors first, thus all entities can simply be a gameobject with any special behaviors defined in the script.
@@ -16,7 +19,6 @@
 	- Split into three threads: Physics, Rendering and Input (main)
 	- Split GameState into 3 threads, seems ok at the moment it's pretty unsafe. Also, pushing the return button to quit sometimes plays the click recieved animation, but doesn't set exit. This is clearly a sign that while the current setup works, it needs to be made into a non-hacked together version
 	- Commented out threading code, it will remain as a sample to work from in the future
-- Implement Lua for scripting objects behavior
 - Better comments documenting code
 - I believe there are some memory leaks to be addressed
 	- Memory is not being freed when changing state
