@@ -14,7 +14,7 @@
 *  Window management class, provides a simple wrapper around
 *  the SDL_Window and SDL_Renderer functionalities
 */
-class Window{
+class Window {
 public:
 	///Destructor: calls Quit to free the memory
 	~Window();

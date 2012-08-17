@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <SDL.h>
+#include <luabind\luabind.hpp>
 #include "gameobjectmanager.h"
 #include "uiobjectmanager.h"
 
@@ -57,6 +58,11 @@ public:
 	static bool Quit();
 	///Clear input data, used when changing states to clear old input
 	static void Clear();
+	/**
+	*  Register the Input class Lua module
+	*  @param lua_State* The state to register the module in
+	*/
+	static void RegisterLua(lua_State* l);
 
 private:
 	static void ClearQuit();
