@@ -3,7 +3,7 @@
 
 #include <string>
 #include "../externals/json/json.h"
-#include "gameobject.h"
+#include "entity.h"
 #include "image.h"
 #include "text.h"
 #include "button.h"
@@ -13,7 +13,7 @@
 *  A button that is able to register class member functions as its callback
 */
 template<class T>
-class ObjectButton : public Button{
+class ObjectButton : public Button {
 public:
 	ObjectButton() 
 		: mObj(nullptr), mObjFunc(nullptr)
@@ -49,7 +49,7 @@ public:
 	Json::Value Save(){
 		//Unfortunately I can't change the function that's pointed to via loading json
 		//as it's code not data, so instead we just save the param
-		Json::Value val = GameObject::Save();
+		Json::Value val = Entity::Save();
 		val["type"]	   = "objectbutton";
 		val["text"]    = mText.Save();
 		val["param"]   = mParam;
@@ -62,7 +62,7 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val){
-		GameObject::Load(val);
+		Entity::Load(val);
 		mParam = val["param"].asString();
 		mText.Load(val["text"]);
 	}

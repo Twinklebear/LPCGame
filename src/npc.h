@@ -3,7 +3,7 @@
 
 #include "SDL.h"
 #include "../externals/json/json.h"
-#include "gameobject.h"
+#include "entity.h"
 #include "rect.h"
 #include "vectors.h"
 #include "window.h"
@@ -13,7 +13,7 @@
 /**
 *  The base NPC class
 */
-class Npc : public GameObject {
+class Npc : public Entity {
 public:
 	Npc();
 	~Npc();
@@ -46,11 +46,6 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-
-private:
-	///Disable copy construction
-	Npc(const Npc &a);
-	Npc& operator = (const Npc &a);
 };
 
 #endif

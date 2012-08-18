@@ -2,7 +2,6 @@
 #include <sstream>
 #include "SDL.h"
 #include "../externals/json/json.h"
-#include "gameobject.h"
 #include "rect.h"
 #include "vectors.h"
 #include "math.h"
@@ -10,7 +9,6 @@
 #include "window.h"
 #include "image.h"
 #include "npc.h"
-#include "player.h"
 
 #include <iostream>
 
@@ -40,12 +38,12 @@ void Npc::SetMove(int move){
 	}
 }
 Json::Value Npc::Save(){
-	Json::Value val = GameObject::Save();
+	Json::Value val = Entity::Save();
 	val["obj"]     = "npc";
 	val["type"]    = "0";
 
 	return val;
 }
 void Npc::Load(Json::Value val){
-	GameObject::Load(val);
+	Entity::Load(val);
 }

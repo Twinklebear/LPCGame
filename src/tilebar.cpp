@@ -3,7 +3,7 @@
 #include "math.h"
 #include "input.h"
 #include "image.h"
-#include "gameobject.h"
+#include "entity.h"
 #include "tilebar.h"
 
 TileBar::TileBar() : mSelectedTile(0){
@@ -43,7 +43,7 @@ Tile TileBar::GetSelection(){
 	return mTiles.at(mSelectedTile);
 }
 Json::Value TileBar::Save(){
-	Json::Value val = GameObject::Save();
+	Json::Value val = Entity::Save();
 	val["selector"]	= mSelector.Save();
 	val["tiles"]["image"] = mTileImage.Save();
 	val["type"] = "tilebar";
@@ -54,7 +54,7 @@ Json::Value TileBar::Save(){
 	return val;
 }
 void TileBar::Load(Json::Value val){
-	GameObject::Load(val);
+	Entity::Load(val);
 	mSelector.Load(val["selector"]);
 	mTileImage.Load(val["tiles"]["image"]);
 	//Load up the tile positions

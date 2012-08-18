@@ -3,7 +3,6 @@
 #include "rect.h"
 #include "vectors.h"
 #include "window.h"
-#include "gameobject.h"
 #include "image.h"
 #include "text.h"
 #include "button.h"
@@ -52,7 +51,7 @@ void Button::RegisterCallBack(void (*f)(std::string), std::string param){
 	mParam = param;
 }
 Json::Value Button::Save(){
-	Json::Value val = GameObject::Save();
+	Json::Value val = Entity::Save();
 	val["type"]	   = "button";
 	val["text"]    = mText.Save();
 	val["param"]   = mParam;
@@ -60,7 +59,7 @@ Json::Value Button::Save(){
 	return val;
 }
 void Button::Load(Json::Value val){
-	GameObject::Load(val);
+	Entity::Load(val);
 	mParam = val["param"].asString();
 	mText.Load(val["text"]);
 }

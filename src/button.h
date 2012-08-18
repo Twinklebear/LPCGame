@@ -2,7 +2,7 @@
 #define BUTTON_H
 
 #include "../externals/json/json.h"
-#include "gameobject.h"
+#include "entity.h"
 #include "image.h"
 #include "text.h"
 
@@ -11,7 +11,7 @@
 *  A simple button class, for handling mouse input will run the registered function
 *  when pressed, the button inherites its mouse event reading functionality from GameObject
 */
-class Button : public GameObject{
+class Button : public Entity {
 public:
 	Button();
 	~Button();
@@ -56,10 +56,6 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
-
-private:
-	Button(const Button &a);
-	Button& operator = (const Button &a);
 
 protected:
 	Text mText;

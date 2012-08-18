@@ -8,7 +8,6 @@
 ## Todo:
 - Implement Lua for scripting objects behavior
 	- Each class will have a RegisterLua or something named function, and when that is called and passed a lua_State* it will expose the class to the Lua script.
-- Rename GameObject to Entity, then an Object class will also be introduced for management of actual objects, such as items and whatnot. Entity will be for player, npc, living/moving things in the level. Entities heh.
 - Simple map editor
 	- Expand TileBar to allow for placing of GameObjects
 		- I think to do this well, I should integrate scripting for behaviors first, thus all entities can simply be a gameobject with any special behaviors defined in the script.

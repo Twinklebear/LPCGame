@@ -6,7 +6,7 @@
 #include <atomic>
 #include <condition_variable>
 #include "../externals/json/json.h"
-#include "gameobjectmanager.h"
+#include "entitymanager.h"
 #include "camera.h"
 
 ///Base class for states
@@ -70,7 +70,7 @@ protected:
 	virtual void Free() = 0;
 
 protected:
-	std::shared_ptr<GameObjectManager> mManager;
+	std::shared_ptr<EntityManager> mManager;
 	std::shared_ptr<Camera> mCamera;
 	std::string mName;
 	//Should this be atomic?

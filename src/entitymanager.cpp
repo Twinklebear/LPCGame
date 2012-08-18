@@ -3,42 +3,40 @@
 #include "../externals/json/json.h"
 #include "input.h"
 #include "map.h"
-#include "gameobject.h"
-#include "gameobjectmanager.h"
+#include "entity.h"
+#include "entitymanager.h"
 
-#include "debugger.h"
-
-GameObjectManager::GameObjectManager()
+EntityManager::EntityManager()
 	: mCamera(nullptr)
 {}
-GameObjectManager::~GameObjectManager(){
-	mGameObjects.clear();
+EntityManager::~EntityManager(){
+	mEntities.clear();
 }
-void GameObjectManager::Draw(){
-	for (std::shared_ptr<GameObject> o : mGameObjects){
+void EntityManager::Draw(){
+	for (std::shared_ptr<Entity> o : mEntities){
 		if (mCamera->InCamera(o->Box()))
 			o->Draw(mCamera.get());
 	}
 }
-void GameObjectManager::Update(){
+void EntityManager::Update(){
 	//Check for mouse events
 	CheckMouseEvents();
 	//Call object's update functions
-	for (std::shared_ptr<GameObject> o : mGameObjects){
+	for (std::shared_ptr<Entity> o : mEntities){
 		if (mCamera->InCamera(o->Box()))
 			o->Update();
 	}
 }
-void GameObjectManager::Move(float deltaT){
-	for (std::shared_ptr<GameObject> o : mGameObjects){
+void EntityManager::Move(float deltaT){
+	for (std::shared_ptr<Entity> o : mEntities){
 		if (mCamera->InCamera(o->Box()))
 			o->Move(deltaT);
 	}
 }
-void GameObjectManager::SetCollisionMaps(Map *map){
+void EntityManager::SetCollisionMaps(Map *map){
 	//TODO: Is there a better way this can be done?
 	CollisionMap collMap, entityMap;
-	for (std::shared_ptr<GameObject> o : mGameObjects){
+	for (std::shared_ptr<Entity> o : mEntities){
 		if (mCamera->InCamera(o->Box())){
 			CollisionMap collMap = map->GetCollisionMap(o->Box());
 			CollisionMap entityMap = this->GetEntityCollisionMap(o->Box());
@@ -51,18 +49,18 @@ void GameObjectManager::SetCollisionMaps(Map *map){
 		}
 	}
 }
-void GameObjectManager::Register(std::shared_ptr<GameObject> obj){
-	mGameObjects.push_back(obj);
+void EntityManager::Register(std::shared_ptr<Entity> obj){
+	mEntities.push_back(obj);
 }
-void GameObjectManager::Register(std::shared_ptr<Camera> camera){
+void EntityManager::Register(std::shared_ptr<Camera> camera){
 	mCamera.reset();
 	mCamera = camera;
 }
-CollisionMap GameObjectManager::GetEntityCollisionMap(const Rectf &target, int distance){
+CollisionMap EntityManager::GetEntityCollisionMap(const Rectf &target, int distance){
 	//TODO: Is there a better way this can be done? Looping through the entities is kind of ok, but
 	//definitely not ideal
 	CollisionMap entityMap;
-	for (std::shared_ptr<GameObject> o : mGameObjects){
+	for (std::shared_ptr<Entity> o : mEntities){
 		if (mCamera->InCamera(o->Box())){
 			double dist = Math::Distance(target.Pos(), o->Box().Pos());
 			if (dist > 0 && dist <= distance)
@@ -71,7 +69,7 @@ CollisionMap GameObjectManager::GetEntityCollisionMap(const Rectf &target, int d
 	}
 	return entityMap;
 }
-void GameObjectManager::CheckMouseEvents(){
+void EntityManager::CheckMouseEvents(){
 	//Check for mouse motion
 	if (Input::MouseMotion())
 		HandleMouseEvent(Input::GetMotion());
@@ -79,14 +77,14 @@ void GameObjectManager::CheckMouseEvents(){
 	if (Input::MouseClick(MOUSE::LEFT))
 		HandleMouseEvent(Input::GetClick());
 }
-void GameObjectManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
+void EntityManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	//Update the mouse over before checking for clicks
 	SDL_MouseMotionEvent tempEvt;
 	tempEvt.x = mouseEvent.x;
 	tempEvt.y = mouseEvent.y;
 	HandleMouseEvent(tempEvt);
 	//Find the object that was clicked
-	for (std::shared_ptr<GameObject> o : mGameObjects){
+	for (std::shared_ptr<Entity> o : mEntities){
 		if (mCamera->InCamera(o->Box()) && o->GetMouseOver()){
 			switch (mouseEvent.type){
 				case SDL_MOUSEBUTTONDOWN:
@@ -101,19 +99,19 @@ void GameObjectManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent)
 		}
 	}
 }
-void GameObjectManager::HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent){
+void EntityManager::HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent){
 	Vector2f mousePos = Math::ToSceneSpace(mCamera.get(), Vector2f(mouseEvent.x, mouseEvent.y));
 	//Find the object that has the mouse over it
-	for (std::shared_ptr<GameObject> o : mGameObjects){
+	for (std::shared_ptr<Entity> o : mEntities){
 		if (mCamera->InCamera(o->Box()))
 			o->CheckMouseOver(mousePos);
 	}
 }
-Json::Value GameObjectManager::Save(){
+Json::Value EntityManager::Save(){
 	Json::Value val;
 	//Run through and save all the game objects
-	for (int i = 0; i < mGameObjects.size(); ++i){
-		val[i] = mGameObjects.at(i)->Save();
+	for (int i = 0; i < mEntities.size(); ++i){
+		val[i] = mEntities.at(i)->Save();
 	}
 	return val;
 }

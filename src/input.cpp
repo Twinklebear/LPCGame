@@ -1,11 +1,7 @@
 #include <memory>
-#include "SDL.h"
+#include <SDL.h>
 #include "window.h"
-#include "gameobjectmanager.h"
-#include "uiobjectmanager.h"
 #include "input.h"
-
-#include "debugger.h"
 
 SDL_Event Input::evt;
 Uint8* Input::mKeyStates;

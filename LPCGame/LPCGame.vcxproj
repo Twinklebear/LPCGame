@@ -19,9 +19,9 @@
     <ClInclude Include="..\src\camera.h" />
     <ClInclude Include="..\src\debugger.h" />
     <ClInclude Include="..\src\editorstate.h" />
-    <ClInclude Include="..\src\gameobject.h" />
-    <ClInclude Include="..\src\gameobjecteditor.h" />
-    <ClInclude Include="..\src\gameobjectmanager.h" />
+    <ClInclude Include="..\src\entity.h" />
+    <ClInclude Include="..\src\entityeditor.h" />
+    <ClInclude Include="..\src\entitymanager.h" />
     <ClInclude Include="..\src\gamestate.h" />
     <ClInclude Include="..\src\image.h" />
     <ClInclude Include="..\src\input.h" />
@@ -52,9 +52,9 @@
     <ClCompile Include="..\src\camera.cpp" />
     <ClCompile Include="..\src\debugger.cpp" />
     <ClCompile Include="..\src\editorstate.cpp" />
-    <ClCompile Include="..\src\gameobject.cpp" />
-    <ClCompile Include="..\src\gameobjecteditor.cpp" />
-    <ClCompile Include="..\src\gameobjectmanager.cpp" />
+    <ClCompile Include="..\src\entity.cpp" />
+    <ClCompile Include="..\src\entityeditor.cpp" />
+    <ClCompile Include="..\src\entitymanager.cpp" />
     <ClCompile Include="..\src\gamestate.cpp" />
     <ClCompile Include="..\src\image.cpp" />
     <ClCompile Include="..\src\input.cpp" />
@@ -110,11 +110,11 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\Lua\5.1\include;C:\luabind;C:\SDL-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\boost_1_50_0;C:\Program Files %28x86%29\Lua\5.1\include;C:\luabind;C:\SDL-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Lua\5.1\lib;C:\luabind\luabind\lib\x86;C:\SDL-2.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\boost_1_50_0\stage\lib;C:\Program Files %28x86%29\Lua\5.1\lib;C:\luabind\luabind\lib\x86;C:\SDL-2.0\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL.lib;SDLmain.lib;SDL_image.lib;SDL_ttf.lib;luabind-d.lib;lua5.1.lib;lua51.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
     </Link>

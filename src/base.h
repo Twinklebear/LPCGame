@@ -10,6 +10,7 @@
 */
 ///A collision map of solid tiles/objects, it's just a vector of Recti
 typedef std::vector<Recti> CollisionMap;
+class Entity;
 class GameObject;
 class Camera;
 class Map;

@@ -1,44 +1,44 @@
-#ifndef GAMEOBJECTMANAGER_H
-#define GAMEOBJECTMANAGER_H
+#ifndef ENTITYMANAGER_H
+#define ENTITYMANAGER_H
 
 #include <vector>
 #include <memory>
 #include "../externals/json/json.h"
-#include "gameobject.h"
+#include "entity.h"
 #include "map.h"
 #include "camera.h"
 
-///Typedef for a vector of GameObject shared pointers
-typedef std::vector<std::shared_ptr<GameObject>> GameObjectList;
+///Typedef for a vector of Entity shared pointers
+typedef std::vector<std::shared_ptr<Entity>> EntityList;
 
-///Handles the GameObjects in the active state
+///Handles the Entities in the active state
 /**
- * A class to simplify handling of the objects, and simple
+ * A class to simplify handling of the Entities, and simple
  * collision interactions between them
 */
-class GameObjectManager{
+class EntityManager {
 public:
-	GameObjectManager();
-	~GameObjectManager();
-	///Draw the game objects
+	EntityManager();
+	~EntityManager();
+	///Draw the entities
 	virtual void Draw();
 	///Update the objects
 	virtual void Update();
 	/**
-	*  Move the game objects
+	*  Move the entities
 	*  @param deltaT The time elapsed
 	*/
 	virtual void Move(float deltaT);
 	/**
-	*  Setup object collision maps
+	*  Setup Entity collision maps
 	*  @param map The map to get the collision maps from
 	*/
 	void SetCollisionMaps(Map *map);
 	/**
-	*  Register a GameObject to be managed by the manager
-	*  @param obj The object to register
+	*  Register an Entity to be managed by the manager
+	*  @param obj The Entity to register
 	*/
-	void Register(std::shared_ptr<GameObject> obj);
+	void Register(std::shared_ptr<Entity> obj);
 	/**
 	*  Register the scene camera with the manager so that 
 	*  it can be used in checking which objects to deal with
@@ -50,13 +50,13 @@ public:
 	*/
 	virtual void CheckMouseEvents();
 	/**
-	*  Handle mouse clicks, run through the active game objects
-	*  find what was clicked, and call it
+	*  Handle mouse clicks, run through the active entities
+	*  find which was clicked, and call its response function
 	*  @param mouseEvent The mouse event that we're processing
 	*/
 	virtual void HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent);
 	/**
-	*  Handle Mouse motion, check if the mouse entered/exited an object
+	*  Handle Mouse motion, check if the mouse entered/exited an Entity
 	*  @param mouseEvent The mouse event that we're processing
 	*/
 	virtual void HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent);
@@ -68,16 +68,16 @@ public:
 
 private:
 	/**
-	*  Get a collision map of game objects within distance of the target
-	*  @param target The object to check for entities near
+	*  Get a collision map of entities within some distance of the target
+	*  @param target The Entity to check for entities near
 	*  @param distance The distance to search away from the target for entities
 	*  @return A collision map of entities near the target
 	*/
 	CollisionMap GetEntityCollisionMap(const Rectf &target, int distance = 2 * TILE_WIDTH);
 
 protected:
-	///The list of objects in the scene
-	GameObjectList mGameObjects;
+	///The list of entities in the scene
+	EntityList mEntities;
 	std::shared_ptr<Camera> mCamera;
 };
 

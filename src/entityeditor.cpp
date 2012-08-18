@@ -1,37 +1,35 @@
 #include <vector>
 #include <memory>
 #include "../externals/json/json.h"
-#include "gameobject.h"
 #include "camera.h"
-#include "gameobjectmanager.h"
+#include "entitymanager.h"
 #include "tile.h"
 #include "mapeditor.h"
-#include "gameobjecteditor.h"
+#include "entityeditor.h"
 
-GameObjectEditor::GameObjectEditor(){
-
+EntityEditor::EntityEditor(){
 }
-GameObjectEditor::~GameObjectEditor(){
-	mGameObjects.clear();
+EntityEditor::~EntityEditor(){
+	mEntities.clear();
 }
-void GameObjectEditor::Update(){
-	GameObjectManager::Update();
+void EntityEditor::Update(){
+	EntityManager::Update();
 	//Will maybe overide update later, so I'm keeping it around for now
 }
-void GameObjectEditor::Register(std::shared_ptr<MapEditor> mapEditor){
+void EntityEditor::Register(std::shared_ptr<MapEditor> mapEditor){
 	mMapEditor = mapEditor;
 }
-void GameObjectEditor::Register(TileBar* tileBar){
+void EntityEditor::Register(TileBar* tileBar){
 	mTileBar = tileBar;
 }
-void GameObjectEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
+void EntityEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	//Update the mouse over before checking for clicks
 	SDL_MouseMotionEvent tempEvt;
 	tempEvt.x = mouseEvent.x;
 	tempEvt.y = mouseEvent.y;
-	GameObjectManager::HandleMouseEvent(tempEvt);
+	EntityManager::HandleMouseEvent(tempEvt);
 	//Find the object that was clicked
-	for (std::shared_ptr<GameObject> o : mGameObjects){
+	for (std::shared_ptr<Entity> o : mEntities){
 		if (mCamera->InCamera(o->Box()) && o->GetMouseOver()){
 			switch (mouseEvent.type){
 				case SDL_MOUSEBUTTONDOWN:

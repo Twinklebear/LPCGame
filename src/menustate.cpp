@@ -1,7 +1,7 @@
 #include <memory>
 #include "../externals/json/json.h"
-#include "gameobject.h"
-#include "gameobjectmanager.h"
+#include "entity.h"
+#include "entitymanager.h"
 #include "window.h"
 #include "input.h"
 #include "button.h"
@@ -58,7 +58,7 @@ std::string MenuState::Run(){
 	return mExitCode;
 }
 void MenuState::Init(){
-	mManager = std::shared_ptr<GameObjectManager>(new GameObjectManager());
+	mManager = std::shared_ptr<EntityManager>(new EntityManager());
 	mCamera  = std::shared_ptr<Camera>(new Camera());
 
 	mManager->Register(mCamera);
@@ -89,7 +89,7 @@ void MenuState::Load(Json::Value val){
 			ObjectButton<State> *b = new ObjectButton<State>();
 			b->RegisterCallBack(this, &State::SetExit, "");
 			b->Load(objects[i]);
-			std::shared_ptr<GameObject> sObj(b);
+			std::shared_ptr<Entity> sObj(b);
 			mManager->Register(sObj);
 		}
 	}

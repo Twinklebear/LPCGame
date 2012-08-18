@@ -3,7 +3,7 @@
 
 #include "SDL.h"
 #include "../externals/json/json.h"
-#include "gameobject.h"
+#include "entity.h"
 #include "window.h"
 #include "base.h"
 #include "image.h"
@@ -13,7 +13,7 @@
 /**
 *  The player class, for handling the player
 */
-class Player : public GameObject{
+class Player : public Entity {
 public:
 	Player();
 	~Player();
@@ -41,11 +41,6 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-
-private:
-	///Disable copy-construction
-	Player(const Player &a);
-	Player& operator = (const Player &a);
 
 private:
 	AnimatedImage mAnimatedImage;

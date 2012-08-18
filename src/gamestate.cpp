@@ -4,8 +4,8 @@
 #include <condition_variable>
 #include <mutex>
 #include "../externals/json/json.h"
-#include "gameobject.h"
-#include "gameobjectmanager.h"
+#include "entity.h"
+#include "entitymanager.h"
 #include "window.h"
 #include "input.h"
 #include "timer.h"
@@ -105,7 +105,7 @@ void GameState::PhysicsThread(){
 */
 void GameState::Init(){
 	mMap 	   = std::shared_ptr<Map>(new Map());
-	mManager   = std::shared_ptr<GameObjectManager>(new GameObjectManager());
+	mManager   = std::shared_ptr<EntityManager>(new EntityManager());
 	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
 	mCamera    = std::shared_ptr<Camera>(new Camera());
 
@@ -139,7 +139,7 @@ void GameState::Load(Json::Value val){
 		if (objects[i]["obj"].asString() == "player"){
 			Player *p = new Player();
 			p->Load(objects[i]);
-			std::shared_ptr<GameObject> sObj(p);
+			std::shared_ptr<Entity> sObj(p);
 			//Check for focus tag
 			if (sObj->HasTag("focus"))
 				mCamera->SetFocus(sObj);
@@ -149,7 +149,7 @@ void GameState::Load(Json::Value val){
 		if (objects[i]["obj"].asString() == "npc"){
 			Npc *n = new Npc();
 			n->Load(objects[i]);
-			std::shared_ptr<GameObject> sObj(n);
+			std::shared_ptr<Entity> sObj(n);
 			//Register with manager
 			mManager->Register(sObj);
 		}
@@ -162,7 +162,7 @@ void GameState::Load(Json::Value val){
 			ObjectButton<State> *b = new ObjectButton<State>();
 			b->RegisterCallBack(this, &State::SetExit, "");
 			b->Load(uiObj[i]);
-			std::shared_ptr<GameObject> sObj(b);
+			std::shared_ptr<Entity> sObj(b);
 			mUiManager->Register(sObj);
 		}
 	}

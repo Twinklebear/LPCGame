@@ -6,7 +6,7 @@
 #include "../externals/json/json.h"
 #include "base.h"
 #include "window.h"
-#include "gameobject.h"
+#include "entity.h"
 
 ///Describes a simple Camera animation
 /**
@@ -32,7 +32,7 @@ public:
 	*  Register the gameobject to focus on with the camera
 	*  @param obj The object for the camera to follow/center on
 	*/
-	void SetFocus(std::shared_ptr<GameObject> obj);
+	void SetFocus(std::shared_ptr<Entity> obj);
 	///Update the camera's position to keep the object centered
 	void Update();
 	/**
@@ -104,7 +104,7 @@ public:
 	void Load(Json::Value val);
 
 private:
-	std::weak_ptr<GameObject> mFocus;
+	std::weak_ptr<Entity> mFocus;
 	Rectf mBox, mSceneBox;
 	std::vector<CameraPan> mPans;
 	int mActivePan;

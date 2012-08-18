@@ -4,14 +4,14 @@
 #include <vector>
 #include <memory>
 #include "../externals/json/json.h"
-#include "gameobject.h"
-#include "gameobjectmanager.h"
+#include "entity.h"
+#include "entitymanager.h"
 
 ///Handles the active ui objects
 /**
 *  Handles showing the ui elements in window space and reading input to them
 */
-class UiObjectManager : public GameObjectManager {
+class UiObjectManager : public EntityManager {
 public:
 	///Constructor not really used, GameObjectManager constructor does what we need
 	UiObjectManager();

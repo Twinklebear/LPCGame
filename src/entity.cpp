@@ -1,14 +1,13 @@
-#include "SDL.h"
 #include "math.h"
-#include "gameobject.h"
+#include "entity.h"
 
-GameObject::GameObject() : mMouseOver(false){
+Entity::Entity() : mMouseOver(false){
 }
-void GameObject::OnMouseDown(){}
-void GameObject::OnMouseUp(){}
-void GameObject::OnMouseEnter(){}
-void GameObject::OnMouseExit(){}
-void GameObject::CheckMouseOver(const Vector2f &pos){
+void Entity::OnMouseDown(){}
+void Entity::OnMouseUp(){}
+void Entity::OnMouseEnter(){}
+void Entity::OnMouseExit(){}
+void Entity::CheckMouseOver(const Vector2f &pos){
 	//Only trigger OnMouseEnter if the mouse is colliding and wasn't before
 	if (Math::CheckCollision(pos, mPhysics.Box()) && !mMouseOver){
 		OnMouseEnter();
@@ -20,21 +19,21 @@ void GameObject::CheckMouseOver(const Vector2f &pos){
 		mMouseOver = false;
 	}
 }
-bool GameObject::GetMouseOver(){
+bool Entity::GetMouseOver(){
 	return mMouseOver;
 
 }
-bool GameObject::HasTag(std::string tag){
+bool Entity::HasTag(std::string tag){
 	return (mTag == tag);
 }
-Json::Value GameObject::Save(){
+Json::Value Entity::Save(){
 	Json::Value val;
 	val["image"]   = mImage.Save();
 	val["physics"] = mPhysics.Save();
 	val["tag"]	   = mTag;
 	return val;
 }
-void GameObject::Load(Json::Value val){
+void Entity::Load(Json::Value val){
 	mPhysics.Load(val["physics"]);
 	mImage.Load(val["image"]);
 	mTag = val["tag"].asString();

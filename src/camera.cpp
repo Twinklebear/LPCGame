@@ -2,7 +2,7 @@
 #include "../externals/json/json.h"
 #include "math.h"
 #include "window.h"
-#include "gameobject.h"
+#include "entity.h"
 #include "camera.h"
 
 #include "debugger.h"
@@ -14,7 +14,7 @@ Camera::Camera() : mActivePan(-1), mScene("def"){
 Camera::~Camera(){
 	mFocus.reset();
 }
-void Camera::SetFocus(std::shared_ptr<GameObject> obj){
+void Camera::SetFocus(std::shared_ptr<Entity> obj){
 	mFocus = obj;
 }
 void Camera::Update(){

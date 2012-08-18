@@ -4,8 +4,7 @@
 #include <memory>
 #include <SDL.h>
 #include <luabind\luabind.hpp>
-#include "gameobjectmanager.h"
-#include "uiobjectmanager.h"
+#include "base.h"
 
 ///Enum for the 3 mouse buttons
 enum MOUSE { LEFT = 1, MIDDLE = 2, RIGHT = 3 };
@@ -14,7 +13,7 @@ enum MOUSE { LEFT = 1, MIDDLE = 2, RIGHT = 3 };
 /**
 *  A simple wrapper around SDL's input handling system
 */
-class Input{
+class Input {
 public:
 	Input();
 	~Input();

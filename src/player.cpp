@@ -2,7 +2,6 @@
 #include <sstream>
 #include "SDL.h"
 #include "../externals/json/json.h"
-#include "gameobject.h"
 #include "base.h"
 #include "math.h"
 #include "window.h"

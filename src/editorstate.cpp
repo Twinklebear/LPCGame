@@ -1,9 +1,9 @@
 #include <string>
 #include <memory>
 #include "../externals/json/json.h"
-#include "gameobject.h"
-#include "gameobjectmanager.h"
-#include "gameobjecteditor.h"
+#include "entity.h"
+#include "entitymanager.h"
+#include "entityeditor.h"
 #include "window.h"
 #include "input.h"
 #include "timer.h"
@@ -66,12 +66,12 @@ void EditorState::Init(){
 	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
 	mCamera    = std::shared_ptr<Camera>(new Camera());
 
-	GameObjectEditor *objEditor  = new GameObjectEditor();
+	EntityEditor *objEditor  = new EntityEditor();
 	mTileBar = new TileBar();
 	objEditor->Register(mMapEditor);
 	objEditor->Register(mTileBar);
 
-	mManager = std::shared_ptr<GameObjectManager>(objEditor);
+	mManager = std::shared_ptr<EntityManager>(objEditor);
 	mManager->Register(mCamera);
 }
 void EditorState::Free(){
@@ -108,12 +108,12 @@ void EditorState::Load(Json::Value val){
 			ObjectButton<State> *b = new ObjectButton<State>();
 			b->RegisterCallBack(this, &State::SetExit, "");
 			b->Load(uiObj[i]);
-			std::shared_ptr<GameObject> sObj(b);
+			std::shared_ptr<Entity> sObj(b);
 			mUiManager->Register(sObj);
 		}
 		if (uiObj[i]["type"].asString() == "tilebar"){
 			mTileBar->Load(uiObj[i]);
-			std::shared_ptr<GameObject> sObj(mTileBar);
+			std::shared_ptr<Entity> sObj(mTileBar);
 			mUiManager->Register(sObj);
 		}
 	}

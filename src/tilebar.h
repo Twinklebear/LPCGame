@@ -5,7 +5,7 @@
 #include "window.h"
 #include "image.h"
 #include "tile.h"
-#include "gameobject.h"
+#include "entity.h"
 
 ///A class for selecting which tile to place in the editor
 /**
@@ -13,7 +13,7 @@
 *  tiles/objects/etc to be placed into the map while editing
 */
 ///Planning: Can probably make this class similar to how I did it previously
-class TileBar: public GameObject {
+class TileBar: public Entity {
 public:
 	TileBar();
 	~TileBar();

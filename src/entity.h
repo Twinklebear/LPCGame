@@ -1,7 +1,6 @@
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#ifndef ENTITY_H
+#define ENTITY_H
 
-#include "SDL.h"
 #include "../externals/json/json.h"
 #include "base.h"
 #include "physics.h"
@@ -13,10 +12,10 @@
 *  Base class for gameobjects, has methods for intialization, updating
 *  setting colliison maps, mouse interaction, etc.
 */
-class GameObject{
+class Entity{
 public:
-	GameObject();
-	virtual ~GameObject() {};
+	Entity();
+	virtual ~Entity() {};
 	///Update the game object
 	virtual void Update() = 0;
 	/**
@@ -25,7 +24,7 @@ public:
 	*/
 	virtual void Move(float deltaT) = 0;
 	/**
-	*  Draw the gameobject, apply an adjustment for the camera if one is desired
+	*  Draw the Entity, apply an adjustment for the camera if one is desired
 	*  @param cam The camera to adjust for
 	*/
 	virtual void Draw(Camera *cam = nullptr) = 0;
@@ -46,21 +45,21 @@ public:
 	///Return T/F is the mouse is over the object
 	bool GetMouseOver();
 	/**
-	*  Check if the gameobject has the tag
+	*  Check if the Entity has the tag
 	*  @param tag The tag to check for
 	*  @return True if the object has the tag
 	*/
 	bool HasTag(std::string tag);
 	/**
-	*  Save the gameobject data to a json value and return it
-	*  The GameObject instance of the function takes care of saving
+	*  Save the Entity data to a json value and return it
+	*  The Entity instance of the function takes care of saving
 	*  the base object members, physics, image and tags
-	*  @return Json::Value containing the gameobject data
+	*  @return Json::Value containing the Entity data
 	*/
 	virtual Json::Value Save();
 	/**
-	*  Load the gameobject from a Json::Value
-	*  The GameObject instance of the function takes care of loading
+	*  Load the Entity from a Json::Value
+	*  The Entity instance of the function takes care of loading
 	*  the base object members, physics, image and tags
 	*  @param val The Json::Value to load from
 	*/
@@ -79,8 +78,8 @@ public:
 
 private:
 	///Game objects should not be copy-constructable
-	GameObject(const GameObject &a);
-	GameObject& operator = (const GameObject &a);
+	Entity(const Entity &a);
+	Entity& operator = (const Entity &a);
 
 protected:
 	Image mImage;

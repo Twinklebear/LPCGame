@@ -1,35 +1,35 @@
-#ifndef GAMEOBJECTEDITOR_H
-#define GAMEOBJECTEDITOR_H
+#ifndef ENTITYEDITOR_H
+#define ENTITYEDITOR_H
 
 #include <vector>
 #include <memory>
 #include "../externals/json/json.h"
-#include "gameobject.h"
 #include "camera.h"
-#include "gameobjectmanager.h"
+#include "entity.h"
+#include "entitymanager.h"
 #include "mapeditor.h"
 #include "tilebar.h"
 
-///Allows for editing of the GameObjects on a map
+///Allows for editing of the Entities on a map
 /**
-*  Lets you add/remove GameObjects to a map along with
+*  Lets you add/remove Entites to a map along with
 *  allowing for sending mouse input to the MapEditor
 */
-class GameObjectEditor : public GameObjectManager{
+class EntityEditor : public EntityManager {
 public:
-	GameObjectEditor();
-	~GameObjectEditor();
+	EntityEditor();
+	~EntityEditor();
 	///Update the objects
 	void Update();
 	/**
-	*  Register the MapEditor with the GameObjectEditor
+	*  Register the MapEditor with the EntityEditor
 	*  so that it can recieve mouse input
 	*  TODO: How will I get the selected tile from the UI?
 	*  @param mapEditor The MapEditor to register
 	*/
 	void Register(std::shared_ptr<MapEditor> mapEditor);
 	/**
-	*  Register the TileBar with the GameObjectEditor so 
+	*  Register the TileBar with the EntityEditor so 
 	*  that we can get selected object from the bar for
 	*  insertion into the map
 	*/
