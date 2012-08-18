@@ -1,5 +1,7 @@
 #include <memory>
+#include <string>
 #include <SDL.h>
+#include <luabind\luabind.hpp>
 #include "window.h"
 #include "input.h"
 
@@ -225,6 +227,11 @@ bool Input::KeyDown(char keyCode){
 			return false;
 	}
 }
+bool Input::KeyDown(std::string keyCode){
+	///We just call the char version and pass the first letter of the string
+	return KeyDown(keyCode.at(0));
+}
+
 bool Input::KeyDown(int keyCode){
 	if (mKeyStates[keyCode] == 1)
 		return true;
@@ -256,6 +263,18 @@ Vector2f Input::MousePos(){
 }
 bool Input::Quit(){
 	return mQuit;
+}
+void Input::RegisterLua(lua_State* l){
+	using namespace luabind;
+
+	module(l, "LPC")[
+		class_<Input>("Input")
+			.scope[
+				//How the hell did i get the overloaded function binding shit to work?
+				//def("KeyDown", (bool(Input::*)(std::string))&Input::KeyDown),
+				def("Quit", &Input::Quit)
+			]
+	];
 }
 void Input::Clear(){
 	ClearQuit();

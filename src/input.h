@@ -2,6 +2,7 @@
 #define INPUT_H
 
 #include <memory>
+#include <string>
 #include <SDL.h>
 #include <luabind\luabind.hpp>
 #include "base.h"
@@ -23,12 +24,17 @@ public:
 	static void PollEvent();
 	/**
 	*  Check if a key is being pressed down
-	*  TODO: I need a way to handle special keys, perhaps a version of this
-	*  that takes the SDL_SCANCODE?
 	*  @param keyCode The char of the key to check, ex: 'a'
 	*  @return T if key is down
 	*/
 	static bool KeyDown(char keyCode);
+	/**
+	*  Check if a key is being pressed down, the string param version
+	*  exists because it works with Lua, while the char one can be troublesome
+	*  @param keyCode The string of the key to check, ex: 'a'
+	*  @return T if key is down
+	*/
+	static bool KeyDown(std::string keyCode);
 	/**
 	*  Check if a key is being pressed down
 	*  @param keyCode The SDL_SCANCODE of the key
