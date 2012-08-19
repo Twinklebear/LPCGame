@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <SDL.h>
+#include <luabind/luabind.hpp>
 #include "base.h"
 #include "window.h"
 #include "image.h"
@@ -73,6 +74,11 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
+	/**
+	*  Register the AnimatedImage functions with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	void RegisterLua(lua_State *l);
 
 private:
 	std::vector<AnimationSequence> mSequences;

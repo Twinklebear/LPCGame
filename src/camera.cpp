@@ -1,4 +1,5 @@
 #include <memory>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "math.h"
 #include "window.h"
@@ -144,5 +145,19 @@ void Camera::Load(Json::Value val){
 		
 		mPans.push_back(pan);
 	}
+}
+void Camera::RegisterLua(lua_State *l){
+	using namespace luabind;
 
+	module(l, "LPC")[
+		class_<Camera>("Camera")
+			.def(constructor<>())
+			//Lua doesn't know what a shared pointer is, will I need to change this function
+			//to take a raw Entity* ?
+			.def("SetFocus", &Camera::SetFocus)
+			.def("Update", &Camera::Update)
+			.def("InCamera", &Camera::InCamera)
+			//.def("Move", &Camera::Move)
+
+	];
 }

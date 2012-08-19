@@ -1,6 +1,7 @@
 #include <vector>
 #include <string>
 #include <SDL.h>
+#include <luabind/luabind.hpp>
 #include "base.h"
 #include "window.h"
 #include "image.h"
@@ -24,11 +25,9 @@ void AnimationSequence::Load(Json::Value val){
 		clipIndices.push_back(val["frames"][i].asInt());
 	}
 }
-AnimatedImage::AnimatedImage() : mActiveAnimation(0), mFrame(0) {
-
+AnimatedImage::AnimatedImage() : mActiveAnimation(0), mFrame(0){
 }
 AnimatedImage::~AnimatedImage(){
-
 }
 void AnimatedImage::Update(){
 	++mFrame;
@@ -75,4 +74,21 @@ void AnimatedImage::Load(Json::Value val){
 		tempSeq.Load(val["sequences"][i]);
 		mSequences.push_back(tempSeq);
 	}
+}
+void AnimatedImage::RegisterLua(lua_State *l){
+	using namespace luabind;
+
+	module(l, "LPC")[
+		class_<AnimatedImage>("AnimatedImage")
+			.def(constructor<>())
+			.def("Update", &AnimatedImage::Update)
+			.def("Move", &AnimatedImage::Move)
+			.def("Play", &AnimatedImage::Play)
+			.def("Playing", &AnimatedImage::Playing)
+			.def("ActiveClip", &AnimatedImage::ActiveClip)
+			//Inherited members from Image
+			.def("LoadImage", &Image::LoadImage)
+			.def("SetClips", &Image::SetClips)
+			.def("Clip", &Image::Clip)
+	];
 }

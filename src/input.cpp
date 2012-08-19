@@ -41,8 +41,9 @@ void Input::PollEvent(){
 		}
 	}
 }
-bool Input::KeyDown(char keyCode){
-	switch (keyCode){
+/*
+bool Input::KeyDown(std::string keyCode){
+	switch (keyCode.at(0)){
 		case '1':
 			if (mKeyStates[SDL_SCANCODE_1] == 1)
 				return true;
@@ -227,11 +228,7 @@ bool Input::KeyDown(char keyCode){
 			return false;
 	}
 }
-bool Input::KeyDown(std::string keyCode){
-	///We just call the char version and pass the first letter of the string
-	return KeyDown(keyCode.at(0));
-}
-
+*/
 bool Input::KeyDown(int keyCode){
 	if (mKeyStates[keyCode] == 1)
 		return true;
@@ -264,18 +261,6 @@ Vector2f Input::MousePos(){
 bool Input::Quit(){
 	return mQuit;
 }
-void Input::RegisterLua(lua_State* l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Input>("Input")
-			.scope[
-				//How the hell did i get the overloaded function binding shit to work?
-				//def("KeyDown", (bool(Input::*)(std::string))&Input::KeyDown),
-				def("Quit", &Input::Quit)
-			]
-	];
-}
 void Input::Clear(){
 	ClearQuit();
 	ClearKeys();
@@ -293,4 +278,59 @@ void Input::ClearKeys(){
 void Input::ClearMouse(){
 	mMouseClick = false;
 	mMouseMove = false;
+}
+void Input::RegisterLua(lua_State* l){
+	using namespace luabind;
+
+	module(l, "LPC")[
+		class_<Input>("Input")
+			.scope[
+				def("KeyDown", &Input::KeyDown),
+				def("Quit", &Input::Quit)
+			]
+			//To expose the SDL_Scancodes to Lua
+			.enum_("Key")[
+				value("Key_1", SDL_SCANCODE_1),
+				value("Key_2", SDL_SCANCODE_2),
+				value("Key_3", SDL_SCANCODE_3),
+				value("Key_4", SDL_SCANCODE_4),
+				value("Key_5", SDL_SCANCODE_5),
+				value("Key_6", SDL_SCANCODE_6),
+				value("Key_7", SDL_SCANCODE_7),
+				value("Key_8", SDL_SCANCODE_8),
+				value("Key_9", SDL_SCANCODE_9),
+				value("Key_0", SDL_SCANCODE_0),
+				value("Key_Q", SDL_SCANCODE_Q),
+				value("Key_W", SDL_SCANCODE_W),
+				value("Key_E", SDL_SCANCODE_E),
+				value("Key_R", SDL_SCANCODE_R),
+				value("Key_T", SDL_SCANCODE_T),
+				value("Key_Y", SDL_SCANCODE_Y),
+				value("Key_U", SDL_SCANCODE_U),
+				value("Key_I", SDL_SCANCODE_I),
+				value("Key_O", SDL_SCANCODE_O),
+				value("Key_P", SDL_SCANCODE_P),
+				value("Key_A", SDL_SCANCODE_A),
+				value("Key_S", SDL_SCANCODE_S),
+				value("Key_D", SDL_SCANCODE_D),
+				value("Key_F", SDL_SCANCODE_F),
+				value("Key_G", SDL_SCANCODE_G),
+				value("Key_H", SDL_SCANCODE_H),
+				value("Key_J", SDL_SCANCODE_J),
+				value("Key_K", SDL_SCANCODE_K),
+				value("Key_L", SDL_SCANCODE_L),
+				value("Key_Z", SDL_SCANCODE_Z),
+				value("Key_X", SDL_SCANCODE_X),
+				value("Key_C", SDL_SCANCODE_C),
+				value("Key_V", SDL_SCANCODE_V),
+				value("Key_B", SDL_SCANCODE_B),
+				value("Key_N", SDL_SCANCODE_N),
+				value("Key_M", SDL_SCANCODE_M),
+				value("Key_Space", SDL_SCANCODE_SPACE),
+				value("Key_Up", SDL_SCANCODE_UP),
+				value("Key_Down", SDL_SCANCODE_DOWN),
+				value("Key_Left", SDL_SCANCODE_LEFT),
+				value("Key_Right", SDL_SCANCODE_RIGHT)
+			]
+	];
 }

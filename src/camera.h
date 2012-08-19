@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <vector>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "base.h"
 #include "window.h"
@@ -102,6 +103,11 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
+	/**
+	*  Register the AnimatedImage functions with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	void RegisterLua(lua_State *l);
 
 private:
 	std::weak_ptr<Entity> mFocus;
