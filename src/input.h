@@ -27,7 +27,7 @@ public:
 	*  @param keyCode The string of the key to check, ex: 'a'
 	*  @return T if key is down
 	*/
-	//static bool KeyDown(std::string keyCode);
+	static bool KeyDown(std::string keyCode);
 	/**
 	*  Check if a key is being pressed down
 	*  @param keyCode The SDL_SCANCODE of the key

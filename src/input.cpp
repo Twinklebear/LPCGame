@@ -41,7 +41,6 @@ void Input::PollEvent(){
 		}
 	}
 }
-/*
 bool Input::KeyDown(std::string keyCode){
 	switch (keyCode.at(0)){
 		case '1':
@@ -228,7 +227,6 @@ bool Input::KeyDown(std::string keyCode){
 			return false;
 	}
 }
-*/
 bool Input::KeyDown(int keyCode){
 	if (mKeyStates[keyCode] == 1)
 		return true;
@@ -285,7 +283,8 @@ void Input::RegisterLua(lua_State* l){
 	module(l, "LPC")[
 		class_<Input>("Input")
 			.scope[
-				def("KeyDown", &Input::KeyDown),
+				def("KeyDown", (bool (*)(std::string))&Input::KeyDown),
+				def("KeyDown", (bool (*)(int))&Input::KeyDown),
 				def("Quit", &Input::Quit)
 			]
 			//To expose the SDL_Scancodes to Lua

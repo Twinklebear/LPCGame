@@ -14,7 +14,7 @@
 *  Describes a Camera motion animation, the destination Vector2
 *  and the spee to travel there at
 */
-struct CameraPan{
+struct CameraPan {
 	std::string name;
 	Vector2i destination;
 	int speed;
@@ -25,7 +25,7 @@ struct CameraPan{
 *  A simple camera that can be given a gameobject to focus on
 *  and follow, or can be moved manually
 */
-class Camera{
+class Camera {
 public:
 	Camera();
 	~Camera();
@@ -80,7 +80,7 @@ public:
 	*/
 	void SetSceneBox(Rectf box);
 	///Get the scene box
-	Rectf SceneBox();
+	Rectf SceneBox() const;
 	/**
 	*  Get the offset needed to apply to objects in the camera,
 	*  this offset includes the centering offset and any offset added
@@ -104,7 +104,7 @@ public:
 	*/
 	void Load(Json::Value val);
 	/**
-	*  Register the AnimatedImage functions with the lua state
+	*  Register the Camera class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
 	void RegisterLua(lua_State *l);

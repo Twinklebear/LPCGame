@@ -1,6 +1,8 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
+#include <string>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "base.h"
 #include "physics.h"
@@ -15,19 +17,28 @@
 class Entity{
 public:
 	Entity();
+	/**
+	*  Construct the object and load its script
+	*  @param script The object's script
+	*/
+	Entity(std::string script);
 	virtual ~Entity() {};
+	/**
+	*  Initialize the object
+	*/
+	virtual void Init();
 	///Update the game object
-	virtual void Update() = 0;
+	virtual void Update();
 	/**
 	*  Move the object
 	*  @param deltaT The elapsed time
 	*/
-	virtual void Move(float deltaT) = 0;
+	virtual void Move(float deltaT);
 	/**
 	*  Draw the Entity, apply an adjustment for the camera if one is desired
 	*  @param cam The camera to adjust for
 	*/
-	virtual void Draw(Camera *cam = nullptr) = 0;
+	virtual void Draw(Camera *cam = nullptr);
 	///On mouse down events
 	virtual void OnMouseDown();
 	///On mouse up event
@@ -75,6 +86,11 @@ public:
 	Rectf Box(){
 		return mPhysics.Box();
 	}
+	/**
+	*  Register the Entity class with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	void RegisterLua(lua_State *l);
 
 private:
 	///Game objects should not be copy-constructable
@@ -90,6 +106,7 @@ protected:
 
 private:
 	bool mMouseOver;
+	lua_State *mL;
 };
 
 #endif

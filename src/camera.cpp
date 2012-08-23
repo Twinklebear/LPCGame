@@ -99,7 +99,7 @@ void Camera::SetSceneBox(Rectf box){
 		Math::Clamp(mBox.w, 0, mSceneBox.w),
 		Math::Clamp(mBox.h, 0, mSceneBox.h));
 }
-Rectf Camera::SceneBox(){
+Rectf Camera::SceneBox() const{
 	return mSceneBox;
 }
 Rectf Camera::Box() const{
@@ -157,7 +157,15 @@ void Camera::RegisterLua(lua_State *l){
 			.def("SetFocus", &Camera::SetFocus)
 			.def("Update", &Camera::Update)
 			.def("InCamera", &Camera::InCamera)
-			//.def("Move", &Camera::Move)
-
+			.def("Move", (void (Camera::*)(Vector2f))&Camera::Move)
+			.def("Move", (void (Camera::*)(float))&Camera::Move)
+			.def("Pan", &Camera::Pan)
+			.def("Scene", &Camera::Scene)
+			.def("SetBox", &Camera::SetBox)
+			.def("Box", &Camera::Box)
+			.def("SetSceneBox", &Camera::SetSceneBox)
+			.def("SceneBox", &Camera::SceneBox)
+			.def("Offset", &Camera::Offset)
+			.def("Centering", &Camera::Centering)
 	];
 }

@@ -75,7 +75,7 @@ public:
 	*/
 	void Load(Json::Value val);
 	/**
-	*  Register the AnimatedImage functions with the lua state
+	*  Register the AnimatedImage class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
 	void RegisterLua(lua_State *l);
