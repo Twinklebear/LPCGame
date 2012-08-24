@@ -16,21 +16,65 @@ Entity::Entity(std::string script) : mMouseOver(false), mL(nullptr){
 	luaL_dofile(mL, script.c_str());
 }
 void Entity::Init(){
-	//copy the Object::Init from LuaBind project
+	//We catch exceptions so that if the function doesn't exist the program 
+	//won't crash. This lets us skip implementing functions we don't need
+	//int scripts
+	try{
+		luabind::call_function<void>(mL, "Init", this);
+	}
+	catch(...){
+		//std::cout << "Init issue: " << lua_error(mL) << std::endl;
+	}
 }
 void Entity::Update(){
-
+	try{
+		luabind::call_function<void>(mL, "Update");
+	}
+	catch(...){
+	}
 }
 void Entity::Move(float deltaT){
-
+	try{
+		luabind::call_function<void>(mL, "Move", deltaT);
+	}
+	catch(...){
+	}
 }
 void Entity::Draw(Camera *camera){
-
+	try{
+		luabind::call_function<void>(mL, "Draw", camera);
+	}
+	catch(...){
+	}
 }
-void Entity::OnMouseDown(){}
-void Entity::OnMouseUp(){}
-void Entity::OnMouseEnter(){}
-void Entity::OnMouseExit(){}
+void Entity::OnMouseDown(){
+	try{
+		luabind::call_function<void>(mL, "OnMouseDown");
+	}
+	catch(...){
+	}
+}
+void Entity::OnMouseUp(){
+	try{
+		luabind::call_function<void>(mL, "OnMouseUp");
+	}
+	catch(...){
+	}
+}
+void Entity::OnMouseEnter(){
+	try{
+		luabind::call_function<void>(mL, "OnMouseEnter");
+	}
+	catch(...){
+	}
+}
+void Entity::OnMouseExit(){
+	try{
+		luabind::call_function<void>(mL, "OnMouseExit");
+	}
+	catch(...){
+	}
+}
 void Entity::CheckMouseOver(const Vector2f &pos){
 	//Only trigger OnMouseEnter if the mouse is colliding and wasn't before
 	if (Math::CheckCollision(pos, mPhysics.Box()) && !mMouseOver){
@@ -47,8 +91,17 @@ bool Entity::GetMouseOver(){
 	return mMouseOver;
 
 }
-bool Entity::HasTag(std::string tag){
-	return (mTag == tag);
+void Entity::SetCollisionMap(CollisionMap map){
+	mPhysics.SetMap(map);
+}
+Rectf Entity::Box(){
+	return mPhysics.Box();
+}
+void Entity::SetTag(std::string tag){
+	mTag = tag;
+}
+std::string Entity::Tag(){
+	return mTag;
 }
 Json::Value Entity::Save(){
 	Json::Value val;

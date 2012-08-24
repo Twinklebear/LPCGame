@@ -141,7 +141,7 @@ void GameState::Load(Json::Value val){
 			p->Load(objects[i]);
 			std::shared_ptr<Entity> sObj(p);
 			//Check for focus tag
-			if (sObj->HasTag("focus"))
+			if (sObj->Tag() == "focus")
 				mCamera->SetFocus(sObj);
 			//Register
 			mManager->Register(sObj);

@@ -48,6 +48,9 @@ public:
 	///On mouse exit
 	virtual void OnMouseExit();
 	/**
+	*  Call some desired function 
+	*/
+	/**
 	*  Check if mouse entered the object's box
 	*  Updates mMouseOver accordingly
 	*  @param pos The mouse pos to check 
@@ -56,11 +59,17 @@ public:
 	///Return T/F is the mouse is over the object
 	bool GetMouseOver();
 	/**
-	*  Check if the Entity has the tag
-	*  @param tag The tag to check for
-	*  @return True if the object has the tag
+	*  Set a collision map for the physics member to check against
+	*  @param map The collision map
 	*/
-	bool HasTag(std::string tag);
+	void SetCollisionMap(CollisionMap map);
+	///Get the object's box
+	Rectf Box();
+	///Set the entity's tag
+	void SetTag(std::string tag);
+	///Get the entity's tag
+	std::string Tag();
+	///TODO: How will I save custom entity data from the script?
 	/**
 	*  Save the Entity data to a json value and return it
 	*  The Entity instance of the function takes care of saving
@@ -76,17 +85,6 @@ public:
 	*/
 	virtual void Load(Json::Value val);
 	/**
-	*  Set a collision map for the physics member to check against
-	*  @param map The collision map
-	*/
-	void SetCollisionMap(CollisionMap map){
-		mPhysics.SetMap(map);
-	}
-	///Get the object's box
-	Rectf Box(){
-		return mPhysics.Box();
-	}
-	/**
 	*  Register the Entity class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
@@ -98,6 +96,8 @@ private:
 	Entity& operator = (const Entity &a);
 
 protected:
+	//Note: Once Lua entity scripting is fully implemented, Image should no longer be a member, but rather
+	//should be created and given to the Lua instance to handle if an image is desired
 	Image mImage;
 	///Handle's the objects physics
 	Physics mPhysics;
