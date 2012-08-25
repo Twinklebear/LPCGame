@@ -78,7 +78,7 @@ public:
 	*  Register the AnimatedImage class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	void RegisterLua(lua_State *l);
+	static void RegisterLua(lua_State *l);
 
 private:
 	std::vector<AnimationSequence> mSequences;

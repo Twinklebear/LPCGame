@@ -1,3 +1,4 @@
+#include <luabind/luabind.hpp>
 #include "base.h"
 #include "camera.h"
 #include "math.h"
@@ -20,6 +21,13 @@ Vector2f Math::Normalize(const Vector2f &v){
 }
 Vector2f Math::Lerp(const Vector2f &start, const Vector2f &end, float percent){
 	return (start + (end - start) * percent);
+}
+Vector2f Math::ForwardVector(float degrees){
+	Vector2f v;
+	float rad = (degrees * 3.14) / 180;
+	v.x = cosf(rad);
+	v.y = sinf(rad);
+	return v;
 }
 int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 	//Simple enough to do:
@@ -87,4 +95,32 @@ Vector2f Math::FromSceneSpace(const Camera *cam, const Vector2f &v){
 }
 Rectf Math::FromSceneSpace(const Camera *cam, const Rectf &r){
 	return Rectf(FromSceneSpace(cam, r.pos), r.w, r.h);
+}
+void Math::RegisterLua(lua_State *l){
+	using namespace luabind;
+
+	module(l, "LPC")[
+		class_<Math>("Math")
+			.scope[
+				def("Distance", &Math::Distance),
+				def("Clamp", &Math::Clamp),
+				def("Magnitude", &Math::Magnitude),
+				def("Normalize", &Math::Normalize),
+				def("Lerp", &Math::Lerp),
+				def("ForwardVector", &Math::ForwardVector),
+				def("RectNearRect", &Math::RectNearRect),
+				def("CheckCollision", (bool (*)(const Rectf&, const Rectf&))&Math::CheckCollision),
+				def("CheckCollision", (bool (*)(const Vector2f&, const Rectf&))&Math::CheckCollision),
+				def("ToSceneSpace", (Vector2f (*)(const Camera*, const Vector2f&))&Math::ToSceneSpace),
+				def("ToSceneSpace", (Rectf (*)(const Camera*, const Rectf&))&Math::ToSceneSpace),
+				def("FromSceneSpace", (Vector2f (*)(const Camera*, const Vector2f&))&Math::FromSceneSpace),
+				def("FromSceneSpace", (Rectf (*)(const Camera*, const Rectf&))&Math::FromSceneSpace)
+			]
+			.enum_("Dir")[
+				value("UP", UP),
+				value("DOWN", DOWN),
+				value("LEFT", LEFT),
+				value("RIGHT", RIGHT)
+			]
+	];
 }

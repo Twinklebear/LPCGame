@@ -7,13 +7,10 @@
 Entity::Entity() : mMouseOver(false), mL(nullptr){
 }
 Entity::Entity(std::string script) : mMouseOver(false), mL(nullptr){
-	mL = lua_open();
-	luaL_openlibs(mL);
-	luabind::open(mL);
-	//Init my lua modules
-	//Input::RegisterLua(mL);
-	Entity::RegisterLua(mL);
-	luaL_dofile(mL, script.c_str());
+	OpenScript(script);
+}
+Entity::~Entity(){
+	lua_close(mL);
 }
 void Entity::Init(){
 	//We catch exceptions so that if the function doesn't exist the program 
@@ -94,6 +91,14 @@ bool Entity::GetMouseOver(){
 void Entity::SetCollisionMap(CollisionMap map){
 	mPhysics.SetMap(map);
 }
+void Entity::OpenScript(std::string script){
+	mScript = script;
+	mL = lua_open();
+	luaL_openlibs(mL);
+	luabind::open(mL);
+	//Perform lua module initialization here
+	luaL_dofile(mL, mScript.c_str());
+}
 Rectf Entity::Box(){
 	return mPhysics.Box();
 }
@@ -108,12 +113,14 @@ Json::Value Entity::Save(){
 	val["image"]   = mImage.Save();
 	val["physics"] = mPhysics.Save();
 	val["tag"]	   = mTag;
+	val["script"]  = mScript;
 	return val;
 }
 void Entity::Load(Json::Value val){
 	mPhysics.Load(val["physics"]);
 	mImage.Load(val["image"]);
 	mTag = val["tag"].asString();
+	mScript = val["script"].asString();
 }
 void Entity::RegisterLua(lua_State *l){
 	using namespace luabind;
@@ -121,6 +128,17 @@ void Entity::RegisterLua(lua_State *l){
 	module(l, "LPC")[
 		class_<Entity>("Entity")
 			.def(constructor<>())
-			//.def(constructor<std::string>())
+			.def(constructor<std::string>())
+			.def("Init", &Entity::Init)
+			.def("Update", &Entity::Update)
+			.def("Move", &Entity::Move)
+			.def("Draw", &Entity::Draw)
+			.def("OnMouseDown", &Entity::OnMouseDown)
+			.def("OnMouseUp", &Entity::OnMouseUp)
+			.def("OnMouseEnter", &Entity::OnMouseEnter)
+			.def("OnMouseExit", &Entity::OnMouseExit)
+			.def("Box", &Entity::Box)
+			.def("SetTag", &Entity::SetTag)
+			.def("Tag", &Entity::Tag)
 	];
 }

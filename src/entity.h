@@ -22,7 +22,7 @@ public:
 	*  @param script The object's script
 	*/
 	Entity(std::string script);
-	virtual ~Entity() {};
+	virtual ~Entity();
 	/**
 	*  Initialize the object
 	*/
@@ -63,6 +63,11 @@ public:
 	*  @param map The collision map
 	*/
 	void SetCollisionMap(CollisionMap map);
+	/**
+	*  Open the desired Lua script to be run as the entity's behavior script
+	*  @param script The script file to open
+	*/
+	void OpenScript(std::string script);
 	///Get the object's box
 	Rectf Box();
 	///Set the entity's tag
@@ -88,7 +93,7 @@ public:
 	*  Register the Entity class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	void RegisterLua(lua_State *l);
+	static void RegisterLua(lua_State *l);
 
 private:
 	///Game objects should not be copy-constructable
@@ -107,6 +112,7 @@ protected:
 private:
 	bool mMouseOver;
 	lua_State *mL;
+	std::string mScript;
 };
 
 #endif

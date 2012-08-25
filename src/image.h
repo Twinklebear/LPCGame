@@ -5,6 +5,7 @@
 #include <vector>
 #include <memory>
 #include <SDL.h>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
 #include "vectors.h"
@@ -16,13 +17,17 @@
 */
 class Image {
 public:
+	Image();
 	/**
 	*  Setup the image class, if a filename is passed load the image
 	*  @param file The filename
 	*  @see Window::LoadImage for the loading function
 	*/
 	Image(const std::string file);
-	Image();
+	/**
+	*  Free the clips vector, b/c the SDL_Surface is a shared ptr 
+	*  it's cleaned up automatically
+	*/
 	~Image();
 	/**
 	*  Load an image from a file
@@ -33,6 +38,9 @@ public:
 	/**
 	*  Set the image's clips to the vector passed
 	*  @param clips The clips to use for the image
+	*
+	*  TODO: Will Lua be able to pass a vector to C++? Will a Lua array convert ok?
+	*  curious what will happen here
 	*/
 	void SetClips(const std::vector<Recti> &clips);
 	/**
@@ -65,6 +73,11 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
+	/**
+	*  Register the Image class with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	static void RegisterLua(lua_State *l);
 
 private:
 	///Disable image copy construction

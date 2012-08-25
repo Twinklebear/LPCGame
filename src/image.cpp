@@ -1,6 +1,7 @@
 #include <array>
 #include <memory>
 #include <SDL.h>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
 #include "image.h"
@@ -79,4 +80,17 @@ void Image::Load(Json::Value val){
 			mClips[i].Load(val["clips"][i]);
 		}
 	}
+}
+void Image::RegisterLua(lua_State *l){
+	using namespace luabind;
+
+	module(l, "LPC")[
+		class_<Image>("Image")
+			.def(constructor<>())
+			.def(constructor<std::string>())
+			.def("LoadImage", &Image::LoadImage)
+			.def("SetClips", &Image::SetClips)
+			.def("GenClips", &Image::GenClips)
+			.def("Clip", &Image::Clip)
+	];
 }
