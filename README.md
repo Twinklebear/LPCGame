@@ -11,6 +11,7 @@
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
 	- How should the State class be handled?
 		- If I create the ability to call state functions like SetExit from Lua, will ObjectButton no longer be needed? since Button's OnClick script would then simply call the function? I'll try this and then decide what to do with ObjectButton.
+			- I think I've got a method for this setup, see the static StateManager function ChangeScene
 		- Will need some way to grab the active state, perhaps from StateManager? It's a pure-static class so yes, I think that will work
 		- Should states be run via script? Hmm. What to do with states..
 	- How to save data from script?

@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <memory>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "state.h"
 #include "gamestate.h"
@@ -37,6 +38,16 @@ public:
 	*  @param name The state name to save, state and file names are the same
 	*/
 	static void SaveState(std::string name);
+	/**
+	*  Change the active scene to the scene passed, exiting the current active scene
+	*  @param scene The scene to change to
+	*/
+	static void ChangeScene(std::string scene);
+	/**
+	*  Register the StateManager class with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	static void RegisterLua(lua_State *l);
 
 private:
 	/**
