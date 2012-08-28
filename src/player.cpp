@@ -28,9 +28,9 @@ void Player::Update(){
 		mPhysics.SetVertDir(Physics::MOVE::STOP);
 
 	//Update active animation
-	if (mPhysics.MotionState() == MotionState::IDLE && mAnimatedImage.Playing() != "idle")
+	if (mPhysics.State() == MotionState::IDLE && mAnimatedImage.Playing() != "idle")
 		mAnimatedImage.Play("idle");
-	else if (mPhysics.MotionState() == MotionState::RUNNING && mAnimatedImage.Playing() != "run")
+	else if (mPhysics.State() == MotionState::RUNNING && mAnimatedImage.Playing() != "run")
 		mAnimatedImage.Play("run");
 
 	//Update animation from

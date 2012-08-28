@@ -35,7 +35,7 @@ public:
 	Vector2f Velocity() const;
 	Vector2f Acceleration() const;
 	Rectf Box() const;
-	int MotionState() const;
+	int State() const;
 	///Setters
 	void SetPosition(Vector2f pos);
 	void SetVelocity(Vector2f vel);
@@ -91,7 +91,7 @@ public:
 
 private:
 	Kinematic mKinematic;
-	//MotionState mMotionState;
+	MotionState mMotionState;
 	PhysicalConstants mPhysConstants;
 	Rectf mBox;
 	CollisionMap mCollisionMap;

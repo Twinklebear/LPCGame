@@ -118,6 +118,34 @@ public:
 		Set(val["x"].asInt(), val["y"].asInt(),
 			val["w"].asInt(), val["h"].asInt());
 	}
+	///Operators
+	Rect<T>& operator += (Vector2f vec){
+		this->pos += vec;
+		return *this;
+	}
+	Rect<T> operator + (const Vector2f v) const{
+		return Rect<T>(pos.x + v.x, pos.y + v.y, w, h);
+	}
+	Rect<T> operator - (const Vector2f v) const{
+		return Rect<T>(pos.x - v.x, pos.y - v.y, w, h);
+	}
+	///For conversions
+	operator SDL_Rect(){
+		SDL_Rect rect;
+		rect.x = pos.x;
+		rect.y = pos.y;
+		rect.w = w;
+		rect.h = h;
+		return rect;
+	}
+	operator Rect<float>(){
+		Rect<float> rect(pos, w, h);
+		return rect;
+	}
+	operator Rect<int>(){
+		Rect<int> rect(pos, w, h);
+		return rect;
+	}
 	/**
 	*  Register the Rect class with the lua state
 	*  @param l The lua_State to register the module with
@@ -159,34 +187,6 @@ public:
 				.def(const_self + Vector2i())
 				.def(const_self - Vector2i())
 		];
-	}
-	///Operators
-	Rect<T>& operator += (Vector2f vec){
-		this->pos += vec;
-		return *this;
-	}
-	Rect<T> operator + (const Vector2f v) const{
-		return Rect<T>(pos.x + v.x, pos.y + v.y, w, h);
-	}
-	Rect<T> operator - (const Vector2f v) const{
-		return Rect<T>(pos.x - v.x, pos.y - v.y, w, h);
-	}
-	///For conversions
-	operator SDL_Rect(){
-		SDL_Rect rect;
-		rect.x = pos.x;
-		rect.y = pos.y;
-		rect.w = w;
-		rect.h = h;
-		return rect;
-	}
-	operator Rect<float>(){
-		Rect<float> rect(pos, w, h);
-		return rect;
-	}
-	operator Rect<int>(){
-		Rect<int> rect(pos, w, h);
-		return rect;
 	}
 
 public:

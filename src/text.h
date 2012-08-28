@@ -4,10 +4,12 @@
 #include <string>
 #include <stdexcept>
 #include <memory>
-#include "SDL.h"
-#include "SDL_ttf.h"
+#include <SDL.h>
+#include <SDL_ttf.h>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
+#include "color.h"
 
 ///Handles drawing some text
 /**
@@ -24,7 +26,7 @@ public:
 	*  @param fontSize The font size to use, default is 30
 	*  @param color The color of font to use, default is black
 	*/
-	Text(std::string message, std::string font, SDL_Color color, int fontSize = 30);
+	Text(std::string message, std::string font, Color color, int fontSize = 30);
 	~Text();
 	/**
 	*  Set a message, font and font size
@@ -33,7 +35,7 @@ public:
 	*  @param fontSize The font size to use, default is 30
 	*  @param color The color of font to use, default is black
 	*/
-	void Set(std::string message, std::string font, SDL_Color color, int fontSize = 30);
+	void Set(std::string message, std::string font, Color color, int fontSize = 30);
 	/**
 	*  Set a message for the text, checks to make sure message is different before
 	*  rendering the new message
@@ -57,7 +59,7 @@ public:
 	*  before redrawing
 	*  @param color The color to use
 	*/
-	void SetColor(SDL_Color color);
+	void SetColor(Color color);
 	/**
 	*  Get the texture pointer of the font, used for the window's draw functions
 	*  @see Window
@@ -85,6 +87,11 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
+	/**
+	*  Register the Text class with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	static void RegisterLua(lua_State *l);
 
 private:
 	///Disable copy construction
@@ -93,7 +100,7 @@ private:
 
 private:
 	std::shared_ptr<SDL_Texture> mTex;
-	SDL_Color mColor;
+	Color mColor;
 	std::string mMessage, mFontFile;
 	int mFontSize;
 };
