@@ -33,7 +33,7 @@ public:
 	*  @param fontSize The font size to use, default is 30
 	*  @param color The color of font to use, default is black
 	*/
-	void Setup(std::string message, std::string font, SDL_Color color, int fontSize = 30);
+	void Set(std::string message, std::string font, SDL_Color color, int fontSize = 30);
 	/**
 	*  Set a message for the text, checks to make sure message is different before
 	*  rendering the new message
@@ -92,7 +92,6 @@ private:
 	Text& operator = (const Text &a);
 
 private:
-	std::shared_ptr<TTF_Font> mFont;
 	std::shared_ptr<SDL_Texture> mTex;
 	SDL_Color mColor;
 	std::string mMessage, mFontFile;

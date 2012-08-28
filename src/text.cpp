@@ -8,63 +8,63 @@
 #include "window.h"
 #include "text.h"
 
-Text::Text() : mFont(nullptr, TTF_CloseFont), mTex(nullptr, SDL_DestroyTexture), mMessage(""), mFontSize(0)
+Text::Text() : mTex(nullptr, SDL_DestroyTexture), mMessage(""), mFontSize(0)
 {
 	mColor.r = 0;
 	mColor.g = 0;
 	mColor.b = 0;
 }
 Text::Text(std::string message, std::string font, SDL_Color color, int fontSize) 
-	: mFont(nullptr, TTF_CloseFont), mTex(nullptr, SDL_DestroyTexture)
+	: mTex(nullptr, SDL_DestroyTexture)
 {
 	try {
-		Setup(message, font, color, fontSize);
+		Set(message, font, color, fontSize);
 	}
 	catch (const std::runtime_error &e){
 		throw e;
 	}
 }
 Text::~Text(){}
-void Text::Setup(std::string message, std::string font, SDL_Color color, int fontSize){
-	//Set the class variables to match desired setup
+void Text::Set(std::string message, std::string font, SDL_Color color, int fontSize){
 	mMessage  = message;
-	mColor    = color;
-	mFontSize = fontSize;
+	mColor	  = color;
 	mFontFile = font;
-
-	//Open the font
-	mFont.reset(TTF_OpenFont(mFontFile.c_str(), mFontSize), TTF_CloseFont);
-	if (mFont == nullptr)
-		throw std::runtime_error("Failed to open font: " + font);
-
-	//Render the message and convert to texture
-	mTex.reset(Window::SurfaceToTexture(TTF_RenderUTF8_Blended(mFont.get(), mMessage.c_str(), mColor)),
-		SDL_DestroyTexture);
+	mFontSize = fontSize;
+	try {
+		mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
+	}
+	catch (const std::runtime_error &e){
+		throw e;
+	}
 	if (mTex == nullptr)
-		throw std::runtime_error("Failed to set message texture");
+		throw std::runtime_error("Failed to setup message");
 }
 void Text::SetMessage(std::string message){
 	//Make sure we don't do it if the messages already match
 	if (mMessage == message)
 		return;
 	//Render the new message
-	mTex.reset(Window::SurfaceToTexture(TTF_RenderUTF8_Blended(mFont.get(), mMessage.c_str(), mColor)),
-		SDL_DestroyTexture);
+	mMessage = message;
+	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
 	if (mTex == nullptr)
 		throw std::runtime_error("Failed to set message texture");
 }
 void Text::SetFont(std::string font){
+	if (mFontFile == font)
+		return;
 	mFontFile = font;
 	//Load the new font
-	mFont.reset(TTF_OpenFont(mFontFile.c_str(), mFontSize), TTF_CloseFont);
-	if (mFont == nullptr)
-		throw std::runtime_error("Failed to open font: " + font);	
+	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
+	if (mTex == nullptr)
+		throw std::runtime_error("Failed to set message texture");
 }
 void Text::SetFontSize(int fontSize){
+	if (mFontSize == fontSize)
+		return;
 	mFontSize = fontSize;
 	//Reload font with new fontsize
-	mFont.reset(TTF_OpenFont(mFontFile.c_str(), mFontSize), TTF_CloseFont);
-	if (mFont == nullptr)
+	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
+	if (mTex == nullptr)
 		throw std::runtime_error("Failed to open font: " + mFontFile);	
 }
 void Text::SetColor(SDL_Color color){
@@ -72,8 +72,7 @@ void Text::SetColor(SDL_Color color){
 		return;
 	mColor = color;
 	//Render the new message
-	mTex.reset(Window::SurfaceToTexture(TTF_RenderUTF8_Blended(mFont.get(), mMessage.c_str(), mColor)),
-		SDL_DestroyTexture);
+	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
 	if (mTex == nullptr)
 		throw std::runtime_error("Failed to set message texture");
 }
@@ -105,6 +104,6 @@ void Text::Load(Json::Value val){
 	col.g = val["color"]["g"].asInt();
 	col.b = val["color"]["b"].asInt();
 
-	Setup(val["message"].asString(), val["font"].asString(), 
+	Set(val["message"].asString(), val["font"].asString(), 
 		col, val["fontsize"].asInt());
 }

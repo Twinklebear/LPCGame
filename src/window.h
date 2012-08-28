@@ -69,6 +69,15 @@ public:
 	*  @return SDL_Texture* of the texture loaded
 	*/
 	static SDL_Texture* LoadTexture(std::string file);
+	/*
+	*  Generate a texture containing the message we want to display
+	*  @param message The message we want to display
+	*  @param fontFile The font we want to use to render the text
+	*  @param color The color we want the text to be
+	*  @param fontSize The size we want the font to be
+	*  @return An SDL_Texture containing the rendered message
+	*/
+	static SDL_Texture* RenderText(std::string message, std::string fontFile, SDL_Color color, int fontSize);
 	/**
 	*  Convert an SDL_Surface to a texture and return the texture and free the surface
 	*  @param surf The SDL_Surface* to be converted
