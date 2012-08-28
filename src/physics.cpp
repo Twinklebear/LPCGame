@@ -181,5 +181,15 @@ void Physics::RegisterLua(lua_State *l){
 			.def("MotionState", &Physics::MotionState)
 			.def("SetPosition", &Physics::SetPosition)
 			.def("SetVelocity", &Physics::SetVelocity)
+			.def("SetAcceleration", &Physics::SetAcceleration)
+			.def("SetHorizDir", &Physics::SetHorizDir)
+			.def("SetVertDir", &Physics::SetVertDir)
+			.def("SetPhysConstants", &Physics::SetPhysConstants)
+			.def("SetBox", &Physics::SetBox)
+			.def("SetMap", &Physics::SetMap)
+
+			.enum_("MOVE")[
+				value("STOP", Physics::MOVE::STOP)
+			]
 	];
 }
