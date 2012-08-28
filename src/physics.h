@@ -3,61 +3,25 @@
 
 #include <cmath>
 #include <vector>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "base.h"
 #include "math.h"
+#include "motionstate.h"
 
+/**
+*  Ground friction value, this is should be changed to be configurable
+*  perhaps based on floor type would be nice
+*/
 const int GROUND_FRICTION = 800;
-
-///Struct to track velocity and acceleration
-/**
-*  A kinematics structure, describes an object's velocity and acceleration
-*/
-struct Kinematic{
-	Vector2f Vel, Accel;
-};
-
-///Track object's various physical constants
-/**
-*  Describes the various physical constants of an object, such
-*  as max speed and acceleration
-*/
-struct PhysicalConstants{
-	int hAccel, hSpeed;
-};
-
-///For tracking an object's motion state
-/**
-*  Describes the state of an object's motion
-*  This isn't really used much at the motion, but will come into
-*  play when showing animations for the object's actions
-*/
-class MotionState{
-public:
-	MotionState();
-	~MotionState();
-	/**
-	*  Update the object's motion state based on its current motion
-	*  @param kinematic The object's kinematic component
-	*/
-	void UpdateState(Kinematic kinematic);
-	///Get the motion state, @see MotionState enum
-	int GetMotionState() const;
-	///Set the motion state
-	void SetMotionstate(int state);
-	///enum for describing motion states
-	enum { IDLE, RUNNING };
-
-private:
-	int mState;
-};
 
 ///Provides physics functions for an object
 /**
 *  Handles an objects physics, collision checking, friction
 *  motion, etc.
+*  Note: A lot of the physics done here should actually be done by the user?
 */
-class Physics{
+class Physics {
 public:
 	Physics();
 	~Physics();
@@ -66,11 +30,7 @@ public:
 	*  @param deltaT The elapsed time
 	*/
 	void Move(float deltaT);
-	/**
-	*  Return the velocity distance to move in the elapsed time
-	*  @param deltaT The elapsed time
-	*/
-	Vector2f GetFrameMove(float deltaT);
+
 	///Getters
 	Vector2f GetPosition() const;
 	Vector2f GetVelocity() const;
@@ -98,6 +58,11 @@ public:
 	*  @param val The Json::Value containing the properties to load
 	*/
 	void Load(Json::Value val);
+	/**
+	*  Register the Physics class with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	static void RegisterLua(lua_State *l);
 
 private:
 	/**

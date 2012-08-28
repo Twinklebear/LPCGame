@@ -1,6 +1,7 @@
 #ifndef VECTORS_H
 #define VECTORS_H
 
+#include <SDL.h>
 #include "../externals/json/json.h"
 
 ///A 2D vector
@@ -8,7 +9,7 @@
 *  A 2D vector
 */
 template<class T>
-class Vector2{
+class Vector2 {
 public:
 	Vector2(){
 		Set(0, 0);

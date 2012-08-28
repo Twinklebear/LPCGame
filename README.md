@@ -10,6 +10,7 @@
 	- Each class will have a RegisterLua or something named function, and when that is called and passed a lua_State* it will expose the class to the Lua script.
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
 	- How should the State class be handled?
+		- If I create the ability to call state functions like SetExit from Lua, will ObjectButton no longer be needed? since Button's OnClick script would then simply call the function? I'll try this and then decide what to do with ObjectButton.
 	- How to save data from script?
 		- Have decided to leave this up to the user, so editor created data will be handled by JsonCPP and script data will be handled by whatever is desired for Lua, and will have no interoperation between the C++ saved data and custom script data.
 - Simple map editor

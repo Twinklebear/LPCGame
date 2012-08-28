@@ -1,25 +1,8 @@
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "math.h"
+#include "motionstate.h"
 #include "physics.h"
-
-MotionState::MotionState(){
-	mState = IDLE;
-}
-MotionState::~MotionState(){
-}
-void MotionState::UpdateState(Kinematic kinematic){
-	//update state based on current motion
-	if (abs(kinematic.Vel.x) > 0.05 || abs(kinematic.Vel.y) >= 0.05)
-		mState = RUNNING;
-	else
-		mState = IDLE;
-}
-int MotionState::GetMotionState() const{
-	return mState;
-}
-void MotionState::SetMotionstate(int state){
-	mState = state;
-}
 
 Physics::Physics(){
 	mKinematic.Vel	 = Vector2f(0, 0);
@@ -121,9 +104,7 @@ bool Physics::CheckCollision(Rectf box){
 	}
 	return colliding;
 }
-Vector2f Physics::GetFrameMove(float deltaT){
-	return (mKinematic.Vel * deltaT);
-}
+
 Vector2f Physics::GetPosition() const{
 	return mBox.Pos();
 }
@@ -185,4 +166,13 @@ void Physics::Load(Json::Value val){
 	mKinematic.Accel = Vector2f(0, 0);
 	mHorizDir = MOVE::STOP;
 	mVertDir  = MOVE::STOP;
+}
+void Physics::RegisterLua(lua_State *l){
+	using namespace luabind;
+
+	module(l, "LPC")[
+		class_<Physics>("Physics")
+			.def(constructor<>())
+			.def("Move", &Physics::Move)
+	];
 }
