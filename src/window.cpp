@@ -86,7 +86,7 @@ SDL_Texture* Window::LoadTexture(std::string file){
 		throw std::runtime_error("Failed to load image: " + file);
 	return tex;
 }
-SDL_Texture* Window::RenderText(std::string message, std::string fontFile, SDL_Color color, int fontSize){
+SDL_Texture* Window::RenderText(std::string message, std::string fontFile, Color color, int fontSize){
 	//Open the font
 	TTF_Font *font = nullptr;
 	font = TTF_OpenFont(fontFile.c_str(), fontSize);
@@ -94,7 +94,7 @@ SDL_Texture* Window::RenderText(std::string message, std::string fontFile, SDL_C
 		throw std::runtime_error("Failed to load font: " + fontFile + TTF_GetError());
 	
 	//Render the message to an SDL_Surface, as that's what TTF_RenderText_X returns
-	SDL_Surface *surf = TTF_RenderText_Blended(font, message.c_str(), color);
+	SDL_Surface *surf = TTF_RenderText_Blended(font, message.c_str(), color.Get());
 	SDL_Texture *texture = SDL_CreateTextureFromSurface(mRenderer.get(), surf);
 	//Clean up unneeded stuff
 	SDL_FreeSurface(surf);

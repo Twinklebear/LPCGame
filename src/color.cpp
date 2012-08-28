@@ -49,5 +49,8 @@ void Color::RegisterLua(lua_State *l){
 			.def(constructor<>())
 			.def(constructor<int, int, int>())
 			.def("Set", &Color::Set)
+			.def("R", &Color::R)
+			.def("G", &Color::G)
+			.def("B", &Color::B)
 	];
 }
