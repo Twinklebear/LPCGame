@@ -9,6 +9,7 @@
 #include "camera.h"
 
 ///Typedef for a vector of Entity shared pointers
+///TODO: Should i instead store objects in an unordered map by their name/tag?
 typedef std::vector<std::shared_ptr<Entity>> EntityList;
 
 ///Handles the Entities in the active state

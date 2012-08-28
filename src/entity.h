@@ -18,7 +18,7 @@ class Entity{
 public:
 	Entity();
 	/**
-	*  Construct the object and load its script
+	*  Construct the Entity and load its script
 	*  @param script The object's script
 	*/
 	Entity(std::string script);
@@ -63,11 +63,6 @@ public:
 	*  @param map The collision map
 	*/
 	void SetCollisionMap(CollisionMap map);
-	/**
-	*  Open the desired Lua script to be run as the entity's behavior script
-	*  @param script The script file to open
-	*/
-	void OpenScript(std::string script);
 	///Get the object's box
 	Rectf Box();
 	///Set the entity's tag
@@ -95,23 +90,31 @@ public:
 	*/
 	static void RegisterLua(lua_State *l);
 
+protected:
+	/**
+	*  Open the desired Lua script to be run as the entity's behavior script
+	*  @param script The script file to open
+	*/
+	void OpenScript(std::string script);
+
 private:
 	///Game objects should not be copy-constructable
 	Entity(const Entity &a);
 	Entity& operator = (const Entity &a);
 
 protected:
-	//Note: Once Lua entity scripting is fully implemented, Image should no longer be a member, but rather
-	//should be created and given to the Lua instance to handle if an image is desired
+	///Note: Once Lua entity scripting is fully implemented, Image should no longer be a member, but rather
+	///should be created and given to the Lua instance to handle if an image is desired
 	Image mImage;
 	///Handle's the objects physics
 	Physics mPhysics;
 	///To store tags to identify the object
 	std::string mTag;
-
-private:
+	///For tracking mouse over
 	bool mMouseOver;
+	///The entity's lua script
 	lua_State *mL;
+	///The entity's script name
 	std::string mScript;
 };
 

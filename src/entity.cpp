@@ -4,7 +4,7 @@
 #include "math.h"
 #include "entity.h"
 
-Entity::Entity() : mMouseOver(false), mL(nullptr){
+Entity::Entity() : mMouseOver(false), mL(nullptr), mScript(""){
 }
 Entity::Entity(std::string script) : mMouseOver(false), mL(nullptr){
 	OpenScript(script);

@@ -9,7 +9,9 @@
 - Implement Lua for scripting objects behavior
 	- Each class will have a RegisterLua or something named function, and when that is called and passed a lua_State* it will expose the class to the Lua script.
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
-	- Need to come up with a method for saving custom data from the script, ie. passing Json::Values between C++ and Lua to enable Entities to save and load data specific to things defined in the script.
+	- How should the State class be handled?
+	- How to save data from script?
+		- Have decided to leave this up to the user, so editor created data will be handled by JsonCPP and script data will be handled by whatever is desired for Lua, and will have no interoperation between the C++ saved data and custom script data.
 - Simple map editor
 	- Expand TileBar to allow for placing of GameObjects
 		- I think to do this well, I should integrate scripting for behaviors first, thus all entities can simply be a gameobject with any special behaviors defined in the script.

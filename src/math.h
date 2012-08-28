@@ -108,7 +108,7 @@ public:
 	*/
 	static Rectf FromSceneSpace(const Camera *cam, const Rectf &r);
 	/**
-	*  Register the Math namespace with the lua state
+	*  Register the Math class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
 	static void RegisterLua(lua_State *l);

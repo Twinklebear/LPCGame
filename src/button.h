@@ -1,6 +1,8 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
+#include <string>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "entity.h"
 #include "image.h"
@@ -14,6 +16,11 @@
 class Button : public Entity {
 public:
 	Button();
+	/**
+	*  Construct the Button and load its script
+	*  @param script The object's script
+	*/
+	Button(std::string script);
 	~Button();
 	///Update the game object
 	void Update();
@@ -36,6 +43,7 @@ public:
 	///On mouse exit
 	void OnMouseExit();
 	///On click, run the callback function if one was registered
+	///This should call a Lua script function, OnClick as well
 	virtual void OnClick();
 	/**
 	*  Register a non-member function as the callback function to run when the
@@ -56,6 +64,11 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
+	/**
+	*  Register the Button class with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	static void RegisterLua(lua_State *l);
 
 protected:
 	Text mText;
