@@ -58,6 +58,8 @@ void Button::OnMouseExit(){
 void Button::OnClick(){
 	if (mFunc != nullptr)
 		mFunc(mParam);
+	if (mL == nullptr)
+		return;
 	///Call the script
 	try{
 		luabind::call_function<void>(mL, "OnClick");

@@ -1200,6 +1200,7 @@
             "hAccel" : 700,
             "hSpeed" : 300
          },
+         "script" : "",
          "tag" : "",
          "type" : "0"
       }
@@ -1234,6 +1235,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
+         "script" : "",
          "tag" : "",
          "text" : {
             "color" : {

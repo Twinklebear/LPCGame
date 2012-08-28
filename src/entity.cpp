@@ -10,7 +10,8 @@ Entity::Entity(std::string script) : mMouseOver(false), mL(nullptr){
 	OpenScript(script);
 }
 Entity::~Entity(){
-	lua_close(mL);
+	if (mL != nullptr)
+		lua_close(mL);
 }
 void Entity::Init(){
 	//We catch exceptions so that if the function doesn't exist the program 
@@ -24,6 +25,8 @@ void Entity::Init(){
 	}
 }
 void Entity::Update(){
+	if (mL == nullptr)
+		return;
 	try{
 		luabind::call_function<void>(mL, "Update");
 	}
@@ -31,6 +34,8 @@ void Entity::Update(){
 	}
 }
 void Entity::Move(float deltaT){
+	if (mL == nullptr)
+		return;
 	try{
 		luabind::call_function<void>(mL, "Move", deltaT);
 	}
@@ -38,6 +43,8 @@ void Entity::Move(float deltaT){
 	}
 }
 void Entity::Draw(Camera *camera){
+	if (mL == nullptr)
+		return;
 	try{
 		luabind::call_function<void>(mL, "Draw", camera);
 	}
@@ -45,6 +52,8 @@ void Entity::Draw(Camera *camera){
 	}
 }
 void Entity::OnMouseDown(){
+	if (mL == nullptr)
+		return;
 	try{
 		luabind::call_function<void>(mL, "OnMouseDown");
 	}
@@ -52,6 +61,8 @@ void Entity::OnMouseDown(){
 	}
 }
 void Entity::OnMouseUp(){
+	if (mL == nullptr)
+		return;
 	try{
 		luabind::call_function<void>(mL, "OnMouseUp");
 	}
@@ -59,6 +70,8 @@ void Entity::OnMouseUp(){
 	}
 }
 void Entity::OnMouseEnter(){
+	if (mL == nullptr)
+		return;
 	try{
 		luabind::call_function<void>(mL, "OnMouseEnter");
 	}
@@ -66,6 +79,8 @@ void Entity::OnMouseEnter(){
 	}
 }
 void Entity::OnMouseExit(){
+	if (mL == nullptr)
+		return;
 	try{
 		luabind::call_function<void>(mL, "OnMouseExit");
 	}
