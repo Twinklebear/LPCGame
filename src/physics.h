@@ -91,7 +91,7 @@ public:
 
 private:
 	Kinematic mKinematic;
-	MotionState mMotionState;
+	//MotionState mMotionState;
 	PhysicalConstants mPhysConstants;
 	Rectf mBox;
 	CollisionMap mCollisionMap;

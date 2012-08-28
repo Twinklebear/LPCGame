@@ -34,8 +34,8 @@ void Physics::Move(float deltaT){
 	}
 	else
 		mBox.Set(mBox.X(), testPos.y);
-
-	mMotionState.UpdateState(mKinematic);
+	//BROKEN
+	//mMotionState.UpdateState(mKinematic);
 }
 void Physics::UpdateVelocity(float deltaT){
 	ApplyAcceleration();
@@ -118,7 +118,8 @@ Rectf Physics::Box() const{
 	return mBox;
 }
 int Physics::MotionState() const{
-	return mMotionState.GetMotionState();
+	//return mMotionState.GetMotionState();
+	return 0;
 }
 void Physics::SetPosition(Vector2f pos){
 	mBox.Set(pos);

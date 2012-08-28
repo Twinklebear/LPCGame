@@ -5,6 +5,7 @@
 #include <memory>
 #include <atomic>
 #include <condition_variable>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "entitymanager.h"
 #include "camera.h"
@@ -23,7 +24,7 @@ public:
 	*  after starting up the physics and rendering threads
 	*  @return The next state to run, returning quit exits program
 	*/
-	virtual std::string Run() = 0;
+	virtual std::string Run();
 	/**
 	*  Set the exit code to return from Run and set exit to true
 	*  @param val The exit code to return from Run
@@ -32,6 +33,13 @@ public:
 	void SetExit(std::string val);
 	///Set exit to false
 	void UnsetExit();
+	/**
+	*  Set the state's name
+	*  @param name The name to set
+	*/
+	void SetName(std::string name);
+	///Get the state's name
+	std::string Name();
 	/**
 	*  Save the state data so that it can be loaded later
 	*  @return Json::Value containing the state data
@@ -43,12 +51,10 @@ public:
 	*/
 	virtual void Load(Json::Value val);
 	/**
-	*  Set the state's name
-	*  @param name The name to set
+	*  Register the State class with the lua state
+	*  @param l The lua_State to register the module with
 	*/
-	void SetName(std::string name);
-	///Get the state's name
-	std::string Name();
+	static void RegisterLua(lua_State *l);
 
 protected:
 	/**
@@ -65,9 +71,9 @@ protected:
 	*/
 	//virtual void PhysicsThread() = 0;
 	///Initialize state memory
-	virtual void Init() = 0;
+	virtual void Init();
 	///Free the memory used by the state
-	virtual void Free() = 0;
+	virtual void Free();
 
 protected:
 	std::shared_ptr<EntityManager> mManager;
