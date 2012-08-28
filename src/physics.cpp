@@ -35,7 +35,7 @@ void Physics::Move(float deltaT){
 	else
 		mBox.Set(mBox.X(), testPos.y);
 
-	//mMotionState.UpdateState(mKinematic);
+	mMotionState.UpdateState(mKinematic);
 }
 void Physics::UpdateVelocity(float deltaT){
 	ApplyAcceleration();
@@ -118,8 +118,7 @@ Rectf Physics::Box() const{
 	return mBox;
 }
 int Physics::MotionState() const{
-//	return mMotionState.GetMotionState();
-	return 0;
+	return mMotionState.GetMotionState();
 }
 void Physics::SetPosition(Vector2f pos){
 	mBox.Set(pos);
@@ -178,5 +177,9 @@ void Physics::RegisterLua(lua_State *l){
 			.def("Position", &Physics::Position)
 			.def("Velocity", &Physics::Velocity)
 			.def("Acceleration", &Physics::Acceleration)
+			.def("Box", &Physics::Box)
+			.def("MotionState", &Physics::MotionState)
+			.def("SetPosition", &Physics::SetPosition)
+			.def("SetVelocity", &Physics::SetVelocity)
 	];
 }
