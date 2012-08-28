@@ -20,6 +20,7 @@ struct Kinematic {
 struct PhysicalConstants {
 	int hAccel, hSpeed;
 };
+
 ///For tracking an object's motion state
 /**
 *  Describes the state of an object's motion
@@ -36,7 +37,7 @@ public:
 	*/
 	void UpdateState(Kinematic kinematic);
 	///Get the motion state, @see MotionState enum
-	int GetMotionState() const;
+	int State() const;
 	///Set the motion state
 	void SetMotionstate(int state);
 	///enum for describing motion states

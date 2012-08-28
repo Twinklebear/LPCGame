@@ -30,13 +30,12 @@ public:
 	*  @param deltaT The elapsed time
 	*/
 	void Move(float deltaT);
-
 	///Getters
-	Vector2f GetPosition() const;
-	Vector2f GetVelocity() const;
-	Vector2f GetAcceleration() const;
+	Vector2f Position() const;
+	Vector2f Velocity() const;
+	Vector2f Acceleration() const;
 	Rectf Box() const;
-	int GetMotionState() const;
+	int MotionState() const;
 	///Setters
 	void SetPosition(Vector2f pos);
 	void SetVelocity(Vector2f vel);

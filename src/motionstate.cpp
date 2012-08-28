@@ -14,7 +14,7 @@ void MotionState::UpdateState(Kinematic kinematic){
 	else
 		mState = IDLE;
 }
-int MotionState::GetMotionState() const{
+int MotionState::State() const{
 	return mState;
 }
 void MotionState::SetMotionstate(int state){

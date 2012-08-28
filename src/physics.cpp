@@ -35,7 +35,7 @@ void Physics::Move(float deltaT){
 	else
 		mBox.Set(mBox.X(), testPos.y);
 
-	mMotionState.UpdateState(mKinematic);
+	//mMotionState.UpdateState(mKinematic);
 }
 void Physics::UpdateVelocity(float deltaT){
 	ApplyAcceleration();
@@ -105,20 +105,21 @@ bool Physics::CheckCollision(Rectf box){
 	return colliding;
 }
 
-Vector2f Physics::GetPosition() const{
+Vector2f Physics::Position() const{
 	return mBox.Pos();
 }
-Vector2f Physics::GetVelocity() const{
+Vector2f Physics::Velocity() const{
 	return mKinematic.Vel;
 }
-Vector2f Physics::GetAcceleration() const{
+Vector2f Physics::Acceleration() const{
 	return mKinematic.Accel;
 }
 Rectf Physics::Box() const{
 	return mBox;
 }
-int Physics::GetMotionState() const{
-	return mMotionState.GetMotionState();
+int Physics::MotionState() const{
+//	return mMotionState.GetMotionState();
+	return 0;
 }
 void Physics::SetPosition(Vector2f pos){
 	mBox.Set(pos);
@@ -174,5 +175,8 @@ void Physics::RegisterLua(lua_State *l){
 		class_<Physics>("Physics")
 			.def(constructor<>())
 			.def("Move", &Physics::Move)
+			.def("Position", &Physics::Position)
+			.def("Velocity", &Physics::Velocity)
+			.def("Acceleration", &Physics::Acceleration)
 	];
 }
