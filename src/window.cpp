@@ -72,7 +72,13 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h,
 void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip, float angle, 
 				  Vector2f pivot, int flip)
 {
-	Draw(dstRect.X(), dstRect.Y(), image->Texture(), &(SDL_Rect)*clip, dstRect.w, dstRect.h);
+	//We don't want to attempt to dereference a NULL ptr to do the conversion cast
+	//so we must check it here
+	SDL_Rect *ptrClip = NULL;
+	if (clip != NULL)
+		ptrClip = &(SDL_Rect)*clip;
+
+	Draw(dstRect.X(), dstRect.Y(), image->Texture(), ptrClip, dstRect.w, dstRect.h);
 }
 void Window::Draw(Text *text, const Rectf &dstRect, float angle, Vector2f pivot, int flip)
 {
