@@ -22,7 +22,7 @@ std::string MenuState::Run(){
 	UnsetExit();
 
 	//Setup the background destination
-	SDL_Rect bkgndPos = Math::FromSceneSpace(mCamera.get(), mCamera->SceneBox());
+	Rectf bkgndPos = Math::FromSceneSpace(mCamera.get(), mCamera->SceneBox());
 
 	Timer delta;
 	delta.Start();
@@ -49,7 +49,7 @@ std::string MenuState::Run(){
 
 		//RENDERING
 		Window::Clear();
-		Window::Draw(&mBackground, bkgndPos, &(SDL_Rect)mCamera->Box());
+		Window::Draw(&mBackground, bkgndPos, &(Recti)mCamera->Box());
 		mManager->Draw();
 
 		//refresh window

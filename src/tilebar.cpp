@@ -18,11 +18,11 @@ void TileBar::Move(float deltaT){
 }
 void TileBar::Draw(Camera *cam){
 	//Draw background
-	Window::Draw(&mImage, mPhysics.Box(), &(SDL_Rect)mImage.Clip(0));
+	Window::Draw(&mImage, mPhysics.Box(), &(Recti)mImage.Clip(0));
 	//Draw the tiles
 	for (int i = 0; i < mTiles.size(); ++i){
 		Window::Draw(&mTileImage, mTiles.at(i).Box() + mPhysics.Box().Pos(), 
-			&(SDL_Rect)mTileImage.Clip(mTiles.at(i).Type()));
+			&(Recti)mTileImage.Clip(mTiles.at(i).Type()));
 	}
 	//Draw the selector
 	//Need a better way to save these offsets?

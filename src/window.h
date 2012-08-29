@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <memory>
 #include <SDL.h>
+#include <luabind/luabind.hpp>
 #include "image.h"
 #include "rect.h"
 #include "text.h"
@@ -51,8 +52,8 @@ public:
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
 	*/
-	static void Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip = NULL,
-		float angle = 0.0, Vector2f pivot = Vector2f(0, 0), SDL_RendererFlip flip = SDL_FLIP_NONE);
+	static void Draw(Image *image, const Rectf &dstRect, Recti *clip = NULL,
+		float angle = 0.0, Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
 	/**
 	*  Draw a text type to the screen at some position
 	*  @param text The text type to draw
@@ -62,8 +63,8 @@ public:
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
 	*/
-	static void Draw(Text *text, SDL_Rect dstRect, float angle = 0.0, Vector2f pivot = Vector2f(0, 0),
-		SDL_RendererFlip flip = SDL_FLIP_NONE);
+	static void Draw(Text *text, const Rectf &dstRect, float angle = 0.0, Vector2f pivot = Vector2f(0, 0),
+		int flip = SDL_FLIP_NONE);
 	/**
 	*  Load an image file as a SDL_Texture and return it
 	*  @param file The image file to load
@@ -96,6 +97,11 @@ public:
 	static void HandleEvents(SDL_Event &e);
 	///Get the window's box
 	static Recti Box();
+	/**
+	*  Register the Window class with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	static void RegisterLua(lua_State *l);
 
 private:
 	static std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> mWindow;

@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include <luabind/luabind.hpp>
+#include <luabind/operator.hpp>
 #include "../externals/json/json.h"
 
 ///A 2D vector

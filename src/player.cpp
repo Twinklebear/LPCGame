@@ -46,7 +46,7 @@ void Player::Draw(Camera *cam){
 
 	//Window::Draw(&mImage, pos);
 	//Draw animation
-	Window::Draw(&mAnimatedImage, pos, &(SDL_Rect)mAnimatedImage.Clip(mAnimatedImage.ActiveClip()));
+	Window::Draw(&mAnimatedImage, pos, &(Recti)mAnimatedImage.Clip(mAnimatedImage.ActiveClip()));
 }
 Json::Value Player::Save(){
 	//Json::Value val = GameObject::Save();

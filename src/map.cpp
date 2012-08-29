@@ -21,7 +21,7 @@ void Map::Draw(Camera *cam){
 			if (i < mTiles.size()){
 				Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
 				Window::Draw(&mImage, pos,
-					&(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
+					&(Recti)mImage.Clip(mTiles.at(i).Type()));
 			}
 		}
 	}
@@ -29,7 +29,7 @@ void Map::Draw(Camera *cam){
 	else
 		for (int i = 0; i < mTiles.size(); ++i){
 			Window::Draw(&mImage, mTiles.at(i).Box(), 
-				&(SDL_Rect)mImage.Clip(mTiles.at(i).Type()));
+				&(Recti)mImage.Clip(mTiles.at(i).Type()));
 		}
 }
 Json::Value Map::Save(){

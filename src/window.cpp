@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <luabind/luabind.hpp>
 #include "rect.h"
 #include "image.h"
 #include "window.h"
@@ -68,16 +69,17 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h,
 	//Draw the texture
 	SDL_RenderCopyEx(mRenderer.get(), tex, clip, &dstRect, angle, &(SDL_Point)pivot, flip);
 }
-void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip, float angle, 
-				  Vector2f pivot, SDL_RendererFlip flip)
+void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip, float angle, 
+				  Vector2f pivot, int flip)
 {
-	Draw(dstRect.x, dstRect.y, image->Texture(), clip, dstRect.w, dstRect.h);
+	Draw(dstRect.X(), dstRect.Y(), image->Texture(), &(SDL_Rect)*clip, dstRect.w, dstRect.h);
 }
-void Window::Draw(Text *text, SDL_Rect dstRect, float angle,
-				  Vector2f pivot, SDL_RendererFlip flip)
+void Window::Draw(Text *text, const Rectf &dstRect, float angle, Vector2f pivot, int flip)
 {
-	text->Size(dstRect.w, dstRect.h);
-	Draw(dstRect.x, dstRect.y, text->Texture(), NULL, dstRect.w, dstRect.h);
+	int w = 0;
+	int h = 0;
+	text->Size(w, h);
+	Draw(dstRect.X(), dstRect.Y(), text->Texture(), NULL, w, h);
 }
 SDL_Texture* Window::LoadTexture(std::string file){
 	SDL_Texture *tex = nullptr;
@@ -122,4 +124,23 @@ Recti Window::Box(){
 	//Update the box to match the current window w/h
 	SDL_GetWindowSize(mWindow.get(), &mBox.w, &mBox.h);
 	return mBox;
+}
+void Window::RegisterLua(lua_State *l){
+	using namespace luabind;
+
+	module(l, "LPC")[
+		class_<Window>("Window")
+			.scope[
+				def("Draw", (void (*)(Image*, const Rectf&, Recti*, float, Vector2f, int))&Window::Draw),
+				def("Draw", (void (*)(Text*, const Rectf&, float, Vector2f, int))&Window::Draw),
+				def("Clear", &Window::Clear),
+				def("Present", &Window::Present),
+				def("Box", &Window::Box)
+			]
+			.enum_("RendererFlip")[
+				value("FLIP_NONE", SDL_FLIP_NONE),
+				value("FLIP_HORIZ", SDL_FLIP_HORIZONTAL),
+				value("FLIP_VERT", SDL_FLIP_VERTICAL)
+			]
+	];
 }
