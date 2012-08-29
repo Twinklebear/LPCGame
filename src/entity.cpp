@@ -2,88 +2,88 @@
 #include <lua.hpp>
 #include <luabind/luabind.hpp>
 #include "math.h"
+#include "luascript.h"
 #include "entity.h"
 
-Entity::Entity() : mMouseOver(false), mL(nullptr), mScript(""){
+Entity::Entity() : mMouseOver(false){
 }
-Entity::Entity(std::string script) : mMouseOver(false), mL(nullptr){
-	OpenScript(script);
+Entity::Entity(std::string script) : mMouseOver(false){
+	mScript.OpenScript(script);
 }
 Entity::~Entity(){
-	if (mL != nullptr)
-		lua_close(mL);
 }
 void Entity::Init(){
-	std::cout << "Calling Init" << std::endl;
 	//We catch exceptions so that if the function doesn't exist the program 
 	//won't crash. This lets us skip implementing functions we don't need
 	//int scripts
+	if (!mScript.Open())
+		return;
 	try{
-		luabind::call_function<void>(mL, "Init", this);
+		luabind::call_function<void>(mScript.Get(), "Init", this);
 	}
 	catch(...){
-		std::cout << "Init issue: " << lua_error(mL) << std::endl;
+		std::cout << "Init issue: " << lua_error(mScript.Get()) << std::endl;
 	}
 }
 void Entity::Update(){
-	if (mL == nullptr)
+	if (!mScript.Open())
 		return;
 	try{
-		luabind::call_function<void>(mL, "Update");
+		luabind::call_function<void>(mScript.Get(), "Update");
 	}
 	catch(...){
 	}
 }
 void Entity::Move(float deltaT){
-	if (mL == nullptr)
+	if (!mScript.Open())
 		return;
 	try{
-		luabind::call_function<void>(mL, "Move", deltaT);
+		luabind::call_function<void>(mScript.Get(), "Move", deltaT);
 	}
 	catch(...){
 	}
 }
 void Entity::Draw(Camera *camera){
-	if (mL == nullptr)
+	if (!mScript.Open())
 		return;
 	try{
-		luabind::call_function<void>(mL, "Draw", camera);
+		luabind::call_function<void>(mScript.Get(), "Draw", camera);
 	}
 	catch(...){
 	}
 }
 void Entity::OnMouseDown(){
-	if (mL == nullptr)
+	if (!mScript.Open())
 		return;
 	try{
-		luabind::call_function<void>(mL, "OnMouseDown");
+		luabind::call_function<void>(mScript.Get(), "OnMouseDown");
 	}
 	catch(...){
 	}
 }
 void Entity::OnMouseUp(){
-	if (mL == nullptr)
+	if (!mScript.Open())
 		return;
 	try{
-		luabind::call_function<void>(mL, "OnMouseUp");
+		luabind::call_function<void>(mScript.Get(), "OnMouseUp");
 	}
 	catch(...){
 	}
 }
 void Entity::OnMouseEnter(){
-	if (mL == nullptr)
+	if (!mScript.Open())
 		return;
 	try{
-		luabind::call_function<void>(mL, "OnMouseEnter");
+		luabind::call_function<void>(mScript.Get(), "OnMouseEnter");
 	}
 	catch(...){
 	}
 }
 void Entity::OnMouseExit(){
-	if (mL == nullptr)
+	if (!mScript.Open())
 		return;
 	try{
-		luabind::call_function<void>(mL, "OnMouseExit");
+		luabind::call_function<void>(mScript.Get(), "OnMouseExit");
 	}
 	catch(...){
 	}
@@ -107,18 +107,6 @@ bool Entity::GetMouseOver(){
 void Entity::SetCollisionMap(CollisionMap map){
 	mPhysics.SetMap(map);
 }
-void Entity::OpenScript(std::string script){
-	mScript = script;
-	if (mScript != ""){
-		mL = lua_open();
-		luaL_openlibs(mL);
-		luabind::open(mL);
-		//Perform lua module initialization here
-		Entity::RegisterLua(mL);
-		luaL_dofile(mL, mScript.c_str());
-		std::cout << "Script opened" << std::endl;
-	}
-}
 Rectf Entity::Box(){
 	return mPhysics.Box();
 }
@@ -133,15 +121,15 @@ Json::Value Entity::Save(){
 	val["image"]   = mImage.Save();
 	val["physics"] = mPhysics.Save();
 	val["tag"]	   = mTag;
-	val["script"]  = mScript;
+	val["script"]  = mScript.Save();
 	return val;
 }
 void Entity::Load(Json::Value val){
 	mPhysics.Load(val["physics"]);
 	mImage.Load(val["image"]);
 	mTag = val["tag"].asString();
-	OpenScript(val["script"].asString());
-	//Once migration to Lua is complete for entities, call Entity::Init here
+	mScript.Load(val["script"]);
+	//Once migration to Lua is complete for entities, call Entity::Init here?
 }
 void Entity::RegisterLua(lua_State *l){
 	using namespace luabind;

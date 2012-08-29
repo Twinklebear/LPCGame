@@ -8,6 +8,7 @@
 #include "physics.h"
 #include "map.h"
 #include "image.h"
+#include "luascript.h"
 
 ///A base class for GameObjects to inherit from
 /**
@@ -48,9 +49,6 @@ public:
 	///On mouse exit
 	virtual void OnMouseExit();
 	/**
-	*  Call some desired function 
-	*/
-	/**
 	*  Check if mouse entered the object's box
 	*  Updates mMouseOver accordingly
 	*  @param pos The mouse pos to check 
@@ -69,7 +67,6 @@ public:
 	void SetTag(std::string tag);
 	///Get the entity's tag
 	std::string Tag();
-	///TODO: How will I save custom entity data from the script?
 	/**
 	*  Save the Entity data to a json value and return it
 	*  The Entity instance of the function takes care of saving
@@ -90,13 +87,6 @@ public:
 	*/
 	static void RegisterLua(lua_State *l);
 
-protected:
-	/**
-	*  Open the desired Lua script to be run as the entity's behavior script
-	*  @param script The script file to open
-	*/
-	void OpenScript(std::string script);
-
 private:
 	///Game objects should not be copy-constructable
 	Entity(const Entity &a);
@@ -113,9 +103,7 @@ protected:
 	///For tracking mouse over
 	bool mMouseOver;
 	///The entity's lua script
-	lua_State *mL;
-	///The entity's script name
-	std::string mScript;
+	LuaScript mScript;
 };
 
 #endif

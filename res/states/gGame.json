@@ -114,7 +114,10 @@
             "hAccel" : 700,
             "hSpeed" : 300
          },
-         "script" : "../res/scripts/test.lua",
+         "script" : {
+            "file" : "../res/scripts/test.lua",
+            "modules" : [ 4, 6 ]
+         },
          "tag" : "",
          "type" : "0"
       }
@@ -1235,7 +1238,9 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : "",
+         "script" : {
+            "file" : ""
+         },
          "tag" : "",
          "text" : {
             "color" : {

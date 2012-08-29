@@ -64,7 +64,9 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : "",
+         "script" : {
+            "file" : ""
+         },
          "tag" : "",
          "text" : {
             "color" : {
@@ -107,7 +109,9 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : "",
+         "script" : {
+            "file" : ""
+         },
          "tag" : "",
          "text" : {
             "color" : {
@@ -150,7 +154,9 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : "",
+         "script" : {
+            "file" : ""
+         },
          "tag" : "",
          "text" : {
             "color" : {

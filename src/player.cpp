@@ -49,7 +49,6 @@ void Player::Draw(Camera *cam){
 	Window::Draw(&mAnimatedImage, pos, &(Recti)mAnimatedImage.Clip(mAnimatedImage.ActiveClip()));
 }
 Json::Value Player::Save(){
-	//Json::Value val = GameObject::Save();
 	//Overriding to test my animated image
 	Json::Value val;
 	val["physics"] = mPhysics.Save();
@@ -59,7 +58,6 @@ Json::Value Player::Save(){
 	return val;
 }
 void Player::Load(Json::Value val){
-	//GameObject::Load(val);
 	//Overriding to test my animated image
 	mPhysics.Load(val["physics"]);
 	mAnimatedImage.Load(val["image"]);

@@ -13,7 +13,7 @@ Button::Button() : mClicked(false), mFunc(nullptr)
 }
 Button::Button(std::string script) : mClicked(false), mFunc(nullptr)
 {
-	OpenScript(script);
+	mScript.OpenScript(script);
 }
 Button::~Button(){}
 void Button::Update(){}
@@ -58,11 +58,11 @@ void Button::OnMouseExit(){
 void Button::OnClick(){
 	if (mFunc != nullptr)
 		mFunc(mParam);
-	if (mL == nullptr)
+	if (!mScript.Open())
 		return;
 	///Call the script
 	try{
-		luabind::call_function<void>(mL, "OnClick");
+		luabind::call_function<void>(mScript.Get(), "OnClick");
 	}
 	catch(...){
 	}

@@ -13,6 +13,7 @@
          "y" : 0.0
       }
    },
+   "entities" : null,
    "map" : {
       "image" : {
          "clips" : [
@@ -4099,7 +4100,6 @@
       ]
    },
    "name" : "editor",
-   "entities" : null,
    "ui" : [
       {
          "image" : {
@@ -4129,6 +4129,9 @@
             },
             "hAccel" : 0,
             "hSpeed" : 0
+         },
+         "script" : {
+            "file" : ""
          },
          "tag" : "",
          "text" : {
@@ -4170,6 +4173,9 @@
             },
             "hAccel" : 0,
             "hSpeed" : 0
+         },
+         "script" : {
+            "file" : ""
          },
          "selector" : {
             "file" : "../res/images/selector.png"
