@@ -9,6 +9,8 @@
 #include "image.h"
 #include "window.h"
 
+#include <iostream>
+
 //Initialize the unique_ptr's deleters here
 std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> Window::mWindow 
 	= std::unique_ptr<SDL_Window, void (*)(SDL_Window*)>(nullptr, SDL_DestroyWindow);
@@ -80,6 +82,10 @@ void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip, float angle,
 
 	Draw(dstRect.X(), dstRect.Y(), image->Texture(), ptrClip, dstRect.w, dstRect.h);
 }
+void Window::Draw(Image *image, const Rectf& dstRect){
+	Draw(image, dstRect, NULL);
+	std::cout << "Minimal Draw was called" << std::endl;
+}
 void Window::Draw(Text *text, const Rectf &dstRect, float angle, Vector2f pivot, int flip)
 {
 	int w = 0;
@@ -137,6 +143,9 @@ void Window::RegisterLua(lua_State *l){
 	module(l, "LPC")[
 		class_<Window>("Window")
 			.scope[
+				//Note: These binding methods don't allow for default paramaters to have an effect, as such
+				//I must define an individual function each time
+				def("Draw", (void (*)(Image*, const Rectf&))&Window::Draw),
 				def("Draw", (void (*)(Image*, const Rectf&, Recti*, float, Vector2f, int))&Window::Draw),
 				def("Draw", (void (*)(Text*, const Rectf&, float, Vector2f, int))&Window::Draw),
 				def("Clear", &Window::Clear),

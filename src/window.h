@@ -52,8 +52,14 @@ public:
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
 	*/
-	static void Draw(Image *image, const Rectf &dstRect, Recti *clip = NULL,
+	static void Draw(Image *image, const Rectf &dstRect, Recti *clip,
 		float angle = 0.0, Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
+	/**
+	*  Draw an image type to the screen, exists for testing of Lua at the moment
+	*  @param image The image to draw
+	*  @param dstRect The destination rectangle to draw too 
+	*/
+	static void Draw(Image *image, const Rectf& dstRect);
 	/**
 	*  Draw a text type to the screen at some position
 	*  @param text The text type to draw

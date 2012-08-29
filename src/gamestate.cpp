@@ -121,7 +121,7 @@ void GameState::Free(){
 Json::Value GameState::Save(){
 	Json::Value val = State::Save();
 	val["map"] = mMap->Save();
-	val["ui"]  =  mUiManager->Save();
+	val["ui"]  = mUiManager->Save();
 
 	Free();
 	return val;
@@ -152,6 +152,13 @@ void GameState::Load(Json::Value val){
 			n->Init();
 			std::shared_ptr<Entity> sObj(n);
 			//Register with manager
+			mManager->Register(sObj);
+		}
+		if (entities[i]["obj"].asString() == "entity"){
+			Entity *e = new Entity();
+			e->Load(entities[i]);
+			e->Init();
+			std::shared_ptr<Entity> sObj(e);
 			mManager->Register(sObj);
 		}
 	}

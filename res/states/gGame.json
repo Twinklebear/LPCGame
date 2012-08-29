@@ -100,26 +100,25 @@
          "tag" : "focus"
       },
       {
+         "obj" : "entity",
          "image" : {
             "file" : "../res/images/npc.png"
          },
-         "obj" : "npc",
          "physics" : {
             "box" : {
                "h" : 28.0,
                "w" : 28.0,
-               "x" : 10.0,
+               "x" : 100.0,
                "y" : 0.0
             },
             "hAccel" : 700,
             "hSpeed" : 300
          },
          "script" : {
-            "file" : "../res/scripts/test.lua",
-            "modules" : [ 4, 6 ]
+            "file" : "../res/scripts/test2.lua",
+            "modules" : [ 2, 4, 5, 6, 9, 10, 15, 16 ]
          },
-         "tag" : "",
-         "type" : "0"
+         "tag" : "test"
       }
    ],
    "map" : {
