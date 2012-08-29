@@ -82,13 +82,13 @@ void MenuState::Load(Json::Value val){
 	mBackground.Load(val["background"]);
 
 	//Load the objects
-	Json::Value objects = val["objects"];
-	for (int i = 0; i < objects.size(); ++i){
+	Json::Value entities = val["entities"];
+	for (int i = 0; i < entities.size(); ++i){
 		//Loading object buttons
-		if (objects[i]["type"].asString() == "objectbutton"){
+		if (entities[i]["type"].asString() == "objectbutton"){
 			ObjectButton<State> *b = new ObjectButton<State>();
 			b->RegisterCallBack(this, &State::SetExit, "");
-			b->Load(objects[i]);
+			b->Load(entities[i]);
 			std::shared_ptr<Entity> sObj(b);
 			mManager->Register(sObj);
 		}

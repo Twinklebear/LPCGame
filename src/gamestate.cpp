@@ -134,11 +134,11 @@ void GameState::Load(Json::Value val){
 	mCamera->SetSceneBox(Rectf(0, 0, mMap->Box().w, mMap->Box().h));
 
 	//Load the objects
-	Json::Value objects = val["objects"];
-	for (int i = 0; i < objects.size(); ++i){
-		if (objects[i]["obj"].asString() == "player"){
+	Json::Value entities = val["entities"];
+	for (int i = 0; i < entities.size(); ++i){
+		if (entities[i]["obj"].asString() == "player"){
 			Player *p = new Player();
-			p->Load(objects[i]);
+			p->Load(entities[i]);
 			std::shared_ptr<Entity> sObj(p);
 			//Check for focus tag
 			if (sObj->Tag() == "focus")
@@ -146,9 +146,10 @@ void GameState::Load(Json::Value val){
 			//Register
 			mManager->Register(sObj);
 		}
-		if (objects[i]["obj"].asString() == "npc"){
+		if (entities[i]["obj"].asString() == "npc"){
 			Npc *n = new Npc();
-			n->Load(objects[i]);
+			n->Load(entities[i]);
+			n->Init();
 			std::shared_ptr<Entity> sObj(n);
 			//Register with manager
 			mManager->Register(sObj);

@@ -101,6 +101,8 @@ void Text::Load(Json::Value val){
 }
 void Text::RegisterLua(lua_State *l){
 	using namespace luabind;
+	//Text module requires the Color module, so register that first
+	Color::RegisterLua(l);
 
 	module(l, "LPC")[
 		class_<Text>("Text")

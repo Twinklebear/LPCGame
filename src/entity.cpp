@@ -14,6 +14,7 @@ Entity::~Entity(){
 		lua_close(mL);
 }
 void Entity::Init(){
+	std::cout << "Calling Init" << std::endl;
 	//We catch exceptions so that if the function doesn't exist the program 
 	//won't crash. This lets us skip implementing functions we don't need
 	//int scripts
@@ -21,7 +22,7 @@ void Entity::Init(){
 		luabind::call_function<void>(mL, "Init", this);
 	}
 	catch(...){
-		//std::cout << "Init issue: " << lua_error(mL) << std::endl;
+		std::cout << "Init issue: " << lua_error(mL) << std::endl;
 	}
 }
 void Entity::Update(){
@@ -108,11 +109,15 @@ void Entity::SetCollisionMap(CollisionMap map){
 }
 void Entity::OpenScript(std::string script){
 	mScript = script;
-	mL = lua_open();
-	luaL_openlibs(mL);
-	luabind::open(mL);
-	//Perform lua module initialization here
-	luaL_dofile(mL, mScript.c_str());
+	if (mScript != ""){
+		mL = lua_open();
+		luaL_openlibs(mL);
+		luabind::open(mL);
+		//Perform lua module initialization here
+		Entity::RegisterLua(mL);
+		luaL_dofile(mL, mScript.c_str());
+		std::cout << "Script opened" << std::endl;
+	}
 }
 Rectf Entity::Box(){
 	return mPhysics.Box();
@@ -135,7 +140,8 @@ void Entity::Load(Json::Value val){
 	mPhysics.Load(val["physics"]);
 	mImage.Load(val["image"]);
 	mTag = val["tag"].asString();
-	mScript = val["script"].asString();
+	OpenScript(val["script"].asString());
+	//Once migration to Lua is complete for entities, call Entity::Init here
 }
 void Entity::RegisterLua(lua_State *l){
 	using namespace luabind;

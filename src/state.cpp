@@ -31,9 +31,9 @@ std::string State::Name(){
 }
 Json::Value State::Save(){
 	Json::Value val;
-	val["objects"]  = mManager->Save();
-	val["name"]	    = mName;
-	val["camera"]	= mCamera->Save();
+	val["entities"]  = mManager->Save();
+	val["name"]	     = mName;
+	val["camera"]    = mCamera->Save();
 
 	return val;
 }

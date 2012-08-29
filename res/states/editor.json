@@ -4099,7 +4099,7 @@
       ]
    },
    "name" : "editor",
-   "objects" : null,
+   "entities" : null,
    "ui" : [
       {
          "image" : {

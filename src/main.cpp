@@ -5,7 +5,7 @@
 #include "statemanager.h"
 
 #include "debugger.h"
-
+#undef main
 int main(int argc, char** argv){
 	//Initialize statics
 	Window::Init();

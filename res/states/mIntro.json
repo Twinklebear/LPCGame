@@ -34,8 +34,7 @@
          "y" : 0.0
       }
    },
-   "name" : "mIntro",
-   "objects" : [
+   "entities" : [
       {
          "image" : {
             "clips" : [
@@ -165,6 +164,7 @@
          },
          "type" : "objectbutton"
       }
-   ]
+   ],
+   "name" : "mIntro"
 }
 

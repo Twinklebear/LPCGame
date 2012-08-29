@@ -9,6 +9,7 @@
 - Clean up warnings
 - Implement Lua for scripting objects behavior
 	- Each class will have a RegisterLua or something named function, and when that is called and passed a lua_State* it will expose the class to the Lua script.
+		- Need some kind of LuaManager or something to enable loading of modules from a script as desired, with some default or required modules being loaded depending on what the script is using
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
 	- How should the State class be handled?
 		- If I create the ability to call state functions like SetExit from Lua, will ObjectButton no longer be needed? since Button's OnClick script would then simply call the function? I'll try this and then decide what to do with ObjectButton.

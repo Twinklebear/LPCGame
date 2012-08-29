@@ -15,10 +15,11 @@
 Npc::Npc(){}
 Npc::~Npc(){}
 void Npc::Update(){
-
+	Entity::Update();
 }
 void Npc::Move(float deltaT){
 	mPhysics.Move(deltaT);
+	Entity::Move(deltaT);
 }
 void Npc::Draw(Camera *cam){
 	Rectf pos = mPhysics.Box();
