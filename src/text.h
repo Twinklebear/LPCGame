@@ -70,13 +70,13 @@ public:
 	*  Get a rect containing the message texture's width and height
 	*  @return Recti containing the width and height of the message
 	*/
-	Recti GetSize();
+	Recti Size();
 	/**
 	*  Store the width and height values of the texture in the values passed
 	*  @param w The value to store the width in
 	*  @param h The value to store the height in
 	*/
-	void GetSize(int &w, int &h);
+	void Size(int &w, int &h);
 	/**
 	*  Save the text data to a Json::Value
 	*  @returns Json::Value containing information about the text

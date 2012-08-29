@@ -6,6 +6,7 @@
 - [SDL 2.0](http://wiki.libsdl.org/moin.cgi/FrontPage)
 
 ## Todo:
+- Clean up warnings
 - Implement Lua for scripting objects behavior
 	- Each class will have a RegisterLua or something named function, and when that is called and passed a lua_State* it will expose the class to the Lua script.
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
@@ -14,6 +15,7 @@
 			- I think I've got a method for this setup, see the static StateManager function ChangeScene
 		- Will need some way to grab the active state, perhaps from StateManager? It's a pure-static class so yes, I think that will work
 		- Should states be run via script? Hmm. What to do with states..
+		- Should tiles become entities that are managed by the Map class? This will allow tiles to have scripts attached. Or should tiles remain simple floor imagery and instead invisible entities should be created to enable area triggers. (kind of leaning to the latter, it'll be easier than reworking the Map & Tile class)
 	- How to save data from script?
 		- Have decided to leave this up to the user, so editor created data will be handled by JsonCPP and script data will be handled by whatever is desired for Lua, and will have no interoperation between the C++ saved data and custom script data.
 - Simple map editor

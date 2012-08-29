@@ -1,7 +1,8 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-#include "SDL.h"
+#include <SDL.h>
+#include <luabind/luabind.hpp>
 
 ///Measures time, it's a timer
 /**
@@ -26,6 +27,12 @@ public:
 	bool Started() const;
 	///Check if timer is paused
 	bool Paused() const;
+	/**
+	*  Register the Timer class with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	static void RegisterLua(lua_State *l);
+
 private:
 	int mStartTicks, mPausedTicks;
 	bool mStarted, mPaused;

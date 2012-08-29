@@ -2,6 +2,7 @@
 #define VECTORS_H
 
 #include <SDL.h>
+#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 
 ///A 2D vector
@@ -39,7 +40,6 @@ public:
 		Json::Value val;
 		val["x"] = x;
 		val["y"] = y;
-
 		return val;
 	}
 	/**
@@ -104,7 +104,50 @@ public:
 		p.y = y;
 		return p;
 	}
-
+	/**
+	*  Register the Vector class with the lua state
+	*  @param l The lua_State to register the module with
+	*/
+	static void RegisterLua(lua_State *l){
+		using namespace luabind;
+		
+		module(l, "LPC")[
+			//For Vector2<int>
+			class_<Vector2<int>>("Vector2i")
+				.def(constructor<>())
+				.def(constructor<int, int>())
+				.def("Set", &Vector2<int>::Set)
+				//accessors
+				.def_readwrite("x", &Vector2<int>::x)
+				.def_readwrite("y", &Vector2<int>::y)
+				//operators
+				.def(const_self + Vector2<int>())
+				.def(const_self - Vector2<int>())
+				.def(const_self * Vector2<int>())
+				.def(const_self * Vector2<float>())
+				.def(const_self * float())
+				.def(const_self / Vector2<int>())
+				.def(const_self / Vector2<float>())
+				.def(const_self / float()),
+			//For Vector2<float>
+			class_<Vector2<float>>("Vector2f")
+				.def(constructor<>())
+				.def(constructor<float, float>())
+				.def("Set", &Vector2<float>::Set)
+				//accessors
+				.def_readwrite("x", &Vector2<float>::x)
+				.def_readwrite("y", &Vector2<float>::y)
+				//operators
+				.def(const_self + Vector2<float>())
+				.def(const_self - Vector2<float>())
+				.def(const_self * Vector2<int>())
+				.def(const_self * Vector2<float>())
+				.def(const_self * float())
+				.def(const_self / Vector2<int>())
+				.def(const_self / Vector2<float>())
+				.def(const_self / float())
+		];
+	}
 
 public:
 	T x, y;

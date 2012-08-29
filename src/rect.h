@@ -154,6 +154,28 @@ public:
 		using namespace luabind;
 		///Does Lua/LuaBind support templates?
 		module(l, "LPC")[
+			//For Rect<int>
+			class_<Rect<int>>("Recti")
+				.def(constructor<>())
+				.def(constructor<int, int, int, int>())
+				.def(constructor<Vector2f, int, int>())
+				.def("Set", (void (Rect<int>::*)(int, int, int, int))&Rect<int>::Set)
+				.def("Set", (void (Rect<int::*)(Vector2i, int, int))&Rect<int>::Set)
+				.def("Set", (void (Rect<int::*)(int, int))&Rect::<int>::Set)
+				.def("Set", (void (Rect<int::*)(Vector2i))&Rect::<int>::Set)
+				.def("Pos", &Rect<int>::Pos)
+				.def("X", &Rect<int>::X)
+				.def("Y", &Rect<int>::Y)
+				.def("W", &Rect<int>::W)
+				.def("H", &Rect<int>::H)
+				//accessors
+				.def_readwrite("x", &Rect<int>::pos.x)
+				.def_readwrite("y", &Rect<int>::pos.y)
+				.def_readwrite("w", &Rect<int>::w)
+				.def_readwrite("h", &Rect<int>::h)
+				//operators
+				.def(const_self + Vector2i())
+				.def(const_self - Vector2i()),
 			//For Rect<float>
 			class_<Rect<float>>("Rectf")
 				.def(constructor<>())
@@ -168,24 +190,14 @@ public:
 				.def("Y", &Rect<float>::Y)
 				.def("W", &Rect<float>::W)
 				.def("H", &Rect<float>::H)
+				//accessors
+				.deF_readwrite("x", &Rect<float>::pos.x)
+				.def_readwrite("y", &Rect<float>::pos.y)
+				.def_readwrite("w", &Rect<float>::w)
+				.def_readwrite("h", &Rect<float>::h)
+				//operators
 				.def(const_self + Vector2f())
-				.def(const_self - Vector2f()),
-			//For Rect<int>
-			class_<Rect<int>>("Recti")
-				.def(constructor<>())
-				.def(constructor<int, int, int, int>())
-				.def(constructor<Vector2f, int, int>())
-				.def("Set", (void (Rect<int>::*)(int, int, int, int))&Rect<int>::Set)
-				.def("Set", (void (Rect<int::*)(Vector2f, int, int))&Rect<int>::Set)
-				.def("Set", (void (Rect<int::*)(int, int))&Rect::<int>::Set)
-				.def("Set", (void (Rect<int::*)(Vector2f))&Rect::<int>::Set)
-				.def("Pos", &Rect<int>::Pos)
-				.def("X", &Rect<int>::X)
-				.def("Y", &Rect<int>::Y)
-				.def("W", &Rect<int>::W)
-				.def("H", &Rect<int>::H)
-				.def(const_self + Vector2i())
-				.def(const_self - Vector2i())
+				.def(const_self - Vector2f())
 		];
 	}
 

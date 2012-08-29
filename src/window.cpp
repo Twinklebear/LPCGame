@@ -76,7 +76,7 @@ void Window::Draw(Image *image, const SDL_Rect &dstRect, SDL_Rect *clip, float a
 void Window::Draw(Text *text, SDL_Rect dstRect, float angle,
 				  Vector2f pivot, SDL_RendererFlip flip)
 {
-	text->GetSize(dstRect.w, dstRect.h);
+	text->Size(dstRect.w, dstRect.h);
 	Draw(dstRect.x, dstRect.y, text->Texture(), NULL, dstRect.w, dstRect.h);
 }
 SDL_Texture* Window::LoadTexture(std::string file){

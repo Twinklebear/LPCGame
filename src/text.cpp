@@ -78,12 +78,12 @@ void Text::SetColor(Color color){
 SDL_Texture* Text::Texture(){
 	return mTex.get();
 }
-Recti Text::GetSize(){
+Recti Text::Size(){
 	Recti box(0, 0, 0, 0);
 	SDL_QueryTexture(mTex.get(), NULL, NULL, &box.w, &box.h);
 	return box;
 }
-void Text::GetSize(int &w, int &h){
+void Text::Size(int &w, int &h){
 	SDL_QueryTexture(mTex.get(), NULL, NULL, &w, &h);
 }
 Json::Value Text::Save(){
@@ -105,6 +105,12 @@ void Text::RegisterLua(lua_State *l){
 	module(l, "LPC")[
 		class_<Text>("Text")
 			.def(constructor<>())
-			//.def(constructor<std::string, std::string, 
+			.def(constructor<std::string, std::string, Color, int>())
+			.def("Set", &Text::Set)
+			.def("SetMessage", &Text::SetMessage)
+			.def("SetFont", &Text::SetFont)
+			.def("SetFontSize", &Text::SetFontSize)
+			.def("SetColor", &Text::SetColor)
+			.def("Size", (Recti (Text::*)())&Text::Size)
 	];
 }

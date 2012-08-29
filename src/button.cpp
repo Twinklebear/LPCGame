@@ -27,7 +27,7 @@ void Button::Draw(Camera *cam){
 	else
 		Window::Draw(&mImage, pos, &(SDL_Rect)mImage.Clip(1));
 	//Draw the text
-	Recti textBox = mText.GetSize();
+	Recti textBox = mText.Size();
 	textBox.pos.x = (pos.X() + pos.W() / 2) - textBox.W() / 2;
 	textBox.pos.y = (pos.Y() + pos.H() / 2) - textBox.H() / 2;
 	Window::Draw(&mText, textBox);
