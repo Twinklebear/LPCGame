@@ -9,8 +9,6 @@
 #include "image.h"
 #include "window.h"
 
-#include <iostream>
-
 //Initialize the unique_ptr's deleters here
 std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> Window::mWindow 
 	= std::unique_ptr<SDL_Window, void (*)(SDL_Window*)>(nullptr, SDL_DestroyWindow);
@@ -84,7 +82,6 @@ void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip, float angle,
 }
 void Window::Draw(Image *image, const Rectf& dstRect){
 	Draw(image, dstRect, NULL);
-	std::cout << "Minimal Draw was called" << std::endl;
 }
 void Window::Draw(Text *text, const Rectf &dstRect, float angle, Vector2f pivot, int flip)
 {

@@ -228,9 +228,7 @@ bool Input::KeyDown(std::string keyCode){
 	}
 }
 bool Input::KeyDown(int keyCode){
-	if (mKeyStates[keyCode] == 1)
-		return true;
-	return false;
+	return (mKeyStates[keyCode] == 1);
 }
 bool Input::MouseClick(int button){
 	return (mMouseClick && mButtonEvt.button == button);

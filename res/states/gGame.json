@@ -100,7 +100,6 @@
          "tag" : "focus"
       },
       {
-         "obj" : "entity",
          "image" : {
             "file" : "../res/images/npc.png"
          },
