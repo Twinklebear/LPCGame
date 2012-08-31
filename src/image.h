@@ -94,6 +94,7 @@ protected:
 	std::string mFile;
 	Recti *mClips;
 	int mNumClips;
+	//std::vector<Recti> mClips;
 };
 
 #endif

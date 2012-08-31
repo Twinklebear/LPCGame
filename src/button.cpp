@@ -22,10 +22,13 @@ void Button::Draw(Camera *cam){
 	if (cam != nullptr)
 		pos = Math::FromSceneSpace(cam, pos);
 	//Apply appropriate clip for button's state
+	Recti clip;
 	if (!mClicked)
-		Window::Draw(&mImage, pos, &(Recti)mImage.Clip(0));
+		clip = mImage.Clip(0);
 	else
-		Window::Draw(&mImage, pos, &(Recti)mImage.Clip(1));
+		clip = mImage.Clip(1);
+	Window::Draw(&mImage, pos, &clip);
+
 	//Draw the text
 	Recti textBox = mText.Size();
 	textBox.pos.x = (pos.X() + pos.W() / 2) - textBox.W() / 2;
