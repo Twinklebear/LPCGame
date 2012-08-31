@@ -169,6 +169,7 @@ public:
 				.def("W", &Rect<int>::W)
 				.def("H", &Rect<int>::H)
 				//accessors
+				.def_readwrite("pos", &Rect<int>::pos)
 				.def_readwrite("w", &Rect<int>::w)
 				.def_readwrite("h", &Rect<int>::h)
 				//operators
@@ -190,6 +191,7 @@ public:
 				.def("W", &Rect<float>::W)
 				.def("H", &Rect<float>::H)
 				//accessors
+				.def_readwrite("pos", &Rect<float>::pos)
 				.def_readwrite("w", &Rect<float>::w)
 				.def_readwrite("h", &Rect<float>::h)
 				//operators

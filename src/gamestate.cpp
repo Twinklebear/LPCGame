@@ -14,6 +14,8 @@
 #include "objectbutton.h"
 #include "gamestate.h"
 
+#include <iostream>
+
 GameState::GameState(){
 }
 GameState::~GameState(){
@@ -146,7 +148,7 @@ void GameState::Load(Json::Value val){
 			//Register
 			mManager->Register(sObj);
 		}
-		if (entities[i]["obj"].asString() == "npc"){
+		else if (entities[i]["obj"].asString() == "npc"){
 			Npc *n = new Npc();
 			n->Load(entities[i]);
 			n->Init();

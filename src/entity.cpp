@@ -134,8 +134,6 @@ void Entity::Load(Json::Value val){
 	mPhysics.Load(val["physics"]);
 	mImage.Load(val["image"]);
 	mScript.Load(val["script"]);
-	//Once migration to Lua is complete for entities, call Entity::Init here?
-	Init();
 }
 void Entity::RegisterLua(lua_State *l){
 	using namespace luabind;
@@ -152,7 +150,7 @@ void Entity::RegisterLua(lua_State *l){
 			.def("OnMouseUp", &Entity::OnMouseUp)
 			.def("OnMouseEnter", &Entity::OnMouseEnter)
 			.def("OnMouseExit", &Entity::OnMouseExit)
-			.def("Physics", &Entity::GetPhysics)
+			.def("GetPhysics", &Entity::GetPhysics)
 			.def("Box", &Entity::Box)
 			.def("SetTag", &Entity::SetTag)
 			.def("Tag", &Entity::Tag)

@@ -9,20 +9,22 @@
 #include "image.h"
 #include "player.h"
 
+#include <iostream>
+
 Player::Player(){}
 Player::~Player(){}
 void Player::Update(){
 	//Horizontal input handling
-	if (Input::KeyDown('a'))
+	if (Input::KeyDown("a"))
 		mPhysics.SetHorizDir(Math::LEFT);
-	else if (Input::KeyDown('d'))
+	else if (Input::KeyDown("d"))
 		mPhysics.SetHorizDir(Math::RIGHT);
 	else
 		mPhysics.SetHorizDir(Physics::MOVE::STOP);
 	//Vertical input handling
-	if (Input::KeyDown('w'))
+	if (Input::KeyDown("w"))
 		mPhysics.SetVertDir(Math::UP);
-	else if (Input::KeyDown('s'))
+	else if (Input::KeyDown("s"))
 		mPhysics.SetVertDir(Math::DOWN);
 	else
 		mPhysics.SetVertDir(Physics::MOVE::STOP);

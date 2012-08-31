@@ -44,185 +44,77 @@ void Input::PollEvent(){
 bool Input::KeyDown(std::string keyCode){
 	switch (keyCode.at(0)){
 		case '1':
-			if (mKeyStates[SDL_SCANCODE_1] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_1] == 1);
 		case '2':
-			if (mKeyStates[SDL_SCANCODE_2] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_2] == 1);
 		case '3':
-			if (mKeyStates[SDL_SCANCODE_3] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_3] == 1);
 		case '4':
-			if (mKeyStates[SDL_SCANCODE_4] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_4] == 1);
 		case '5':
-			if (mKeyStates[SDL_SCANCODE_5] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_5] == 1);
 		case '6':
-			if (mKeyStates[SDL_SCANCODE_6] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_6] == 1);
 		case '7':
-			if (mKeyStates[SDL_SCANCODE_7] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_7] == 1);
 		case '8':
-			if (mKeyStates[SDL_SCANCODE_8] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_8] == 1);
 		case '9':
-			if (mKeyStates[SDL_SCANCODE_9] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_9] == 1);
 		case '0':
-			if (mKeyStates[SDL_SCANCODE_0] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_0] == 1);
 		case 'q':
-			if (mKeyStates[SDL_SCANCODE_Q] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_Q] == 1);
 		case 'w':
-			if (mKeyStates[SDL_SCANCODE_W] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_W] == 1);
 		case 'e':
-			if (mKeyStates[SDL_SCANCODE_E] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_E] == 1);
 		case 'r':
-			if (mKeyStates[SDL_SCANCODE_R] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_R] == 1);
 		case 't':
-			if (mKeyStates[SDL_SCANCODE_T] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_T] == 1);
 		case 'y':
-			if (mKeyStates[SDL_SCANCODE_Y] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_Y] == 1);
 		case 'u':
-			if (mKeyStates[SDL_SCANCODE_U] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_U] == 1);
 		case 'i':
-			if (mKeyStates[SDL_SCANCODE_I] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_I] == 1);
 		case 'o': 
-			if (mKeyStates[SDL_SCANCODE_O] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_O] == 1);
 		case 'p':
-			if (mKeyStates[SDL_SCANCODE_P] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_P] == 1);
 		case 'a':
-			if (mKeyStates[SDL_SCANCODE_A] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_A] == 1);
 		case 's':
-			if (mKeyStates[SDL_SCANCODE_S] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_S] == 1);
 		case 'd':
-			if (mKeyStates[SDL_SCANCODE_D] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_D] == 1);
 		case 'f':
-			if (mKeyStates[SDL_SCANCODE_F] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_F] == 1);
 		case 'g':
-			if (mKeyStates[SDL_SCANCODE_G] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_G] == 1);
 		case 'h':
-			if (mKeyStates[SDL_SCANCODE_H] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_H] == 1);
 		case 'j':
-			if (mKeyStates[SDL_SCANCODE_J] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_J] == 1);
 		case 'k':
-			if (mKeyStates[SDL_SCANCODE_K] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_K] == 1);
 		case 'l':
-			if (mKeyStates[SDL_SCANCODE_L] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_L] == 1);
 		case 'z':
-			if (mKeyStates[SDL_SCANCODE_Z] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_Z] == 1);
 		case 'x':
-			if (mKeyStates[SDL_SCANCODE_X] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_X] == 1);
 		case 'c':
-			if (mKeyStates[SDL_SCANCODE_C] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_C] == 1);
 		case 'v':
-			if (mKeyStates[SDL_SCANCODE_V] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_V] == 1);
 		case 'b':
-			if (mKeyStates[SDL_SCANCODE_B] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_B] == 1);
 		case 'n':
-			if (mKeyStates[SDL_SCANCODE_N] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_N] == 1);
 		case 'm':
-			if (mKeyStates[SDL_SCANCODE_M] == 1)
-				return true;
-			else 
-				return false;
+			return (mKeyStates[SDL_SCANCODE_M] == 1);
 		default:
 			return false;
 	}
