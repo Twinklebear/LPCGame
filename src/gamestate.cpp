@@ -154,7 +154,7 @@ void GameState::Load(Json::Value val){
 			//Register with manager
 			mManager->Register(sObj);
 		}
-		if (entities[i]["obj"].asString() == "entity"){
+		else {
 			Entity *e = new Entity();
 			e->Load(entities[i]);
 			e->Init();

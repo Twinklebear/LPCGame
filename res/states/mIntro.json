@@ -53,6 +53,7 @@
             ],
             "file" : "../res/images/200x100button.png"
          },
+         "name" : "",
          "param" : "gGame",
          "physics" : {
             "box" : {
@@ -98,6 +99,7 @@
             ],
             "file" : "../res/images/200x100button.png"
          },
+         "name" : "",
          "param" : "quit",
          "physics" : {
             "box" : {
@@ -143,6 +145,7 @@
             ],
             "file" : "../res/images/200x100button.png"
          },
+         "name" : "",
          "param" : "editor",
          "physics" : {
             "box" : {

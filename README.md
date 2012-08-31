@@ -8,6 +8,10 @@
 ## Todo:
 - Side Note: I changed System to not set as having the console prompt is invaluable for debugging/testing scripts
 - Clean up warnings
+- Is there a valid reason for not rolling the UIManager into the EntityManager?
+- What if i put the image/animatedimage clips/settings/etc into it's own json file associated with the image file? Then you'd be able to load the entire image data seperately from the state file.
+	- Working on putting this in now, this makes more sense anyways, why should an image's data be stored in a state's data file? It's just wierd
+	- Move the Image's clips array to a vector
 - Implement Lua for scripting objects behavior
 	- LuaScript class takes care of loading the script and its desired modules. Modules are stored in JSON as an array of ints corresponding to the MODULE enum in the LuaScript class. Then before calling dofile all the desired modules are registered.
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such

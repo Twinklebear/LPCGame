@@ -7,6 +7,7 @@
 #include <SDL.h>
 #include <luabind/luabind.hpp>
 #include "image.h"
+#include "animatedimage.h"
 #include "rect.h"
 #include "text.h"
 #include "color.h"
@@ -46,20 +47,31 @@ public:
 	*  Draw an image type to the screen
 	*  @param image The image to draw
 	*  @param dstRect The destination rectangle to draw too 
-	*  @param clip The clip rect to apply to the texture, if desired
-	*  @param angle The angle to rotate the image in degrees, default is 0
-	*  @param pivot The point to rotate around, default (0, 0) corresponds to destination rect center,
+	*  @param clip The clip rect to apply to the texture
+	*  @param angle The angle to rotate the image in degrees
+	*  @param pivot The point to rotate around, note: default (0, 0) corresponds to destination rect center,
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
+	*  @note Why are there copies of this function instead of default paramaters? LuaBind doesn't seem
+	*        to recognize default paramaters, or I didn't figure it out and as such had to write
+	*        a version of the function for each call
 	*/
 	static void Draw(Image *image, const Rectf &dstRect, Recti *clip,
-		float angle = 0.0, Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
+		float angle, Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
 	/**
-	*  Draw an image type to the screen, exists for testing of Lua at the moment
+	*  Draw an Image to the screen with no extra effects
 	*  @param image The image to draw
 	*  @param dstRect The destination rectangle to draw too 
 	*/
-	static void Draw(Image *image, const Rectf& dstRect);
+	static void Draw(Image *image, const Rectf &dstRect);
+	/**
+	*  Drawn an Image to the screen with some clip applied
+	*  the version passing with reference is for testing only
+	*  @param image The image to draw
+	*  @param dstRect The destination rectangle to draw too
+	*  @param clip The clip to apply to the image
+	*/
+	static void Draw(Image *image, const Rectf &dstRect, Recti *clip);
 	/**
 	*  Draw a text type to the screen at some position
 	*  @param text The text type to draw
@@ -92,6 +104,28 @@ public:
 	*  @return The SDL_Texture* created from the surface
 	*/
 	static SDL_Texture* SurfaceToTexture(SDL_Surface *surf);
+	/**
+	*  Load an Image and its configuration file if one can be found and return a pointer to it
+	*  @see Window::FreeImage for releasing Image memory
+	*  @param file The image file to load, config file must be a json file of the same name in same folder
+	*/
+	static Image* LoadImage(std::string file);
+	/**
+	*  Load an AnimatedImage and its configuration file if one can be found and return a pointer to it
+	*  @see Window::FreeImage for releasing Image memory
+	*  @param file The image file to load, config file must be a json file of the same name in same folder
+	*/
+//	static AnimatedImage* LoadAnimatedImage(std::string file);
+	/**
+	*  Free an Image
+	*  @param img The Image to destroy
+	*/
+	static void FreeImage(Image* img);
+	/**
+	*  Free an AnimatedImage
+	*  @param img The Image to destroy
+	*/
+	static void FreeImage(AnimatedImage* img);
 	///Clear the renderer
 	static void Clear();
 	///Present the renderer, ie. update screen

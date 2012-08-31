@@ -75,6 +75,16 @@ void AnimatedImage::Load(Json::Value val){
 		mSequences.push_back(tempSeq);
 	}
 }
+void AnimatedImage::LoadConfig(Json::Value val){
+	//Load the clips
+	Image::LoadConfig(val);
+	//Load the AnimationSequences
+	for (int i = 0; i < val["sequences"].size(); ++i){
+		AnimationSequence seq;
+		seq.Load(val["sequences"][i]);
+		mSequences.push_back(seq);
+	}
+}
 void AnimatedImage::RegisterLua(lua_State *l){
 	using namespace luabind;
 

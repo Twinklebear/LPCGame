@@ -6,7 +6,6 @@
 #include <SDL.h>
 #include <luabind/luabind.hpp>
 #include "base.h"
-#include "window.h"
 #include "image.h"
 
 ///Describes an animation sequence
@@ -21,7 +20,6 @@ struct AnimationSequence {
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-
 	///The clips in the animated image clip array
 	std::vector<int> clipIndices;
 	///The framerate to play the animation at
@@ -30,7 +28,6 @@ struct AnimationSequence {
 	///The sequence name
 	std::string name;
 };
-
 ///An image that can store and play animation sequences
 /**
 *  Used for storing and playing animation sequences,
@@ -74,6 +71,11 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
+	/**
+	*  Load an Image's settings from a Json::Value
+	*  @note This will probably replace Load when the switch is done
+	*/
+	virtual void LoadConfig(Json::Value val);
 	/**
 	*  Register the AnimatedImage class with the lua state
 	*  @param l The lua_State to register the module with

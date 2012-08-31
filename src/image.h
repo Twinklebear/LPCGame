@@ -74,6 +74,11 @@ public:
 	*/
 	virtual void Load(Json::Value val);
 	/**
+	*  Load an Image's settings from a Json::Value
+	*  @note This will probably replace Load when the switch is done
+	*/
+	virtual void LoadConfig(Json::Value val);
+	/**
 	*  Register the Image class with the lua state
 	*  @param l The lua_State to register the module with
 	*/

@@ -57,6 +57,12 @@ public:
 	///Return T/F is the mouse is over the object
 	bool GetMouseOver();
 	/**
+	*  Get a pointer to the object's Physics component, for use in allowing
+	*  it to be gotten and used in a script
+	*  @return A pointer to the entity's Physics member
+	*/
+	Physics* GetPhysics();
+	/**
 	*  Set a collision map for the physics member to check against
 	*  @param map The collision map
 	*/
@@ -98,8 +104,10 @@ protected:
 	Image mImage;
 	///Handle's the objects physics
 	Physics mPhysics;
-	///To store tags to identify the object
+	///A general tag for the entity
 	std::string mTag;
+	///The entity's name
+	std::string mName;
 	///For tracking mouse over
 	bool mMouseOver;
 	///The entity's lua script

@@ -7,8 +7,6 @@
 #include "image.h"
 #include "window.h"
 
-#include <iostream>
-
 Image::Image()
 	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0)
 {
@@ -76,6 +74,15 @@ void Image::Load(Json::Value val){
 	if (val["clips"].size() != 0){
 		mNumClips = val["clips"].size();
 		mClips = new Recti[mNumClips];
+		for (int i = 0; i < val["clips"].size(); ++i){
+			mClips[i].Load(val["clips"][i]);
+		}
+	}
+}
+void Image::LoadConfig(Json::Value val){
+	if (val["clips"].size() != 0){
+		mNumClips = val["clips"].size();
+		mClips = new Recti[val["clips"].size()];
 		for (int i = 0; i < val["clips"].size(); ++i){
 			mClips[i].Load(val["clips"][i]);
 		}

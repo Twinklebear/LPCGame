@@ -104,6 +104,9 @@ bool Entity::GetMouseOver(){
 	return mMouseOver;
 
 }
+Physics* Entity::GetPhysics(){
+	return &mPhysics;
+}
 void Entity::SetCollisionMap(CollisionMap map){
 	mPhysics.SetMap(map);
 }
@@ -122,14 +125,17 @@ Json::Value Entity::Save(){
 	val["physics"] = mPhysics.Save();
 	val["tag"]	   = mTag;
 	val["script"]  = mScript.Save();
+	val["name"]    = mName;
 	return val;
 }
 void Entity::Load(Json::Value val){
+	mTag  = val["tag"].asString();
+	mName = val["name"].asString();
 	mPhysics.Load(val["physics"]);
 	mImage.Load(val["image"]);
-	mTag = val["tag"].asString();
 	mScript.Load(val["script"]);
 	//Once migration to Lua is complete for entities, call Entity::Init here?
+	Init();
 }
 void Entity::RegisterLua(lua_State *l){
 	using namespace luabind;
@@ -146,6 +152,7 @@ void Entity::RegisterLua(lua_State *l){
 			.def("OnMouseUp", &Entity::OnMouseUp)
 			.def("OnMouseEnter", &Entity::OnMouseEnter)
 			.def("OnMouseExit", &Entity::OnMouseExit)
+			.def("Physics", &Entity::GetPhysics)
 			.def("Box", &Entity::Box)
 			.def("SetTag", &Entity::SetTag)
 			.def("Tag", &Entity::Tag)

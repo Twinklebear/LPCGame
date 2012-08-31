@@ -1,13 +1,17 @@
 #include <string>
 #include <stdexcept>
 #include <memory>
+#include <fstream>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
 #include <luabind/luabind.hpp>
 #include "rect.h"
 #include "image.h"
+#include "animatedimage.h"
 #include "window.h"
+
+#include <iostream>
 
 //Initialize the unique_ptr's deleters here
 std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> Window::mWindow 
@@ -80,8 +84,11 @@ void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip, float angle,
 
 	Draw(dstRect.X(), dstRect.Y(), image->Texture(), ptrClip, dstRect.w, dstRect.h);
 }
-void Window::Draw(Image *image, const Rectf& dstRect){
-	Draw(image, dstRect, NULL);
+void Window::Draw(Image *image, const Rectf &dstRect){
+	Draw(image, dstRect, NULL, 0);
+}
+void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip){
+	Draw(image, dstRect, clip, 0);
 }
 void Window::Draw(Text *text, const Rectf &dstRect, float angle, Vector2f pivot, int flip)
 {
@@ -121,6 +128,51 @@ SDL_Texture* Window::SurfaceToTexture(SDL_Surface *surf){
 	SDL_FreeSurface(surf);
 	return tex;
 }
+/**
+*  Load an Image and its configuration file if one can be found and return a pointer to it
+*  @see Window::FreeImage for releasing Image memory
+*  @param file The image file to load, config file must be a json file of the same name in same folder
+*/
+Image* Window::LoadImage(std::string file){
+	Image *img = new Image(file);
+	//Attempt to open the json config file
+	size_t extensionPos = file.find_last_of('.');
+	std::string configFile = file.substr(0, extensionPos) + ".json";
+
+	//If the file exists, read it in
+	std::ifstream fileIn((configFile).c_str(), std::ifstream::binary);
+	if (fileIn){
+		Json::Reader reader;
+		Json::Value root;
+		if (reader.parse(fileIn, root, false)){
+			img->LoadConfig(root);
+		}
+		//some debug output, this case should throw
+		else
+			std::cout << "LoadImage parsing failed" << std::endl;
+	}
+	//some debug output, this case shouldn't throw, a config file may not be desired
+	//if only a simple whole image is desired to be shown
+	else
+		std::cout << "LoadImage: " << file << ": no config found" << std::endl;
+	fileIn.close();
+	
+	return img;
+}
+/**
+*  Load an AnimatedImage and its configuration file if one can be found and return a pointer to it
+*  @see Window::FreeImage for releasing Image memory
+*  @param file The image file to load, config file must be a json file of the same name in same folder
+*/
+//AnimatedImage* Window::LoadAnimatedImage(std::string file){
+
+//}
+void Window::FreeImage(Image* img){
+	delete img;
+}
+void Window::FreeImage(AnimatedImage* img){
+	delete img;
+}
 void Window::Clear(){
 	SDL_RenderClear(mRenderer.get());
 }
@@ -143,8 +195,10 @@ void Window::RegisterLua(lua_State *l){
 				//Note: These binding methods don't allow for default paramaters to have an effect, as such
 				//I must define an individual function each time
 				def("Draw", (void (*)(Image*, const Rectf&))&Window::Draw),
+				def("Draw", (void (*)(Image*, const Rectf&, Recti*))&Window::Draw),
 				def("Draw", (void (*)(Image*, const Rectf&, Recti*, float, Vector2f, int))&Window::Draw),
 				def("Draw", (void (*)(Text*, const Rectf&, float, Vector2f, int))&Window::Draw),
+				def("LoadImage", &Window::LoadImage),
 				def("Clear", &Window::Clear),
 				def("Present", &Window::Present),
 				def("Box", &Window::Box)
