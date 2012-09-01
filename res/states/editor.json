@@ -3,8 +3,8 @@
       "mBox" : {
          "h" : 640.0,
          "w" : 640.0,
-         "x" : 0.0,
-         "y" : 0.0
+         "x" : 2.0,
+         "y" : 7.0
       },
       "sceneBox" : {
          "h" : 640.0,
@@ -1165,7 +1165,7 @@
                "y" : 160
             },
             "solid" : false,
-            "type" : 0
+            "type" : 6
          },
          {
             "box" : {
@@ -1595,7 +1595,7 @@
                "y" : 224
             },
             "solid" : false,
-            "type" : 0
+            "type" : 7
          },
          {
             "box" : {
@@ -1785,7 +1785,7 @@
                "y" : 256
             },
             "solid" : false,
-            "type" : 0
+            "type" : 7
          },
          {
             "box" : {
@@ -1795,7 +1795,7 @@
                "y" : 256
             },
             "solid" : false,
-            "type" : 0
+            "type" : 7
          },
          {
             "box" : {
@@ -1805,7 +1805,7 @@
                "y" : 256
             },
             "solid" : false,
-            "type" : 0
+            "type" : 7
          },
          {
             "box" : {
@@ -1815,7 +1815,7 @@
                "y" : 256
             },
             "solid" : false,
-            "type" : 0
+            "type" : 7
          },
          {
             "box" : {
@@ -1995,7 +1995,7 @@
                "y" : 288
             },
             "solid" : false,
-            "type" : 0
+            "type" : 7
          },
          {
             "box" : {
@@ -2005,7 +2005,7 @@
                "y" : 288
             },
             "solid" : false,
-            "type" : 0
+            "type" : 7
          },
          {
             "box" : {
@@ -2375,7 +2375,7 @@
                "y" : 352
             },
             "solid" : false,
-            "type" : 0
+            "type" : 6
          },
          {
             "box" : {
@@ -4119,6 +4119,7 @@
             ],
             "file" : "../res/images/200x100button.png"
          },
+         "name" : "",
          "param" : "mIntro",
          "physics" : {
             "box" : {
@@ -4164,6 +4165,7 @@
             ],
             "file" : "../res/images/200x100button.png"
          },
+         "name" : "",
          "physics" : {
             "box" : {
                "h" : 158.0,
