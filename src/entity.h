@@ -10,10 +10,10 @@
 #include "image.h"
 #include "luascript.h"
 
-///A base class for GameObjects to inherit from
+///The Entity class, to provide functions that call to attached Lua scripts
 /**
-*  Base class for gameobjects, has methods for intialization, updating
-*  setting colliison maps, mouse interaction, etc.
+*  Base class for Entities, has functions that simply provide a call to
+*  the function of the same name on the Entity's attached Lua script
 */
 class Entity{
 public:
