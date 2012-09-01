@@ -11,6 +11,8 @@ Entity::Entity(std::string script) : mMouseOver(false){
 	mScript.OpenScript(script);
 }
 Entity::~Entity(){
+	//Clean up any script memory
+	Free();
 }
 void Entity::Init(){
 	//We catch exceptions so that if the function doesn't exist the program 
@@ -18,17 +20,26 @@ void Entity::Init(){
 	//int scripts
 	if (!mScript.Open())
 		return;
-	try{
+	try {
 		luabind::call_function<void>(mScript.Get(), "Init", this);
 	}
 	catch(...){
 		std::cout << "Init issue: " << lua_error(mScript.Get()) << std::endl;
 	}
 }
+void Entity::Free(){
+	if (!mScript.Open())
+		return;
+	try {
+		luabind::call_function<void>(mScript.Get(), "Free");
+	}
+	catch(...){
+	}
+}
 void Entity::Update(){
 	if (!mScript.Open())
 		return;
-	try{
+	try {
 		luabind::call_function<void>(mScript.Get(), "Update");
 	}
 	catch(...){
@@ -37,7 +48,7 @@ void Entity::Update(){
 void Entity::Move(float deltaT){
 	if (!mScript.Open())
 		return;
-	try{
+	try {
 		luabind::call_function<void>(mScript.Get(), "Move", deltaT);
 	}
 	catch(...){
@@ -46,7 +57,7 @@ void Entity::Move(float deltaT){
 void Entity::Draw(Camera *camera){
 	if (!mScript.Open())
 		return;
-	try{
+	try {
 		luabind::call_function<void>(mScript.Get(), "Draw", camera);
 	}
 	catch(...){
@@ -55,7 +66,7 @@ void Entity::Draw(Camera *camera){
 void Entity::OnMouseDown(){
 	if (!mScript.Open())
 		return;
-	try{
+	try {
 		luabind::call_function<void>(mScript.Get(), "OnMouseDown");
 	}
 	catch(...){
@@ -64,7 +75,7 @@ void Entity::OnMouseDown(){
 void Entity::OnMouseUp(){
 	if (!mScript.Open())
 		return;
-	try{
+	try {
 		luabind::call_function<void>(mScript.Get(), "OnMouseUp");
 	}
 	catch(...){
@@ -82,7 +93,7 @@ void Entity::OnMouseEnter(){
 void Entity::OnMouseExit(){
 	if (!mScript.Open())
 		return;
-	try{
+	try {
 		luabind::call_function<void>(mScript.Get(), "OnMouseExit");
 	}
 	catch(...){
@@ -143,6 +154,7 @@ void Entity::RegisterLua(lua_State *l){
 			.def(constructor<>())
 			.def(constructor<std::string>())
 			.def("Init", &Entity::Init)
+			.def("Free", &Entity::Free)
 			.def("Update", &Entity::Update)
 			.def("Move", &Entity::Move)
 			.def("Draw", &Entity::Draw)

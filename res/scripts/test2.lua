@@ -10,6 +10,10 @@ function Init(object)
 	--Testing some clip stuff
 	clipNum = 0
 end
+function Free()
+	print("Test2 Free")
+	LPC.Window.FreeImage(img)
+end
 --Called each frame
 function Update()
 	--Playing with clips

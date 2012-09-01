@@ -24,10 +24,10 @@ public:
 	*/
 	Entity(std::string script);
 	virtual ~Entity();
-	/**
-	*  Initialize the object
-	*/
+	//Initialize the object
 	virtual void Init();
+	//Free the object's memory
+	virtual void Free();
 	///Update the game object
 	virtual void Update();
 	/**
