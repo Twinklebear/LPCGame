@@ -2,8 +2,9 @@
 
 ## Documentation:
 - [Code](http://twinklebear.github.com/LPCGame/)
-- [JsonCPP](http://jsoncpp.sourceforge.net/)
 - [SDL 2.0](http://wiki.libsdl.org/moin.cgi/FrontPage)
+- [JsonCPP](http://jsoncpp.sourceforge.net/)
+- [LuaBind](http://www.rasterbar.com/products/luabind/docs.html)
 
 ## Todo:
 - Side Note: I changed System to not set as having the console prompt is invaluable for debugging/testing scripts
