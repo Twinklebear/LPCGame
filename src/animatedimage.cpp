@@ -25,7 +25,14 @@ void AnimationSequence::Load(Json::Value val){
 		clipIndices.push_back(val["frames"][i].asInt());
 	}
 }
-AnimatedImage::AnimatedImage() : mActiveAnimation(0), mFrame(0){
+AnimatedImage::AnimatedImage() 
+    : mActiveAnimation(0), mFrame(0)
+{
+}
+AnimatedImage::AnimatedImage(const std::string &file) 
+    : mActiveAnimation(0), mFrame(0)
+{
+    LoadImage(file);
 }
 AnimatedImage::~AnimatedImage(){
 }

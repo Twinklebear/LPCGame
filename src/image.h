@@ -19,11 +19,11 @@ class Image {
 public:
 	Image();
 	/**
-	*  Setup the image class, if a filename is passed load the image
+	*  Setup the Image class, if a filename is passed load the image
 	*  @param file The filename
 	*  @see Window::LoadImage for the loading function
 	*/
-	Image(const std::string file);
+	Image(const std::string &file);
 	/**
 	*  Free the clips vector, b/c the SDL_Surface is a shared ptr 
 	*  it's cleaned up automatically
@@ -34,7 +34,7 @@ public:
 	*  @param file The file to load
 	*  @see Window::LoadImage for the loading function
 	*/
-	void LoadImage(const std::string file);
+	void LoadImage(const std::string& file);
 	/**
 	*  Set the image's clips to the vector passed
 	*  @param clips The clips to use for the image

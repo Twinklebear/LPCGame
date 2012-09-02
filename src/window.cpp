@@ -128,15 +128,30 @@ SDL_Texture* Window::SurfaceToTexture(SDL_Surface *surf){
 	SDL_FreeSurface(surf);
 	return tex;
 }
-/**
-*  Load an Image and its configuration file if one can be found and return a pointer to it
-*  @see Window::FreeImage for releasing Image memory
-*  @param file The image file to load, config file must be a json file of the same name in same folder
-*/
-Image* Window::LoadImage(std::string file){
+Image* Window::LoadImage(const std::string &file){
 	Image *img = new Image(file);
-	//Attempt to open the json config file
-	size_t extensionPos = file.find_last_of('.');
+    //Get the config data
+    try {
+        img->LoadConfig(Window::LoadImageConfig(file));
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+    }    
+	return img;
+}
+AnimatedImage* Window::LoadAnimatedImage(const std::string &file){
+    AnimatedImage *img = new AnimatedImage(file);
+    //Get the config data
+    try {
+        img->LoadConfig(Window::LoadImageConfig(file));
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+    }
+    return img;
+}
+Json::Value Window::LoadImageConfig(const std::string &file){
+    size_t extensionPos = file.find_last_of('.');
 	std::string configFile = file.substr(0, extensionPos) + ".json";
 
 	//If the file exists, read it in
@@ -145,28 +160,18 @@ Image* Window::LoadImage(std::string file){
 		Json::Reader reader;
 		Json::Value root;
 		if (reader.parse(fileIn, root, false)){
-			img->LoadConfig(root);
+            fileIn.close();
+			return root;
 		}
 		//some debug output, this case should throw
-		else
-			std::cout << "LoadImage parsing failed" << std::endl;
+        else {
+            fileIn.close();
+            throw std::runtime_error("Failed to parse file: " + file); 
+        }
 	}
-	//some debug output, this case shouldn't throw, a config file may not be desired
-	//if only a simple whole image is desired to be shown
-	else
-		std::cout << "LoadImage: " << file << ": no config found" << std::endl;
-	fileIn.close();
-	
-	return img;
+    else
+        throw std::runtime_error("Failed to find file: " + file);
 }
-/**
-*  Load an AnimatedImage and its configuration file if one can be found and return a pointer to it
-*  @see Window::FreeImage for releasing Image memory
-*  @param file The image file to load, config file must be a json file of the same name in same folder
-*/
-//AnimatedImage* Window::LoadAnimatedImage(std::string file){
-
-//}
 void Window::FreeImage(Image* img){
 	delete img;
 }

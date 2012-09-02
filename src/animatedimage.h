@@ -35,7 +35,13 @@ struct AnimationSequence {
 */
 class AnimatedImage : public Image {
 public:
-	AnimatedImage();
+    AnimatedImage();
+    /**
+    *  Setup the AnimatedImage class, if a filename is passed load the image
+    *  @param file The filename
+    *  @see Window::LoadImage for the loading function
+    */
+    AnimatedImage(const std::string &file);
 	~AnimatedImage();
 	/**
 	*  Update the animation, called every frame
@@ -72,10 +78,10 @@ public:
 	*/
 	void Load(Json::Value val);
 	/**
-	*  Load an Image's settings from a Json::Value
+	*  Load an AnimatedImage settings from a Json::Value
 	*  @note This will probably replace Load when the switch is done
 	*/
-	virtual void LoadConfig(Json::Value val);
+	void LoadConfig(Json::Value val);
 	/**
 	*  Register the AnimatedImage class with the lua state
 	*  @param l The lua_State to register the module with

@@ -11,7 +11,7 @@ Image::Image()
 	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0)
 {
 }
-Image::Image(const std::string file)
+Image::Image(const std::string &file)
 	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0)
 {
 	mFile = file;
@@ -21,7 +21,7 @@ Image::~Image(){
 	if (mClips != nullptr)
 		delete[] mClips;
 }
-void Image::LoadImage(const std::string file){
+void Image::LoadImage(const std::string &file){
 	mFile = file;
 	mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
 }
