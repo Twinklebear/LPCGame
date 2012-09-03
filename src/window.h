@@ -40,11 +40,14 @@ public:
 	*  @param pivot The point to rotate around, default (0, 0) corresponds to destination rect center,
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
+	*  @note Why are there copies of this function instead of default paramaters? LuaBind doesn't seem
+	*        to recognize default paramaters, or I didn't figure it out and as such had to write
+	*        a version of the function for each call
 	*/
 	static void Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip = NULL, int w = -1, int h = -1,
 		float angle = 0.0, Vector2f pivot = Vector2f(0, 0), SDL_RendererFlip flip = SDL_FLIP_NONE);
 	/**
-	*  Draw an image type to the screen
+	*  Draw an Image to the screen and apply some rotation and flip if desired
 	*  @param image The image to draw
 	*  @param dstRect The destination rectangle to draw too 
 	*  @param clip The clip rect to apply to the texture
@@ -52,9 +55,6 @@ public:
 	*  @param pivot The point to rotate around, note: default (0, 0) corresponds to destination rect center,
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
-	*  @note Why are there copies of this function instead of default paramaters? LuaBind doesn't seem
-	*        to recognize default paramaters, or I didn't figure it out and as such had to write
-	*        a version of the function for each call
 	*/
 	static void Draw(Image *image, const Rectf &dstRect, Recti *clip,
 		float angle, Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
@@ -72,8 +72,26 @@ public:
 	*  @param clip The clip to apply to the image
 	*/
 	static void Draw(Image *image, const Rectf &dstRect, Recti *clip);
+    /**
+    *  Draw an AnimatedImage object to the screen using the active animation clip
+    *  @param img The AnimatedImage to draw
+    *  @param dstRect The destination rect to draw too
+    */
+    static void Draw(AnimatedImage* img, const Rectf &dstRect);
 	/**
-	*  Draw a text type to the screen at some position
+	*  Draw an AnimatedImage object to the screen using the active animation clip and apply
+    *  some rotation and flip if desired
+    *  @param img The AnimatedImage to draw
+	*  @param dstRect The destination rectangle to draw too 
+	*  @param angle The angle to rotate the image in degrees
+	*  @param pivot The point to rotate around, note: default (0, 0) corresponds to destination rect center,
+	*               offsets correspond to distance from image center
+	*  @param flip The flip to apply to the image, default is none
+	*/
+    static void Draw(AnimatedImage* img, const Rectf &dstRect, float angle, 
+                     Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
+	/**
+	*  Draw a Text object to the screen at some position
 	*  @param text The text type to draw
 	*  @param dstRect The destination rect to draw too, w and h vals will be queried from texture
 	*  @param angle The angle to rotate the image in degrees, default is 0

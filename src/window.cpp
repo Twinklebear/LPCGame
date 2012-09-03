@@ -90,6 +90,13 @@ void Window::Draw(Image *image, const Rectf &dstRect){
 void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip){
 	Draw(image, dstRect, clip, 0);
 }
+void Window::Draw(AnimatedImage* img, const Rectf &dstRect){
+    Draw(img, dstRect, &img->Clip(img->ActiveClip()));
+}
+void Window::Draw(AnimatedImage* img, const Rectf &dstRect, float angle, Vector2f pivot, int flip)
+{
+    Draw(img, dstRect, &img->Clip(img->ActiveClip()), angle, pivot, flip);
+}
 void Window::Draw(Text *text, const Rectf &dstRect, float angle, Vector2f pivot, int flip)
 {
 	int w = 0;
@@ -199,11 +206,19 @@ void Window::RegisterLua(lua_State *l){
 			.scope[
 				//Note: These binding methods don't allow for default paramaters to have an effect, as such
 				//I must define an individual function each time
+                //Bindings for Image drawing
 				def("Draw", (void (*)(Image*, const Rectf&))&Window::Draw),
 				def("Draw", (void (*)(Image*, const Rectf&, Recti*))&Window::Draw),
 				def("Draw", (void (*)(Image*, const Rectf&, Recti*, float, Vector2f, int))&Window::Draw),
+                //Bindings for AnimatedImage drawing
+                def("Draw", (void (*)(AnimatedImage*, const Rectf&))&Window::Draw),
+                def("Draw", (void (*)(AnimatedImage*, const Rectf&, float, Vector2f, int))&Window::Draw),
+                //Bindings for Text drawing
 				def("Draw", (void (*)(Text*, const Rectf&, float, Vector2f, int))&Window::Draw),
 				def("LoadImage", &Window::LoadImage),
+                def("LoadAnimatedImage", &Window::LoadAnimatedImage),
+                def("FreeImage", (void (*)(Image*))&Window::FreeImage),
+                def("FreeImage", (void (*)(AnimatedImage*))&Window::FreeImage),
 				def("Clear", &Window::Clear),
 				def("Present", &Window::Present),
 				def("Box", &Window::Box)
