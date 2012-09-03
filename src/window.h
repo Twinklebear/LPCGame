@@ -19,8 +19,9 @@
 */
 class Window {
 public:
-	///Destructor: calls Quit to free the memory
-	~Window();
+    //Constructor and destructor do nothing, class is purely static
+    Window();
+    ~Window();
 	/**
 	*  Initialize SDL, setup the window and renderer
 	*  @param title The window title
