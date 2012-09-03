@@ -27,7 +27,7 @@ public:
 	*  @param title The window title
 	*/
 	static void Init(std::string title = "Window");
-	///Quit SDL and destroy the window and renderer
+	///Quit SDL
 	static void Quit();
 	/**
 	*  Draw a texture to the screen with optional stretching applied
@@ -108,7 +108,7 @@ public:
 	*  @return SDL_Texture* of the texture loaded
 	*/
 	static SDL_Texture* LoadTexture(std::string file);
-	/*
+	/**
 	*  Generate a texture containing the message we want to display
 	*  @param message The message we want to display
 	*  @param fontFile The font we want to use to render the text

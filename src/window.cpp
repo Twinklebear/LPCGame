@@ -70,8 +70,8 @@ void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h,
 		dstRect.h = h;
 	}
 	//Calculate the pivot point as an offset from image center
-	pivot.x = dstRect.w / 2 + pivot.x;
-	pivot.y = dstRect.h / 2 + pivot.y;
+	pivot.x += dstRect.w / 2;
+    pivot.y += dstRect.h / 2;
 
 	//Draw the texture
 	SDL_RenderCopyEx(mRenderer.get(), tex, clip, &dstRect, angle, &(SDL_Point)pivot, flip);
