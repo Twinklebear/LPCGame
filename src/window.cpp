@@ -56,36 +56,24 @@ void Window::Quit(){
 	TTF_Quit();
 	SDL_Quit();
 }
-void Window::Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip, int w, int h,
+void Window::DrawTexture(SDL_Texture *tex, const Rectf &dstRect, Recti *clip,
 				  float angle, Vector2f pivot, SDL_RendererFlip flip)
 {
-	SDL_Rect dstRect;
-	dstRect.x = x;
-	dstRect.y = y;
-	//Setup desired width and height properties
-	if (w == -1 && h == -1)
-		SDL_QueryTexture(tex, NULL, NULL, &dstRect.w, &dstRect.h);
-	else {
-		dstRect.w = w;
-		dstRect.h = h;
-	}
 	//Calculate the pivot point as an offset from image center
 	pivot.x += dstRect.w / 2;
     pivot.y += dstRect.h / 2;
+    //Make sure we don't try to convert a NULL clip rect
+    SDL_Rect *ptrClip = NULL;
+    if (clip != NULL)
+        ptrClip = &(SDL_Rect)*clip;
 
 	//Draw the texture
-	SDL_RenderCopyEx(mRenderer.get(), tex, clip, &dstRect, angle, &(SDL_Point)pivot, flip);
+	SDL_RenderCopyEx(mRenderer.get(), tex, ptrClip, &(SDL_Rect)dstRect, angle, &(SDL_Point)pivot, flip);
 }
-void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip, float angle, 
-				  Vector2f pivot, int flip)
+void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip, 
+                  float angle, Vector2f pivot, int flip)
 {
-	//We don't want to attempt to dereference a NULL ptr to do the conversion cast
-	//so we must check it here
-	SDL_Rect *ptrClip = NULL;
-	if (clip != NULL)
-		ptrClip = &(SDL_Rect)*clip;
-
-	Draw(dstRect.X(), dstRect.Y(), image->Texture(), ptrClip, dstRect.w, dstRect.h);
+	DrawTexture(image->Texture(), dstRect, clip, angle, pivot, (SDL_RendererFlip)flip);
 }
 void Window::Draw(Image *image, const Rectf &dstRect){
 	Draw(image, dstRect, NULL, 0);
@@ -96,16 +84,19 @@ void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip){
 void Window::Draw(AnimatedImage* img, const Rectf &dstRect){
     Draw(img, dstRect, &img->Clip(img->ActiveClip()));
 }
-void Window::Draw(AnimatedImage* img, const Rectf &dstRect, float angle, Vector2f pivot, int flip)
+void Window::Draw(AnimatedImage* img, const Rectf &dstRect, float angle, 
+                  Vector2f pivot, int flip)
 {
     Draw(img, dstRect, &img->Clip(img->ActiveClip()), angle, pivot, flip);
 }
-void Window::Draw(Text *text, const Rectf &dstRect, float angle, Vector2f pivot, int flip)
+void Window::Draw(Text *text, const Rectf &dstRect, float angle, 
+                  Vector2f pivot, int flip)
 {
-	int w = 0;
-	int h = 0;
+    int w = 0;
+    int h = 0;
 	text->Size(w, h);
-	Draw(dstRect.X(), dstRect.Y(), text->Texture(), NULL, w, h);
+    Rectf dst(dstRect.X(), dstRect.Y(), w, h);
+    DrawTexture(text->Texture(), dst, NULL);
 }
 SDL_Texture* Window::LoadTexture(std::string file){
 	SDL_Texture *tex = nullptr;
@@ -114,7 +105,9 @@ SDL_Texture* Window::LoadTexture(std::string file){
 		throw std::runtime_error("Failed to load image: " + file);
 	return tex;
 }
-SDL_Texture* Window::RenderText(std::string message, std::string fontFile, Color color, int fontSize){
+SDL_Texture* Window::RenderText(std::string message, std::string fontFile, 
+                                Color color, int fontSize)
+{
 	//Open the font
 	TTF_Font *font = nullptr;
 	font = TTF_OpenFont(fontFile.c_str(), fontSize);

@@ -9,8 +9,6 @@
 #include "menustate.h"
 #include "statemanager.h"
 
-#include "debugger.h"
-
 MenuState::MenuState(){
 }
 MenuState::~MenuState(){

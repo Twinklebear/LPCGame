@@ -130,7 +130,7 @@ public:
 		return Rect<T>(pos.x - v.x, pos.y - v.y, w, h);
 	}
 	///For conversions
-	operator SDL_Rect(){
+	operator SDL_Rect() const{
 		SDL_Rect rect;
 		rect.x = pos.x;
 		rect.y = pos.y;
@@ -138,6 +138,7 @@ public:
 		rect.h = h;
 		return rect;
 	}
+
 	operator Rect<float>(){
 		Rect<float> rect(pos, w, h);
 		return rect;

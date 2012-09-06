@@ -31,12 +31,9 @@ public:
 	static void Quit();
 	/**
 	*  Draw a texture to the screen with optional stretching applied
-	*  @param x The x coordinate to draw too
-	*  @param y The y coordinate to draw too
 	*  @param tex The SDL_Texture* to draw
+    *  @param dstRect The destination rect to draw to, specifies x,y,w,h of image
 	*  @param clip The clip rect to apply to the texture, if desired
-	*  @param w The width to draw the texture with, def val is flag to get it from the texture
-	*  @param h The height to draw the texture with, def val is flag to get it from the texture
 	*  @param angle The angle to rotate the image in degrees, default is 0
 	*  @param pivot The point to rotate around, default (0, 0) corresponds to destination rect center,
 	*               offsets correspond to distance from image center
@@ -45,8 +42,8 @@ public:
 	*        to recognize default paramaters, or I didn't figure it out and as such had to write
 	*        a version of the function for each call
 	*/
-	static void Draw(int x, int y, SDL_Texture *tex, SDL_Rect *clip = NULL, int w = -1, int h = -1,
-		float angle = 0.0, Vector2f pivot = Vector2f(0, 0), SDL_RendererFlip flip = SDL_FLIP_NONE);
+	static void DrawTexture(SDL_Texture *tex, const Rectf &dstRect, Recti *clip = NULL, float angle = 0.0, 
+        Vector2f pivot = Vector2f(0, 0), SDL_RendererFlip flip = SDL_FLIP_NONE);
 	/**
 	*  Draw an Image to the screen and apply some rotation and flip if desired
 	*  @param image The image to draw

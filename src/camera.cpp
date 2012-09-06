@@ -6,8 +6,6 @@
 #include "entity.h"
 #include "camera.h"
 
-#include "debugger.h"
-
 Camera::Camera() : mActivePan(-1), mScene("def"){
 	mBox.Set(0, 0, Window::Box().W(), Window::Box().H());
 	mSceneBox.Set(0, 0, 0, 0);
