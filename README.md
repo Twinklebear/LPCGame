@@ -9,7 +9,6 @@
 ## Todo:
 - Side Note: I changed System to not set as having the console prompt is invaluable for debugging/testing scripts
 - Clean up warnings
-- Entity needs a clean up function to free any memory given to it via the engine
 - Is there a valid reason for not rolling the UIManager into the EntityManager?
 - What if i put the image/animatedimage clips/settings/etc into it's own json file associated with the image file? Then you'd be able to load the entire image data seperately from the state file.
 	- Working on putting this in now, this makes more sense anyways, why should an image's data be stored in a state's data file? It's just wierd
