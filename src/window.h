@@ -126,34 +126,6 @@ public:
 	*  @return The SDL_Texture* created from the surface
 	*/
 	static SDL_Texture* SurfaceToTexture(SDL_Surface *surf);
-	/**
-	*  Load an Image and its configuration file if one can be found and return a pointer to it
-	*  @see Window::FreeImage for releasing Image memory
-	*  @param file The image file to load, config file must be a json file of the same name in same folder
-	*/
-	static Image* LoadImage(const std::string &file);
-	/**
-	*  Load an AnimatedImage and its configuration file if one can be found and return a pointer to it
-	*  @see Window::FreeImage for releasing Image memory
-	*  @param file The image file to load, config file must be a json file of the same name in same folder
-	*/
-	static AnimatedImage* LoadAnimatedImage(const std::string &file);
-    /**
-    *  Open up an Image or AnimatedImage config file and return the Json::Value
-    *  @param file The filename of the image, the JSON filename will be parsed out of it
-    *  @return Json::Value containing the data from the file
-    */
-    static Json::Value LoadImageConfig(const std::string &file);
-	/**
-	*  Free an Image
-	*  @param img The Image to destroy
-	*/
-	static void FreeImage(Image* img);
-	/**
-	*  Free an AnimatedImage
-	*  @param img The Image to destroy
-	*/
-	static void FreeImage(AnimatedImage* img);
 	///Clear the renderer
 	static void Clear();
 	///Present the renderer, ie. update screen

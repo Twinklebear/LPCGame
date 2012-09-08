@@ -33,6 +33,13 @@ AnimatedImage::AnimatedImage(const std::string &file)
     : mActiveAnimation(0), mFrame(0)
 {
     LoadImage(file);
+    //Try to load an image config
+    try {
+        LoadConfig(LoadImageConfig(file));
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+    }
 }
 AnimatedImage::~AnimatedImage(){
 }
@@ -98,6 +105,7 @@ void AnimatedImage::RegisterLua(lua_State *l){
 	module(l, "LPC")[
 		class_<AnimatedImage>("AnimatedImage")
 			.def(constructor<>())
+            .def(constructor<std::string>())
 			.def("Update", &AnimatedImage::Update)
 			.def("Move", &AnimatedImage::Move)
 			.def("Play", &AnimatedImage::Play)

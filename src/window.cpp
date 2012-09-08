@@ -134,56 +134,6 @@ SDL_Texture* Window::SurfaceToTexture(SDL_Surface *surf){
 	SDL_FreeSurface(surf);
 	return tex;
 }
-Image* Window::LoadImage(const std::string &file){
-	Image *img = new Image(file);
-    //Get the config data
-    try {
-        img->LoadConfig(Window::LoadImageConfig(file));
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-    }    
-	return img;
-}
-AnimatedImage* Window::LoadAnimatedImage(const std::string &file){
-    AnimatedImage *img = new AnimatedImage(file);
-    //Get the config data
-    try {
-        img->LoadConfig(Window::LoadImageConfig(file));
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-    }
-    return img;
-}
-Json::Value Window::LoadImageConfig(const std::string &file){
-    size_t extensionPos = file.find_last_of('.');
-	std::string configFile = file.substr(0, extensionPos) + ".json";
-
-	//If the file exists, read it in
-	std::ifstream fileIn((configFile).c_str(), std::ifstream::binary);
-	if (fileIn){
-		Json::Reader reader;
-		Json::Value root;
-		if (reader.parse(fileIn, root, false)){
-            fileIn.close();
-			return root;
-		}
-		//some debug output, this case should throw
-        else {
-            fileIn.close();
-            throw std::runtime_error("Failed to parse file: " + file); 
-        }
-	}
-    else
-        throw std::runtime_error("Failed to find file: " + file);
-}
-void Window::FreeImage(Image* img){
-	delete img;
-}
-void Window::FreeImage(AnimatedImage* img){
-	delete img;
-}
 void Window::Clear(){
 	SDL_RenderClear(mRenderer.get());
 }
@@ -215,10 +165,6 @@ void Window::RegisterLua(lua_State *l){
                 //Bindings for Text drawing
                 def("Draw", (void (*)(Text*, const Rectf&))&Window::Draw),
 				def("Draw", (void (*)(Text*, const Rectf&, float, Vector2f, int))&Window::Draw),
-				def("LoadImage", &Window::LoadImage),
-                def("LoadAnimatedImage", &Window::LoadAnimatedImage),
-                def("FreeImage", (void (*)(Image*))&Window::FreeImage),
-                def("FreeImage", (void (*)(AnimatedImage*))&Window::FreeImage),
 				def("Clear", &Window::Clear),
 				def("Present", &Window::Present),
 				def("Box", &Window::Box)

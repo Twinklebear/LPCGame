@@ -1,5 +1,6 @@
 #include <array>
 #include <memory>
+#include <fstream>
 #include <SDL.h>
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
@@ -24,6 +25,13 @@ Image::~Image(){
 void Image::LoadImage(const std::string &file){
 	mFile = file;
 	mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
+    //Try to load a config file
+    try {
+        LoadConfig(LoadImageConfig(file));
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+    }
 }
 SDL_Texture* Image::Texture(){
 	return mTexture.get();
@@ -109,6 +117,28 @@ void Image::LoadConfig(Json::Value val){
 		for (int i = 0; i < mNumClips; ++i)
 			mClips[i].Load(val["clips"][i]);
 	}
+}
+Json::Value Image::LoadImageConfig(const std::string &file){
+    size_t extensionPos = file.find_last_of('.');
+	std::string configFile = file.substr(0, extensionPos) + ".json";
+
+	//If the file exists, read it in
+	std::ifstream fileIn((configFile).c_str(), std::ifstream::binary);
+	if (fileIn){
+		Json::Reader reader;
+		Json::Value root;
+		if (reader.parse(fileIn, root, false)){
+            fileIn.close();
+			return root;
+		}
+		//some debug output, this case should throw
+        else {
+            fileIn.close();
+            throw std::runtime_error("Failed to parse file: " + configFile); 
+        }
+	}
+    else
+        throw std::runtime_error("Failed to find file: " + configFile);
 }
 void Image::RegisterLua(lua_State *l){
 	using namespace luabind;

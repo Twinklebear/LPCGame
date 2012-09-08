@@ -2,7 +2,8 @@
 function Init(object)
 	print("Test2 Init")
 	--img = LPC.Window.LoadImage("../res/img/strip.png")
-	animImg = LPC.Window.LoadAnimatedImage("../res/img/animtest.png")
+	--animImg = LPC.Window.LoadAnimatedImage("../res/img/animtest.png")
+	animImg = LPC.AnimatedImage("../res/img/animtest.png")
 	--Testing out text
 	local col = LPC.Color(255, 255, 255)
 	text = LPC.Text("Hello from Lua!", "../res/fonts/SourceSansPro-Regular.ttf",
@@ -16,7 +17,6 @@ function Init(object)
 	clipNum = 0
 end
 function Free()
-	LPC.Window.FreeImage(animImg)
 end
 --Called each frame
 function Update()
