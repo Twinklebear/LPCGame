@@ -98,6 +98,9 @@ void Window::Draw(Text *text, const Rectf &dstRect, float angle,
     Rectf dst(dstRect.X(), dstRect.Y(), w, h);
     DrawTexture(text->Texture(), dst, NULL);
 }
+void Window::Draw(Text *text, const Rectf &dstRect){
+    Draw(text, dstRect, 0.0);
+}
 SDL_Texture* Window::LoadTexture(std::string file){
 	SDL_Texture *tex = nullptr;
 	tex = IMG_LoadTexture(mRenderer.get(), file.c_str());
@@ -210,6 +213,7 @@ void Window::RegisterLua(lua_State *l){
                 def("Draw", (void (*)(AnimatedImage*, const Rectf&))&Window::Draw),
                 def("Draw", (void (*)(AnimatedImage*, const Rectf&, float, Vector2f, int))&Window::Draw),
                 //Bindings for Text drawing
+                def("Draw", (void (*)(Text*, const Rectf&))&Window::Draw),
 				def("Draw", (void (*)(Text*, const Rectf&, float, Vector2f, int))&Window::Draw),
 				def("LoadImage", &Window::LoadImage),
                 def("LoadAnimatedImage", &Window::LoadAnimatedImage),

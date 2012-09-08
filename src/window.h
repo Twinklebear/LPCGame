@@ -92,13 +92,19 @@ public:
 	*  Draw a Text object to the screen at some position
 	*  @param text The text type to draw
 	*  @param dstRect The destination rect to draw too, w and h vals will be queried from texture
-	*  @param angle The angle to rotate the image in degrees, default is 0
+	*  @param angle The angle to rotate the image in degrees
 	*  @param pivot The point to rotate around, default (0, 0) corresponds to destination rect center,
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
 	*/
-	static void Draw(Text *text, const Rectf &dstRect, float angle = 0.0, Vector2f pivot = Vector2f(0, 0),
+	static void Draw(Text *text, const Rectf &dstRect, float angle, Vector2f pivot = Vector2f(0, 0),
 		int flip = SDL_FLIP_NONE);
+    /**
+	*  Draw a Text object to the screen at some position
+	*  @param text The text type to draw
+	*  @param dstRect The destination rect to draw too, w and h vals will be queried from texture
+	*/
+    static void Draw(Text *text, const Rectf &dstRect);
 	/**
 	*  Load an image file as a SDL_Texture and return it
 	*  @param file The image file to load

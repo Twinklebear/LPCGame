@@ -3,6 +3,11 @@ function Init(object)
 	print("Test2 Init")
 	--img = LPC.Window.LoadImage("../res/img/strip.png")
 	animImg = LPC.Window.LoadAnimatedImage("../res/img/animtest.png")
+	--Testing out text
+	local col = LPC.Color(255, 255, 255)
+	text = LPC.Text("Hello from Lua!", "../res/fonts/SourceSansPro-Regular.ttf",
+		col, 30)
+	textPos = LPC.Rectf(10, 10, 0, 0)
 	--r = LPC.Rectf(80, 80, 32, 32)
 	physics = object:GetPhysics()
 	--Testing Rect::pos accessor
@@ -53,4 +58,5 @@ function Draw(camera)
 	local pos = LPC.Math.FromSceneSpace(camera, physics:Box())
 	--LPC.Window.Draw(img, pos, img:Clip(clipNum))
 	LPC.Window.Draw(animImg, pos)
+	LPC.Window.Draw(text, textPos)
 end
