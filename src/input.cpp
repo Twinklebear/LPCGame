@@ -31,7 +31,8 @@ void Input::Init(){
                 << "  Name: " << SDL_JoystickName(0) << std::endl
                 << "  # Axes: " << SDL_JoystickNumAxes(mJoystick) << std::endl
                 << "  # Buttons: " << SDL_JoystickNumButtons(mJoystick) << std::endl
-                << "  # Balls: " << SDL_JoystickNumBalls(mJoystick) << std::endl;
+                << "  # Balls: " << SDL_JoystickNumBalls(mJoystick) << std::endl
+                << "  # Hats: " << SDL_JoystickNumHats(mJoystick) << std::endl;;
             //Testing force feedback
             std::cout << "Will now test force feedback" << std::endl;
             std::cout << "Joystick haptic status: " << SDL_JoystickIsHaptic(mJoystick) << std::endl;
@@ -218,6 +219,19 @@ float Input::GetJoyAxis(int axis){
     else
         return 0.0f;
 }
+bool Input::GetJoyButton(int button){
+    if (SDL_JoystickOpened(0) && button < SDL_JoystickNumButtons(mJoystick)){
+        return (SDL_JoystickGetButton(mJoystick, button) == 1);
+    }
+    else return false;
+}
+int Input::GetJoyHat(int hat){
+    if (SDL_JoystickOpened(0) && hat < SDL_JoystickNumHats(mJoystick)){
+        return SDL_JoystickGetHat(mJoystick, hat);
+    }
+    else
+        return SDL_HAT_CENTERED;
+}
 bool Input::Quit(){
 	return mQuit;
 }
@@ -252,6 +266,8 @@ void Input::RegisterLua(lua_State* l){
 				def("KeyDown", (bool (*)(std::string))&Input::KeyDown),
 				def("KeyDown", (bool (*)(int))&Input::KeyDown),
                 def("GetJoyAxis", &Input::GetJoyAxis),
+                def("GetJoyButton", &Input::GetJoyButton),
+                def("GetJoyHat", &Input::GetJoyHat),
 				def("Quit", &Input::Quit)
 			]
 			//To expose the SDL_Scancodes to Lua

@@ -52,6 +52,33 @@ function Update()
 		physics:SetHorizDir(LPC.Physics.STOP)
 	end
 	]]
+	--Testing joystick button input
+	if (LPC.Input.GetJoyButton(0)) then
+		print("Joy button 0 down")
+	elseif (LPC.Input.GetJoyButton(1)) then
+		print("Joy button 1 down")
+	elseif (LPC.Input.GetJoyButton(2)) then
+		print("Joy button 2 down")
+	elseif (LPC.Input.GetJoyButton(3)) then
+		print("Joy button 3 down")
+	elseif (LPC.Input.GetJoyButton(4)) then
+		print("Joy button 4 down")
+	elseif (LPC.Input.GetJoyButton(5)) then
+		print("Joy button 5 down")
+	elseif (LPC.Input.GetJoyButton(6)) then
+		print("Joy button 6 down")
+	elseif (LPC.Input.GetJoyButton(7)) then
+		print("Joy button 7 down")
+	elseif (LPC.Input.GetJoyButton(8)) then
+		print("Joy button 8 down")
+	elseif (LPC.Input.GetJoyButton(9)) then
+		print("Joy button 9 down")
+	elseif (LPC.Input.GetJoyButton(10)) then
+		print("Joy button 10 down")
+	end
+	if (not (LPC.Input.GetJoyHat(0) == 0)) then
+		print("Joy hat position: " .. LPC.Input.GetJoyHat(0))
+	end
 end
 --Use for movement
 function Move(deltaT)

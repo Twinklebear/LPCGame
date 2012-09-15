@@ -55,7 +55,25 @@ public:
 	///Get the current mouse position
 	static Vector2f MousePos();
     //Functions for interacting with Joystick
+    /**
+    *  Get the input level of the desired joystick axis
+    *  input level value ranges from -1 to 1
+    *  @param axis The axis to get value from
+    *  @return The input level of the axis, from -1 to 1
+    */
     static float GetJoyAxis(int axis);
+    /**
+    *  Check if a Joystick button is being pressed
+    *  @param button The button to check
+    *  @return T/F whether or not the button is being pushed
+    */
+    static bool GetJoyButton(int button);
+    /**
+    *  Check the position of the Joystick hat
+    *  @param hat The hat to check position of
+    *  @return The position of the hat
+    */
+    static int GetJoyHat(int hat);
 	///Check if the program has been quit out of
 	static bool Quit();
 	///Clear input data, used when changing states to clear old input
