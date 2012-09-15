@@ -55,7 +55,7 @@ public:
 	///Get the current mouse position
 	static Vector2f MousePos();
     //Functions for interacting with Joystick
-    
+    static float GetJoyAxis(int axis);
 	///Check if the program has been quit out of
 	static bool Quit();
 	///Clear input data, used when changing states to clear old input

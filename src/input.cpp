@@ -4,6 +4,7 @@
 #include <SDL_haptic.h>
 #include <luabind\luabind.hpp>
 #include "window.h"
+#include "math.h"
 #include "input.h"
 
 SDL_Event Input::evt;
@@ -33,8 +34,39 @@ void Input::Init(){
                 << "  # Balls: " << SDL_JoystickNumBalls(mJoystick) << std::endl;
             //Testing force feedback
             std::cout << "Will now test force feedback" << std::endl;
-            SDL_Haptic *haptic;
-            SDL_HapticEffect *effect;
+            std::cout << "Joystick haptic status: " << SDL_JoystickIsHaptic(mJoystick) << std::endl;
+            //Joystick only seems to be haptic when in DirectInput mode, and even then fails to play the effect
+            SDL_Haptic *haptic = nullptr;
+            int effectId;
+            
+            haptic = SDL_HapticOpenFromJoystick(mJoystick);
+            if (haptic == nullptr){
+                std::cout << "Couldn't open haptic on: " << SDL_JoystickName(0) << std::endl;
+                return;
+            }
+            if ((SDL_HapticQuery(haptic) & SDL_HAPTIC_SINE) == 0){
+                SDL_HapticClose(haptic);
+                std::cout << "No sine effect available" << std::endl;
+                return;
+            }
+            //Create the effect
+            SDL_HapticEffect *effect = new SDL_HapticEffect;
+            effect->type = SDL_HAPTIC_SINE;
+            effect->periodic.direction.type = SDL_HAPTIC_POLAR;
+            effect->periodic.direction.dir[0] = 18000;
+            effect->periodic.period = 1000;
+            effect->periodic.magnitude = 20000;
+            effect->periodic.length = 5000;
+            effect->periodic.attack_length = 1000;
+            effect->periodic.fade_length = 1000;
+
+            //Upload the effect
+            effectId = SDL_HapticNewEffect(haptic, effect);
+            SDL_HapticRunEffect(haptic, effectId, 1);
+            SDL_Delay(5000);
+            //Destroy the effect and close haptic
+            SDL_HapticDestroyEffect(haptic, effectId);
+            SDL_HapticClose(haptic);
         }
         else
             std::cout << "Failed to open joystick" << std::endl;
@@ -150,7 +182,6 @@ bool Input::MouseClick(int button){
 bool Input::MouseDown(int button){
 	return ((SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(button)) != 0);
 }
-
 SDL_MouseButtonEvent Input::GetClick(){
 	return mButtonEvt;
 }
@@ -167,6 +198,25 @@ Vector2f Input::MousePos(){
 	Vector2i pos(0, 0);
 	SDL_GetMouseState(&pos.x, &pos.y);
 	return pos;
+}
+float Input::GetJoyAxis(int axis){
+    if (SDL_JoystickOpened(0) && axis < SDL_JoystickNumAxes(mJoystick)){
+        //The valid values are -32768 to 32767 but i want it as a float from -1 to 1, so we divide
+        float val = (SDL_JoystickGetAxis(mJoystick, axis) / 32767.0f);
+        //Allow for some deadzone
+        if (val < 0 && val > -0.01)
+            return 0;
+        else if (val < 0)
+            return Math::Clamp(val, -1, 0);
+        else if (val > 0 && val < 0.01)
+            return 0;
+        else if (val > 0)
+            return Math::Clamp(val, 0, 1);
+        else 
+            return 0;
+    }
+    else
+        return 0.0f;
 }
 bool Input::Quit(){
 	return mQuit;
@@ -201,6 +251,7 @@ void Input::RegisterLua(lua_State* l){
 			.scope[
 				def("KeyDown", (bool (*)(std::string))&Input::KeyDown),
 				def("KeyDown", (bool (*)(int))&Input::KeyDown),
+                def("GetJoyAxis", &Input::GetJoyAxis),
 				def("Quit", &Input::Quit)
 			]
 			//To expose the SDL_Scancodes to Lua
