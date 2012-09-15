@@ -8,7 +8,9 @@
 
 ## Todo:
 - Adding Joystick and Force Feedback support to Input
-	- Should keyboard, mouse and joystick each be their own class?
+	- Need to expose the SDL_HAT_X enum to Lua
+	- Should keyboard, mouse and joystick each be their own class? A bit torn on this, kind of feel it will just add more junk, since Input can handle the three systems fine. Hmm
+- Physics movement needs to be reworked to use vector motion instead of the current Set Move junk
 - Side Note: I changed System to not set as having the console prompt is invaluable for debugging/testing scripts
 - Clean up warnings
 - Is there a valid reason for not rolling the UIManager into the EntityManager?
