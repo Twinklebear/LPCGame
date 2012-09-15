@@ -12,6 +12,8 @@ int main(int argc, char** argv){
 
 	StateManager::InitIntro();
 
+    Input::Close();
 	Window::Quit();
+
 	return 0;
 }

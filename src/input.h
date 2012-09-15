@@ -22,6 +22,7 @@ public:
 	static void Init();
 	///Read event input
 	static void PollEvent();
+    //Functions for interacting with keyboard
 	/**
 	*  Check if a key is being pressed down
 	*  @param keyCode The string of the key to check, ex: 'a'
@@ -34,6 +35,7 @@ public:
 	*  @return T if key is down
 	*/
 	static bool KeyDown(int keyCode);
+    //Functions for interacting with mouse
 	/**
 	*  Check if the mouse button is clicked
 	*  @param button The button to check
@@ -52,10 +54,14 @@ public:
 	static SDL_MouseMotionEvent GetMotion();
 	///Get the current mouse position
 	static Vector2f MousePos();
+    //Functions for interacting with Joystick
+    
 	///Check if the program has been quit out of
 	static bool Quit();
 	///Clear input data, used when changing states to clear old input
 	static void Clear();
+    ///Close the joystick and any other input items that need to be exited
+    static void Close();
 	/**
 	*  Register the Input class Lua module
 	*  @param l The lua_State to register the module with
@@ -73,6 +79,7 @@ private:
 	static SDL_Event evt;
 	static bool mQuit, mMouseMove, mMouseClick;
 	static Uint8 *mKeyStates;
+    static SDL_Joystick *mJoystick;
 	static SDL_MouseButtonEvent mButtonEvt;
 	static SDL_MouseMotionEvent mMotionEvt;
 };

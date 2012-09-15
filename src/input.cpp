@@ -1,12 +1,14 @@
 #include <memory>
 #include <string>
 #include <SDL.h>
+#include <SDL_haptic.h>
 #include <luabind\luabind.hpp>
 #include "window.h"
 #include "input.h"
 
 SDL_Event Input::evt;
-Uint8* Input::mKeyStates;
+Uint8* Input::mKeyStates = nullptr;
+SDL_Joystick* Input::mJoystick = nullptr;
 SDL_MouseButtonEvent Input::mButtonEvt;
 SDL_MouseMotionEvent Input::mMotionEvt;
 bool Input::mQuit = false;
@@ -17,6 +19,26 @@ Input::Input(){}
 Input::~Input(){}
 void Input::Init(){
 	mKeyStates = SDL_GetKeyboardState(NULL);
+    //Init joystick
+    if (SDL_NumJoysticks() > 0){
+        //Some joystick testing info dump
+        std::cout << "# Joysticks: " << SDL_NumJoysticks() << std::endl;
+        //This number value should be changed? Support for multiple sticks?
+        mJoystick = SDL_JoystickOpen(0);
+        if (mJoystick != nullptr){
+            std::cout << "Joystick 0 Dump:" << std::endl
+                << "  Name: " << SDL_JoystickName(0) << std::endl
+                << "  # Axes: " << SDL_JoystickNumAxes(mJoystick) << std::endl
+                << "  # Buttons: " << SDL_JoystickNumButtons(mJoystick) << std::endl
+                << "  # Balls: " << SDL_JoystickNumBalls(mJoystick) << std::endl;
+            //Testing force feedback
+            std::cout << "Will now test force feedback" << std::endl;
+            SDL_Haptic *haptic;
+            SDL_HapticEffect *effect;
+        }
+        else
+            std::cout << "Failed to open joystick" << std::endl;
+    }
 }
 void Input::PollEvent(){
 	//Clear mouse data
@@ -153,6 +175,10 @@ void Input::Clear(){
 	ClearQuit();
 	ClearKeys();
 	ClearMouse();
+}
+void Input::Close(){
+    if (SDL_JoystickOpened(0) == 1)
+        SDL_JoystickClose(mJoystick);
 }
 void Input::ClearQuit(){
 	mQuit = false;

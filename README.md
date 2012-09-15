@@ -7,6 +7,8 @@
 - [LuaBind](http://www.rasterbar.com/products/luabind/docs.html)
 
 ## Todo:
+- Adding Joystick and Force Feedback support to Input
+	- Should keyboard, mouse and joystick each be their own class?
 - Side Note: I changed System to not set as having the console prompt is invaluable for debugging/testing scripts
 - Clean up warnings
 - Is there a valid reason for not rolling the UIManager into the EntityManager?
