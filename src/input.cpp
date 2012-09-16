@@ -26,7 +26,7 @@ void Input::Init(){
         std::cout << "# Joysticks: " << SDL_NumJoysticks() << std::endl;
         //This number value should be changed? Support for multiple sticks?
         mJoystick = SDL_JoystickOpen(0);
-        if (mJoystick != nullptr){
+        if (mJoystick){
             std::cout << "Joystick 0 Dump:" << std::endl
                 << "  Name: " << SDL_JoystickName(0) << std::endl
                 << "  # Axes: " << SDL_JoystickNumAxes(mJoystick) << std::endl
@@ -42,7 +42,7 @@ void Input::Init(){
             int effectId;
             
             haptic = SDL_HapticOpenFromJoystick(mJoystick);
-            if (haptic == nullptr){
+            if (!haptic){
                 std::cout << "Couldn't open haptic on: " << SDL_JoystickName(0) << std::endl;
                 return;
             }
@@ -202,10 +202,11 @@ Vector2f Input::MousePos(){
 	return pos;
 }
 float Input::GetJoyAxis(int axis){
-    if (SDL_JoystickOpened(0) && axis < SDL_JoystickNumAxes(mJoystick)){
+    if (mJoystick && axis < SDL_JoystickNumAxes(mJoystick)){
         //The valid values are -32768 to 32767 but i want it as a float from -1 to 1, so we divide
         float val = (SDL_JoystickGetAxis(mJoystick, axis) / 32767.0f);
-        //Allow for some deadzone
+        //Force a bit of extra deadzone, sometimes the controller reads very small input
+        //even if the stick is centered
         if (val < 0 && val > -0.01)
             return 0;
         else if (val < 0)
@@ -218,16 +219,16 @@ float Input::GetJoyAxis(int axis){
             return 0;
     }
     else
-        return 0.0f;
+        return 0;
 }
 bool Input::GetJoyButton(int button){
-    if (SDL_JoystickOpened(0) && button < SDL_JoystickNumButtons(mJoystick)){
+    if (mJoystick && button < SDL_JoystickNumButtons(mJoystick)){
         return (SDL_JoystickGetButton(mJoystick, button) == 1);
     }
     else return false;
 }
 int Input::GetJoyHat(int hat){
-    if (SDL_JoystickOpened(0) && hat < SDL_JoystickNumHats(mJoystick)){
+    if (mJoystick && hat < SDL_JoystickNumHats(mJoystick)){
         return SDL_JoystickGetHat(mJoystick, hat);
     }
     else
