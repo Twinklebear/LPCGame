@@ -33,21 +33,19 @@ int Timer::Restart(){
 	Start();
 	return elapsedTicks;
 }
-int Timer::Ticks() const{
-	if (mStarted){
-		if (mPaused)
-			return mPausedTicks;
-		else{
-			return SDL_GetTicks() - mStartTicks;
-		}
-	}
-	//if timer isn't running return 0
-	return 0;
+int Timer::Ticks() const {
+    if (mStarted){
+	    if (mPaused)
+		    return mPausedTicks;
+	    else
+		    return SDL_GetTicks() - mStartTicks;
+    }
+    return 0;
 }
-bool Timer::Started() const{
+bool Timer::Started() const {
 	return mStarted;
 }
-bool Timer::Paused() const{
+bool Timer::Paused() const {
 	return mPaused;
 }
 void Timer::RegisterLua(lua_State *l){
