@@ -15,11 +15,6 @@ void Timer::Stop(){
 	mStarted = false;
 	mPaused	 = false;
 }
-int Timer::Restart(){
-	int elapsedTicks = Ticks();
-	Start();
-	return elapsedTicks;
-}
 void Timer::Pause(){
 	if (mStarted && !mPaused){
 		mPaused = true;
@@ -32,6 +27,11 @@ void Timer::Unpause(){
 		mStartTicks = SDL_GetTicks() - mPausedTicks;
 		mPausedTicks = 0;
 	}
+}
+int Timer::Restart(){
+	int elapsedTicks = Ticks();
+	Start();
+	return elapsedTicks;
 }
 int Timer::Ticks() const{
 	if (mStarted){
