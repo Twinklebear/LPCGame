@@ -316,5 +316,17 @@ void Input::RegisterLua(lua_State* l){
 				value("KEY_LEFT", SDL_SCANCODE_LEFT),
 				value("KEY_RIGHT", SDL_SCANCODE_RIGHT)
 			]
+            //To expose the SDL_HAT enum to Lua
+            .enum_("Hat")[
+                value("HAT_CENTERED", SDL_HAT_CENTERED),
+                value("HAT_UP", SDL_HAT_UP),
+                value("HAT_DOWN", SDL_HAT_DOWN),
+                value("HAT_RIGHT", SDL_HAT_RIGHT),
+                value("HAT_LEFT", SDL_HAT_LEFT),
+                value("HAT_RIGHTUP", SDL_HAT_RIGHTUP),
+                value("HAT_LEFTUP", SDL_HAT_LEFTUP),
+                value("HAT_RIGHTDOWN", SDL_HAT_RIGHTDOWN),
+                value("HAT_LEFTDOWN", SDL_HAT_LEFTDOWN)
+            ]
 	];
 }
