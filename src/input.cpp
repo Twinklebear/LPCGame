@@ -37,6 +37,7 @@ void Input::Init(){
             std::cout << "Will now test force feedback" << std::endl;
             std::cout << "Joystick haptic status: " << SDL_JoystickIsHaptic(mJoystick) << std::endl;
             //Joystick only seems to be haptic when in DirectInput mode, and even then fails to play the effect
+            SDL_InitSubSystem(SDL_INIT_HAPTIC);
             SDL_Haptic *haptic = nullptr;
             int effectId;
             
@@ -51,7 +52,7 @@ void Input::Init(){
                 return;
             }
             //Create the effect
-            SDL_HapticEffect *effect = new SDL_HapticEffect;
+            SDL_HapticEffect *effect = new SDL_HapticEffect();
             effect->type = SDL_HAPTIC_SINE;
             effect->periodic.direction.type = SDL_HAPTIC_POLAR;
             effect->periodic.direction.dir[0] = 18000;
