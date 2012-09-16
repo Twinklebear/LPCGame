@@ -7,13 +7,13 @@ Timer::Timer()
 {
 }
 void Timer::Start(){
-	mStarted	= true;
-	mPaused		= false;
+	mStarted = true;
+	mPaused	 = false;
 	mStartTicks = SDL_GetTicks();
 }
 void Timer::Stop(){
-	mStarted	= false;
-	mPaused		= false;
+	mStarted = false;
+	mPaused	 = false;
 }
 int Timer::Restart(){
 	int elapsedTicks = Ticks();
