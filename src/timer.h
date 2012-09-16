@@ -12,21 +12,27 @@ class Timer{
 public:
     Timer();
     ///Start the timer
-	void Start();
-	///Stop the timer
-	void Stop();
-	///Restart the timer and return the elapsed ticks
-	int Restart();
-	///Pause the timer
+    void Start();
+    ///Stop the timer
+    void Stop();
+    ///Pause the timer
     void Pause();
-	///Unpause the timer
+    ///Unpause the timer
     void Unpause();
-    ///Get the elapsed ticks
-    int GetTicks() const;
-	///Check if timer is started
-	bool Started() const;
-	///Check if timer is paused
-	bool Paused() const;
+    /**
+    *  Restart the timer and return the elapsed ticks
+    *  @return The elapsed ticks
+    */
+    int Restart();
+    /**
+    *  Get the elapsed ticks
+    *  @return The elapsed ticks
+    */
+    int Ticks() const;
+    ///Check if Timer is started
+    bool Started() const;
+    ///Check if Timer is paused
+    bool Paused() const;
 	/**
 	*  Register the Timer class with the lua state
 	*  @param l The lua_State to register the module with

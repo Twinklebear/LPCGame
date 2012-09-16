@@ -2,11 +2,9 @@
 #include <luabind/luabind.hpp>
 #include "timer.h"
 
-Timer::Timer(){
-	mStartTicks		= 0;
-	mPausedTicks	= 0;
-	mStarted		= false;
-	mPaused			= false;
+Timer::Timer() 
+    : mStartTicks(0), mPausedTicks(0), mStarted(false), mPaused(false)
+{
 }
 void Timer::Start(){
 	mStarted	= true;
@@ -18,7 +16,7 @@ void Timer::Stop(){
 	mPaused		= false;
 }
 int Timer::Restart(){
-	int elapsedTicks = GetTicks();
+	int elapsedTicks = Ticks();
 	Start();
 	return elapsedTicks;
 }
@@ -35,7 +33,7 @@ void Timer::Unpause(){
 		mPausedTicks = 0;
 	}
 }
-int Timer::GetTicks() const{
+int Timer::Ticks() const{
 	if (mStarted){
 		if (mPaused)
 			return mPausedTicks;
@@ -63,7 +61,7 @@ void Timer::RegisterLua(lua_State *l){
 			.def("Restart", &Timer::Restart)
 			.def("Pause", &Timer::Pause)
 			.def("Unpause", &Timer::Unpause)
-			.def("GetTicks", &Timer::GetTicks)
+			.def("GetTicks", &Timer::Ticks)
 			.def("Started", &Timer::Started)
 			.def("Paused", &Timer::Paused)
 	];
