@@ -76,7 +76,7 @@ function Update()
 	elseif (LPC.Input.GetJoyButton(10)) then
 		print("Joy button 10 down")
 	end
-	if (not (LPC.Input.GetJoyHat(0) == LPC.Input.JOYHAT_CENTERED)) then
+	if (not (LPC.Input.GetJoyHat(0) == LPC.Input.HAT_CENTERED)) then
 		print("Joy hat position: " .. LPC.Input.GetJoyHat(0))
 	end
 end
