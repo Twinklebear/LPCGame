@@ -8,7 +8,6 @@
 
 ## Todo:
 - Adding Joystick and Force Feedback support to Input
-	- Need to expose the SDL_HAT_X enum to Lua
 	- Should keyboard, mouse and joystick each be their own class? A bit torn on this, kind of feel it will just add more junk, since Input can handle the three systems fine. Hmm
 - Physics movement needs to be reworked to use vector motion instead of the current Set Move junk
 - Side Note: I changed System to not set as having the console prompt is invaluable for debugging/testing scripts
@@ -68,6 +67,3 @@
 	- Can use MouseMotion() to check if there was mouse motion and GetMotion to get the motion event.
 	- Can use MouseDown(int button) to check if a mouse button is being pressed
 	- Mouse events are unset each time PollEvent is called to prevent reading the same event multiple times, since we only want to read each click once, and mouse motion will continously register a fresh event each frame
-
-## Some stress test results [30.7.2012]
-Not very impressive, 12k tiles at about 60% CPU usage on my laptop with a Intel Core 2 Duo @ 2.4GHz and ATI Mobility Radeon HD 3870 X2
