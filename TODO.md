@@ -1,5 +1,6 @@
 # TODO List:
-## - Organize this list haha
+
+### - Organize this list haha
 - Adding Joystick and Force Feedback support to Input
 	- Should keyboard, mouse and joystick each be their own class? A bit torn on this, kind of feel it will just add more junk, since Input can handle the three systems fine. Hmm
 - Physics movement needs to be reworked to use vector motion instead of the current Set Move junk
