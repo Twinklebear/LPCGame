@@ -17,6 +17,12 @@ function Init(object)
 	clipNum = 0
 	--Overriding physics module to test joystick motion
 	rect = LPC.Rectf(100, 100, 32, 32)
+	--Check if joystick is haptic
+	if (LPC.Input.JoySupportsHaptic()) then
+		print("Joy supports haptic")
+	else
+		print("No haptic support")
+	end
 end
 function Free()
 end

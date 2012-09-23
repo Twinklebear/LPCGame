@@ -22,11 +22,10 @@ void Input::Init(){
 	mKeyStates = SDL_GetKeyboardState(NULL);
     //Init joystick
     if (SDL_NumJoysticks() > 0){
-        //Some joystick testing info dump
-        std::cout << "# Joysticks: " << SDL_NumJoysticks() << std::endl;
         //This number value should be changed? Support for multiple sticks?
         mJoystick = SDL_JoystickOpen(0);
         if (mJoystick){
+            /*
             std::cout << "Joystick 0 Dump:" << std::endl
                 << "  Name: " << SDL_JoystickName(0) << std::endl
                 << "  # Axes: " << SDL_JoystickNumAxes(mJoystick) << std::endl
@@ -37,7 +36,9 @@ void Input::Init(){
             std::cout << "Will now test force feedback" << std::endl;
             std::cout << "Joystick haptic status: " << SDL_JoystickIsHaptic(mJoystick) << std::endl;
             //Joystick only seems to be haptic when in DirectInput mode, and even then fails to play the effect
+            */
             SDL_InitSubSystem(SDL_INIT_HAPTIC);
+            /*
             SDL_Haptic *haptic = nullptr;
             int effectId;
             
@@ -69,9 +70,8 @@ void Input::Init(){
             //Destroy the effect and close haptic
             SDL_HapticDestroyEffect(haptic, effectId);
             SDL_HapticClose(haptic);
+            */
         }
-        else
-            std::cout << "Failed to open joystick" << std::endl;
     }
 }
 void Input::PollEvent(){
@@ -234,6 +234,9 @@ int Input::GetJoyHat(int hat){
     else
         return SDL_HAT_CENTERED;
 }
+bool Input::JoySupportsHaptic(){
+    return SDL_JoystickIsHaptic(mJoystick);
+}
 bool Input::Quit(){
 	return mQuit;
 }
@@ -270,6 +273,7 @@ void Input::RegisterLua(lua_State* l){
                 def("GetJoyAxis", &Input::GetJoyAxis),
                 def("GetJoyButton", &Input::GetJoyButton),
                 def("GetJoyHat", &Input::GetJoyHat),
+                def("JoySupportsHaptic", &Input::JoySupportsHaptic),
 				def("Quit", &Input::Quit)
 			]
 			//To expose the SDL_Scancodes to Lua

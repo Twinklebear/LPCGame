@@ -27,6 +27,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 ### Progress
 - Twinklebear [9.22.2012]: Can read Joystick button, hat and axis input through the Input class
+- Twinklebear [9.23.2012]: Can check if the Joystick supports haptic via Input::JoySupportsHaptic()
 
 ## Entities/EntityManager [9.22.2012]
 ### Description
