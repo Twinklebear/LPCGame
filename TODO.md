@@ -1,4 +1,11 @@
-# TODO List:
+### TODO Document
+## How to use this document:
+Entries will be written as follows:
+
+## Entry Title [DateAdded]
+- Descriptions of steps that must be done
+	- Additional information about each step
+	- #### Work [Date]: Work done and any work notes
 
 ### - Organize this list haha
 - Adding Joystick and Force Feedback support to Input
