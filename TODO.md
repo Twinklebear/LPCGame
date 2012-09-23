@@ -3,9 +3,12 @@
 Entries will be written as follows:
 
 ## Entry Title [DateAdded]
+### Goals and Steps to be taken
 - Descriptions of steps that must be done
 	- Additional information about each step
-	#### - Work [Date]: Work done and any work notes
+
+### Progress
+- [Date] notes on progress
 
 ### - Organize this list haha
 - Adding Joystick and Force Feedback support to Input
