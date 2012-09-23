@@ -1,19 +1,27 @@
 ### TODO Document
 ## How to use this document:
-Entries will be written as follows:
+Entries will be written as follows, and should be updated as work progresses. In addition the description notes should also be updated if previously unmentioned things are found to be needed to meet the goal
 
 ## Entry Title [DateAdded]
-### Goals and Steps to be taken
+### Description of the work to be done
 - Descriptions of steps that must be done
 	- Additional information about each step
 
+## Physics [9.22.2012]
 ### Progress
-- [Date] notes on progress
+- WorkerName and [Date]: notes on progress
+### Description
+- Examine Box2D as a candidate for providing good physics functionality.
+	- Physics class would then provide the object with capabilities for dealing with its Box2D physics component
+- Physics::SetMove should instead take a vector move direction, instead of only Up/Down/Left/Right
+
+### Progress
+- Twinklebear [9.22.2012]: I'm working on becoming familiar with the library and testing it out in a minal test bench program, to see how it would work with SDL and with providing the physics functionality needed.
+
 
 ### - Organize this list haha
 - Adding Joystick and Force Feedback support to Input
 	- Should keyboard, mouse and joystick each be their own class? A bit torn on this, kind of feel it will just add more junk, since Input can handle the three systems fine. Hmm
-- Physics movement needs to be reworked to use vector motion instead of the current Set Move junk
 - Side Note: I changed System to not set as having the console prompt is invaluable for debugging/testing scripts
 - Clean up warnings
 - Is there a valid reason for not rolling the UIManager into the EntityManager?
