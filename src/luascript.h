@@ -33,6 +33,12 @@ public:
 	*  @param module The module to load
 	*/
 	void LoadModule(int module);
+    /**
+    *  Function to export to package.preload to allow for loading modules
+    *  via require
+    *  @param module The module name to load
+    */
+    void RequireModule(std::string module);
 	/**
 	*  Get the lua_State pointer to use for calling functions/etc.
 	*  @return The lua_State pointer held by the LuaScript class
@@ -56,6 +62,11 @@ public:
 private:
 	///Close the active script
 	void Close();
+    /**
+	*  Register the LuaScript module loader function with the
+	*  lua state member
+	*/
+	void RegisterLua();
 
 public:
 	///An enum for easily selecting the desired module to load

@@ -39,6 +39,8 @@ void LuaScript::OpenScript(std::string script){
 		luaL_openlibs(mL);
 		luabind::open(mL);
 		LoadModules();
+        //insert package.loader function here
+        RegisterLua();
 		luaL_dofile(mL, mFile.c_str());
 	}
 }
@@ -120,6 +122,10 @@ void LuaScript::LoadModule(int module){
 			break;
 	}
 }
+void LuaScript::RequireModule(std::string module){
+    if (module == "AnimatedImage")
+        LoadModule(MODULE::ANIMATED_IMAGE);
+}
 lua_State* LuaScript::Get(){
 	return mL;
 }
@@ -144,4 +150,15 @@ Json::Value LuaScript::Save(){
 		v["modules"][i] = mModules.at(i);
 
 	return v;
+}
+void LuaScript::RegisterLua(){
+    using namespace luabind;
+
+    module(mL)[
+        def("RequireModule", &LuaScript::RequireModule)
+    ];
+
+    //execute some lua code to set this function into package.loaders
+    luaL_dostring(mL, "table.insert(package.loaders, 2, RequireModule");
+    luaL_dostring(mL, "print('Test of adding a package loader function')");
 }
