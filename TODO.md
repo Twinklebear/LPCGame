@@ -78,6 +78,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 ### Progress
 - Twinklebear [9.23.2012]: Changed LuaScript::LoadModules to load all modules, we'll see how it effects load times, if it does at all
+- Twinklebear [9.23.2012]: You can now load modules via LPCLoadModule, which is passed the name of the module you want to load (with proper capitalization) and should be called at the beginning of the script as you would call require usually
 
 ## Editor [9.22.2012]
 ### Description

@@ -36,9 +36,10 @@ public:
     /**
     *  Function to export to package.preload to allow for loading modules
     *  via require
+    *  @param l The lua_State to register the module with
     *  @param module The module name to load
     */
-    void RequireModule(std::string module);
+    static bool RequireModule(lua_State *l, std::string module);
 	/**
 	*  Get the lua_State pointer to use for calling functions/etc.
 	*  @return The lua_State pointer held by the LuaScript class

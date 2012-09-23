@@ -122,9 +122,77 @@ void LuaScript::LoadModule(int module){
 			break;
 	}
 }
-void LuaScript::RequireModule(std::string module){
-    if (module == "AnimatedImage")
-        LoadModule(MODULE::ANIMATED_IMAGE);
+bool LuaScript::RequireModule(lua_State *l, std::string module){
+    std::cout << "Requiring module: " << module << std::endl;
+    if (module == "AnimatedImage"){
+        AnimatedImage::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Button"){
+        Button::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Camera"){
+        Camera::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Color"){
+        Color::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Entity"){
+        Entity::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Image"){
+        Image::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Input"){
+        Input::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Math"){
+        Math::RegisterLua(l);
+        return true;
+    }
+    else if (module == "MotionState"){
+        MotionState::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Physics"){
+        Physics::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Rect"){
+        Rectf::RegisterLua(l);
+        return true;
+    }
+    else if (module == "State"){
+        State::RegisterLua(l);
+        return true;
+    }
+    else if (module == "StateManager"){
+        StateManager::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Text"){
+        Text::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Timer"){
+        Timer::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Vector"){
+        Vector2f::RegisterLua(l);
+        return true;
+    }
+    else if (module == "Window"){
+        Window::RegisterLua(l);
+        return true;
+    }
+    return false;
 }
 lua_State* LuaScript::Get(){
 	return mL;
@@ -153,12 +221,8 @@ Json::Value LuaScript::Save(){
 }
 void LuaScript::RegisterLua(){
     using namespace luabind;
-
+    //Register the module loader with Lua
     module(mL)[
-        def("RequireModule", &LuaScript::RequireModule)
+        def("LPCLoadModule", &LuaScript::RequireModule)
     ];
-
-    //execute some lua code to set this function into package.loaders
-    luaL_dostring(mL, "table.insert(package.loaders, 2, RequireModule");
-    luaL_dostring(mL, "print('Test of adding a package loader function')");
 }

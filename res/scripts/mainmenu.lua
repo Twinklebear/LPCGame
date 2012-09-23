@@ -1,4 +1,6 @@
---require "AnimatedImage"
+--require 'AnimatedImage'
+--RequireModule("AnimatedImage")
+LPCLoadModule("Input")
 --We must use dofile as the file is not in Lua's search path
 dofile("../res/scripts/calltest.lua")
 
@@ -12,6 +14,9 @@ function Free()
 	print("state free")
 end
 function LogicUpdate()
+	if LPC.Input.KeyDown(LPC.Input.KEY_Q) then
+		print ("You pushed Q! Why would you do that?")
+	end
 	--print("state logic update")
 end
 function RenderUpdate()
