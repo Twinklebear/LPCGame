@@ -6,6 +6,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Description of the work to be done
 - Descriptions of steps that must be done
 	- Additional information about each step
+
 ### Progress
 - WorkerName and [Date]: notes on progress
 
@@ -14,22 +15,51 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Examine Box2D as a candidate for providing good physics functionality.
 	- Physics class would then provide the object with capabilities for dealing with its Box2D physics component
 - Physics::SetMove should instead take a vector move direction, instead of only Up/Down/Left/Right
+
 ### Progress
 - Twinklebear [9.22.2012]: I'm working on becoming familiar with the library and testing it out in a minal test bench program, to see how it would work with SDL and with providing the physics functionality needed.
 
-## Joystick Input [9.22.2012]
+## Gamepad Input [9.22.2012]
+### Description
+- Add SDL's gamepad and force feedback support into Input
+	- Should the SDL_HapticEffect be bundled into its own class and then exposed to Lua for creation of effects?
+	- Need a way for checking if the attached gamepad supports haptic effects
+
+### Progress
+- Twinklebear [9.22.2012]: Can read Joystick button, hat and axis input through the Input class
+
+## Entities/EntityManager [9.22.2012]
+### Description
+- Wouldn't it make more sense to add UIManager into EntityManager, and simply have UI elements ignore the camera offsets?
+
+### Progress
+
+## Seperation of Data [9.22.2012]
+### Description
+- Images/Animations should be described through their own json file that would be loaded as needed, instead of directly in the state's json file
+	- Animations should be seperate from Image description files, see Twinklebear work note [9.22.2012]
+- Entities should be in their own json files and loaded through file links in the state's json file
+	- Idea for state specific entity data: It could be overriden by specifying the state specific data in the state file, this data will then be used to override the entity data
+
+### Progress
+- Twinklebear [9.22.2012]: Image's and AnimatedImage's now have their own associated json file, describing any clips or animation sequences
+	- Note: Shouldn't animation be a seperate json file than the image file? So an image.json file would describe the image and its clips, while an animation would specify which image to load and the animation sequences.
+
+## Make Image Clips Array into a Vector [9.22.2012]
+### Description
+- Image currently uses a dynamic array to store the clip rects, it should be changed to a vector
+
+### Progress
+- Twinklebear [9.22.2012]: Tried the naive method of simplying bumping everything over and got rather unclear runtime exceptions, something more is going on that must be looked into.
+
+## General/Random/Unrelated [9.22.2012]
+### Description
+- Clean up warnings
+
+### Progress
+- Twinklebear [9.22.2012]: Sidenote: Subsystem is currently as Not Set so that I can get console output for debugging scripts and such
 
 ### - Organize this list haha
-- Adding Joystick and Force Feedback support to Input
-	- Should keyboard, mouse and joystick each be their own class? A bit torn on this, kind of feel it will just add more junk, since Input can handle the three systems fine. Hmm
-- Side Note: I changed System to not set as having the console prompt is invaluable for debugging/testing scripts
-- Clean up warnings
-- Is there a valid reason for not rolling the UIManager into the EntityManager?
-- What if i put the image/animatedimage clips/settings/etc into it's own json file associated with the image file? Then you'd be able to load the entire image data seperately from the state file.
-	- Working on putting this in now, this makes more sense anyways, why should an image's data be stored in a state's data file? It's just wierd
-	- Move the Image's clips array to a vector
-		- Tried this, for some reason it results in a runtime exception that was not very clear, will have to look into this further, something wierd is going on.
-- Should be able to create a entity's configuration/properties seperately from importing it into a scene. Then when certain entity's are desired in a scene you can import them from the list.
 - Implement Lua for scripting objects behavior
 	- LuaScript class takes care of loading the script and its desired modules. Modules are stored in JSON as an array of ints corresponding to the MODULE enum in the LuaScript class. Then before calling dofile all the desired modules are registered.
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
