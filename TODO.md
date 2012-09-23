@@ -63,6 +63,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Description
 - Need a better way for Lua scripts to load the modules they need through something like require or such.
 	- Can also load other Lua scripts via calling dofile("filepath relative to exe")
+	- Now that modules are loaded via LPCLoadModule the previous system should be removed because it's terrible
 - Implement Lua for scripting objects behavior
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
 - How should the State class be handled?
