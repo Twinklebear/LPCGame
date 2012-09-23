@@ -34,7 +34,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 ### Progress
 
-## Seperation of Data [9.22.2012]
+## Separation of Data [9.22.2012]
 ### Description
 - Images/Animations should be described through their own json file that would be loaded as needed, instead of directly in the state's json file
 	- Animations should be seperate from Image description files, see Twinklebear work note [9.22.2012]
