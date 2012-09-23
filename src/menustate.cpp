@@ -41,6 +41,8 @@ std::string MenuState::Run(){
 		//LOGIC
 		mCamera->Update();
 		mManager->Update();
+        //Call script's logic update
+        State::LogicUpdate();
 
 		float deltaT = delta.Restart() / 1000.f;
 		mCamera->Move(deltaT);
@@ -49,6 +51,9 @@ std::string MenuState::Run(){
 		Window::Clear();
 		Window::Draw(&mBackground, bkgndPos, &(Recti)mCamera->Box());
 		mManager->Draw();
+
+        //Call script's rendering
+        State::RenderUpdate();
 
 		//refresh window
 		Window::Present();
@@ -66,6 +71,8 @@ void MenuState::Free(){
 	//when destroyed, and we get leaks
 	//mCamera.reset()
 	//mManager.reset();
+    //Call script's Free
+    State::Free();
 }
 Json::Value MenuState::Save(){
 	Json::Value val = State::Save();
@@ -91,4 +98,6 @@ void MenuState::Load(Json::Value val){
 			mManager->Register(sObj);
 		}
 	}
+    //Call the script's Init
+    State::Init();
 }

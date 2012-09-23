@@ -12,8 +12,44 @@ std::string State::Run(){
 	return mExitCode;
 }
 void State::Init(){
+    //Call the script
+    if (!mScript.Open())
+		return;
+	try {
+		luabind::call_function<void>(mScript.Get(), "Init");
+	}
+	catch(...){
+	}
 }
 void State::Free(){
+    //Call the script
+    if (!mScript.Open())
+		return;
+	try {
+		luabind::call_function<void>(mScript.Get(), "Free");
+	}
+	catch(...){
+	}
+}
+void State::LogicUpdate(){
+    //Call the script
+    if (!mScript.Open())
+		return;
+	try {
+		luabind::call_function<void>(mScript.Get(), "LogicUpdate");
+	}
+	catch(...){
+	}
+}
+void State::RenderUpdate(){
+    //Call the script
+    if (!mScript.Open())
+		return;
+	try {
+		luabind::call_function<void>(mScript.Get(), "RenderUpdate");
+	}
+	catch(...){
+	}
 }
 void State::SetExit(std::string val){
 	mExit = true;
@@ -34,12 +70,14 @@ Json::Value State::Save(){
 	val["entities"] = mManager->Save();
 	val["name"]	    = mName;
 	val["camera"]   = mCamera->Save();
+    val["script"]   = mScript.Save();
 
 	return val;
 }
 void State::Load(Json::Value val){
 	mName = val["name"].asString();
 	mCamera->Load(val["camera"]);
+    mScript.Load(val["script"]);
 }
 void State::RegisterLua(lua_State *l){
 	using namespace luabind;

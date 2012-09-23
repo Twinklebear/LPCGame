@@ -51,6 +51,13 @@ void LuaScript::Close(){
 void LuaScript::LoadModules(){
 	for (int m : mModules)
 		LoadModule(m);
+    ///Override to load all modules
+    /*
+    for (int i = 0; i <= MODULE::WINDOW; ++i){
+        std::cout << i << std::endl;
+        LoadModule(i);
+    }
+    */
 }
 void LuaScript::LoadModule(int module){
 	//Make sure the lua state is valid
@@ -104,7 +111,7 @@ void LuaScript::LoadModule(int module){
 			Timer::RegisterLua(mL);
 			break;
 		case MODULE::VECTOR:
-			Vector2<int>::RegisterLua(mL);
+			Vector2<float>::RegisterLua(mL);
 			break;
 		case MODULE::WINDOW:
 			Window::RegisterLua(mL);

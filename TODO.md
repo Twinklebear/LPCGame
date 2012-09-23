@@ -61,6 +61,8 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 ## Lua Embedding [9.22.2012]
 ### Description
+- Need a better way for Lua scripts to load the modules they need through something like require or such.
+	- Can also load other Lua scripts via calling dofile("filepath relative to exe")
 - Implement Lua for scripting objects behavior
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
 - How should the State class be handled?
@@ -68,10 +70,14 @@ Entries will be written as follows, and should be updated as work progresses. In
 		- I think I've got a method for this setup, see the static StateManager function ChangeScene
 	- Will need some way to grab the active state, perhaps from StateManager? It's a pure-static class so yes, I think that will work
 	- Should states be run via script? Hmm. What to do with states..
+		- States will execute their basic C++ functionality, such as making the calls to the manager, and other background stuff, but will also call a function on a state script if one is attached
 	- Should tiles become entities that are managed by the Map class? This will allow tiles to have scripts attached. Or should tiles remain simple floor imagery and instead invisible entities should be created to enable area triggers. (kind of leaning to the latter, it'll be easier than reworking the Map & Tile class)
 - How to save data from script?
 	- Have decided to leave this up to the user, so editor created data will be handled by JsonCPP and script data will be handled by whatever is desired for Lua, and will have no interoperation between the C++ saved data and custom script data.
 - Should all modules be loaded for every script? It would prevent potential missing module errors/crashes, would it slow script loading time?
+
+### Progress
+- Twinklebear [9.23.2012]: Changed LuaScript::LoadModules to load all modules, we'll see how it effects load times, if it does at all
 
 ## Editor [9.22.2012]
 ### Description

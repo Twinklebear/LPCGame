@@ -9,13 +9,14 @@
 #include "../externals/json/json.h"
 #include "entitymanager.h"
 #include "camera.h"
+#include "luascript.h"
 
 ///Base class for states
 /**
 *  The base class for our state machine, provides functions
 *  for initializing state, running the state and memory clean-up
 */
-class State{
+class State {
 public:
 	State();
 	virtual ~State();
@@ -74,6 +75,11 @@ protected:
 	virtual void Init();
 	///Free the memory used by the state
 	virtual void Free();
+    ///Is this good? I don't know.
+    ///Call the script's LogicUpdate function
+    virtual void LogicUpdate();
+    ///Call the script's RenderUpdate function
+    virtual void RenderUpdate();
 
 protected:
 	std::shared_ptr<EntityManager> mManager;
@@ -82,6 +88,8 @@ protected:
 	//Should this be atomic?
 	bool mExit;
 	std::string mExitCode;
+    ///The state's script
+    LuaScript mScript;
 	///Condition variable and double check bool variable
 	//std::condition_variable mCondVar;
 	//Do i need this?

@@ -1207,6 +1207,9 @@
       ]
    },
    "name" : "gGame",
+   "script" : {
+      "file" : ""
+   },
    "ui" : [
       {
          "image" : {

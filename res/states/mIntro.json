@@ -174,6 +174,9 @@
          "type" : "objectbutton"
       }
    ],
-   "name" : "mIntro"
+   "name" : "mIntro",
+   "script" : {
+      "file" : "../res/scripts/mainmenu.lua"
+   }
 }
 
