@@ -2,7 +2,7 @@ CXX=g++
 RELEASE=-Wall -std=c++0x -Wno-sign-compare -fpermissive
 INCLUDEDIR=-I /usr/local/include/SDL2/
 LIBDIR=-L /usr/local/lib/
-LINKLIB=-lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf 
+LINKLIB=-lSDL2 -lSDL2main -lSDL2_image -lSDL2_ttf -lluabind
 CFLAGS=$(RELEASE) -c $(INCLUDEDIR)
 LFLAGS=$(RELEASE) $(INCLUDEDIR) $(LIBDIR) $(LINKLIB)
 SRCPATH=src/
