@@ -1,6 +1,7 @@
 #ifndef MAP_H
 #define MAP_H
 
+#include <set>
 #include <vector>
 #include <string>
 #include "../externals/json/json.h"
@@ -50,10 +51,10 @@ public:
 	/**
 	*  Calculate the indices of all the tiles within an area
 	*  @param area The area to get tile indices in
-	*  @return A vector of ints containing the tile indices
-	*  @throw Runtime error if the vector is empty
+	*  @return A set of ints containing the tile indices
+	*  @throw Runtime error if the set is empty
 	*/
-	std::vector<int> CalculateIndex(Recti area) const;
+	std::set<int> CalculateIndex(Recti area) const;
 	/**
 	*  Get the collision map within distance of the target
 	*  @param target The target to get the nearby collision map around

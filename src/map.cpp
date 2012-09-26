@@ -1,3 +1,4 @@
+#include <set>
 #include <vector>
 #include <string>
 #include <cmath>
@@ -16,7 +17,7 @@ Map::~Map(){
 void Map::Draw(Camera *cam){
 	//Use the camera box to get the indices of all the tiles in visible in camera
 	if (cam != nullptr){
-		std::vector<int> indices = CalculateIndex(cam->Box());
+		std::set<int> indices = CalculateIndex(cam->Box());
 		for (int i : indices){
 			if (i < mTiles.size()){
 				Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
@@ -85,22 +86,15 @@ int Map::CalculateIndex(int x, int y) const{
 	else 
 		throw std::runtime_error("Point off map");
 }
-std::vector<int> Map::CalculateIndex(Recti area) const{
-	std::vector<int> tileIndices;
+std::set<int> Map::CalculateIndex(Recti area) const{
+	std::set<int> tileIndices;
 	//TODO: How can this be done without all the for loops?
 	//run through the area
 	for (int y = area.Y(); y <= area.Y() + area.H(); y += TILE_HEIGHT / 2){
 		for (int x = area.X(); x <= area.X() + area.W(); x += TILE_WIDTH / 2){
 			try{
 				int index = CalculateIndex(x, y);
-				//make sure it isn't already in the vector
-				bool exists = false;
-				for (int i = 0; i < tileIndices.size() && !exists; ++i){
-					if (index == tileIndices.at(i))
-						exists = true;
-				}
-				if (!exists)
-					tileIndices.push_back(index);
+				tileIndices.insert(index);
 			}
 			catch (...){
 				//the error is more of a notice to keep us adding invalid indices, 
@@ -119,7 +113,7 @@ CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 		((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),
 		((target.Y() + target.H() + distance * TILE_HEIGHT) - (target.Y() - distance * TILE_HEIGHT)));
 
-	std::vector<int> indices;
+	std::set<int> indices;
 	try{
 		indices = CalculateIndex(area);
 	}
