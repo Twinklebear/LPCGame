@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <unordered_map>
+#include <map>
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 
@@ -64,7 +64,7 @@ private:
 
 private:
     ///typedef for an unordered map of the RegisterLua functions
-    typedef std::unordered_map<std::string, void (*)(lua_State*)> TRegisterLuaMap;
+    typedef std::map<std::string, void (*)(lua_State*)> TRegisterLuaMap;
     /**
     *  Create the unordered_map of RegisterLua functions and return it
     *  @return unordered_map of RegisterLua functions
