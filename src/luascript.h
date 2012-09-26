@@ -27,7 +27,7 @@ public:
 	void OpenScript(std::string script);
     /**
     *  Gets the module loading function from the TRegisterLuaMap of functions
-    *  and runs it, passing it l
+    *  and runs it, passing it the lua_State to register too, l
     *  @param l The lua_State to register the module with
     *  @param module The module name to load
     *  @return T if the module was found and loaded, F otherwise
