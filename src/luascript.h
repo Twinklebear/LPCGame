@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <unordered_map>
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 
@@ -25,10 +26,11 @@ public:
 	*/
 	void OpenScript(std::string script);
     /**
-    *  Function to export to package.preload to allow for loading modules
-    *  via require
+    *  Gets the module loading function from the TRegisterLuaMap of functions
+    *  and runs it, passing it l
     *  @param l The lua_State to register the module with
     *  @param module The module name to load
+    *  @return T if the module was found and loaded, F otherwise
     */
     static bool RequireModule(lua_State *l, std::string module);
 	/**
@@ -61,10 +63,21 @@ private:
 	void RegisterLua();
 
 private:
+    ///typedef for an unordered map of the RegisterLua functions
+    typedef std::unordered_map<std::string, void (*)(lua_State*)> TRegisterLuaMap;
+    /**
+    *  Create the unordered_map of RegisterLua functions and return it
+    *  @return unordered_map of RegisterLua functions
+    */
+    static TRegisterLuaMap CreateMap();
+
+private:
 	///The lua state running the script
 	lua_State *mL;
 	///The script file name
 	std::string mFile;
+    ///The map of RegisterLua functions
+    static const TRegisterLuaMap mRegisterLuaFuncs;
 };
 
 #endif

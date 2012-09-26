@@ -64,7 +64,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Need a better way for Lua scripts to load the modules they need through something like require or such.
 	- Can also load other Lua scripts via calling dofile("filepath relative to exe")
 		- How will these scripts have the right modules loaded?
-	- Considering replacing all the if statements in LuaScript::RequireModule with a lookup in an unordered_map of the RegisterLua functions
 - Implement Lua for scripting objects behavior
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
 - How should the State class be handled?
@@ -82,6 +81,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [9.23.2012]: Changed LuaScript::LoadModules to load all modules, we'll see how it effects load times, if it does at all
 - Twinklebear [9.23.2012]: You can now load modules via LPCLoadModule, which is passed the name of the module you want to load (with proper capitalization) and should be called at the beginning of the script as you would call require usually
 - Twinklebear [9.25.2012]: Removal of the old bad system for using the enum and JSON file for storing a list of required modules is now gone. Modules are loaded with LPCLoadModule. I'm considering migrating over to exposing each class's RegisterLua function however, and then you'd do LPCLoadInput() and it would eliminate the need for the string comparisons
+- Twinklebear [9.25.2012]: Module's registration functions are now stored in a std::unordered_map to enable fast lookup. Map is created in LuaScript::CreateMap and given to a static const unordered_map as only one needs to exist, and it should never be able to change what it contains during the program run.
 
 ## Editor [9.22.2012]
 ### Description
