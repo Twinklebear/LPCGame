@@ -82,7 +82,11 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [9.23.2012]: You can now load modules via LPCLoadModule, which is passed the name of the module you want to load (with proper capitalization) and should be called at the beginning of the script as you would call require usually
 - Twinklebear [9.25.2012]: Removal of the old bad system for using the enum and JSON file for storing a list of required modules is now gone. Modules are loaded with LPCLoadModule. I'm considering migrating over to exposing each class's RegisterLua function however, and then you'd do LPCLoadInput() and it would eliminate the need for the string comparisons
 - Twinklebear [9.25.2012]: Module's registration functions are now stored in a std::unordered_map to enable fast lookup. Map is created in LuaScript::CreateMap and given to a static const unordered_map as only one needs to exist, and it should never be able to change what it contains during the program run.
+<<<<<<< HEAD
 - Twinklebear [9.26.2012]: Correction, the name of the module loading function is changed to LPCRequireModule("modulename")
+=======
+- Twinklebear [9.26.2012]: Changed the unordered_map to a map, since we never perform insertions we don't need to worry about that, just quick access across all elements. So a map is a better choice
+>>>>>>> changed the unordered_map toa  map
 
 ## Editor [9.22.2012]
 ### Description
