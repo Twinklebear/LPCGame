@@ -39,7 +39,6 @@ function Free()
 end
 --Called each frame
 function Update()
-	print("Test2 Update")
 	--Playing with clips
 	if (LPC.Input.KeyDown(LPC.Input.KEY_R) and animImg:Playing() == "idle") then
 		--clipNum = clipNum + 1
