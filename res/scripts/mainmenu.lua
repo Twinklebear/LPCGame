@@ -1,6 +1,6 @@
 --require 'AnimatedImage'
 --RequireModule("AnimatedImage")
-LPCLoadModule("Input")
+LPCRequireInput()
 --We must use dofile as the file is not in Lua's search path
 dofile("../res/scripts/calltest.lua")
 

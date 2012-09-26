@@ -64,6 +64,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Need a better way for Lua scripts to load the modules they need through something like require or such.
 	- Can also load other Lua scripts via calling dofile("filepath relative to exe")
 		- How will these scripts have the right modules loaded?
+	- Considering replacing all the if statements in LuaScript::RequireModule with a lookup in an unordered_map of the RegisterLua functions
 - Implement Lua for scripting objects behavior
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
 - How should the State class be handled?

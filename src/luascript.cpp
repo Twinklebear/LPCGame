@@ -143,6 +143,8 @@ void LuaScript::RegisterLua(){
     using namespace luabind;
     //Register the module loader with Lua
     module(mL)[
-        def("LPCLoadModule", &LuaScript::RequireModule)
+        def("LPCLoadModule", &LuaScript::RequireModule),
+        def("LPCRequireInput", &Input::RegisterLua),
+        def("LPCRequireAnimatedImage", &AnimatedImage::RegisterLua)
     ];
 }
