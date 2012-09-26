@@ -1,3 +1,14 @@
+LPCLoadModule("Input")
+LPCLoadModule("Rect")
+LPCLoadModule("Entity")
+LPCLoadModule("Color")
+LPCLoadModule("Text")
+LPCLoadModule("Physics")
+LPCLoadModule("AnimatedImage")
+LPCLoadModule("Vector2")
+LPCLoadModule("Window")
+LPCLoadModule("Camera")
+
 --Init the script
 function Init(object)
 	print("Test2 Init")
@@ -28,6 +39,7 @@ function Free()
 end
 --Called each frame
 function Update()
+	print("Test2 Update")
 	--Playing with clips
 	if (LPC.Input.KeyDown(LPC.Input.KEY_R) and animImg:Playing() == "idle") then
 		--clipNum = clipNum + 1

@@ -24,15 +24,6 @@ public:
 	*  @param script The script file to open
 	*/
 	void OpenScript(std::string script);
-	/**
-	*  Load the modules that the script needs from the list of modules needed mModules
-	*/
-	void LoadModules();
-	/**
-	*  Load the desired module, passed as a MODULE enum
-	*  @param module The module to load
-	*/
-	void LoadModule(int module);
     /**
     *  Function to export to package.preload to allow for loading modules
     *  via require
@@ -69,18 +60,11 @@ private:
 	*/
 	void RegisterLua();
 
-public:
-	///An enum for easily selecting the desired module to load
-	enum MODULE { ANIMATED_IMAGE, BUTTON, CAMERA, COLOR, ENTITY, IMAGE, INPUT, MATH, MOTION_STATE, 
-				  PHYSICS, RECT, STATE, STATE_MANAGER, TEXT, TIMER, VECTOR, WINDOW };
-
 private:
 	///The lua state running the script
 	lua_State *mL;
 	///The script file name
 	std::string mFile;
-	///The modules the script needs
-	std::vector<int> mModules;
 };
 
 #endif

@@ -91,8 +91,8 @@
             "box" : {
                "h" : 28.0,
                "w" : 28.0,
-               "x" : 83.0,
-               "y" : 146.0
+               "x" : 94.0,
+               "y" : 93.0
             },
             "hAccel" : 700,
             "hSpeed" : 300
@@ -115,8 +115,7 @@
             "hSpeed" : 300
          },
          "script" : {
-            "file" : "../res/scripts/test2.lua",
-            "modules" : [ 0, 2, 4, 5, 6, 7, 8, 9, 10, 13, 15, 16 ]
+            "file" : "../res/scripts/test2.lua"
          },
          "tag" : "test"
       }

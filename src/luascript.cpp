@@ -38,7 +38,6 @@ void LuaScript::OpenScript(std::string script){
 		mL = lua_open();
 		luaL_openlibs(mL);
 		luabind::open(mL);
-		LoadModules();
         //insert package.loader function here
         RegisterLua();
 		luaL_dofile(mL, mFile.c_str());
@@ -48,78 +47,6 @@ void LuaScript::Close(){
 	if (Open()){
 		lua_close(mL);
 		mL = nullptr;
-	}
-}
-void LuaScript::LoadModules(){
-	for (int m : mModules)
-		LoadModule(m);
-    ///Override to load all modules
-    /*
-    for (int i = 0; i <= MODULE::WINDOW; ++i){
-        std::cout << i << std::endl;
-        LoadModule(i);
-    }
-    */
-}
-void LuaScript::LoadModule(int module){
-	//Make sure the lua state is valid
-	if (!Open())
-		return;
-	//Find the desired module and register it
-	switch(module){
-		case MODULE::ANIMATED_IMAGE:
-			AnimatedImage::RegisterLua(mL);
-			break;
-		case MODULE::BUTTON:
-			Button::RegisterLua(mL);
-			break;
-		case MODULE::CAMERA:
-			Camera::RegisterLua(mL);
-			break;
-		case MODULE::COLOR:
-			Color::RegisterLua(mL);
-			break;
-		case MODULE::ENTITY:
-			Entity::RegisterLua(mL);
-			break;
-		case MODULE::IMAGE:
-			Image::RegisterLua(mL);
-			break;
-		case MODULE::INPUT:
-			Input::RegisterLua(mL);
-			break;
-		case MODULE::MATH:
-			Math::RegisterLua(mL);
-			break;
-		case MODULE::MOTION_STATE:
-			MotionState::RegisterLua(mL);
-			break;
-		case MODULE::PHYSICS:
-			Physics::RegisterLua(mL);
-			break;
-		case MODULE::RECT:
-			Rect<int>::RegisterLua(mL);
-			break;
-		case MODULE::STATE:
-			State::RegisterLua(mL);
-			break;
-		case MODULE::STATE_MANAGER:
-			StateManager::RegisterLua(mL);
-			break;
-		case MODULE::TEXT:
-			Text::RegisterLua(mL);
-			break;
-		case MODULE::TIMER:
-			Timer::RegisterLua(mL);
-			break;
-		case MODULE::VECTOR:
-			Vector2<float>::RegisterLua(mL);
-			break;
-		case MODULE::WINDOW:
-			Window::RegisterLua(mL);
-			break;
-		default:
-			break;
 	}
 }
 bool LuaScript::RequireModule(lua_State *l, std::string module){
@@ -184,7 +111,7 @@ bool LuaScript::RequireModule(lua_State *l, std::string module){
         Timer::RegisterLua(l);
         return true;
     }
-    else if (module == "Vector"){
+    else if (module == "Vector2"){
         Vector2f::RegisterLua(l);
         return true;
     }
@@ -204,19 +131,12 @@ bool LuaScript::Open(){
 	return (mL != nullptr);
 }
 void LuaScript::Load(Json::Value v){
-	//Get the list of modules
-	for (int i = 0; i < v["modules"].size(); ++i)
-		mModules.push_back(v["modules"][i].asInt());
 	//Open the script
 	OpenScript(v["file"].asString());
 }
 Json::Value LuaScript::Save(){
 	Json::Value v;
 	v["file"] = mFile;
-	//Save the module list
-	for (int i = 0; i < mModules.size(); ++i)
-		v["modules"][i] = mModules.at(i);
-
 	return v;
 }
 void LuaScript::RegisterLua(){
