@@ -24,7 +24,13 @@ Image::~Image(){
 }
 void Image::LoadImage(const std::string &file){
 	mFile = file;
-	mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
+    try {
+	    mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+        throw e;
+    }
     //Try to load a config file
     try {
         LoadConfig(LoadImageConfig(file));

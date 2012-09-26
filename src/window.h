@@ -109,6 +109,7 @@ public:
 	*  Load an image file as a SDL_Texture and return it
 	*  @param file The image file to load
 	*  @return SDL_Texture* of the texture loaded
+    *  @throw runtime_error if image failed to load
 	*/
 	static SDL_Texture* LoadTexture(std::string file);
 	/**
