@@ -47,7 +47,7 @@ public:
 	*  @return The index of the tile at the point
 	*  @throw Runtime Error if the point is off the map, must catch this
 	*/
-	int CalculateIndex(int x, int y) const;
+	int CalculateIndex(int x, int y, int w, int h) const;
 	/**
 	*  Calculate the indices of all the tiles within an area
 	*  @param area The area to get tile indices in
