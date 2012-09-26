@@ -234,6 +234,9 @@ int Input::GetJoyHat(int hat){
     else
         return SDL_HAT_CENTERED;
 }
+bool Input::JoystickAvailable(){
+    return (mJoystick != nullptr);
+}
 bool Input::JoySupportsHaptic(){
     return SDL_JoystickIsHaptic(mJoystick);
 }
@@ -273,6 +276,7 @@ void Input::RegisterLua(lua_State* l){
                 def("GetJoyAxis", &Input::GetJoyAxis),
                 def("GetJoyButton", &Input::GetJoyButton),
                 def("GetJoyHat", &Input::GetJoyHat),
+                def("JoystickAvailable", &Input::JoystickAvailable),
                 def("JoySupportsHaptic", &Input::JoySupportsHaptic),
 				def("Quit", &Input::Quit)
 			]

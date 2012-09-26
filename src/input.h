@@ -74,6 +74,8 @@ public:
     *  @return The position of the hat
     */
     static int GetJoyHat(int hat);
+    ///Check if a Joystick is available
+    static bool JoystickAvailable();
     ///Check if the Joystick has haptic support (force feedback)
     static bool JoySupportsHaptic();
 	///Check if the program has been quit out of

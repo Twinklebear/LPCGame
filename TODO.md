@@ -23,11 +23,11 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Description
 - Add SDL's gamepad and force feedback support into Input
 	- Should the SDL_HapticEffect be bundled into its own class and then exposed to Lua for creation of effects?
-	- Need a way for checking if the attached gamepad supports haptic effects
 
 ### Progress
 - Twinklebear [9.22.2012]: Can read Joystick button, hat and axis input through the Input class
 - Twinklebear [9.23.2012]: Can check if the Joystick supports haptic via Input::JoySupportsHaptic()
+- Twinklebear [9.25.2012]: Added function to check if a Joystick is available
 
 ## Entities/EntityManager [9.22.2012]
 ### Description

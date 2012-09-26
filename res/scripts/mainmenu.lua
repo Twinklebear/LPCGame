@@ -7,6 +7,9 @@ dofile("../res/scripts/calltest.lua")
 function Init()
 	--print("Lua search path: " .. package.path)
 	print("state init")
+	if LPC.Input.JoystickAvailable() then
+		print("Joystick is available")
+	end
 	--Test.TestFunc()
 	TestCall()
 end
