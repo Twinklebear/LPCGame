@@ -107,6 +107,14 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Progress
 - Twinklebear [9.22.2012]: Played around with it some, but some strange issues arise, this needs to be approached with caution. Perhaps when I have a better understanding of designing multithreaded programs.
 
+## Migration to OpenGL [9.26.2012]
+### Description
+- A long term goal, will eventually outgrow SDL when the time comes to being adding support for GLSL shaders, normal/diffuse/etc maps for lighting and so on.
+	- Rendering will still remain 2D
+- I need to learn OpenGL and become very acquinted with it. This TODO task does not and probably will not be worked on for a long time.
+
+### Progress
+
 ## Memory Leaks [9.22.2012]
 ### Description
 - Memory leaks when changing states
