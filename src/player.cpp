@@ -15,26 +15,54 @@ Player::Player(){}
 Player::~Player(){}
 void Player::Update(){
 	//Horizontal input handling
-	if (Input::KeyDown("a"))
+
+	//direction the player is facing
+	int direction = -1;
+
+	if (Input::KeyDown("a")){
 		mPhysics.SetHorizDir(Math::LEFT);
-	else if (Input::KeyDown("d"))
+		direction = Math::LEFT;
+	}
+	else if (Input::KeyDown("d")){
 		mPhysics.SetHorizDir(Math::RIGHT);
+		direction = Math::RIGHT;
+	}
 	else
 		mPhysics.SetHorizDir(Physics::MOVE::STOP);
 	//Vertical input handling
-	if (Input::KeyDown("w"))
+	if (Input::KeyDown("w")){
 		mPhysics.SetVertDir(Math::UP);
-	else if (Input::KeyDown("s"))
+		direction = Math::UP;
+	}
+	else if (Input::KeyDown("s")){
 		mPhysics.SetVertDir(Math::DOWN);
+		direction = Math::DOWN;
+	}
 	else
 		mPhysics.SetVertDir(Physics::MOVE::STOP);
 
 	//Update active animation
-	if (mPhysics.State() == MotionState::IDLE && mAnimatedImage.Playing() != "idle")
-		mAnimatedImage.Play("idle");
-	else if (mPhysics.State() == MotionState::RUNNING && mAnimatedImage.Playing() != "run")
-		mAnimatedImage.Play("run");
 
+	if (mPhysics.State() == MotionState::IDLE){
+		if (mAnimatedImage.Playing() == "run-left")
+			mAnimatedImage.Play("idle-left");
+		else if (mAnimatedImage.Playing() == "run-right")
+			mAnimatedImage.Play("idle-right");
+		else if (mAnimatedImage.Playing() == "run-up")
+			mAnimatedImage.Play("idle-up");
+		else if (mAnimatedImage.Playing() == "run-down")
+			mAnimatedImage.Play("idle-down");
+	}
+	else if (mPhysics.State() == MotionState::RUNNING){
+		if (direction == Math::LEFT && mAnimatedImage.Playing() != "run-left")
+			mAnimatedImage.Play("run-left");
+		else if (direction == Math::RIGHT && mAnimatedImage.Playing() != "run-right")
+			mAnimatedImage.Play("run-right");
+		else if (direction == Math::UP && mAnimatedImage.Playing() != "run-up")
+			mAnimatedImage.Play("run-up");
+		else if (direction == Math::DOWN && mAnimatedImage.Playing() != "run-down")
+			mAnimatedImage.Play("run-down");
+	}
 	//Update animation from
 	mAnimatedImage.Update();
 }
@@ -65,5 +93,5 @@ void Player::Load(Json::Value val){
 	mAnimatedImage.Load(val["image"]);
 	mTag = val["tag"].asString();
 	//start idle animation
-	mAnimatedImage.Play("idle");
+	mAnimatedImage.Play("idle-left");
 }

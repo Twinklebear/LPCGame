@@ -36,7 +36,7 @@ void MapEditor::GenerateBlank(int x, int y){
 }
 void MapEditor::Insert(int x, int y, Tile tile){
 	try {
-		int i = CalculateIndex(x, y);
+		int i = CalculateIndex(x, y, mBox.W(), mBox.H());
 		tile.SetBox(Recti(mTiles.at(i).Box()));
 		mTiles.at(i) = tile;
 	}

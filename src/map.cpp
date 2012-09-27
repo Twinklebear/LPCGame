@@ -1,3 +1,4 @@
+#include <set>
 #include <vector>
 #include <string>
 #include <cmath>
@@ -16,7 +17,7 @@ Map::~Map(){
 void Map::Draw(Camera *cam){
 	//Use the camera box to get the indices of all the tiles in visible in camera
 	if (cam != nullptr){
-		std::vector<int> indices = CalculateIndex(cam->Box());
+		std::set<int> indices = CalculateIndex(cam->Box());
 		for (int i : indices){
 			if (i < mTiles.size()){
 				Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
@@ -77,37 +78,41 @@ void Map::GenerateStressMap(Json::Value val){
 		mTiles.push_back(tempTile);
 	}
 }
-int Map::CalculateIndex(int x, int y) const{
+int Map::CalculateIndex(int x, int y, int w, int h) const{
 	//if it's in bounds calculate the index
-	if ((x > 0 && x < mBox.W()) && (y > 0 && y < mBox.H())){
-		return (x / TILE_WIDTH + (y / TILE_HEIGHT) * (mBox.W() / TILE_WIDTH)); 
+	if ((x > 0 && x < w) && (y > 0 && y < h)){
+		return (x / TILE_WIDTH + (y / TILE_HEIGHT) * (w / TILE_WIDTH)); 
 	}
-	else 
-		throw std::runtime_error("Point off map");
+	else{ 
+		return -1;
+	}
 }
-std::vector<int> Map::CalculateIndex(Recti area) const{
-	std::vector<int> tileIndices;
+
+std::set<int> Map::CalculateIndex(Recti area) const{
+	std::set<int> tileIndices;
 	//TODO: How can this be done without all the for loops?
 	//run through the area
-	for (int y = area.Y(); y <= area.Y() + area.H(); y += TILE_HEIGHT / 2){
-		for (int x = area.X(); x <= area.X() + area.W(); x += TILE_WIDTH / 2){
-			try{
-				int index = CalculateIndex(x, y);
-				//make sure it isn't already in the vector
-				bool exists = false;
-				for (int i = 0; i < tileIndices.size() && !exists; ++i){
-					if (index == tileIndices.at(i))
-						exists = true;
-				}
-				if (!exists)
-					tileIndices.push_back(index);
-			}
-			catch (...){
-				//the error is more of a notice to keep us adding invalid indices, 
-				//so nothing more is needed here
+
+	//generating these beforehand so that there does not
+	//have to be so many calls during the future loops
+	int area_x = area.X();
+	int area_y = area.Y();
+	int area_w = area.W();
+	int area_h = area.H();
+	int mbox_w = mBox.W();
+	int mbox_h = mBox.H();
+
+	for (int y = area_y; y <= area_y + area_h; y += TILE_HEIGHT / 2){
+		for (int x = area_x; x <= area_x + area_w; x += TILE_WIDTH / 2){
+
+			//find the appropriate index and place it with the tiles
+			int index = CalculateIndex(x, y, mbox_w, mbox_h);
+			if (index >= 0){
+				tileIndices.insert(index);
 			}
 		}
 	}
+
 	if (tileIndices.size() != 0)
 		return tileIndices;
 	else
@@ -119,7 +124,7 @@ CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 		((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),
 		((target.Y() + target.H() + distance * TILE_HEIGHT) - (target.Y() - distance * TILE_HEIGHT)));
 
-	std::vector<int> indices;
+	std::set<int> indices;
 	try{
 		indices = CalculateIndex(area);
 	}
