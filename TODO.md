@@ -40,6 +40,8 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Images/Animations should be described through their own json file that would be loaded as needed, instead of directly in the state's json file
 	- Animations should be seperate from Image description files, see Twinklebear work note [9.22.2012]
 		- Decided against this for now.
+	- Remove old loading system
+	- Need to be able to save/modify the image data files in the editor
 - Entities should be in their own json files and loaded through file links in the state's json file
 	- Idea for state specific entity data: It could be overriden by specifying the state specific data in the state file, this data will then be used to override the entity data
 

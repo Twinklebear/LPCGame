@@ -35,7 +35,7 @@ AnimatedImage::AnimatedImage(const std::string &file)
     LoadImage(file);
     //Try to load an image config
     try {
-        LoadConfig(LoadImageConfig(file));
+        LoadImageConfig(file);
     }
     catch (const std::runtime_error &e){
         std::cout << e.what() << std::endl;
@@ -74,21 +74,11 @@ int AnimatedImage::ActiveClip(){
 Json::Value AnimatedImage::Save(){
 	//Save base class (file and clips)
 	Json::Value val = Image::Save();
-	//Save the sequences
-	//for (int i = 0; i < mSequences.size(); ++i)
-	//	val["sequences"][i] = mSequences.at(i).Save();
-
 	return val;
 }
 void AnimatedImage::Load(Json::Value val){
 	//Load base class (file and clips)
 	Image::Load(val);
-	//Load the sequences
-	for (int i = 0; i < val["sequences"].size(); ++i){
-		AnimationSequence tempSeq;
-		tempSeq.Load(val["sequences"][i]);
-		mSequences.push_back(tempSeq);
-	}
 }
 void AnimatedImage::LoadConfig(Json::Value val){
 	//Load the clips

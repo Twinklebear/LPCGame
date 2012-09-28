@@ -91,7 +91,7 @@ protected:
     *  @param file The image filename
     *  @return A Json::Value containing the file data
     */
-    Json::Value LoadImageConfig(const std::string &file);
+    void LoadImageConfig(const std::string &file);
 
 private:
 	///Disable image copy construction
