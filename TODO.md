@@ -45,6 +45,8 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Entities should be in their own json files and loaded through file links in the state's json file
 	- Idea for state specific entity data: It could be overriden by specifying the state specific data in the state file, this data will then be used to override the entity data
 - With all these extra file readings I think the need arises for a generic file reader/writer to write and read JSON from desired files, eliminating the need for Image, AnimatedImage and Entity to each have their own JSON file opening function.
+- Maps should be described in their own json file
+- Tilesets should have an associated json file describing additional tile properties, which image to use and which tile goes with which clip
 
 ### Progress
 - Twinklebear [9.22.2012]: Image's and AnimatedImage's now have their own associated json file, describing any clips or animation sequences
@@ -56,6 +58,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Make Image Clips Array into a Vector [9.22.2012]
 ### Description
 - Image currently uses a dynamic array to store the clip rects, it should be changed to a vector
+- Image clips should also be identified by a name instead of an array index
 
 ### Progress
 - Twinklebear [9.22.2012]: Tried the naive method of simplying bumping everything over and got rather unclear runtime exceptions, something more is going on that must be looked into.
@@ -84,7 +87,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 	- Should tiles become entities that are managed by the Map class? This will allow tiles to have scripts attached. Or should tiles remain simple floor imagery and instead invisible entities should be created to enable area triggers. (kind of leaning to the latter, it'll be easier than reworking the Map & Tile class)
 - How to save data from script?
 	- Have decided to leave this up to the user, so editor created data will be handled by JsonCPP and script data will be handled by whatever is desired for Lua, and will have no interoperation between the C++ saved data and custom script data.
-- Should all modules be loaded for every script? It would prevent potential missing module errors/crashes, would it slow script loading time?
+- How much of the editor entities should be scripted?
 
 ### Progress
 - Twinklebear [9.23.2012]: Changed LuaScript::LoadModules to load all modules, we'll see how it effects load times, if it does at all
@@ -104,6 +107,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Editor [9.22.2012]
 ### Description
 - Tile map editor
+	- Need to be able to place any sort of map down, not be limited to a pre-generated standard size map
 - Need to be able to place Entities into the scene as well
 	- Related: Need to be able to create new entities from within the editor
 - Need to be able to import images to the editor and have them show up in the files list.
