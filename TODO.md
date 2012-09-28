@@ -35,6 +35,12 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 ### Progress
 
+## Map Objects [9.28.2012]
+### Description
+- Various objects that can be interacted with by the player in the map, like chests, doors, ladders and so on
+
+### Progress
+
 ## Separation of Data [9.22.2012]
 ### Description
 - Images/Animations should be described through their own json file that would be loaded as needed, instead of directly in the state's json file
