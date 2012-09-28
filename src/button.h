@@ -22,18 +22,11 @@ public:
 	*/
 	Button(std::string script);
 	~Button();
-	///Update the game object
-	void Update();
 	/**
 	*  Draw the object, apply an adjustment for the camera if one is desired
 	*  @param cam The camera to adjust for
 	*/
 	void Draw(Camera *cam = nullptr);
-	/**
-	*  Move the object
-	*  @param deltaT The elapsed time
-	*/
-	void Move(float deltaT);
 	///On mouse down events
 	void OnMouseDown();
 	///On mouse up event

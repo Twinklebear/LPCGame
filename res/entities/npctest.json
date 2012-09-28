@@ -1,0 +1,20 @@
+{
+   "image" : {
+      "file" : "../res/img/npc.png"
+   },
+   "name" : "",
+   "physics" : {
+      "box" : {
+         "h" : 28.0,
+         "w" : 28.0,
+         "x" : 123.0,
+         "y" : 115.0
+      },
+      "hAccel" : 700,
+      "hSpeed" : 300
+   },
+   "script" : {
+      "file" : "../res/scripts/test2.lua"
+   },
+   "tag" : "test"
+}

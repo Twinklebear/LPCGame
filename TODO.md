@@ -44,12 +44,14 @@ Entries will be written as follows, and should be updated as work progresses. In
 	- Need to be able to save/modify the image data files in the editor
 - Entities should be in their own json files and loaded through file links in the state's json file
 	- Idea for state specific entity data: It could be overriden by specifying the state specific data in the state file, this data will then be used to override the entity data
+- With all these extra file readings I think the need arises for a generic file reader/writer to write and read JSON from desired files, eliminating the need for Image, AnimatedImage and Entity to each have their own JSON file opening function.
 
 ### Progress
 - Twinklebear [9.22.2012]: Image's and AnimatedImage's now have their own associated json file, describing any clips or animation sequences
 	- Note: Shouldn't animation be a seperate json file than the image file? So an image.json file would describe the image and its clips, while an animation would specify which image to load and the animation sequences.
 - Twinklebear [9.27.2012]: Decided against seperating animation sequence information from clip information when loading an AnimatedImage. Thus you can still simply call "file.png" and the config file will be parsed from the image file name, instead of loading a json config file and then that would contain the image file name.
 - Twinklebear [9.27.2012]: All Image & AnimatedImage config data (clips & sequences) is now loaded from  json files in the same directory as the image file, with the same name. So for tiles.png the corresponding clips data is in tiles.json. This file is automatically checked for and loaded when creating a new Image or AnimatedImage with Image("file.x") or AnimatedImage("file.x")
+- Twinklebear [9.27.2012]: First test of loading an entity config through a json file successful. Will work on migrating everything over, and creating a simple file read class, as mentioned above in the description. Also must implement reading in override data for state specific entity configuration.
 
 ## Make Image Clips Array into a Vector [9.22.2012]
 ### Description
@@ -91,6 +93,12 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [9.26.2012]: Changed the unordered_map to a map, since we never perform insertions we don't need to worry about that, just quick access across all elements. So a map is a better choice
 - Twinklebear [9.26.2012]: Correction, the name of the module loading function is changed to LPCRequireModule("modulename")
 - Twinklebear [9.26.2012]: Changed the unordered_map to a map, since we never perform insertions we don't need to worry about that, just quick access across all elements. So a map is a better choice
+
+## Change Button/ObjectButton to be managed by a Lua script
+### Description
+- The Button and ObjectButton should have their behaviours and OnClick function defined within a script, instead of in C++ code, allowing for more flexibility
+
+### Progress
 
 ## Editor [9.22.2012]
 ### Description

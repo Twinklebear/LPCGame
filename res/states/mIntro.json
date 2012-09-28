@@ -52,7 +52,7 @@
             "hSpeed" : 0
          },
          "script" : {
-            "file" : ""
+            "file" : "../res/scripts/testbutton.lua"
          },
          "tag" : "",
          "text" : {

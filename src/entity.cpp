@@ -1,13 +1,14 @@
 #include <string>
 #include <lua.hpp>
 #include <luabind/luabind.hpp>
+#include <fstream>
 #include "math.h"
 #include "luascript.h"
 #include "entity.h"
 
-Entity::Entity() : mMouseOver(false){
+Entity::Entity() : mMouseOver(false), mConfigFile(""){
 }
-Entity::Entity(std::string script) : mMouseOver(false){
+Entity::Entity(std::string script) : mMouseOver(false), mConfigFile(""){
 	mScript.OpenScript(script);
 }
 Entity::~Entity(){
@@ -132,19 +133,51 @@ std::string Entity::Tag(){
 }
 Json::Value Entity::Save(){
 	Json::Value val;
-	val["image"]   = mImage.Save();
-	val["physics"] = mPhysics.Save();
-	val["tag"]	   = mTag;
-	val["script"]  = mScript.Save();
-	val["name"]    = mName;
+    if (mConfigFile != "")
+        val["file"] = mConfigFile;
+    else {
+	    val["image"]   = mImage.Save();
+	    val["physics"] = mPhysics.Save();
+	    val["tag"]	   = mTag;
+	    val["script"]  = mScript.Save();
+	    val["name"]    = mName;
+    }
 	return val;
 }
 void Entity::Load(Json::Value val){
-	mTag  = val["tag"].asString();
-	mName = val["name"].asString();
-	mPhysics.Load(val["physics"]);
-	mImage.Load(val["image"]);
-	mScript.Load(val["script"]);
+    //Load the image from an external entity file
+    if (!val["file"].empty() && val["file"].asString() != ""){
+        std::cout << "Loading entity from config file: " 
+            << val["file"].asString() << std::endl;
+        mConfigFile = val["file"].asString();
+        std::ifstream fileIn((mConfigFile).c_str(), std::ifstream::binary);
+	    if (fileIn){
+		    Json::Reader reader;
+		    Json::Value root;
+		    if (reader.parse(fileIn, root, false)){
+                fileIn.close();
+                //Load the config data
+                Load(root);
+                return;
+		    }
+		    //some debug output, this case should throw
+            else {
+                fileIn.close();
+                //throw std::runtime_error("Failed to parse file: " + configFile); 
+                std::cout << "Failed to parse: " << mConfigFile << std::endl;
+            }
+	    }
+        else
+            //throw std::runtime_error("Failed to find file: " + configFile);
+            std::cout << "Failed to find: " << mConfigFile << std::endl;
+    }
+    else {
+	    mTag  = val["tag"].asString();
+	    mName = val["name"].asString();
+	    mPhysics.Load(val["physics"]);
+	    mImage.Load(val["image"]);
+	    mScript.Load(val["script"]);
+    }
 }
 void Entity::RegisterLua(lua_State *l){
 	using namespace luabind;

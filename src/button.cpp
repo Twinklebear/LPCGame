@@ -16,7 +16,6 @@ Button::Button(std::string script) : mClicked(false), mFunc(nullptr)
 	mScript.OpenScript(script);
 }
 Button::~Button(){}
-void Button::Update(){}
 void Button::Draw(Camera *cam){
 	Rectf pos = mPhysics.Box();
 	if (cam != nullptr)
@@ -35,7 +34,6 @@ void Button::Draw(Camera *cam){
 	textBox.pos.y = (pos.Y() + pos.H() / 2) - textBox.H() / 2;
 	Window::Draw(&mText, textBox);
 }
-void Button::Move(float deltaT){}
 void Button::OnMouseDown(){
 	mClicked = true;
 	///Call the script

@@ -108,6 +108,8 @@ protected:
 	std::string mTag;
 	///The entity's name
 	std::string mName;
+    //The entity's file name
+    std::string mConfigFile;
 	///For tracking mouse over
 	bool mMouseOver;
 	///The entity's lua script
