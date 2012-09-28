@@ -39,12 +39,14 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Description
 - Images/Animations should be described through their own json file that would be loaded as needed, instead of directly in the state's json file
 	- Animations should be seperate from Image description files, see Twinklebear work note [9.22.2012]
+		- Decided against this for now.
 - Entities should be in their own json files and loaded through file links in the state's json file
 	- Idea for state specific entity data: It could be overriden by specifying the state specific data in the state file, this data will then be used to override the entity data
 
 ### Progress
 - Twinklebear [9.22.2012]: Image's and AnimatedImage's now have their own associated json file, describing any clips or animation sequences
 	- Note: Shouldn't animation be a seperate json file than the image file? So an image.json file would describe the image and its clips, while an animation would specify which image to load and the animation sequences.
+- Twinklebear [9.26.2012]: Decided against seperating animation sequence information from clip information when loading an AnimatedImage. Thus you can still simply call "file.png" and the config file will be parsed from the image file name, instead of loading a json config file and then that would contain the image file name.
 
 ## Make Image Clips Array into a Vector [9.22.2012]
 ### Description

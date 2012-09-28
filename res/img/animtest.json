@@ -55,7 +55,7 @@
          "y" : 0
       }
    ],
-   "sequences" : [
+    "sequences" : [
       {
          "framePerAnimFrame" : 60,
          "frames" : [ 0, 1 ],
