@@ -77,6 +77,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - How should the State class be handled?
 	- If I create the ability to call state functions like SetExit from Lua, will ObjectButton no longer be needed? since Button's OnClick script would then simply call the function? I'll try this and then decide what to do with ObjectButton.
 		- I think I've got a method for this setup, see the static StateManager function ChangeScene
+			- This isn't quite right. The button needs to set exit on the actively running scene so that it can exit cleanly
 	- Will need some way to grab the active state, perhaps from StateManager? It's a pure-static class so yes, I think that will work
 	- Should states be run via script? Hmm. What to do with states..
 		- States will execute their basic C++ functionality, such as making the calls to the manager, and other background stuff, but will also call a function on a state script if one is attached
