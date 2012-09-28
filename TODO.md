@@ -38,6 +38,8 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Map Objects [9.28.2012]
 ### Description
 - Various objects that can be interacted with by the player in the map, like chests, doors, ladders and so on
+- Should be scriptable to define their behaviours
+- Could these just be entities?
 
 ### Progress
 
