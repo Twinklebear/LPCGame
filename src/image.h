@@ -84,15 +84,6 @@ public:
 	*/
 	static void RegisterLua(lua_State *l);
 
-protected:
-    /**
-    *  Parse an Image config file based on the image's file name and read
-    *  the JSON formatted data from it
-    *  @param file The image filename
-    *  @return A Json::Value containing the file data
-    */
-    void LoadImageConfig(const std::string &file);
-
 private:
 	///Disable image copy construction
 	Image(const Image &a);

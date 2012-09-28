@@ -4,6 +4,7 @@
 #include <fstream>
 #include "math.h"
 #include "luascript.h"
+#include "jsonhandler.h"
 #include "entity.h"
 
 Entity::Entity() : mMouseOver(false), mConfigFile(""){
@@ -150,26 +151,13 @@ void Entity::Load(Json::Value val){
         std::cout << "Loading entity from config file: " 
             << val["file"].asString() << std::endl;
         mConfigFile = val["file"].asString();
-        std::ifstream fileIn((mConfigFile).c_str(), std::ifstream::binary);
-	    if (fileIn){
-		    Json::Reader reader;
-		    Json::Value root;
-		    if (reader.parse(fileIn, root, false)){
-                fileIn.close();
-                //Load the config data
-                Load(root);
-                return;
-		    }
-		    //some debug output, this case should throw
-            else {
-                fileIn.close();
-                //throw std::runtime_error("Failed to parse file: " + configFile); 
-                std::cout << "Failed to parse: " << mConfigFile << std::endl;
-            }
-	    }
-        else
-            //throw std::runtime_error("Failed to find file: " + configFile);
-            std::cout << "Failed to find: " << mConfigFile << std::endl;
+        try {
+            JsonHandler jsonHandler(mConfigFile);
+            Load(jsonHandler.ReadFile());
+        }
+        catch (const std::runtime_error &e){
+            std::cout << e.what() << std::endl;
+        }
     }
     else {
 	    mTag  = val["tag"].asString();

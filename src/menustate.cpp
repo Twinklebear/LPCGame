@@ -86,7 +86,7 @@ void MenuState::Load(Json::Value val){
 	State::Load(val);
 	mBackground.Load(val["background"]);
 
-	//Load the objects
+    //Load the objects
 	Json::Value entities = val["entities"];
 	for (int i = 0; i < entities.size(); ++i){
 		//Loading object buttons

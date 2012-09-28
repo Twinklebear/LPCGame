@@ -53,6 +53,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Entities should be in their own json files and loaded through file links in the state's json file
 	- Idea for state specific entity data: It could be overriden by specifying the state specific data in the state file, this data will then be used to override the entity data
 - With all these extra file readings I think the need arises for a generic file reader/writer to write and read JSON from desired files, eliminating the need for Image, AnimatedImage and Entity to each have their own JSON file opening function.
+	- Wrote the class JsonHandler, all json read/write should be done via this class to simplify the process
 - Maps should be described in their own json file
 - Tilesets should have an associated json file describing additional tile properties, which image to use and which tile goes with which clip
 
