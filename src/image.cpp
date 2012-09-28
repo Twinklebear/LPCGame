@@ -88,8 +88,9 @@ Json::Value Image::Save(){
 	for (int i = 0; i < mClips.size(); ++i)
 		val["clips"][i] = mClips.at(i).Save();
 	*/
-	for (int i = 0; i < mNumClips; ++i)
-		val["clips"][i] = mClips[i].Save();
+	//for (int i = 0; i < mNumClips; ++i)
+		//val["clips"][i] = mClips[i].Save();
+
 	return val;
 }
 void Image::Load(Json::Value val){

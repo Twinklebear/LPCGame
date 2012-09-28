@@ -65,6 +65,7 @@ void AnimatedImage::Play(std::string name){
 	}
 }
 std::string AnimatedImage::Playing(){
+    //Should an error be thrown if the sequence vector is empty?
 	return mSequences.at(mActiveAnimation).name;
 }
 int AnimatedImage::ActiveClip(){
@@ -74,8 +75,8 @@ Json::Value AnimatedImage::Save(){
 	//Save base class (file and clips)
 	Json::Value val = Image::Save();
 	//Save the sequences
-	for (int i = 0; i < mSequences.size(); ++i)
-		val["sequences"][i] = mSequences.at(i).Save();
+	//for (int i = 0; i < mSequences.size(); ++i)
+	//	val["sequences"][i] = mSequences.at(i).Save();
 
 	return val;
 }

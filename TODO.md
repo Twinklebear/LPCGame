@@ -46,7 +46,8 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Progress
 - Twinklebear [9.22.2012]: Image's and AnimatedImage's now have their own associated json file, describing any clips or animation sequences
 	- Note: Shouldn't animation be a seperate json file than the image file? So an image.json file would describe the image and its clips, while an animation would specify which image to load and the animation sequences.
-- Twinklebear [9.26.2012]: Decided against seperating animation sequence information from clip information when loading an AnimatedImage. Thus you can still simply call "file.png" and the config file will be parsed from the image file name, instead of loading a json config file and then that would contain the image file name.
+- Twinklebear [9.27.2012]: Decided against seperating animation sequence information from clip information when loading an AnimatedImage. Thus you can still simply call "file.png" and the config file will be parsed from the image file name, instead of loading a json config file and then that would contain the image file name.
+- Twinklebear [9.27.2012]: All Image & AnimatedImage config data (clips & sequences) is now loaded from  json files in the same directory as the image file, with the same name. So for tiles.png the corresponding clips data is in tiles.json. This file is automatically checked for and loaded when creating a new Image or AnimatedImage with Image("file.x") or AnimatedImage("file.x")
 
 ## Make Image Clips Array into a Vector [9.22.2012]
 ### Description
@@ -58,6 +59,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## AnimatedImage Class Tweaks [9.22.2012]
 ### Description
 - The framerate mentioned for the animations to play at doesn't actually mean framerate, it corresponds to how many program frames correspond to stepping the animation up a frame, this should be changed to be actual framerate
+- Should the sequences vector be a map? The key would be the sequence name, and it'd return a vector of sequences perhaps? May improve speed?
 
 ### Progress
 

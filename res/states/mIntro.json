@@ -1,6 +1,6 @@
 {
    "background" : {
-      "file" : "../res/images/introback.png"
+      "file" : "../res/img/introback.png"
    },
    "camera" : {
       "mBox" : {
@@ -37,21 +37,7 @@
    "entities" : [
       {
          "image" : {
-            "clips" : [
-               {
-                  "h" : 100,
-                  "w" : 200,
-                  "x" : 0,
-                  "y" : 0
-               },
-               {
-                  "h" : 100,
-                  "w" : 200,
-                  "x" : 0,
-                  "y" : 100
-               }
-            ],
-            "file" : "../res/images/200x100button.png"
+            "file" : "../res/img/simplebutton.png"
          },
          "name" : "",
          "param" : "gGame",
@@ -83,21 +69,7 @@
       },
       {
          "image" : {
-            "clips" : [
-               {
-                  "h" : 100,
-                  "w" : 200,
-                  "x" : 0,
-                  "y" : 0
-               },
-               {
-                  "h" : 100,
-                  "w" : 200,
-                  "x" : 0,
-                  "y" : 100
-               }
-            ],
-            "file" : "../res/images/200x100button.png"
+            "file" : "../res/img/simplebutton.png"
          },
          "name" : "",
          "param" : "quit",
@@ -129,21 +101,7 @@
       },
       {
          "image" : {
-            "clips" : [
-               {
-                  "h" : 100,
-                  "w" : 200,
-                  "x" : 0,
-                  "y" : 0
-               },
-               {
-                  "h" : 100,
-                  "w" : 200,
-                  "x" : 0,
-                  "y" : 100
-               }
-            ],
-            "file" : "../res/images/200x100button.png"
+            "file" : "../res/img/simplebutton.png"
          },
          "name" : "",
          "param" : "editor",
