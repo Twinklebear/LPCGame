@@ -86,6 +86,14 @@ private:
 	std::vector<Tile> mTiles;
 	int mSelectedTile;
 	int mActivePane;
+
+	int tilesPerRow;
+	int spacer;
+	int xOffset;
+	int yOffset;
+	int tileWidth;
+	int tileHeight;
+
 };
 
 #endif

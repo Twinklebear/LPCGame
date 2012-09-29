@@ -46,6 +46,6 @@ void MapEditor::Insert(int x, int y, Tile tile){
 	}
 }
 void MapEditor::Remove(int x, int y){
-	Tile blank(Recti(0, 0, 0, 0), false, 0);
+	Tile blank(Recti(0, 0, 0, 0), false, 0, "");
 	Insert(x, y, blank);
 }
