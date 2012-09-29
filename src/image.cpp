@@ -77,6 +77,9 @@ void Image::GenClips(int cW, int cH){
 		mClips[i] = cRect;
 	}
 }
+int Image::ClipCount(){
+	return mNumClips;
+}
 Json::Value Image::Save(){
 	Json::Value val;
 	val["file"]  = mFile;
