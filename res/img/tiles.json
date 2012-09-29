@@ -1,76 +1,166 @@
 {
-   "clips" : [
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 0,
-         "y" : 0
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 0,
-         "y" : 32
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 0,
-         "y" : 64
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 32,
-         "y" : 0
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 32,
-         "y" : 32
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 32,
-         "y" : 64
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 64,
-         "y" : 0
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 64,
-         "y" : 32
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 64,
-         "y" : 64
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 96,
-         "y" : 0
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 96,
-         "y" : 32
-      },
-      {
-         "h" : 32,
-         "w" : 32,
-         "x" : 96,
-         "y" : 64
-      }
-   ]
+    "clips": [
+        {
+            "name": "Grass - Plain",
+            "h": 32,
+            "w": 32,
+            "x": 0,
+            "y": 0,
+            "solid": false,
+            "type": 0
+        },
+        {
+            "name": "Grass - Low",
+            "h": 32,
+            "w": 32,
+            "x": 0,
+            "y": 32,
+            "solid": false,
+            "type": 1
+        },
+        {
+            "name": "Grass - Flowers",
+            "h": 32,
+            "w": 32,
+            "x": 0,
+            "y": 64,
+            "solid": false,
+            "type": 2
+        },
+        {
+            "name": "Grass - High",
+            "h": 32,
+            "w": 32,
+            "x": 32,
+            "y": 0,
+            "solid": false,
+            "type": 3
+        },
+        {
+            "name": "Shrub - Green - Full",
+            "h": 32,
+            "w": 32,
+            "x": 32,
+            "y": 32,
+            "solid": true,
+            "type": 4
+        },
+        {
+            "name": "Shrub - Green - Cut",
+            "h": 32,
+            "w": 32,
+            "x": 32,
+            "y": 64,
+            "solid": false,
+            "type": 5
+        },
+        {
+            "name": "Shrub - Pink - Full",
+            "h": 32,
+            "w": 32,
+            "x": 64,
+            "y": 0,
+            "solid": true,
+            "type": 6
+        },
+        {
+            "name": "Shrub - Pink - Cut",
+            "h": 32,
+            "w": 32,
+            "x": 64,
+            "y": 32,
+            "solid": false,
+            "type": 7
+        },
+        {
+            "name": "Rock - White",
+            "h": 32,
+            "w": 32,
+            "x": 64,
+            "y": 64,
+            "solid": true,
+            "type": 8
+        },
+        {
+            "name": "Rock - Black",
+            "h": 32,
+            "w": 32,
+            "x": 96,
+            "y": 0,
+            "solid": true,
+            "type": 9
+        },
+        {
+            "name": "Rock - Hole",
+            "h": 32,
+            "w": 32,
+            "x": 96,
+            "y": 32,
+            "solid": false,
+            "type": 10
+        },
+        {
+            "name": "Post - Wood",
+            "h": 32,
+            "w": 32,
+            "x": 96,
+            "y": 64,
+            "solid": true,
+            "type": 11
+        },
+        {
+            "name": "Path - Rock",
+            "h": 32,
+            "w": 32,
+            "x": 128,
+            "y": 0,
+            "solid": false,
+            "type": 12
+        },
+        {
+            "name": "Tile",
+            "h": 32,
+            "w": 32,
+            "x": 128,
+            "y": 32,
+            "solid": false,
+            "type": 13
+        },
+        {
+            "name": "Jar",
+            "h": 32,
+            "w": 32,
+            "x": 128,
+            "y": 64,
+            "solid": true,
+            "type": 14
+        },
+        {
+            "name": "Post - Left",
+            "h": 32,
+            "w": 32,
+            "x": 160,
+            "y": 0,
+            "solid": true,
+            "type": 15
+        },
+        {
+            "name": "Post - Right",
+            "h": 32,
+            "w": 32,
+            "x": 160,
+            "y": 32,
+            "solid": true,
+            "type": 16
+        },
+        {
+            "name": "Bench",
+            "h": 32,
+            "w": 32,
+            "x": 160,
+            "y": 64,
+            "solid": true,
+            "type": 17
+        }
+    ]
 }
