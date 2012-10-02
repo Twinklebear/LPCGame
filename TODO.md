@@ -63,6 +63,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [9.27.2012]: Decided against seperating animation sequence information from clip information when loading an AnimatedImage. Thus you can still simply call "file.png" and the config file will be parsed from the image file name, instead of loading a json config file and then that would contain the image file name.
 - Twinklebear [9.27.2012]: All Image & AnimatedImage config data (clips & sequences) is now loaded from  json files in the same directory as the image file, with the same name. So for tiles.png the corresponding clips data is in tiles.json. This file is automatically checked for and loaded when creating a new Image or AnimatedImage with Image("file.x") or AnimatedImage("file.x")
 - Twinklebear [9.27.2012]: First test of loading an entity config through a json file successful. Will work on migrating everything over, and creating a simple file read class, as mentioned above in the description. Also must implement reading in override data for state specific entity configuration.
+- Twinklebear [10.1.2012]: Splitting player into another lua scripted entity, soon to delete classes: Player and NPC. Also messed around with setting overrides, need a way to save the overrides upon exit and an efficient way for parsing them in.
 
 ## Make Image Clips Array into a Vector [9.22.2012]
 ### Description
@@ -76,8 +77,10 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Description
 - The framerate mentioned for the animations to play at doesn't actually mean framerate, it corresponds to how many program frames correspond to stepping the animation up a frame, this should be changed to be actual framerate
 - Should the sequences vector be a map? The key would be the sequence name, and it'd return a vector of sequences perhaps? May improve speed?
+- When changing playing animation the animation should update, however if you then call animatedImg.Update() in your Update loop, when you change animations you'll skip a frame. However this would be resolved with a move to true framerate playing for animations, instead of the crap system i hacked together to make things work
 
 ### Progress
+- Twinklebear [10.1.2012]: Added a call to Update to AnimatedImage::Play, however now need to move over to playing images with an actually framerate to prevent skipping frames if Update called multiple times before Draw
 
 ## Lua Embedding [9.22.2012]
 ### Description
@@ -86,6 +89,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 		- How will these scripts have the right modules loaded?
 - Implement Lua for scripting objects behavior
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
+	- Should entities be drawn automatically? Or should it be required to make the call yourself in draw?
 - How should the State class be handled?
 	- If I create the ability to call state functions like SetExit from Lua, will ObjectButton no longer be needed? since Button's OnClick script would then simply call the function? I'll try this and then decide what to do with ObjectButton.
 		- I think I've got a method for this setup, see the static StateManager function ChangeScene

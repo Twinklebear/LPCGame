@@ -39,7 +39,7 @@ public:
 	///Get the motion state, @see MotionState enum
 	int State() const;
 	///Set the motion state
-	void SetMotionstate(int state);
+	void SetMotionState(int state);
 	///enum for describing motion states
 	enum { IDLE, RUNNING };
 	/**

@@ -23,8 +23,8 @@
             "box" : {
                "h" : 28.0,
                "w" : 28.0,
-               "x" : 174.0,
-               "y" : 179.0
+               "x" : 78.93103790283203,
+               "y" : 162.3622741699219
             },
             "hAccel" : 300,
             "hSpeed" : 300
@@ -32,7 +32,7 @@
          "tag" : "focus"
       },
       {
-         "file" : "../res/entities/npctest.json"
+         "file" : "../res/entities/player.json"
       }
    ],
    "map" : {

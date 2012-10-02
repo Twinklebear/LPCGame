@@ -133,7 +133,8 @@ std::string Entity::Tag(){
 	return mTag;
 }
 Json::Value Entity::Save(){
-	Json::Value val;
+	//How to specify overrides to save?
+    Json::Value val;
     if (mConfigFile != "")
         val["file"] = mConfigFile;
     else {
@@ -148,8 +149,6 @@ Json::Value Entity::Save(){
 void Entity::Load(Json::Value val){
     //Load the image from an external entity file
     if (!val["file"].empty() && val["file"].asString() != ""){
-        std::cout << "Loading entity from config file: " 
-            << val["file"].asString() << std::endl;
         mConfigFile = val["file"].asString();
         try {
             JsonHandler jsonHandler(mConfigFile);
@@ -157,6 +156,17 @@ void Entity::Load(Json::Value val){
         }
         catch (const std::runtime_error &e){
             std::cout << e.what() << std::endl;
+        }
+        //Read in any override data
+        if (!val["override"].empty()){
+            if (!val["override"]["box"].empty()){
+                std::cout << "entity in: " << val["file"].asString()
+                    << " accepting override of box" << std::endl;
+                //Only overriding w/h for now for testing
+                mPhysics.SetBox(Rectf(Box().X(), Box().Y(),
+                    val["override"]["box"]["w"].asDouble(), 
+                    val["override"]["box"]["h"].asDouble()));
+            }
         }
     }
     else {

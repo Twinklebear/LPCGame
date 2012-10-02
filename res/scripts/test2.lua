@@ -8,24 +8,21 @@ LPCRequireModule("AnimatedImage")
 LPCRequireModule("Vector2")
 LPCRequireModule("Window")
 LPCRequireModule("Camera")
+LPCRequireModule("Math")
 
 --Init the script
 function Init(object)
 	print("Test2 Init")
+	--Get the object
+	thisObj = object
 	animImg = LPC.AnimatedImage("../res/img/animtest.png")
 	--Testing out text
 	local col = LPC.Color(255, 255, 255)
 	text = LPC.Text("Hello from Lua!", "../res/fonts/SourceSansPro-Regular.ttf",
 		col, 30)
 	textPos = LPC.Rectf(10, 10, 0, 0)
-	--r = LPC.Rectf(80, 80, 32, 32)
-	physics = object:GetPhysics()
-	--Testing Rect::pos accessor
-	--print("Rect x: " .. r.pos.x .. " y: " .. r.pos.y)
-	--Testing some clip stuff
-	clipNum = 0
 	--Overriding physics module to test joystick motion
-	rect = LPC.Rectf(100, 100, 32, 32)
+	rect = thisObj:Box()
 	--Check if joystick is haptic
 	if (LPC.Input.JoySupportsHaptic()) then
 		print("Joy supports haptic")
@@ -47,26 +44,6 @@ function Update()
 	--Update animation
 	animImg:Update();
 
-	if (clipNum > 8) then
-		clipNum = 0
-	end
-	--Testing motion
-	--[[
-	if (LPC.Input.KeyDown(LPC.Input.KEY_UP)) then
-		physics:SetVertDir(LPC.Math.UP)
-	elseif (LPC.Input.KeyDown(LPC.Input.KEY_DOWN)) then
-		physics:SetVertDir(LPC.Math.DOWN)
-	else
-		physics:SetVertDir(LPC.Physics.STOP)
-	end
-	if (LPC.Input.KeyDown(LPC.Input.KEY_RIGHT)) then
-		physics:SetHorizDir(LPC.Math.RIGHT)
-	elseif (LPC.Input.KeyDown(LPC.Input.KEY_LEFT)) then
-		physics:SetHorizDir(LPC.Math.LEFT)
-	else
-		physics:SetHorizDir(LPC.Physics.STOP)
-	end
-	]]
 	--Testing joystick button input
 	if (LPC.Input.GetJoyButton(0)) then
 		print("Joy button 0 down")
@@ -97,16 +74,12 @@ function Update()
 end
 --Use for movement
 function Move(deltaT)
-	--physics:Move(deltaT)
 	local speed = 200
 	rect.pos.x = rect.pos.x + LPC.Input.GetJoyAxis(0) * speed * deltaT
 	rect.pos.y = rect.pos.y + LPC.Input.GetJoyAxis(1) * speed * deltaT
 end
 --Draw
 function Draw(camera)
-	--local pos = LPC.Math.FromSceneSpace(camera, physics:Box())
-	--LPC.Window.Draw(img, pos, img:Clip(clipNum))
-	--LPC.Window.Draw(animImg, pos)
-	LPC.Window.Draw(animImg, rect)
+	LPC.Window.Draw(animImg, LPC.Math.FromSceneSpace(camera, rect))
 	LPC.Window.Draw(text, textPos)
 end

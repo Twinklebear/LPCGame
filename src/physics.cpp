@@ -178,7 +178,7 @@ void Physics::RegisterLua(lua_State *l){
 			.def("Velocity", &Physics::Velocity)
 			.def("Acceleration", &Physics::Acceleration)
 			.def("Box", &Physics::Box)
-			.def("MotionState", &Physics::State)
+			.def("State", &Physics::State)
 			.def("SetPosition", &Physics::SetPosition)
 			.def("SetVelocity", &Physics::SetVelocity)
 			.def("SetAcceleration", &Physics::SetAcceleration)

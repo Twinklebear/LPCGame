@@ -59,6 +59,8 @@ void AnimatedImage::Play(std::string name){
 	for (int i = 0; i < mSequences.size(); ++i){
 		if (mSequences.at(i).name == name){
 			mActiveAnimation = i;
+            //Begin the animation
+            Update();
 			return;
 		}
 	}
