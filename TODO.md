@@ -83,6 +83,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 ### Progress
 - Twinklebear [10.1.2012]: Added a call to Update to AnimatedImage::Play, however now need to move over to playing images with an actually framerate to prevent skipping frames if Update called multiple times before Draw
+- Twinklebear [10.2.2012]: Removed AnimatedImage::Move also changed the call to Update in AnimatedImage::Play to mFrame = 0 to start the animation, also put in code to make use of a Timer for playing the image at some framerate, however it's commented out for now as I have yet to test it. Will test when I get home. 
 
 ## Lua Embedding [9.22.2012]
 ### Description

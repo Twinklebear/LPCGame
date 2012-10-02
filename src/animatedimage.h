@@ -7,6 +7,7 @@
 #include <luabind/luabind.hpp>
 #include "base.h"
 #include "image.h"
+#include "timer.h"
 
 ///Describes an animation sequence
 struct AnimationSequence {
@@ -47,11 +48,6 @@ public:
 	*  Update the animation, called every frame
 	*/
 	void Update();
-	/**
-	*  Move the animation frame
-	*  @param deltaT The time period to play animation over
-	*/
-	void Move(float deltaT);
 	/**
 	*  Play the desired animation
 	*  @param name The animation name to play
@@ -95,6 +91,8 @@ private:
 	int mFrame;
 	///Count the frame the animation is on
 	int mAnimationFrame;
+    ///The timer for the animation, for regulating framerate
+    //Timer mTimer;
 };
 
 #endif

@@ -73,6 +73,7 @@ bool StateManager::LoadState(std::string name){
         SetState((State*)editor);
         return true;
     }
+    return false;
 }
 void StateManager::SaveState(std::string name){
     JsonHandler jsonHandler((mStatesDir + name + ".json"));

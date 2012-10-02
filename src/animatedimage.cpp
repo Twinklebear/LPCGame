@@ -5,6 +5,7 @@
 #include "base.h"
 #include "window.h"
 #include "image.h"
+#include "timer.h"
 #include "animatedimage.h"
 
 Json::Value AnimationSequence::Save(){
@@ -43,6 +44,13 @@ AnimatedImage::AnimatedImage(const std::string &file)
 AnimatedImage::~AnimatedImage(){
 }
 void AnimatedImage::Update(){
+    //Using the timer for framerate regulation
+    /*
+    if (mTimer.Ticks() / 1000.0f >= 1.0f / mSequences.at(mActiveAnimation).frameRate){
+        ++mFrame;
+        mTimer.Start();
+    }
+    */
 	++mFrame;
 	//Update animation frame when we hit the increment value, framePerAnimFrame
 	if (mFrame >= mSequences.at(mActiveAnimation).framePerAnimFrame){
@@ -52,15 +60,13 @@ void AnimatedImage::Update(){
 	if (mAnimationFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
 		mAnimationFrame = 0;
 }
-void AnimatedImage::Move(float deltaT){
-
-}
 void AnimatedImage::Play(std::string name){
 	for (int i = 0; i < mSequences.size(); ++i){
 		if (mSequences.at(i).name == name){
 			mActiveAnimation = i;
             //Begin the animation
-            Update();
+            mFrame = 0;
+            //mTimer.Start();
 			return;
 		}
 	}
@@ -99,7 +105,6 @@ void AnimatedImage::RegisterLua(lua_State *l){
 			.def(constructor<>())
             .def(constructor<std::string>())
 			.def("Update", &AnimatedImage::Update)
-			.def("Move", &AnimatedImage::Move)
 			.def("Play", &AnimatedImage::Play)
 			.def("Playing", &AnimatedImage::Playing)
 			.def("ActiveClip", &AnimatedImage::ActiveClip)
