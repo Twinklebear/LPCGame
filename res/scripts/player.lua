@@ -24,20 +24,20 @@ function Update()
 	--Read input
 	local direction = -1
 	--Horizontal motion
-	if LPC.Input.KeyDown(LPC.Input.KEY_H) then
+	if LPC.Input.KeyDown(LPC.Input.KEY_A) then
 		physics:SetHorizDir(LPC.Math.LEFT)
 		direction = LPC.Math.LEFT
-	elseif LPC.Input.KeyDown(LPC.Input.KEY_L) then
+	elseif LPC.Input.KeyDown(LPC.Input.KEY_D) then
 		physics:SetHorizDir(LPC.Math.RIGHT)
 		direction = LPC.Math.RIGHT
 	else
 		physics:SetHorizDir(LPC.Physics.STOP)
 	end
 	--Vertical motion
-	if LPC.Input.KeyDown(LPC.Input.KEY_J) then
+	if LPC.Input.KeyDown(LPC.Input.KEY_W) then
 		physics:SetVertDir(LPC.Math.UP)
 		direction = LPC.Math.UP
-	elseif LPC.Input.KeyDown(LPC.Input.KEY_K) then
+	elseif LPC.Input.KeyDown(LPC.Input.KEY_S) then
 		physics:SetVertDir(LPC.Math.DOWN)
 		direction = LPC.Math.DOWN
 	else

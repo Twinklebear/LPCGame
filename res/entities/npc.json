@@ -2,12 +2,12 @@
    "image" : {
       "file" : ""
    },
-   "name" : "",
+   "name" : "npctest",
    "physics" : {
       "box" : {
          "h" : 28.0,
          "w" : 28.0,
-         "x" : 20.0,
+         "x" : 80.0,
          "y" : 20.0
       },
       "hAccel" : 700,

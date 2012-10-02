@@ -2,7 +2,7 @@
    "image" : {
       "file" : ""
    },
-   "name" : "",
+   "name" : "player",
    "physics" : {
       "box" : {
          "h" : 28.0,

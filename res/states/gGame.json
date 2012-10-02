@@ -15,24 +15,10 @@
    },
    "entities" : [
       {
-         "image" : {
-            "file" : "../res/img/walking.png"
-         },
-         "obj" : "player",
-         "physics" : {
-            "box" : {
-               "h" : 28.0,
-               "w" : 28.0,
-               "x" : 78.93103790283203,
-               "y" : 162.3622741699219
-            },
-            "hAccel" : 300,
-            "hSpeed" : 300
-         },
-         "tag" : "focus"
+         "file" : "../res/entities/player.json"
       },
       {
-         "file" : "../res/entities/player.json"
+         "file" : "../res/entities/npc.json"
       }
    ],
    "map" : {

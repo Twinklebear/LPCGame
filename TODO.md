@@ -64,6 +64,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [9.27.2012]: All Image & AnimatedImage config data (clips & sequences) is now loaded from  json files in the same directory as the image file, with the same name. So for tiles.png the corresponding clips data is in tiles.json. This file is automatically checked for and loaded when creating a new Image or AnimatedImage with Image("file.x") or AnimatedImage("file.x")
 - Twinklebear [9.27.2012]: First test of loading an entity config through a json file successful. Will work on migrating everything over, and creating a simple file read class, as mentioned above in the description. Also must implement reading in override data for state specific entity configuration.
 - Twinklebear [10.1.2012]: Splitting player into another lua scripted entity, soon to delete classes: Player and NPC. Also messed around with setting overrides, need a way to save the overrides upon exit and an efficient way for parsing them in.
+- Twinklebear [10.2.2012]: NPC and Player classes are deleted, updated GameState to only load entity types now
 
 ## Make Image Clips Array into a Vector [9.22.2012]
 ### Description
@@ -78,6 +79,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - The framerate mentioned for the animations to play at doesn't actually mean framerate, it corresponds to how many program frames correspond to stepping the animation up a frame, this should be changed to be actual framerate
 - Should the sequences vector be a map? The key would be the sequence name, and it'd return a vector of sequences perhaps? May improve speed?
 - When changing playing animation the animation should update, however if you then call animatedImg.Update() in your Update loop, when you change animations you'll skip a frame. However this would be resolved with a move to true framerate playing for animations, instead of the crap system i hacked together to make things work
+	- I think using some kind of timer would enable true framerate based animations
 
 ### Progress
 - Twinklebear [10.1.2012]: Added a call to Update to AnimatedImage::Play, however now need to move over to playing images with an actually framerate to prevent skipping frames if Update called multiple times before Draw
