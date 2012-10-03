@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include <luabind/luabind.hpp>
+#include <luabind/operator.hpp>
 #include "../externals/json/json.h"
 #include "color.h"
 
@@ -16,17 +17,26 @@ void Color::Set(int r, int g, int b){
 	mColor.g = g;
 	mColor.b = b;
 }
-SDL_Color Color::Get(){
+SDL_Color Color::Get() const {
 	return mColor;
 }
-int Color::R(){
+int Color::R() const {
 	return mColor.r;
 }
-int Color::G(){
+void Color::R(int r){
+    mColor.r = r;
+}
+int Color::G() const {
 	return mColor.g;
 }
-int Color::B(){
+void Color::G(int g){
+    mColor.g = g;
+}
+int Color::B() const {
 	return mColor.b;
+}
+void Color::B(int b){
+    mColor.b = b;
 }
 Json::Value Color::Save(){
 	Json::Value v;
@@ -38,7 +48,7 @@ Json::Value Color::Save(){
 void Color::Load(Json::Value val){
 	Set(val["r"].asInt(), val["g"].asInt(), val["b"].asInt());
 }
-bool Color::operator == (Color c) const{
+bool Color::operator == (const Color c) const{
 	return (mColor.r == c.R() && mColor.b == c.B() && mColor.g == c.G());
 }
 void Color::RegisterLua(lua_State *l){
@@ -49,8 +59,13 @@ void Color::RegisterLua(lua_State *l){
 			.def(constructor<>())
 			.def(constructor<int, int, int>())
 			.def("Set", &Color::Set)
-			.def("R", &Color::R)
-			.def("G", &Color::G)
-			.def("B", &Color::B)
+			.def("R", (int (Color::*)() const)&Color::R)
+            .def("R", (void (Color::*)(int))&Color::R)
+			.def("G", (int (Color::*)() const)&Color::G)
+            .def("G", (void (Color::*)(int))&Color::G)
+			.def("B", (int (Color::*)() const)&Color::B)
+            .def("B", (void (Color::*)(int))&Color::B)
+            //operators
+            .def(const_self == other<Color>())
 	];
 }
