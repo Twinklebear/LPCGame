@@ -35,13 +35,13 @@ struct AnimationSequence {
 */
 class AnimatedImage : public Image {
 public:
-    AnimatedImage();
     /**
     *  Setup the AnimatedImage class, if a filename is passed load the image
     *  @param file The filename
     *  @see Window::LoadImage for the loading function
     */
     AnimatedImage(const std::string &file);
+    AnimatedImage();
 	~AnimatedImage();
 	/**
 	*  Update the animation, called every frame
