@@ -80,6 +80,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Should the sequences vector be a map? The key would be the sequence name, and it'd return a vector of sequences perhaps? May improve speed?
 - When changing playing animation the animation should update, however if you then call animatedImg.Update() in your Update loop, when you change animations you'll skip a frame. However this would be resolved with a move to true framerate playing for animations, instead of the crap system i hacked together to make things work
 	- I think using some kind of timer would enable true framerate based animations
+	- With the timer implemented it should be noted that it can only update as fast as the program updates, ie. we can increase a maximum of one frame per call to AnimatedImage::Update. This can be resolved by determining how many frames of the animation have elapsed and adding that amount. This is a quick thing to add, is it needed? Ie. if the game is lagging, should everything lag? Or should the animations simply skip some frames to stay on track?
 
 ### Progress
 - Twinklebear [10.1.2012]: Added a call to Update to AnimatedImage::Play, however now need to move over to playing images with an actually framerate to prevent skipping frames if Update called multiple times before Draw
