@@ -135,6 +135,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Progress
 - Twinklebear [9.22.2012]: LuaScript class takes care of loading the script and its desired modules. Modules are stored in JSON as an array of ints corresponding to the MODULE enum in the LuaScript class. Then before calling dofile all the desired modules are registered.
 	- Should I just load all modules for every script? It would prevent errors. Would it cause slower script loading? (Added to work notes)
+	- DEPRECATED: The progress note here is deprecated as now modules are loaded via LPCRequireModule
 
 ## Multithreading [9.22.2012]
 ### Description
