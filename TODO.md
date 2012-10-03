@@ -1,4 +1,3 @@
-### TODO Document
 ## How to use this document:
 Entries will be written as follows, and should be updated as work progresses. In addition the description notes should also be updated if previously unmentioned things are found to be needed to meet the goal
 
