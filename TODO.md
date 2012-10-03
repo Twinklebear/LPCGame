@@ -144,6 +144,13 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Progress
 - Twinklebear [9.22.2012]: Played around with it some, but some strange issues arise, this needs to be approached with caution. Perhaps when I have a better understanding of designing multithreaded programs.
 
+## Resource Manager (?) [10.3.2012]
+### Description
+- Should some kind of manager class be used to govern the loading/unloading of resources? It would be able to give out Image, AnimatedImage and Text pointers and would monitor for resources no longer in use and clean them up. In addition resources could be marked to not be freed, but would this be a good idea?
+- Other classes would then request the instance to be loaded from the manager and use it, and could return it when done.
+
+### Progress
+
 ## Migration to OpenGL [9.26.2012]
 ### Description
 - A long term goal, will eventually outgrow SDL when the time comes to being adding support for GLSL shaders, normal/diffuse/etc maps for lighting and so on.
