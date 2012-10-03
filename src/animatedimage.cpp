@@ -10,7 +10,7 @@
 
 Json::Value AnimationSequence::Save(){
 	Json::Value val;
-	val["framePerAnimFrame"] = framePerAnimFrame;
+    val["frameRate"] = frameRate;
 	val["name"] = name;
 	//Save the indices
 	for (int i = 0; i < clipIndices.size(); ++i)
@@ -19,12 +19,11 @@ Json::Value AnimationSequence::Save(){
 	return val;
 }
 void AnimationSequence::Load(Json::Value val){
-	framePerAnimFrame = val["framePerAnimFrame"].asInt();
+    frameRate = val["frameRate"].asDouble();
 	name = val["name"].asString();
 	//Load the indices
-	for (int i = 0; i < val["frames"].size(); ++i){
+	for (int i = 0; i < val["frames"].size(); ++i)
 		clipIndices.push_back(val["frames"][i].asInt());
-	}
 }
 AnimatedImage::AnimatedImage() 
     : mActiveAnimation(0), mFrame(0)
@@ -45,20 +44,14 @@ AnimatedImage::~AnimatedImage(){
 }
 void AnimatedImage::Update(){
     //Using the timer for framerate regulation
-    /*
-    if (mTimer.Ticks() / 1000.0f >= 1.0f / mSequences.at(mActiveAnimation).frameRate){
-        ++mFrame;
-        mTimer.Start();
+    if (mSequences.at(mActiveAnimation).frameRate != 0
+        && mTimer.Ticks() / 1000.0f >= 1.0f / mSequences.at(mActiveAnimation).frameRate){
+            ++mFrame;
+            mTimer.Start();
+            //Rollover the animation if it goes over
+            if (mFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
+                mFrame = 0;
     }
-    */
-	++mFrame;
-	//Update animation frame when we hit the increment value, framePerAnimFrame
-	if (mFrame >= mSequences.at(mActiveAnimation).framePerAnimFrame){
-		mFrame = 0;
-		++mAnimationFrame;
-	}
-	if (mAnimationFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
-		mAnimationFrame = 0;
 }
 void AnimatedImage::Play(std::string name){
 	for (int i = 0; i < mSequences.size(); ++i){
@@ -66,7 +59,7 @@ void AnimatedImage::Play(std::string name){
 			mActiveAnimation = i;
             //Begin the animation
             mFrame = 0;
-            //mTimer.Start();
+            mTimer.Start();
 			return;
 		}
 	}
@@ -76,7 +69,7 @@ std::string AnimatedImage::Playing(){
 	return mSequences.at(mActiveAnimation).name;
 }
 int AnimatedImage::ActiveClip(){
-	return mSequences.at(mActiveAnimation).clipIndices.at(mAnimationFrame);
+	return mSequences.at(mActiveAnimation).clipIndices.at(mFrame);
 }
 Json::Value AnimatedImage::Save(){
 	//Save base class (file and clips)

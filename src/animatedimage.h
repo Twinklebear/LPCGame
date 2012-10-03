@@ -24,8 +24,7 @@ struct AnimationSequence {
 	///The clips in the animated image clip array
 	std::vector<int> clipIndices;
 	///The framerate to play the animation at
-	//int frameRate;
-	int framePerAnimFrame;
+	double frameRate;
 	///The sequence name
 	std::string name;
 };
@@ -86,13 +85,11 @@ public:
 
 private:
 	std::vector<AnimationSequence> mSequences;
-	int mActiveAnimation;
-	///Count the frames elapsed
-	int mFrame;
-	///Count the frame the animation is on
-	int mAnimationFrame;
+    int mActiveAnimation;
+    ///The current frame of the animation
+    int mFrame;
     ///The timer for the animation, for regulating framerate
-    //Timer mTimer;
+    Timer mTimer;
 };
 
 #endif

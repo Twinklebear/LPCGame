@@ -16,7 +16,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 	- Physics class would then provide the object with capabilities for dealing with its Box2D physics component
 - Physics::SetMove should instead take a vector move direction, instead of only Up/Down/Left/Right
 	- Due to this not being in, the gamepad controlled entity (npctest) does not update his collision box and as such the collision box remains where he spawns and he won't collide with anything.
-	
+
 ### Progress
 - Twinklebear [9.22.2012]: I'm working on becoming familiar with the library and testing it out in a minal test bench program, to see how it would work with SDL and with providing the physics functionality needed.
 
@@ -85,6 +85,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Progress
 - Twinklebear [10.1.2012]: Added a call to Update to AnimatedImage::Play, however now need to move over to playing images with an actually framerate to prevent skipping frames if Update called multiple times before Draw
 - Twinklebear [10.2.2012]: Removed AnimatedImage::Move also changed the call to Update in AnimatedImage::Play to mFrame = 0 to start the animation, also put in code to make use of a Timer for playing the image at some framerate, however it's commented out for now as I have yet to test it. Will test when I get home. 
+- Twinklebear [10.2.2012]: AnimatedImages now use a Timer to measure time and update the animation with the appropriate framerate. It's still necessary to call Update each frame to check the timer, however the AnimatedImage will take care of everything else related to playing the animation itself.
 
 ## Lua Embedding [9.22.2012]
 ### Description

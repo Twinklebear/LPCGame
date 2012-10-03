@@ -16,6 +16,7 @@ function Init(object)
 	--Get the object
 	thisObj = object
 	animImg = LPC.AnimatedImage("../res/img/animtest.png")
+	animImg:Play("idle")
 	--Testing out text
 	local col = LPC.Color(255, 255, 255)
 	text = LPC.Text("Hello from Lua!", "../res/fonts/SourceSansPro-Regular.ttf",
