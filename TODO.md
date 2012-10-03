@@ -15,7 +15,8 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Examine Box2D as a candidate for providing good physics functionality.
 	- Physics class would then provide the object with capabilities for dealing with its Box2D physics component
 - Physics::SetMove should instead take a vector move direction, instead of only Up/Down/Left/Right
-
+	- Due to this not being in, the gamepad controlled entity (npctest) does not update his collision box and as such the collision box remains where he spawns and he won't collide with anything.
+	
 ### Progress
 - Twinklebear [9.22.2012]: I'm working on becoming familiar with the library and testing it out in a minal test bench program, to see how it would work with SDL and with providing the physics functionality needed.
 
