@@ -45,12 +45,14 @@ AnimatedImage::~AnimatedImage(){
 void AnimatedImage::Update(){
     //Using the timer for framerate regulation
     if (mSequences.at(mActiveAnimation).frameRate != 0
-        && mTimer.Ticks() / 1000.0f >= 1.0f / mSequences.at(mActiveAnimation).frameRate){
-            ++mFrame;
-            mTimer.Start();
-            //Rollover the animation if it goes over
-            if (mFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
-                mFrame = 0;
+        && mTimer.Ticks() / 1000.0f >= 1.0f / mSequences.at(mActiveAnimation).frameRate)
+    {
+        //Increase by frames elapsed
+        mFrame += mTimer.Ticks() / (int)((1.0f / mSequences.at(mActiveAnimation).frameRate) * 1000);
+        mTimer.Start();
+        //Rollover the animation if it goes over
+        if (mFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
+            mFrame = 0;
     }
 }
 void AnimatedImage::Play(std::string name){

@@ -45,6 +45,9 @@ public:
 	~AnimatedImage();
 	/**
 	*  Update the animation, called every frame
+    *  We check if time greater than the time for one frame (1 / frameRate)
+    *  and if yes we then increment the frame counter by the # frames elapsed
+    *  in case the animation frameRate is higher than the game framerate
 	*/
 	void Update();
 	/**
