@@ -86,6 +86,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [10.1.2012]: Added a call to Update to AnimatedImage::Play, however now need to move over to playing images with an actually framerate to prevent skipping frames if Update called multiple times before Draw
 - Twinklebear [10.2.2012]: Removed AnimatedImage::Move also changed the call to Update in AnimatedImage::Play to mFrame = 0 to start the animation, also put in code to make use of a Timer for playing the image at some framerate, however it's commented out for now as I have yet to test it. Will test when I get home. 
 - Twinklebear [10.2.2012]: AnimatedImages now use a Timer to measure time and update the animation with the appropriate framerate. It's still necessary to call Update each frame to check the timer, however the AnimatedImage will take care of everything else related to playing the animation itself.
+- Twinklebear [10.3.2012]: The AnimatedImage::Update function will now determine how many animation frames have elapsed since the last update, and increment mFrame by that number. Thus animations will play at their regular speed even if the game framerate is below the animation framerate, resulting in skipped animation frames. I think this behavior is preferable to capping the animation framerate to the game framerate as I'd rather drop frames than have laggy/miss-timed animations
 
 ## Lua Embedding [9.22.2012]
 ### Description
