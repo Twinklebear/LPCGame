@@ -107,6 +107,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - How to save data from script?
 	- Have decided to leave this up to the user, so editor created data will be handled by JsonCPP and script data will be handled by whatever is desired for Lua, and will have no interoperation between the C++ saved data and custom script data.
 - How much of the editor entities should be scripted?
+- Need a system to prevent scripts from being able to try and register the same module twice as it causes a crash. This issue is easy to encounter if perhaps you call "dofile" from a script with a module loaded and then the script that's just been loaded via "dofile" also attempts to load the same module, it causes a crash. Need to track which modules are registered by the state and quietly ignore re-registration attempts.
 
 ### Progress
 - Twinklebear [9.23.2012]: Changed LuaScript::LoadModules to load all modules, we'll see how it effects load times, if it does at all

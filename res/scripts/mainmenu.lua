@@ -20,6 +20,7 @@ function LogicUpdate()
 	if LPC.Input.KeyDown(LPC.Input.KEY_Q) then
 		print ("You pushed Q! Why would you do that?")
 	end
+	CheckKey()
 	--print("state logic update")
 end
 function RenderUpdate()
