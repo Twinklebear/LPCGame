@@ -1,7 +1,6 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-#include <SDL.h>
 #include <luabind/luabind.hpp>
 
 ///Measures time, it's a timer
