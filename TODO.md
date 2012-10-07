@@ -74,6 +74,12 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Progress
 - Twinklebear [9.22.2012]: Tried the naive method of simplying bumping everything over and got rather unclear runtime exceptions, something more is going on that must be looked into.
 
+## Some Code Clean-up [10.6.2012]
+### Description
+- Image has 3 various "Load" functions, this needs to be cleaned up and made cleaarer, other classes may suffer from this as well due to the change in loading styles (seperate files vs. all in one file)
+
+### Progress
+
 ## AnimatedImage Class Tweaks [9.22.2012]
 ### Description
 - The framerate mentioned for the animations to play at doesn't actually mean framerate, it corresponds to how many program frames correspond to stepping the animation up a frame, this should be changed to be actual framerate
