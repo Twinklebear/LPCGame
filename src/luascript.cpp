@@ -20,10 +20,11 @@
 #include "timer.h"
 #include "vectors.h"
 #include "window.h"
+#include "luamodule.h"
 #include "luascript.h"
 
 //Setup the unordered_map
-const LuaScript::TRegisterLuaMap LuaScript::mRegisterLuaFuncs = LuaScript::CreateMap();
+//const LuaScript::TRegisterLuaMap LuaScript::mRegisterLuaFuncs = LuaScript::CreateMap();
 
 LuaScript::LuaScript() : mL(nullptr), mFile(""){
 }
@@ -36,6 +37,7 @@ LuaScript::~LuaScript(){
 void LuaScript::OpenScript(std::string script){
 	//If the new script name is valid, open it
 	if (script != ""){
+        mRegisterLuaFuncs = CreateMap();
 		//Close currently open script if one is open
 		Close();
 		mFile = script;
@@ -55,23 +57,23 @@ void LuaScript::Close(){
 }
 LuaScript::TRegisterLuaMap LuaScript::CreateMap(){
     TRegisterLuaMap map;
-    map["AnimatedImage"] = &AnimatedImage::RegisterLua;
-    map["Button"] = &Button::RegisterLua;
-    map["Camera"] = &Camera::RegisterLua;
-    map["Color"] = &Color::RegisterLua;
-    map["Entity"] = &Entity::RegisterLua;
-    map["Image"] = &Image::RegisterLua;
-    map["Input"] = &Input::RegisterLua;
-    map["Math"] = &Math::RegisterLua;
-    map["MotionState"] = &MotionState::RegisterLua;
-    map["Physics"] = &Physics::RegisterLua;
-    map["Rect"] = &Rectf::RegisterLua;
-    map["State"] = &State::RegisterLua;
-    map["StateManager"] = &StateManager::RegisterLua;
-    map["Text"] = &Text::RegisterLua;
-    map["Timer"] = &Timer::RegisterLua;
-    map["Vector2"] = &Vector2f::RegisterLua;
-    map["Window"] = &Window::RegisterLua;
+    map["AnimatedImage"] = LuaModule(&AnimatedImage::RegisterLua);
+    map["Button"]        = LuaModule(&Button::RegisterLua);
+    map["Camera"]        = LuaModule(&Camera::RegisterLua);
+    map["Color"]         = LuaModule(&Color::RegisterLua);
+    map["Entity"]        = LuaModule(&Entity::RegisterLua);
+    map["Image"]         = LuaModule(&Image::RegisterLua);
+    map["Input"]         = LuaModule(&Input::RegisterLua);
+    map["Math"]          = LuaModule(&Math::RegisterLua);
+    map["MotionState"]   = LuaModule(&MotionState::RegisterLua);
+    map["Physics"]       = LuaModule(&Physics::RegisterLua);
+    map["Rect"]          = LuaModule(&Rectf::RegisterLua);
+    map["State"]         = LuaModule(&State::RegisterLua);
+    map["StateManager"]  = LuaModule(&StateManager::RegisterLua);
+    map["Text"]          = LuaModule(&Text::RegisterLua);
+    map["Timer"]         = LuaModule(&Timer::RegisterLua);
+    map["Vector2"]       = LuaModule(&Vector2f::RegisterLua);
+    map["Window"]        = LuaModule(&Window::RegisterLua);
 
     return map;
 }
@@ -80,7 +82,7 @@ bool LuaScript::RequireModule(lua_State *l, std::string module){
     TRegisterLuaMap::const_iterator found = mRegisterLuaFuncs.find(module);
     //If the module requested exists, register it and return true
     if (found != mRegisterLuaFuncs.end()){
-        mRegisterLuaFuncs.at(module)(l);
+        mRegisterLuaFuncs.at(module).Register(l);
         return true;
     }
     return false;
@@ -106,7 +108,12 @@ Json::Value LuaScript::Save(){
 void LuaScript::RegisterLua(){
     using namespace luabind;
     //Register the module loader with Lua
-    module(mL)[
-        def("LPCRequireModule", &LuaScript::RequireModule)
+    module(mL, "LPC")[
+        class_<LuaScript>("LuaScript")
+            .def(constructor<>())
+            .def(constructor<std::string>())
+            .def("RequireModule", &LuaScript::RequireModule)
+
     ];
+    globals(mL)["Script"] = this;
 }

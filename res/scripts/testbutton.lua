@@ -1,7 +1,7 @@
-LPCRequireModule("Entity")
+Script:RequireModule("Entity")
 
 --Init the script
-function Init(object)
+function Init()
 	print ("Test button init")
 end
 --Called each frame

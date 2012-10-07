@@ -1,20 +1,19 @@
-LPCRequireModule("Input")
-LPCRequireModule("Rect")
-LPCRequireModule("Entity")
-LPCRequireModule("Color")
-LPCRequireModule("Text")
-LPCRequireModule("Physics")
-LPCRequireModule("AnimatedImage")
-LPCRequireModule("Vector2")
-LPCRequireModule("Window")
-LPCRequireModule("Camera")
-LPCRequireModule("Math")
+Script:RequireModule("Input")
+Script:RequireModule("Rect")
+Script:RequireModule("Entity")
+Script:RequireModule("Color")
+Script:RequireModule("Text")
+Script:RequireModule("Physics")
+Script:RequireModule("AnimatedImage")
+Script:RequireModule("Vector2")
+Script:RequireModule("Window")
+Script:RequireModule("Camera")
+Script:RequireModule("Math")
 
 --Init the script
-function Init(object)
+function Init()
 	print("Test2 Init")
 	--Get the object
-	thisObj = object
 	animImg = LPC.AnimatedImage("../res/img/animtest.png")
 	animImg:Play("idle")
 	--Testing out text
@@ -23,7 +22,7 @@ function Init(object)
 		col, 30)
 	textPos = LPC.Rectf(10, 10, 0, 0)
 	--Overriding physics module to test joystick motion
-	rect = thisObj:Box()
+	rect = entity:Box()
 	--Check if joystick is haptic
 	if (LPC.Input.JoySupportsHaptic()) then
 		print("Joy supports haptic")

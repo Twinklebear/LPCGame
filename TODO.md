@@ -124,6 +124,13 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [9.26.2012]: Changed the unordered_map to a map, since we never perform insertions we don't need to worry about that, just quick access across all elements. So a map is a better choice
 - Twinklebear [9.26.2012]: Correction, the name of the module loading function is changed to LPCRequireModule("modulename")
 - Twinklebear [9.26.2012]: Changed the unordered_map to a map, since we never perform insertions we don't need to worry about that, just quick access across all elements. So a map is a better choice
+- Twinklebear [10.6.2012]: Took a look at preventing multiple module inclusion errors. 
+	- Have written a simple class LuaModule which stores a Lua Module Registration function pointer and a bool value to track if it's been registered. When calling LuaModule::Register it first checks if the module is registered, if it isn't registered it registers the module if it is registered it returns.
+	- Each instance of a LuaScript class now has its own map of strings to LuaModules to enable each script to take advantage of the new safe Register function defined in the LuaModule. 
+	- In addition to this I've learned about the luabind::globals function to access/add values to the global table of a lua_State. 
+		- This is now used to push the entity pointer on to the table instead of through Init(object) which now takes no parameters. Now the entity is accessed through the global "entity". I may re-name to "this" (is that a Lua keyword?)
+		- This is also used in the module registration functions as they now require context to perform the registration because the RequireModule is no longer able to be static because it must perform the lookup in the TRegisterLuaMap corresponding to the lua_State, since it needs to check against the appropriate list of registered/unregistered modules. So now modules load with Script:RegisterModule("modulename") as Script is the name of the value pushed onto the globals.
+	- I feel like this solution is a bit insane/convoluted as far as preventing module re-registration errors. Would adding a custom function to the package.loaders and then loading via require 'modulename' prevent this?
 
 ## Change Button/ObjectButton to be managed by a Lua script
 ### Description

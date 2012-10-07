@@ -1,18 +1,16 @@
-LPCRequireModule("Rect")
-LPCRequireModule("Entity")
-LPCRequireModule("AnimatedImage")
-LPCRequireModule("Window")
-LPCRequireModule("Camera")
-LPCRequireModule("Math")
-LPCRequireModule("Input")
-LPCRequireModule("Physics")
-LPCRequireModule("MotionState")
+Script:RequireModule("Rect")
+Script:RequireModule("Entity")
+Script:RequireModule("AnimatedImage")
+Script:RequireModule("Window")
+Script:RequireModule("Camera")
+Script:RequireModule("Math")
+Script:RequireModule("Input")
+Script:RequireModule("Physics")
+Script:RequireModule("MotionState")
 
 --Init the script
-function Init(object)
-	--Get the object
-	thisObj = object
-	physics = thisObj:GetPhysics()
+function Init()
+	physics = entity:GetPhysics()
 	--Load image
 	playerImg = LPC.AnimatedImage("../res/img/walking.png")
 	playerImg:Play("idle-left")
@@ -53,7 +51,7 @@ function Move(deltaT)
 end
 --Draw
 function Draw(camera)
-	LPC.Window.Draw(playerImg, LPC.Math.FromSceneSpace(camera, thisObj:Box()))
+	LPC.Window.Draw(playerImg, LPC.Math.FromSceneSpace(camera, physics:Box()))
 end
 --Update player animation
 function UpdateAnimation(direction)

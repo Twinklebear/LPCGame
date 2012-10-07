@@ -6,6 +6,7 @@
 #include <map>
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
+#include "luamodule.h"
 
 ///A class to enable lua scripts to load various modules
 /**
@@ -32,7 +33,7 @@ public:
     *  @param module The module name to load
     *  @return T if the module was found and loaded, F otherwise
     */
-    static bool RequireModule(lua_State *l, std::string module);
+    bool RequireModule(lua_State *l, std::string module);
 	/**
 	*  Get the lua_State pointer to use for calling functions/etc.
 	*  @return The lua_State pointer held by the LuaScript class
@@ -64,7 +65,8 @@ private:
 
 private:
     ///typedef for an unordered map of the RegisterLua functions
-    typedef std::map<std::string, void (*)(lua_State*)> TRegisterLuaMap;
+    //typedef std::map<std::string, void (*)(lua_State*)> TRegisterLuaMap;
+    typedef std::map<std::string, LuaModule> TRegisterLuaMap;
     /**
     *  Create the unordered_map of RegisterLua functions and return it
     *  @return unordered_map of RegisterLua functions
@@ -77,7 +79,7 @@ private:
 	///The script file name
 	std::string mFile;
     ///The map of RegisterLua functions
-    static const TRegisterLuaMap mRegisterLuaFuncs;
+    TRegisterLuaMap mRegisterLuaFuncs;
 };
 
 #endif

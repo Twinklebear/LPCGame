@@ -26,6 +26,7 @@
     <ClInclude Include="..\src\image.h" />
     <ClInclude Include="..\src\input.h" />
     <ClInclude Include="..\src\jsonhandler.h" />
+    <ClInclude Include="..\src\luamodule.h" />
     <ClInclude Include="..\src\map.h" />
     <ClInclude Include="..\src\mapeditor.h" />
     <ClInclude Include="..\src\math.h" />
@@ -60,6 +61,7 @@
     <ClCompile Include="..\src\image.cpp" />
     <ClCompile Include="..\src\input.cpp" />
     <ClCompile Include="..\src\jsonhandler.cpp" />
+    <ClCompile Include="..\src\luamodule.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\map.cpp" />
     <ClCompile Include="..\src\mapeditor.cpp" />

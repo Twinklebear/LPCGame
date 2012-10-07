@@ -23,7 +23,9 @@ void Entity::Init(){
 	if (!mScript.Open())
 		return;
 	try {
-		luabind::call_function<void>(mScript.Get(), "Init", this);
+        //We push the entity onto the global table
+        luabind::globals(mScript.Get())["entity"] = this;
+		luabind::call_function<void>(mScript.Get(), "Init");
 	}
 	catch(...){
 		std::cout << "Init issue: " << lua_error(mScript.Get()) << std::endl;
