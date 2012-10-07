@@ -23,10 +23,6 @@ Recti Window::mBox;
 int Window::SCREEN_WIDTH;
 int Window::SCREEN_HEIGHT;
 
-Window::Window(){
-}
-Window::~Window(){
-}
 void Window::Init(std::string title){
 	//initialize all SDL subsystems
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
