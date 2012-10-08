@@ -14,17 +14,17 @@ public:
     *  Create the LuaModule passing it the function to register the module with
     *  @param moduleFunc The module's registration function
     */
-    LuaModule(void (*registerFunc)(lua_State*));
+    LuaModule(int (*registerFunc)(lua_State*));
     LuaModule();
     /**
     *  Register the module to some lua_State
     *  @param l The lua_State to register with
     */
-    void Register(lua_State *l);
+    int Register(lua_State *l);
 
 private:
     ///The module registration function
-    void (*mRegisterFunc)(lua_State*);
+    int (*mRegisterFunc)(lua_State*);
     ///For tracking if the module is already registered
     bool mRegistered;
 };

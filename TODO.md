@@ -131,6 +131,10 @@ Entries will be written as follows, and should be updated as work progresses. In
 		- This is now used to push the entity pointer on to the table instead of through Init(object) which now takes no parameters. Now the entity is accessed through the global "entity". I may re-name to "this" (is that a Lua keyword?)
 		- This is also used in the module registration functions as they now require context to perform the registration because the RequireModule is no longer able to be static because it must perform the lookup in the TRegisterLuaMap corresponding to the lua_State, since it needs to check against the appropriate list of registered/unregistered modules. So now modules load with Script:RegisterModule("modulename") as Script is the name of the value pushed onto the globals.
 	- I feel like this solution is a bit insane/convoluted as far as preventing module re-registration errors. Would adding a custom function to the package.loaders and then loading via require 'modulename' prevent this?
+- Twinklebear [10.8.2012]: Turns out require does do module loaded checking and won't reload modules, so I've been working on getting require going, and it's now functional. Now I can strip out the old wacky system and simply use require to load modules.
+	- In addition thinking about adding another package.loader to redirect loads to the res/scripts folder for easier script loading, instead of using dofile("path relative to exe")
+	- To move over to require all module's RegisterLua functions had to be converted to lua_cfunctions and so they now return an int.
+	- Will work on removing the old system and getting this one properly in place.
 
 ## Change Button/ObjectButton to be managed by a Lua script
 ### Description

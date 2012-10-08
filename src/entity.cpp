@@ -179,7 +179,7 @@ void Entity::Load(Json::Value val){
 	    mScript.Load(val["script"]);
     }
 }
-void Entity::RegisterLua(lua_State *l){
+int Entity::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -200,4 +200,5 @@ void Entity::RegisterLua(lua_State *l){
 			.def("SetTag", &Entity::SetTag)
 			.def("Tag", &Entity::Tag)
 	];
+    return 1;
 }

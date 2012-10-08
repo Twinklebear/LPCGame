@@ -92,7 +92,7 @@ void AnimatedImage::LoadConfig(Json::Value val){
 		mSequences.push_back(seq);
 	}
 }
-void AnimatedImage::RegisterLua(lua_State *l){
+int AnimatedImage::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -108,4 +108,5 @@ void AnimatedImage::RegisterLua(lua_State *l){
 			.def("SetClips", &Image::SetClips)
 			.def("Clip", &Image::Clip)
 	];
+    return 1;
 }

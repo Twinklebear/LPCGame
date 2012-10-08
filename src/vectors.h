@@ -109,7 +109,7 @@ public:
 	*  Register the Vector class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l){
+	static int RegisterLua(lua_State *l){
 		using namespace luabind;
 		
 		module(l, "LPC")[
@@ -148,6 +148,7 @@ public:
 				.def(const_self / other<Vector2<float>>())
 				.def(const_self / float())
 		];
+        return 1;
 	}
 
 public:

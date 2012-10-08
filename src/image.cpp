@@ -89,7 +89,7 @@ void Image::LoadConfig(Json::Value val){
 			mClips[i].Load(val["clips"][i]);
 	}
 }
-void Image::RegisterLua(lua_State *l){
+int Image::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -101,4 +101,5 @@ void Image::RegisterLua(lua_State *l){
 			.def("GenClips", &Image::GenClips)
 			.def("Clip", &Image::Clip)
 	];
+    return 1;
 }

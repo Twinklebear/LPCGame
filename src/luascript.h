@@ -69,7 +69,7 @@ private:
 
 private:
     ///typedef for an unordered map of the RegisterLua functions
-    typedef std::map<std::string, void (*)(lua_State*)> TStaticRegisterLuaMap;
+    typedef std::map<std::string, int (*)(lua_State*)> TStaticRegisterLuaMap;
     typedef std::map<std::string, LuaModule> TRegisterLuaMap;
     /**
     *  Create the unordered_map of RegisterLua functions and return it

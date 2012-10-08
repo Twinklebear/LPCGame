@@ -47,7 +47,7 @@ public:
 	*  TODO: Is this necessary? Shouldn't this sort of physics be done by the user?
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l);
+	static int RegisterLua(lua_State *l);
 
 private:
 	int mState;

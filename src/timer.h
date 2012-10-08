@@ -36,7 +36,7 @@ public:
     *  Register the Timer class with the lua state
     *  @param l The lua_State to register the module with
     */
-    static void RegisterLua(lua_State *l);
+    static int RegisterLua(lua_State *l);
 
 private:
 	int mStartTicks, mPausedTicks;

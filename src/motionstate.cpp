@@ -20,7 +20,7 @@ int MotionState::State() const{
 void MotionState::SetMotionState(int state){
 	mState = state;
 }
-void MotionState::RegisterLua(lua_State *l){
+int MotionState::RegisterLua(lua_State *l){
     using namespace luabind;
 
     module(l, "LPC")[
@@ -34,4 +34,5 @@ void MotionState::RegisterLua(lua_State *l){
 				value("RUNNING", RUNNING)
 			]
     ];
+    return 1;
 }

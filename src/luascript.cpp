@@ -116,11 +116,8 @@ int LuaScript::ReqModule(lua_State *l){
     TStaticRegisterLuaMap::const_iterator found = mStaticRegisterLuaFunc.find(module);
     //If the module requested exists, register it and return true
     if (found != mStaticRegisterLuaFunc.end()){
-        mStaticRegisterLuaFunc.at(module)(l);
-        //Tell Lua it went ok
-        //luabind::globals(l)["_LOADED"][module] = true;
-        //std::cout << "_LOADED of " << module << " is: " 
-        //    << luabind::globals(l)["_LOADED"][module.c_str()];
+        //Push the module registration function so Lua can register
+        lua_pushcfunction(l, mStaticRegisterLuaFunc.at(module));
         std::cout << "Registered ok!" << std::endl;
     }
     //If not found push error onto stack

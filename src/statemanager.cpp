@@ -82,7 +82,7 @@ void StateManager::SaveState(std::string name){
 void StateManager::ChangeScene(std::string scene){
 	mActiveState->SetExit(scene);
 }
-void StateManager::RegisterLua(lua_State *l){
+int StateManager::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -93,4 +93,5 @@ void StateManager::RegisterLua(lua_State *l){
 				def("ChangeScene", &StateManager::ChangeScene)
 			]
 	];
+    return 1;
 }

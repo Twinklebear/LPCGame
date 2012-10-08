@@ -1,11 +1,12 @@
 --require 'AnimatedImage'
 --RequireModule("AnimatedImage")
-Script:RequireModule("Input")
---require "Input"
+--Script:RequireModule("Input")
+print("Lua requesting input")
+require "Input"
 print("did i work?")
 --print(package.loaded["io"])
 --We must use dofile as the file is not in Lua's search path
---dofile("../res/scripts/calltest.lua")
+dofile("../res/scripts/calltest.lua")
 
 function Init()
 	--print("Lua search path: " .. package.path)
@@ -14,7 +15,7 @@ function Init()
 		print("Joystick is available")
 	end
 	--Test.TestFunc()
-	--TestCall()
+	TestCall()
 end
 function Free()
 	print("state free")
@@ -23,7 +24,7 @@ function LogicUpdate()
 	if LPC.Input.KeyDown(LPC.Input.KEY_Q) then
 		print ("You pushed Q! Why would you do that?")
 	end
-	--CheckKey()
+	CheckKey()
 	--print("state logic update")
 end
 function RenderUpdate()

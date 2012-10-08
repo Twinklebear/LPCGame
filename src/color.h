@@ -57,7 +57,7 @@ public:
 	*  Register the Color class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l);
+	static int RegisterLua(lua_State *l);
 	///Operator for comparing colors
 	bool operator == (const Color c) const;
 

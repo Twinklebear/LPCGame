@@ -143,7 +143,7 @@ Recti Window::Box(){
 	SDL_GetWindowSize(mWindow.get(), &mBox.w, &mBox.h);
 	return mBox;
 }
-void Window::RegisterLua(lua_State *l){
+int Window::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -171,4 +171,5 @@ void Window::RegisterLua(lua_State *l){
 				value("FLIP_VERT", SDL_FLIP_VERTICAL)
 			]
 	];
+    return 1;
 }

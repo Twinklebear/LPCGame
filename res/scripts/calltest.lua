@@ -1,4 +1,7 @@
-Script:RequireModule("Input")
+--Script:RequireModule("Input")
+print("CallTest.lua attempting to require input")
+require "Input"
+print("CallTest continuing")
 
 function TestCall()
 	print("CallTest responding from function TestCall")

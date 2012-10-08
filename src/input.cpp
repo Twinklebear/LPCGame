@@ -238,7 +238,7 @@ bool Input::JoystickAvailable(){
     return (mJoystick != nullptr);
 }
 bool Input::JoySupportsHaptic(){
-    return SDL_JoystickIsHaptic(mJoystick);
+    return (SDL_JoystickIsHaptic(mJoystick) == 1);
 }
 bool Input::Quit(){
 	return mQuit;
@@ -265,7 +265,7 @@ void Input::ClearMouse(){
 	mMouseClick = false;
 	mMouseMove = false;
 }
-void Input::RegisterLua(lua_State* l){
+int Input::RegisterLua(lua_State* l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -337,4 +337,5 @@ void Input::RegisterLua(lua_State* l){
                 value("HAT_LEFTDOWN", SDL_HAT_LEFTDOWN)
             ]
     ];
+    return 1;
 }

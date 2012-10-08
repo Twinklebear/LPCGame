@@ -79,7 +79,7 @@ void State::Load(Json::Value val){
 	mCamera->Load(val["camera"]);
     mScript.Load(val["script"]);
 }
-void State::RegisterLua(lua_State *l){
+int State::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -90,4 +90,5 @@ void State::RegisterLua(lua_State *l){
 			.def("SetName", &State::SetName)
 			.def("Name", &State::Name)
 	];
+    return 1;
 }

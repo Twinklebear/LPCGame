@@ -167,7 +167,7 @@ void Physics::Load(Json::Value val){
 	mHorizDir = MOVE::STOP;
 	mVertDir  = MOVE::STOP;
 }
-void Physics::RegisterLua(lua_State *l){
+int Physics::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -192,4 +192,5 @@ void Physics::RegisterLua(lua_State *l){
 				value("STOP", Physics::MOVE::STOP)
 			]
 	];
+    return 1;
 }

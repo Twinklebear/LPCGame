@@ -51,7 +51,7 @@ void Color::Load(Json::Value val){
 bool Color::operator == (const Color c) const{
 	return (mColor.r == c.R() && mColor.b == c.B() && mColor.g == c.G());
 }
-void Color::RegisterLua(lua_State *l){
+int Color::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -68,4 +68,5 @@ void Color::RegisterLua(lua_State *l){
             //operators
             .def(const_self == other<Color>())
 	];
+    return 1;
 }
