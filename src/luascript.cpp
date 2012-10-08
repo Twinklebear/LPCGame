@@ -24,7 +24,7 @@
 #include "luascript.h"
 
 //Setup the unordered_map
-//const LuaScript::TRegisterLuaMap LuaScript::mRegisterLuaFuncs = LuaScript::CreateMap();
+const LuaScript::TStaticRegisterLuaMap LuaScript::mStaticRegisterLuaFunc = LuaScript::CreateStaticMap();
 
 LuaScript::LuaScript() : mL(nullptr), mFile(""){
 }
@@ -77,6 +77,28 @@ LuaScript::TRegisterLuaMap LuaScript::CreateMap(){
 
     return map;
 }
+LuaScript::TStaticRegisterLuaMap LuaScript::CreateStaticMap(){
+    TStaticRegisterLuaMap map;
+    map["AnimatedImage"] = &AnimatedImage::RegisterLua;
+    map["Button"]        = &Button::RegisterLua;
+    map["Camera"]        = &Camera::RegisterLua;
+    map["Color"]         = &Color::RegisterLua;
+    map["Entity"]        = &Entity::RegisterLua;
+    map["Image"]         = &Image::RegisterLua;
+    map["Input"]         = &Input::RegisterLua;
+    map["Math"]          = &Math::RegisterLua;
+    map["MotionState"]   = &MotionState::RegisterLua;
+    map["Physics"]       = &Physics::RegisterLua;
+    map["Rect"]          = &Rectf::RegisterLua;
+    map["State"]         = &State::RegisterLua;
+    map["StateManager"]  = &StateManager::RegisterLua;
+    map["Text"]          = &Text::RegisterLua;
+    map["Timer"]         = &Timer::RegisterLua;
+    map["Vector2"]       = &Vector2f::RegisterLua;
+    map["Window"]        = &Window::RegisterLua;
+
+    return map;
+}
 bool LuaScript::RequireModule(lua_State *l, std::string module){
     //Check if the module name is in the unordered_map
     TRegisterLuaMap::const_iterator found = mRegisterLuaFuncs.find(module);
@@ -86,6 +108,28 @@ bool LuaScript::RequireModule(lua_State *l, std::string module){
         return true;
     }
     return false;
+}
+int LuaScript::ReqModule(lua_State *l){
+    std::string module = lua_tostring(l, 1);
+    std::cout << "Attempting to require: " << module << std::endl;
+    //Check if the module name is in the unordered_map
+    TStaticRegisterLuaMap::const_iterator found = mStaticRegisterLuaFunc.find(module);
+    //If the module requested exists, register it and return true
+    if (found != mStaticRegisterLuaFunc.end()){
+        mStaticRegisterLuaFunc.at(module)(l);
+        //Tell Lua it went ok
+        //luabind::globals(l)["_LOADED"][module] = true;
+        //std::cout << "_LOADED of " << module << " is: " 
+        //    << luabind::globals(l)["_LOADED"][module.c_str()];
+        std::cout << "Registered ok!" << std::endl;
+    }
+    //If not found push error onto stack
+    else {
+        std::string err = "\n\tError - ReqModule failed to find" + module;
+        std::cout << "Error: " << err << std::endl;
+        lua_pushstring(l, err.c_str());
+    }
+    return 1;
 }
 lua_State* LuaScript::Get(){
 	return mL;
@@ -113,7 +157,30 @@ void LuaScript::RegisterLua(){
             .def(constructor<>())
             .def(constructor<std::string>())
             .def("RequireModule", &LuaScript::RequireModule)
-
     ];
+    AddLoader();
+    //Attempting to add my own function to the lua package.loaders
     globals(mL)["Script"] = this;
+}
+void LuaScript::AddLoader(){
+    //Get the packages table
+    lua_getfield(mL, LUA_GLOBALSINDEX, "package");
+    //Get the loaders table
+    lua_getfield(mL, -1, "loaders");
+    //Get rid of the packages table
+    lua_remove(mL, -2);
+    
+    //Count # of loaders
+    int numLoaders = 0;
+    lua_pushnil(mL);
+    while (lua_next(mL, -2) != 0){
+        lua_pop(mL, 1);
+        ++numLoaders;
+    }
+    //Add our function
+    lua_pushinteger(mL, numLoaders + 1);
+    lua_pushcfunction(mL, &LuaScript::ReqModule);
+    lua_rawset(mL, -3);
+    //Free table from stack
+    lua_pop(mL, 1);
 }

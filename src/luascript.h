@@ -34,6 +34,8 @@ public:
     *  @return T if the module was found and loaded, F otherwise
     */
     bool RequireModule(lua_State *l, std::string module);
+    ///Static version of it
+    static int ReqModule(lua_State *l);
 	/**
 	*  Get the lua_State pointer to use for calling functions/etc.
 	*  @return The lua_State pointer held by the LuaScript class
@@ -62,16 +64,19 @@ private:
 	*  lua state member
 	*/
 	void RegisterLua();
+    ///Add custom loader to Lua's package.loaders
+    void AddLoader();
 
 private:
     ///typedef for an unordered map of the RegisterLua functions
-    //typedef std::map<std::string, void (*)(lua_State*)> TRegisterLuaMap;
+    typedef std::map<std::string, void (*)(lua_State*)> TStaticRegisterLuaMap;
     typedef std::map<std::string, LuaModule> TRegisterLuaMap;
     /**
     *  Create the unordered_map of RegisterLua functions and return it
     *  @return unordered_map of RegisterLua functions
     */
     static TRegisterLuaMap CreateMap();
+    static TStaticRegisterLuaMap CreateStaticMap();
 
 private:
 	///The lua state running the script
@@ -80,6 +85,7 @@ private:
 	std::string mFile;
     ///The map of RegisterLua functions
     TRegisterLuaMap mRegisterLuaFuncs;
+    static const TStaticRegisterLuaMap mStaticRegisterLuaFunc;
 };
 
 #endif

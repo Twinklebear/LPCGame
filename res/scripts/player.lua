@@ -69,13 +69,13 @@ function UpdateAnimation(direction)
 			playerImg:Play("idle-down")
 		end
 	elseif physics:State() == LPC.MotionState.RUNNING then
-		if direction == LPC.Math.LEFT and not (playerImg:Playing() == "run-left") then
+		if direction == LPC.Math.LEFT and playerImg:Playing() ~= "run-left" then
 			playerImg:Play("run-left")
-		elseif direction == LPC.Math.RIGHT and not (playerImg:Playing() == "run-right") then
+		elseif direction == LPC.Math.RIGHT and playerImg:Playing() ~= "run-right" then
 			playerImg:Play("run-right")
-		elseif direction == LPC.Math.UP and not (playerImg:Playing() == "run-up") then
+		elseif direction == LPC.Math.UP and playerImg:Playing() ~= "run-up" then
 			playerImg:Play("run-up")
-		elseif direction == LPC.Math.DOWN and not (playerImg:Playing() == "run-down") then
+		elseif direction == LPC.Math.DOWN and playerImg:Playing() ~= "run-down" then
 			playerImg:Play("run-down")
 		end
 	end

@@ -269,61 +269,61 @@ void Input::RegisterLua(lua_State* l){
 	using namespace luabind;
 
 	module(l, "LPC")[
-		class_<Input>("Input")
-			.scope[
-				def("KeyDown", (bool (*)(std::string))&Input::KeyDown),
-				def("KeyDown", (bool (*)(int))&Input::KeyDown),
+        class_<Input>("Input")
+            .scope[
+                def("KeyDown", (bool (*)(std::string))&Input::KeyDown),
+                def("KeyDown", (bool (*)(int))&Input::KeyDown),
                 def("GetJoyAxis", &Input::GetJoyAxis),
                 def("GetJoyButton", &Input::GetJoyButton),
                 def("GetJoyHat", &Input::GetJoyHat),
                 def("JoystickAvailable", &Input::JoystickAvailable),
                 def("JoySupportsHaptic", &Input::JoySupportsHaptic),
-				def("Quit", &Input::Quit)
-			]
+                def("Quit", &Input::Quit)
+            ]
 			//To expose the SDL_Scancodes to Lua
-			.enum_("Key")[
-				value("KEY_1", SDL_SCANCODE_1),
-				value("KEY_2", SDL_SCANCODE_2),
-				value("KEY_3", SDL_SCANCODE_3),
-				value("KEY_4", SDL_SCANCODE_4),
-				value("KEY_5", SDL_SCANCODE_5),
-				value("KEY_6", SDL_SCANCODE_6),
-				value("KEY_7", SDL_SCANCODE_7),
-				value("KEY_8", SDL_SCANCODE_8),
-				value("KEY_9", SDL_SCANCODE_9),
-				value("KEY_0", SDL_SCANCODE_0),
-				value("KEY_Q", SDL_SCANCODE_Q),
-				value("KEY_W", SDL_SCANCODE_W),
-				value("KEY_E", SDL_SCANCODE_E),
-				value("KEY_R", SDL_SCANCODE_R),
-				value("KEY_T", SDL_SCANCODE_T),
-				value("KEY_Y", SDL_SCANCODE_Y),
-				value("KEY_U", SDL_SCANCODE_U),
-				value("KEY_I", SDL_SCANCODE_I),
-				value("KEY_O", SDL_SCANCODE_O),
-				value("KEY_P", SDL_SCANCODE_P),
-				value("KEY_A", SDL_SCANCODE_A),
-				value("KEY_S", SDL_SCANCODE_S),
-				value("KEY_D", SDL_SCANCODE_D),
-				value("KEY_F", SDL_SCANCODE_F),
-				value("KEY_G", SDL_SCANCODE_G),
-				value("KEY_H", SDL_SCANCODE_H),
-				value("KEY_J", SDL_SCANCODE_J),
-				value("KEY_K", SDL_SCANCODE_K),
-				value("KEY_L", SDL_SCANCODE_L),
-				value("KEY_Z", SDL_SCANCODE_Z),
-				value("KEY_X", SDL_SCANCODE_X),
-				value("KEY_C", SDL_SCANCODE_C),
-				value("KEY_V", SDL_SCANCODE_V),
-				value("KEY_B", SDL_SCANCODE_B),
-				value("KEY_N", SDL_SCANCODE_N),
-				value("KEY_M", SDL_SCANCODE_M),
-				value("KEY_SPACE", SDL_SCANCODE_SPACE),
-				value("KEY_UP", SDL_SCANCODE_UP),
-				value("KEY_DOWN", SDL_SCANCODE_DOWN),
-				value("KEY_LEFT", SDL_SCANCODE_LEFT),
-				value("KEY_RIGHT", SDL_SCANCODE_RIGHT)
-			]
+		    .enum_("Key")[
+                value("KEY_1", SDL_SCANCODE_1),
+                value("KEY_2", SDL_SCANCODE_2),
+                value("KEY_3", SDL_SCANCODE_3),
+                value("KEY_4", SDL_SCANCODE_4),
+                value("KEY_5", SDL_SCANCODE_5),
+                value("KEY_6", SDL_SCANCODE_6),
+                value("KEY_7", SDL_SCANCODE_7),
+                value("KEY_8", SDL_SCANCODE_8),
+                value("KEY_9", SDL_SCANCODE_9),
+                value("KEY_0", SDL_SCANCODE_0),
+                value("KEY_Q", SDL_SCANCODE_Q),
+                value("KEY_W", SDL_SCANCODE_W),
+                value("KEY_E", SDL_SCANCODE_E),
+                value("KEY_R", SDL_SCANCODE_R),
+                value("KEY_T", SDL_SCANCODE_T),
+                value("KEY_Y", SDL_SCANCODE_Y),
+                value("KEY_U", SDL_SCANCODE_U),
+                value("KEY_I", SDL_SCANCODE_I),
+                value("KEY_O", SDL_SCANCODE_O),
+                value("KEY_P", SDL_SCANCODE_P),
+                value("KEY_A", SDL_SCANCODE_A),
+                value("KEY_S", SDL_SCANCODE_S),
+                value("KEY_D", SDL_SCANCODE_D),
+                value("KEY_F", SDL_SCANCODE_F),
+                value("KEY_G", SDL_SCANCODE_G),
+                value("KEY_H", SDL_SCANCODE_H),
+                value("KEY_J", SDL_SCANCODE_J),
+                value("KEY_K", SDL_SCANCODE_K),
+                value("KEY_L", SDL_SCANCODE_L),
+                value("KEY_Z", SDL_SCANCODE_Z),
+                value("KEY_X", SDL_SCANCODE_X),
+                value("KEY_C", SDL_SCANCODE_C),
+                value("KEY_V", SDL_SCANCODE_V),
+                value("KEY_B", SDL_SCANCODE_B),
+                value("KEY_N", SDL_SCANCODE_N),
+                value("KEY_M", SDL_SCANCODE_M),
+                value("KEY_SPACE", SDL_SCANCODE_SPACE),
+                value("KEY_UP", SDL_SCANCODE_UP),
+                value("KEY_DOWN", SDL_SCANCODE_DOWN),
+                value("KEY_LEFT", SDL_SCANCODE_LEFT),
+                value("KEY_RIGHT", SDL_SCANCODE_RIGHT)
+		    ]
             //To expose the SDL_HAT enum to Lua
             .enum_("Hat")[
                 value("HAT_CENTERED", SDL_HAT_CENTERED),
@@ -336,5 +336,5 @@ void Input::RegisterLua(lua_State* l){
                 value("HAT_RIGHTDOWN", SDL_HAT_RIGHTDOWN),
                 value("HAT_LEFTDOWN", SDL_HAT_LEFTDOWN)
             ]
-	];
+    ];
 }
