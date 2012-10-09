@@ -118,6 +118,8 @@ int LuaScript::DoScript(lua_State *l){
     //Get the filename and dofile
     std::string script = lua_tostring(l, 0);
     luaL_dofile(l, script.c_str());
+    //pop the string off the stack
+    lua_pop(l, 0);
     return 1;
 }
 lua_State* LuaScript::Get(){
