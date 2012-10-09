@@ -1,12 +1,12 @@
-Script:RequireModule("Rect")
-Script:RequireModule("Entity")
-Script:RequireModule("AnimatedImage")
-Script:RequireModule("Window")
-Script:RequireModule("Camera")
-Script:RequireModule("Math")
-Script:RequireModule("Input")
-Script:RequireModule("Physics")
-Script:RequireModule("MotionState")
+require "Rect"
+require "Entity"
+require "AnimatedImage"
+require "Window"
+require "Camera"
+require "Math"
+require "Input"
+require "Physics"
+require "MotionState"
 
 --Init the script
 function Init()

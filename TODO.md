@@ -135,10 +135,21 @@ Entries will be written as follows, and should be updated as work progresses. In
 	- In addition thinking about adding another package.loader to redirect loads to the res/scripts folder for easier script loading, instead of using dofile("path relative to exe")
 	- To move over to require all module's RegisterLua functions had to be converted to lua_cfunctions and so they now return an int.
 	- Will work on removing the old system and getting this one properly in place.
+- Twinklebear [10.9.2012]: Migration to require for module loading complete, removed old system entirely
+	- In addition added another package.loader function to redirect engine script load requests, so you can load a script located in scripts/* via require "scripts/scriptname.lua" and it will setup the relative file paths and call dofile for you.
+	- The Json::Value save/loaded should just be a string at this point, there's no real reason in having it as a list.
 
 ## Change Button/ObjectButton to be managed by a Lua script
 ### Description
 - The Button and ObjectButton should have their behaviours and OnClick function defined within a script, instead of in C++ code, allowing for more flexibility
+
+### Progress
+
+## States - Game vs. Menu
+### Description
+- With the slow migration of states to being scripted through Lua is there any point in having seperate C++ classes for these states? A menu state can easily be implemented as a game state with buttons in it. I think they should be rolled into the base State class and have behaviors managed through Lua.
+	- To do this should probably work on merging UIManager and EntityManager first
+		- Or can I do like Unity with an OnGUI function to request UI elements to draw?
 
 ### Progress
 
