@@ -4,7 +4,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Entry Title [DateAdded]
 ### Description of the work to be done
 - Descriptions of steps that must be done
-
 	- Additional information about each step
 
 ### Progress
@@ -13,12 +12,9 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Physics [9.22.2012]
 ### Description
 - Examine Box2D as a candidate for providing good physics functionality [In Progress: Twinklebear]
-
 	- Physics class would then provide the object with capabilities for dealing with its Box2D physics component
 
-
 - Physics::SetMove should instead take a vector move direction, instead of only Up/Down/Left/Right
-
 	- Due to this not being in, the gamepad controlled entity (npctest) does not update his collision box and as such the collision box remains where he spawns and he won't collide with anything.
 
 ### Progress
@@ -27,7 +23,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Gamepad Input [9.22.2012]
 ### Description
 - Add SDL's gamepad and force feedback support into Input [In Progress: Twinklebear]
-
 	- Should the SDL_HapticEffect be bundled into its own class and then exposed to Lua for creation of effects?
 
 
@@ -43,7 +38,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Entities/EntityManager [9.22.2012]
 ### Description
 - Wouldn't it make more sense to add UIManager into EntityManager, and simply have UI elements ignore the camera offsets?
-
 	- What if instead i used some kind of OnGui system like Unity to draw things without any camera offsets applied?
 
 ### Progress
@@ -67,7 +61,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Need to be able to save/modify the image data files in the editor
 
 - Entities should be in their own json files and loaded through file links in the state's json file
-
 	- Entity json files [Done: Twinklebear - 9.27.2012]
 
 	- Idea for state specific entity data: It could be overriden by specifying the state specific data in the state file, this data will then be used to override the entity data
@@ -81,7 +74,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 ### Progress
 - Twinklebear [9.22.2012]: Image's and AnimatedImage's now have their own associated json file, describing any clips or animation sequences
-
 	- Note: Shouldn't animation be a seperate json file than the image file? So an image.json file would describe the image and its clips, while an animation would specify which image to load and the animation sequences.
 
 
@@ -117,7 +109,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 - The framerate mentioned for the animations to play at doesn't actually mean framerate, it corresponds to how many program frames correspond to stepping the animation up a frame, this should be changed to be actual framerate [Done: Twinklebear - 10.2.2012]
 
 - Should the sequences vector be a map? The key would be the sequence name, and it'd return a vector of sequences perhaps? May improve speed?
-
 	- I don't think this would provide an improvement, a name lookup is only done once when the animations switch however multiple lookups are done each update loop to get information about how to play the animation, and in this case the map would be slower. I think a vector is probably ideal.
 
 ### Progress
@@ -132,38 +123,27 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Lua Embedding [9.22.2012]
 ### Description
 - Implement Lua for scripting objects behavior [In Progress: Twinklebear]
-
 	- Need to determine what is necessary to be exposed and what should be handled internally and how the API should work and such
 
 	- Should entities be drawn automatically? Or should it be required to make the call yourself in draw?
-
 		- I think an image file should be described in the entity's json file and used. Rendering should be toggle-able to enable/disable drawing of the image
 
-
 - Need a better way for Lua scripts to load the modules they need through something like require or such [Done: Twinklebear - 10.9.2012]
-
 	- Need a system to prevent scripts from being able to try and register the same module twice as it causes a crash. This issue is easy to encounter if perhaps you call "dofile" from a script with a module loaded and then the script that's just been loaded via "dofile" also attempts to load the same module, it causes a crash. Need to track which modules are registered by the state and quietly ignore re-registration attempts.
 
-
 - How should the State class be handled?
-
 	- If I create the ability to call state functions like SetExit from Lua, will ObjectButton no longer be needed? since Button's OnClick script would then simply call the function? I'll try this and then decide what to do with ObjectButton.
-
 		- I think I've got a method for this setup, see the static StateManager function ChangeScene
-
 			- This isn't quite right. The button needs to set exit on the actively running scene so that it can exit cleanly
 
 	- Will need some way to grab the active state, perhaps from StateManager? It's a pure-static class so yes, I think that will work
 
 	- Should states be run via script? Hmm. What to do with states..
-
 		- States will execute their basic C++ functionality, such as making the calls to the manager, and other background stuff, but will also call a function on a state script if one is attached
 
 	- Should tiles become entities that are managed by the Map class? This will allow tiles to have scripts attached. Or should tiles remain simple floor imagery and instead invisible entities should be created to enable area triggers. (kind of leaning to the latter, it'll be easier than reworking the Map & Tile class)
 
-
 - How to save data from script? [Done: Twinklebear - ?.?.?]
-
 	- Have decided to leave this up to the user, so editor created data will be handled by JsonCPP and script data will be handled by whatever is desired for Lua, and will have no interoperation between the C++ saved data and custom script data.
 
 
@@ -185,31 +165,25 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [9.26.2012]: Changed the unordered_map to a map, since we never perform insertions we don't need to worry about that, just quick access across all elements. So a map is a better choice
 
 - Twinklebear [10.6.2012]: Took a look at preventing multiple module inclusion errors.
-
 	- Have written a simple class LuaModule which stores a Lua Module Registration function pointer and a bool value to track if it's been registered. When calling LuaModule::Register it first checks if the module is registered, if it isn't registered it registers the module if it is registered it returns.
 
 	- Each instance of a LuaScript class now has its own map of strings to LuaModules to enable each script to take advantage of the new safe Register function defined in the LuaModule. 
 
 	- In addition to this I've learned about the luabind::globals function to access/add values to the global table of a lua_State. 
-
 		- This is now used to push the entity pointer on to the table instead of through Init(object) which now takes no parameters. Now the entity is accessed through the global "entity". I may re-name to "this" (is that a Lua keyword?)
 
 		- This is also used in the module registration functions as they now require context to perform the registration because the RequireModule is no longer able to be static because it must perform the lookup in the TRegisterLuaMap corresponding to the lua_State, since it needs to check against the appropriate list of registered/unregistered modules. So now modules load with Script:RegisterModule("modulename") as Script is the name of the value pushed onto the globals.
 
 	- I feel like this solution is a bit insane/convoluted as far as preventing module re-registration errors. Would adding a custom function to the package.loaders and then loading via require 'modulename' prevent this?
 
-
 - Twinklebear [10.8.2012]: Turns out require does do module loaded checking and won't reload modules, so I've been working on getting require going, and it's now functional. Now I can strip out the old wacky system and simply use require to load modules.
-
 	- In addition thinking about adding another package.loader to redirect loads to the res/scripts folder for easier script loading, instead of using dofile("path relative to exe")
 
 	- To move over to require all module's RegisterLua functions had to be converted to lua_cfunctions and so they now return an int.
 
 	- Will work on removing the old system and getting this one properly in place.
 
-
 - Twinklebear [10.9.2012]: Migration to require for module loading complete, removed old system entirely
-
 	- In addition added another package.loader function to redirect engine script load requests, so you can load a script located in scripts/* via require "scripts/scriptname.lua" and it will setup the relative file paths and call dofile for you.
 	
 	- The Json::Value save/loaded should just be a string at this point, there's no real reason in having it as a list.
@@ -223,7 +197,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## States - Game vs. Menu
 ### Description
 - With the slow migration of states to being scripted through Lua is there any point in having seperate C++ classes for these states? A menu state can easily be implemented as a game state with buttons in it. I think they should be rolled into the base State class and have behaviors managed through Lua.
-
 	- To do this should probably work on merging UIManager and EntityManager first, Or can I do like Unity with an OnGUI function to request UI elements to draw?
 
 ### Progress
@@ -231,21 +204,15 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Editor [9.22.2012]
 ### Description
 - Tile map editor
-	
 	- Need to be able to place any sort of map down, not be limited to a pre-generated standard size map
 
-
 - Need to be able to place Entities into the scene as well
-
 	- Related: Need to be able to create new entities from within the editor
 
-
 - Need to be able to import images to the editor and have them show up in the files list.
-
 	- Need to be able to make folders, and so on, all editor folders will be subfolders of res/
 
 	- How can i drag things into the editor without relying on platform specific API?
-
 		- Should i just instead monitor folders? How does SDL's clipboard support work? If i can get the filepath i can copy the file.
 
 ### Progress
@@ -268,9 +235,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Migration to OpenGL [9.26.2012]
 ### Description
 - A long term goal, will eventually outgrow SDL when the time comes to being adding support for GLSL shaders, normal/diffuse/etc maps for lighting and so on.
-
 	- Rendering will still remain 2D
-
 
 - I need to learn OpenGL and become very acquinted with it. This TODO task does not and probably will not be worked on for a long time.
 
@@ -279,7 +244,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Memory Leaks [9.22.2012]
 ### Description
 - Memory leaks when changing states
-
 	- How will the Lua scripts effect memory usage/leaks?
 
 ### Progress
@@ -288,7 +252,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 ## Resizable Window [9.22.2012]
 ### Description
 - Need to make the window resizable and have elements reposition to fit in the new window
-
 	- Resizing window is currently disabled as resizing the window while playing and then exiting to menu would crash the program
 
 ### Progress
