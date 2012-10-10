@@ -16,6 +16,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 	- Physics class would then provide the object with capabilities for dealing with its Box2D physics component
 
+
 - Physics::SetMove should instead take a vector move direction, instead of only Up/Down/Left/Right
 
 	- Due to this not being in, the gamepad controlled entity (npctest) does not update his collision box and as such the collision box remains where he spawns and he won't collide with anything.
@@ -28,6 +29,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Add SDL's gamepad and force feedback support into Input [In Progress: Twinklebear]
 
 	- Should the SDL_HapticEffect be bundled into its own class and then exposed to Lua for creation of effects?
+
 
 - Need to setup a Haptic class to take care of simplifying and exposing the SDL_HapticEffect type
 
@@ -70,6 +72,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 	- Idea for state specific entity data: It could be overriden by specifying the state specific data in the state file, this data will then be used to override the entity data
 
+
 - With all these extra file readings I think the need arises for a generic file reader/writer to write and read JSON from desired files, eliminating the need for Image, AnimatedImage and Entity to each have their own JSON file opening function [Done: Twinklebear - 9.28.2012]
 
 - Maps should be described in their own json file
@@ -80,6 +83,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [9.22.2012]: Image's and AnimatedImage's now have their own associated json file, describing any clips or animation sequences
 
 	- Note: Shouldn't animation be a seperate json file than the image file? So an image.json file would describe the image and its clips, while an animation would specify which image to load and the animation sequences.
+
 
 - Twinklebear [9.27.2012]: Decided against seperating animation sequence information from clip information when loading an AnimatedImage. Thus you can still simply call "file.png" and the config file will be parsed from the image file name, instead of loading a json config file and then that would contain the image file name.
 
@@ -135,9 +139,11 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 		- I think an image file should be described in the entity's json file and used. Rendering should be toggle-able to enable/disable drawing of the image
 
+
 - Need a better way for Lua scripts to load the modules they need through something like require or such [Done: Twinklebear - 10.9.2012]
 
 	- Need a system to prevent scripts from being able to try and register the same module twice as it causes a crash. This issue is easy to encounter if perhaps you call "dofile" from a script with a module loaded and then the script that's just been loaded via "dofile" also attempts to load the same module, it causes a crash. Need to track which modules are registered by the state and quietly ignore re-registration attempts.
+
 
 - How should the State class be handled?
 
@@ -155,9 +161,11 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 	- Should tiles become entities that are managed by the Map class? This will allow tiles to have scripts attached. Or should tiles remain simple floor imagery and instead invisible entities should be created to enable area triggers. (kind of leaning to the latter, it'll be easier than reworking the Map & Tile class)
 
+
 - How to save data from script? [Done: Twinklebear - ?.?.?]
 
 	- Have decided to leave this up to the user, so editor created data will be handled by JsonCPP and script data will be handled by whatever is desired for Lua, and will have no interoperation between the C++ saved data and custom script data.
+
 
 - How much of the editor entities should be scripted?
 
@@ -190,6 +198,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 	- I feel like this solution is a bit insane/convoluted as far as preventing module re-registration errors. Would adding a custom function to the package.loaders and then loading via require 'modulename' prevent this?
 
+
 - Twinklebear [10.8.2012]: Turns out require does do module loaded checking and won't reload modules, so I've been working on getting require going, and it's now functional. Now I can strip out the old wacky system and simply use require to load modules.
 
 	- In addition thinking about adding another package.loader to redirect loads to the res/scripts folder for easier script loading, instead of using dofile("path relative to exe")
@@ -197,6 +206,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 	- To move over to require all module's RegisterLua functions had to be converted to lua_cfunctions and so they now return an int.
 
 	- Will work on removing the old system and getting this one properly in place.
+
 
 - Twinklebear [10.9.2012]: Migration to require for module loading complete, removed old system entirely
 
@@ -224,9 +234,11 @@ Entries will be written as follows, and should be updated as work progresses. In
 	
 	- Need to be able to place any sort of map down, not be limited to a pre-generated standard size map
 
+
 - Need to be able to place Entities into the scene as well
 
 	- Related: Need to be able to create new entities from within the editor
+
 
 - Need to be able to import images to the editor and have them show up in the files list.
 
@@ -235,6 +247,8 @@ Entries will be written as follows, and should be updated as work progresses. In
 	- How can i drag things into the editor without relying on platform specific API?
 
 		- Should i just instead monitor folders? How does SDL's clipboard support work? If i can get the filepath i can copy the file.
+
+### Progress
 
 ## Multithreading [9.22.2012]
 ### Description
@@ -256,6 +270,7 @@ Entries will be written as follows, and should be updated as work progresses. In
 - A long term goal, will eventually outgrow SDL when the time comes to being adding support for GLSL shaders, normal/diffuse/etc maps for lighting and so on.
 
 	- Rendering will still remain 2D
+
 
 - I need to learn OpenGL and become very acquinted with it. This TODO task does not and probably will not be worked on for a long time.
 
