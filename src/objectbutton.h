@@ -55,7 +55,7 @@ public:
 	*  @see GameObject::Save for saving of inherited members
 	*  @return The Json::Value containing the object data
 	*/
-	Json::Value Save(){
+	Json::Value Save() const {
 		//Unfortunately I can't change the function that's pointed to via loading json
 		//as it's code not data, so instead we just save the param
 		Json::Value val = Entity::Save();

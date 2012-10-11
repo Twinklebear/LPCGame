@@ -64,10 +64,9 @@ Recti Image::Clip(int clipNum) const {
 std::string Image::File() const {
     return mFile;
 }
-Json::Value Image::Save(){
-	Json::Value val;
-	val["file"]  = mFile;
-	return val;
+void Image::Save(const std::string &file) const {
+    JsonHandler handler(file);
+    handler.Write(SaveClips());
 }
 void Image::Load(Json::Value val){
 	if (val["clips"].size() != 0){
@@ -88,6 +87,13 @@ void Image::Load(const std::string &file){
     catch (const std::runtime_error &e){
         std::cout << e.what() << std::endl;
     }
+}
+Json::Value Image::SaveClips() const {
+    Json::Value val;
+    for (int i = 0; i < mNumClips; ++i){
+        val["clips"][i] = mClips[i].Save();
+    }
+    return val;
 }
 int Image::RegisterLua(lua_State *l){
 	using namespace luabind;

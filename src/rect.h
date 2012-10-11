@@ -102,7 +102,7 @@ public:
 	*  Save the box's properties to a Json::Value and return it
 	*  @return Json::Value containing the box's properties
 	*/
-	Json::Value Save(){
+	Json::Value Save() const {
 		Json::Value val;
 		val["x"] = pos.x;
 		val["y"] = pos.y;

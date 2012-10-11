@@ -81,7 +81,7 @@ public:
 	*  Save the text data to a Json::Value
 	*  @returns Json::Value containing information about the text
 	*/
-	Json::Value Save();
+	Json::Value Save() const;
 	/**
 	*  Load the text data from a Json::Value
 	*  @param val The Json::Value to load from

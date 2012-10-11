@@ -38,7 +38,7 @@ int Color::B() const {
 void Color::B(int b){
     mColor.b = b;
 }
-Json::Value Color::Save(){
+Json::Value Color::Save() const {
 	Json::Value v;
 	v["r"] = mColor.r;
 	v["g"] = mColor.g;

@@ -55,7 +55,7 @@ public:
 	*/
 	virtual void CheckMouseOver(const Vector2f &pos);
 	///Return T/F is the mouse is over the object
-	bool GetMouseOver();
+	bool GetMouseOver() const;
 	/**
 	*  Get a pointer to the object's Physics component, for use in allowing
 	*  it to be gotten and used in a script
@@ -68,18 +68,23 @@ public:
 	*/
 	void SetCollisionMap(CollisionMap map);
 	///Get the object's box
-	Rectf Box();
+	Rectf Box() const;
 	///Set the entity's tag
 	void SetTag(std::string tag);
 	///Get the entity's tag
-	std::string Tag();
+	std::string Tag() const;
 	/**
 	*  Save the Entity data to a json value and return it
 	*  The Entity instance of the function takes care of saving
 	*  the base object members, physics, image and tags
 	*  @return Json::Value containing the Entity data
 	*/
-	virtual Json::Value Save();
+	virtual Json::Value Save() const;
+    /**
+    *  Save the Entity to a file
+    *  @param file The file to save the entity too
+    */
+    virtual void Save(const std::string &file) const;
 	/**
 	*  Load the Entity from a Json::Value
 	*  The Entity instance of the function takes care of loading

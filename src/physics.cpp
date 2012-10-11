@@ -148,7 +148,7 @@ void Physics::SetBox(Rectf box){
 void Physics::SetMap(CollisionMap map){
 	mCollisionMap = map;
 }
-Json::Value Physics::Save(){
+Json::Value Physics::Save() const {
 	//Save the object's physical constants and box
 	Json::Value val;
 	val["box"] 	  = mBox.Save();

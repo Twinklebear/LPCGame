@@ -60,10 +60,10 @@ public:
     ///Get the Image filename
     std::string File() const;
 	/**
-	*  Save an image's properties to a Json::Value and return it
-	*  @return Json::Value containing the information about the image
+	*  Save an Image's properties to a Json formatted file
+    *  @param file The file to save to
 	*/
-	virtual Json::Value Save();
+	virtual void Save(const std::string &file) const;
     /**
     *  Load an Image and it's config data from a filename
     *  @param file The file to load from, the config file will be file.json
@@ -82,6 +82,11 @@ protected:
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
+    /**
+    *  Write the clips to a Json::Value and return it
+    *  @return a Json::Value containing the clips information
+    */
+    Json::Value SaveClips() const;
 
 private:
 	///Disable image copy construction

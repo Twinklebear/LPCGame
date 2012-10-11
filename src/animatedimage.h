@@ -15,7 +15,7 @@ struct AnimationSequence {
 	*  Save the sequence to a Json::Value
 	*  @return The sequence information as a Json::Value
 	*/
-	Json::Value Save();
+	Json::Value Save() const;
 	/**
 	*  Load the sequence from a Json::Value
 	*  @param val The Json::Value to load from
@@ -66,20 +66,22 @@ public:
 	*/
 	int ActiveClip();
 	/**
-	*  Save an image's properties to a Json::Value and return it
-	*  @return Json::Value containing the information about the image
+	*  Save an AniamtedImage's properties to a Json formatted file
+    *  @param file The file to save to
 	*/
-	Json::Value Save();
-	/**
-	*  Load an AnimatedImage's properties from a Json::Value
-	*  @param val The Json::Value to load from
-	*/
-	void Load(Json::Value val);
+	void Save(const std::string &file) const;
 	/**
 	*  Register the AnimatedImage class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
 	static int RegisterLua(lua_State *l);
+
+private:
+    /**
+	*  Load an AnimatedImage's properties from a Json::Value
+	*  @param val The Json::Value to load from
+	*/
+	void Load(Json::Value val);
 
 private:
 	std::vector<AnimationSequence> mSequences;

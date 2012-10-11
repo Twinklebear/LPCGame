@@ -6,9 +6,10 @@
 #include "window.h"
 #include "image.h"
 #include "timer.h"
+#include "jsonhandler.h"
 #include "animatedimage.h"
 
-Json::Value AnimationSequence::Save(){
+Json::Value AnimationSequence::Save() const {
 	Json::Value val;
     val["frameRate"] = frameRate;
 	val["name"] = name;
@@ -73,10 +74,14 @@ std::string AnimatedImage::Playing(){
 int AnimatedImage::ActiveClip(){
 	return mSequences.at(mActiveAnimation).clipIndices.at(mFrame);
 }
-Json::Value AnimatedImage::Save(){
+void AnimatedImage::Save(const std::string &file) const {
 	//Save base class (file and clips)
-	Json::Value val = Image::Save();
-	return val;
+	Json::Value val = SaveClips();
+    for (int i = 0; i < mSequences.size(); ++i){
+        val["sequences"][i] = mSequences.at(i).Save();
+    }
+    JsonHandler handler(file);
+    handler.Write(val);
 }
 void AnimatedImage::Load(Json::Value val){
 	//Load the clips

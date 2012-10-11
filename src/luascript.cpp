@@ -27,29 +27,29 @@ const LuaScript::TRegisterLuaMap LuaScript::mRegisterLuaFunc = LuaScript::Create
 LuaScript::LuaScript() : mL(nullptr), mFile(""){
 }
 LuaScript::LuaScript(std::string script) : mL(nullptr), mFile(""){
-	OpenScript(script);
+    OpenScript(script);
 }
 LuaScript::~LuaScript(){
-	Close();
+    Close();
 }
 void LuaScript::OpenScript(const std::string &script){
-	//If the new script name is valid, open it
-	if (script != ""){
-		//Close currently open script if one is open
-		Close();
-		mFile = script;
-		mL = lua_open();
-		luaL_openlibs(mL);
-		luabind::open(mL);
+    //If the new script name is valid, open it
+    if (script != ""){
+        //Close currently open script if one is open
+        Close();
+        mFile = script;
+        mL = lua_open();
+        luaL_openlibs(mL);
+        luabind::open(mL);
         AddLoaders();
-		luaL_dofile(mL, mFile.c_str());
-	}
+        luaL_dofile(mL, mFile.c_str());
+    }
 }
 void LuaScript::Close(){
-	if (Open()){
-		lua_close(mL);
-		mL = nullptr;
-	}
+    if (Open()){
+        lua_close(mL);
+        mL = nullptr;
+    }
 }
 LuaScript::TRegisterLuaMap LuaScript::CreateMap(){
     TRegisterLuaMap map;

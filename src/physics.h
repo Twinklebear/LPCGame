@@ -51,7 +51,7 @@ public:
 	*  Save the physical properties of the object to a Json::Value
 	*  @return Json::Value containing the object's physical properties
 	*/
-	Json::Value Save();
+	Json::Value Save() const;
 	/**
 	*  Load the object's physical properties from a Json::Value
 	*  @param val The Json::Value containing the properties to load

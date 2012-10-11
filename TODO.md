@@ -228,6 +228,8 @@ Entries will be written as follows, and should be updated as work progresses. In
 		- Should i just instead monitor folders? How does SDL's clipboard support work? If i can get the filepath i can copy the file.
 
 ### Progress
+- Twinklebear [10.11.2012]: Working on getting some framework down for adding the ability to save Image, AnimatedImage and Entity configurations to their own json files through Save(file). The old system is still in place because buttons have yet to move over (next item i'll do) and then it'll be tweaked over to return the override information for saving to the state json file.
+	- Note: None of these save functions are exported to Lua for anything more than testing. Undecided as to whether they should be available to Lua or only used internally.
 
 ## Multithreading [9.22.2012]
 ### Description

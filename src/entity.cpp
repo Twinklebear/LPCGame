@@ -116,9 +116,8 @@ void Entity::CheckMouseOver(const Vector2f &pos){
 		mMouseOver = false;
 	}
 }
-bool Entity::GetMouseOver(){
+bool Entity::GetMouseOver() const {
 	return mMouseOver;
-
 }
 Physics* Entity::GetPhysics(){
 	return &mPhysics;
@@ -126,16 +125,16 @@ Physics* Entity::GetPhysics(){
 void Entity::SetCollisionMap(CollisionMap map){
 	mPhysics.SetMap(map);
 }
-Rectf Entity::Box(){
+Rectf Entity::Box() const {
 	return mPhysics.Box();
 }
 void Entity::SetTag(std::string tag){
 	mTag = tag;
 }
-std::string Entity::Tag(){
+std::string Entity::Tag() const {
 	return mTag;
 }
-Json::Value Entity::Save(){
+Json::Value Entity::Save() const{
 	//How to specify overrides to save?
     Json::Value val;
     if (mConfigFile != "")
@@ -148,6 +147,16 @@ Json::Value Entity::Save(){
 	    val["name"]    = mName;
     }
 	return val;
+}
+void Entity::Save(const std::string &file) const {
+    Json::Value val;
+    val["image"]   = mImage.File();
+	val["physics"] = mPhysics.Save();
+	val["tag"]	   = mTag;
+	val["script"]  = mScript.File();
+	val["name"]    = mName;
+    JsonHandler handler(file);
+    handler.Write(val);
 }
 void Entity::Load(Json::Value val){
     //Process overrides as well
