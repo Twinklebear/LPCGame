@@ -15,10 +15,6 @@ function Init()
 	rect = LPC.Rectf(50, 50, 32, 32)
 end
 function Free()
-	--print "Will try to save animtest to a new file!"
-	--img:Save("./testing.json")
-	print "Will try to save this entity to ./testing.json"
-	entity:Save("./testing.json")
 end
 --Called each frame
 function Update()
