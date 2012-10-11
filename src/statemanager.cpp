@@ -40,7 +40,7 @@ bool StateManager::LoadState(std::string name){
     if (name.at(0) == 'm'){
         MenuState *menu = new MenuState();
         try {
-            menu->Load(jsonHandler.ReadFile());
+            menu->Load(jsonHandler.Read());
         }
         catch (const std::runtime_error &e){
             std::cout << e.what() << std::endl;
@@ -52,7 +52,7 @@ bool StateManager::LoadState(std::string name){
     if (name.at(0) == 'g'){
         GameState *game = new GameState();
         try {
-            game->Load(jsonHandler.ReadFile());
+            game->Load(jsonHandler.Read());
         }
         catch (const std::runtime_error &e){
             std::cout << e.what() << std::endl;
@@ -64,7 +64,7 @@ bool StateManager::LoadState(std::string name){
     if (name.at(0) == 'e'){
         EditorState *editor = new EditorState();
         try {
-            editor->Load(jsonHandler.ReadFile());
+            editor->Load(jsonHandler.Read());
         }
         catch (const std::runtime_error &e){
             std::cout << e.what() << std::endl;
@@ -77,7 +77,7 @@ bool StateManager::LoadState(std::string name){
 }
 void StateManager::SaveState(std::string name){
     JsonHandler jsonHandler((mStatesDir + name + ".json"));
-    jsonHandler.WriteFile(mActiveState->Save());
+    jsonHandler.Write(mActiveState->Save());
 }
 void StateManager::ChangeScene(std::string scene){
 	mActiveState->SetExit(scene);

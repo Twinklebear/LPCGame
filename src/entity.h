@@ -87,6 +87,13 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
+    /**
+    *  Load the Entity from a file with the option for loading
+    *  overrides as well
+    *  @param file The file to load from
+    *  @param overrides The state-specific overrides to load
+    */
+    virtual void Load(const std::string &&file, Json::Value overrides = Json::Value());
 	/**
 	*  Register the Entity class with the lua state
 	*  @param l The lua_State to register the module with

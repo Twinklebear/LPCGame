@@ -16,7 +16,7 @@ JsonHandler::JsonHandler() : mFile(""){
 }
 JsonHandler::~JsonHandler(){
 }
-Json::Value JsonHandler::ReadFile() const {
+Json::Value JsonHandler::Read() const {
     std::ifstream fileIn(mFile.c_str(), std::ifstream::binary);
     if (fileIn){
         Json::Reader reader;
@@ -33,7 +33,7 @@ Json::Value JsonHandler::ReadFile() const {
     else
         throw std::runtime_error("JsonHandler: Failed to find: " + mFile);
 }
-void JsonHandler::WriteFile(const Json::Value &data) const {
+void JsonHandler::Write(const Json::Value &data) const {
     std::ofstream fileOut(mFile.c_str());
     Json::StyledWriter writer;
     std::string strData = writer.write(data);

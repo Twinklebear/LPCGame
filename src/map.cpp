@@ -84,8 +84,7 @@ std::vector<int> Map::CalculateIndex(Recti area) const{
 			}
 		}
 	}
-	if (tileIndices.size() != 0)
-		return tileIndices;
+	return tileIndices;
 }
 CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 	//get the indices of the desired tiles
@@ -133,8 +132,8 @@ void Map::Load(Json::Value val){
 		mTiles.push_back(tempTile);
 	}
 }
-void Map::Load(std::string file){
+void Map::Load(const std::string &&file){
     mFile = file;
     JsonHandler handler(mFile);
-    Load(handler.ReadFile());
+    Load(handler.Read());
 }

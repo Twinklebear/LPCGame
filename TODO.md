@@ -93,7 +93,10 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [10.2.2012]: NPC and Player classes are deleted, updated GameState to only load entity types now
 
 - Twinklebear [10.10.2012]: Maps will now load from their own json file that's specified in the state's json
-	- As a side note, will all these extra file I/O present a significant slowdown for loading? Perhaps when "exporting" the game, state's should be merged into one file, pulling the json data from the files linked in them.
+	- As a side note, will all these extra file I/O present a significant slowdown for loading? Perhaps when "exporting" the game, state's should be merged into one file, pulling the json data from the files linked in them. If we do this the load from Json::Value functions should stick around to be used
+
+- Twinklebear [10.10.2012]: Entities can now load from a filepath and if desired override values can be passed as well to be parsed
+	- Should overrides be called something else? override is a keyword, and overrides is a bit awkward
 
 ## Make Image Clips Array into a Vector [9.22.2012]
 ### Description

@@ -25,12 +25,12 @@ public:
     *  @throw runtime_error File to find if file not found
     *  @throw runtime_error Failed to parse if file couldn't be parsed as JSON
     */
-    Json::Value ReadFile() const;
+    Json::Value Read() const;
     /**
     *  Write data from a Json::Value to a JSON formatted file named mFile
     *  @param data The Json::Value of data to write
     */
-    void WriteFile(const Json::Value &data) const;
+    void Write(const Json::Value &data) const;
     ///Set the filename to file
     void SetFile(const std::string file);
     ///Get the filename

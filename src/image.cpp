@@ -29,7 +29,7 @@ void Image::LoadImage(const std::string &file){
 	    mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
         //With the new JsonHandler
         JsonHandler jsonHandler(file);
-        LoadConfig(jsonHandler.ReadFile());
+        LoadConfig(jsonHandler.Read());
     }
     catch (const std::runtime_error &e){
         std::cout << e.what() << std::endl;
@@ -53,7 +53,7 @@ void Image::SetClips(const std::vector<Recti> &clips){
 void Image::GenClips(int cW, int cH){
 	//Make sure we've got a texture to query
 	if (mTexture == nullptr)
-		throw std::runtime_error("Must load texture before genning clips");
+		throw std::runtime_error("Must load texture before generating clips");
 
 	//clear any existing clips
 	int iW, iH;

@@ -149,35 +149,19 @@ Json::Value Entity::Save(){
 	return val;
 }
 void Entity::Load(Json::Value val){
-    //Load the image from an external entity file
-    if (!val["file"].empty() && val["file"].asString() != ""){
-        mConfigFile = val["file"].asString();
-        try {
-            JsonHandler jsonHandler(mConfigFile);
-            Load(jsonHandler.ReadFile());
-        }
-        catch (const std::runtime_error &e){
-            std::cout << e.what() << std::endl;
-        }
-        //Read in any override data
-        if (!val["override"].empty()){
-            if (!val["override"]["box"].empty()){
-                std::cout << "entity in: " << val["file"].asString()
-                    << " accepting override of box" << std::endl;
-                //Only overriding w/h for now for testing
-                mPhysics.SetBox(Rectf(Box().X(), Box().Y(),
-                    val["override"]["box"]["w"].asDouble(), 
-                    val["override"]["box"]["h"].asDouble()));
-            }
-        }
-    }
-    else {
-	    mTag  = val["tag"].asString();
-	    mName = val["name"].asString();
-	    mPhysics.Load(val["physics"]);
-	    mImage.Load(val["image"]);
-	    mScript.Load(val["script"]);
-    }
+    //Process overrides as well
+	mTag  = val["tag"].asString();
+	mName = val["name"].asString();
+	mPhysics.Load(val["physics"]);
+	mImage.Load(val["image"]);
+	mScript.Load(val["script"]);
+}
+void Entity::Load(const std::string &&file, Json::Value overrides){
+    mConfigFile = file;
+    JsonHandler handler(mConfigFile);
+    Json::Value data = handler.Read();
+    data["overrides"] = overrides;
+    Load(data);
 }
 int Entity::RegisterLua(lua_State *l){
 	using namespace luabind;
