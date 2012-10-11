@@ -68,7 +68,10 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 - With all these extra file readings I think the need arises for a generic file reader/writer to write and read JSON from desired files, eliminating the need for Image, AnimatedImage and Entity to each have their own JSON file opening function [Done: Twinklebear - 9.28.2012]
 
-- Maps should be described in their own json file
+- Maps should be described in their own json file [In Progress: Twinklebear]
+	- Load maps from their own json file [Done: Twinklebear - 10.10.2012]
+	- Editor must request filename to save as when saving a map of tiles. A scene is not a map, a scene has a map, entites and other junk
+	- Map overrides??
 
 - Tilesets should have an associated json file describing additional tile properties, which image to use and which tile goes with which clip
 
@@ -88,6 +91,9 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [10.1.2012]: Splitting player into another lua scripted entity, soon to delete classes: Player and NPC. Also messed around with setting overrides, need a way to save the overrides upon exit and an efficient way for parsing them in.
 
 - Twinklebear [10.2.2012]: NPC and Player classes are deleted, updated GameState to only load entity types now
+
+- Twinklebear [10.10.2012]: Maps will now load from their own json file that's specified in the state's json
+	- As a side note, will all these extra file I/O present a significant slowdown for loading? Perhaps when "exporting" the game, state's should be merged into one file, pulling the json data from the files linked in them.
 
 ## Make Image Clips Array into a Vector [9.22.2012]
 ### Description

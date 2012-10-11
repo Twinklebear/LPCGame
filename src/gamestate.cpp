@@ -120,7 +120,8 @@ void GameState::Free(){
 }
 Json::Value GameState::Save(){
 	Json::Value val = State::Save();
-	val["map"] = mMap->Save();
+	//val["map"] = mMap->Save();
+    val["map"] = mMap->File();
 	val["ui"]  = mUiManager->Save();
 
 	Free();
@@ -129,7 +130,7 @@ Json::Value GameState::Save(){
 void GameState::Load(Json::Value val){
 	Init();
 	State::Load(val);
-	mMap->Load(val["map"]);
+	mMap->Load(val["map"].asString());
 	//Set scene box
 	mCamera->SetSceneBox(Rectf(0, 0, mMap->Box().w, mMap->Box().h));
 
