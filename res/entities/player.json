@@ -1,7 +1,5 @@
 {
-   "image" : {
-      "file" : ""
-   },
+   "image" : "",
    "name" : "player",
    "physics" : {
       "box" : {
@@ -13,8 +11,6 @@
       "hAccel" : 300,
       "hSpeed" : 300
    },
-   "script" : {
-      "file" : "../res/scripts/player.lua"
-   },
+   "script" : "../res/scripts/player.lua",
    "tag" : "focus"
 }

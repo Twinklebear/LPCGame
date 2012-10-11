@@ -56,11 +56,13 @@ Entries will be written as follows, and should be updated as work progresses. In
 ### Description
 - Images/Animations should be described through their own json file that would be loaded as needed, instead of directly in the state's json file [Done: Twinklebear - 9.22.2012]
 
-- Remove old loading system
+- Loading/Saving changes system [In Progress: Twinklebear]
+	- Clean up old loading system
+	- Put in place system for saving entities/images/etc. to json files via Blah::Save(file)
 
 - Need to be able to save/modify the image data files in the editor
 
-- Entities should be in their own json files and loaded through file links in the state's json file
+- Entities should be in their own json files and loaded through file links in the state's json file [In Progress: Twinklebear]
 	- Entity json files [Done: Twinklebear - 9.27.2012]
 
 	- Idea for state specific entity data: It could be overriden by specifying the state specific data in the state file, this data will then be used to override the entity data
@@ -79,7 +81,6 @@ Entries will be written as follows, and should be updated as work progresses. In
 - Twinklebear [9.22.2012]: Image's and AnimatedImage's now have their own associated json file, describing any clips or animation sequences
 	- Note: Shouldn't animation be a seperate json file than the image file? So an image.json file would describe the image and its clips, while an animation would specify which image to load and the animation sequences.
 
-
 - Twinklebear [9.27.2012]: Decided against seperating animation sequence information from clip information when loading an AnimatedImage. Thus you can still simply call "file.png" and the config file will be parsed from the image file name, instead of loading a json config file and then that would contain the image file name.
 
 - Twinklebear [9.27.2012]: All Image & AnimatedImage config data (clips & sequences) is now loaded from  json files in the same directory as the image file, with the same name. So for tiles.png the corresponding clips data is in tiles.json. This file is automatically checked for and loaded when creating a new Image or AnimatedImage with Image("file.x") or AnimatedImage("file.x")
@@ -97,6 +98,8 @@ Entries will be written as follows, and should be updated as work progresses. In
 
 - Twinklebear [10.10.2012]: Entities can now load from a filepath and if desired override values can be passed as well to be parsed
 	- Should overrides be called something else? override is a keyword, and overrides is a bit awkward
+
+- Twinklebear [10.10.2012]: Working on cleaning up loading, Image, AnimatedImge and LuaScript now just load from filenames and can be saved as filenames. Save() still exists but will be migrated to being used for saving entities to seperate JSON files from the editor so DO NOT USE IT for Image/AnimatedImage. Unless you're adding in saving editor created data, but that's a ways off.
 
 ## Make Image Clips Array into a Vector [9.22.2012]
 ### Description

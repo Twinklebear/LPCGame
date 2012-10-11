@@ -1,7 +1,5 @@
 {
-   "image" : {
-      "file" : "../res/img/tiles.png"
-   },
+   "image" : "../res/img/tiles.png",
    "mBox" : {
       "h" : 320,
       "w" : 320

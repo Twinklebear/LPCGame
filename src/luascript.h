@@ -23,26 +23,16 @@ public:
 	*  Open the desired Lua script to be run as the entity's behavior script
 	*  @param script The script file to open
 	*/
-	void OpenScript(std::string script);
+	void OpenScript(const std::string &script);
 	/**
 	*  Get the lua_State pointer to use for calling functions/etc.
 	*  @return The lua_State pointer held by the LuaScript class
 	*/
 	lua_State* Get();
 	///Get the script filename
-	std::string File();
+	std::string File() const;
 	///Check if there's a script open
-	bool Open();
-	/**
-	*  Load the LuaScript filename and desired module list from a Json::Value
-	*  @param v The Json::Value to load from
-	*/
-	void Load(Json::Value v);
-	/**
-	*  Save the LuaScript filename and module list to a Json::Value & return it
-	*  @return The Json::Value containing the LuaScript configuration
-	*/
-	Json::Value Save();
+	bool Open() const;
 
 private:
     ///Close the active script

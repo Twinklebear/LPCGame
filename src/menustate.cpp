@@ -76,7 +76,7 @@ void MenuState::Free(){
 }
 Json::Value MenuState::Save(){
 	Json::Value val = State::Save();
-	val["background"] = mBackground.Save();
+	val["background"] = mBackground.File();
 
 	Free();
 	return val;
@@ -84,7 +84,7 @@ Json::Value MenuState::Save(){
 void MenuState::Load(Json::Value val){
 	Init();
 	State::Load(val);
-	mBackground.Load(val["background"]);
+	mBackground.Load(val["background"].asString());
 
     //Load the objects
 	Json::Value entities = val["entities"];

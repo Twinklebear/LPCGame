@@ -17,32 +17,11 @@ Image::Image(const std::string &file)
 	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0)
 {
 	mFile = file;
-	LoadImage(file);
+	Load(file);
 }
 Image::~Image(){
 	if (mClips != nullptr)
 		delete[] mClips;
-}
-void Image::LoadImage(const std::string &file){
-	mFile = file;
-    try {
-	    mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
-        //With the new JsonHandler
-        JsonHandler jsonHandler(file);
-        LoadConfig(jsonHandler.Read());
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-    }
-}
-SDL_Texture* Image::Texture(){
-	return mTexture.get();
-}
-Recti Image::Clip(int clipNum){
-	if (clipNum >= mNumClips || clipNum < 0 || mNumClips == 0)
-		throw std::runtime_error("Clip num out of bounds");
-
-	return mClips[clipNum];
 }
 void Image::SetClips(const std::vector<Recti> &clips){
 	mNumClips = clips.size();
@@ -73,21 +52,42 @@ void Image::GenClips(int cW, int cH){
 		mClips[i] = cRect;
 	}
 }
+SDL_Texture* Image::Texture(){
+	return mTexture.get();
+}
+Recti Image::Clip(int clipNum) const {
+    if (clipNum >= mNumClips || clipNum < 0 || mNumClips == 0)
+		throw std::runtime_error("Image::Clip ERROR: " + mFile +  "Clip num out of bounds");  
+
+	return mClips[clipNum];
+}
+std::string Image::File() const {
+    return mFile;
+}
 Json::Value Image::Save(){
 	Json::Value val;
 	val["file"]  = mFile;
 	return val;
 }
 void Image::Load(Json::Value val){
-	LoadImage(val["file"].asString());
-}
-void Image::LoadConfig(Json::Value val){
 	if (val["clips"].size() != 0){
 		mNumClips = val["clips"].size();
 		mClips = new Recti[mNumClips];
 		for (int i = 0; i < mNumClips; ++i)
 			mClips[i].Load(val["clips"][i]);
 	}
+}
+void Image::Load(const std::string &file){
+	mFile = file;
+    try {
+	    mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
+        //With the new JsonHandler
+        JsonHandler jsonHandler(file);
+        Load(jsonHandler.Read());
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+    }
 }
 int Image::RegisterLua(lua_State *l){
 	using namespace luabind;
@@ -96,7 +96,7 @@ int Image::RegisterLua(lua_State *l){
 		class_<Image>("Image")
 			.def(constructor<>())
 			.def(constructor<std::string>())
-			.def("LoadImage", &Image::LoadImage)
+			.def("Load", (void (Image::*)(const std::string&))&Image::Load)
 			.def("SetClips", &Image::SetClips)
 			.def("GenClips", &Image::GenClips)
 			.def("Clip", &Image::Clip)

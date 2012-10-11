@@ -23,8 +23,16 @@ void StateManager::SetState(State* state){
 void StateManager::SetActiveState(std::string name){
 	if (!LoadState(name))
 		throw std::runtime_error("Failed to load state: " + name);
+    
+    std::string stateCode = "quit";
+    //Catching state errors for debugging, if error thrown program quits
+    try {
+	    stateCode = mActiveState->Run();
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+    }
 
-	std::string stateCode = mActiveState->Run();
 	SaveState(mActiveState->Name());
 
 	if (stateCode == "quit")

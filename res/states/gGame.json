@@ -23,14 +23,10 @@
    ],
    "map" : "../res/maps/testlevel.json",
    "name" : "gGame",
-   "script" : {
-      "file" : ""
-   },
+   "script" : "",
    "ui" : [
       {
-         "image" : {
-            "file" : "../res/img/simplebutton.png"
-         },
+         "image" : "../res/img/simplebutton.png",
          "name" : "",
          "param" : "mIntro",
          "physics" : {
@@ -43,9 +39,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : {
-            "file" : ""
-         },
+         "script" : "",
          "tag" : "",
          "text" : {
             "color" : {

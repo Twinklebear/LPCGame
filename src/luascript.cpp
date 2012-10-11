@@ -32,7 +32,7 @@ LuaScript::LuaScript(std::string script) : mL(nullptr), mFile(""){
 LuaScript::~LuaScript(){
 	Close();
 }
-void LuaScript::OpenScript(std::string script){
+void LuaScript::OpenScript(const std::string &script){
 	//If the new script name is valid, open it
 	if (script != ""){
 		//Close currently open script if one is open
@@ -125,20 +125,11 @@ int LuaScript::DoScript(lua_State *l){
 lua_State* LuaScript::Get(){
 	return mL;
 }
-std::string LuaScript::File(){
+std::string LuaScript::File() const {
 	return mFile;
 }
-bool LuaScript::Open(){
+bool LuaScript::Open() const {
 	return (mL != nullptr);
-}
-void LuaScript::Load(Json::Value v){
-	//Open the script
-	OpenScript(v["file"].asString());
-}
-Json::Value LuaScript::Save(){
-	Json::Value v;
-	v["file"] = mFile;
-	return v;
 }
 void LuaScript::AddModuleLoader(){
     //Get the packages table

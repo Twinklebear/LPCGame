@@ -15,9 +15,7 @@
    },
    "entities" : null,
    "map" : {
-      "image" : {
-         "file" : "../res/img/tiles.png"
-      },
+      "image" : "../res/img/tiles.png",
       "mBox" : {
          "h" : 640,
          "w" : 640
@@ -4026,14 +4024,10 @@
       ]
    },
    "name" : "editor",
-   "script" : {
-      "file" : ""
-   },
+   "script" : "",
    "ui" : [
       {
-         "image" : {
-            "file" : "../res/img/simplebutton.png"
-         },
+         "image" : "../res/img/simplebutton.png",
          "name" : "",
          "param" : "mIntro",
          "physics" : {
@@ -4046,9 +4040,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : {
-            "file" : ""
-         },
+         "script" : "",
          "tag" : "",
          "text" : {
             "color" : {
@@ -4063,9 +4055,7 @@
          "type" : "objectbutton"
       },
       {
-         "image" : {
-            "file" : "../res/img/simplebutton.png"
-         },
+         "image" : "../res/img/simplebutton.png",
          "name" : "",
          "physics" : {
             "box" : {
@@ -4077,17 +4067,11 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : {
-            "file" : ""
-         },
-         "selector" : {
-            "file" : "../res/img/selector.png"
-         },
+         "script" : "",
+         "selector" : "../res/img/selector.png",
          "tag" : "",
          "tiles" : {
-            "image" : {
-               "file" : "../res/img/tiles.png"
-            },
+            "image" : "../res/img/tiles.png",
             "list" : [
                {
                   "box" : {

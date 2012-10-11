@@ -30,12 +30,6 @@ public:
 	*/
 	~Image();
 	/**
-	*  Load an image from a file
-	*  @param file The file to load
-	*  @see Window::LoadImage for the loading function
-	*/
-	void LoadImage(const std::string& file);
-	/**
 	*  Set the image's clips to the vector passed
 	*  @param clips The clips to use for the image
 	*
@@ -62,27 +56,32 @@ public:
 	*  Get the rect for a desired clipnum
 	*  @param clipNum The clip number to get the box of
 	*/
-	Recti Clip(int clipNum);
+	Recti Clip(int clipNum) const;
+    ///Get the Image filename
+    std::string File() const;
 	/**
 	*  Save an image's properties to a Json::Value and return it
 	*  @return Json::Value containing the information about the image
 	*/
 	virtual Json::Value Save();
-	/**
-	*  Load an image and its properties from a Json::Value
-	*  @param val The Json::Value to load from
-	*/
-	virtual void Load(Json::Value val);
-	/**
-	*  Load an Image's settings from a Json::Value
-	*  @note This will probably replace Load when the switch is done
-	*/
-	virtual void LoadConfig(Json::Value val);
+    /**
+    *  Load an Image and it's config data from a filename
+    *  @param file The file to load from, the config file will be file.json
+    *  @see Window::LoadTexture for the texture loading function
+    */
+    virtual void Load(const std::string &file);
 	/**
 	*  Register the Image class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
 	static int RegisterLua(lua_State *l);
+
+protected:
+    /**
+	*  Load an Image's properties from a Json::Value
+	*  @param val The Json::Value to load from
+	*/
+	virtual void Load(Json::Value val);
 
 private:
 	///Disable image copy construction

@@ -34,7 +34,7 @@ AnimatedImage::AnimatedImage(const std::string &file)
 {
     //Try to load an image config
     try {
-        LoadImage(file);
+        Image::Load(file);
     }
     catch (const std::runtime_error &e){
         std::cout << e.what() << std::endl;
@@ -79,12 +79,8 @@ Json::Value AnimatedImage::Save(){
 	return val;
 }
 void AnimatedImage::Load(Json::Value val){
-	//Load base class (file and clips)
-	Image::Load(val);
-}
-void AnimatedImage::LoadConfig(Json::Value val){
 	//Load the clips
-	Image::LoadConfig(val);
+	Image::Load(val);
 	//Load the AnimationSequences
 	for (int i = 0; i < val["sequences"].size(); ++i){
 		AnimationSequence seq;
@@ -104,7 +100,7 @@ int AnimatedImage::RegisterLua(lua_State *l){
 			.def("Playing", &AnimatedImage::Playing)
 			.def("ActiveClip", &AnimatedImage::ActiveClip)
 			//Inherited members from Image
-			.def("LoadImage", &Image::LoadImage)
+			.def("Load", (void (AnimatedImage::*)(const std::string&))&Image::Load)
 			.def("SetClips", &Image::SetClips)
 			.def("Clip", &Image::Clip)
 	];

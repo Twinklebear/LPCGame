@@ -35,7 +35,7 @@ void Map::Draw(Camera *cam){
 }
 void Map::GenerateStressMap(Json::Value val){
 	int numTiles = val["numTiles"].asInt();
-	mImage.Load(val["image"]);
+	mImage.Load(val["image"].asString());
 	mBox.Set(0, 0, Window::Box().w, Window::Box().h);
 	//Determine the tile w/h to fill the window with numTiles
 	int tileSize = sqrtf((Window::Box().w * Window::Box().h) / numTiles);
@@ -112,7 +112,7 @@ Json::Value Map::Save(){
 	//Save the map width and height
 	map["mBox"]["w"] = mBox.w;
 	map["mBox"]["h"] = mBox.h;
-	map["image"] = mImage.Save();
+	map["image"] = mImage.File();
 	//Save the tiles
 	for (int i = 0; i < mTiles.size(); ++i){
 		map["tiles"][i] = mTiles.at(i).Save();
@@ -122,7 +122,7 @@ Json::Value Map::Save(){
 }
 void Map::Load(Json::Value val){
 	mBox.Set(0, 0, val["mBox"]["w"].asInt(), val["mBox"]["h"].asInt());
-	mImage.Load(val["image"]);
+	mImage.Load(val["image"].asString());
 
 	//Load the tiles
 	Json::Value tiles = val["tiles"];
@@ -134,6 +134,11 @@ void Map::Load(Json::Value val){
 }
 void Map::Load(const std::string &&file){
     mFile = file;
-    JsonHandler handler(mFile);
-    Load(handler.Read());
+    try {
+        JsonHandler handler(mFile);
+        Load(handler.Read());
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+    }
 }

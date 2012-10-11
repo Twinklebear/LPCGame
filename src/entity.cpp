@@ -59,6 +59,7 @@ void Entity::Move(float deltaT){
 	}
 }
 void Entity::Draw(Camera *camera){
+    //Draw entity
 	if (!mScript.Open())
 		return;
 	try {
@@ -140,10 +141,10 @@ Json::Value Entity::Save(){
     if (mConfigFile != "")
         val["file"] = mConfigFile;
     else {
-	    val["image"]   = mImage.Save();
+	    val["image"]   = mImage.File();
 	    val["physics"] = mPhysics.Save();
 	    val["tag"]	   = mTag;
-	    val["script"]  = mScript.Save();
+	    val["script"]  = mScript.File();
 	    val["name"]    = mName;
     }
 	return val;
@@ -153,15 +154,20 @@ void Entity::Load(Json::Value val){
 	mTag  = val["tag"].asString();
 	mName = val["name"].asString();
 	mPhysics.Load(val["physics"]);
-	mImage.Load(val["image"]);
-	mScript.Load(val["script"]);
+	mImage.Load(val["image"].asString());
+	mScript.OpenScript(val["script"].asString());
 }
-void Entity::Load(const std::string &&file, Json::Value overrides){
+void Entity::Load(const std::string &file, Json::Value overrides){
     mConfigFile = file;
-    JsonHandler handler(mConfigFile);
-    Json::Value data = handler.Read();
-    data["overrides"] = overrides;
-    Load(data);
+    try {
+        JsonHandler handler(mConfigFile);
+        Json::Value data = handler.Read();
+        data["overrides"] = overrides;
+        Load(data);
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+    }
 }
 int Entity::RegisterLua(lua_State *l){
 	using namespace luabind;

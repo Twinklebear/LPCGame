@@ -71,15 +71,10 @@ public:
 	*/
 	Json::Value Save();
 	/**
-	*  Load an image and its properties from a Json::Value
+	*  Load an AnimatedImage's properties from a Json::Value
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-	/**
-	*  Load an AnimatedImage settings from a Json::Value
-	*  @note This will probably replace Load when the switch is done
-	*/
-	void LoadConfig(Json::Value val);
 	/**
 	*  Register the AnimatedImage class with the lua state
 	*  @param l The lua_State to register the module with

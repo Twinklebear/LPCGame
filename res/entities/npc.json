@@ -1,7 +1,5 @@
 {
-   "image" : {
-      "file" : ""
-   },
+   "image" : "",
    "name" : "npctest",
    "physics" : {
       "box" : {
@@ -13,8 +11,6 @@
       "hAccel" : 700,
       "hSpeed" : 300
    },
-   "script" : {
-      "file" : "../res/scripts/test2.lua"
-   },
+   "script" : "../res/scripts/test2.lua",
    "tag" : "test"
 }

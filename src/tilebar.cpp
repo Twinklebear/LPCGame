@@ -44,8 +44,8 @@ Tile TileBar::GetSelection(){
 }
 Json::Value TileBar::Save(){
 	Json::Value val = Entity::Save();
-	val["selector"]	= mSelector.Save();
-	val["tiles"]["image"] = mTileImage.Save();
+	val["selector"]	= mSelector.File();
+	val["tiles"]["image"] = mTileImage.File();
 	val["type"] = "tilebar";
 	//Save the tiles
 	for (int i = 0; i < mTiles.size(); ++i){
@@ -55,8 +55,8 @@ Json::Value TileBar::Save(){
 }
 void TileBar::Load(Json::Value val){
 	Entity::Load(val);
-	mSelector.Load(val["selector"]);
-	mTileImage.Load(val["tiles"]["image"]);
+	mSelector.Load(val["selector"].asString());
+	mTileImage.Load(val["tiles"]["image"].asString());
 	//Load up the tile positions
 	for (int i = 0; i < val["tiles"]["list"].size(); ++i){
 		Tile tempTile;
