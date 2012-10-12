@@ -23,8 +23,8 @@
             "box" : {
                "h" : 28.0,
                "w" : 28.0,
-               "x" : 148.0,
-               "y" : 151.0
+               "x" : 0.0,
+               "y" : 112.0
             },
             "hAccel" : 300,
             "hSpeed" : 300
@@ -36,9 +36,6 @@
       }
    ],
    "map" : {
-      "image" : {
-         "file" : "../res/img/tiles.png"
-      },
       "mBox" : {
          "h" : 320,
          "w" : 320
@@ -51,8 +48,8 @@
                "x" : 0,
                "y" : 0
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -61,8 +58,8 @@
                "x" : 32,
                "y" : 0
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -71,8 +68,8 @@
                "x" : 64,
                "y" : 0
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - High",
+            "solid" : false
          },
          {
             "box" : {
@@ -81,8 +78,8 @@
                "x" : 96,
                "y" : 0
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -91,8 +88,8 @@
                "x" : 128,
                "y" : 0
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -101,8 +98,8 @@
                "x" : 160,
                "y" : 0
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -111,8 +108,8 @@
                "x" : 192,
                "y" : 0
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -121,8 +118,8 @@
                "x" : 224,
                "y" : 0
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -131,8 +128,8 @@
                "x" : 256,
                "y" : 0
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -141,8 +138,8 @@
                "x" : 288,
                "y" : 0
             },
-            "solid" : true,
-            "type" : 4
+            "name" : "forest - Rock - White",
+            "solid" : true
          },
          {
             "box" : {
@@ -151,8 +148,8 @@
                "x" : 0,
                "y" : 32
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -161,8 +158,8 @@
                "x" : 32,
                "y" : 32
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -171,8 +168,8 @@
                "x" : 64,
                "y" : 32
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -181,8 +178,8 @@
                "x" : 96,
                "y" : 32
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -191,8 +188,8 @@
                "x" : 128,
                "y" : 32
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -201,8 +198,8 @@
                "x" : 160,
                "y" : 32
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -211,8 +208,8 @@
                "x" : 192,
                "y" : 32
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -221,8 +218,8 @@
                "x" : 224,
                "y" : 32
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -231,8 +228,8 @@
                "x" : 256,
                "y" : 32
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -241,8 +238,8 @@
                "x" : 288,
                "y" : 32
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -251,8 +248,8 @@
                "x" : 0,
                "y" : 64
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -261,8 +258,8 @@
                "x" : 32,
                "y" : 64
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -271,8 +268,8 @@
                "x" : 64,
                "y" : 64
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -281,8 +278,8 @@
                "x" : 96,
                "y" : 64
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -291,8 +288,8 @@
                "x" : 128,
                "y" : 64
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -301,8 +298,8 @@
                "x" : 160,
                "y" : 64
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -311,8 +308,8 @@
                "x" : 192,
                "y" : 64
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -321,8 +318,8 @@
                "x" : 224,
                "y" : 64
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -331,8 +328,8 @@
                "x" : 256,
                "y" : 64
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -341,8 +338,8 @@
                "x" : 288,
                "y" : 64
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -351,8 +348,8 @@
                "x" : 0,
                "y" : 96
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -361,8 +358,8 @@
                "x" : 32,
                "y" : 96
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -371,8 +368,8 @@
                "x" : 64,
                "y" : 96
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -381,8 +378,8 @@
                "x" : 96,
                "y" : 96
             },
-            "solid" : true,
-            "type" : 9
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -391,8 +388,8 @@
                "x" : 128,
                "y" : 96
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -401,8 +398,8 @@
                "x" : 160,
                "y" : 96
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -411,8 +408,8 @@
                "x" : 192,
                "y" : 96
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -421,8 +418,8 @@
                "x" : 224,
                "y" : 96
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -431,8 +428,8 @@
                "x" : 256,
                "y" : 96
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -441,8 +438,8 @@
                "x" : 288,
                "y" : 96
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -451,8 +448,8 @@
                "x" : 0,
                "y" : 128
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -461,8 +458,8 @@
                "x" : 32,
                "y" : 128
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -471,8 +468,8 @@
                "x" : 64,
                "y" : 128
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -481,8 +478,8 @@
                "x" : 96,
                "y" : 128
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -491,8 +488,8 @@
                "x" : 128,
                "y" : 128
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -501,8 +498,8 @@
                "x" : 160,
                "y" : 128
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -511,8 +508,8 @@
                "x" : 192,
                "y" : 128
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -521,8 +518,8 @@
                "x" : 224,
                "y" : 128
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -531,8 +528,8 @@
                "x" : 256,
                "y" : 128
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -541,8 +538,8 @@
                "x" : 288,
                "y" : 128
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -551,8 +548,8 @@
                "x" : 0,
                "y" : 160
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -561,8 +558,8 @@
                "x" : 32,
                "y" : 160
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -571,8 +568,8 @@
                "x" : 64,
                "y" : 160
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -581,8 +578,8 @@
                "x" : 96,
                "y" : 160
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -591,8 +588,8 @@
                "x" : 128,
                "y" : 160
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -601,8 +598,8 @@
                "x" : 160,
                "y" : 160
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -611,8 +608,8 @@
                "x" : 192,
                "y" : 160
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -621,8 +618,8 @@
                "x" : 224,
                "y" : 160
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -631,8 +628,8 @@
                "x" : 256,
                "y" : 160
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -641,8 +638,8 @@
                "x" : 288,
                "y" : 160
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -651,8 +648,8 @@
                "x" : 0,
                "y" : 192
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -661,8 +658,8 @@
                "x" : 32,
                "y" : 192
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -671,8 +668,8 @@
                "x" : 64,
                "y" : 192
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -681,8 +678,8 @@
                "x" : 96,
                "y" : 192
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -691,8 +688,8 @@
                "x" : 128,
                "y" : 192
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -701,8 +698,8 @@
                "x" : 160,
                "y" : 192
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -711,8 +708,8 @@
                "x" : 192,
                "y" : 192
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -721,8 +718,8 @@
                "x" : 224,
                "y" : 192
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -731,8 +728,8 @@
                "x" : 256,
                "y" : 192
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -741,8 +738,8 @@
                "x" : 288,
                "y" : 192
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -751,8 +748,8 @@
                "x" : 0,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -761,8 +758,8 @@
                "x" : 32,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -771,8 +768,8 @@
                "x" : 64,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -781,8 +778,8 @@
                "x" : 96,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -791,8 +788,8 @@
                "x" : 128,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -801,8 +798,8 @@
                "x" : 160,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -811,8 +808,8 @@
                "x" : 192,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -821,8 +818,8 @@
                "x" : 224,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -831,8 +828,8 @@
                "x" : 256,
                "y" : 224
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -841,8 +838,8 @@
                "x" : 288,
                "y" : 224
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -851,8 +848,8 @@
                "x" : 0,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -861,8 +858,8 @@
                "x" : 32,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -871,8 +868,8 @@
                "x" : 64,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -881,8 +878,8 @@
                "x" : 96,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -891,8 +888,8 @@
                "x" : 128,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -901,8 +898,8 @@
                "x" : 160,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -911,8 +908,8 @@
                "x" : 192,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -921,8 +918,8 @@
                "x" : 224,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -931,8 +928,8 @@
                "x" : 256,
                "y" : 256
             },
-            "solid" : false,
-            "type" : 0
+            "name" : "forest - Grass - Plain",
+            "solid" : false
          },
          {
             "box" : {
@@ -941,8 +938,8 @@
                "x" : 288,
                "y" : 256
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -951,8 +948,8 @@
                "x" : 0,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 1
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -961,8 +958,8 @@
                "x" : 32,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -971,8 +968,8 @@
                "x" : 64,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -981,8 +978,8 @@
                "x" : 96,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -991,8 +988,8 @@
                "x" : 128,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -1001,8 +998,8 @@
                "x" : 160,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -1011,8 +1008,8 @@
                "x" : 192,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -1021,8 +1018,8 @@
                "x" : 224,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -1031,8 +1028,8 @@
                "x" : 256,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          },
          {
             "box" : {
@@ -1041,8 +1038,8 @@
                "x" : 288,
                "y" : 288
             },
-            "solid" : true,
-            "type" : 6
+            "name" : "forest - Grass - Plain",
+            "solid" : true
          }
       ]
    },
@@ -1050,12 +1047,17 @@
    "script" : {
       "file" : ""
    },
+   "tileset" : [
+      {
+         "file" : "../res/img/forest.png"
+      }
+   ],
    "ui" : [
       {
          "image" : {
             "file" : "../res/img/simplebutton.png"
          },
-         "name" : "",
+         "name" : "forest - Grass - Plain",
          "param" : "mIntro",
          "physics" : {
             "box" : {
