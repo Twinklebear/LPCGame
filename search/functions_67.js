@@ -1,16 +1,18 @@
 var searchData=
 [
+  ['g',['G',['../class_color.html#a295dd700df3928849ca104e8f8592c97',1,'Color::G() const '],['../class_color.html#a7d697dbc16fa505697f772989e2c0d6e',1,'Color::G(int g)']]],
+  ['gamestate',['GameState',['../class_game_state.html#a4fa0a2bf50315c4a35a3890a0adcee5c',1,'GameState']]],
   ['genclips',['GenClips',['../class_image.html#ac4fa0d3229083625644d5dbd7456f6d3',1,'Image']]],
   ['generateblank',['GenerateBlank',['../class_map_editor.html#aee3c67f2872f54d2899a4378124b9552',1,'MapEditor']]],
   ['generatestressmap',['GenerateStressMap',['../class_map.html#ac2b3cd885ea1c00e349771408c66020c',1,'Map']]],
+  ['get',['Get',['../class_color.html#a9bac11f8bf56acb26631eaea8900d933',1,'Color::Get()'],['../class_lua_script.html#aadda710c579dcbbc5b407065af0ddef5',1,'LuaScript::Get()']]],
   ['getclick',['GetClick',['../class_input.html#a40a07f9260e6b63b5c2e393987e09bd6',1,'Input']]],
   ['getcollisionmap',['GetCollisionMap',['../class_map.html#ab9eda52143af41b422e88b7eb993cf6a',1,'Map']]],
-  ['getframemove',['GetFrameMove',['../class_physics.html#af680cf748c51962ade8d85d433d6abe1',1,'Physics']]],
+  ['getjoyaxis',['GetJoyAxis',['../class_input.html#a7d517053011c365ff24ba6914233227c',1,'Input']]],
+  ['getjoybutton',['GetJoyButton',['../class_input.html#a27d4e0793bfdd703fd9350bbff39a05f',1,'Input']]],
+  ['getjoyhat',['GetJoyHat',['../class_input.html#acd61f39ae0b27da25c487cce8384ebd2',1,'Input']]],
   ['getmotion',['GetMotion',['../class_input.html#ae7be3422c655af8e3c45118a6377647f',1,'Input']]],
-  ['getmotionstate',['GetMotionState',['../class_motion_state.html#a9e8f3d7fa3afe0cc9592f73c989897d9',1,'MotionState']]],
-  ['getmouseover',['GetMouseOver',['../class_game_object.html#af3d005b7cd181f11618c638abd43eb21',1,'GameObject']]],
-  ['getposition',['GetPosition',['../class_physics.html#affdaf93fac35c538bc7c2b7522284620',1,'Physics']]],
-  ['getselection',['GetSelection',['../class_tile_bar.html#a90047cad96b1b1bb8f55bb9e7431e2ff',1,'TileBar']]],
-  ['getsize',['GetSize',['../class_text.html#ac60e01f81befe3923c45abb2156e1236',1,'Text::GetSize()'],['../class_text.html#a55882459b19cce34db66e8259fded7d5',1,'Text::GetSize(int &amp;w, int &amp;h)']]],
-  ['getticks',['GetTicks',['../class_timer.html#a448b9acf8a0fcd3884fa82e5710a6f93',1,'Timer']]]
+  ['getmouseover',['GetMouseOver',['../class_entity.html#a6a3a474343aa9f5623d3c18f5e10026b',1,'Entity']]],
+  ['getphysics',['GetPhysics',['../class_entity.html#a34749d646023c0c46967e4b1064bf6f9',1,'Entity']]],
+  ['getselection',['GetSelection',['../class_tile_bar.html#a90047cad96b1b1bb8f55bb9e7431e2ff',1,'TileBar']]]
 ];
