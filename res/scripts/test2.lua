@@ -12,7 +12,7 @@ function Init()
 	print "Test 2 init"
 	img = LPC.AnimatedImage("../res/img/animtest.png")
 	img:Play("idle")
-	rect = LPC.Rectf(50, 50, 32, 32)
+	rect = entity:Box()
 end
 function Free()
 end
