@@ -1,12 +1,10 @@
 #ifndef MAP_H
 #define MAP_H
 
-#include <set>
 #include <vector>
 #include <string>
 #include "../externals/json/json.h"
 #include "base.h"
-#include "window.h"
 #include "image.h"
 #include "tile.h"
 #include "camera.h"
@@ -16,7 +14,7 @@
 *  Takes care of a simple tile based map
 *  TODO: I need to add mapobject types
 */
-class Map{
+class Map {
 public:
 	Map();
 	~Map();
@@ -25,16 +23,6 @@ public:
 	*  @param cam The camera so we can get the offsets/check if things are in camera
 	*/
 	void Draw(Camera *cam = nullptr);
-	/**
-	*  Save the map data to a Json::Value
-	*  @return The map data as a Json::Value
-	*/
-	Json::Value Save();
-	/**
-	*  Load the map from a Json::Value
-	*  @param val The Json::Value to load from
-	*/
-	void Load(Json::Value val);
 	/**
 	*  Generate a stress testing map with a specified number of tiles
 	*  @param val The Json::Value to load the stress test from
@@ -54,7 +42,7 @@ public:
 	*  @return A set of ints containing the tile indices
 	*  @throw Runtime error if the set is empty
 	*/
-	std::set<int> CalculateIndex(Recti area) const;
+	std::vector<int> CalculateIndex(Recti area) const;
 	/**
 	*  Get the collision map within distance of the target
 	*  @param target The target to get the nearby collision map around
@@ -66,11 +54,29 @@ public:
 	Recti Box() const;
 	///Sets the tileset
 	void LoadTileSet(std::shared_ptr<TileSet> ts) { mTileSet = ts; }
+    ///Get the map filename
+    std::string File() const;
+	/**
+	*  Save the map data to a Json::Value
+	*  @return The map data as a Json::Value
+	*/
+	Json::Value Save();
+	/**
+	*  Load the map from a Json::Value
+	*  @param val The Json::Value to load from
+	*/
+	void Load(Json::Value val);
+    /**
+    *  Load the map from another file
+    *  @param file The file to load the map from
+    */
+    void Load(const std::string &&file);
 
 protected:
 	std::vector<Tile> mTiles;
 	Recti mBox;
 	std::shared_ptr<TileSet> mTileSet;
+    std::string mFile;
 
 };
 

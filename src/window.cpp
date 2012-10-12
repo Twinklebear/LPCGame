@@ -23,10 +23,6 @@ Recti Window::mBox;
 int Window::SCREEN_WIDTH;
 int Window::SCREEN_HEIGHT;
 
-Window::Window(){
-}
-Window::~Window(){
-}
 void Window::Init(std::string title){
 	//initialize all SDL subsystems
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
@@ -147,7 +143,7 @@ Recti Window::Box(){
 	SDL_GetWindowSize(mWindow.get(), &mBox.w, &mBox.h);
 	return mBox;
 }
-void Window::RegisterLua(lua_State *l){
+int Window::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -175,4 +171,5 @@ void Window::RegisterLua(lua_State *l){
 				value("FLIP_VERT", SDL_FLIP_VERTICAL)
 			]
 	];
+    return 1;
 }

@@ -19,9 +19,6 @@
 */
 class Window {
 public:
-    //Constructor and destructor do nothing, class is purely static
-    Window();
-    ~Window();
 	/**
 	*  Initialize SDL, setup the window and renderer
 	*  @param title The window title
@@ -142,7 +139,7 @@ public:
 	*  Register the Window class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l);
+	static int RegisterLua(lua_State *l);
 
 private:
 	static std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> mWindow;

@@ -4023,9 +4023,7 @@
       ]
    },
    "name" : "editor",
-   "script" : {
-      "file" : ""
-   },
+   "script" : "",
    "tileset" : [
       {
          "file" : "../res/img/forest.png"
@@ -4033,9 +4031,7 @@
    ],
    "ui" : [
       {
-         "image" : {
-            "file" : "../res/img/simplebutton.png"
-         },
+         "image" : "../res/img/simplebutton.png",
          "name" : "",
          "param" : "mIntro",
          "physics" : {
@@ -4048,9 +4044,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : {
-            "file" : ""
-         },
+         "script" : "",
          "tag" : "",
          "text" : {
             "color" : {
@@ -4065,6 +4059,7 @@
          "type" : "objectbutton"
       },
       {
+         "image" : "../res/img/simplebutton.png",
          "attributes" : {
             "spacer" : 5,
             "tileHeight" : 32,
@@ -4072,9 +4067,6 @@
             "tilesPerRow" : 7,
             "xOffset" : 15,
             "yOffset" : 15
-         },
-         "image" : {
-            "file" : "../res/img/white.png"
          },
          "name" : "",
          "physics" : {
@@ -4087,14 +4079,8 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : {
-            "file" : ""
-         },
-         "selector" : {
-            "file" : "../res/img/selector.png"
-         },
-         "tag" : "",
-         "type" : "tilebar"
+         "script" : "",
+         "tag" : ""
       }
    ]
 }

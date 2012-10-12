@@ -96,7 +96,7 @@ Vector2f Math::FromSceneSpace(const Camera *cam, const Vector2f &v){
 Rectf Math::FromSceneSpace(const Camera *cam, const Rectf &r){
 	return Rectf(FromSceneSpace(cam, r.pos), r.w, r.h);
 }
-void Math::RegisterLua(lua_State *l){
+int Math::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -123,4 +123,5 @@ void Math::RegisterLua(lua_State *l){
 				value("RIGHT", RIGHT)
 			]
 	];
+    return 1;
 }

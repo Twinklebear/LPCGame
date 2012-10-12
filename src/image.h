@@ -30,12 +30,6 @@ public:
 	*/
 	~Image();
 	/**
-	*  Load an image from a file
-	*  @param file The file to load
-	*  @see Window::LoadImage for the loading function
-	*/
-	void LoadImage(const std::string& file);
-	/**
 	*  Set the image's clips to the vector passed
 	*  @param clips The clips to use for the image
 	*
@@ -67,36 +61,37 @@ public:
 	*  Get the rect for a desired clipnum
 	*  @param clipNum The clip number to get the box of
 	*/
-	Recti Clip(int clipNum);
+	Recti Clip(int clipNum) const;
+    ///Get the Image filename
+    std::string File() const;
 	/**
-	*  Save an image's properties to a Json::Value and return it
-	*  @return Json::Value containing the information about the image
+	*  Save an Image's properties to a Json formatted file
+    *  @param file The file to save to
 	*/
-	virtual Json::Value Save();
-	/**
-	*  Load an image and its properties from a Json::Value
-	*  @param val The Json::Value to load from
-	*/
-	virtual void Load(Json::Value val);
-	/**
-	*  Load an Image's settings from a Json::Value
-	*  @note This will probably replace Load when the switch is done
-	*/
-	virtual void LoadConfig(Json::Value val);
+	virtual void Save(const std::string &file) const;
+    /**
+    *  Load an Image and it's config data from a filename
+    *  @param file The file to load from, the config file will be file.json
+    *  @see Window::LoadTexture for the texture loading function
+    */
+    virtual void Load(const std::string &file);
 	/**
 	*  Register the Image class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l);
+	static int RegisterLua(lua_State *l);
 
 protected:
     /**
-    *  Parse an Image config file based on the image's file name and read
-    *  the JSON formatted data from it
-    *  @param file The image filename
-    *  @return A Json::Value containing the file data
+	*  Load an Image's properties from a Json::Value
+	*  @param val The Json::Value to load from
+	*/
+	virtual void Load(Json::Value val);
+    /**
+    *  Write the clips to a Json::Value and return it
+    *  @return a Json::Value containing the clips information
     */
-    void LoadImageConfig(const std::string &file);
+    Json::Value SaveClips() const;
 
 private:
 	///Disable image copy construction

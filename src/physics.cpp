@@ -148,7 +148,7 @@ void Physics::SetBox(Rectf box){
 void Physics::SetMap(CollisionMap map){
 	mCollisionMap = map;
 }
-Json::Value Physics::Save(){
+Json::Value Physics::Save() const {
 	//Save the object's physical constants and box
 	Json::Value val;
 	val["box"] 	  = mBox.Save();
@@ -167,7 +167,7 @@ void Physics::Load(Json::Value val){
 	mHorizDir = MOVE::STOP;
 	mVertDir  = MOVE::STOP;
 }
-void Physics::RegisterLua(lua_State *l){
+int Physics::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -178,7 +178,7 @@ void Physics::RegisterLua(lua_State *l){
 			.def("Velocity", &Physics::Velocity)
 			.def("Acceleration", &Physics::Acceleration)
 			.def("Box", &Physics::Box)
-			.def("MotionState", &Physics::State)
+			.def("State", &Physics::State)
 			.def("SetPosition", &Physics::SetPosition)
 			.def("SetVelocity", &Physics::SetVelocity)
 			.def("SetAcceleration", &Physics::SetAcceleration)
@@ -192,4 +192,5 @@ void Physics::RegisterLua(lua_State *l){
 				value("STOP", Physics::MOVE::STOP)
 			]
 	];
+    return 1;
 }

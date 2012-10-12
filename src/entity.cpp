@@ -4,6 +4,7 @@
 #include <fstream>
 #include "math.h"
 #include "luascript.h"
+#include "jsonhandler.h"
 #include "entity.h"
 
 Entity::Entity() : mMouseOver(false), mConfigFile(""){
@@ -22,7 +23,9 @@ void Entity::Init(){
 	if (!mScript.Open())
 		return;
 	try {
-		luabind::call_function<void>(mScript.Get(), "Init", this);
+        //We push the entity onto the global table
+        luabind::globals(mScript.Get())["entity"] = this;
+		luabind::call_function<void>(mScript.Get(), "Init");
 	}
 	catch(...){
 		std::cout << "Init issue: " << lua_error(mScript.Get()) << std::endl;
@@ -56,6 +59,7 @@ void Entity::Move(float deltaT){
 	}
 }
 void Entity::Draw(Camera *camera){
+    //Draw entity
 	if (!mScript.Open())
 		return;
 	try {
@@ -112,9 +116,8 @@ void Entity::CheckMouseOver(const Vector2f &pos){
 		mMouseOver = false;
 	}
 }
-bool Entity::GetMouseOver(){
+bool Entity::GetMouseOver() const {
 	return mMouseOver;
-
 }
 Physics* Entity::GetPhysics(){
 	return &mPhysics;
@@ -122,64 +125,60 @@ Physics* Entity::GetPhysics(){
 void Entity::SetCollisionMap(CollisionMap map){
 	mPhysics.SetMap(map);
 }
-Rectf Entity::Box(){
+Rectf Entity::Box() const {
 	return mPhysics.Box();
 }
 void Entity::SetTag(std::string tag){
 	mTag = tag;
 }
-std::string Entity::Tag(){
+std::string Entity::Tag() const {
 	return mTag;
 }
-Json::Value Entity::Save(){
-	Json::Value val;
+Json::Value Entity::Save() const{
+	//How to specify overrides to save?
+    Json::Value val;
     if (mConfigFile != "")
         val["file"] = mConfigFile;
     else {
-	    val["image"]   = mImage.Save();
+	    val["image"]   = mImage.File();
 	    val["physics"] = mPhysics.Save();
 	    val["tag"]	   = mTag;
-	    val["script"]  = mScript.Save();
+	    val["script"]  = mScript.File();
 	    val["name"]    = mName;
     }
 	return val;
 }
+void Entity::Save(const std::string &file) const {
+    Json::Value val;
+    val["image"]   = mImage.File();
+	val["physics"] = mPhysics.Save();
+	val["tag"]	   = mTag;
+	val["script"]  = mScript.File();
+	val["name"]    = mName;
+    JsonHandler handler(file);
+    handler.Write(val);
+}
 void Entity::Load(Json::Value val){
-    //Load the image from an external entity file
-    if (!val["file"].empty() && val["file"].asString() != ""){
-        std::cout << "Loading entity from config file: " 
-            << val["file"].asString() << std::endl;
-        mConfigFile = val["file"].asString();
-        std::ifstream fileIn((mConfigFile).c_str(), std::ifstream::binary);
-	    if (fileIn){
-		    Json::Reader reader;
-		    Json::Value root;
-		    if (reader.parse(fileIn, root, false)){
-                fileIn.close();
-                //Load the config data
-                Load(root);
-                return;
-		    }
-		    //some debug output, this case should throw
-            else {
-                fileIn.close();
-                //throw std::runtime_error("Failed to parse file: " + configFile); 
-                std::cout << "Failed to parse: " << mConfigFile << std::endl;
-            }
-	    }
-        else
-            //throw std::runtime_error("Failed to find file: " + configFile);
-            std::cout << "Failed to find: " << mConfigFile << std::endl;
+    //Process overrides as well
+	mTag  = val["tag"].asString();
+	mName = val["name"].asString();
+	mPhysics.Load(val["physics"]);
+	mImage.Load(val["image"].asString());
+	mScript.OpenScript(val["script"].asString());
+}
+void Entity::Load(const std::string &file, Json::Value overrides){
+    mConfigFile = file;
+    try {
+        JsonHandler handler(mConfigFile);
+        Json::Value data = handler.Read();
+        data["overrides"] = overrides;
+        Load(data);
     }
-    else {
-	    mTag  = val["tag"].asString();
-	    mName = val["name"].asString();
-	    mPhysics.Load(val["physics"]);
-	    mImage.Load(val["image"]);
-	    mScript.Load(val["script"]);
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
     }
 }
-void Entity::RegisterLua(lua_State *l){
+int Entity::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -200,4 +199,5 @@ void Entity::RegisterLua(lua_State *l){
 			.def("SetTag", &Entity::SetTag)
 			.def("Tag", &Entity::Tag)
 	];
+    return 1;
 }

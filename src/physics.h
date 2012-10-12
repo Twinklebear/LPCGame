@@ -51,7 +51,7 @@ public:
 	*  Save the physical properties of the object to a Json::Value
 	*  @return Json::Value containing the object's physical properties
 	*/
-	Json::Value Save();
+	Json::Value Save() const;
 	/**
 	*  Load the object's physical properties from a Json::Value
 	*  @param val The Json::Value containing the properties to load
@@ -61,7 +61,7 @@ public:
 	*  Register the Physics class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l);
+	static int RegisterLua(lua_State *l);
 
 private:
 	/**

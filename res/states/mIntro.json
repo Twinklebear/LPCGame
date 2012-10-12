@@ -1,7 +1,5 @@
 {
-   "background" : {
-      "file" : "../res/img/introback.png"
-   },
+   "background" : "../res/img/introback.png",
    "camera" : {
       "mBox" : {
          "h" : 720.0,
@@ -36,9 +34,7 @@
    },
    "entities" : [
       {
-         "image" : {
-            "file" : "../res/img/simplebutton.png"
-         },
+         "image" : "../res/img/simplebutton.png",
          "name" : "",
          "param" : "gGame",
          "physics" : {
@@ -51,9 +47,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : {
-            "file" : "../res/scripts/testbutton.lua"
-         },
+         "script" : "../res/scripts/testbutton.lua",
          "tag" : "",
          "text" : {
             "color" : {
@@ -68,9 +62,7 @@
          "type" : "objectbutton"
       },
       {
-         "image" : {
-            "file" : "../res/img/simplebutton.png"
-         },
+         "image" : "../res/img/simplebutton.png",
          "name" : "",
          "param" : "quit",
          "physics" : {
@@ -83,9 +75,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : {
-            "file" : ""
-         },
+         "script" : "",
          "tag" : "",
          "text" : {
             "color" : {
@@ -100,9 +90,7 @@
          "type" : "objectbutton"
       },
       {
-         "image" : {
-            "file" : "../res/img/simplebutton.png"
-         },
+         "image" : "../res/img/simplebutton.png",
          "name" : "",
          "param" : "editor",
          "physics" : {
@@ -115,9 +103,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : {
-            "file" : ""
-         },
+         "script" : "",
          "tag" : "",
          "text" : {
             "color" : {
@@ -133,8 +119,6 @@
       }
    ],
    "name" : "mIntro",
-   "script" : {
-      "file" : "../res/scripts/mainmenu.lua"
-   }
+   "script" : "../res/scripts/mainmenu.lua"
 }
 

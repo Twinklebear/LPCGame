@@ -102,7 +102,7 @@ public:
 	*  Save the box's properties to a Json::Value and return it
 	*  @return Json::Value containing the box's properties
 	*/
-	Json::Value Save(){
+	Json::Value Save() const {
 		Json::Value val;
 		val["x"] = pos.x;
 		val["y"] = pos.y;
@@ -151,7 +151,7 @@ public:
 	*  Register the Rect class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l){
+	static int RegisterLua(lua_State *l){
 		using namespace luabind;
 		///Does Lua/LuaBind support templates?
 		module(l, "LPC")[
@@ -199,6 +199,7 @@ public:
 				.def(const_self + Vector2f())
 				.def(const_self - Vector2f())
 		];
+        return 1;
 	}
 
 public:

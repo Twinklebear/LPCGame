@@ -17,9 +17,22 @@ void MotionState::UpdateState(Kinematic kinematic){
 int MotionState::State() const{
 	return mState;
 }
-void MotionState::SetMotionstate(int state){
+void MotionState::SetMotionState(int state){
 	mState = state;
 }
-void MotionState::RegisterLua(lua_State *l){
+int MotionState::RegisterLua(lua_State *l){
+    using namespace luabind;
 
+    module(l, "LPC")[
+        class_<MotionState>("MotionState")
+            .def(constructor<>())
+            .def("State", &MotionState::State)
+            .def("SetMotionState", &MotionState::SetMotionState)
+
+            .enum_("STATE")[
+				value("IDLE", IDLE),
+				value("RUNNING", RUNNING)
+			]
+    ];
+    return 1;
 }

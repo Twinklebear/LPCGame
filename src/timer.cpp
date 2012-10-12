@@ -48,7 +48,7 @@ bool Timer::Started() const {
 bool Timer::Paused() const {
 	return mPaused;
 }
-void Timer::RegisterLua(lua_State *l){
+int Timer::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -63,4 +63,5 @@ void Timer::RegisterLua(lua_State *l){
 			.def("Started", &Timer::Started)
 			.def("Paused", &Timer::Paused)
 	];
+    return 1;
 }

@@ -7,6 +7,7 @@
 #include <luabind/luabind.hpp>
 #include "base.h"
 #include "image.h"
+#include "timer.h"
 
 ///Describes an animation sequence
 struct AnimationSequence {
@@ -14,7 +15,7 @@ struct AnimationSequence {
 	*  Save the sequence to a Json::Value
 	*  @return The sequence information as a Json::Value
 	*/
-	Json::Value Save();
+	Json::Value Save() const;
 	/**
 	*  Load the sequence from a Json::Value
 	*  @param val The Json::Value to load from
@@ -23,8 +24,7 @@ struct AnimationSequence {
 	///The clips in the animated image clip array
 	std::vector<int> clipIndices;
 	///The framerate to play the animation at
-	//int frameRate;
-	int framePerAnimFrame;
+	double frameRate;
 	///The sequence name
 	std::string name;
 };
@@ -35,23 +35,21 @@ struct AnimationSequence {
 */
 class AnimatedImage : public Image {
 public:
-    AnimatedImage();
     /**
     *  Setup the AnimatedImage class, if a filename is passed load the image
     *  @param file The filename
     *  @see Window::LoadImage for the loading function
     */
     AnimatedImage(const std::string &file);
+    AnimatedImage();
 	~AnimatedImage();
 	/**
 	*  Update the animation, called every frame
+    *  We check if time greater than the time for one frame (1 / frameRate)
+    *  and if yes we then increment the frame counter by the # frames elapsed
+    *  in case the animation frameRate is higher than the game framerate
 	*/
 	void Update();
-	/**
-	*  Move the animation frame
-	*  @param deltaT The time period to play animation over
-	*/
-	void Move(float deltaT);
 	/**
 	*  Play the desired animation
 	*  @param name The animation name to play
@@ -68,33 +66,30 @@ public:
 	*/
 	int ActiveClip();
 	/**
-	*  Save an image's properties to a Json::Value and return it
-	*  @return Json::Value containing the information about the image
+	*  Save an AniamtedImage's properties to a Json formatted file
+    *  @param file The file to save to
 	*/
-	Json::Value Save();
-	/**
-	*  Load an image and its properties from a Json::Value
-	*  @param val The Json::Value to load from
-	*/
-	void Load(Json::Value val);
-	/**
-	*  Load an AnimatedImage settings from a Json::Value
-	*  @note This will probably replace Load when the switch is done
-	*/
-	void LoadConfig(Json::Value val);
+	void Save(const std::string &file) const;
 	/**
 	*  Register the AnimatedImage class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l);
+	static int RegisterLua(lua_State *l);
+
+private:
+    /**
+	*  Load an AnimatedImage's properties from a Json::Value
+	*  @param val The Json::Value to load from
+	*/
+	void Load(Json::Value val);
 
 private:
 	std::vector<AnimationSequence> mSequences;
-	int mActiveAnimation;
-	///Count the frames elapsed
-	int mFrame;
-	///Count the frame the animation is on
-	int mAnimationFrame;
+    int mActiveAnimation;
+    ///The current frame of the animation
+    int mFrame;
+    ///The timer for the animation, for regulating framerate
+    Timer mTimer;
 };
 
 #endif

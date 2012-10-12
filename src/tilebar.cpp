@@ -82,7 +82,7 @@ Json::Value TileBar::Save(){
 }
 void TileBar::Load(Json::Value val){
 	Entity::Load(val);
-	mSelector.Load(val["selector"]);
+	mSelector.Load(val["selector"].asString());
 	tilesPerRow = val["attributes"]["tilesPerRow"].asInt();
 	spacer = val["attributes"]["spacer"].asInt();
 	xOffset = val["attributes"]["xOffset"].asInt();

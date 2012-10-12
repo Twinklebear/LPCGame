@@ -70,16 +70,16 @@ Json::Value State::Save(){
 	val["entities"] = mManager->Save();
 	val["name"]	    = mName;
 	val["camera"]   = mCamera->Save();
-    val["script"]   = mScript.Save();
+    val["script"]   = mScript.File();
 
 	return val;
 }
 void State::Load(Json::Value val){
 	mName = val["name"].asString();
 	mCamera->Load(val["camera"]);
-    mScript.Load(val["script"]);
+    mScript.OpenScript(val["script"].asString());
 }
-void State::RegisterLua(lua_State *l){
+int State::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -90,4 +90,5 @@ void State::RegisterLua(lua_State *l){
 			.def("SetName", &State::SetName)
 			.def("Name", &State::Name)
 	];
+    return 1;
 }

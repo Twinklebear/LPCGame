@@ -85,7 +85,7 @@ void Button::Load(Json::Value val){
 	mParam = val["param"].asString();
 	mText.Load(val["text"]);
 }
-void Button::RegisterLua(lua_State *l){
+int Button::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -102,4 +102,5 @@ void Button::RegisterLua(lua_State *l){
 			.def("OnMouseExit", &Button::OnMouseExit)
 			.def("OnClick", &Button::OnClick)
 	];
+    return 1;
 }

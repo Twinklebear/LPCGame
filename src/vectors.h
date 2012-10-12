@@ -109,7 +109,7 @@ public:
 	*  Register the Vector class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l){
+	static int RegisterLua(lua_State *l){
 		using namespace luabind;
 		
 		module(l, "LPC")[
@@ -122,13 +122,13 @@ public:
 				.def_readwrite("x", &Vector2<int>::x)
 				.def_readwrite("y", &Vector2<int>::y)
 				//operators
-				.def(const_self + Vector2<int>())
-				.def(const_self - Vector2<int>())
-				.def(const_self * Vector2<int>())
-				.def(const_self * Vector2<float>())
+				.def(const_self + other<Vector2<int>>())
+				.def(const_self - other<Vector2<int>>())
+				.def(const_self * other<Vector2<int>>())
+				.def(const_self * other<Vector2<float>>())
 				.def(const_self * float())
-				.def(const_self / Vector2<int>())
-				.def(const_self / Vector2<float>())
+				.def(const_self / other<Vector2<int>>())
+				.def(const_self / other<Vector2<float>>())
 				.def(const_self / float()),
 			//For Vector2<float>
 			class_<Vector2<float>>("Vector2f")
@@ -139,15 +139,16 @@ public:
 				.def_readwrite("x", &Vector2<float>::x)
 				.def_readwrite("y", &Vector2<float>::y)
 				//operators
-				.def(const_self + Vector2<float>())
-				.def(const_self - Vector2<float>())
-				.def(const_self * Vector2<int>())
-				.def(const_self * Vector2<float>())
+				.def(const_self + other<Vector2<float>>())
+				.def(const_self - other<Vector2<float>>())
+				.def(const_self * other<Vector2<int>>())
+				.def(const_self * other<Vector2<float>>())
 				.def(const_self * float())
-				.def(const_self / Vector2<int>())
-				.def(const_self / Vector2<float>())
+				.def(const_self / other<Vector2<int>>())
+				.def(const_self / other<Vector2<float>>())
 				.def(const_self / float())
 		];
+        return 1;
 	}
 
 public:

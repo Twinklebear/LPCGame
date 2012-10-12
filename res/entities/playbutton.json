@@ -1,7 +1,5 @@
 {
-   "image" : {
-      "file" : "../res/img/simplebutton.png"
-   },
+   "image" : "../res/img/simplebutton.png",
    "name" : "",
    "param" : "gGame",
    "physics" : {
@@ -14,9 +12,7 @@
       "hAccel" : 0,
       "hSpeed" : 0
    },
-   "script" : {
-      "file" : "../res/scripts/tesbutton.lua"
-   },
+   "script" : "../res/scripts/tesbutton.lua",
    "tag" : "",
    "text" : {
       "color" : {

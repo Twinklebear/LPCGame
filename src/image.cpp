@@ -5,8 +5,9 @@
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
-#include "image.h"
 #include "window.h"
+#include "jsonhandler.h"
+#include "image.h"
 
 Image::Image()
 	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0)
@@ -16,37 +17,11 @@ Image::Image(const std::string &file)
 	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0)
 {
 	mFile = file;
-	LoadImage(file);
+	Load(file);
 }
 Image::~Image(){
 	if (mClips != nullptr)
 		delete[] mClips;
-}
-void Image::LoadImage(const std::string &file){
-	mFile = file;
-    try {
-	    mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-        throw e;
-    }
-    //Try to load a config file
-    try {
-        LoadImageConfig(file);
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-    }
-}
-SDL_Texture* Image::Texture(){
-	return mTexture.get();
-}
-Recti Image::Clip(int clipNum){
-	if (clipNum >= mNumClips || clipNum < 0 || mNumClips == 0)
-		throw std::runtime_error("Clip num out of bounds");
-
-	return mClips[clipNum];
 }
 void Image::SetClips(const std::vector<Recti> &clips){
 	mNumClips = clips.size();
@@ -57,7 +32,7 @@ void Image::SetClips(const std::vector<Recti> &clips){
 void Image::GenClips(int cW, int cH){
 	//Make sure we've got a texture to query
 	if (mTexture == nullptr)
-		throw std::runtime_error("Must load texture before genning clips");
+		throw std::runtime_error("Must load texture before generating clips");
 
 	//clear any existing clips
 	int iW, iH;
@@ -79,16 +54,24 @@ void Image::GenClips(int cW, int cH){
 }
 int Image::ClipCount(){
 	return mNumClips;
+SDL_Texture* Image::Texture(){
+	return mTexture.get();
 }
-Json::Value Image::Save(){
-	Json::Value val;
-	val["file"]  = mFile;
-	return val;
+}
+Recti Image::Clip(int clipNum) const {
+    if (clipNum >= mNumClips || clipNum < 0 || mNumClips == 0)
+		throw std::runtime_error("Image::Clip ERROR: " + mFile +  "Clip num out of bounds");  
+
+	return mClips[clipNum];
+}
+std::string Image::File() const {
+    return mFile;
+}
+void Image::Save(const std::string &file) const {
+    JsonHandler handler(file);
+    handler.Write(SaveClips());
 }
 void Image::Load(Json::Value val){
-	LoadImage(val["file"].asString());
-}
-void Image::LoadConfig(Json::Value val){
 	if (val["clips"].size() != 0){
 		mNumClips = val["clips"].size();
 		mClips = new Recti[mNumClips];
@@ -96,39 +79,36 @@ void Image::LoadConfig(Json::Value val){
 			mClips[i].Load(val["clips"][i]);
 	}
 }
-void Image::LoadImageConfig(const std::string &file){
-    size_t extensionPos = file.find_last_of('.');
-	std::string configFile = file.substr(0, extensionPos) + ".json";
-
-	//If the file exists, read it in
-	std::ifstream fileIn((configFile).c_str(), std::ifstream::binary);
-	if (fileIn){
-		Json::Reader reader;
-		Json::Value root;
-		if (reader.parse(fileIn, root, false)){
-            fileIn.close();
-            //Load the config data
-            LoadConfig(root);
-		}
-		//some debug output, this case should throw
-        else {
-            fileIn.close();
-            throw std::runtime_error("Failed to parse file: " + configFile); 
-        }
-	}
-    else
-        throw std::runtime_error("Failed to find file: " + configFile);
+void Image::Load(const std::string &file){
+	mFile = file;
+    try {
+	    mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
+        //With the new JsonHandler
+        JsonHandler jsonHandler(file);
+        Load(jsonHandler.Read());
+    }
+    catch (const std::runtime_error &e){
+        std::cout << e.what() << std::endl;
+    }
 }
-void Image::RegisterLua(lua_State *l){
+Json::Value Image::SaveClips() const {
+    Json::Value val;
+    for (int i = 0; i < mNumClips; ++i){
+        val["clips"][i] = mClips[i].Save();
+    }
+    return val;
+}
+int Image::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
 		class_<Image>("Image")
 			.def(constructor<>())
 			.def(constructor<std::string>())
-			.def("LoadImage", &Image::LoadImage)
+			.def("Load", (void (Image::*)(const std::string&))&Image::Load)
 			.def("SetClips", &Image::SetClips)
 			.def("GenClips", &Image::GenClips)
 			.def("Clip", &Image::Clip)
 	];
+    return 1;
 }

@@ -39,7 +39,7 @@ public:
 	///Get the motion state, @see MotionState enum
 	int State() const;
 	///Set the motion state
-	void SetMotionstate(int state);
+	void SetMotionState(int state);
 	///enum for describing motion states
 	enum { IDLE, RUNNING };
 	/**
@@ -47,7 +47,7 @@ public:
 	*  TODO: Is this necessary? Shouldn't this sort of physics be done by the user?
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l);
+	static int RegisterLua(lua_State *l);
 
 private:
 	int mState;

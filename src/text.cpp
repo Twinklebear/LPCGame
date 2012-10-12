@@ -86,7 +86,7 @@ Recti Text::Size(){
 void Text::Size(int &w, int &h){
 	SDL_QueryTexture(mTex.get(), NULL, NULL, &w, &h);
 }
-Json::Value Text::Save(){
+Json::Value Text::Save() const {
 	Json::Value val;
 	val["message"] 	= mMessage;
 	val["font"]	   	= mFontFile;
@@ -99,7 +99,7 @@ void Text::Load(Json::Value val){
 	Set(val["message"].asString(), val["font"].asString(), 
 		mColor, val["fontsize"].asInt());
 }
-void Text::RegisterLua(lua_State *l){
+int Text::RegisterLua(lua_State *l){
 	using namespace luabind;
 	//Text module requires the Color module, so register that first
 	//Color::RegisterLua(l);
@@ -115,4 +115,5 @@ void Text::RegisterLua(lua_State *l){
 			.def("SetColor", &Text::SetColor)
 			.def("Size", (Recti (Text::*)())&Text::Size)
 	];
+    return 1;
 }

@@ -25,17 +25,16 @@
     <ClInclude Include="..\src\gamestate.h" />
     <ClInclude Include="..\src\image.h" />
     <ClInclude Include="..\src\input.h" />
+    <ClInclude Include="..\src\jsonhandler.h" />
     <ClInclude Include="..\src\map.h" />
     <ClInclude Include="..\src\mapeditor.h" />
     <ClInclude Include="..\src\math.h" />
     <ClInclude Include="..\src\menustate.h" />
     <ClInclude Include="..\src\luascript.h" />
     <ClInclude Include="..\src\motionstate.h" />
-    <ClInclude Include="..\src\npc.h" />
     <ClInclude Include="..\src\objectbutton.h" />
     <ClInclude Include="..\src\objectpool.h" />
     <ClInclude Include="..\src\physics.h" />
-    <ClInclude Include="..\src\player.h" />
     <ClInclude Include="..\src\rect.h" />
     <ClInclude Include="..\src\state.h" />
     <ClInclude Include="..\src\statemanager.h" />
@@ -60,6 +59,7 @@
     <ClCompile Include="..\src\gamestate.cpp" />
     <ClCompile Include="..\src\image.cpp" />
     <ClCompile Include="..\src\input.cpp" />
+    <ClCompile Include="..\src\jsonhandler.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\map.cpp" />
     <ClCompile Include="..\src\mapeditor.cpp" />
@@ -67,9 +67,7 @@
     <ClCompile Include="..\src\menustate.cpp" />
     <ClCompile Include="..\src\luascript.cpp" />
     <ClCompile Include="..\src\motionstate.cpp" />
-    <ClCompile Include="..\src\npc.cpp" />
     <ClCompile Include="..\src\physics.cpp" />
-    <ClCompile Include="..\src\player.cpp" />
     <ClCompile Include="..\src\state.cpp" />
     <ClCompile Include="..\src\statemanager.cpp" />
     <ClCompile Include="..\src\text.cpp" />

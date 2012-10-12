@@ -144,7 +144,7 @@ void Camera::Load(Json::Value val){
 		mPans.push_back(pan);
 	}
 }
-void Camera::RegisterLua(lua_State *l){
+int Camera::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -166,4 +166,5 @@ void Camera::RegisterLua(lua_State *l){
 			.def("Offset", &Camera::Offset)
 			.def("Centering", &Camera::Centering)
 	];
+    return 1;
 }

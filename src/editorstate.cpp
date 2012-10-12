@@ -7,8 +7,6 @@
 #include "window.h"
 #include "input.h"
 #include "timer.h"
-#include "player.h"
-#include "npc.h"
 #include "objectbutton.h"
 #include "mapeditor.h"
 #include "tilebar.h"
@@ -40,7 +38,6 @@ std::string EditorState::Run(){
 			Vector2f pan(-Input::GetMotion().xrel, -Input::GetMotion().yrel);
 			mCamera->Move(pan);
 		}
-
 		//LOGIC
 		mCamera->Update();
 		mManager->Update();

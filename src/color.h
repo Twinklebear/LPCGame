@@ -30,18 +30,24 @@ public:
 	*/
 	void Set(int r, int g, int b);
 	///Get the SDL_Color
-	SDL_Color Get();
+	SDL_Color Get() const;
 	///Get the red value
-	int R();
+	int R() const;
+    ///Set the red value
+    void R(int r);
 	///Get the green value
-	int G();
+	int G() const;
+    ///Set the green value
+    void G(int g);
 	///Get the blue value
-	int B();
+	int B() const;
+    ///Set the blue value
+    void B(int b);
 	/**
 	*  Save the color data to a Json::Value
 	*  @returns Json::Value containing information about the text
 	*/
-	Json::Value Save();
+	Json::Value Save() const;
 	/**
 	*  Load the color data from a Json::Value
 	*  @param val The Json::Value to load from
@@ -51,9 +57,9 @@ public:
 	*  Register the Color class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l);
+	static int RegisterLua(lua_State *l);
 	///Operator for comparing colors
-	bool operator == (Color c) const;
+	bool operator == (const Color c) const;
 
 private:
 	SDL_Color mColor;

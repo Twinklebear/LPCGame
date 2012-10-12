@@ -9,8 +9,6 @@
 #include "window.h"
 #include "input.h"
 #include "timer.h"
-#include "player.h"
-#include "npc.h"
 #include "objectbutton.h"
 #include "gamestate.h"
 
@@ -123,7 +121,8 @@ void GameState::Free(){
 }
 Json::Value GameState::Save(){
 	Json::Value val = State::Save();
-	val["map"] = mMap->Save();
+	//val["map"] = mMap->Save();
+    val["map"] = mMap->File();
 	val["ui"]  = mUiManager->Save();
 	val["tileset"] = mTileSet->Save();
 
@@ -133,7 +132,7 @@ Json::Value GameState::Save(){
 void GameState::Load(Json::Value val){
 	Init();
 	State::Load(val);
-	mMap->Load(val["map"]);
+	mMap->Load(val["map"].asString());
 	mTileSet->Load(val["tileset"]);
 	mMap->LoadTileSet(mTileSet);
 
@@ -143,31 +142,11 @@ void GameState::Load(Json::Value val){
 	//Load the objects
 	Json::Value entities = val["entities"];
 	for (int i = 0; i < entities.size(); ++i){
-		if (entities[i]["obj"].asString() == "player"){
-			Player *p = new Player();
-			p->Load(entities[i]);
-			std::shared_ptr<Entity> sObj(p);
-			//Check for focus tag
-			if (sObj->Tag() == "focus")
-				mCamera->SetFocus(sObj);
-			//Register
-			mManager->Register(sObj);
-		}
-		else if (entities[i]["obj"].asString() == "npc"){
-			Npc *n = new Npc();
-			n->Load(entities[i]);
-			n->Init();
-			std::shared_ptr<Entity> sObj(n);
-			//Register with manager
-			mManager->Register(sObj);
-		}
-		else {
-			Entity *e = new Entity();
-			e->Load(entities[i]);
-			e->Init();
-			std::shared_ptr<Entity> sObj(e);
-			mManager->Register(sObj);
-		}
+		Entity *e = new Entity();
+		e->Load(entities[i]["file"].asString(), entities[i]["overrides"]);
+		e->Init();
+		std::shared_ptr<Entity> sObj(e);
+		mManager->Register(sObj);
 	}
 	//Load the ui elements
 	Json::Value uiObj = val["ui"];

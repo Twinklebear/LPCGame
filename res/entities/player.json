@@ -1,0 +1,16 @@
+{
+   "image" : "",
+   "name" : "player",
+   "physics" : {
+      "box" : {
+         "h" : 28.0,
+         "w" : 28.0,
+         "x" : 0.0,
+         "y" : 0.0
+      },
+      "hAccel" : 300,
+      "hSpeed" : 300
+   },
+   "script" : "../res/scripts/player.lua",
+   "tag" : "focus"
+}

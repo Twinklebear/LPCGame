@@ -1,27 +1,20 @@
---require 'AnimatedImage'
---RequireModule("AnimatedImage")
-LPCRequireModule("Input")
---We must use dofile as the file is not in Lua's search path
-dofile("../res/scripts/calltest.lua")
+require "Input"
+require "scripts/calltest.lua"
 
 function Init()
-	--print("Lua search path: " .. package.path)
-	print("state init")
+	print "\n--------Main Menu Init--------\n"
 	if LPC.Input.JoystickAvailable() then
-		print("Joystick is available")
+		print "Joystick is available"
 	end
-	--Test.TestFunc()
-	TestCall()
 end
 function Free()
-	print("state free")
+	print "\n--------Main Menu Free--------\n"
 end
 function LogicUpdate()
 	if LPC.Input.KeyDown(LPC.Input.KEY_Q) then
-		print ("You pushed Q! Why would you do that?")
+		print "You pushed Q!"
 	end
-	--print("state logic update")
+	CheckKey()
 end
 function RenderUpdate()
-	--print("state render update")
 end

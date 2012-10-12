@@ -40,13 +40,22 @@ public:
 			((mObj)->*(mObjFunc))(mParam);
 		else if (mFunc != nullptr)
 			mFunc(mParam);
+        //Attempt to call the script if one is open
+        if (!mScript.Open())
+		    return;
+	    ///Call the script
+	    try{
+		    luabind::call_function<void>(mScript.Get(), "OnClick");
+	    }
+	    catch(...){
+	    }
 	}
 	/**
 	*  Save the object data to a json value and return it
 	*  @see GameObject::Save for saving of inherited members
 	*  @return The Json::Value containing the object data
 	*/
-	Json::Value Save(){
+	Json::Value Save() const {
 		//Unfortunately I can't change the function that's pointed to via loading json
 		//as it's code not data, so instead we just save the param
 		Json::Value val = Entity::Save();

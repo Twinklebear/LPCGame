@@ -16,7 +16,7 @@
 *  A simple class for drawing a string to a texture with some color
 *  and a specified TTF_Font and font size
 */
-class Text{
+class Text {
 public:
 	Text();
 	/**
@@ -81,7 +81,7 @@ public:
 	*  Save the text data to a Json::Value
 	*  @returns Json::Value containing information about the text
 	*/
-	Json::Value Save();
+	Json::Value Save() const;
 	/**
 	*  Load the text data from a Json::Value
 	*  @param val The Json::Value to load from
@@ -91,7 +91,7 @@ public:
 	*  Register the Text class with the lua state
 	*  @param l The lua_State to register the module with
 	*/
-	static void RegisterLua(lua_State *l);
+	static int RegisterLua(lua_State *l);
 
 private:
 	///Disable copy construction

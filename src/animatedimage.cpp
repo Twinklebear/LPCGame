@@ -5,11 +5,13 @@
 #include "base.h"
 #include "window.h"
 #include "image.h"
+#include "timer.h"
+#include "jsonhandler.h"
 #include "animatedimage.h"
 
-Json::Value AnimationSequence::Save(){
+Json::Value AnimationSequence::Save() const {
 	Json::Value val;
-	val["framePerAnimFrame"] = framePerAnimFrame;
+    val["frameRate"] = frameRate;
 	val["name"] = name;
 	//Save the indices
 	for (int i = 0; i < clipIndices.size(); ++i)
@@ -18,12 +20,11 @@ Json::Value AnimationSequence::Save(){
 	return val;
 }
 void AnimationSequence::Load(Json::Value val){
-	framePerAnimFrame = val["framePerAnimFrame"].asInt();
+    frameRate = val["frameRate"].asDouble();
 	name = val["name"].asString();
 	//Load the indices
-	for (int i = 0; i < val["frames"].size(); ++i){
+	for (int i = 0; i < val["frames"].size(); ++i)
 		clipIndices.push_back(val["frames"][i].asInt());
-	}
 }
 AnimatedImage::AnimatedImage() 
     : mActiveAnimation(0), mFrame(0)
@@ -32,10 +33,9 @@ AnimatedImage::AnimatedImage()
 AnimatedImage::AnimatedImage(const std::string &file) 
     : mActiveAnimation(0), mFrame(0)
 {
-    LoadImage(file);
     //Try to load an image config
     try {
-        LoadImageConfig(file);
+        Image::Load(file);
     }
     catch (const std::runtime_error &e){
         std::cout << e.what() << std::endl;
@@ -44,22 +44,25 @@ AnimatedImage::AnimatedImage(const std::string &file)
 AnimatedImage::~AnimatedImage(){
 }
 void AnimatedImage::Update(){
-	++mFrame;
-	//Update animation frame when we hit the increment value, framePerAnimFrame
-	if (mFrame >= mSequences.at(mActiveAnimation).framePerAnimFrame){
-		mFrame = 0;
-		++mAnimationFrame;
-	}
-	if (mAnimationFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
-		mAnimationFrame = 0;
-}
-void AnimatedImage::Move(float deltaT){
-
+    //Using the timer for framerate regulation
+    if (mSequences.at(mActiveAnimation).frameRate != 0
+        && mTimer.Ticks() / 1000.0f >= 1.0f / mSequences.at(mActiveAnimation).frameRate)
+    {
+        //Increase by frames elapsed
+        mFrame += mTimer.Ticks() / (int)((1.0f / mSequences.at(mActiveAnimation).frameRate) * 1000);
+        mTimer.Start();
+        //Rollover the animation if it goes over
+        if (mFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
+            mFrame = 0;
+    }
 }
 void AnimatedImage::Play(std::string name){
 	for (int i = 0; i < mSequences.size(); ++i){
 		if (mSequences.at(i).name == name){
 			mActiveAnimation = i;
+            //Begin the animation
+            mFrame = 0;
+            mTimer.Start();
 			return;
 		}
 	}
@@ -69,20 +72,20 @@ std::string AnimatedImage::Playing(){
 	return mSequences.at(mActiveAnimation).name;
 }
 int AnimatedImage::ActiveClip(){
-	return mSequences.at(mActiveAnimation).clipIndices.at(mAnimationFrame);
+	return mSequences.at(mActiveAnimation).clipIndices.at(mFrame);
 }
-Json::Value AnimatedImage::Save(){
+void AnimatedImage::Save(const std::string &file) const {
 	//Save base class (file and clips)
-	Json::Value val = Image::Save();
-	return val;
+	Json::Value val = SaveClips();
+    for (int i = 0; i < mSequences.size(); ++i){
+        val["sequences"][i] = mSequences.at(i).Save();
+    }
+    JsonHandler handler(file);
+    handler.Write(val);
 }
 void AnimatedImage::Load(Json::Value val){
-	//Load base class (file and clips)
-	Image::Load(val);
-}
-void AnimatedImage::LoadConfig(Json::Value val){
 	//Load the clips
-	Image::LoadConfig(val);
+	Image::Load(val);
 	//Load the AnimationSequences
 	for (int i = 0; i < val["sequences"].size(); ++i){
 		AnimationSequence seq;
@@ -90,7 +93,7 @@ void AnimatedImage::LoadConfig(Json::Value val){
 		mSequences.push_back(seq);
 	}
 }
-void AnimatedImage::RegisterLua(lua_State *l){
+int AnimatedImage::RegisterLua(lua_State *l){
 	using namespace luabind;
 
 	module(l, "LPC")[
@@ -98,13 +101,13 @@ void AnimatedImage::RegisterLua(lua_State *l){
 			.def(constructor<>())
             .def(constructor<std::string>())
 			.def("Update", &AnimatedImage::Update)
-			.def("Move", &AnimatedImage::Move)
 			.def("Play", &AnimatedImage::Play)
 			.def("Playing", &AnimatedImage::Playing)
 			.def("ActiveClip", &AnimatedImage::ActiveClip)
 			//Inherited members from Image
-			.def("LoadImage", &Image::LoadImage)
+			.def("Load", (void (AnimatedImage::*)(const std::string&))&Image::Load)
 			.def("SetClips", &Image::SetClips)
 			.def("Clip", &Image::Clip)
 	];
+    return 1;
 }
