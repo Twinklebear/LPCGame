@@ -1,6 +1,7 @@
 #ifndef TILEBAR_H
 #define TILEBAR_H
 
+#include <memory>
 #include "base.h"
 #include "window.h"
 #include "image.h"
@@ -17,15 +18,8 @@ class TileBar: public Entity {
 public:
 	TileBar();
 	~TileBar();
-	///Update the game object
-	void Update();
 	/**
-	*  Move the object
-	*  @param deltaT The elapsed time
-	*/
-	void Move(float deltaT);
-	/**
-	*  Draw the gameobject, apply an adjustment for the camera if one is desired
+	*  Draw the tilebar, apply an adjustment for the camera if one is desired
 	*  @param cam The camera to adjust for
 	*/
 	void Draw(Camera *cam = nullptr);
@@ -35,58 +29,33 @@ public:
 	*  Get the selected tile type
 	*  @return The tile type that is currently selected
 	*/
-	Tile GetSelection();
+	std::string GetSelection();
 	/**
-	*  Check if the tile selection bar is active
-	*  @return T/F if the tile pane is active
-	*/
-	bool TilePaneActive();
-	/**
-	*  Get the selected object
-	*  @return The selected MapObject to place
-	*  Note: Not currently used, as MapObjects aren't implemented
-	*/
-	//Object GetObjectSelection();
-	/**
-	*  Check if the object selection bar is active
-	*  @return T/F if the object pane is active
-	*/
-	//bool ObjectPaneActive();
-	/**
-	*  Get the selected entity (GameObject) to place on the map
-	*  @return The GameObject to add to the map
-	*/
-	//GameObject GetEntitySelection();
-	/**
-	*  Check if the entity selection bar is active
-	*  @return T/F if the entity bar is active
-	*/
-	//bool EntityPaneActive();
-	/**
-	*  Save the gameobject data to a json value and return it
-	*  The GameObject instance of the function takes care of saving
-	*  the base object members, physics, image and tags
-	*  @return Json::Value containing the gameobject data
-	*/
-	Json::Value Save();
-	/**
-	*  Load the gameobject from a Json::Value
-	*  The GameObject instance of the function takes care of loading
-	*  the base object members, physics, image and tags
+	*  Load the tilebar properties from a Json::Value
+	*    tilesPerRow - The amount of tiles in each row.
+	*    spacer      - The amount of space between edges in the tilebar. 
+	*    xOffset     - The amount of offset in the X direction from the top left.
+	*    yOffset     - The amount of offset in the Y direction from the top left.
+	*    tileWidth   - The width of the tiles to be displayed in the tilebar.
+	*    tileHeight  - The height of the tiles to be displayed in the tilebar.
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-
+	/**
+	*  Allows the tileset to be used in the tilebar
+	*  @param The tileset as defined previously.
+	*/
+	void LoadTileSet(std::shared_ptr<TileSet> ts){ mTileSet = ts; }
+	/**
+	*  Save the tilebar data to a json value and return it
+	*  @return Json::Value containing the tilebar data
+	*/
+	Json::Value Save();
 private:
 	enum Pane { TILE, OBJECT, ENTITY };
 
 private:
-	Image mTileImage;
-	Image mSelector;
-	std::vector<Tile> mTiles;
-	int mSelectedTile;
-	int mActivePane;
-
+	//predefined variables from the tilebar json entry
 	int tilesPerRow;
 	int spacer;
 	int xOffset;
@@ -94,6 +63,13 @@ private:
 	int tileWidth;
 	int tileHeight;
 
+	//info related to the selected tile
+	Image mSelector;
+	int mSelectedTile;
+	std::string mSelectedTileName;
+
+	//pointer to the tileset
+	std::shared_ptr<TileSet> mTileSet;
 };
 
 #endif

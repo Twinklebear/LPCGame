@@ -21,16 +21,15 @@ void Map::Draw(Camera *cam){
 		for (int i : indices){
 			if (i < mTiles.size()){
 				Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
-				Window::Draw(&mImage, pos,
-					&(Recti)mImage.Clip(mTiles.at(i).Type()));
+				Window::DrawTexture(mTileSet->Texture(mTiles.at(i).Name()), pos, &(Recti)mTileSet->Clip(mTiles.at(i).Name()));
 			}
 		}
 	}
 	//If no camera we default to drawing all tiles
 	else
 		for (int i = 0; i < mTiles.size(); ++i){
-			Window::Draw(&mImage, mTiles.at(i).Box(), 
-				&(Recti)mImage.Clip(mTiles.at(i).Type()));
+			int x;
+			//Window::Draw(&mImage, mTiles.at(i).Box(), &(Recti)mImage.Clip(mTiles.at(i).Type()));
 		}
 }
 Json::Value Map::Save(){
@@ -38,7 +37,7 @@ Json::Value Map::Save(){
 	//Save the map width and height
 	map["mBox"]["w"] = mBox.w;
 	map["mBox"]["h"] = mBox.h;
-	map["image"] = mImage.Save();
+	//map["image"] = mImage.Save();
 	//Save the tiles
 	for (int i = 0; i < mTiles.size(); ++i){
 		map["tiles"][i] = mTiles.at(i).Save();
@@ -48,19 +47,20 @@ Json::Value Map::Save(){
 }
 void Map::Load(Json::Value val){
 	mBox.Set(0, 0, val["mBox"]["w"].asInt(), val["mBox"]["h"].asInt());
-	mImage.Load(val["image"]);
+	//mImage.Load(val["image"]);
 
 	//Load the tiles
 	Json::Value tiles = val["tiles"];
 	for (int i = 0; i < tiles.size(); ++i){
 		Tile tempTile;
 		tempTile.Load(tiles[i]);
+		tempTile.SetName(val["tiles"][i]["name"].asString());
 		mTiles.push_back(tempTile);
 	}
 }
 void Map::GenerateStressMap(Json::Value val){
 	int numTiles = val["numTiles"].asInt();
-	mImage.Load(val["image"]);
+	//mImage.Load(val["image"]);
 	mBox.Set(0, 0, Window::Box().w, Window::Box().h);
 	//Determine the tile w/h to fill the window with numTiles
 	int tileSize = sqrtf((Window::Box().w * Window::Box().h) / numTiles);
@@ -74,7 +74,6 @@ void Map::GenerateStressMap(Json::Value val){
 		Tile tempTile;
 		tempTile.SetBox(tRect);
 		tempTile.SetSolid(false);
-		tempTile.SetType(0);
 		mTiles.push_back(tempTile);
 	}
 }
@@ -133,7 +132,7 @@ CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 	//Setup the collision map
 	CollisionMap localMap;
 	for (int i : indices){
-		if (i < mTiles.size() && mTiles.at(i).Solid())
+		if (i < mTiles.size() && mTileSet->Solid(mTiles.at(i).Name()))
 			localMap.push_back(mTiles.at(i).Box());
 	}
 	return localMap;

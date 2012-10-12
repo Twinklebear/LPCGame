@@ -110,6 +110,7 @@ void GameState::Init(){
 	mManager   = std::shared_ptr<EntityManager>(new EntityManager());
 	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
 	mCamera    = std::shared_ptr<Camera>(new Camera());
+	mTileSet   = std::shared_ptr<TileSet>(new TileSet());
 
 	mManager->Register(mCamera);
 }
@@ -124,6 +125,7 @@ Json::Value GameState::Save(){
 	Json::Value val = State::Save();
 	val["map"] = mMap->Save();
 	val["ui"]  = mUiManager->Save();
+	val["tileset"] = mTileSet->Save();
 
 	Free();
 	return val;
@@ -132,6 +134,9 @@ void GameState::Load(Json::Value val){
 	Init();
 	State::Load(val);
 	mMap->Load(val["map"]);
+	mTileSet->Load(val["tileset"]);
+	mMap->LoadTileSet(mTileSet);
+
 	//Set scene box
 	mCamera->SetSceneBox(Rectf(0, 0, mMap->Box().w, mMap->Box().h));
 

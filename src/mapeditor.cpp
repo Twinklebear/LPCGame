@@ -30,15 +30,13 @@ void MapEditor::GenerateBlank(int x, int y){
 		Tile tempTile;
 		tempTile.SetBox(tRect);
 		tempTile.SetSolid(false);
-		tempTile.SetType(0);
 		mTiles.push_back(tempTile);
 	}
 }
-void MapEditor::Insert(int x, int y, Tile tile){
+void MapEditor::Insert(int x, int y, std::string name){
 	try {
 		int i = CalculateIndex(x, y, mBox.W(), mBox.H());
-		tile.SetBox(Recti(mTiles.at(i).Box()));
-		mTiles.at(i) = tile;
+		mTiles.at(i).SetName(name);
 	}
 	catch(...){
 		//We just need to catch the error so we don't crash,
@@ -46,6 +44,6 @@ void MapEditor::Insert(int x, int y, Tile tile){
 	}
 }
 void MapEditor::Remove(int x, int y){
-	Tile blank(Recti(0, 0, 0, 0), false, 0, "");
-	Insert(x, y, blank);
+	Tile blank(Recti(0, 0, 0, 0), false, "");
+	Insert(x, y, "");
 }

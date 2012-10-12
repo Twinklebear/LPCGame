@@ -12,6 +12,7 @@
 #include "objectbutton.h"
 #include "mapeditor.h"
 #include "tilebar.h"
+#include "tileset.h"
 #include "editorstate.h"
 
 EditorState::EditorState() : mTileBar(nullptr){
@@ -63,6 +64,7 @@ void EditorState::Init(){
 	mMapEditor = std::shared_ptr<MapEditor>(new MapEditor());
 	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
 	mCamera    = std::shared_ptr<Camera>(new Camera());
+	mTileSet   = std::shared_ptr<TileSet>(new TileSet());
 
 	EntityEditor *objEditor  = new EntityEditor();
 	mTileBar = new TileBar();
@@ -82,6 +84,8 @@ void EditorState::Free(){
 Json::Value EditorState::Save(){
 	Json::Value val = State::Save();
 	val["map"] = mMapEditor->Save();
+	val["tileset"] = mTileSet->Save();
+
 	///TODO: I should save/load ui's differently. Perhaps seperate files
 	///that contain the different ui's? Ie. game ui, editor ui, etc.
 	val["ui"]  =  mUiManager->Save();
@@ -92,9 +96,12 @@ Json::Value EditorState::Save(){
 void EditorState::Load(Json::Value val){
 	Init();
 	State::Load(val);
+	//Generate the tileset
+	mTileSet->Load(val["tileset"]);
 	//Generate map here if some options are passed?
 	mMapEditor->Load(val["map"]);
-	mMapEditor->GenerateBlank(20, 20);
+	mMapEditor->LoadTileSet(mTileSet);
+	//mMapEditor->GenerateBlank(20, 20);
 	mCamera->SetSceneBox(Rectf(0, 0, mMapEditor->Box().w, mMapEditor->Box().h));
 	mCamera->SetBox(Rectf(0, 0, mMapEditor->Box().w, mMapEditor->Box().h));
 
@@ -111,6 +118,7 @@ void EditorState::Load(Json::Value val){
 		}
 		if (uiObj[i]["type"].asString() == "tilebar"){
 			mTileBar->Load(uiObj[i]);
+			mTileBar->LoadTileSet(mTileSet);
 			std::shared_ptr<Entity> sObj(mTileBar);
 			mUiManager->Register(sObj);
 		}

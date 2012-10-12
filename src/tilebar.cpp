@@ -11,41 +11,38 @@ TileBar::TileBar() : mSelectedTile(0){
 }
 TileBar::~TileBar(){
 }
-void TileBar::Update(){
-
-}
-void TileBar::Move(float deltaT){
-
-}
 void TileBar::Draw(Camera *cam){
+	//Calculate the number of tiles
+	int tile_count = mTileSet->Size();
 
 	//Calculate the required height/width of the tilebar
 	int box_width = (tilesPerRow * (tileWidth + spacer)) + spacer;
-	int box_height = (ceil((float)mTileImage.ClipCount() / tilesPerRow) * (tileHeight + spacer)) + spacer;
+	int box_height = (ceil((float)tile_count / tilesPerRow) * (tileHeight + spacer)) + spacer;
 	Recti tilebarBox(xOffset,yOffset,box_width,box_height);
 
 	//Draw background
 	Window::Draw(&mImage, tilebarBox, &(Recti)mImage.Clip(0));
 	
-	int x = mTileImage.ClipCount();
 	//Draw the tiles
-	for (int i = 0; i < mTileImage.ClipCount(); ++i){
+	std::map<std::string, Tile>::iterator it;
+	std::map<std::string, Tile>::iterator begin = mTileSet->Begin();
+	std::map<std::string, Tile>::iterator end = mTileSet->End();
+	int i = 0;
+	for (it = begin ;it != end; it++){
 		int clip_x = spacer + ((i % tilesPerRow) * (tileWidth + spacer));
 		int clip_y = spacer + ((i / tilesPerRow) * (tileHeight + spacer));
 		Recti clipBox(clip_x, clip_y, tileWidth, tileHeight);
-		
-		Window::Draw(&mTileImage, clipBox + tilebarBox.Pos(), 
-			&(Recti)mTileImage.Clip(i));
-	}
+		Window::DrawTexture(mTileSet->Texture(it->first), clipBox + tilebarBox.Pos(), &(Recti)mTileSet->Clip(it->first));
+		if (mSelectedTile == i)
+			mSelectedTileName = it->first; //Set the selected tile name.
+		++i;
+	}	
 
 	//Draw the selector
-	//Need a better way to save these offsets?
 	int selector_x = ((mSelectedTile % tilesPerRow) * (tileWidth + spacer)) + spacer;
 	int selector_y = ((mSelectedTile / tilesPerRow) * (tileHeight + spacer)) + spacer;
 	Recti selector_box(selector_x,selector_y,box_width,box_height);
-
-	Window::Draw(&mSelector, Recti((selector_box.Pos() 
-		+ tilebarBox.Pos() - Vector2i(2, 2)), tileWidth + 4, tileHeight + 4));
+	Window::Draw(&mSelector, Recti((selector_box.Pos() + tilebarBox.Pos() - Vector2i(2, 2)), tileWidth + 4, tileHeight + 4));
 }
 void TileBar::OnMouseUp(){
 	Vector2f mousePos = Input::MousePos();
@@ -63,20 +60,12 @@ void TileBar::OnMouseUp(){
 		int tile_num = coloumn_selected + row_selected * tilesPerRow;
 
 		//If the tile exists, set it to selected
-		if (tile_num < mTileImage.ClipCount())
+		if (tile_num < mTileSet->Size())
 			mSelectedTile = tile_num;
 	}
 }
-Tile TileBar::GetSelection(){
-	/* TODO   AGHHHGHGHHHGH
-	* This works but as of right now there is 
-	* no tile system since I made the one here
-	* obsolete. 
-    * 
-	* No 'Solid' or 'Name' is currently in the software
-	*/
-	Tile x(Recti(0,0,0,0),mSelectedTile,false,"");
-	return x;
+std::string TileBar::GetSelection(){
+	return mSelectedTileName;
 }
 Json::Value TileBar::Save(){
 	Json::Value val = Entity::Save();
@@ -88,14 +77,12 @@ Json::Value TileBar::Save(){
 	val["attributes"]["tileWidth"] = tileWidth;
 	val["attributes"]["tileHeight"] = tileHeight;
 	val["selector"]	= mSelector.Save();
-	val["tiles"]["image"] = mTileImage.Save();
 
 	return val;
 }
 void TileBar::Load(Json::Value val){
 	Entity::Load(val);
 	mSelector.Load(val["selector"]);
-	mTileImage.Load(val["tiles"]["image"]);
 	tilesPerRow = val["attributes"]["tilesPerRow"].asInt();
 	spacer = val["attributes"]["spacer"].asInt();
 	xOffset = val["attributes"]["xOffset"].asInt();

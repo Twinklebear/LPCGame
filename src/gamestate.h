@@ -59,6 +59,8 @@ protected:
 private:
 	std::shared_ptr<Map> mMap;
 	std::shared_ptr<UiObjectManager> mUiManager;
+	std::shared_ptr<TileSet> mTileSet;
+
 };
 
 #endif
