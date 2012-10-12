@@ -4059,7 +4059,6 @@
          "type" : "objectbutton"
       },
       {
-         "image" : "../res/img/simplebutton.png",
          "attributes" : {
             "spacer" : 5,
             "tileHeight" : 32,
@@ -4068,6 +4067,7 @@
             "xOffset" : 15,
             "yOffset" : 15
          },
+         "image" : "../res/img/white.png",
          "name" : "",
          "physics" : {
             "box" : {
@@ -4080,7 +4080,9 @@
             "hSpeed" : 0
          },
          "script" : "",
-         "tag" : ""
+         "selector" : "../res/img/selector.png",
+         "tag" : "",
+         "type" : "tilebar"
       }
    ]
 }

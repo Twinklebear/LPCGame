@@ -111,7 +111,7 @@ Json::Value EntityManager::Save(){
 	Json::Value val;
 	//Run through and save all the game objects
 	for (int i = 0; i < mEntities.size(); ++i){
-		val[i] = mEntities.at(i)->Save();
+		val[i] = (mEntities.at(i))->Save();
 	}
 	return val;
 }

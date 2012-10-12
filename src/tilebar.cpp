@@ -67,7 +67,7 @@ void TileBar::OnMouseUp(){
 std::string TileBar::GetSelection(){
 	return mSelectedTileName;
 }
-Json::Value TileBar::Save(){
+Json::Value TileBar::Save() const{
 	Json::Value val = Entity::Save();
 	val["type"] = "tilebar";
 	val["attributes"]["tilesPerRow"] = tilesPerRow;
@@ -76,7 +76,7 @@ Json::Value TileBar::Save(){
 	val["attributes"]["yOffset"] = yOffset;
 	val["attributes"]["tileWidth"] = tileWidth;
 	val["attributes"]["tileHeight"] = tileHeight;
-	val["selector"]	= mSelector.Save();
+	val["selector"]	= mSelector.File();
 
 	return val;
 }

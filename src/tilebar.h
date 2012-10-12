@@ -50,7 +50,7 @@ public:
 	*  Save the tilebar data to a json value and return it
 	*  @return Json::Value containing the tilebar data
 	*/
-	Json::Value Save();
+	virtual Json::Value Save() const;
 private:
 	enum Pane { TILE, OBJECT, ENTITY };
 

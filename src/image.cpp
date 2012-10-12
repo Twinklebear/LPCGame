@@ -54,9 +54,9 @@ void Image::GenClips(int cW, int cH){
 }
 int Image::ClipCount(){
 	return mNumClips;
+}
 SDL_Texture* Image::Texture(){
 	return mTexture.get();
-}
 }
 Recti Image::Clip(int clipNum) const {
     if (clipNum >= mNumClips || clipNum < 0 || mNumClips == 0)
