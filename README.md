@@ -7,4 +7,4 @@
 - [LuaBind](http://www.rasterbar.com/products/luabind/docs.html)
 
 ## Todo/Done:
-- Can now be found in [TODO.md](https://github.com/Twinklebear/LPCGame/blob/master/TODO.md)
+- Discussion of todos/done can now be found in the issue tracker.

@@ -1,3 +1,5 @@
+## Document only exists for reference, for the TODO plans visit the issue tracker
+
 ## How to use this document:
 Entries will be written as follows, and should be updated as work progresses. In addition the description notes should also be updated if previously unmentioned things are found to be needed to meet the goal. When an item is completed or has had major work done, tag it [In Progress: user] or [Done: user - date]. Note: Done by no means implies the feature is finalized, just that the todo item is in place.
 
