@@ -32,7 +32,7 @@ public:
 	*  @param y The y coordinate to insert tile at
 	*  @param tile The tile to insert at the point
 	*/
-	void Insert(int x, int y, Tile tile);
+	void Insert(int x, int y, std::string name);
 	/**
 	*  Remove a tile at some point, really just performs Insert
 	*  of the default tile

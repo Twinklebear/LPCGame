@@ -1,6 +1,6 @@
 #ifndef TILE_H
 #define TILE_H
-
+#include <string>
 #include "../externals/json/json.h"
 #include "rect.h"
 
@@ -19,11 +19,15 @@ public:
 	*  @param box The tile's box
 	*  @param solid The tile's solid property
 	*  @param type The tile's type, corresponds to its clip number for drawing
+	*  @param name The tile's name
 	*/
-	Tile(Recti box, int type, bool solid){
+	Tile(Recti box, bool solid, const std::string name){
 		mBox	= box;
 		mSolid	= solid;
-		mType	= type;
+		mName	= name;
+	}
+	Tile(Json::Value val){
+		Load(val);
 	}
 	///Get the tile's box
 	Recti Box() const{
@@ -33,9 +37,13 @@ public:
 	bool Solid() const{
 		return mSolid;
 	}
-	///Get the tile's type
-	int Type() const{
-		return mType;
+	///Get the tile's name
+	std::string Name() const{
+		return mName;
+	}
+	///Get the tile's image location
+	std::string Filename() const{
+		return mFilename;
 	}
 	///Set the tile's box
 	void SetBox(Recti box){
@@ -45,9 +53,13 @@ public:
 	void SetSolid(bool solid){
 		mSolid = solid;
 	}
-	///Set the tile's type
-	void SetType(int type){
-		mType = type;
+	///Set the tile's name
+	void SetName(const std::string name){
+		mName = name;
+	}
+	///Set the tile's name
+	void SetFilename(const std::string &file){
+		mFilename = file;
 	}
 	/**
 	*  Save the tile data to a json value
@@ -56,8 +68,8 @@ public:
 	Json::Value Save(){
 		Json::Value val;
 		val["box"]   = mBox.Save();
-		val["type"]  = mType;
 		val["solid"] = mSolid;
+		val["name"] = mName;
 
 		return val;
 	}
@@ -67,14 +79,15 @@ public:
 	*/
 	void Load(Json::Value val){
 		mBox.Load(val["box"]);
-		mType = val["type"].asInt();
 		mSolid = val["solid"].asBool();
+		mName = val["name"].asString();
 	}
 
 private:
 	Recti mBox;
 	bool mSolid;
-	int mType;
+	std::string mName;
+	std::string mFilename;
 };
 
 #endif
