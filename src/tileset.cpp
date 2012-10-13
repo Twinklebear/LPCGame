@@ -1,10 +1,12 @@
 #include <array>
 #include <memory>
+#include <unordered_map>
 #include <fstream>
 #include <SDL.h>
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
+#include "jsonhandler.h"
 #include "tileset.h"
 #include "window.h"
 
@@ -21,48 +23,43 @@ void TileSet::Load(Json::Value val){
 	}
 }
 void TileSet::Add(const std::string &file){
-	//Get just the config name
-	unsigned int a = file.rfind('.');
-	std::string configFile = file.substr(0, a) + ".json";
+	if (file == "")
+		return;
 
-	//Add this image
+    //Add this image
 	std::shared_ptr<SDL_Texture> newTexture;
-	newTexture.reset(Window::LoadTexture(file), SDL_DestroyTexture);
-	mImages[file] = newTexture;
+    newTexture.reset(Window::LoadTexture(file), SDL_DestroyTexture);
+    mImageSet[file] = newTexture;
 
-	//Parse the .json file
-	std::ifstream fileIn((configFile).c_str(), std::ifstream::binary);
-	if (fileIn){
-		Json::Reader reader;
-		Json::Value root;
-		if (reader.parse(fileIn, root, false)){
-			
-            //Load the config data
-            ParseImageJson(root, file);
-		}
-        else
-			//some debug output, this case should throw
-            throw std::runtime_error("Failed to parse file: " + configFile); 
-
-		fileIn.close();
-
-	}
-    else
-        throw std::runtime_error("Failed to find file: " + configFile);
+    JsonHandler handler(file);
+    //You may want to catch potential errors being thrown by read
+    ParseImageJson(handler.Read(), file);
 }
 SDL_Texture* TileSet::Texture(const std::string &file){
-	return (SDL_Texture*)mImages[mTileSet[file].Filename()].get();
+	mTileSetMap::const_iterator it;
+	it = mTileSet.find(file);
+	if (it != mTileSet.end()){
+		mImageSetMap::const_iterator iit;
+		iit = mImageSet.find(it->second.Filename());
+		if (iit != mImageSet.end())
+			return (SDL_Texture*)iit->second.get();
+	}
+	return nullptr;
 }
 Recti TileSet::Clip(const std::string &file){
-	std::map<std::string, Tile>::const_iterator it;
+	mTileSetMap::const_iterator it;
 	it = mTileSet.find(file);
 	if (it != mTileSet.end())
-		return mTileSet[file].Box();
+		return it->second.Box();
 	Recti nullRecti(0,0,0,0);
 	return nullRecti;
 }
 bool TileSet::Solid(const std::string &file){
-	return mTileSet[file].Solid();
+	mTileSetMap::const_iterator it;
+	it = mTileSet.find(file);
+	if (it != mTileSet.end())
+		return it->second.Solid();
+	return false;
 }
 void TileSet::ParseImageJson(Json::Value val, const std::string &file){
 	unsigned int a = file.rfind('.');
@@ -89,9 +86,10 @@ Json::Value TileSet::Save() {
 	Json::Value val;
 	
 	int i = 0;
-	for(std::map<std::string, std::shared_ptr<SDL_Texture>>::iterator it = mImages.begin(); it != mImages.end(); it++)
+	for(mImageSetMap::iterator it = mImageSet.begin(); it != mImageSet.end(); it++)
 	{
 		val[i]["file"] = it->first;
+		i++;
 	}
 	return val;
 }

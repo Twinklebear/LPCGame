@@ -24,9 +24,9 @@ void TileBar::Draw(Camera *cam){
 	Window::Draw(&mImage, tilebarBox, &(Recti)mImage.Clip(0));
 	
 	//Draw the tiles
-	std::map<std::string, Tile>::iterator it;
-	std::map<std::string, Tile>::iterator begin = mTileSet->Begin();
-	std::map<std::string, Tile>::iterator end = mTileSet->End();
+	mTileSetMap::iterator it;
+	mTileSetMap::iterator begin = mTileSet->Begin();
+	mTileSetMap::iterator end = mTileSet->End();
 	int i = 0;
 	for (it = begin ;it != end; it++){
 		int clip_x = spacer + ((i % tilesPerRow) * (tileWidth + spacer));

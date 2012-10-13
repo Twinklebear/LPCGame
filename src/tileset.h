@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <unordered_map>
 #include <memory>
 #include <SDL.h>
 #include <luabind/luabind.hpp>
@@ -16,6 +17,8 @@
 *  A class for storing and retreiving tiles
 */
 
+typedef std::unordered_map<std::string, Tile> mTileSetMap;
+typedef std::unordered_map<std::string, std::shared_ptr<SDL_Texture>> mImageSetMap;
 class TileSet {
 public:
 	TileSet();
@@ -64,12 +67,12 @@ public:
 	*  Returns the begining iterator of the tileset
 	*  @return iterator The beinging of the tileset.
 	*/
-	std::map<std::string, Tile>::iterator Begin() { return mTileSet.begin(); }
+	mTileSetMap::iterator Begin() { return mTileSet.begin(); }
 	/**
 	*  Returns the end iterator of the tileset
 	*  @return iterator The beinging of the tileset.
 	*/
-	std::map<std::string, Tile>::iterator End() { return mTileSet.end(); }
+	mTileSetMap::iterator End() { return mTileSet.end(); }
 	/**
 	*  Load an image and its properties from a Json::Value into the tileset
 	*  @param val The Json::Value to load from
@@ -90,8 +93,8 @@ private:
 
 protected:
 	
-	std::map<std::string, Tile> mTileSet;
-	std::map<std::string, std::shared_ptr<SDL_Texture>> mImages;
+	mTileSetMap mTileSet;
+	mImageSetMap mImageSet;
 };
 
 #endif

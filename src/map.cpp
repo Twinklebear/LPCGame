@@ -28,8 +28,7 @@ void Map::Draw(Camera *cam){
 	//If no camera we default to drawing all tiles
 	else
 		for (int i = 0; i < mTiles.size(); ++i){
-			int x;
-			//Window::Draw(&mImage, mTiles.at(i).Box(), &(Recti)mImage.Clip(mTiles.at(i).Type()));
+			Window::DrawTexture(mTileSet->Texture(mTiles.at(i).Name()),  mTiles.at(i).Box(), &(Recti)mTileSet->Clip(mTiles.at(i).Name()));
 		}
 }
 //		tempTile.SetName(val["tiles"][i]["name"].asString());
