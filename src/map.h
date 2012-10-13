@@ -8,7 +8,7 @@
 #include "image.h"
 #include "tile.h"
 #include "camera.h"
-
+#include "tileset.h"
 ///Handles the tile map
 /**
 *  Takes care of a simple tile based map
@@ -52,6 +52,8 @@ public:
 	CollisionMap GetCollisionMap(const Recti &target, int distance = 2);
 	///Get the map's box
 	Recti Box() const;
+	///Sets the tileset
+	void LoadTileSet(std::shared_ptr<TileSet> ts) { mTileSet = ts; }
     ///Get the map filename
     std::string File() const;
 	/**
@@ -72,9 +74,10 @@ public:
 
 protected:
 	std::vector<Tile> mTiles;
-	Image mImage;
 	Recti mBox;
+	std::shared_ptr<TileSet> mTileSet;
     std::string mFile;
+
 };
 
 #endif

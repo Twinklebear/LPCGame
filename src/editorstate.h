@@ -8,6 +8,7 @@
 #include "timer.h"
 #include "mapeditor.h"
 #include "tilebar.h"
+#include "tileset.h"
 #include "uiobjectmanager.h"
 
 ///Runs the editor state
@@ -60,6 +61,7 @@ protected:
 private:
 	std::shared_ptr<MapEditor> mMapEditor;
 	std::shared_ptr<UiObjectManager> mUiManager;
+	std::shared_ptr<TileSet> mTileSet;
 	//So we can get the tilebar into the gameobjecteditor
 	//NEED A BETTER WAY
 	TileBar* mTileBar;

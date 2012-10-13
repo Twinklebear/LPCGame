@@ -46,6 +46,11 @@ public:
 	*/
 	void GenClips(int cW, int cH);
 	/**
+	*  Returns the number of clips in the image
+	*  @return int The number of clips.
+	*/
+	int ClipCount();
+	/**
 	*  Get the raw SDL_Texture pointer, this is only used inside the Window's draw
 	*  functions as SDL expects a regular SDL_Texture pointer to draw
 	*  @see Window

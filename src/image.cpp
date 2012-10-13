@@ -52,6 +52,9 @@ void Image::GenClips(int cW, int cH){
 		mClips[i] = cRect;
 	}
 }
+int Image::ClipCount(){
+	return mNumClips;
+}
 SDL_Texture* Image::Texture(){
 	return mTexture.get();
 }

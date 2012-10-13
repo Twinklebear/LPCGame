@@ -24,10 +24,15 @@
    "map" : "../res/maps/testlevel.json",
    "name" : "gGame",
    "script" : "",
+   "tileset" : [
+      {
+         "file" : "../res/img/forest.png"
+      }
+   ],
    "ui" : [
       {
          "image" : "../res/img/simplebutton.png",
-         "name" : "",
+         "name" : "forest - Grass - Plain",
          "param" : "mIntro",
          "physics" : {
             "box" : {
