@@ -14,6 +14,8 @@ TileSet::TileSet()
 {
 }
 TileSet::~TileSet(){
+	for(mImageSetMap::iterator it = mImageSet.begin(); it != mImageSet.end(); it++)
+		it->second.reset();
 }
 void TileSet::Load(Json::Value val){
 	int size = val.size();
