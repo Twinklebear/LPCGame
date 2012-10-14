@@ -1,5 +1,6 @@
 #include <array>
 #include <memory>
+#include <string>
 #include <unordered_map>
 #include <fstream>
 #include <SDL.h>
@@ -47,6 +48,17 @@ SDL_Texture* TileSet::Texture(const std::string &file){
 			return (SDL_Texture*)iit->second.get();
 	}
 	return nullptr;
+}
+std::string TileSet::File(const std::string &file){
+	mTileSetMap::const_iterator it;
+	it = mTileSet.find(file);
+	if (it != mTileSet.end()){
+		mImageSetMap::const_iterator iit;
+		iit = mImageSet.find(it->second.Filename());
+		if (iit != mImageSet.end())
+			return iit->first;
+	}
+	return "";
 }
 Recti TileSet::Clip(const std::string &file){
 	mTileSetMap::const_iterator it;

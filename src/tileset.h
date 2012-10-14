@@ -39,19 +39,26 @@ public:
 	*/
 	virtual void Add(const std::string &file);
 	/**
-	*  Gets pointer to the SDL_Texture that is associated with with
+	*  Gets pointer to the SDL_Texture that is associated with
 	*  the passed tile name.
 	*  @param tile The name of the tile in the tileset
 	*  @return SDL_Texture* A pointer to the associated iamge
 	*/
 	virtual SDL_Texture* Texture(const std::string &tile);
 	/**
-	*  Gets the Recti (Box) that is associated with with
-	*  the passed tile name.
+	*  Gets the Recti (Box) that is associated with the passed 
+	*  tile name.
 	*  @param tile The name of the tile in the tileset
 	*  @return Recti A box for the associated iamge
 	*/
 	virtual Recti Clip(const std::string &tile);
+	/**
+	*  Gets the filename of the image that is associated 
+	*  with the passed tile name.
+	*  @param tile The name of the tile in the tileset
+	*  @return Recti A box for the associated iamge
+	*/
+	virtual std::string File(const std::string &tile);
 	/**
 	*  Gets the bool Solid property of the tile.
 	*  @param tile The name of the tile in the tileset
