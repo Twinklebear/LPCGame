@@ -40,6 +40,13 @@ public:
 	}
 	/**
 	*  Set the rect's properties
+	*  @param val The Json::Value containing x, y, w, h
+	*/
+	Rect(Json::Value val){
+		Load(val);
+	}
+	/**
+	*  Set the rect's properties
 	*  @param pX The x position
 	*  @param pY The y position
 	*  @param pW The width
