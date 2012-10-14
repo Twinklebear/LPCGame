@@ -122,25 +122,25 @@
             "type": 10
         },
         {
-            "name": "Post - Wood",
+            "name": "Path - Rock",
             "box": {
                 "h": 32,
                 "w": 32,
                 "x": 96,
                 "y": 64
             },
-            "solid": true,
+            "solid": false,
             "type": 11
         },
         {
-            "name": "Path - Rock",
+            "name": "Post - Wood",
             "box": {
                 "h": 32,
                 "w": 32,
                 "x": 128,
                 "y": 0
             },
-            "solid": false,
+            "solid": true,
             "type": 12
         },
         {
