@@ -6,6 +6,7 @@ require "Vector2"
 require "Window"
 require "Camera"
 require "Math"
+require "Debug"
 
 --Init the script
 function Init()
@@ -13,6 +14,7 @@ function Init()
 	img = LPC.AnimatedImage("../res/img/animtest.png")
 	img:Play("idle")
 	rect = entity:Box()
+	LPC.Debug.Log("NPC Init: Debugging test!")
 end
 function Free()
 end

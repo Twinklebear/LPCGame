@@ -18,6 +18,7 @@
     <ClInclude Include="..\src\button.h" />
     <ClInclude Include="..\src\camera.h" />
     <ClInclude Include="..\src\color.h" />
+    <ClInclude Include="..\src\debug.h" />
     <ClInclude Include="..\src\editorstate.h" />
     <ClInclude Include="..\src\entity.h" />
     <ClInclude Include="..\src\entityeditor.h" />
@@ -53,6 +54,7 @@
     <ClCompile Include="..\src\button.cpp" />
     <ClCompile Include="..\src\camera.cpp" />
     <ClCompile Include="..\src\color.cpp" />
+    <ClCompile Include="..\src\debug.cpp" />
     <ClCompile Include="..\src\editorstate.cpp" />
     <ClCompile Include="..\src\entity.cpp" />
     <ClCompile Include="..\src\entityeditor.cpp" />

@@ -134,7 +134,7 @@ void Entity::SetTag(std::string tag){
 std::string Entity::Tag() const {
 	return mTag;
 }
-Json::Value Entity::Save() const{
+Json::Value Entity::Save() const {
 	//How to specify overrides to save?
     Json::Value val;
     if (mConfigFile != "")
@@ -149,6 +149,8 @@ Json::Value Entity::Save() const{
 	return val;
 }
 void Entity::Save(const std::string &file) const {
+    //Eventually will be merged in some manner with the other 
+    //save function
     Json::Value val;
     val["image"]   = mImage.File();
 	val["physics"] = mPhysics.Save();

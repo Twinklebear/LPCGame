@@ -10,6 +10,8 @@ Release/
 
 # ignore my doxygen file
 *.doxy
+# ignore logging files
+Debug/*.log
 
 #################
 ## Visual Studio

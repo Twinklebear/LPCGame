@@ -19,6 +19,7 @@
 #include "timer.h"
 #include "vectors.h"
 #include "window.h"
+#include "debug.h"
 #include "luascript.h"
 
 //Setup the unordered_map
@@ -57,6 +58,7 @@ LuaScript::TRegisterLuaMap LuaScript::CreateMap(){
     map["Button"]        = &Button::RegisterLua;
     map["Camera"]        = &Camera::RegisterLua;
     map["Color"]         = &Color::RegisterLua;
+    map["Debug"]         = &Debug::RegisterLua;
     map["Entity"]        = &Entity::RegisterLua;
     map["Image"]         = &Image::RegisterLua;
     map["Input"]         = &Input::RegisterLua;
