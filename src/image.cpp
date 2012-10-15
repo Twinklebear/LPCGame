@@ -82,6 +82,8 @@ void Image::Load(Json::Value val){
 }
 void Image::Load(const std::string &file){
 	mFile = file;
+    if (mFile == "")
+        Debug::Log("Image: No filename specified");
 	mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
     //With the new JsonHandler
     JsonHandler jsonHandler(file);
