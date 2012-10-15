@@ -7,6 +7,7 @@
 #include "rect.h"
 #include "window.h"
 #include "jsonhandler.h"
+#include "debug.h"
 #include "image.h"
 
 Image::Image()
@@ -32,7 +33,7 @@ void Image::SetClips(const std::vector<Recti> &clips){
 void Image::GenClips(int cW, int cH){
 	//Make sure we've got a texture to query
 	if (mTexture == nullptr)
-		throw std::runtime_error("Must load texture before generating clips");
+		Debug::Log("Must load texture before generating clips");
 
 	//clear any existing clips
 	int iW, iH;
@@ -60,7 +61,7 @@ SDL_Texture* Image::Texture(){
 }
 Recti Image::Clip(int clipNum) const {
     if (clipNum >= mNumClips || clipNum < 0 || mNumClips == 0)
-		throw std::runtime_error("Image::Clip ERROR: " + mFile +  "Clip num out of bounds");  
+		Debug::Log("Image::Clip ERROR: " + mFile +  "Clip num out of bounds");  
 
 	return mClips[clipNum];
 }
@@ -81,15 +82,10 @@ void Image::Load(Json::Value val){
 }
 void Image::Load(const std::string &file){
 	mFile = file;
-    try {
-	    mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
-        //With the new JsonHandler
-        JsonHandler jsonHandler(file);
-        Load(jsonHandler.Read());
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-    }
+	mTexture.reset(Window::LoadTexture(mFile), SDL_DestroyTexture);
+    //With the new JsonHandler
+    JsonHandler jsonHandler(file);
+    Load(jsonHandler.Read());
 }
 Json::Value Image::SaveClips() const {
     Json::Value val;

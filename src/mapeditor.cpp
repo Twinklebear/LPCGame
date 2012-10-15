@@ -34,14 +34,9 @@ void MapEditor::GenerateBlank(int x, int y){
 	}
 }
 void MapEditor::Insert(int x, int y, std::string name){
-	try {
-		int i = CalculateIndex(x, y, mBox.W(), mBox.H());
-		mTiles.at(i).SetName(name);
-	}
-	catch(...){
-		//We just need to catch the error so we don't crash,
-		//it should be obvious to user if they click off the map
-	}
+	int i = CalculateIndex(x, y, mBox.W(), mBox.H());
+    if (i > -1)
+	    mTiles.at(i).SetName(name);
 }
 void MapEditor::Remove(int x, int y){
 	Tile blank(Recti(0, 0, 0, 0), false, "");

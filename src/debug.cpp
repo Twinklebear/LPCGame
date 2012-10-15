@@ -12,7 +12,7 @@ void Debug::Init(){
 void Debug::Quit(){
     logOut.close();
 }
-void Debug::Log(const std::string &text){
+void Debug::Log(const std::string text){
     //Calculate the formatted time since startup
     float sec = SDL_GetTicks() / 1000.0f;
     int hrs = (sec / 3600);

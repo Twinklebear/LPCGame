@@ -30,9 +30,8 @@ public:
 	/**
 	*  Load a state from file by its name
 	*  @param name The state name to load for the state, state and file names are same
-	*  @return True if state was successfully loaded
 	*/
-	static bool LoadState(std::string name);
+	static void LoadState(std::string name);
 	/**
 	*  Save a state to a data file corresponding to its name
 	*  @param name The state name to save, state and file names are the same

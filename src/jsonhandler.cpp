@@ -2,6 +2,7 @@
 #include <fstream>
 #include <stdexcept>
 #include "../externals/json/json.h"
+#include "debug.h"
 #include "jsonhandler.h"
 
 JsonHandler::JsonHandler(const std::string file) : mFile(""){
@@ -18,20 +19,18 @@ JsonHandler::~JsonHandler(){
 }
 Json::Value JsonHandler::Read() const {
     std::ifstream fileIn(mFile.c_str(), std::ifstream::binary);
+    Json::Value root;
     if (fileIn){
         Json::Reader reader;
-        Json::Value root;
-        if (reader.parse(fileIn, root, false)){
+        if (reader.parse(fileIn, root, false))
             fileIn.close();
-            return root;
-        }
-        else {
-            fileIn.close();
-            throw std::runtime_error("JsonHandler: Failed to parse: " + mFile);
-        }
+        else
+            Debug::Log("JsonHandler: Failed to parse: " + mFile);
     }
     else
-        throw std::runtime_error("JsonHandler: Failed to find: " + mFile);
+        Debug::Log("JsonHandler: Failed to find: " + mFile);
+    fileIn.close();
+    return root;
 }
 void JsonHandler::Write(const Json::Value &data) const {
     std::ofstream fileOut(mFile.c_str());

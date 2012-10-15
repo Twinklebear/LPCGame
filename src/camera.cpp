@@ -77,7 +77,6 @@ void Camera::Pan(std::string name){
 std::string Camera::Scene(){
 	return mScene;
 }
-
 void Camera::SetBox(Rectf box){
 	//The camera box can't be bigger than the scene box
 	if (mSceneBox.w != 0 && mSceneBox.h != 0){

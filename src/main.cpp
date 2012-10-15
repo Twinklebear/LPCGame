@@ -8,7 +8,12 @@
 #undef main
 int main(int argc, char** argv){
 	//Initialize statics
-	Window::Init();
+    try {
+	    Window::Init();
+    }
+    catch (const std::runtime_error &e){
+        Debug::Log(e.what());
+    }
     Debug::Init();
 	Input::Init();
 

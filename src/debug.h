@@ -17,7 +17,7 @@ public:
     *  Time is measured since program initializiation in HH:MM:SS
     *  @param text The text to log
     */
-    static void Log(const std::string &text);
+    static void Log(const std::string text);
     /**
 	*  Register the Debug class with the lua state
 	*  @param l The lua_State to register the module with

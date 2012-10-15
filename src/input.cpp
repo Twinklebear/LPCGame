@@ -26,6 +26,7 @@ void Input::Init(){
         mJoystick = SDL_JoystickOpen(0);
         if (mJoystick){
             /*
+            *  Leave this code here for now for reference when creating the HapticEffect class
             std::cout << "Joystick 0 Dump:" << std::endl
                 << "  Name: " << SDL_JoystickName(0) << std::endl
                 << "  # Axes: " << SDL_JoystickNumAxes(mJoystick) << std::endl

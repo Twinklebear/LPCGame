@@ -136,12 +136,7 @@ void Map::Load(Json::Value val){
 }
 void Map::Load(const std::string &&file){
     mFile = file;
-    try {
-        JsonHandler handler(mFile);
-        Load(handler.Read());
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-    }
+    JsonHandler handler(mFile);
+    Load(handler.Read());
 	lastCamera = nullptr;
 }

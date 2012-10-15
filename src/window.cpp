@@ -9,9 +9,8 @@
 #include "rect.h"
 #include "image.h"
 #include "animatedimage.h"
+#include "debug.h"
 #include "window.h"
-
-#include <iostream>
 
 //Initialize the unique_ptr's deleters here
 std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> Window::mWindow 
@@ -24,7 +23,8 @@ int Window::SCREEN_WIDTH;
 int Window::SCREEN_HEIGHT;
 
 void Window::Init(std::string title){
-	//initialize all SDL subsystems
+	//initialize all SDL subsystems, need error handling here because
+    //we should quit if this fails, since we'll crash anyways
     if (SDL_Init(SDL_INIT_EVERYTHING) == -1)
 		throw std::runtime_error("SDL Init Failed");
     if (TTF_Init() == -1)
@@ -101,7 +101,7 @@ SDL_Texture* Window::LoadTexture(std::string file){
 	SDL_Texture *tex = nullptr;
 	tex = IMG_LoadTexture(mRenderer.get(), file.c_str());
 	if (tex == nullptr)
-		throw std::runtime_error("Failed to load image: " + file);
+		Debug::Log("Failed to load image: " + file + " - " + IMG_GetError());
 	return tex;
 }
 SDL_Texture* Window::RenderText(std::string message, std::string fontFile, 
@@ -111,7 +111,7 @@ SDL_Texture* Window::RenderText(std::string message, std::string fontFile,
 	TTF_Font *font = nullptr;
 	font = TTF_OpenFont(fontFile.c_str(), fontSize);
 	if (font == nullptr)
-		throw std::runtime_error("Failed to load font: " + fontFile + TTF_GetError());
+		Debug::Log("Failed to load font: " + fontFile + " - " + TTF_GetError());
 	
 	//Render the message to an SDL_Surface, as that's what TTF_RenderText_X returns
 	SDL_Surface *surf = TTF_RenderText_Blended(font, message.c_str(), color.Get());
@@ -126,7 +126,7 @@ SDL_Texture* Window::SurfaceToTexture(SDL_Surface *surf){
 	SDL_Texture *tex = nullptr;
 	tex = SDL_CreateTextureFromSurface(mRenderer.get(), surf);
 	if (tex == nullptr)
-		throw std::runtime_error("Failed to convert surface");
+		Debug::Log("Failed to convert surface");
 	SDL_FreeSurface(surf);
 	return tex;
 }

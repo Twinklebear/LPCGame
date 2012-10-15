@@ -9,6 +9,7 @@
 #include "menustate.h"
 #include "editorstate.h"
 #include "jsonhandler.h"
+#include "debug.h"
 #include "statemanager.h"
 
 std::shared_ptr<State> StateManager::mActiveState;
@@ -21,25 +22,17 @@ void StateManager::SetState(State* state){
 	mActiveState.reset(state);
 }
 void StateManager::SetActiveState(std::string name){
-	if (!LoadState(name))
-		throw std::runtime_error("Failed to load state: " + name);
-    
+    LoadState(name);
     std::string stateCode = "quit";
     //Catching state errors for debugging, if error thrown program quits
-    try {
-	    stateCode = mActiveState->Run();
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-    }
-
+    stateCode = mActiveState->Run();
 	SaveState(mActiveState->Name());
 
 	if (stateCode == "quit")
 		return;
 	else (SetActiveState(stateCode));
 }
-bool StateManager::LoadState(std::string name){
+void StateManager::LoadState(std::string name){
     JsonHandler jsonHandler((mStatesDir + name + ".json"));
 
     //Differentiate between menu and game states
@@ -47,41 +40,22 @@ bool StateManager::LoadState(std::string name){
     //the only differences should be in the script/json? hmm
     if (name.at(0) == 'm'){
         MenuState *menu = new MenuState();
-        try {
-            menu->Load(jsonHandler.Read());
-        }
-        catch (const std::runtime_error &e){
-            std::cout << e.what() << std::endl;
-            return false;
-        }
+        menu->Load(jsonHandler.Read());
         SetState((State*)menu);
-        return true;
+        return;
     }
     if (name.at(0) == 'g'){
         GameState *game = new GameState();
-        try {
-            game->Load(jsonHandler.Read());
-        }
-        catch (const std::runtime_error &e){
-            std::cout << e.what() << std::endl;
-            return false;
-        }
+        game->Load(jsonHandler.Read());
         SetState((State*)game);
-        return true;
+        return;
     }
     if (name.at(0) == 'e'){
         EditorState *editor = new EditorState();
-        try {
-            editor->Load(jsonHandler.Read());
-        }
-        catch (const std::runtime_error &e){
-            std::cout << e.what() << std::endl;
-            return false;
-        }
+        editor->Load(jsonHandler.Read());
         SetState((State*)editor);
-        return true;
+        return;
     }
-    return false;
 }
 void StateManager::SaveState(std::string name){
     JsonHandler jsonHandler((mStatesDir + name + ".json"));

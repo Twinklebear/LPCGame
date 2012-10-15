@@ -2,6 +2,7 @@
 #include "../externals/json/json.h"
 #include "math.h"
 #include "motionstate.h"
+#include "debug.h"
 #include "physics.h"
 
 Physics::Physics(){
@@ -131,12 +132,12 @@ void Physics::SetAcceleration(Vector2f accel){
 }
 void Physics::SetHorizDir(int moveDir){
 	if (moveDir == Math::UP || moveDir == Math::DOWN)
-		throw std::runtime_error("Bad Horizontal Direction");
+		Debug::Log("Bad Horizontal Direction");
 	mHorizDir = moveDir;
 }
 void Physics::SetVertDir(int moveDir){
 	if (moveDir == Math::LEFT || moveDir == Math::RIGHT)
-		throw std::runtime_error("Bad Vertical Direction");
+		Debug::Log("Bad Vertical Direction");
 	mVertDir = moveDir;
 }
 void Physics::SetPhysConstants(PhysicalConstants physConstants){

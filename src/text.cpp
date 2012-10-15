@@ -8,6 +8,7 @@
 #include "rect.h"
 #include "window.h"
 #include "color.h"
+#include "debug.h"
 #include "text.h"
 
 Text::Text() : mTex(nullptr, SDL_DestroyTexture), mMessage(""), mFontSize(0)
@@ -16,12 +17,7 @@ Text::Text() : mTex(nullptr, SDL_DestroyTexture), mMessage(""), mFontSize(0)
 Text::Text(std::string message, std::string font, Color color, int fontSize) 
 	: mTex(nullptr, SDL_DestroyTexture)
 {
-	try {
-		Set(message, font, color, fontSize);
-	}
-	catch (const std::runtime_error &e){
-		throw e;
-	}
+    Set(message, font, color, fontSize);
 }
 Text::~Text(){}
 void Text::Set(std::string message, std::string font, Color color, int fontSize){
@@ -29,14 +25,9 @@ void Text::Set(std::string message, std::string font, Color color, int fontSize)
 	mColor	  = color;
 	mFontFile = font;
 	mFontSize = fontSize;
-	try {
-		mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
-	}
-	catch (const std::runtime_error &e){
-		throw e;
-	}
+	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
 	if (mTex == nullptr)
-		throw std::runtime_error("Failed to setup message");
+		Debug::Log("Failed to setup message");
 }
 void Text::SetMessage(std::string message){
 	//Make sure we don't do it if the messages already match
@@ -46,7 +37,7 @@ void Text::SetMessage(std::string message){
 	mMessage = message;
 	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
 	if (mTex == nullptr)
-		throw std::runtime_error("Failed to set message texture");
+		Debug::Log("Failed to set message texture");
 }
 void Text::SetFont(std::string font){
 	if (mFontFile == font)
@@ -55,7 +46,7 @@ void Text::SetFont(std::string font){
 	//Load the new font
 	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
 	if (mTex == nullptr)
-		throw std::runtime_error("Failed to set message texture");
+		Debug::Log("Failed to set message texture");
 }
 void Text::SetFontSize(int fontSize){
 	if (mFontSize == fontSize)
@@ -64,7 +55,7 @@ void Text::SetFontSize(int fontSize){
 	//Reload font with new fontsize
 	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
 	if (mTex == nullptr)
-		throw std::runtime_error("Failed to open font: " + mFontFile);	
+		Debug::Log("Failed to open font: " + mFontFile);	
 }
 void Text::SetColor(Color color){
 	if (mColor == color)
@@ -73,7 +64,7 @@ void Text::SetColor(Color color){
 	//Render the new message
 	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
 	if (mTex == nullptr)
-		throw std::runtime_error("Failed to set message texture");
+		Debug::Log("Failed to set message texture");
 }
 SDL_Texture* Text::Texture(){
 	return mTex.get();

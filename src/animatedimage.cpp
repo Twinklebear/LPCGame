@@ -33,13 +33,7 @@ AnimatedImage::AnimatedImage()
 AnimatedImage::AnimatedImage(const std::string &file) 
     : mActiveAnimation(0), mFrame(0)
 {
-    //Try to load an image config
-    try {
-        Image::Load(file);
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-    }
+    Image::Load(file);
 }
 AnimatedImage::~AnimatedImage(){
 }

@@ -85,7 +85,7 @@ int LuaScript::RequireModule(lua_State *l){
     }
     else {
         std::string err = "\n\tRequireModule Error: failed to find: " + module + "\n";
-        std::cout << err << std::endl;
+        Debug::Log(err);
         lua_pushstring(l, err.c_str());
     }
     return 1;
@@ -105,14 +105,10 @@ int LuaScript::RequireScript(lua_State *l){
             lua_pushcfunction(l, LuaScript::DoScript);
         }
         else {
-            std::string err = "\n\tRequireScript Error: Failed to find" + scriptFile + "\n";
-            std::cout << err << std::endl;
+            std::string err = "RequireScript Error: Failed to find" + scriptFile;
+            Debug::Log(err);
             lua_pushstring(l, err.c_str());
         }
-    }
-    else {
-        std::string err = "\n\tRequireScript Error: " + script + " not a script\n";
-        lua_pushstring(l, err.c_str());
     }
     return 1;
 }

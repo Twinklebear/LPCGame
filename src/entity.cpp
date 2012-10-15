@@ -5,6 +5,7 @@
 #include "math.h"
 #include "luascript.h"
 #include "jsonhandler.h"
+#include "debug.h"
 #include "entity.h"
 
 Entity::Entity() : mMouseOver(false), mConfigFile(""){
@@ -27,8 +28,8 @@ void Entity::Init(){
         luabind::globals(mScript.Get())["entity"] = this;
 		luabind::call_function<void>(mScript.Get(), "Init");
 	}
-	catch(...){
-		std::cout << "Init issue: " << lua_error(mScript.Get()) << std::endl;
+	catch(const std::exception &e){
+        Debug::Log("Entity: " + mName + " Init issue: " + e.what());
 	}
 }
 void Entity::Free(){
@@ -170,15 +171,10 @@ void Entity::Load(Json::Value val){
 }
 void Entity::Load(const std::string &file, Json::Value overrides){
     mConfigFile = file;
-    try {
-        JsonHandler handler(mConfigFile);
-        Json::Value data = handler.Read();
-        data["overrides"] = overrides;
-        Load(data);
-    }
-    catch (const std::runtime_error &e){
-        std::cout << e.what() << std::endl;
-    }
+    JsonHandler handler(mConfigFile);
+    Json::Value data = handler.Read();
+    data["overrides"] = overrides;
+    Load(data);
 }
 int Entity::RegisterLua(lua_State *l){
 	using namespace luabind;
