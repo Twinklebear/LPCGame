@@ -102,6 +102,18 @@ protected:
 	
 	mTileSetMap mTileSet;
 	mImageSetMap mImageSet;
+	mTileSetMap::iterator mTileSetBegin;
+	mTileSetMap::iterator mTileSetEnd;
+	mImageSetMap::iterator mImageSetBegin;
+	mImageSetMap::iterator mImageSetEnd;
+
+	SDL_Texture* lastTexture;
+	std::string lastTextureName;
+
+	Tile lastTile;
+	std::string lastTileName;
+
+
 };
 
 #endif
