@@ -38,13 +38,25 @@ void TileBar::Draw(Camera *cam){
 		++i;
 	}	
 
+	Color white(255,255,255);
+	Text name(mSelectedTileName, "../res/fonts/SourceSansPro-Regular.ttf", white, 20);
+	Text solid(mTileSet->Solid(mSelectedTileName) ? "Solid: True" : "Solid: False", "../res/fonts/SourceSansPro-Regular.ttf", white, 14);
+	Text file(mTileSet->File(mSelectedTileName), "../res/fonts/SourceSansPro-Regular.ttf", white, 14);
+
+	Rectf asdf(xOffset, yOffset + box_height, 200, 200);
+	Rectf asdf2(xOffset, yOffset + box_height + 20, 200, 200);
+	Rectf asdf3(xOffset, yOffset + box_height + 34, 200, 200);
+	Window::Draw(&name, asdf);
+	Window::Draw(&solid, asdf2);
+	Window::Draw(&file, asdf3);
+
 	//Draw the selector
 	int selector_x = ((mSelectedTile % tilesPerRow) * (tileWidth + spacer)) + spacer;
 	int selector_y = ((mSelectedTile / tilesPerRow) * (tileHeight + spacer)) + spacer;
 	Recti selector_box(selector_x,selector_y,box_width,box_height);
 	Window::Draw(&mSelector, Recti((selector_box.Pos() + tilebarBox.Pos() - Vector2i(2, 2)), tileWidth + 4, tileHeight + 4));
 }
-void TileBar::OnMouseUp(){
+void TileBar::OnMouseDown(){
 	Vector2f mousePos = Input::MousePos();
 
 	//Calculate if an area that could possess a tile was hit

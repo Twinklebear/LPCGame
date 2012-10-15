@@ -1,5 +1,6 @@
 #include <array>
 #include <memory>
+#include <string>
 #include <unordered_map>
 #include <fstream>
 #include <SDL.h>
@@ -36,31 +37,85 @@ void TileSet::Add(const std::string &file){
     JsonHandler handler(file);
     //You may want to catch potential errors being thrown by read
     ParseImageJson(handler.Read(), file);
+	mTileSetBegin = mTileSet.begin();
+	mTileSetEnd   = mTileSet.end();
+	mImageSetBegin = mImageSet.begin();
+	mImageSetEnd   = mImageSet.end();
+	lastTexture = nullptr;
+	lastTextureName = "";
+	lastTileName = "";
 }
-SDL_Texture* TileSet::Texture(const std::string &file){
-	mTileSetMap::const_iterator it;
-	it = mTileSet.find(file);
-	if (it != mTileSet.end()){
-		mImageSetMap::const_iterator iit;
-		iit = mImageSet.find(it->second.Filename());
-		if (iit != mImageSet.end())
-			return (SDL_Texture*)iit->second.get();
+SDL_Texture* TileSet::Texture(const std::string &tile){
+	std::string fileName = tile.substr(0, tile.find(' - '));
+
+	if (lastTextureName == fileName)
+		return lastTexture;
+
+	if (lastTileName == tile){
+		mImageSetMap::const_iterator iit = mImageSet.find(lastTile.Filename());
+		if (iit != mImageSetEnd){
+			lastTextureName = lastTileName.substr(0, tile.find(' - '));
+			lastTexture = iit->second.get();
+			return lastTexture;
+		}
 	}
+	else {
+		mTileSetMap::const_iterator it = mTileSet.find(tile);
+		if (it != mTileSetEnd){
+			lastTile = (it->second);
+			lastTileName = tile;
+
+			mImageSetMap::const_iterator iit = mImageSet.find(lastTile.Filename());
+			if (iit != mImageSetEnd){
+				lastTextureName = lastTileName.substr(0, tile.find(' - '));
+				lastTexture = iit->second.get();
+				return lastTexture;
+			}
+		}
+	}
+
 	return nullptr;
 }
-Recti TileSet::Clip(const std::string &file){
+std::string TileSet::File(const std::string &tile){
+	if (lastTileName == tile)
+		return lastTile.Filename();
+
 	mTileSetMap::const_iterator it;
-	it = mTileSet.find(file);
-	if (it != mTileSet.end())
-		return it->second.Box();
+	it = mTileSet.find(tile);
+	if (it != mTileSetEnd){
+		mImageSetMap::const_iterator iit;
+		iit = mImageSet.find(it->second.Filename());
+		if (iit != mImageSetEnd){
+			lastTile = (it->second);
+			lastTileName = tile;
+			return lastTile.Filename();
+		}
+	}
+	return "";
+}
+Recti TileSet::Clip(const std::string &tile){
+	if (lastTileName == tile)
+		return lastTile.Box();
+
+	mTileSetMap::const_iterator it;
+	it = mTileSet.find(tile);
+	if (it != mTileSetEnd)
+		lastTile = (it->second);
+		lastTileName = tile;
+		return lastTile.Box();
 	Recti nullRecti(0,0,0,0);
 	return nullRecti;
 }
-bool TileSet::Solid(const std::string &file){
+bool TileSet::Solid(const std::string &tile){
+	if (lastTileName == tile)
+		return lastTile.Solid();
+
 	mTileSetMap::const_iterator it;
-	it = mTileSet.find(file);
-	if (it != mTileSet.end())
-		return it->second.Solid();
+	it = mTileSet.find(tile);
+	if (it != mTileSetEnd)
+		lastTile = (it->second);
+		lastTileName = tile;
+		return lastTile.Solid();
 	return false;
 }
 void TileSet::ParseImageJson(Json::Value val, const std::string &file){

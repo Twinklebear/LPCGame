@@ -24,7 +24,7 @@ public:
 	*/
 	void Draw(Camera *cam = nullptr);
 	///On mouse up event
-	void OnMouseUp();
+	void OnMouseDown();
 	/**
 	*  Get the selected tile type
 	*  @return The tile type that is currently selected
