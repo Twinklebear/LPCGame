@@ -48,7 +48,7 @@ Json::Value Color::Save() const {
 void Color::Load(Json::Value val){
 	Set(val["r"].asInt(), val["g"].asInt(), val["b"].asInt());
 }
-bool Color::operator == (const Color c) const{
+bool Color::operator == (const Color &c) const {
 	return (mColor.r == c.R() && mColor.b == c.B() && mColor.g == c.G());
 }
 int Color::RegisterLua(lua_State *l){

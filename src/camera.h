@@ -108,6 +108,9 @@ public:
 	*  @param l The lua_State to register the module with
 	*/
 	static int RegisterLua(lua_State *l);
+    ///Operators
+    bool operator == (const Camera &c) const;
+    bool operator != (const Camera &c) const;
 
 private:
 	std::weak_ptr<Entity> mFocus;

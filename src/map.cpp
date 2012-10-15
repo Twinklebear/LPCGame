@@ -10,7 +10,7 @@
 #include "jsonhandler.h"
 #include "map.h"
 
-Map::Map() : mFile(""){
+Map::Map() : mFile(""), lastCamera(nullptr){
 }
 Map::~Map(){
 	mTiles.clear();
@@ -18,7 +18,7 @@ Map::~Map(){
 void Map::Draw(Camera *cam){
 	//Use the camera box to get the indices of all the tiles in visible in camera
 	if (cam != nullptr){
-		if (lastCamera != cam){
+		if (lastCamera == nullptr || *lastCamera != *cam){
 			indices = CalculateIndex(cam->Box());
 			lastCamera = cam;
 		}
@@ -35,8 +35,6 @@ void Map::Draw(Camera *cam){
 			Window::DrawTexture(mTileSet->Texture(mTiles.at(i).Name()),  mTiles.at(i).Box(), &(Recti)mTileSet->Clip(mTiles.at(i).Name()));
 		}
 }
-
-//		tempTile.SetName(val["tiles"][i]["name"].asString());
 void Map::GenerateStressMap(Json::Value val){
 	int numTiles = val["numTiles"].asInt();
 	//mImage.Load(val["image"]);
@@ -65,7 +63,6 @@ int Map::CalculateIndex(int x, int y, int w, int h) const{
 		return -1;
 	}
 }
-
 std::set<int> Map::CalculateIndex(Recti area) const{
 	std::set<int> tileIndices;
 	//TODO: How can this be done without all the for loops?

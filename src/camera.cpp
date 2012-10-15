@@ -144,6 +144,14 @@ void Camera::Load(Json::Value val){
 		mPans.push_back(pan);
 	}
 }
+bool Camera::operator == (const Camera &c) const {
+    Rectf cBox = c.Box();
+    return (mBox.X() == cBox.X() && mBox.Y() == cBox.Y() &&
+            mBox.w == cBox.w && mBox.h == cBox.h);
+}
+bool Camera::operator != (const Camera &c) const {
+    return !(*this == c);
+}
 int Camera::RegisterLua(lua_State *l){
 	using namespace luabind;
 
