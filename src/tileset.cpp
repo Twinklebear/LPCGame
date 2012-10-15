@@ -46,13 +46,15 @@ void TileSet::Add(const std::string &file){
 	lastTileName = "";
 }
 SDL_Texture* TileSet::Texture(const std::string &tile){
-	if (lastTextureName == tile)
+	std::string fileName = tile.substr(0, tile.find(' - '));
+
+	if (lastTextureName == fileName)
 		return lastTexture;
 
 	if (lastTileName == tile){
 		mImageSetMap::const_iterator iit = mImageSet.find(lastTile.Filename());
 		if (iit != mImageSetEnd){
-			lastTextureName = lastTileName;
+			lastTextureName = lastTileName.substr(0, tile.find(' - '));
 			lastTexture = iit->second.get();
 			return lastTexture;
 		}
@@ -65,7 +67,7 @@ SDL_Texture* TileSet::Texture(const std::string &tile){
 
 			mImageSetMap::const_iterator iit = mImageSet.find(lastTile.Filename());
 			if (iit != mImageSetEnd){
-				lastTextureName = lastTileName;
+				lastTextureName = lastTileName.substr(0, tile.find(' - '));
 				lastTexture = iit->second.get();
 				return lastTexture;
 			}
