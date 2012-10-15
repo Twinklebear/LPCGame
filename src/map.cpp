@@ -1,4 +1,5 @@
 #include <vector>
+#include <set>
 #include <string>
 #include <cmath>
 #include "../externals/json/json.h"
@@ -17,7 +18,10 @@ Map::~Map(){
 void Map::Draw(Camera *cam){
 	//Use the camera box to get the indices of all the tiles in visible in camera
 	if (cam != nullptr){
-		std::vector<int> indices = CalculateIndex(cam->Box());
+		if (lastCamera != cam){
+			indices = CalculateIndex(cam->Box());
+			lastCamera = cam;
+		}
 		for (int i : indices){
 			if (i < mTiles.size()){
 				Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
@@ -31,6 +35,7 @@ void Map::Draw(Camera *cam){
 			Window::DrawTexture(mTileSet->Texture(mTiles.at(i).Name()),  mTiles.at(i).Box(), &(Recti)mTileSet->Clip(mTiles.at(i).Name()));
 		}
 }
+
 //		tempTile.SetName(val["tiles"][i]["name"].asString());
 void Map::GenerateStressMap(Json::Value val){
 	int numTiles = val["numTiles"].asInt();
@@ -61,8 +66,8 @@ int Map::CalculateIndex(int x, int y, int w, int h) const{
 	}
 }
 
-std::vector<int> Map::CalculateIndex(Recti area) const{
-	std::vector<int> tileIndices;
+std::set<int> Map::CalculateIndex(Recti area) const{
+	std::set<int> tileIndices;
 	//TODO: How can this be done without all the for loops?
     //Generating these beforehand so that there does not
 	//have to be so many calls during the future loops
@@ -72,13 +77,15 @@ std::vector<int> Map::CalculateIndex(Recti area) const{
 	int area_h = area.H();
 	int mbox_w = mBox.W();
 	int mbox_h = mBox.H();
-
+	std::set<int>::iterator it = tileIndices.begin();
+	int lastIndex = -1;
 	for (int y = area_y; y <= area_y + area_h; y += TILE_HEIGHT / 2){
 		for (int x = area_x; x <= area_x + area_w; x += TILE_WIDTH / 2){
 			//find the appropriate index and place it with the tiles
 			int index = CalculateIndex(x, y, mbox_w, mbox_h);
-			if (index >= 0){
-				tileIndices.push_back(index);
+			if (index >= 0 && index != lastIndex){
+				tileIndices.insert(it, index);
+				lastIndex = index;
 			}
 		}
 	}
@@ -90,7 +97,7 @@ CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 		((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),
 		((target.Y() + target.H() + distance * TILE_HEIGHT) - (target.Y() - distance * TILE_HEIGHT)));
 
-	std::vector<int> indices = CalculateIndex(area);
+	std::set<int> indices = CalculateIndex(area);
 	//Setup the collision map
 	CollisionMap localMap;
 	for (int i : indices){
@@ -139,4 +146,5 @@ void Map::Load(const std::string &&file){
     catch (const std::runtime_error &e){
         std::cout << e.what() << std::endl;
     }
+	lastCamera = nullptr;
 }

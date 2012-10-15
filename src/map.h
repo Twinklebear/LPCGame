@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <set>
 #include "../externals/json/json.h"
 #include "base.h"
 #include "image.h"
@@ -42,7 +43,7 @@ public:
 	*  @return A set of ints containing the tile indices
 	*  @throw Runtime error if the set is empty
 	*/
-	std::vector<int> CalculateIndex(Recti area) const;
+	std::set<int> CalculateIndex(Recti area) const;
 	/**
 	*  Get the collision map within distance of the target
 	*  @param target The target to get the nearby collision map around
@@ -77,7 +78,8 @@ protected:
 	Recti mBox;
 	std::shared_ptr<TileSet> mTileSet;
     std::string mFile;
-
+	Camera *lastCamera;
+	std::set<int> indices;
 };
 
 #endif
