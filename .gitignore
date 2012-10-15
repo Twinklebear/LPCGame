@@ -1,6 +1,7 @@
 Debug/*.dll
 Debug/game
 Debug/LPC*
+*/Debug/*
 LPCGame/Debug
 LPCGame.opensdf
 Debug/*.txt

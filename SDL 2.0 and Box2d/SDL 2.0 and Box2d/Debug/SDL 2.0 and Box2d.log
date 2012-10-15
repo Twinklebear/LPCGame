@@ -1,0 +1,31 @@
+﻿Build started 9/21/2012 10:03:44 PM.
+     1>Project "C:\Users\Will\Documents\Programs\SDL 2.0 and Box2d\SDL 2.0 and Box2d\SDL 2.0 and Box2d.vcxproj" on node 2 (Build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\SDL 2.0 and Box2d.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IC:\Box2D_v2.2.1 /I"C:\SDL-2.0\include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt .\src\main.cpp
+         main.cpp
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(10): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(13): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(58): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(59): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(60): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(90): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(91): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(92): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(177): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(178): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\will\documents\programs\sdl 2.0 and box2d\sdl 2.0 and box2d\src\main.cpp(190): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Will\Documents\Programs\SDL 2.0 and Box2d\Debug\SDL 2.0 and Box2d.exe" /INCREMENTAL /NOLOGO /LIBPATH:C:\Box2D_v2.2.1\lib /LIBPATH:"C:\SDL-2.0\lib" SDL.lib SDLmain.lib SDL_image.lib SDL_ttf.lib "Box2D-d.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Will\Documents\Programs\SDL 2.0 and Box2d\Debug\SDL 2.0 and Box2d.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Will\Documents\Programs\SDL 2.0 and Box2d\Debug\SDL 2.0 and Box2d.lib" /MACHINE:X86 Debug\main.obj
+         Debug\timer.obj
+         Debug\window.obj
+         SDL 2.0 and Box2d.vcxproj -> C:\Users\Will\Documents\Programs\SDL 2.0 and Box2d\Debug\SDL 2.0 and Box2d.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\SDL 2.0 and Box2d.unsuccessfulbuild".
+         Touching "Debug\SDL 2.0 and Box2d.lastbuildstate".
+     1>Done Building Project "C:\Users\Will\Documents\Programs\SDL 2.0 and Box2d\SDL 2.0 and Box2d\SDL 2.0 and Box2d.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.86
