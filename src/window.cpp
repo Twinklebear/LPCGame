@@ -72,18 +72,18 @@ void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip,
 	DrawTexture(image->Texture(), dstRect, clip, angle, pivot, (SDL_RendererFlip)flip);
 }
 void Window::Draw(Image *image, const Rectf &dstRect){
-	Draw(image, dstRect, NULL, 0);
+	Draw(image, dstRect, &image->Clip(), 0);
 }
 void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip){
 	Draw(image, dstRect, clip, 0);
 }
 void Window::Draw(AnimatedImage* img, const Rectf &dstRect){
-    Draw(img, dstRect, &img->Clip(img->ActiveClip()));
+    Draw(img, dstRect, &img->Clip());
 }
 void Window::Draw(AnimatedImage* img, const Rectf &dstRect, float angle, 
                   Vector2f pivot, int flip)
 {
-    Draw(img, dstRect, &img->Clip(img->ActiveClip()), angle, pivot, flip);
+    Draw(img, dstRect, &img->Clip(), angle, pivot, flip);
 }
 void Window::Draw(Text *text, const Rectf &dstRect, float angle, 
                   Vector2f pivot, int flip)

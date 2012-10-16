@@ -48,6 +48,8 @@ void AnimatedImage::Update(){
         //Rollover the animation if it goes over
         if (mFrame >= mSequences.at(mActiveAnimation).clipIndices.size())
             mFrame = 0;
+        //Update the active clip index
+        mActiveClip = mSequences.at(mActiveAnimation).clipIndices.at(mFrame);
     }
 }
 void AnimatedImage::Play(std::string name){
@@ -56,6 +58,8 @@ void AnimatedImage::Play(std::string name){
 			mActiveAnimation = i;
             //Begin the animation
             mFrame = 0;
+            //Set active clip
+            mActiveClip = mSequences.at(mActiveAnimation).clipIndices.at(mFrame);
             mTimer.Start();
 			return;
 		}
@@ -64,9 +68,6 @@ void AnimatedImage::Play(std::string name){
 std::string AnimatedImage::Playing(){
     //Should an error be thrown if the sequence vector is empty?
 	return mSequences.at(mActiveAnimation).name;
-}
-int AnimatedImage::ActiveClip(){
-	return mSequences.at(mActiveAnimation).clipIndices.at(mFrame);
 }
 void AnimatedImage::Save(const std::string &file) const {
 	//Save base class (file and clips)
@@ -97,11 +98,9 @@ int AnimatedImage::RegisterLua(lua_State *l){
 			.def("Update", &AnimatedImage::Update)
 			.def("Play", &AnimatedImage::Play)
 			.def("Playing", &AnimatedImage::Playing)
-			.def("ActiveClip", &AnimatedImage::ActiveClip)
 			//Inherited members from Image
 			.def("Load", (void (AnimatedImage::*)(const std::string&))&Image::Load)
 			.def("SetClips", &Image::SetClips)
-			.def("Clip", &Image::Clip)
 	];
     return 1;
 }

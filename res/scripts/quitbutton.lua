@@ -13,7 +13,7 @@ function Init()
 	--Load the button image
 	img = LPC.Image("../res/img/simplebutton.png")
 	box = entity:Box()
-	clip = 0
+	img:SetActiveClip(0)
 	--Setup the button text
 	local textColor = LPC.Color(0, 0, 0)
 	text = LPC.Text("Lua Button Test", "../res/fonts/SourceSansPro-Regular.ttf", textColor, 25)
@@ -23,17 +23,17 @@ end
 function Update()
 end
 function Draw(camera)
-	LPC.Window.Draw(img, LPC.Math.FromSceneSpace(camera, box), img:Clip(clip))
+	LPC.Window.Draw(img, LPC.Math.FromSceneSpace(camera, box))
 	LPC.Window.Draw(text, LPC.Math.FromSceneSpace(camera, textBox))
 end
 function OnMouseDown()
-	clip = 1
+	img:SetActiveClip(1)
 end
 function OnMouseUp()
-	clip = 0
+	img:SetActiveClip(0)
 end
 function OnMouseExit()
-	clip = 0
+	img:SetActiveClip(0)
 end
 function OnClick()
 	LPC.StateManager.ChangeScene("quit")

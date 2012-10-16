@@ -61,11 +61,6 @@ public:
 	*/
 	std::string Playing();
 	/**
-	*  Get the clip to apply to the image to show the right frame
-	*  @return The current clip to show the right image
-	*/
-	int ActiveClip();
-	/**
 	*  Save an AniamtedImage's properties to a Json formatted file
     *  @param file The file to save to
 	*/

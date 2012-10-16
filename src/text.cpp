@@ -69,20 +69,20 @@ void Text::SetColor(Color color){
 SDL_Texture* Text::Texture(){
 	return mTex.get();
 }
-Recti Text::Size(){
+Recti Text::Size() const {
 	Recti box(0, 0, 0, 0);
 	SDL_QueryTexture(mTex.get(), NULL, NULL, &box.w, &box.h);
 	return box;
 }
-void Text::Size(int *w, int *h){
+void Text::Size(int *w, int *h) const {
 	SDL_QueryTexture(mTex.get(), NULL, NULL, w, h);
 }
-int Text::W(){
+int Text::W() const {
     int w = -1;
     Size(&w);
     return w;
 }
-int Text::H(){
+int Text::H() const {
     int h = -1;
     Size(NULL, &h);
     return h;
@@ -114,7 +114,7 @@ int Text::RegisterLua(lua_State *l){
 			.def("SetFont", &Text::SetFont)
 			.def("SetFontSize", &Text::SetFontSize)
 			.def("SetColor", &Text::SetColor)
-			.def("Size", (Recti (Text::*)())&Text::Size)
+			.def("Size", (Recti (Text::*)()const)&Text::Size)
             .def("W", &Text::W)
             .def("H", &Text::H)
 	];

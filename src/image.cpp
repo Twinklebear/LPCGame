@@ -11,11 +11,11 @@
 #include "image.h"
 
 Image::Image()
-	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0)
+	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0), mActiveClip(-1)
 {
 }
 Image::Image(const std::string &file)
-	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0)
+	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0), mActiveClip(-1)
 {
 	mFile = file;
 	Load(file);
@@ -53,17 +53,38 @@ void Image::GenClips(int cW, int cH){
 		mClips[i] = cRect;
 	}
 }
-int Image::ClipCount(){
-	return mNumClips;
+void Image::Size(int *w, int *h) const {
+    SDL_QueryTexture(mTexture.get(), NULL, NULL, w, h);
+}
+int Image::W() const {
+    int w = -1;
+    Size(&w);
+    return w;
+}
+int Image::H() const {
+    int h = -1;
+    Size(NULL, &h);
+    return h;
 }
 SDL_Texture* Image::Texture(){
 	return mTexture.get();
 }
 Recti Image::Clip(int clipNum) const {
-    if (clipNum >= mNumClips || clipNum < 0 || mNumClips == 0)
-		Debug::Log("Image::Clip ERROR: " + mFile +  "Clip num out of bounds");  
-
+    //If clipnum is out of bounds, return a clip of the whole image
+    if (clipNum >= mNumClips || clipNum < 0 || mNumClips == 0){
+		Debug::Log("Image::Clip ERROR: " + mFile +  "Clip num out of bounds");
+        return Recti(0, 0, W(), H());
+    }
 	return mClips[clipNum];
+}
+Recti Image::Clip() const {
+    return Clip(mActiveClip);
+}
+void Image::SetActiveClip(int clip){
+    mActiveClip = clip;
+}
+int Image::ClipCount() const {
+	return mNumClips;
 }
 std::string Image::File() const {
     return mFile;
@@ -108,7 +129,11 @@ int Image::RegisterLua(lua_State *l){
 			.def("Load", (void (Image::*)(const std::string&))&Image::Load)
 			.def("SetClips", &Image::SetClips)
 			.def("GenClips", &Image::GenClips)
-			.def("Clip", &Image::Clip)
+			.def("Clip", (Recti (Image::*)(int) const)&Image::Clip)
+            .def("Clip", (Recti (Image::*)() const)&Image::Clip)
+            .def("SetActiveClip", &Image::SetActiveClip)
+            .def("W", &Image::W)
+            .def("H", &Image::H)
 	];
     return 1;
 }

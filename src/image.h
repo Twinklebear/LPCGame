@@ -46,11 +46,6 @@ public:
 	*/
 	void GenClips(int cW, int cH);
 	/**
-	*  Returns the number of clips in the image
-	*  @return int The number of clips.
-	*/
-	int ClipCount();
-	/**
 	*  Get the raw SDL_Texture pointer, this is only used inside the Window's draw
 	*  functions as SDL expects a regular SDL_Texture pointer to draw
 	*  @see Window
@@ -60,8 +55,34 @@ public:
 	/**
 	*  Get the rect for a desired clipnum
 	*  @param clipNum The clip number to get the box of
+    *  @return The Recti corresponding to the clip box
 	*/
-	Recti Clip(int clipNum) const;
+	Recti Clip(int clipNun) const;
+    /**
+    *  Get the clip of mActiveClip
+    *  @return The Recti of the active clip
+    */
+    Recti Clip() const;
+    /**
+    *  Set the active clip
+    *  @param clip The clip number to set active
+    */
+    void SetActiveClip(int clip);
+    /**
+	*  Returns the number of clips in the image
+	*  @return int The number of clips.
+	*/
+	int ClipCount() const;
+    /**
+	*  Store the width and height values of the texture in the values passed
+	*  @param w The value to store the width in
+	*  @param h The value to store the height in
+	*/
+	void Size(int *w, int *h = NULL) const;
+    ///Get the Image texture's width
+    int W() const;
+    ///Get the Image texture's height
+    int H() const;
     ///Get the Image filename
     std::string File() const;
 	/**
@@ -101,9 +122,9 @@ private:
 protected:
 	std::shared_ptr<SDL_Texture> mTexture;
 	std::string mFile;
-	Recti *mClips;
+    Recti *mClips;
 	int mNumClips;
-	//std::vector<Recti> mClips;
+	int mActiveClip;
 };
 
 #endif
