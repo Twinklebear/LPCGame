@@ -28,8 +28,10 @@ public:
 	*  @return The lua_State pointer held by the LuaScript class
 	*/
 	lua_State* Get();
-	///Get the script filename
+	///Get the script filepath
 	std::string File() const;
+    ///Get the script filename
+    std::string Name() const;
 	///Check if there's a script open
 	bool Open() const;
 

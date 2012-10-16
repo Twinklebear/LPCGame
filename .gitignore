@@ -50,6 +50,7 @@ Debug/*.log
 *.tlog
 *.log
 *.lastbuildstate
+*.unsuccessfulbuild
 *.idb
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this

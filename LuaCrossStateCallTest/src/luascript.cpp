@@ -92,6 +92,16 @@ lua_State* LuaScript::Get(){
 std::string LuaScript::File() const {
 	return mFile;
 }
+std::string LuaScript::Name() const {
+    //The characters between the last / and last . are the filename
+    size_t slashPos = mFile.find_last_of('/');
+    size_t periodPos = mFile.find_last_of('.');
+    //Surely this extra bit is unneeded, revist the documentation for substr.
+    std::string fullName = mFile.substr(slashPos + 1);
+    size_t pPos = fullName.find_last_of('.');
+    return (fullName.substr(0, pPos));
+    //return (mFile.substr(slashPos + 1, periodPos - 1));
+}
 bool LuaScript::Open() const {
 	return (mL != nullptr);
 }
