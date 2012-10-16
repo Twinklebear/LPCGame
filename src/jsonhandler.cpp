@@ -33,6 +33,10 @@ Json::Value JsonHandler::Read() const {
     return root;
 }
 void JsonHandler::Write(const Json::Value &data) const {
+    if (mFile == ""){
+        Debug::Log("JsonHandler: Ignoring write to blank filename");
+        return;
+    }
     std::ofstream fileOut(mFile.c_str());
     Json::StyledWriter writer;
     std::string strData = writer.write(data);

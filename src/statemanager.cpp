@@ -34,7 +34,6 @@ void StateManager::SetActiveState(std::string name){
 }
 void StateManager::LoadState(std::string name){
     JsonHandler jsonHandler((mStatesDir + name + ".json"));
-
     //Differentiate between menu and game states
     //Todo: will this be necessary? in the future if states are more scripted
     //the only differences should be in the script/json? hmm
@@ -56,13 +55,16 @@ void StateManager::LoadState(std::string name){
         SetState((State*)editor);
         return;
     }
+    //Currently log invalid state names however I think everything but
+    //Editor state should be rolled into a single generic State with no letter prefix to its name
+    Debug::Log("StateManager: Invalid statename - " + name);
 }
 void StateManager::SaveState(std::string name){
     JsonHandler jsonHandler((mStatesDir + name + ".json"));
     jsonHandler.Write(mActiveState->Save());
 }
 void StateManager::ChangeScene(std::string scene){
-	mActiveState->SetExit(scene);
+    mActiveState->SetExit(scene);
 }
 int StateManager::RegisterLua(lua_State *l){
 	using namespace luabind;
@@ -70,8 +72,6 @@ int StateManager::RegisterLua(lua_State *l){
 	module(l, "LPC")[
 		class_<StateManager>("StateManager")
 			.scope[
-				def("InitIntro", &StateManager::InitIntro),
-				def("SetActiveState", &StateManager::SetActiveState),
 				def("ChangeScene", &StateManager::ChangeScene)
 			]
 	];

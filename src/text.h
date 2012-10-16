@@ -76,7 +76,11 @@ public:
 	*  @param w The value to store the width in
 	*  @param h The value to store the height in
 	*/
-	void Size(int &w, int &h);
+	void Size(int *w, int *h = NULL);
+    ///Get the width of the text
+    int W();
+    ///Get the height
+    int H();
 	/**
 	*  Save the text data to a Json::Value
 	*  @returns Json::Value containing information about the text

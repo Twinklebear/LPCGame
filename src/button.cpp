@@ -8,10 +8,10 @@
 #include "text.h"
 #include "button.h"
 
-Button::Button() : mClicked(false), mFunc(nullptr)
+Button::Button() : mFunc(nullptr)
 {
 }
-Button::Button(std::string script) : mClicked(false), mFunc(nullptr)
+Button::Button(std::string script) : mFunc(nullptr)
 {
 	mScript.OpenScript(script);
 }
@@ -29,32 +29,9 @@ void Button::Draw(Camera *cam){
 	Window::Draw(&mImage, pos, &clip);
 
 	//Draw the text
-	Recti textBox = mText.Size();
-	textBox.pos.x = (pos.X() + pos.W() / 2) - textBox.W() / 2;
-	textBox.pos.y = (pos.Y() + pos.H() / 2) - textBox.H() / 2;
+    Recti textBox((pos.X() + pos.W() / 2) - mText.W() / 2, (pos.Y() + pos.H() / 2) - mText.H() / 2,
+        mText.W(), mText.H());
 	Window::Draw(&mText, textBox);
-}
-void Button::OnMouseDown(){
-	mClicked = true;
-	///Call the script
-	Entity::OnMouseDown();
-}
-void Button::OnMouseUp(){
-	if (mClicked)
-		OnClick();
-	mClicked = false;
-	///Call the script
-	Entity::OnMouseUp();
-}
-void Button::OnMouseEnter(){
-	//maybe a lighter highlight?
-	///Call the script
-	Entity::OnMouseEnter();
-}
-void Button::OnMouseExit(){
-	mClicked = false;
-	///Call the script
-	Entity::OnMouseExit();
 }
 void Button::OnClick(){
 	if (mFunc != nullptr)

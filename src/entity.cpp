@@ -8,9 +8,9 @@
 #include "debug.h"
 #include "entity.h"
 
-Entity::Entity() : mMouseOver(false), mConfigFile(""){
+Entity::Entity() : mMouseOver(false), mClicked(false), mConfigFile(""){
 }
-Entity::Entity(std::string script) : mMouseOver(false), mConfigFile(""){
+Entity::Entity(std::string script) : mMouseOver(false), mClicked(false), mConfigFile(""){
 	mScript.OpenScript(script);
 }
 Entity::~Entity(){
@@ -70,6 +70,7 @@ void Entity::Draw(Camera *camera){
 	}
 }
 void Entity::OnMouseDown(){
+    mClicked = true;
 	if (!mScript.Open())
 		return;
 	try {
@@ -79,13 +80,28 @@ void Entity::OnMouseDown(){
 	}
 }
 void Entity::OnMouseUp(){
-	if (!mScript.Open())
+    //We have to do this here for now b/c ObjectButtons don't have 
+    //an attached script, however I'd prefer to call OnClick after OnMouseUp
+    if (mClicked)
+        OnClick();
+    mClicked = false;
+	
+    if (!mScript.Open())
 		return;
 	try {
 		luabind::call_function<void>(mScript.Get(), "OnMouseUp");
 	}
 	catch(...){
 	}
+}
+void Entity::OnClick(){
+    if (!mScript.Open())
+        return;
+    try {
+        luabind::call_function<void>(mScript.Get(), "OnClick");
+    }
+    catch(...){
+    }
 }
 void Entity::OnMouseEnter(){
 	if (!mScript.Open())
@@ -97,6 +113,7 @@ void Entity::OnMouseEnter(){
 	}
 }
 void Entity::OnMouseExit(){
+    mClicked = false;
 	if (!mScript.Open())
 		return;
 	try {

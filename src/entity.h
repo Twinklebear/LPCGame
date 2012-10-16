@@ -44,6 +44,11 @@ public:
 	virtual void OnMouseDown();
 	///On mouse up event
 	virtual void OnMouseUp();
+    /**
+    *  On mouse click event, a mouse click event is described
+    *  as a mouse-down followed by a mouse-up
+    */
+    virtual void OnClick();
 	///On mouse enter
 	virtual void OnMouseEnter();
 	///On mouse exit
@@ -122,8 +127,8 @@ protected:
 	std::string mName;
     //The entity's file name
     std::string mConfigFile;
-	///For tracking mouse over
-	bool mMouseOver;
+	///For tracking mouse over and clicks
+	bool mMouseOver, mClicked;
 	///The entity's lua script
 	LuaScript mScript;
 };

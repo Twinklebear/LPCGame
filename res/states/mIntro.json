@@ -116,6 +116,9 @@
             "message" : "Editor"
          },
          "type" : "objectbutton"
+      },
+      {
+         "file" : "../res/entities/quitbutton.json"
       }
    ],
    "name" : "mIntro",

@@ -90,7 +90,7 @@ void Window::Draw(Text *text, const Rectf &dstRect, float angle,
 {
     int w = 0;
     int h = 0;
-	text->Size(w, h);
+	text->Size(&w, &h);
     Rectf dst(dstRect.X(), dstRect.Y(), w, h);
     DrawTexture(text->Texture(), dst, NULL);
 }

@@ -97,6 +97,14 @@ void MenuState::Load(Json::Value val){
 			std::shared_ptr<Entity> sObj(b);
 			mManager->Register(sObj);
 		}
+        //Loading scripted entities
+        else {
+            Entity *e = new Entity();
+            e->Load(entities[i]["file"].asString());
+            e->Init();
+            std::shared_ptr<Entity> sObj(e);
+            mManager->Register(sObj);
+        }
 	}
     //Call the script's Init
     State::Init();

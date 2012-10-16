@@ -1,0 +1,16 @@
+{
+   "image" : "",
+   "name" : "quitbutton",
+   "physics" : {
+      "box" : {
+         "h" : 100.0,
+         "w" : 200.0,
+         "x" : 100.0,
+         "y" : 500.0
+      },
+      "hAccel" : 0,
+      "hSpeed" : 0
+   },
+   "script" : "../res/scripts/quitbutton.lua",
+   "tag" : "test"
+}

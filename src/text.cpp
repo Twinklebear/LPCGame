@@ -74,8 +74,18 @@ Recti Text::Size(){
 	SDL_QueryTexture(mTex.get(), NULL, NULL, &box.w, &box.h);
 	return box;
 }
-void Text::Size(int &w, int &h){
-	SDL_QueryTexture(mTex.get(), NULL, NULL, &w, &h);
+void Text::Size(int *w, int *h){
+	SDL_QueryTexture(mTex.get(), NULL, NULL, w, h);
+}
+int Text::W(){
+    int w = -1;
+    Size(&w);
+    return w;
+}
+int Text::H(){
+    int h = -1;
+    Size(NULL, &h);
+    return h;
 }
 Json::Value Text::Save() const {
 	Json::Value val;
@@ -105,6 +115,8 @@ int Text::RegisterLua(lua_State *l){
 			.def("SetFontSize", &Text::SetFontSize)
 			.def("SetColor", &Text::SetColor)
 			.def("Size", (Recti (Text::*)())&Text::Size)
+            .def("W", &Text::W)
+            .def("H", &Text::H)
 	];
     return 1;
 }

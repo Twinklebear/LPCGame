@@ -27,14 +27,6 @@ public:
 	*  @param cam The camera to adjust for
 	*/
 	void Draw(Camera *cam = nullptr);
-	///On mouse down events
-	void OnMouseDown();
-	///On mouse up event
-	void OnMouseUp();
-	///On mouse enter
-	void OnMouseEnter();
-	///On mouse exit
-	void OnMouseExit();
 	///On click, run the callback function if one was registered
 	///This should call a Lua script function, OnClick as well
 	virtual void OnClick();
@@ -65,7 +57,6 @@ public:
 
 protected:
 	Text mText;
-	bool mClicked;
 	///The callback function pointer & its value
 	void (*mFunc)(std::string);
 	std::string mParam;
