@@ -47,6 +47,10 @@ Debug/*.log
 *.vspscc
 .builds
 *.dotCover
+*.tlog
+*.log
+*.lastbuildstate
+*.idb
 
 ## TODO: If you have NuGet Package Restore enabled, uncomment this
 #packages/
