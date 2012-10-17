@@ -23,10 +23,17 @@ public:
 	*  @param script The script file to open
 	*/
 	void OpenScript(const std::string &script);
-	/**
-	*  Get the lua_State pointer to use for calling functions/etc.
-	*  @return The lua_State pointer held by the LuaScript class
-	*/
+    /**
+    *  Lookup a script by name and get a pointer to it
+    *  @param name The name of the script to get
+    *  @return A pointer to the LuaScript with that name
+    */
+    static LuaScript* GetScript(const std::string &name);
+    /**
+    *  Call a function on the LuaScript
+    *  @param func The function name to call
+    */
+    void CallFunction(const std::string &func);
 	lua_State* Get();
 	///Get the script filepath
 	std::string File() const;
@@ -73,6 +80,8 @@ private:
     void AddScriptLoader();
     ///Add both loaders to the lua_State
     void AddLoaders();
+    ///Register the LuaScript class
+    static int RegisterLua(lua_State *l);
 
 private:
     ///typedef for an unordered map of the RegisterLua functions
@@ -82,6 +91,8 @@ private:
     *  @return unordered_map of RegisterLua functions
     */
     static TRegisterLuaMap CreateMap();
+    ///Our script map for testing lookups and calls
+    typedef std::map<std::string, LuaScript*> TScriptMap;
 
 private:
 	///The lua state running the script
@@ -90,6 +101,7 @@ private:
 	std::string mFile;
     ///The map of RegisterLua functions
     static const TRegisterLuaMap mRegisterLuaFunc;
+    static TScriptMap sScriptMap;
 };
 
 #endif

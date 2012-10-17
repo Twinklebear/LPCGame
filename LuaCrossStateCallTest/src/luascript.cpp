@@ -7,6 +7,7 @@
 
 //Setup the unordered_map
 const LuaScript::TRegisterLuaMap LuaScript::mRegisterLuaFunc = LuaScript::CreateMap();
+LuaScript::TScriptMap LuaScript::sScriptMap;
 
 LuaScript::LuaScript() : mL(nullptr), mFile(""){
 }
@@ -27,6 +28,28 @@ void LuaScript::OpenScript(const std::string &script){
         luabind::open(mL);
         AddLoaders();
         luaL_dofile(mL, mFile.c_str());
+        //Add it to the map
+        std::cout << "Adding: " << Name() << " to map" << std::endl;
+        sScriptMap[Name()] = this;
+    }
+}
+LuaScript* LuaScript::GetScript(const std::string &name){
+    TScriptMap::const_iterator found = sScriptMap.find(name);
+    if (found != sScriptMap.end()){
+        std::cout << "Found script: " << name << std::endl;
+        return sScriptMap[name];
+    }
+    std::cout << "LuaScript::GetScript Error: " << name
+        << " couldn't be found" << std::endl;
+    return NULL;
+}
+void LuaScript::CallFunction(const std::string &func){
+    //Get the function
+    lua_getglobal(mL, func.c_str());
+    //Try to call it
+    if (lua_pcall(mL, 0, 0, 0) != 0){
+        std::cout << "Error calling: " << func
+            << " - " << lua_tostring(mL, -1) << std::endl;
     }
 }
 void LuaScript::Close(){
@@ -37,6 +60,7 @@ void LuaScript::Close(){
 }
 LuaScript::TRegisterLuaMap LuaScript::CreateMap(){
     TRegisterLuaMap map;
+    map["LuaScript"]     = &LuaScript::RegisterLua;
     map["Vector2"]       = &Vector2f::RegisterLua;
     return map;
 }
@@ -152,4 +176,17 @@ void LuaScript::AddScriptLoader(){
 void LuaScript::AddLoaders(){
     AddScriptLoader();
     AddModuleLoader();
+}
+int LuaScript::RegisterLua(lua_State *l){
+    using namespace luabind;
+
+    module(l, "LPC")[
+        class_<LuaScript>("LuaScript")
+            .def(constructor<>())
+            .def("CallFunction", &LuaScript::CallFunction)
+            .scope[
+                def("GetScript", &LuaScript::GetScript)
+            ]
+    ];
+    return 1;
 }
