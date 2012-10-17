@@ -5,6 +5,33 @@
 #include "vectors.h"
 #include "luascript.h"
 
+static void stackDump(lua_State *l){
+    std::cout << "Lua Stack Dump: ";
+    for (int i = 1, top = lua_gettop(l); i <= top; ++i){
+        int t = lua_type(l, i);
+        switch (t) {
+            //Strings
+            case LUA_TSTRING:
+                std::cout << lua_tostring(l, i);
+                break;
+            //Bools
+            case LUA_TBOOLEAN:
+                std::cout << (lua_toboolean(l, i) ? "True" : "False");
+                break;
+            //Numbers
+            case LUA_TNUMBER:
+                std::cout << lua_tonumber(l, i);
+                break;
+            //Other (userdata and such)
+            default:
+                std::cout << lua_typename(l, t);
+                break;
+        }
+        std::cout << ", ";
+    }
+    std::cout << std::endl;
+}
+
 //Setup the unordered_map
 const LuaScript::TRegisterLuaMap LuaScript::mRegisterLuaFunc = LuaScript::CreateMap();
 LuaScript::TScriptMap LuaScript::sScriptMap;
@@ -56,12 +83,20 @@ void LuaScript::CallFunction(lua_State *l, const std::string &func, int nParam, 
     //Get the function
     lua_getglobal(mL, func.c_str());
     //need to pop off the nParam and nRes values
-    int p = lua_tointeger(l, -1);
-    int r = lua_tointeger(l, -2);
-    //Pop'em off
-    lua_pop(l, -1);
-    lua_pop(l, -2);
+    int p = lua_tointeger(l, 3);
+    int r = lua_tointeger(l, 4);
+    //lua_pop(l, -1);
+    //lua_pop(l, -2);
     std::cout << "p: " << p << " r: " << r << std::endl;
+
+    //Try getting something from top of stack
+    std::string str = lua_tostring(l, 2);
+    //lua_pop(l, 2);
+    std::cout << "I got: " << str << std::endl;
+
+    //Perform a stack dump
+    stackDump(l);
+
     //push the params from the stack: Will this work?
     //How can i move the values I want onto the top of the stack so they'll be pulled?
     //ie. into indices -1..-nParam?
