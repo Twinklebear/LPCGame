@@ -52,6 +52,21 @@ void LuaScript::CallFunction(const std::string &func){
             << " - " << lua_tostring(mL, -1) << std::endl;
     }
 }
+void LuaScript::CallFunction(lua_State *l, const std::string &func, int nParam, int nRes){
+    //Get the function
+    lua_getglobal(mL, func.c_str());
+    //push the params from the stack: Will this work?
+    lua_xmove(l, mL, nParam);
+    //need to pop off the nRes value
+    //Try to call function
+    if (lua_pcall(mL, nParam, nRes, 0) != 0){
+        std::cout << "Error calling: " << func
+            << " - " << lua_tostring(mL, -1) << std::endl;
+        return;
+    }
+    //Push results back
+    lua_xmove(mL, l, nRes);
+}
 void LuaScript::Close(){
     if (Open()){
         lua_close(mL);
@@ -183,7 +198,8 @@ int LuaScript::RegisterLua(lua_State *l){
     module(l, "LPC")[
         class_<LuaScript>("LuaScript")
             .def(constructor<>())
-            .def("CallFunction", &LuaScript::CallFunction)
+            .def("CallFunction", (void (LuaScript::*)(const std::string&))&LuaScript::CallFunction)
+            .def("CallFunction", (void (LuaScript::*)(lua_State*, const std::string&, int, int))&LuaScript::CallFunction)
             .scope[
                 def("GetScript", &LuaScript::GetScript)
             ]

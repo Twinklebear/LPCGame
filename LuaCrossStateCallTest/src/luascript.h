@@ -34,6 +34,15 @@ public:
     *  @param func The function name to call
     */
     void CallFunction(const std::string &func);
+    /**
+    *  Call a function with some number of parameters and
+    *  return values
+    *  @param l The lua_State to get params from and push results to
+    *  @param func The function to call
+    *  @param nParam The number of parameters
+    *  @param nRes The number of results to return
+    */
+    void CallFunction(lua_State *l, const std::string &func, int nParam, int nRes);
 	lua_State* Get();
 	///Get the script filepath
 	std::string File() const;
