@@ -9,6 +9,7 @@ static void stackDump(lua_State *l){
     std::cout << "Lua Stack Dump: ";
     for (int i = 1, top = lua_gettop(l); i <= top; ++i){
         int t = lua_type(l, i);
+        std::cout << i << ": ";
         switch (t) {
             //Strings
             case LUA_TSTRING:
@@ -93,6 +94,12 @@ void LuaScript::CallFunction(lua_State *l, const std::string &func, int nParam, 
     std::string str = lua_tostring(l, 2);
     //lua_pop(l, 2);
     std::cout << "I got: " << str << std::endl;
+
+    //Try to get the LuaScript
+    std::cout << "Trying to get LuaScript - stack[1]" << std::endl;
+    LuaScript* lScript = (LuaScript*)lua_touserdata(l, 1);
+    std::cout << "Script: " << lScript->File()
+        << " open: " << (lScript->Open() ? "True" : "False")<< std::endl;
 
     //Perform a stack dump
     stackDump(l);
