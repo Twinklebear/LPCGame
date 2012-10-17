@@ -99,7 +99,7 @@ void LuaScript::CallFunction(lua_State *l, const std::string &func, int nParam, 
 
     //push the params from the stack: Will this work?
     //How can i move the values I want onto the top of the stack so they'll be pulled?
-    //ie. into indices -1..-nParam?
+    //ie. into indices 3..nParam?
     lua_xmove(l, mL, nParam);
     //Try to call function
     if (lua_pcall(mL, nParam, nRes, 0) != 0){
