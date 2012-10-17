@@ -55,9 +55,17 @@ void LuaScript::CallFunction(const std::string &func){
 void LuaScript::CallFunction(lua_State *l, const std::string &func, int nParam, int nRes){
     //Get the function
     lua_getglobal(mL, func.c_str());
+    //need to pop off the nParam and nRes values
+    int p = lua_tointeger(l, -1);
+    int r = lua_tointeger(l, -2);
+    //Pop'em off
+    lua_pop(l, -1);
+    lua_pop(l, -2);
+    std::cout << "p: " << p << " r: " << r << std::endl;
     //push the params from the stack: Will this work?
+    //How can i move the values I want onto the top of the stack so they'll be pulled?
+    //ie. into indices -1..-nParam?
     lua_xmove(l, mL, nParam);
-    //need to pop off the nRes value
     //Try to call function
     if (lua_pcall(mL, nParam, nRes, 0) != 0){
         std::cout << "Error calling: " << func
