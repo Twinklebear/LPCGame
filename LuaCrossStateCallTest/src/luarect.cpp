@@ -45,6 +45,7 @@ int LuaRect::luaopen_luarect(lua_State *l){
     lua_pushvalue(l, -1);
     lua_setfield(l, -2, "__index");
     luaL_register(l, NULL, luaRectLib_m);
+    //Register the regular functions as well
     luaL_register(l, "LuaRect", luaRectLib_f);
     return 1;
 }
