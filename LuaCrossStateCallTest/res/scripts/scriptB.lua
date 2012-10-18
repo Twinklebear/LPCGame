@@ -13,6 +13,8 @@ print "Script B!"
 scriptA = LuaCScript.GetScript("scriptA")
 print "Got script?"
 print ("Script B Printing sA name: " .. scriptA:Name())
+val = scriptA:CallFunction("Test", 1, 1, "", 5)
+print ("Returned: " .. val)
 
 --test = "Some Test string"
 --print (test)

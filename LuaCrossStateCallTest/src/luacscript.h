@@ -53,6 +53,7 @@ private:
     static int luaopen_luacscript(lua_State *l);
     //Some other necesary member functions
     static LuaCScript** CheckLuaCScript(lua_State *l);
+    static void UpdateMetaTable(lua_State *l);
     static int AddLuaCScript(lua_State *l);
     static int GetScript(lua_State *l);
     static int Name(lua_State *l);

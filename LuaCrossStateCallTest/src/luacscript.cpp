@@ -130,24 +130,67 @@ LuaCScript* LuaCScript::GetScript(const std::string &name){
     return NULL;
 }
 int LuaCScript::CallFunction(lua_State *l){
-    int top = lua_gettop(l);
+    /**
+    *  We are given a stack like:
+    *  userdata        - the LuaCScript** we want to call function on
+    *  function name   - function to call
+    *  # params        - # params
+    *  # results       - # results
+    *  udata signature - tells us which metatables to register the udata with in target state
+    *  params          - the params to passs
+    */
+    //Get the LuaCScript to call
+    LuaCScript **script = CheckLuaCScript(l);
+    //Pop off the script udata
+    lua_remove(l, 1);
+    //Stack: Function name, # params, # results, udata signature, params
     //Get function name, # params and # results
     std::string func = lua_tostring(l, 1);
     int nPar = lua_tointeger(l, 2);
     int nRes = lua_tointeger(l, 3);
-    //Remove function name, # params and # results from stack
-    for (int i = 0; i < 3; ++i)
+    std::string signature = lua_tostring(l, 4);
+    //Remove function name, # params, # results and udata signature
+    for (int i = 0; i < 4; ++i)
         lua_remove(l, 1);
     
-    top = lua_gettop(l);
+    std::cout << "Calling: " << std::endl
+        << "\t" << (*script)->Name() << ":" << std::endl
+        << "\t" << func << " with: " << std::endl
+        << "\t" << nPar << " #params" << std::endl
+        << "\t" << nRes << " #results" << std::endl
+        << "\t" << signature << " udata signature" << std::endl;
+    
+    //Stack now only should have the params to pass
+    std::cout << "Remaining stack (params): ";
+    StackDump(l);
 
-    //some of this changes alot? due to it being called with context now?
-
-
+    lua_State *scriptState = (*script)->Get();
+    //Get the function
+    lua_getglobal(scriptState, func.c_str());
+    //scriptState stack: function
+    //Transfer params
+    lua_xmove(l, scriptState, nPar);
+    //script state stack: function, params
+    //Call the function
+    if (lua_pcall(scriptState, nPar, nRes, 0) != 0){
+        std::cout << "Error calling: " << func << " " << lua_tostring(scriptState, -1) << std::endl;
+        return 0;
+    }
+    //If call success scriptState stack now contains nRes results
+    //Push the results back
+    lua_xmove(scriptState, l, nRes);
+    /**
+    *  Final Stacks:
+    *  l: results
+    *  scriptState: empty
+    */
+    StackDump(l);
+    StackDump(scriptState);
+    //Return # res that l should pick up
     return nRes;
 }
 int LuaCScript::StackDump(lua_State *l){
-    std::cout << "Lua Stack: ";
+    std::cout << "Stack: ";
     for (int i = 1, top = lua_gettop(l); i <= top; ++i){
         int t = lua_type(l, i);
         std::cout << "@" << i << ": ";
@@ -196,11 +239,14 @@ int LuaCScript::luaopen_luacscript(lua_State *l){
 LuaCScript** LuaCScript::CheckLuaCScript(lua_State *l){
     return (LuaCScript**)luaL_checkudata(l, 1, "LPC.LuaCScript");
 }
+void LuaCScript::UpdateMetaTable(lua_State *l){
+    luaL_getmetatable(l, "LPC.LuaCScript");
+    lua_setmetatable(l, -2);
+}
 int LuaCScript::AddLuaCScript(lua_State *l){
     LuaCScript **s = (LuaCScript**)lua_touserdata(l, 1);
     luaL_argcheck(l, *s != NULL, 1, "LuaCScript Expected");
-    luaL_getmetatable(l, "LPC.LuaCScript");
-    lua_setmetatable(l, -2);
+    UpdateMetaTable(l);
     return 0;
 }
 int LuaCScript::GetScript(lua_State *l){
@@ -208,9 +254,8 @@ int LuaCScript::GetScript(lua_State *l){
     lua_remove(l, 1);
     LuaCScript *s = GetScript(script);
     LuaCScript **sPush = (LuaCScript**)lua_newuserdata(l, sizeof(LuaCScript*));
-    luaL_getmetatable(l, "LPC.LuaCScript");
-    lua_setmetatable(l, -2);
     *sPush = s;
+    UpdateMetaTable(l);
     return 1;
 }
 int LuaCScript::Name(lua_State *l){
