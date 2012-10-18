@@ -21,12 +21,18 @@
     <ClCompile Include="..\src\luascript.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\luarect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\luascript.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\vectors.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\luarect.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

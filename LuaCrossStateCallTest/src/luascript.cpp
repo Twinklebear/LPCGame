@@ -3,6 +3,7 @@
 #include <lua.hpp>
 #include <luabind/luabind.hpp>
 #include "vectors.h"
+#include "luarect.h"
 #include "luascript.h"
 
 static void stackDump(lua_State *l){
@@ -53,18 +54,12 @@ static int GenericCall(lua_State *l){
     top = lua_gettop(l);
     std::cout << "Clearing fName, nParams & nResults, new stack size: " << top << std::endl;
     stackDump(l);
-    //Get the target lua script
-    //This just makes the function exit...
-    //void *scr = luaL_checkudata(l, -top, "LPC.LuaScript");
-    //if (scr == NULL)
-        //std::cout << "Expected LuaScript" << std::endl;
-    //LuaScript* targScript = (LuaScript*)lua_touserdata(l, -top);
-    //std::cout << "Got script: " << targScript->Name() << std::endl;
-    //Trying to call something, i don't seem to get the script...
-    //std::string function = "Test2";
-    //targScript->CallFunction(function);
+
+    //Get the target lua script, gets me nothing..
+    //LuaScript *script = (LuaScript*)lua_touserdata(l, -top);
 
     std::string targName = lua_tostring(l, -top);
+    //std::string targName = script->Name();
     std::cout << "Script Name: " << targName << std::endl;
     lua_remove(l, -top);
 
@@ -180,6 +175,7 @@ LuaScript::TRegisterLuaMap LuaScript::CreateMap(){
     TRegisterLuaMap map;
     map["LuaScript"]     = &LuaScript::RegisterLua;
     map["Vector2"]       = &Vector2f::RegisterLua;
+    map["LuaRect"]       = &LuaRect::luaopen_luarect;
     return map;
 }
 int LuaScript::RequireModule(lua_State *l){
