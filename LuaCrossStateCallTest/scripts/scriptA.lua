@@ -4,6 +4,9 @@ require "LuaScript"
 
 print "Script A!"
 
+--To prove that we're manipulating the desired state
+someNum = 10
+
 function Test (p)
 	print "Calling Test"
 	print ("Test Func in script A! Param: " .. p)
@@ -28,5 +31,5 @@ function Test3(a, b, printMe, r2)
 	print ("Rect x, y: " .. r:getX() .. ", " .. r:getY())
 	print ("Rect w, h: " .. r:getW() .. ", " .. r:getH())
 	print ("Printing string param: " .. printMe)
-	return a + b
+	return a + b + someNum
 end
