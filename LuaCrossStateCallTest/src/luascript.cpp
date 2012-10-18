@@ -32,6 +32,91 @@ static void stackDump(lua_State *l){
     }
     std::cout << std::endl;
 }
+static int GenericCall(lua_State *l){
+    //Get function name
+    int top = lua_gettop(l);
+    std::cout << "Stack size: " << top << std::endl;
+    stackDump(l);
+    std::string funcName = lua_tostring(l, -top);
+    std::cout << "--Generic Call Function--\n\t" << funcName << std::endl;
+    //Get # params
+    int nParams = lua_tointeger(l, -top + 1);
+    std::cout << "\t" << nParams << " params" << std::endl;
+    int nResults = lua_tointeger(l, -top + 2);
+    std::cout << "\t" << nResults << " results" << std::endl;
+    std::cout << "-------------------------" << std::endl;
+    //Remove the function name, nParams and nResults from the stack
+    lua_remove(l, -top);
+    lua_remove(l, -top + 1);
+    lua_remove(l, -top + 2);
+
+    top = lua_gettop(l);
+    std::cout << "Clearing fName, nParams & nResults, new stack size: " << top << std::endl;
+    stackDump(l);
+    //Get the target lua script
+    LuaScript* targScript = (LuaScript*)lua_touserdata(l, -top);
+    std::cout << "Got script: " << targScript->Name() << std::endl;
+    //Trying to call something, i don't seem to get the script...
+    //std::string function = "Test2";
+    //targScript->CallFunction(function);
+
+    std::string targName = lua_tostring(l, -top + 1);
+    std::cout << "Some int after script param: " << targName << std::endl;
+    lua_remove(l, -top);
+
+    lua_State* stateFromLookup = LuaScript::GetScript(targName)->Get();
+    
+    //Get the function to call
+    lua_getglobal(stateFromLookup, funcName.c_str());
+    //Transfer the params
+    lua_xmove(l, stateFromLookup, nParams);
+    //Call the function
+    if (lua_pcall(stateFromLookup, nParams, nResults, 0) != 0){
+        std::cout << "Error calling: " << funcName
+            << " - " << lua_tostring(stateFromLookup, -1) << std::endl;
+        return 0;
+    }
+    //Push results back
+    lua_xmove(stateFromLookup, l, nResults);
+    return nResults;
+    /*
+    //Get the function
+    lua_getglobal(mL, func.c_str());
+    //need to pop off the nParam and nRes values
+    int p = lua_tointeger(l, -1);
+    int r = lua_tointeger(l, -2);
+    //lua_pop(l, -1);
+    //lua_pop(l, -2);
+    std::cout << "p: " << p << " r: " << r << std::endl;
+
+    //Try getting something from top of stack
+    std::string str = lua_tostring(l, -3);
+    //lua_pop(l, 2);
+    std::cout << "I got: " << str << std::endl;
+
+    //Try to get the LuaScript
+    std::cout << "Trying to get LuaScript - stack[1]" << std::endl;
+    LuaScript* lScript = (LuaScript*)lua_touserdata(l, 1);
+    std::cout << "Script: " << lScript->File()
+        << " open: " << (lScript->Open() ? "True" : "False")<< std::endl;
+
+    //Perform a stack dump
+    stackDump(l);
+
+    //push the params from the stack: Will this work?
+    //How can i move the values I want onto the top of the stack so they'll be pulled?
+    //ie. into indices 3..nParam?
+    lua_xmove(l, mL, nParam);
+    //Try to call function
+    if (lua_pcall(mL, nParam, nRes, 0) != 0){
+        std::cout << "Error calling: " << func
+            << " - " << lua_tostring(mL, -1) << std::endl;
+        return;
+    }
+    //Push results back
+    lua_xmove(mL, l, nRes);
+    */
+}
 
 //Setup the unordered_map
 const LuaScript::TRegisterLuaMap LuaScript::mRegisterLuaFunc = LuaScript::CreateMap();
@@ -57,14 +142,12 @@ void LuaScript::OpenScript(const std::string &script){
         AddLoaders();
         luaL_dofile(mL, mFile.c_str());
         //Add it to the map
-        std::cout << "Adding: " << Name() << " to map" << std::endl;
         sScriptMap[Name()] = this;
     }
 }
 LuaScript* LuaScript::GetScript(const std::string &name){
     TScriptMap::const_iterator found = sScriptMap.find(name);
     if (found != sScriptMap.end()){
-        std::cout << "Found script: " << name << std::endl;
         return sScriptMap[name];
     }
     std::cout << "LuaScript::GetScript Error: " << name
@@ -72,6 +155,10 @@ LuaScript* LuaScript::GetScript(const std::string &name){
     return NULL;
 }
 void LuaScript::CallFunction(const std::string &func){
+    if (!Open()){
+        std::cout << "CallFunction: " << func << " Error: No script open!" << std::endl;
+        return;
+    }
     //Get the function
     lua_getglobal(mL, func.c_str());
     //Try to call it
@@ -84,14 +171,14 @@ void LuaScript::CallFunction(lua_State *l, const std::string &func, int nParam, 
     //Get the function
     lua_getglobal(mL, func.c_str());
     //need to pop off the nParam and nRes values
-    int p = lua_tointeger(l, 3);
-    int r = lua_tointeger(l, 4);
+    int p = lua_tointeger(l, -2);
+    int r = lua_tointeger(l, -1);
     //lua_pop(l, -1);
     //lua_pop(l, -2);
     std::cout << "p: " << p << " r: " << r << std::endl;
 
     //Try getting something from top of stack
-    std::string str = lua_tostring(l, 2);
+    std::string str = lua_tostring(l, -3);
     //lua_pop(l, 2);
     std::cout << "I got: " << str << std::endl;
 
@@ -250,9 +337,15 @@ int LuaScript::RegisterLua(lua_State *l){
             .def(constructor<>())
             .def("CallFunction", (void (LuaScript::*)(const std::string&))&LuaScript::CallFunction)
             .def("CallFunction", (void (LuaScript::*)(lua_State*, const std::string&, int, int))&LuaScript::CallFunction)
+            .def("Name", &LuaScript::Name)
+            .def("File", &LuaScript::File)
             .scope[
                 def("GetScript", &LuaScript::GetScript)
             ]
     ];
-    return 1;
+    //Push our function
+    lua_pushcfunction(l, &GenericCall);
+    lua_setglobal(l, "GenericCall");
+
+    return 0;
 }
