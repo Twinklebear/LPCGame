@@ -197,8 +197,8 @@ LuaCScript** LuaCScript::CheckLuaCScript(lua_State *l){
     return (LuaCScript**)luaL_checkudata(l, 1, "LPC.LuaCScript");
 }
 int LuaCScript::AddLuaCScript(lua_State *l){
-    LuaCScript *s = (LuaCScript*)lua_touserdata(l, 1);
-    luaL_argcheck(l, s != NULL, 1, "LuaCScript Expected");
+    LuaCScript **s = (LuaCScript**)lua_touserdata(l, 1);
+    luaL_argcheck(l, *s != NULL, 1, "LuaCScript Expected");
     luaL_getmetatable(l, "LPC.LuaCScript");
     lua_setmetatable(l, -2);
     return 0;
