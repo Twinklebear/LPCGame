@@ -196,23 +196,6 @@ int LuaCScript::luaopen_luacscript(lua_State *l){
 LuaCScript** LuaCScript::CheckLuaCScript(lua_State *l){
     return (LuaCScript**)luaL_checkudata(l, 1, "LPC.LuaCScript");
 }
-int LuaCScript::NewLuaCScript(lua_State *l){
-    std::string file = lua_tostring(l, 1);
-    std::cout << "NewLuaCScript: " << file << std::endl;
-    lua_pop(l, 1);
-    LuaCScript *s = new LuaCScript(file);
-    LuaCScript **sPtr = (LuaCScript**)lua_newuserdata(l, sizeof(LuaCScript*));
-    *sPtr = s;
-    //LuaCScript *s = (LuaCScript*)lua_newuserdata(l, sizeof(LuaCScript));
-    //s->Open(file);
-    
-    StackDump(l);
-    //s->Close();
-    //s->Open(file);
-    luaL_getmetatable(l, "LPC.LuaCScript");
-    lua_setmetatable(l, -2);
-    return 1;
-}
 int LuaCScript::AddLuaCScript(lua_State *l){
     LuaCScript *s = (LuaCScript*)lua_touserdata(l, 1);
     luaL_argcheck(l, s != NULL, 1, "LuaCScript Expected");
