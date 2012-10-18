@@ -10,7 +10,7 @@ static void stackDump(lua_State *l){
     std::cout << "Lua Stack Dump: ";
     for (int i = 1, top = lua_gettop(l); i <= top; ++i){
         int t = lua_type(l, i);
-        std::cout << i << ": ";
+        std::cout <<"@" << i << ": ";
         switch (t) {
             //Strings
             case LUA_TSTRING:
@@ -38,18 +38,18 @@ static int GenericCall(lua_State *l){
     int top = lua_gettop(l);
     std::cout << "Stack size: " << top << std::endl;
     stackDump(l);
-    std::string funcName = lua_tostring(l, -top);
+    std::string funcName = lua_tostring(l, 1);
     std::cout << "--Generic Call Function--\n\t" << funcName << std::endl;
     //Get # params
-    int nParams = lua_tointeger(l, -top + 1);
+    int nParams = lua_tointeger(l, 2);
     std::cout << "\t" << nParams << " params" << std::endl;
-    int nResults = lua_tointeger(l, -top + 2);
+    int nResults = lua_tointeger(l, 3);
     std::cout << "\t" << nResults << " results" << std::endl;
     std::cout << "-------------------------" << std::endl;
+    
     //Remove the function name, nParams and nResults from the stack
-    lua_remove(l, -top);
-    lua_remove(l, -top + 1);
-    lua_remove(l, -top + 2);
+    for (int i = 0; i < 3; ++i)
+        lua_remove(l, 1);
 
     top = lua_gettop(l);
     std::cout << "Clearing fName, nParams & nResults, new stack size: " << top << std::endl;
@@ -58,10 +58,10 @@ static int GenericCall(lua_State *l){
     //Get the target lua script, gets me nothing..
     //LuaScript *script = (LuaScript*)lua_touserdata(l, -top);
 
-    std::string targName = lua_tostring(l, -top);
+    std::string targName = lua_tostring(l, 1);
     //std::string targName = script->Name();
     std::cout << "Script Name: " << targName << std::endl;
-    lua_remove(l, -top);
+    lua_remove(l, 1);
 
     lua_State* stateFromLookup = LuaScript::GetScript(targName)->Get();
     
@@ -180,7 +180,7 @@ LuaScript::TRegisterLuaMap LuaScript::CreateMap(){
 }
 int LuaScript::RequireModule(lua_State *l){
     //Get the module name
-    std::string module = lua_tostring(l, 1);
+    std::string module = lua_tostring(l, -1);
     //Check if the module name is in the unordered_map
     TRegisterLuaMap::const_iterator found = mRegisterLuaFunc.find(module);
     //If the module requested exists push the registration function on the stack
@@ -197,7 +197,7 @@ int LuaScript::RequireModule(lua_State *l){
 int LuaScript::RequireScript(lua_State *l){
     //Get the script name and check if it's an engine script
     //ie. the name is scripts/*
-    std::string script = lua_tostring(l, 1);
+    std::string script = lua_tostring(l, -1);
     if (script.substr(0, 7) == "scripts"){
         std::string scriptFile = "../res/" + script;
         //If it exists push DoScript onto the stack, if not error
@@ -220,8 +220,6 @@ int LuaScript::DoScript(lua_State *l){
     //Get the filename and dofile
     std::string script = lua_tostring(l, 0);
     luaL_dofile(l, script.c_str());
-    //pop the string off the stack
-    lua_pop(l, 0);
     return 1;
 }
 lua_State* LuaScript::Get(){
@@ -231,14 +229,9 @@ std::string LuaScript::File() const {
 	return mFile;
 }
 std::string LuaScript::Name() const {
-    //The characters between the last / and last . are the filename
-    size_t slashPos = mFile.find_last_of('/');
-    size_t periodPos = mFile.find_last_of('.');
-    //Surely this extra bit is unneeded, revist the documentation for substr.
-    std::string fullName = mFile.substr(slashPos + 1);
-    size_t pPos = fullName.find_last_of('.');
-    return (fullName.substr(0, pPos));
-    //return (mFile.substr(slashPos + 1, periodPos - 1));
+    size_t sPos = mFile.find_last_of('/');
+    size_t length = (mFile.find_last_of('.') - 1) - sPos;
+    return mFile.substr(sPos + 1, length);
 }
 bool LuaScript::Open() const {
 	return (mL != nullptr);

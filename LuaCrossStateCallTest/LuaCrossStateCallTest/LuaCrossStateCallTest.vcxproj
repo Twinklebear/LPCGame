@@ -65,11 +65,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\luacscript.cpp" />
     <ClCompile Include="..\src\luarect.cpp" />
     <ClCompile Include="..\src\luascript.cpp" />
     <ClCompile Include="..\src\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\luacscript.h" />
     <ClInclude Include="..\src\luarect.h" />
     <ClInclude Include="..\src\luascript.h" />
     <ClInclude Include="..\src\vectors.h" />

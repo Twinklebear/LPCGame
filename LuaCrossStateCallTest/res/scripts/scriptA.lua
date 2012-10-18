@@ -1,6 +1,5 @@
-require "Vector2"
+--require "Vector2"
 require "LuaRect"
-require "LuaScript"
 
 print "Script A!"
 
