@@ -2,11 +2,15 @@ Debug/*.dll
 Debug/game
 Debug/LPC*
 LPCGame/Debug
+LuaCrossStateCallTest/LuaCrossStateCallTest/Debug
 LPCGame.opensdf
 Debug/*.txt
 LPCGame/obj
 LPCGame/*.txt
 Release/
+
+# ignore builds
+*.exe
 
 # ignore my doxygen file
 *.doxy

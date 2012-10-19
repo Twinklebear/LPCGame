@@ -71,7 +71,7 @@ public:
     *  Load the map from another file
     *  @param file The file to load the map from
     */
-    void Load(const std::string &&file);
+    void Load(const std::string &file);
 
 protected:
 	std::vector<Tile> mTiles;

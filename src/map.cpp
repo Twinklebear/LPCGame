@@ -134,7 +134,7 @@ void Map::Load(Json::Value val){
 		mTiles.push_back(tempTile);
 	}
 }
-void Map::Load(const std::string &&file){
+void Map::Load(const std::string &file){
     mFile = file;
     JsonHandler handler(mFile);
     Load(handler.Read());
