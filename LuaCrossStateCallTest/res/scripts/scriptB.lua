@@ -1,30 +1,19 @@
---require "Vector2"
---lets us use LuaRect.x as luaRect.x
---luaRect = require "LuaRect"
 require "LuaRect"
 require "LuaCScript"
---require "scripts/test.lua"
 
 print "Script B!"
 
---tScript = LuaCScript.New("../res/scripts/test.lua")
---print "made tScript?"
---print ("Name of tScript: " .. tScript:Name())
-scriptA = LuaCScript.GetScript("scriptA")
+r = LuaRect.new(1, 2, 3, 4)
+print "Made rect"
+print ("r is " .. r:x() .. ", " .. r:y() .. ", " .. r:w() .. ", " .. r:h())
+r.x = 10
+print "Changed r.x"
+print ("r is " .. r:x() .. ", " .. r:y() .. ", " .. r:w() .. ", " .. r:h())
+
+--[[
+scriptA = LuaCScript.getScript("scriptA")
 print "Got script?"
-print ("Script B Printing sA name: " .. scriptA:Name())
-val = scriptA:CallFunction("Test", 1, 1, "", 5)
+print ("Script B Printing sA name: " .. scriptA:name())
+val = scriptA:callFunction("Test", 1, 1, "", 5)
 print ("Returned: " .. val)
-
---test = "Some Test string"
---print (test)
---script:CallFunction("Test", 2, 5)
---val = GenericCall("Test", 1, 1, scriptA, scriptA:Name(), 5)
---r = LuaRect.new()
---r:set(20, 30, 40, 50)
---val = GenericCall("Test3", 4, 1, scriptA:Name(), 1, 2, "A String!", r)
---print ("Got return val: " .. val)
-
---vector = LPC.Vector2i(10, 5)
---print ("Created v2: " .. vector.x .. ", " .. vector.y)
---GenericCall("TestVector", 1, 0, scriptA, scriptA:Name(), vector)
+--]]

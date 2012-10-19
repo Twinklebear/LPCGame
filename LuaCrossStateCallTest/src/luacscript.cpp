@@ -113,6 +113,8 @@ int LuaCScript::RequireScript(lua_State *l){
 int LuaCScript::DoScript(lua_State *l){
     std::string script = lua_tostring(l, 0);
     luaL_dofile(l, script.c_str());
+    //Stack still has the initial string we called with scripts/blah, so remove it
+    lua_pop(l, 1);
     return 1;
 }
 LuaCScript::TRegisterMap LuaCScript::CreateMap(){
@@ -129,7 +131,7 @@ LuaCScript* LuaCScript::GetScript(const std::string &name){
         << name << std::endl;
     return NULL;
 }
-int LuaCScript::CallFunction(lua_State *l){
+int LuaCScript::callFunction(lua_State *l){
     /**
     *  We are given a stack like:
     *  userdata        - the LuaCScript** we want to call function on
@@ -140,7 +142,7 @@ int LuaCScript::CallFunction(lua_State *l){
     *  params          - the params to passs
     */
     //Get the LuaCScript to call
-    LuaCScript **script = CheckLuaCScript(l);
+    LuaCScript **script = checkLuaCScript(l);
     //Pop off the script udata
     lua_remove(l, 1);
     //Stack: Function name, # params, # results, udata signature, params
@@ -162,7 +164,7 @@ int LuaCScript::CallFunction(lua_State *l){
     
     //Stack now only should have the params to pass
     std::cout << "Remaining stack (params): ";
-    StackDump(l);
+    stackDump(l);
 
     lua_State *scriptState = (*script)->Get();
     //Get the function
@@ -184,12 +186,12 @@ int LuaCScript::CallFunction(lua_State *l){
     *  l: results
     *  scriptState: empty
     */
-    StackDump(l);
-    StackDump(scriptState);
+    stackDump(l);
+    stackDump(scriptState);
     //Return # res that l should pick up
     return nRes;
 }
-int LuaCScript::StackDump(lua_State *l){
+int LuaCScript::stackDump(lua_State *l){
     std::cout << "Stack: ";
     for (int i = 1, top = lua_gettop(l); i <= top; ++i){
         int t = lua_type(l, i);
@@ -218,14 +220,14 @@ int LuaCScript::StackDump(lua_State *l){
     return 0;
 }
 const struct luaL_reg LuaCScript::LuaCScriptLib_f[] = {
-    { "GetScript", GetScript },
+    { "getScript", getScript },
     { NULL, NULL }
 };
 const struct luaL_reg LuaCScript::LuaCScriptLib_m[] = {
-    { "CallFunction", CallFunction },
-    { "StackDump", StackDump },
-    { "Name", Name },
-    { "Open", Open },
+    { "callFunction", callFunction },
+    { "stackDump", stackDump },
+    { "name", name },
+    { "open", open },
     { NULL, NULL }
 };
 int LuaCScript::luaopen_luacscript(lua_State *l){
@@ -236,36 +238,38 @@ int LuaCScript::luaopen_luacscript(lua_State *l){
     luaL_register(l, "LuaCScript", LuaCScriptLib_f);
     return 1;
 }
-LuaCScript** LuaCScript::CheckLuaCScript(lua_State *l){
+LuaCScript** LuaCScript::checkLuaCScript(lua_State *l){
     return (LuaCScript**)luaL_checkudata(l, 1, "LPC.LuaCScript");
 }
-void LuaCScript::UpdateMetaTable(lua_State *l){
+void LuaCScript::updateMetaTable(lua_State *l){
+    //Get the metatable. With one item on our stack (the udata)
+    //the table is now at 2, and we can
     luaL_getmetatable(l, "LPC.LuaCScript");
     lua_setmetatable(l, -2);
 }
-int LuaCScript::AddLuaCScript(lua_State *l){
+int LuaCScript::addLuaCScript(lua_State *l){
     LuaCScript **s = (LuaCScript**)lua_touserdata(l, 1);
     luaL_argcheck(l, *s != NULL, 1, "LuaCScript Expected");
-    UpdateMetaTable(l);
+    updateMetaTable(l);
     return 0;
 }
-int LuaCScript::GetScript(lua_State *l){
+int LuaCScript::getScript(lua_State *l){
     std::string script = lua_tostring(l, 1);
     lua_remove(l, 1);
     LuaCScript *s = GetScript(script);
     LuaCScript **sPush = (LuaCScript**)lua_newuserdata(l, sizeof(LuaCScript*));
     *sPush = s;
-    UpdateMetaTable(l);
+    updateMetaTable(l);
     return 1;
 }
-int LuaCScript::Name(lua_State *l){
-    LuaCScript **s = CheckLuaCScript(l);
+int LuaCScript::name(lua_State *l){
+    LuaCScript **s = checkLuaCScript(l);
     std::string name = (*s)->Name();
     lua_pushstring(l, name.c_str());
     return 1;
 }
-int LuaCScript::Open(lua_State *l){
-    LuaCScript **s = CheckLuaCScript(l);
+int LuaCScript::open(lua_State *l){
+    LuaCScript **s = checkLuaCScript(l);
     lua_pushboolean(l, (*s)->Open());
     return 1;
 }

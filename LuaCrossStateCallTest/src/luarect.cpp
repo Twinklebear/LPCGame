@@ -1,4 +1,5 @@
 #include <luabind/luabind.hpp>
+#include "luacscript.h"
 #include "luarect.h"
 
 LuaRect::LuaRect() : x(0), y(0), w(0), h(0){
@@ -30,28 +31,63 @@ const struct luaL_reg LuaRect::luaRectLib_f[] = {
     { "add", addLuaRect },
     { NULL, NULL }
 };
+const struct luaL_reg LuaRect::luaRectLib_s[] = {
+    { "x", setX },
+    { "y", setY },
+    { NULL, NULL }
+};
 const struct luaL_reg LuaRect::luaRectLib_m[] = {
     { "set", setLuaRect },
-    { "getX", getX },
-    { "getY", getY },
-    { "getW", getW },
-    { "getH", getH },
+    { "x", getX },
+    { "y", getY },
+    { "w", getW },
+    { "h", getH },
+    { "setVal", setVal },
     { NULL, NULL }
 };
 //Open the library
 int LuaRect::luaopen_luarect(lua_State *l){
+    //Push the metatable onto the stack
     luaL_newmetatable(l, "LPC.LuaRect");
-    //Setup the metatable for object oriented access, ie r:getX()
-    lua_pushvalue(l, -1);
-    lua_setfield(l, -2, "__index");
-    luaL_register(l, NULL, luaRectLib_m);
+    //Push __index to be used as a table key
+    //we want to register metatable.__index = metatable
+    lua_pushstring(l, "__index");
+    //Copy metatable from -2 to the top
+    lua_pushvalue(l, -2);
+    //Set table at __index equal to val at -3, ie: the metatable LPC.LuaRect
+    lua_settable(l, -3);
+    //Register our member functions with this lib
+    luaL_openlib(l, NULL, luaRectLib_m, 0);
+    //Register the __newindex index so we can do stuff like r.x = 10 and such
+    //Push the key we want
+    lua_pushstring(l, "__newindex");
+    //We want setVal to be the function we call, so push that so we ccan
+    //get it from table
+    lua_pushstring(l, "setVal");
+    //Get from table at -3 at key setVal, ie. the function
+    lua_gettable(l, -3);
+    //Set table at key __newindex the value at top of stack
+    //which will be the function setVal
+    lua_settable(l, -3);
     //Register the regular functions as well
     luaL_register(l, "LuaRect", luaRectLib_f);
     return 1;
 }
 //Create a new luarect
 int LuaRect::newLuaRect(lua_State *l){
+    //If some initial x, y, w, h desired check for it
+    bool initVals = (lua_gettop(l) == 4);
     LuaRect *r = (LuaRect*)lua_newuserdata(l, sizeof(LuaRect));
+    //Get the values to initialize the rect with from the stack
+    if (initVals){
+        r->Set(luaL_checkint(l, 1), luaL_checkint(l, 2),
+            luaL_checkint(l, 3), luaL_checkint(l, 4));
+        //Remove the values from the stack
+        for (int i = 0; i < 4; ++i)
+            lua_remove(l, 1);
+    }
+    else
+        r->Set(0, 0, 0, 0);
     //Set the metatable appropriately
     luaL_getmetatable(l, "LPC.LuaRect");
     lua_setmetatable(l, -2);
@@ -59,7 +95,7 @@ int LuaRect::newLuaRect(lua_State *l){
 }
 int LuaRect::addLuaRect(lua_State *l){
     LuaRect *r = (LuaRect*)lua_touserdata(l, 1);
-    luaL_argcheck(l, r != NULL, 1, "LuaRect expected");
+    luaL_argcheck(l, r != NULL, 1, "Error: LuaRect expected");
     luaL_getmetatable(l, "LPC.LuaRect");
     lua_setmetatable(l, -2);
     return 0;
@@ -71,14 +107,9 @@ LuaRect* LuaRect::checkLuaRect(lua_State *l){
 int LuaRect::setLuaRect(lua_State *l){
     LuaRect *r = checkLuaRect(l);
     luaL_argcheck(l, r != NULL, 1, "Error: LuaRect expected");
-    //check x, y, w, h
-    int val[4];
-    val[0] = luaL_checkint(l, 2);
-    val[1] = luaL_checkint(l, 3);
-    val[2] = luaL_checkint(l, 4);
-    val[3] = luaL_checkint(l, 5);
-    //Check that we got a LuaRect
-    r->Set(val[0], val[1], val[2], val[3]);
+    //Set the values
+    r->Set(luaL_checkint(l, 2), luaL_checkint(l, 3),
+        luaL_checkint(l, 4), luaL_checkint(l, 5));
     return 0;
 }
 int LuaRect::getX(lua_State *l){
@@ -100,4 +131,52 @@ int LuaRect::getH(lua_State *l){
     LuaRect *r = checkLuaRect(l);
     lua_pushinteger(l, r->H());
     return 1;
+}
+int LuaRect::setVal(lua_State *l){
+    //Get the param to change "x", "y", so on and then remove it
+    std::string val = luaL_checkstring(l, 2);
+    lua_remove(l, 2);
+    switch (val.at(0)){
+        case 'x':
+            setX(l);
+            break;
+        case 'y':
+            setY(l);
+            break;
+        case 'w':
+            setW(l);
+            break;
+        case 'h':
+            setH(l);
+            break;
+        default:
+            break;
+    }
+    return 0;
+}
+int LuaRect::setX(lua_State *l){
+    LuaRect *r = checkLuaRect(l);
+    r->Set(luaL_checkint(l, -1), r->y, r->w, r->h);
+    //Clean up the stack
+    lua_pop(l, -1);
+    return 0;
+}
+int LuaRect::setY(lua_State *l){
+    LuaRect *r = checkLuaRect(l);
+    r->Set(r->x, luaL_checkint(l, -1), r->w, r->h);
+    //Clean up the stack
+    lua_pop(l, -1);
+    return 0;
+}
+int LuaRect::setW(lua_State *l){
+    LuaRect *r = checkLuaRect(l);
+    r->Set(r->x, r->y, luaL_checkint(l, -1), r->h);
+    //Clean up the stack
+    return 0;
+}
+int LuaRect::setH(lua_State *l){
+    LuaRect *r = checkLuaRect(l);
+    r->Set(r->x, r->y, r->w, luaL_checkint(l, -1));
+    //Clean up the stack
+    return 0;
 }

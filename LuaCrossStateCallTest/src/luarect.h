@@ -22,6 +22,10 @@ private:
     //passing between states?
     //The LuaRect functions
     static const struct luaL_reg luaRectLib_f[];
+    //Getters
+    //static const struct luaL_reg luaRectLib_g[];
+    //Setters
+    static const struct luaL_reg luaRectLib_s[];
     //The LuaRect member functions
     static const struct luaL_reg luaRectLib_m[];
     //Create a new luarect
@@ -34,8 +38,15 @@ private:
     static int getY(lua_State *l);
     static int getW(lua_State *l);
     static int getH(lua_State *l);
+    //A setter dispatch for now, since im having
+    //trouble with putting a table in __newindex
+    static int setVal(lua_State *l);
+    static int setX(lua_State *l);
+    static int setY(lua_State *l);
+    static int setW(lua_State *l);
+    static int setH(lua_State *l);
 
-private:
+public:
     int x, y, w, h;
 };
 

@@ -40,9 +40,11 @@ private:
     //Script Lookup function
     static LuaCScript* GetScript(const std::string &name);
     //For calling functions on some lua script
-    static int CallFunction(lua_State *l);
+    static int callFunction(lua_State *l);
+
+public: 
     //Perform a stack dump on a state
-    static int StackDump(lua_State *l);
+    static int stackDump(lua_State *l);
 
 private:
     //The Lua C functions
@@ -52,12 +54,12 @@ private:
     //The registration function
     static int luaopen_luacscript(lua_State *l);
     //Some other necesary member functions
-    static LuaCScript** CheckLuaCScript(lua_State *l);
-    static void UpdateMetaTable(lua_State *l);
-    static int AddLuaCScript(lua_State *l);
-    static int GetScript(lua_State *l);
-    static int Name(lua_State *l);
-    static int Open(lua_State *l);
+    static LuaCScript** checkLuaCScript(lua_State *l);
+    static void updateMetaTable(lua_State *l);
+    static int addLuaCScript(lua_State *l);
+    static int getScript(lua_State *l);
+    static int name(lua_State *l);
+    static int open(lua_State *l);
     
 
 private:

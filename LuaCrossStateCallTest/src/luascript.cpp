@@ -174,7 +174,6 @@ void LuaScript::Close(){
 LuaScript::TRegisterLuaMap LuaScript::CreateMap(){
     TRegisterLuaMap map;
     map["LuaScript"]     = &LuaScript::RegisterLua;
-    map["Vector2"]       = &Vector2f::RegisterLua;
     map["LuaRect"]       = &LuaRect::luaopen_luarect;
     return map;
 }
