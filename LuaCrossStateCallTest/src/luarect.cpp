@@ -29,7 +29,7 @@ int LuaRect::H(){
 }
 const struct luaL_reg LuaRect::luaRectLib_f[] = {
     { "new", newLuaRect },
-    { "add", addLuaRect },
+    //{ "add", addLuaRect },
     { NULL, NULL }
 };
 const struct luaL_reg LuaRect::luaRectLib_s[] = {
@@ -95,10 +95,14 @@ int LuaRect::newLuaRect(lua_State *l){
     lua_setmetatable(l, -2);
     return 1;
 }
-int LuaRect::addLuaRect(lua_State *l){
+void LuaRect::addLuaRect(lua_State *l, int i){
+    //Given stack containing unknown amount of things along with the udata
+    //udata is at index i
     luaL_getmetatable(l, "LPC.LuaRect");
-    lua_setmetatable(l, -2);
-    return 0;
+    //Now stack is ??? with the metatable at top
+    //So we know the index of our rect is bumped down 1 more so we adjust
+    //and set the table
+    lua_setmetatable(l, i - 1);
 }
 //Check if some data is a LuaRect and return pointer to it
 LuaRect* LuaRect::checkLuaRect(lua_State *l){

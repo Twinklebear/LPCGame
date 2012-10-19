@@ -42,7 +42,8 @@ private:
     //For calling functions on some lua script
     static int callFunction(lua_State *l);
     //Read the type value of the metatable of some udata at index i
-    static int readType(lua_State *l, int i);
+    //Return the typename
+    static std::string readType(lua_State *l, int i);
 
 public: 
     //Perform a stack dump on a state

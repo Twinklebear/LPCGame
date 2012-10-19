@@ -14,6 +14,8 @@ public:
     int H();
     //Register the Lua functions
     static int luaopen_luarect(lua_State *l);
+    //Add the luaRect at index i to the metatable in state l
+    static void addLuaRect(lua_State *l, int i);
 
 private:
     //Check if some data is a LuaRect and return a pointer to it
@@ -30,8 +32,6 @@ private:
     static const struct luaL_reg luaRectLib_m[];
     //Create a new luarect
     static int newLuaRect(lua_State *l);
-    //Add the luaRect to the metatable in state l
-    static int addLuaRect(lua_State *l);
     //Getters and setters
     static int setLuaRect(lua_State *l);
     static int getX(lua_State *l);

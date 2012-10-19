@@ -143,6 +143,8 @@ int LuaCScript::callFunction(lua_State *l){
     */
     //Get the LuaCScript to call
     LuaCScript **script = checkLuaCScript(l);
+    //Get the lua_State* of the script we want to call
+    lua_State *scriptState = (*script)->Get();
     //Pop off the script udata
     lua_remove(l, 1);
     //Stack: Function name, # params, # results, udata signature, params
@@ -167,15 +169,17 @@ int LuaCScript::callFunction(lua_State *l){
 
     //TESTING ASSUMPTION FOR TESTING ONLY
     //The final item on stack will be udata, so check its type
-    readType(l, -1);
+    std::string udataType = readType(l, -1);
 
-    //Get the lua_State* of the script we want to call
-    lua_State *scriptState = (*script)->Get();
     //Get the function
     lua_getglobal(scriptState, func.c_str());
     //scriptState stack: function
     //Transfer params
     lua_xmove(l, scriptState, nPar);
+    stackDump(scriptState);
+    if (udataType == "LuaRect"){
+        LuaRect::addLuaRect(scriptState, -1);
+    }
     //script state stack: function, params
     //Call the function
     if (lua_pcall(scriptState, nPar, nRes, 0) != 0){
@@ -195,9 +199,10 @@ int LuaCScript::callFunction(lua_State *l){
     //Return # res that l should pick up
     return nRes;
 }
-int LuaCScript::readType(lua_State *l, int i){
+std::string LuaCScript::readType(lua_State *l, int i){
     std::cout << "Trying to read type: ";
     stackDump(l);
+    std::string type = "";
     //Get the metatable of udata at index i
     if (lua_getmetatable(l, i)){
         stackDump(l);
@@ -208,13 +213,13 @@ int LuaCScript::readType(lua_State *l, int i){
         lua_pcall(l, 0, 1, 0);
         stackDump(l);
         //Get the type from the stack
-        std::string type = luaL_checkstring(l, -1);
+        type = luaL_checkstring(l, -1);
         std::cout << "Read type: " << type << std::endl;
         stackDump(l);
     }
     //Stack contains the typename and its metatable, pop them off
     lua_pop(l, 2);
-    return 0;
+    return type;
 }
 int LuaCScript::stackDump(lua_State *l){
     std::cout << "Stack: ";
