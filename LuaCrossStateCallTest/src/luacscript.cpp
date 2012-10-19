@@ -154,18 +154,22 @@ int LuaCScript::callFunction(lua_State *l){
     //Remove function name, # params, # results and udata signature
     for (int i = 0; i < 4; ++i)
         lua_remove(l, 1);
-    
+    //Print information about the call
     std::cout << "Calling: " << std::endl
         << "\t" << (*script)->Name() << ":" << std::endl
-        << "\t" << func << " with: " << std::endl
+        << "\t'" << func << "'" << std::endl
         << "\t" << nPar << " #params" << std::endl
         << "\t" << nRes << " #results" << std::endl
         << "\t" << signature << " udata signature" << std::endl;
-    
     //Stack now only should have the params to pass
     std::cout << "Remaining stack (params): ";
     stackDump(l);
 
+    //TESTING ASSUMPTION FOR TESTING ONLY
+    //The final item on stack will be udata, so check its type
+    readType(l, -1);
+
+    //Get the lua_State* of the script we want to call
     lua_State *scriptState = (*script)->Get();
     //Get the function
     lua_getglobal(scriptState, func.c_str());
@@ -190,6 +194,27 @@ int LuaCScript::callFunction(lua_State *l){
     stackDump(scriptState);
     //Return # res that l should pick up
     return nRes;
+}
+int LuaCScript::readType(lua_State *l, int i){
+    std::cout << "Trying to read type: ";
+    stackDump(l);
+    //Get the metatable of udata at index i
+    if (lua_getmetatable(l, i)){
+        stackDump(l);
+        //Get the "type" field
+        lua_getfield(l, -1, "type");
+        stackDump(l);
+        //Call the function
+        lua_pcall(l, 0, 1, 0);
+        stackDump(l);
+        //Get the type from the stack
+        std::string type = luaL_checkstring(l, -1);
+        std::cout << "Read type: " << type << std::endl;
+        stackDump(l);
+    }
+    //Stack contains the typename and its metatable, pop them off
+    lua_pop(l, 2);
+    return 0;
 }
 int LuaCScript::stackDump(lua_State *l){
     std::cout << "Stack: ";
@@ -243,8 +268,9 @@ LuaCScript** LuaCScript::checkLuaCScript(lua_State *l){
 }
 void LuaCScript::updateMetaTable(lua_State *l){
     //Get the metatable. With one item on our stack (the udata)
-    //the table is now at 2, and we can
     luaL_getmetatable(l, "LPC.LuaCScript");
+    //Now the metatable is at the top of the stack and our
+    //udata is at -2 so we set the data there to use the metatable
     lua_setmetatable(l, -2);
 }
 int LuaCScript::addLuaCScript(lua_State *l){

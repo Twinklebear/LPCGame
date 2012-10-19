@@ -41,6 +41,8 @@ private:
     static LuaCScript* GetScript(const std::string &name);
     //For calling functions on some lua script
     static int callFunction(lua_State *l);
+    //Read the type value of the metatable of some udata at index i
+    static int readType(lua_State *l, int i);
 
 public: 
     //Perform a stack dump on a state
@@ -58,9 +60,10 @@ private:
     static void updateMetaTable(lua_State *l);
     static int addLuaCScript(lua_State *l);
     static int getScript(lua_State *l);
+    //Push script name
     static int name(lua_State *l);
+    //Push script bool value of open
     static int open(lua_State *l);
-    
 
 private:
     static const TRegisterMap sRegisterFuncs;

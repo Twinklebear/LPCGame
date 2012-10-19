@@ -39,6 +39,7 @@ const struct luaL_reg LuaRect::luaRectLib_s[] = {
 };
 const struct luaL_reg LuaRect::luaRectLib_m[] = {
     { "set", setLuaRect },
+    { "type", type },
     { "x", getX },
     { "y", getY },
     { "w", getW },
@@ -65,7 +66,7 @@ int LuaRect::luaopen_luarect(lua_State *l){
     //We want setVal to be the function we call, so push that so we ccan
     //get it from table
     lua_pushstring(l, "accessor");
-    //Get from table at -3 at key accessor, ie. the function
+    //Get from table at -3 at key "accessor", ie. the function
     lua_gettable(l, -3);
     //Set table at key __newindex the value at top of stack
     //which will be the function setVal
@@ -95,8 +96,6 @@ int LuaRect::newLuaRect(lua_State *l){
     return 1;
 }
 int LuaRect::addLuaRect(lua_State *l){
-    LuaRect *r = (LuaRect*)lua_touserdata(l, 1);
-    luaL_argcheck(l, r != NULL, 1, "Error: LuaRect expected");
     luaL_getmetatable(l, "LPC.LuaRect");
     lua_setmetatable(l, -2);
     return 0;
@@ -114,7 +113,6 @@ int LuaRect::setLuaRect(lua_State *l){
     return 0;
 }
 int LuaRect::getX(lua_State *l){
-    LuaCScript::stackDump(l);
     LuaRect *r = checkLuaRect(l);
     lua_pushinteger(l, r->x);
     return 1;
@@ -185,4 +183,8 @@ int LuaRect::setH(lua_State *l){
     r->Set(r->x, r->y, r->w, luaL_checkint(l, -1));
     //Clean up the stack
     return 0;
+}
+int LuaRect::type(lua_State *l){
+    lua_pushstring(l, "LuaRect");
+    return 1;
 }

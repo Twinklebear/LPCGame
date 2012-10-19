@@ -45,6 +45,8 @@ private:
     static int setY(lua_State *l);
     static int setW(lua_State *l);
     static int setH(lua_State *l);
+    //For getting type via metatable
+    static int type(lua_State *l);
 
 public:
     int x, y, w, h;
