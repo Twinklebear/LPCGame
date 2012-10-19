@@ -42,7 +42,7 @@ const struct luaL_reg LuaRect::luaRectLib_m[] = {
     { "y", getY },
     { "w", getW },
     { "h", getH },
-    { "setVal", setVal },
+    { "accessor", accessor },
     { NULL, NULL }
 };
 //Open the library
@@ -54,7 +54,7 @@ int LuaRect::luaopen_luarect(lua_State *l){
     lua_pushstring(l, "__index");
     //Copy metatable from -2 to the top
     lua_pushvalue(l, -2);
-    //Set table at __index equal to val at -3, ie: the metatable LPC.LuaRect
+    //Set table at __index = metatable, ie. metatable.__index = metatable
     lua_settable(l, -3);
     //Register our member functions with this lib
     luaL_openlib(l, NULL, luaRectLib_m, 0);
@@ -63,8 +63,8 @@ int LuaRect::luaopen_luarect(lua_State *l){
     lua_pushstring(l, "__newindex");
     //We want setVal to be the function we call, so push that so we ccan
     //get it from table
-    lua_pushstring(l, "setVal");
-    //Get from table at -3 at key setVal, ie. the function
+    lua_pushstring(l, "accessor");
+    //Get from table at -3 at key accessor, ie. the function
     lua_gettable(l, -3);
     //Set table at key __newindex the value at top of stack
     //which will be the function setVal
@@ -113,8 +113,9 @@ int LuaRect::setLuaRect(lua_State *l){
     return 0;
 }
 int LuaRect::getX(lua_State *l){
+    LuaCScript::stackDump(l);
     LuaRect *r = checkLuaRect(l);
-    lua_pushinteger(l, r->X());
+    lua_pushinteger(l, r->x);
     return 1;
 }
 int LuaRect::getY(lua_State *l){
@@ -132,27 +133,31 @@ int LuaRect::getH(lua_State *l){
     lua_pushinteger(l, r->H());
     return 1;
 }
-int LuaRect::setVal(lua_State *l){
+int LuaRect::accessor(lua_State *l){
     //Get the param to change "x", "y", so on and then remove it
     std::string val = luaL_checkstring(l, 2);
     lua_remove(l, 2);
+    std::cout << "Accessor called on property: " << val << std::endl;
+    LuaCScript::stackDump(l);
+    //If two items on the stack we want to set, if one we want to get
+    bool get = (lua_gettop(l) == 1);
     switch (val.at(0)){
         case 'x':
-            setX(l);
+            get ? getX(l) : setX(l);
             break;
         case 'y':
-            setY(l);
+            get ? getY(l) : setY(l);
             break;
         case 'w':
-            setW(l);
+            get ? getW(l) : setW(l);
             break;
         case 'h':
-            setH(l);
+            get ? getH(l) : setH(l);
             break;
         default:
             break;
     }
-    return 0;
+    return (get ? 1 : 0);
 }
 int LuaRect::setX(lua_State *l){
     LuaRect *r = checkLuaRect(l);

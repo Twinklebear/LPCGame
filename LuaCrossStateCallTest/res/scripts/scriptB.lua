@@ -9,6 +9,9 @@ print ("r is " .. r:x() .. ", " .. r:y() .. ", " .. r:w() .. ", " .. r:h())
 r.x = 10
 print "Changed r.x"
 print ("r is " .. r:x() .. ", " .. r:y() .. ", " .. r:w() .. ", " .. r:h())
+print "Will try to print r.x"
+print (r:accessor("x"))
+print "Did i do it?"
 
 --[[
 scriptA = LuaCScript.getScript("scriptA")

@@ -40,7 +40,7 @@ private:
     static int getH(lua_State *l);
     //A setter dispatch for now, since im having
     //trouble with putting a table in __newindex
-    static int setVal(lua_State *l);
+    static int accessor(lua_State *l);
     static int setX(lua_State *l);
     static int setY(lua_State *l);
     static int setW(lua_State *l);
