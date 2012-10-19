@@ -15,5 +15,5 @@ r = LuaRect.new(1, 2, 3, 4)
 
 scriptA = LuaCScript.getScript("scriptA")
 print ("Script B Printing sA name: " .. scriptA:name())
-val = scriptA:callFunction("Test", 1, 1, "", r)
+val = scriptA:callFunction("Test", 1, 1, r)
 print ("Returned: " .. val)

@@ -133,69 +133,67 @@ LuaCScript* LuaCScript::GetScript(const std::string &name){
 }
 int LuaCScript::callFunction(lua_State *l){
     /**
-    *  We are given a stack like:
-    *  userdata        - the LuaCScript** we want to call function on
-    *  function name   - function to call
-    *  # params        - # params
-    *  # results       - # results
-    *  udata signature - tells us which metatables to register the udata with in target state
-    *  params          - the params to passs
+    *  We are given a stack with:
+    *  userdata      - the LuaCScript** we want to call function on
+    *  function name - function to call
+    *  # params      - # params
+    *  # results     - # results
+    *  params        - the params to passs
     */
-    //Get the LuaCScript to call
-    LuaCScript **script = checkLuaCScript(l);
     //Get the lua_State* of the script we want to call
-    lua_State *scriptState = (*script)->Get();
+    lua_State *receiving = (*checkLuaCScript(l))->Get();
     //Pop off the script udata
     lua_remove(l, 1);
-    //Stack: Function name, # params, # results, udata signature, params
-    //Get function name, # params and # results
+    //l stack: Function name, # params, # results, params
     std::string func = lua_tostring(l, 1);
     int nPar = lua_tointeger(l, 2);
     int nRes = lua_tointeger(l, 3);
-    std::string signature = lua_tostring(l, 4);
     //Remove function name, # params, # results and udata signature
-    for (int i = 0; i < 4; ++i)
+    for (int i = 0; i < 3; ++i)
         lua_remove(l, 1);
+    //l stack: params to pass
+
     //Print information about the call
     std::cout << "Calling: " << std::endl
-        << "\t" << (*script)->Name() << ":" << std::endl
         << "\t'" << func << "'" << std::endl
         << "\t" << nPar << " #params" << std::endl
         << "\t" << nRes << " #results" << std::endl
-        << "\t" << signature << " udata signature" << std::endl;
-    //Stack now only should have the params to pass
-    std::cout << "Remaining stack (params): ";
+        << "Remaining stack (params): ";
     stackDump(l);
 
     //TESTING ASSUMPTION FOR TESTING ONLY
     //The final item on stack will be udata, so check its type
     std::string udataType = readType(l, -1);
 
-    //Get the function
-    lua_getglobal(scriptState, func.c_str());
-    //scriptState stack: function
+    //Get the function, we need to get function first because the params
+    //are pulled from the top of the stack down, so if function is at top
+    //there's nothing to pull
+    lua_getglobal(receiving, func.c_str());
+    //receiving stack: function
     //Transfer params
-    lua_xmove(l, scriptState, nPar);
-    stackDump(scriptState);
+    lua_xmove(l, receiving, nPar);
+    //l stack: empty
+    //receiving stack: function, params
+    stackDump(receiving);
     if (udataType == "LuaRect"){
-        LuaRect::addLuaRect(scriptState, -1);
+        LuaRect::addLuaRect(receiving, -1);
     }
-    //script state stack: function, params
+    //receiving stack: function, params
     //Call the function
-    if (lua_pcall(scriptState, nPar, nRes, 0) != 0){
-        std::cout << "Error calling: " << func << " " << lua_tostring(scriptState, -1) << std::endl;
+    if (lua_pcall(receiving, nPar, nRes, 0) != 0){
+        std::cout << "Error calling: " << func << " " << lua_tostring(receiving, -1) << std::endl;
         return 0;
     }
-    //If call success scriptState stack now contains nRes results
+    //If call success receiving stack now contains nRes results
     //Push the results back
-    lua_xmove(scriptState, l, nRes);
+    lua_xmove(receiving, l, nRes);
     /**
     *  Final Stacks:
-    *  l: results
-    *  scriptState: empty
+    *  l stack: results
+    *  receiving stack: empty
     */
     stackDump(l);
-    stackDump(scriptState);
+    stackDump(receiving);
     //Return # res that l should pick up
     return nRes;
 }
