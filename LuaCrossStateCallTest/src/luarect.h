@@ -1,7 +1,7 @@
 #ifndef LUARECT_H
 #define LUARECT_H
 
-#include <luabind/luabind.hpp>
+#include <lua.hpp>
 
 class LuaRect {
 public:

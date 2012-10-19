@@ -1,4 +1,5 @@
-#include <luabind/luabind.hpp>
+#include <iostream>
+#include <lua.hpp>
 #include "luacscript.h"
 #include "luarect.h"
 

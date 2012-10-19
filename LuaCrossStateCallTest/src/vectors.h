@@ -1,9 +1,6 @@
 #ifndef VECTORS_H
 #define VECTORS_H
 
-#include <luabind/luabind.hpp>
-#include <luabind/operator.hpp>
-
 ///A 2D vector
 /**
 *  A 2D vector
