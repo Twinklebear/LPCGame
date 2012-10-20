@@ -57,7 +57,7 @@ private:
     *  return a vector of the udata typenames, to be then used in setting up
     *  the tables in the receiving state once the params have been transferred
     */
-    static std::vector<std::string> checkUdataParams(lua_State *l);
+    static std::vector<std::string> checkUdata(lua_State *l);
     //Read the type value of the metatable of some udata at index i
     //Return the typename
     static std::string readType(lua_State *l, int i);
@@ -66,7 +66,7 @@ private:
     *  l: the state to register in
     *  udata: the type names of the udata in order
     */
-    static void setUdataParams(lua_State *l, std::vector<std::string> udata);
+    static void setUdata(lua_State *l, std::vector<std::string> udata);
     //The Lua C functions
     static const struct luaL_reg LuaCScriptLib_f[];
     //The Lua C member functions

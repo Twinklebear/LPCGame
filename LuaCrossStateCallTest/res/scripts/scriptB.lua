@@ -1,6 +1,5 @@
 require "LuaRect"
 require "LuaCScript"
---require "scripts/scriptA.lua"
 
 print "Script B!"
 
@@ -14,5 +13,6 @@ print (r2)
 
 scriptA = LuaCScript.getScript("scriptA")
 print ("Script B Printing sA name: " .. scriptA:name())
-val = scriptA:callFunction("Test", 2, 1, r, r2)
-print ("Returned: " .. val)
+r3 = scriptA:callFunction("Test", 1, r, r2)
+print "Returned: "
+print (r3)

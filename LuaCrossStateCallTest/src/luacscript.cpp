@@ -156,36 +156,30 @@ int LuaCScript::callFunction(lua_State *caller){
     *  We are given a caller stack with:
     *  userdata      - the LuaCScript** we want to call function on
     *  function name - function to call
-    *  # params      - # params Not needed? stack size - 2 = # params?
-    *  # results     - # results Not needed? can inspect post-call stack size to get # params
+    *  # results     - # results (can't call function properly without this)
     *  params        - the params to passs
     */
     //Get the lua_State* of the script we want to call
     lua_State *receiver = (*checkLuaCScript(caller))->Get();
-    //Pop off the script udata
-    lua_remove(caller, 1);
-    //caller stack: Function name, # params, # results, params
-    std::string func = lua_tostring(caller, 1);
-    int nPar = lua_tointeger(caller, 2);
+    std::string func = lua_tostring(caller, 2);
     int nRes = lua_tointeger(caller, 3);
-    //Remove function name, # params, # results and udata signature
+    //Remove script udata, function name and # results
     for (int i = 0; i < 3; ++i)
         lua_remove(caller, 1);
-    //caller stack: params to pass
+    //caller: params
+    //# params = stack size of caller
+    int nPar = lua_gettop(caller);
 
     //Print information about the call
+    /*
     std::cout << "Calling: " << std::endl
         << "\t'" << func << "'" << std::endl
         << "\t" << nPar << " #params" << std::endl
         << "\t" << nRes << " #results" << std::endl
         << "Remaining stack (params): ";
     stackDump(caller);
-
-    //TESTING ASSUMPTION FOR TESTING ONLY
-    //The final item on stack will be udata, so check its type
-    //std::string udataType = readType(caller, -1);
-    std::vector<std::string> udataTypes = checkUdataParams(caller);
-
+    */
+    std::vector<std::string> udataTypes = checkUdata(caller);
     //Get the function, we need to get function first because the params
     //are pulled from the top of the stack down, so if function is at top
     //there's nothing to pull
@@ -195,13 +189,7 @@ int LuaCScript::callFunction(lua_State *caller){
     lua_xmove(caller, receiver, nPar);
     //caller stack: empty
     //receiver stack: function, params
-    stackDump(receiver);
-    setUdataParams(receiver, udataTypes);
-    /*
-    if (udataType == "LuaRect"){
-        LuaRect::addLuaRect(receiver, -1);
-    }
-    */
+    setUdata(receiver, udataTypes);
     //receiving stack: function, params
     //Call the function
     if (lua_pcall(receiver, nPar, nRes, 0) != 0){
@@ -209,34 +197,30 @@ int LuaCScript::callFunction(lua_State *caller){
         return 0;
     }
     //If call success receiving stack now contains nRes results
+    //Parse the stack for udata types
+    udataTypes = checkUdata(receiver);
     //Push the results back
     lua_xmove(receiver, caller, nRes);
+    //Register the udata types
+    setUdata(caller, udataTypes);
     /**
     *  Final Stacks:
     *  caller stack: results
     *  receiver stack: empty
     */
-    stackDump(caller);
-    stackDump(receiver);
-    //Return # res that l should pick up
+    //Return # res that caller should pick up
     return nRes;
 }
-std::vector<std::string> LuaCScript::checkUdataParams(lua_State *l){
+std::vector<std::string> LuaCScript::checkUdata(lua_State *l){
     //l stack: params
     //We want to step through and record the typenames of the userdata
-    std::cout << "CHECKING UDATA PARAMS" << std::endl;
-    stackDump(l);
     std::vector<std::string> udata;
     for (int i = 1, top = lua_gettop(l); i <= top; ++i){
         int t = lua_type(l, i);
-        std::cout << "Type @ " << i << " is: " << lua_typename(l, t) << std::endl;
         std::string luaTName = lua_typename(l, t);
         //If we find some userdata, read the type and store it
-        if (luaTName == "userdata"){
-            std::string type = readType(l, i);
-            std::cout << "Encountered udata type: " << type << std::endl;
-            udata.push_back(type);
-        }
+        if (luaTName == "userdata")
+            udata.push_back(readType(l, i));
     }
     return udata;
 }
@@ -260,21 +244,17 @@ std::string LuaCScript::readType(lua_State *l, int i){
     lua_pop(l, 2);
     return type;
 }
-void LuaCScript::setUdataParams(lua_State *l, std::vector<std::string> udata){
+void LuaCScript::setUdata(lua_State *l, std::vector<std::string> udata){
     //l stack: params
     //Step through and find udata, and register it according to the value at the vector
     //after each registration, increment vector pos
-    stackDump(l);
     std::vector<std::string>::const_iterator iter = udata.begin();
     for (int i = 1, top = lua_gettop(l); i <= top; ++i){
         int t = lua_type(l, i);
-        std::cout << "Type @ " << i << " is: " << lua_typename(l, t) << std::endl;
         std::string luaTName = lua_typename(l, t);
         //If we find some userdata, read the type and register it accordingly
         if (luaTName == "userdata"){
-            std::string type = *iter;
-            std::cout << "Registering type: " << type << " at: " << i - top - 1 << std::endl;
-            sTableAdders.at(type)(l, (i - top - 1));
+            sTableAdders.at(*iter)(l, (i - top - 1));
             ++iter;
         }
     }
@@ -340,7 +320,6 @@ int LuaCScript::luaopen_luacscript(lua_State *l){
     luaL_register(l, NULL, LuaCScriptLib_f);
     //Push the table onto the global stack with a name
     lua_setglobal(l, "LuaCScript");
-    stackDump(l);
     //Stack: lib name, metatable
     return 1;
 }

@@ -11,5 +11,6 @@ function Test (r, r2)
 	else
 		print "p != r"
 	end
-	return 15
+	r3 = LuaRect(5, 4, 3, 2)
+	return r3
 end
