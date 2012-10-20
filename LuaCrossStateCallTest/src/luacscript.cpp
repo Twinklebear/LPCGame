@@ -259,10 +259,16 @@ const struct luaL_reg LuaCScript::LuaCScriptLib_m[] = {
     { NULL, NULL }
 };
 int LuaCScript::luaopen_luacscript(lua_State *l){
+    //Push new metatable to hold fcns onto stack
     luaL_newmetatable(l, "LPC.LuaCScript");
+    //Copy it to the top
     lua_pushvalue(l, -1);
+    //Set table at -2 (LPC.LuaCScript) @ key __index to the value at top
+    //in this case, the member function table
     lua_setfield(l, -2, "__index");
+    //Register our member functions into this table
     luaL_register(l, NULL, LuaCScriptLib_m);
+    //register the non-member functions as well
     luaL_register(l, "LuaCScript", LuaCScriptLib_f);
     return 1;
 }
