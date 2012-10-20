@@ -46,7 +46,8 @@ const struct luaL_reg LuaRect::luaRectLib_m[] = {
     { NULL, NULL }
 };
 int LuaRect::luaopen_luarect(lua_State *l){
-    //Push the metatable onto the stack
+    //Stack: lib name
+    //Push the metatable to contain the fcns onto the stack
     luaL_newmetatable(l, "LPC.LuaRect");
     //Copy metatable from -1 to the top
     lua_pushvalue(l, -1);
@@ -55,39 +56,33 @@ int LuaRect::luaopen_luarect(lua_State *l){
     lua_setfield(l, -2, "__index");
     //Register the lib to the metatable at top of stack
     luaL_register(l, NULL, luaRectLib_m);
-    //Stack: module name, __index metatable
-
-    std::cout << "A--";
-    LuaCScript::stackDump(l);
+    //Stack: lib name, metatable
     //Setup the LuaRect table, for making LuaRects
-    lua_newtable(l, 1);
-    //Stack: module name, __index metatable, table
-    std::cout << "B--";
-    LuaCScript::stackDump(l);
-    
+    lua_newtable(l);
+    //Stack: lib name, metatable, table
     //Push the new fcn
     lua_pushcfunction(l, newLuaRect);
-    std::cout << "C--";
-    //Stack: module name, __index metatable, table, newLuaRect fcn
-    LuaCScript::stackDump(l);
+    //Stack: lib name, metatable, table, newLuaRect fcn
     //Now newLuaRect fcn is @ key __call in the table
     lua_setfield(l, -2, "__call");
-    std::cout << "D--";
-    //Stack: module name, __index metatable, table
-    LuaCScript::stackDump(l);
+    //Stack: lib name, metatable, table
+    //We want to set the table containing __call to be the metatable
+    //of the LuaRect metatable
     lua_setmetatable(l, -2);
-    std::cout << "E--";
-    LuaCScript::stackDump(l);
-        //Testing pushing an enum type
-    lua_pushinteger(l, 10);
-    std::cout << "F--";
-    LuaCScript::stackDump(l);
-    lua_setfield(l, -2, "ENUM");
-    std::cout << "G--";
-    LuaCScript::stackDump(l);
+    //Stack: lib name, metatable
 
+    //Testing pushing an enum type
+    lua_pushinteger(l, 10);
+    //Stack: lib name, metatable, 10
+    //Set the table field of the name of enum we want
+    //So now LuaRect.ENUM = 10
+    lua_setfield(l, -2, "ENUM");
+
+    //Stack: lib name, table
+    //Name our metatable and make it global
     lua_setglobal(l, "LuaRect");
-    return 1;
+    //Stack: lib name
+    return 0;
 }
 int LuaRect::newLuaRect(lua_State *l){
     //Pop the table off

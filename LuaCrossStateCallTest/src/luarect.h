@@ -20,8 +20,6 @@ public:
 private:
     //Check if some data is a LuaRect and return a pointer to it
     static LuaRect* checkLuaRect(lua_State *l, int i = 1);
-    //Is it possible to check a userdata type and add it to the appropriate metatable when
-    //passing between states?
     //The LuaRect functions
     static const struct luaL_reg luaRectLib_f[];
     //The LuaRect member functions
