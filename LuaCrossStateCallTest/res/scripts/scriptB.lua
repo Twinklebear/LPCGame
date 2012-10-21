@@ -11,6 +11,14 @@ if v == v2 then
 else
 	print "v != v2"
 end
+
+--[[
+--Thrash the garbage collector to make sure __gc is called
+for i = 1, 500 do
+	local v3 = Vector2f(1, 1)
+end
+]]
+
 v = v2 * v
 print ("Result: " .. v)
 

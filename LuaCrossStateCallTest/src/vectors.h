@@ -123,6 +123,8 @@ private:
     static int subtraction(lua_State *l);
     static int multiply(lua_State *l);
     static int divide(lua_State *l);
+    //__gc test
+    static int garbageCollect(lua_State *l);
 
 };
 
@@ -141,6 +143,7 @@ const struct luaL_reg Vector2f::luaVector2fLib[] = {
     { "__sub", Vector2f::subtraction },
     { "__mul", Vector2f::multiply },
     { "__div", Vector2f::divide },
+    { "__gc", Vector2f::garbageCollect },
     { NULL, NULL }
 };
 template<class T>
@@ -407,6 +410,11 @@ int Vector2<T>::divide(lua_State *l){
     }
     addVector2f(l, -1);
     return 1;
+}
+template<class T>
+int Vector2<T>::garbageCollect(lua_State *l){
+    std::cout << "Garbage collecting a vector2f" << std::endl;
+    return 0;
 }
 
 #endif
