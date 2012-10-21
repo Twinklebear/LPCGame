@@ -151,6 +151,7 @@ LuaCScript::TAdderMap LuaCScript::createAdderMap(){
     TAdderMap map;
     map["LuaRect"]    = &LuaRect::addLuaRect;
     map["LuaCScript"] = &LuaCScript::addLuaCScript;
+    map["Vector2f"]   = &Vector2f::addVector2f;
     return map;
 }
 int LuaCScript::callFunction(lua_State *caller){

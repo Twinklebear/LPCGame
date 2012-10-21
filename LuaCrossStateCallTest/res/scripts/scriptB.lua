@@ -14,6 +14,7 @@ end
 v = v * 10
 print ("Result: " .. v)
 
+--[[
 print ("Silly enum: " .. LuaRect.ENUM)
 r = LuaRect(3, 4, 2, 1)
 print (r)
@@ -27,3 +28,4 @@ print ("Script B Printing sA name: " .. scriptA:name())
 r3 = scriptA:callFunction("Test", 1, r, r2)
 print "Returned: "
 print (r3)
+]]
