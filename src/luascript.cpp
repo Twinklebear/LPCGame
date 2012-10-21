@@ -2,7 +2,7 @@
 #include <fstream>
 #include <lua.hpp>
 #include <luabind/luabind.hpp>
-#include "../externals/json/json.h"
+#include "externals/json/json.h"
 #include "animatedimage.h"
 #include "button.h"
 #include "camera.h"
@@ -20,10 +20,8 @@
 #include "vectors.h"
 #include "window.h"
 #include "debug.h"
+#include "luac/luacscript.h"
 #include "luascript.h"
-
-//Setup the unordered_map
-const LuaScript::TRegisterLuaMap LuaScript::mRegisterLuaFunc = LuaScript::CreateMap();
 
 LuaScript::LuaScript() : mL(nullptr), mFile(""){
 }
@@ -42,7 +40,8 @@ void LuaScript::OpenScript(const std::string &script){
         mL = lua_open();
         luaL_openlibs(mL);
         luabind::open(mL);
-        AddLoaders();
+        AddLoader(LuaC::LuaScript::requireLib);
+        AddLoader(LuaC::LuaScript::requireScript);
         luaL_dofile(mL, mFile.c_str());
     }
 }
@@ -51,74 +50,6 @@ void LuaScript::Close(){
         lua_close(mL);
         mL = nullptr;
     }
-}
-LuaScript::TRegisterLuaMap LuaScript::CreateMap(){
-    TRegisterLuaMap map;
-    map["AnimatedImage"] = &AnimatedImage::RegisterLua;
-    map["Button"]        = &Button::RegisterLua;
-    map["Camera"]        = &Camera::RegisterLua;
-    map["Color"]         = &Color::RegisterLua;
-    map["Debug"]         = &Debug::RegisterLua;
-    map["Entity"]        = &Entity::RegisterLua;
-    map["Image"]         = &Image::RegisterLua;
-    map["Input"]         = &Input::RegisterLua;
-    map["Math"]          = &Math::RegisterLua;
-    map["MotionState"]   = &MotionState::RegisterLua;
-    map["Physics"]       = &Physics::RegisterLua;
-    map["Rect"]          = &Rectf::RegisterLua;
-    map["State"]         = &State::RegisterLua;
-    map["StateManager"]  = &StateManager::RegisterLua;
-    map["Text"]          = &Text::RegisterLua;
-    map["Timer"]         = &Timer::RegisterLua;
-    map["Vector2"]       = &Vector2f::RegisterLua;
-    map["Window"]        = &Window::RegisterLua;
-    return map;
-}
-int LuaScript::RequireModule(lua_State *l){
-    //Get the module name
-    std::string module = lua_tostring(l, 1);
-    //Check if the module name is in the unordered_map
-    TRegisterLuaMap::const_iterator found = mRegisterLuaFunc.find(module);
-    //If the module requested exists push the registration function on the stack
-    if (found != mRegisterLuaFunc.end()){
-        lua_pushcfunction(l, mRegisterLuaFunc.at(module));
-    }
-    else {
-        std::string err = "\n\tRequireModule Error: failed to find: " + module + "\n";
-        Debug::Log(err);
-        lua_pushstring(l, err.c_str());
-    }
-    return 1;
-}
-int LuaScript::RequireScript(lua_State *l){
-    //Get the script name and check if it's an engine script
-    //ie. the name is scripts/*
-    std::string script = lua_tostring(l, 1);
-    if (script.substr(0, 7) == "scripts"){
-        std::string scriptFile = "../res/" + script;
-        //If it exists push DoScript onto the stack, if not error
-        std::ifstream checkFile(scriptFile.c_str());
-        if (checkFile.good()){
-            checkFile.close();
-            //push the full path back onto the stack for DoScript to use
-            lua_pushstring(l, scriptFile.c_str());
-            lua_pushcfunction(l, LuaScript::DoScript);
-        }
-        else {
-            std::string err = "RequireScript Error: Failed to find" + scriptFile;
-            Debug::Log(err);
-            lua_pushstring(l, err.c_str());
-        }
-    }
-    return 1;
-}
-int LuaScript::DoScript(lua_State *l){
-    //Get the filename and dofile
-    std::string script = lua_tostring(l, 0);
-    luaL_dofile(l, script.c_str());
-    //pop the string off the stack
-    lua_pop(l, 0);
-    return 1;
 }
 lua_State* LuaScript::Get(){
 	return mL;
@@ -129,51 +60,35 @@ std::string LuaScript::File() const {
 bool LuaScript::Open() const {
 	return (mL != nullptr);
 }
-void LuaScript::AddModuleLoader(){
-    //Get the packages table
+void LuaScript::AddLoader(int (*loader)(lua_State*)){
+    //Get the package.loaders table
     lua_getfield(mL, LUA_GLOBALSINDEX, "package");
+    //Stack: package table
     //Get the loaders table
     lua_getfield(mL, -1, "loaders");
-    //Get rid of the packages table
+    //Stack: package table, loaders table
+    //Remove the package table
     lua_remove(mL, -2);
+    //Stack: loaders table
 
-    //Count # of loaders
-    int numLoaders = 0;
+    //Count the # of loaders
+    int n = 0;
+    //We push nil so we can know when we hit the end
     lua_pushnil(mL);
+    //Go through the loaders table and count # entries
     while (lua_next(mL, -2) != 0){
         lua_pop(mL, 1);
-        ++numLoaders;
+        ++n;
     }
+    //Stack: loaders table
     //Add our function
-    lua_pushinteger(mL, numLoaders + 1);
-    lua_pushcfunction(mL, &LuaScript::RequireModule);
+    lua_pushinteger(mL, n + 1);
+    //Stack: loaders table, index to add fcn to
+    lua_pushcfunction(mL, loader);
+    //Stack: loaders table, index to add fcn to, fcn
+    //Add it to the loaders table
     lua_rawset(mL, -3);
-    //Free table from stack
+    //Stack: loaders table
+    //Pop the table off
     lua_pop(mL, 1);
-}
-void LuaScript::AddScriptLoader(){
-    //Get the packages table
-    lua_getfield(mL, LUA_GLOBALSINDEX, "package");
-    //Get the loaders table
-    lua_getfield(mL, -1, "loaders");
-    //Get rid of the packages table
-    lua_remove(mL, -2);
-    
-    //Count # of loaders
-    int numLoaders = 0;
-    lua_pushnil(mL);
-    while (lua_next(mL, -2) != 0){
-        lua_pop(mL, 1);
-        ++numLoaders;
-    }
-    //Add our function
-    lua_pushinteger(mL, numLoaders + 1);
-    lua_pushcfunction(mL, &LuaScript::RequireScript);
-    lua_rawset(mL, -3);
-    //Free table from stack
-    lua_pop(mL, 1);
-}
-void LuaScript::AddLoaders(){
-    AddScriptLoader();
-    AddModuleLoader();
 }

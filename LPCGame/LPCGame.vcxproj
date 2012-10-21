@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="..\externals\json\json-forwards.h" />
     <ClInclude Include="..\externals\json\json.h" />
+    <ClInclude Include="..\luac\luacscript.h" />
     <ClInclude Include="..\src\animatedimage.h" />
     <ClInclude Include="..\src\base.h" />
     <ClInclude Include="..\src\button.h" />
@@ -50,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\externals\jsoncpp.cpp" />
+    <ClCompile Include="..\luac\luacscript.cpp" />
     <ClCompile Include="..\src\animatedimage.cpp" />
     <ClCompile Include="..\src\button.cpp" />
     <ClCompile Include="..\src\camera.cpp" />
@@ -116,7 +118,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\boost_1_50_0;C:\Program Files %28x86%29\Lua\5.1\include;C:\luabind;C:\SDL-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Will\Documents\Programs\LPCGame;C:\boost_1_50_0;C:\Program Files %28x86%29\Lua\5.1\include;C:\luabind;C:\SDL-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

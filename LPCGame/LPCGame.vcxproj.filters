@@ -123,6 +123,9 @@
     <ClInclude Include="..\src\debug.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\luac\luacscript.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\button.cpp">
@@ -213,6 +216,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\luac\luacscript.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
