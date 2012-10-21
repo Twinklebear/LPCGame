@@ -5,32 +5,45 @@
 #include "luacscript.h"
 #include "luarect.h"
 
-LuaRect::LuaRect() : x(0), y(0), w(0), h(0){
+LuaRect::LuaRect() : w(0), h(0){
 }
-LuaRect::LuaRect(int pX, int pY, int pW, int pH)
-    : x(pX), y(pY), w(pW), h(pH)
+LuaRect::LuaRect(float pX, float pY, int pW, int pH)
+    : w(pW), h(pH)
 {
+    pos.Set(pX, pY);
 }
-void LuaRect::Set(int pX, int pY, int pW, int pH){
-    x = pX;
-    y = pY;
+void LuaRect::Set(float pX, float pY, int pW, int pH){
+    pos.Set(pX, pY);
     w = pW;
     h = pH;
 }
-int LuaRect::X(){
-    return x;
+void LuaRect::Set(Vector2f &v){
+    pos = v;
 }
-int LuaRect::Y(){
-    return y;
+Vector2f LuaRect::Pos() const {
+    return pos;
 }
-int LuaRect::W(){
+float LuaRect::X() const {
+    return pos.x;
+}
+float LuaRect::Y() const {
+    return pos.y;
+}
+int LuaRect::W() const {
     return w;
 }
-int LuaRect::H(){
+int LuaRect::H() const {
     return h;
+}
+LuaRect::operator std::string() const {
+    std::stringstream str;
+    str << "LuaRect: (" << (std::string)pos
+        << ", w: " << w << ", h: " << h << ")";
+    return str.str();
 }
 const struct luaL_reg LuaRect::luaRectLib[] = {
     { "set", setLuaRect },
+    { "pos", getPos },
     { "x", getX },
     { "y", getY },
     { "w", getW },
@@ -38,6 +51,7 @@ const struct luaL_reg LuaRect::luaRectLib[] = {
     { "__newindex", accessor },
     { "__eq", equality },
     { "__tostring", toString },
+    { "__concat", concat },
     { NULL, NULL }
 };
 int LuaRect::luaopen_luarect(lua_State *l){
@@ -106,7 +120,7 @@ int LuaRect::newLuaRect(lua_State *l){
     LuaRect *r = (LuaRect*)lua_newuserdata(l, sizeof(LuaRect));
     //Get the values to initialize the rect with from the stack
     if (initVals){
-        r->Set(luaL_checkint(l, 1), luaL_checkint(l, 2),
+        r->Set(luaL_checknumber(l, 1), luaL_checknumber(l, 2),
             luaL_checkint(l, 3), luaL_checkint(l, 4));
         //Remove the values from the stack
         for (int i = 0; i < 4; ++i)
@@ -124,17 +138,29 @@ int LuaRect::setLuaRect(lua_State *l){
     lua_remove(l, 1);
     //Stack: x, y, w, h
     //Set the values
-    r->Set(luaL_checkint(l, 1), luaL_checkint(l, 2),
+    r->Set(luaL_checknumber(l, 1), luaL_checknumber(l, 2),
         luaL_checkint(l, 3), luaL_checkint(l, 4));
     lua_pop(l, 4);
     //Stack: empty
     return 0;
 }
+int LuaRect::getPos(lua_State *l){
+    //Stack: udata (LuaRect)
+    LuaRect *r = checkLuaRect(l);
+    lua_pop(l, 1);
+    //Make a new Vector2f udata and set its value to r->pos
+    Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
+    //Stack: udata (Vector2f)
+    //Add it to the metatable
+    Vector2f::addVector2f(l, -1);
+    v->Set(r->pos);
+    return 1;
+}
 int LuaRect::getX(lua_State *l){
     //Stack: udata
     LuaRect *r = checkLuaRect(l);
     lua_pop(l, 1);
-    lua_pushinteger(l, r->x);
+    lua_pushnumber(l, r->X());
     //Stack: val of x
     return 1;
 }
@@ -142,7 +168,7 @@ int LuaRect::getY(lua_State *l){
     //Stack: udata
     LuaRect *r = checkLuaRect(l);
     lua_pop(l, 1);
-    lua_pushinteger(l, r->Y());
+    lua_pushnumber(l, r->Y());
     //Stack: val of y
     return 1;
 }
@@ -170,27 +196,32 @@ int LuaRect::accessor(lua_State *l){
     //Stack: udata, val to set
     switch (val.at(0)){
         case 'x':
-            setX(l);
-            break;
+            return setX(l);
         case 'y':
-            setY(l);
-            break;
+            return setY(l);
         case 'w':
-            setW(l);
-            break;
+            return setW(l);
         case 'h':
-            setH(l);
-            break;
+            return setH(l);
+        case 'p':
+            return setPos(l);
         default:
-            break;
+            return 0;
     }
-    //Set takes care of setting the val and cleaning up the stack
+}
+int LuaRect::setPos(lua_State *l){
+    //Stack: udata (rect), udata (vector2f)
+    LuaRect *r = checkLuaRect(l, 1);
+    Vector2f *v = Vector2f::checkVector2f(l, 2);
+    r->Set(*v);
+    //Clean up stack
+    lua_pop(l, 2);
     return 0;
 }
 int LuaRect::setX(lua_State *l){
     //Stack: udata, val to set as x
     LuaRect *r = checkLuaRect(l);
-    r->Set(luaL_checkint(l, 2), r->y, r->w, r->h);
+    r->Set(luaL_checknumber(l, 2), r->pos.y, r->w, r->h);
     //Clean up the stack
     lua_pop(l, 2);
     return 0;
@@ -198,7 +229,7 @@ int LuaRect::setX(lua_State *l){
 int LuaRect::setY(lua_State *l){
     //Stack: udata, val to set as y
     LuaRect *r = checkLuaRect(l);
-    r->Set(r->x, luaL_checkint(l, 2), r->w, r->h);
+    r->Set(r->pos.x, luaL_checknumber(l, 2), r->w, r->h);
     //Clean up the stack
     lua_pop(l, 2);
     return 0;
@@ -206,7 +237,7 @@ int LuaRect::setY(lua_State *l){
 int LuaRect::setW(lua_State *l){
     //Stack: udata, val to set as w
     LuaRect *r = checkLuaRect(l);
-    r->Set(r->x, r->y, luaL_checkint(l, 2), r->h);
+    r->Set(r->pos.x, r->pos.y, luaL_checkint(l, 2), r->h);
     //Clean up the stack
     lua_pop(l, 2);
     return 0;
@@ -214,7 +245,7 @@ int LuaRect::setW(lua_State *l){
 int LuaRect::setH(lua_State *l){
     //Stack: udata, val to set as h
     LuaRect *r = checkLuaRect(l);
-    r->Set(r->x, r->y, r->w, luaL_checkint(l, 2));
+    r->Set(r->pos.x, r->pos.y, r->w, luaL_checkint(l, 2));
     //Clean up the stack
     lua_pop(l, 2);
     return 0;
@@ -226,7 +257,7 @@ int LuaRect::equality(lua_State *l){
     LuaRect *r2 = checkLuaRect(l, 2);
     lua_pop(l, 2);
     //Stack: empty
-    lua_pushboolean(l, (r->x == r2->x && r->y == r2->y && r->w == r2->w && r->h == r2->h));
+    lua_pushboolean(l, (r->pos == r2->pos && r->w == r2->w && r->h == r2->h));
     return 1;
 }
 int LuaRect::toString(lua_State *l){
@@ -236,9 +267,38 @@ int LuaRect::toString(lua_State *l){
     lua_pop(l, 1);
     //Stack: empty
     std::stringstream str;
-    str << "Rect: (x: " << r->x << ", y: " << r->y
+    str << "Rect: ( " << (std::string)(r->pos)
         << ", w: " << r->w << ", h: " << r->h << ")";
     lua_pushstring(l, str.str().c_str());
     //Stack: the description string
+    return 1;
+}
+int LuaRect::concat(lua_State *l){
+    /*
+    *  Stack has 2 possible configurations that we must
+    *  detect and pick the right location to read the udata
+    *  1. string, udata (LuaRect)
+    *  2. udata (LuaRect), string
+    */
+    //Config 1
+    if (lua_type(l, 1) == LUA_TSTRING){
+        //Read the vector and pop it off
+        LuaRect *r = checkLuaRect(l, 2);
+        std::string str = luaL_checkstring(l, 1);
+        lua_pop(l, 2);
+        //stack: empty
+        //Push on string + description string
+        lua_pushstring(l, (str + (std::string)(*r)).c_str());
+    }
+    //Config 2
+    else {
+        //Read the vector and pop it off
+        LuaRect *r = checkLuaRect(l, 1);
+        std::string str = luaL_checkstring(l, 2);
+        lua_pop(l, 2);
+        //stack: empty
+        //Push on string + description string
+        lua_pushstring(l, ((std::string)(*r) + str).c_str());
+    }
     return 1;
 }

@@ -12,16 +12,14 @@
 template<class T>
 class Vector2 {
 public:
-	Vector2(){
-		Set(0, 0);
+	Vector2() : x(0), y(0){
 	}
 	/**
 	*  Setup the vector with an x & y value
 	*  @param pX The x value to set
 	*  @param pY The y value to set
 	*/
-	Vector2(T pX, T pY){
-		Set(pX, pY);
+	Vector2(T pX, T pY) : x(pX), y(pY){
 	}
 	/**
 	*  Setup the vector with an x & y value
@@ -32,7 +30,14 @@ public:
 		x = pX;
 		y = pY;
 	}
+    void Set(Vector2<T> &v){
+        x = v.x;
+        y = v.y;
+    }
 	///Operators
+    bool operator == (Vector2<T> val) const {
+        return (x == val.x && y == val.y);
+    }
 	Vector2<T> operator + (Vector2<T> val) const {
 		return Vector2<T>(this->x + val.x, this->y + val.y);
 	}
@@ -96,11 +101,11 @@ public:
     static int luaopen_vector2f(lua_State *l);
     //Add a vector2f to the table. i is relative to top
     static void addVector2f(lua_State *l, int i);
+    //i is the stack index
+    static Vector2<float>* checkVector2f(lua_State *l, int i = 1);
 
 private:
     static const struct luaL_reg luaVector2fLib[];
-    //i is the stack index
-    static Vector2<float>* checkVector2f(lua_State *l, int i = 1);
     static int newVector2f(lua_State *l);
     static int setVector2f(lua_State *l);
     //Set/Get
@@ -317,7 +322,7 @@ int Vector2<T>::equality(lua_State *l){
     Vector2f *v2 = checkVector2f(l, 2);
     lua_pop(l, 2);
     //Stack: empty
-    lua_pushboolean(l, (v->x == v2->x && v->y == v2->y));
+    lua_pushboolean(l, v == v2);
     return 1;
 }
 template<class T>
@@ -344,17 +349,32 @@ int Vector2<T>::subtraction(lua_State *l){
 }
 template<class T>
 int Vector2<T>::multiply(lua_State *l){
-    //Stack: udata (vector2f), udata (vector2f) or number
-    Vector2f *v = checkVector2f(l);
-    //Check if we're dividing by udata (vector2f) or number
-    if (lua_type(l, 2) == LUA_TNUMBER){
+    /*
+    *  There are 3 possible stacks we may get
+    *  1. number, udata (Vector2f)
+    *  2. udata (Vector2f), number
+    *  3. udata (Vector2f), udata (Vector2f)
+    */
+    //Check for case 1
+    if (lua_type(l, 1) == LUA_TNUMBER){
+        Vector2f *v = (Vector2f*)checkVector2f(l, 2);
+        float num = luaL_checknumber(l, 1);
+        lua_pop(l, 2);
+        Vector2f *result = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
+        result->Set(v->x * num, v->y * num);
+    }
+    //Case 2
+    else if (lua_type(l, 2) == LUA_TNUMBER){
+        Vector2f *v = (Vector2f*)checkVector2f(l);
         float num = luaL_checknumber(l, 2);
         lua_pop(l, 2);
         Vector2f *result = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
         result->Set(v->x * num, v->y * num);
     }
+    //Case 3
     else {
-        Vector2f *v2 = checkVector2f(l);
+        Vector2f *v = checkVector2f(l);
+        Vector2f *v2 = checkVector2f(l, 2);
         lua_pop(l, 2);
         Vector2f *result = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
         result->Set(v->x * v2->x, v->y * v2->y);
@@ -364,17 +384,23 @@ int Vector2<T>::multiply(lua_State *l){
 }
 template<class T>
 int Vector2<T>::divide(lua_State *l){
-    //Stack: udata (vector2f), udata (vector2f) or number
-    Vector2f *v = checkVector2f(l);
-    //Check if we're dividing by udata (vector2f) or number
-    if (lua_type(l, 2) == LUA_TNUMBER){
-        float num = luaL_checknumber(l, 2);
+    /*
+    *  There are 2 possible stacks we may get
+    *  1. number, udata (Vector2f)
+    *  2. udata (Vector2f), udata (Vector2f)
+    */
+    //Case 1
+    if (lua_type(l, 1) == LUA_TNUMBER){
+        Vector2f *v = checkVector2f(l, 2);
+        float num = luaL_checknumber(l, 1);
         lua_pop(l, 2);
         Vector2f *result = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
         result->Set(v->x / num, v->y / num);
     }
+    //Case 2
     else {
-        Vector2f *v2 = checkVector2f(l);
+        Vector2f *v = checkVector2f(l);
+        Vector2f *v2 = checkVector2f(l, 2);
         lua_pop(l, 2);
         Vector2f *result = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
         result->Set(v->x / v2->x, v->y / v2->y);
