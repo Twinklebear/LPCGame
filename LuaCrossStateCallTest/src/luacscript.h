@@ -30,6 +30,9 @@ private:
 public: 
     //Perform a stack dump on a state
     static int stackDump(lua_State *l);
+    //Read the type value of the metatable of some udata at index i
+    //Return the typename
+    static std::string readType(lua_State *l, int i);
 
 private:
     //Stuff to interface with Lua, hidden from C++
@@ -58,9 +61,6 @@ private:
     *  the tables in the receiving state once the params have been transferred
     */
     static std::vector<std::string> checkUdata(lua_State *l);
-    //Read the type value of the metatable of some udata at index i
-    //Return the typename
-    static std::string readType(lua_State *l, int i);
     /**
     *  Register the udata params with the appropriate metatables
     *  l: the state to register in
@@ -82,7 +82,6 @@ private:
     static int name(lua_State *l);
     //Push script bool value of open
     static int open(lua_State *l);
-    static int type(lua_State *l);
 
 private:
     static const TRegisterMap sRegisterFuncs;

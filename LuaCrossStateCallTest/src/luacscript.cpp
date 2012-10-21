@@ -4,6 +4,7 @@
 #include <fstream>
 #include <lua.hpp>
 #include "luarect.h"
+#include "vectors.h"
 #include "luacscript.h"
 
 //Static data
@@ -135,6 +136,7 @@ LuaCScript::TRegisterMap LuaCScript::CreateMap(){
     TRegisterMap map;
     map["LuaCScript"] = &LuaCScript::luaopen_luacscript;
     map["LuaRect"]    = &LuaRect::luaopen_luarect;
+    map["Vector2f"]   = &Vector2<float>::luaopen_vector2f;
     return map;
 }
 LuaCScript* LuaCScript::GetScript(const std::string &name){
@@ -232,10 +234,7 @@ std::string LuaCScript::readType(lua_State *l, int i){
         //Stack: stuff, udata's metatable
         //Get the "type" field
         lua_getfield(l, -1, "type");
-        //Stack: stuff, udata metatable, type fcn
-        //Call the function
-        lua_pcall(l, 0, 1, 0);
-        //Stack: stuff, udata metatable, type name
+        //Stack: stuff, udata metatable, typename
         //Get the type from the stack
         type = luaL_checkstring(l, -1);
     }
@@ -277,7 +276,7 @@ int LuaCScript::stackDump(lua_State *l){
             case LUA_TNUMBER:
                 std::cout << lua_tonumber(l, i);
                 break;
-            //Other (userdata and such)
+            //Other (userdata)
             default:
                 std::cout << lua_typename(l, t);
                 break;
@@ -293,7 +292,6 @@ const struct luaL_reg LuaCScript::LuaCScriptLib_f[] = {
 };
 const struct luaL_reg LuaCScript::LuaCScriptLib_m[] = {
     { "callFunction", callFunction },
-    { "type", type },
     { "name", name },
     { "open", open },
     { NULL, NULL }
@@ -312,7 +310,10 @@ int LuaCScript::luaopen_luacscript(lua_State *l){
     //Stack: lib name, metatable
     //Register our member functions into this table
     luaL_register(l, NULL, LuaCScriptLib_m);
-
+    //Pushing on a typename string so we can ID the metatable
+    lua_pushstring(l, "LuaCScript");
+    //Stack: lib name, metatable, string
+    lua_setfield(l, -2, "type");
     //register the non-member functions as well into a global table
     lua_newtable(l);
     //Stack: lib name, metatable
@@ -338,12 +339,12 @@ int LuaCScript::getScript(lua_State *l){
     std::string script = lua_tostring(l, 1);
     lua_remove(l, 1);
     //Stack: empty
-    //Lookup the script and create a new LuaCScript** udata in the state
-    LuaCScript *s = GetScript(script);
+    //Create a new LuaCScript** udata in the state, this pointer will point
+    //to the LuaCScript pointer in the map
     LuaCScript **sPush = (LuaCScript**)lua_newuserdata(l, sizeof(LuaCScript*));
     //Stack: udata
     //Set the sPush to the script wanted
-    *sPush = s;
+    *sPush = GetScript(script);
     //Register it with the metatable
     addLuaCScript(l, -1);
     return 1;
@@ -364,12 +365,5 @@ int LuaCScript::open(lua_State *l){
     LuaCScript **s = checkLuaCScript(l);
     lua_pop(l, 1);
     lua_pushboolean(l, (*s)->Open());
-    return 1;
-}
-int LuaCScript::type(lua_State *l){
-    //Stack: udata
-    lua_pop(l, 1);
-    lua_pushstring(l, "LuaCScript");
-    //Stack: typename
     return 1;
 }

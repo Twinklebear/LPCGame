@@ -20,10 +20,8 @@ public:
 private:
     //Check if some data is a LuaRect and return a pointer to it
     static LuaRect* checkLuaRect(lua_State *l, int i = 1);
-    //The LuaRect functions
-    static const struct luaL_reg luaRectLib_f[];
     //The LuaRect member functions
-    static const struct luaL_reg luaRectLib_m[];
+    static const struct luaL_reg luaRectLib[];
     //Create a new luarect
     static int newLuaRect(lua_State *l);
     //Getters and setters
@@ -39,8 +37,6 @@ private:
     static int setY(lua_State *l);
     static int setW(lua_State *l);
     static int setH(lua_State *l);
-    //For getting type via metatable
-    static int type(lua_State *l);
     //Comparison operators
     static int equality(lua_State *l);
     //Arithmetic operators
