@@ -138,6 +138,51 @@ void LuaC::LuaScriptLib::setUserData(lua_State *l, std::vector<std::string> type
         }
     }
 }
+int LuaC::LuaScriptLib::LuaOpenLib(lua_State *l, const std::string &metatable,
+    const std::string &className, const luaL_reg *lib, int (*call)(lua_State*))
+{
+    //Stack: lib name
+    //Push the metatable to contain the fcns onto the stack
+    luaL_newmetatable(l, metatable.c_str());
+    //Copy metatable from -1 to the top
+    lua_pushvalue(l, -1);
+    //Set table at -2 key of __index = top of stack
+    //ie. LPC.LuaRect.__index = table containing luaRectLib_m
+    lua_setfield(l, -2, "__index");
+    //Register the lib to the metatable at top of stack
+    luaL_register(l, NULL, lib);
+    //Stack: lib name, metatable
+    //Add type identifier to the metatable
+    lua_pushstring(l, className.c_str());
+    lua_setfield(l, -2, "type");
+    //Stack: lib name, metatable
+    //Setup the LuaRect table, for making LuaRects
+    lua_newtable(l);
+    //Stack: lib name, metatable, table
+    //Push the new fcn
+    lua_pushcfunction(l, call);
+    //Stack: lib name, metatable, table, newLuaRect fcn
+    //Now newLuaRect fcn is @ key __call in the table
+    lua_setfield(l, -2, "__call");
+    //Stack: lib name, metatable, table
+    //We want to set the table containing __call to be the metatable
+    //of the LuaRect metatable
+    lua_setmetatable(l, -2);
+    //Stack: lib name, metatable
+    //Name our metatable and make it global
+    lua_setglobal(l, className.c_str());
+    //Stack: lib name
+    return 0;
+}
+void LuaC::LuaScriptLib::Add(lua_State *l, int i, const std::string &metatable){
+    //Given stack containing unknown amount of things along with the udata
+    //udata is at index i
+    luaL_getmetatable(l, metatable.c_str());
+    //Now stack is ??? with the metatable at top
+    //So we know the index of our rect is bumped down 1 more so we adjust
+    //and set the table
+    lua_setmetatable(l, i - 1);
+}
 int LuaC::LuaScriptLib::doScript(lua_State *l){
     std::string script = lua_tostring(l, 0);
     luaL_dofile(l, script.c_str());

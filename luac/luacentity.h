@@ -20,7 +20,7 @@ namespace LuaC {
         ///Open the Entity Lua library for Lua state l
         static int luaopen_entity(lua_State *l);
         /**
-        *  Add the Entity lib metatable to the userdata at index i
+        *  Add the Entity metatable to the userdata at index i
         *  i is relative to top (ie. -1 is top)
         *  @param l The Lua state
         *  @param i The index of the userdata to add (index relative to top, neg #'s)
@@ -37,28 +37,26 @@ namespace LuaC {
     private:
         ///The Lua function library struct
         static const struct luaL_reg luaEntityLib[];
-        /**
-        *  Make a new entity in Lua state l
-        */
+        ///Make a new Entity in Lua state l
         static int newEntity(lua_State *l);
         ///Getters
         static int getPhysics(lua_State *l);
         static int getBox(lua_State *l);
         static int getTag(lua_State *l);
-        //__newindex accessor
+        ///__newindex accessor for setters
         static int newIndex(lua_State *l);
-        //Setters
-        //Set the entity tag, i corresponds to the index to get the value from
+        ///Setters
+        ///Set the entity tag, i corresponds to the index to get the value from
         static int setTag(lua_State *l, int i);
-        //Operators
+        ///Operators
         static int toString(lua_State *l);
         static int concat(lua_State *l);
-        //Garbage collection
+        ///Garbage collection
         static int garbageCollection(lua_State *l);
 
     private:
         ///Meta and Class table names
-        static const std::string sMetaTable, sClassName;
+        static const std::string sMetatable, sClassName;
     };
 };
 

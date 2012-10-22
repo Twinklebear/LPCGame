@@ -4,56 +4,20 @@
 #include "src/physics.h"
 #include "src/rect.h"
 #include "src/entitymanager.h"
-#include "luac/luacentity.h"
+#include "luacscript.h"
+#include "luacentity.h"
 
-const std::string LuaC::EntityLib::sMetaTable = "LPC.Entity";
+const std::string LuaC::EntityLib::sMetatable = "LPC.Entity";
 const std::string LuaC::EntityLib::sClassName = "Entity";
 
 int LuaC::EntityLib::luaopen_entity(lua_State *l){
-    //Stack: lib name
-    //Push the metatable to contain the fcns onto the stack
-    luaL_newmetatable(l, sMetaTable.c_str());
-    //Copy metatable from -1 to the top
-    lua_pushvalue(l, -1);
-    //Set table at -2 key of __index = top of stack
-    //ie. LPC.LuaRect.__index = table containing luaRectLib_m
-    lua_setfield(l, -2, "__index");
-    //Register the lib to the metatable at top of stack
-    luaL_register(l, NULL, luaEntityLib);
-    //Stack: lib name, metatable
-    //Add type identifier to the metatable
-    lua_pushstring(l, sClassName.c_str());
-    lua_setfield(l, -2, "type");
-    //Stack: lib name, metatable
-    //Setup the LuaRect table, for making LuaRects
-    lua_newtable(l);
-    //Stack: lib name, metatable, table
-    //Push the new fcn
-    lua_pushcfunction(l, newEntity);
-    //Stack: lib name, metatable, table, newLuaRect fcn
-    //Now newLuaRect fcn is @ key __call in the table
-    lua_setfield(l, -2, "__call");
-    //Stack: lib name, metatable, table
-    //We want to set the table containing __call to be the metatable
-    //of the LuaRect metatable
-    lua_setmetatable(l, -2);
-    //Stack: lib name, metatable
-    //Name our metatable and make it global
-    lua_setglobal(l, sClassName.c_str());
-    //Stack: lib name
-    return 0;
+    return LuaScriptLib::LuaOpenLib(l, sMetatable, sClassName, luaEntityLib, newEntity);
 }
 void LuaC::EntityLib::addEntity(lua_State *l, int i){
-    //Given stack containing unknown amount of things along with the udata
-    //udata is at index i
-    luaL_getmetatable(l, sMetaTable.c_str());
-    //Now stack is ??? with the metatable at top
-    //So we know the index of our rect is bumped down 1 more so we adjust
-    //and set the table
-    lua_setmetatable(l, i - 1);
+    LuaScriptLib::Add(l, i, sMetatable);
 }
 Entity** LuaC::EntityLib::checkEntity(lua_State *l, int i){
-    return (Entity**)luaL_checkudata(l, i, sMetaTable.c_str());
+    return (Entity**)luaL_checkudata(l, i, sMetatable.c_str());
 }
 const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
     { "physics", getPhysics },

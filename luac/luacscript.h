@@ -63,6 +63,24 @@ namespace LuaC {
         *  @param types The vector to read typenames from
         */
         static void setUserData(lua_State *l, std::vector<std::string> types);
+        /**
+        *  A generic luaopen_X function for opening libraries that share similar
+        *  style, and have the same organization for their luaopen_X function
+        *  @param l The Lua state to register in
+        *  @param metatable The name for the metatable
+        *  @param className The name for the class table and type
+        *  @param lib The luaL_reg struct containing the functions and names
+        *  @param call The function to load for the __call field (constructor)
+        */
+        static int LuaOpenLib(lua_State *l, const std::string &metatable,
+            const std::string &className, const luaL_reg *lib, int (*call)(lua_State*));
+        /**
+        *  A generic addX function for adding some userdata to the desired metatable
+        *  @param l The Lua state
+        *  @param i The index of the user data, relative to top
+        *  @param metatable The metatable name to register with
+        */
+        static void Add(lua_State *l, int i, const std::string &metatable);
 
     private:
         /**
