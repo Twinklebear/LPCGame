@@ -40,8 +40,8 @@ void LuaScript::OpenScript(const std::string &script){
         mL = lua_open();
         luaL_openlibs(mL);
         luabind::open(mL);
-        AddLoader(LuaC::LuaScript::requireLib);
-        AddLoader(LuaC::LuaScript::requireScript);
+        AddLoader(LuaC::LuaScriptLib::requireLib);
+        AddLoader(LuaC::LuaScriptLib::requireScript);
         luaL_dofile(mL, mFile.c_str());
     }
 }

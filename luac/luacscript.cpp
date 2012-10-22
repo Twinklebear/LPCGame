@@ -23,10 +23,10 @@
 #include "src/luascript.h"
 #include "luac/luacscript.h"
 
-const LuaC::LuaScript::TLuaLibs LuaC::LuaScript::sLuaLibs = LuaC::LuaScript::CreateLibMap();
-const LuaC::LuaScript::TTableAdders LuaC::LuaScript::sTableAdders = LuaC::LuaScript::CreateAdderMap();
+const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
+const LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::sTableAdders = LuaC::LuaScriptLib::CreateAdderMap();
 
-int LuaC::LuaScript::stackDump(lua_State *l){
+int LuaC::LuaScriptLib::stackDump(lua_State *l){
     std::stringstream ss;
     ss << "Stack: ";
     for (int i = 1, top = lua_gettop(l); i <= top; ++i){
@@ -56,7 +56,7 @@ int LuaC::LuaScript::stackDump(lua_State *l){
     Debug::Log(ss.str());
     return 0;
 }
-std::string LuaC::LuaScript::readType(lua_State *l, int i){
+std::string LuaC::LuaScriptLib::readType(lua_State *l, int i){
     //Stack: some # of params, i corresponds to the udata we want to identify
     std::string type = "";
     //Get the metatable of udata at index i
@@ -69,14 +69,14 @@ std::string LuaC::LuaScript::readType(lua_State *l, int i){
         type = luaL_checkstring(l, -1);
     }
     //Stack: stuff, udata metatable, typename
-    //Stack contains the typename and its metatable, pop them off
+    //Stack contains the typename and the metatable, pop them off
     lua_pop(l, 2);
     return type;
 }
-int LuaC::LuaScript::requireLib(lua_State *l){
+int LuaC::LuaScriptLib::requireLib(lua_State *l){
     //Try to look up the module desired, if it's one of ours load it, if not error
     std::string module = lua_tostring(l, -1);
-    LuaC::LuaScript::TLuaLibs::const_iterator fnd = sLuaLibs.find(module);
+    LuaC::LuaScriptLib::TLuaLibs::const_iterator fnd = sLuaLibs.find(module);
     if (fnd != sLuaLibs.end())
         lua_pushcfunction(l, sLuaLibs.at(module));
     else {
@@ -86,7 +86,7 @@ int LuaC::LuaScript::requireLib(lua_State *l){
     }
     return 1;
 }
-int LuaC::LuaScript::requireScript(lua_State *l){
+int LuaC::LuaScriptLib::requireScript(lua_State *l){
     //Check if the script is an engine script, if yes push DoScript, if no error
     std::string script = lua_tostring(l, -1);
     if (script.substr(0, 7) == "scripts"){
@@ -95,7 +95,7 @@ int LuaC::LuaScript::requireScript(lua_State *l){
         if (checkFile.good()){
             checkFile.close();
             lua_pushstring(l, scriptFile.c_str());
-            lua_pushcfunction(l, LuaC::LuaScript::doScript);
+            lua_pushcfunction(l, LuaC::LuaScriptLib::doScript);
         }
         else {
             std::string err = "LuaCScript::RequireScript Error: Failed to find: " 
@@ -110,7 +110,7 @@ int LuaC::LuaScript::requireScript(lua_State *l){
     //If we found script or failed to load engine script we've got a result to return
     return 1;
 }
-std::vector<std::string> LuaC::LuaScript::checkUserData(lua_State *l){
+std::vector<std::string> LuaC::LuaScriptLib::checkUserData(lua_State *l){
     //l stack: params
     //We want to step through and record the typenames of the userdata
     std::vector<std::string> udata;
@@ -123,7 +123,7 @@ std::vector<std::string> LuaC::LuaScript::checkUserData(lua_State *l){
     }
     return udata;
 }
-void LuaC::LuaScript::setUserData(lua_State *l, std::vector<std::string> types){
+void LuaC::LuaScriptLib::setUserData(lua_State *l, std::vector<std::string> types){
     //l stack: params
     //Step through and find udata, and register it according to the value at the vector
     //after each registration, increment vector pos
@@ -138,14 +138,12 @@ void LuaC::LuaScript::setUserData(lua_State *l, std::vector<std::string> types){
         }
     }
 }
-int LuaC::LuaScript::doScript(lua_State *l){
+int LuaC::LuaScriptLib::doScript(lua_State *l){
     std::string script = lua_tostring(l, 0);
     luaL_dofile(l, script.c_str());
-    //Stack still has the initial string we called with scripts/blah, so remove it
-    lua_pop(l, 1);
     return 0;
 }
-LuaC::LuaScript::TLuaLibs LuaC::LuaScript::CreateLibMap(){
+LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     TLuaLibs map;
     map["AnimatedImage"] = &AnimatedImage::RegisterLua;
     map["Button"]        = &Button::RegisterLua;
@@ -167,7 +165,7 @@ LuaC::LuaScript::TLuaLibs LuaC::LuaScript::CreateLibMap(){
     map["Window"]        = &Window::RegisterLua;
     return map;
 }
-LuaC::LuaScript::TTableAdders LuaC::LuaScript::CreateAdderMap(){
+LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
     TTableAdders map;
     //Add table adders
     return map;

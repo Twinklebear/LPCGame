@@ -12,7 +12,12 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
-    class LuaScript {
+    /**
+    *  Class to store the various functions needed for interactions
+    *  between Lua and LuaScript class along with some general Lua C
+    *  utility functions
+    */
+    class LuaScriptLib {
     public:
         /**
         *  Perform a stack dump on the lua_State
@@ -47,7 +52,7 @@ namespace LuaC {
         *  of the userdata
         *  @param l The state to read the userdata types from
         *  @return Vector containing the userdata typenames in the order they
-             were encountered
+                were encountered
         */
         static std::vector<std::string> checkUserData(lua_State *l);
         /**

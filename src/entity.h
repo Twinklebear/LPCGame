@@ -3,7 +3,7 @@
 
 #include <string>
 #include <luabind/luabind.hpp>
-#include "../externals/json/json.h"
+#include "externals/json/json.h"
 #include "base.h"
 #include "physics.h"
 #include "map.h"

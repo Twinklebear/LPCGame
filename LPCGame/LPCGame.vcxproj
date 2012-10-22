@@ -13,6 +13,9 @@
   <ItemGroup>
     <ClInclude Include="..\externals\json\json-forwards.h" />
     <ClInclude Include="..\externals\json\json.h" />
+    <ClInclude Include="..\luac\luacentity.h" />
+    <ClInclude Include="..\luac\luacphysics.h" />
+    <ClInclude Include="..\luac\luacrectf.h" />
     <ClInclude Include="..\luac\luacscript.h" />
     <ClInclude Include="..\src\animatedimage.h" />
     <ClInclude Include="..\src\base.h" />
@@ -51,6 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\externals\jsoncpp.cpp" />
+    <ClCompile Include="..\luac\luacentity.cpp" />
+    <ClCompile Include="..\luac\luacphysics.cpp" />
+    <ClCompile Include="..\luac\luacrectf.cpp" />
     <ClCompile Include="..\luac\luacscript.cpp" />
     <ClCompile Include="..\src\animatedimage.cpp" />
     <ClCompile Include="..\src\button.cpp" />

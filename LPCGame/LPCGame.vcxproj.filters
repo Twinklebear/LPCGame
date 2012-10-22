@@ -126,6 +126,15 @@
     <ClInclude Include="..\luac\luacscript.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\luac\luacentity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\luac\luacrectf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\luac\luacphysics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\button.cpp">
@@ -219,6 +228,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\luac\luacscript.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\luac\luacentity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\luac\luacrectf.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\luac\luacphysics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
