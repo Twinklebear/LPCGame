@@ -1,5 +1,5 @@
-#ifndef LUACPHYSICS
-#define LUACPHYSICS
+#ifndef LUACPHYSICS_H
+#define LUACPHYSICS_H
 
 #include <string>
 #include <lua.hpp>

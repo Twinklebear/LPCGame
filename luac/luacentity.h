@@ -1,5 +1,5 @@
-#ifndef LUACENTITY
-#define LUACENTITY
+#ifndef LUACENTITY_H
+#define LUACENTITY_H
 
 #include <string>
 #include <lua.hpp>

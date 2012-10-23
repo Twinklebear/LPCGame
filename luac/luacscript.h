@@ -1,5 +1,5 @@
-#ifndef LUACSCRIPT
-#define LUACSCRIPT
+#ifndef LUACSCRIPT_H
+#define LUACSCRIPT_H
 
 #include <map>
 #include <vector>

@@ -33,6 +33,14 @@ public:
 		x = pX;
 		y = pY;
 	}
+    /**
+    *  Set the vector with the same values as another vector
+    *  @param v the vector to get vals from
+    */
+    void Set(Vector2<T> &v){
+        x = v.x;
+        y = v.y;
+    }
 	/**
 	*  Save the vector to a Json::Value
 	*  @return The Json::Value containg the vector data
@@ -52,38 +60,33 @@ public:
 	}
 	///Operators
 	Vector2<T> operator + (Vector2<T> val) const {
-		return Vector2<T>(this->x + val.x, this->y + val.y);
+		return Vector2<T>(x + val.x, y + val.y);
 	}
 	Vector2<T> operator - (Vector2<T> val) const {
-		return Vector2<T>(this->x - val.x, this->y - val.y);
+		return Vector2<T>(x - val.x, y - val.y);
 	}
 	Vector2<T>& operator += (Vector2<T> val){
-		this->x += val.x;
-		this->y += val.y;
+		x += val.x;
+		y += val.y;
 		return *this;
 	}
+    bool operator == (Vector2<T> val){
+        return (x == val.x && y == val.y);
+    }
 	Vector2<T> operator * (Vector2<T> val) const {
-		Vector2<T> a;
-		a.x = this->x * val.x;
-		a.y = this->y * val.y;
+		Vector2<T> a(x * val.x, y * val.y);
 		return a;
 	}
 	Vector2<T> operator * (float val) const {
-		Vector2<T> a;
-		a.x = this->x * val;
-		a.y = this->y * val;
+		Vector2<T> a(x * val, y * val);
 		return a;
 	}
 	Vector2<T> operator / (Vector2<T> val) const {
-		Vector2<T> a;
-		a.x = this->x / val.x;
-		a.y = this->y / val.y;
+		Vector2<T> a(x / val.x, y / val.y);
 		return a;
 	}
 	Vector2<T> operator / (float val) const {
-		Vector2<T> a;
-		a.x = this->x / val;
-		a.y = this->y / val;
+		Vector2<T> a(x / val, y / val);
 		return a;
 	}
 	///Conversions
@@ -117,7 +120,7 @@ public:
 			class_<Vector2<int>>("Vector2i")
 				.def(constructor<>())
 				.def(constructor<int, int>())
-				.def("Set", &Vector2<int>::Set)
+				.def("Set", (void (Vector2<int>::*)(int, int))&Vector2<int>::Set)
 				//accessors
 				.def_readwrite("x", &Vector2<int>::x)
 				.def_readwrite("y", &Vector2<int>::y)
@@ -134,7 +137,7 @@ public:
 			class_<Vector2<float>>("Vector2f")
 				.def(constructor<>())
 				.def(constructor<float, float>())
-				.def("Set", &Vector2<float>::Set)
+				.def("Set", (void (Vector2<float>::*)(float, float))&Vector2<float>::Set)
 				//accessors
 				.def_readwrite("x", &Vector2<float>::x)
 				.def_readwrite("y", &Vector2<float>::y)

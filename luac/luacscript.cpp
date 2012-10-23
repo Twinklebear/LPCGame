@@ -21,7 +21,7 @@
 #include "src/vectors.h"
 #include "src/window.h"
 #include "src/luascript.h"
-#include "luac/luacscript.h"
+#include "luacscript.h"
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
 const LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::sTableAdders = LuaC::LuaScriptLib::CreateAdderMap();
