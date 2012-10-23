@@ -123,10 +123,10 @@ int LuaC::Vector2fLib::multiplication(lua_State *l){
     */
     //Case 1:
     if (lua_type(l, 1) == LUA_TNUMBER)
-        multVectorWithFloat(l, 2, 1);
+        multWithFloat(l, 2, 1);
     //Case 2:
     else if (lua_type(l, 2) == LUA_TNUMBER)
-        multVectorWithFloat(l, 1, 2);
+        multWithFloat(l, 1, 2);
     //Case 3:
     else {
         Vector2f *v1 = checkVector2f(l, 1);
@@ -139,7 +139,7 @@ int LuaC::Vector2fLib::multiplication(lua_State *l){
     addVector2f(l, -1);
     return 1;
 }
-void LuaC::Vector2fLib::multVectorWithFloat(lua_State *l, int vIdx, int fIdx){
+void LuaC::Vector2fLib::multWithFloat(lua_State *l, int vIdx, int fIdx){
     //Stack: userdata (Vector2f) and float at indices vIdx and fIdx respectively
     Vector2f *v = checkVector2f(l, vIdx);
     float num = luaL_checknumber(l, fIdx);
@@ -173,10 +173,30 @@ int LuaC::Vector2fLib::division(lua_State *l){
     return 1;
 }
 int LuaC::Vector2fLib::toString(lua_State *l){
-    //Need to write std::string conversion for vector2f
+    //Stack: userdata (Vector2f)
+    Vector2f *v = checkVector2f(l, 1);
+    lua_pushstring(l, ((std::string)(*v)).c_str());
     return 1;
 }
 int LuaC::Vector2fLib::concat(lua_State *l){
-    //See toString note
+    /*
+    *  Stack has 2 possible configurations
+    *  1. string, userdata (Vector2f)
+    *  2. userdata (Vector2f), string
+    */
+    if (lua_type(l, 1) == LUA_TSTRING)
+        concatWithString(l, 2, 1);
+    else
+        concatWithString(l, 1, 2);
     return 1;
+}
+void LuaC::Vector2fLib::concatWithString(lua_State *l, int vIdx, int sIdx){
+    //Stack: userdata (Vector2f) @ vIdx, string @ sIdx
+    Vector2f *v = checkVector2f(l, vIdx);
+    std::string s = luaL_checkstring(l, sIdx);
+    //add the strings with the proper ordering
+    if (vIdx < sIdx)
+        lua_pushstring(l, ((std::string)(*v) + s).c_str());
+    else
+        lua_pushstring(l, (s + (std::string)(*v)).c_str());
 }

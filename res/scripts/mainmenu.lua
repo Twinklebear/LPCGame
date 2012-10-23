@@ -6,12 +6,13 @@ require "TestVector2f"
 require "TestRectf"
 r = Rectf(10, 4, 32, 16)
 v = r:pos()
-print ("Made vector from r:pos(): " .. v:x() .. ", " .. v:y())
+print (v)
+print ("Made vector from r:pos(): " .. v)
 print ("r width, h: " .. r:w() .. ", " .. r:h())
 v.x = 15
 v.y = 14
 r.pos = v
-print ("now r:pos() " .. r:x() .. ", " .. r:y())
+print ("now r:pos() " .. r:pos())
 
 function Init()
 	print "\n--------Main Menu Init--------\n"

@@ -1,11 +1,12 @@
 #ifndef RECT_H
 #define RECT_H
 
-#include <stdexcept>
+#include <string>
+#include <sstream>
+#include <SDL.h>
 #include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>
-#include "../externals/json/json.h"
-#include "SDL.h"
+#include "externals/json/json.h"
 #include "vectors.h"
 
 ///A rectangle
@@ -14,7 +15,7 @@
 *  to represent its values
 */
 template<class T>
-class Rect{
+class Rect {
 public:
 	Rect(){
 		Set(0, 0, 0, 0);
@@ -155,7 +156,6 @@ public:
 		rect.h = h;
 		return rect;
 	}
-
 	operator Rect<float>(){
 		Rect<float> rect(pos, w, h);
 		return rect;
@@ -164,6 +164,12 @@ public:
 		Rect<int> rect(pos, w, h);
 		return rect;
 	}
+    operator std::string(){
+        std::stringstream s;
+        s << "Rect: (" << (std::string)pos.x 
+            << ", w: " << w << ", h: " << h << ")";
+        return s.str();
+    }
 	/**
 	*  Register the Rect class with the lua state
 	*  @param l The lua_State to register the module with

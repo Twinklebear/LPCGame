@@ -50,16 +50,22 @@ namespace LuaC {
         static int subtraction(lua_State *l);
         static int multiplication(lua_State *l);
         /**
-        *  Multiply a Vector2f by a float, only used as a helper for
-        *  multiplacation function
+        *  Multiply a Vector2f by a float, a helper for multiplication fcn
         *  @param l The Lua state
         *  @param vIdx The index of the Vector2f in the stack
         *  @param fIdx The index of the float in the stack
         */
-        static void multVectorWithFloat(lua_State *l, int vIdx, int fIdx);
+        static void multWithFloat(lua_State *l, int vIdx, int fIdx);
         static int division(lua_State *l);
         static int toString(lua_State *l);
         static int concat(lua_State *l);
+        /**
+        *  Concatenate a Vector2f with a string, a helper for concat fcn
+        *  @param l The Lua state
+        *  @param vIdx The index of the Vector2f in the stack
+        *  @para sIdx The index of the string in the stack
+        */
+        static void concatWithString(lua_State *l, int vIdx, int sIdx);
 
     private:
         ///Meta and Class table names
