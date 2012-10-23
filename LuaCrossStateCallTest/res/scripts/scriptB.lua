@@ -20,7 +20,9 @@ end
 ]]
 
 v = v2 * v
-print ("Result: " .. v)
+print ("Result of v = v2 * v " .. v)
+
+print ("Result of v / 10: " .. (v / 10))
 
 --print ("Silly enum: " .. LuaRect.ENUM)
 r = LuaRect(3, 4, 2, 1)

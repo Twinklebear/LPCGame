@@ -389,14 +389,13 @@ template<class T>
 int Vector2<T>::divide(lua_State *l){
     /*
     *  There are 2 possible stacks we may get
-    *  1. number, udata (Vector2f)
+    *  1. udata (Vector2f), number
     *  2. udata (Vector2f), udata (Vector2f)
     */
     //Case 1
-    if (lua_type(l, 1) == LUA_TNUMBER){
-        Vector2f *v = checkVector2f(l, 2);
-        float num = luaL_checknumber(l, 1);
-        lua_pop(l, 2);
+    if (lua_type(l, 2) == LUA_TNUMBER){
+        Vector2f *v = checkVector2f(l, 1);
+        float num = luaL_checknumber(l, 2);
         Vector2f *result = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
         result->Set(v->x / num, v->y / num);
     }
@@ -404,7 +403,6 @@ int Vector2<T>::divide(lua_State *l){
     else {
         Vector2f *v = checkVector2f(l);
         Vector2f *v2 = checkVector2f(l, 2);
-        lua_pop(l, 2);
         Vector2f *result = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
         result->Set(v->x / v2->x, v->y / v2->y);
     }
