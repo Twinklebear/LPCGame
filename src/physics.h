@@ -44,6 +44,11 @@ public:
 	void SetHorizDir(int moveDir);
 	///Set the vertical move direction @see Math enum
 	void SetVertDir(int moveDir);
+    /**
+    *  Set the direction of motion
+    *  @param v The vector direction to move in, will be normalized
+    */
+    void SetDirection(Vector2f v);
 	void SetPhysConstants(PhysicalConstants physConstants);
 	void SetBox(Rectf box);
 	void SetMap(CollisionMap map);
@@ -87,7 +92,7 @@ private:
 
 public:
 	///Move enum, at the moment just has one for Stop as Math enum is used for dir @see Math
-	enum MOVE { STOP = -1};
+	enum MOVE { STOP = -1 };
 
 private:
 	Kinematic mKinematic;
@@ -96,6 +101,7 @@ private:
 	Rectf mBox;
 	CollisionMap mCollisionMap;
 	int mHorizDir, mVertDir;
+    Vector2f mDir;
 };
 
 #endif

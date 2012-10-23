@@ -10,6 +10,7 @@ Physics::Physics(){
 	mKinematic.Accel = Vector2f(0, 0);
 	mHorizDir = MOVE::STOP;
 	mVertDir  = MOVE::STOP;
+    mDir = Vector2f(0, 0);
 }
 Physics::~Physics(){}
 void Physics::Move(float deltaT){
@@ -27,11 +28,13 @@ void Physics::Move(float deltaT){
 
 	//x axis collision checks
 	if (CheckCollision(Rectf(testPos.x, mBox.Y(), mBox.W(), mBox.H()))){
+        //Send on collision event?
 	}
 	else 
 		mBox.Set(testPos.x, mBox.Y());
 	//y axis collision checks
 	if (CheckCollision(Rectf(mBox.X(), testPos.y, mBox.W(), mBox.H()))){
+        //Send on collision event?
 	}
 	else
 		mBox.Set(mBox.X(), testPos.y);
@@ -62,6 +65,8 @@ void Physics::UpdateVelocity(float deltaT){
 		mKinematic.Vel.y = mPhysConstants.hSpeed * (mKinematic.Vel.y / abs(mKinematic.Vel.y));
 }
 void Physics::ApplyAcceleration(){
+    mKinematic.Accel = mDir * mPhysConstants.hAccel;
+    /*
 	if (mHorizDir == Math::RIGHT)
 		mKinematic.Accel.x = mPhysConstants.hAccel;
 	else if (mHorizDir == Math::LEFT)
@@ -74,6 +79,7 @@ void Physics::ApplyAcceleration(){
 		mKinematic.Accel.y = mPhysConstants.hAccel;
 	else
 		mKinematic.Accel.y = 0;
+    */
 }
 void Physics::ApplyFriction(){
 	if (mHorizDir == MOVE::STOP && mKinematic.Vel.x != 0.0){
@@ -105,7 +111,6 @@ bool Physics::CheckCollision(Rectf box){
 	}
 	return colliding;
 }
-
 Vector2f Physics::Position() const{
 	return mBox.Pos();
 }
@@ -134,11 +139,39 @@ void Physics::SetHorizDir(int moveDir){
 	if (moveDir == Math::UP || moveDir == Math::DOWN)
 		Debug::Log("Bad Horizontal Direction");
 	mHorizDir = moveDir;
+    if (moveDir == Math::LEFT)
+        SetDirection(Vector2f(-1, mDir.y));
+    else if (moveDir == Math::RIGHT)
+        SetDirection(Vector2f(1, mDir.y));
+    else if (moveDir == MOVE::STOP)
+        SetDirection(Vector2f(0, mDir.y));
 }
 void Physics::SetVertDir(int moveDir){
 	if (moveDir == Math::LEFT || moveDir == Math::RIGHT)
 		Debug::Log("Bad Vertical Direction");
 	mVertDir = moveDir;
+    if (moveDir == Math::UP)
+        SetDirection(Vector2f(mDir.x, -1));
+    else if (moveDir == Math::DOWN)
+        SetDirection(Vector2f(mDir.x, 1));
+    else if (moveDir == MOVE::STOP)
+        SetDirection(Vector2f(mDir.x, 0));
+}
+void Physics::SetDirection(Vector2f v){
+    mDir = Math::Normalize(v);
+    //Backwards compatiability garbage
+    if (mDir.x > 0)
+        mHorizDir = Math::RIGHT;
+    else if (mDir.x < 0)
+        mHorizDir = Math::LEFT;
+    else
+        mHorizDir = MOVE::STOP;
+    if (mDir.y > 0)
+        mVertDir = Math::DOWN;
+    else if (mDir.y < 0)
+        mVertDir = Math::UP;
+    else
+        mVertDir = MOVE::STOP;
 }
 void Physics::SetPhysConstants(PhysicalConstants physConstants){
 	mPhysConstants = physConstants;
@@ -185,6 +218,7 @@ int Physics::RegisterLua(lua_State *l){
 			.def("SetAcceleration", &Physics::SetAcceleration)
 			.def("SetHorizDir", &Physics::SetHorizDir)
 			.def("SetVertDir", &Physics::SetVertDir)
+            .def("SetDirection", &Physics::SetDirection)
 			.def("SetPhysConstants", &Physics::SetPhysConstants)
 			.def("SetBox", &Physics::SetBox)
 			.def("SetMap", &Physics::SetMap)

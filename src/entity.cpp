@@ -42,6 +42,7 @@ void Entity::Free(){
 	}
 }
 void Entity::Update(){
+    //Should deltaT be passed to update instead?
 	if (!mScript.Open())
 		return;
 	try {
@@ -49,6 +50,7 @@ void Entity::Update(){
 	}
 	catch(...){
 	}
+    //Should we call Physics::Move here?
 }
 void Entity::Move(float deltaT){
 	if (!mScript.Open())
@@ -58,6 +60,7 @@ void Entity::Move(float deltaT){
 	}
 	catch(...){
 	}
+    
 }
 void Entity::Draw(Camera *camera){
     //Draw entity

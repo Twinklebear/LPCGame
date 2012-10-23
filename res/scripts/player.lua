@@ -7,6 +7,7 @@ require "Math"
 require "Input"
 require "Physics"
 require "MotionState"
+require "Debug"
 
 --Init the script
 function Init()

@@ -1,10 +1,12 @@
 #ifndef VECTORS_H
 #define VECTORS_H
 
+#include <string>
+#include <sstream>
 #include <SDL.h>
 #include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>
-#include "../externals/json/json.h"
+#include "externals/json/json.h"
 
 ///A 2D vector
 /**
@@ -108,6 +110,12 @@ public:
 		p.y = y;
 		return p;
 	}
+    operator std::string() const {
+        std::stringstream s;
+        s << "Vector2: (x: " << x << ", "
+            << y << ")";
+        return s.str();
+    }
 	/**
 	*  Register the Vector class with the lua state
 	*  @param l The lua_State to register the module with

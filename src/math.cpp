@@ -17,6 +17,9 @@ float Math::Magnitude(const Vector2f &v){
 	return sqrtf(powf(v.x, 2) + powf(v.y, 2));
 }
 Vector2f Math::Normalize(const Vector2f &v){
+    //Catch case where vector is 0, 0
+    if (Magnitude(v) == 0)
+        return Vector2f(0, 0);
 	return (v / Magnitude(v));
 }
 Vector2f Math::Lerp(const Vector2f &start, const Vector2f &end, float percent){

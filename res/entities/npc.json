@@ -9,7 +9,7 @@
          "y" : 20.0
       },
       "hAccel" : 700,
-      "hSpeed" : 300
+      "hSpeed" : 400
    },
    "script" : "../res/scripts/test2.lua",
    "tag" : "test"
