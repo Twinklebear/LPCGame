@@ -1,5 +1,5 @@
 #include <string>
-#include <lua.hpp>     
+#include <lua.hpp>
 #include "src/vectors.h"
 #include "luacscript.h"
 #include "luacvector2f.h"
@@ -54,11 +54,11 @@ int LuaC::Vector2fLib::getY(lua_State *l){
 }
 int LuaC::Vector2fLib::newIndex(lua_State *l){
     //Stack: userdata (Vector2f), string of index to set, val for index
-    std::string val = luaL_checkstring(l, 2);
+    std::string index = luaL_checkstring(l, 2);
     lua_remove(l, 2);
     //Stack: userdata (Vector2f), val to set
     //Note that "set" is a function, not a value for __newindex
-    switch (val.at(0)){
+    switch (index.at(0)){
         case 'x':
             return setX(l);
         case 'y':

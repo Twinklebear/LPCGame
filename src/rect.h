@@ -45,6 +45,16 @@ public:
 	Rect(Json::Value val){
 		Load(val);
 	}
+    /**
+    *  Set the rect to have the same values as some other rect
+    *  @param r The Rect to get values from
+    */
+    void Set(const Rect<T> &r){
+        pos.x = r.pos.x;
+        pos.y = r.pos.y;
+        w = r.w;
+        h = r.h;
+    }
 	/**
 	*  Set the rect's properties
 	*  @param pX The x position

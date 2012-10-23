@@ -1,3 +1,5 @@
+
+--[[
 require "Entity"
 require "Image"
 require "Rect"
@@ -38,3 +40,4 @@ end
 function OnClick()
 	LPC.StateManager.ChangeScene("quit")
 end
+]]

@@ -33,8 +33,6 @@ namespace LuaC {
     private:
         ///The Lua function library
         static const struct luaL_reg luaPhysicsLib[];
-        ///Make a new Physics object in Lua state l
-        static int newPhysics(lua_State *l);
         ///Getters
         static int position(lua_State *l);
         static int velocity(lua_State *l);
@@ -53,6 +51,9 @@ namespace LuaC {
         ///Operators
         static int toString(lua_State *l);
         static int concat(lua_State *l);
+
+    private:
+        static const std::string sMetatable, sClassName;
     };
 };
 

@@ -47,7 +47,7 @@ int LuaC::RectfLib::getPos(lua_State *l){
     //Make a new vector2f
     Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
     //Register the vector with the metatable
-
+    Vector2fLib::addVector2f(l, -1);
     v->Set(r->pos);
     return 1;
 }
@@ -78,10 +78,10 @@ int LuaC::RectfLib::getH(lua_State *l){
 int LuaC::RectfLib::newIndex(lua_State *l){
     //Stack: udata, string of index to set, val to set
     //Get the index to set "x", "y", so on and then remove it
-    std::string val = luaL_checkstring(l, 2);
+    std::string index = luaL_checkstring(l, 2);
     lua_remove(l, 2);
     //Stack: udata, val to set
-    switch (val.at(0)){
+    switch (index.at(0)){
         case 'x':
             return setX(l);
         case 'y':
@@ -100,7 +100,7 @@ int LuaC::RectfLib::newIndex(lua_State *l){
 int LuaC::RectfLib::setPos(lua_State *l){
     //Stack: userdata (Rectf), userdata (Vector2f)
     Rectf *r = checkRectf(l, 1);
-    Vector2f *v = nullptr; //Vector2fLib::checkVector2f(l, 2);
+    Vector2f *v = Vector2fLib::checkVector2f(l, 2);
     r->Set(*v);
     return 0;
 }

@@ -47,7 +47,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
-         "script" : "../res/scripts/testbutton.lua",
+         "script" : "",
          "tag" : "",
          "text" : {
             "color" : {

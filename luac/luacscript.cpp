@@ -80,6 +80,7 @@ std::string LuaC::LuaScriptLib::readType(lua_State *l, int i){
 int LuaC::LuaScriptLib::requireLib(lua_State *l){
     //Try to look up the module desired, if it's one of ours load it, if not error
     std::string module = lua_tostring(l, -1);
+    std::cout << "Requiring: " << module << std::endl;
     LuaC::LuaScriptLib::TLuaLibs::const_iterator fnd = sLuaLibs.find(module);
     if (fnd != sLuaLibs.end())
         lua_pushcfunction(l, sLuaLibs.at(module));
@@ -212,13 +213,18 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["Timer"]         = &Timer::RegisterLua;
     map["Vector2"]       = &Vector2f::RegisterLua;
     map["Window"]        = &Window::RegisterLua;
+    //Debug testing of libs
+    map["TestEntity"]   = &LuaC::EntityLib::luaopen_entity;
+    map["TestRectf"]    = &LuaC::RectfLib::luaopen_rectf;
+    map["TestPhysics"]  = &LuaC::PhysicsLib::luaopen_physics;
+    map["TestVector2f"] = &LuaC::Vector2fLib::luaopen_vector2f;
     return map;
 }
 LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
     TTableAdders map;
     map["Entity"]   = &LuaC::EntityLib::addEntity;
     map["Rectf"]    = &LuaC::RectfLib::addRectf;
-    //map["Physics"]  = &LuaC::PhysicsLib::addPhysics;
+    map["Physics"]  = &LuaC::PhysicsLib::addPhysics;
     map["Vector2f"] = &LuaC::Vector2fLib::addVector2f;
     return map;
 }

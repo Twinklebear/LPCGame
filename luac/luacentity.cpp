@@ -5,6 +5,9 @@
 #include "src/rect.h"
 #include "src/entitymanager.h"
 #include "luacscript.h"
+#include "luacrectf.h"
+#include "luacvector2f.h"
+#include "luacphysics.h"
 #include "luacentity.h"
 
 const std::string LuaC::EntityLib::sMetatable = "LPC.Entity";
@@ -49,7 +52,7 @@ int LuaC::EntityLib::getPhysics(lua_State *l){
     //Make a new Physics userdata
     Physics** luaP = (Physics**)lua_newuserdata(l, sizeof(Physics*));
     //Give it the Physics metatable
-
+    PhysicsLib::addPhysics(l, -1);
     //Set it to the entity's physics
     *luaP = (*e)->GetPhysics();
     return 1;
@@ -60,7 +63,7 @@ int LuaC::EntityLib::getBox(lua_State *l){
     //Make a new Rectf
     Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
     //Give it the Rectf metatable
-
+    RectfLib::addRectf(l, -1);
     //Is this correct?
     *r = (*e)->Box();
     return 1;
@@ -73,11 +76,10 @@ int LuaC::EntityLib::getTag(lua_State *l){
 }
 int LuaC::EntityLib::newIndex(lua_State *l){
     //Stack: udata (Entity), string of index to set, val to set as
-    std::string val = luaL_checkstring(l, 2);
-    switch(val.at(0)){
+    std::string index = luaL_checkstring(l, 2);
+    switch(index.at(0)){
         case 't':
-            setTag(l, 3);
-            break;
+            return setTag(l, 3);
         default:
             break;
     }
