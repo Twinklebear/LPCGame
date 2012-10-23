@@ -29,6 +29,7 @@ namespace LuaC {
         *  @param i The index of the userdata (standard index, pos #'s)
         */
         static Vector2f* checkVector2f(lua_State *l, int i);
+
     private:
         ///The Lua function library struct
         static const luaL_reg luaVector2fLib[];

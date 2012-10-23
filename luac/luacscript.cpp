@@ -21,6 +21,10 @@
 #include "src/vectors.h"
 #include "src/window.h"
 #include "src/luascript.h"
+#include "luac/luacvector2f.h"
+#include "luac/luacrectf.h"
+#include "luac/luacphysics.h"
+#include "luac/luacentity.h"
 #include "luacscript.h"
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
@@ -212,6 +216,9 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
 }
 LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
     TTableAdders map;
-    //Add table adders
+    map["Entity"]   = &LuaC::EntityLib::addEntity;
+    map["Rectf"]    = &LuaC::RectfLib::addRectf;
+    //map["Physics"]  = &LuaC::PhysicsLib::addPhysics;
+    map["Vector2f"] = &LuaC::Vector2fLib::addVector2f;
     return map;
 }
