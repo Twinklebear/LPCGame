@@ -7,7 +7,7 @@
 /**
 *  A simple timer
 */
-class Timer{
+class Timer {
 public:
     Timer();
     ///Start the timer

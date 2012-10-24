@@ -144,6 +144,9 @@
     <ClInclude Include="..\luac\luaccolor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\luac\luactimer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\button.cpp">
@@ -255,6 +258,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\luac\luaccolor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\luac\luactimer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

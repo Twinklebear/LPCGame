@@ -19,6 +19,7 @@
     <ClInclude Include="..\luac\luacphysics.h" />
     <ClInclude Include="..\luac\luacrectf.h" />
     <ClInclude Include="..\luac\luacscript.h" />
+    <ClInclude Include="..\luac\luactimer.h" />
     <ClInclude Include="..\luac\luacvector2f.h" />
     <ClInclude Include="..\src\animatedimage.h" />
     <ClInclude Include="..\src\base.h" />
@@ -63,6 +64,7 @@
     <ClCompile Include="..\luac\luacphysics.cpp" />
     <ClCompile Include="..\luac\luacrectf.cpp" />
     <ClCompile Include="..\luac\luacscript.cpp" />
+    <ClCompile Include="..\luac\luactimer.cpp" />
     <ClCompile Include="..\luac\luacvector2f.cpp" />
     <ClCompile Include="..\src\animatedimage.cpp" />
     <ClCompile Include="..\src\button.cpp" />

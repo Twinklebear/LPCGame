@@ -30,7 +30,6 @@ const luaL_reg LuaC::Vector2fLib::luaVector2fLib[] = {
     { NULL, NULL }
 };
 int LuaC::Vector2fLib::newVector2f(lua_State *l){
-    LuaScriptLib::stackDump(l);
     //Stack: table (Vector2f), vals for x & y if desired
     bool initVals = (lua_gettop(l) == 3);
     Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
