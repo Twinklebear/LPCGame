@@ -20,6 +20,8 @@ namespace LuaC {
         static int luaopen_debug(lua_State *l);
 
     private:
+        ///The Lua function library
+        static const struct luaL_reg luaDebugLib[];
         ///For writing to the debug log
         static int log(lua_State *l);
 
