@@ -11,6 +11,9 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    /**
+    *  The Lua library for the Rectf class
+    */
     class RectfLib {
     public:
         ///Open the Rectf library for Lua state l

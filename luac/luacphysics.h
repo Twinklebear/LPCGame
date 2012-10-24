@@ -11,6 +11,9 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    /**
+    *  The Lua library for the Physics class
+    */
     class PhysicsLib {
     public:
         ///Open the Physics library for Lua state l

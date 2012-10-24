@@ -5,6 +5,10 @@
 #include <string>
 #include <luabind/luabind.hpp>
 
+/**
+*  A simple debug logging class, will write strings to debug.log
+*  in the same folder as exe
+*/
 class Debug {
 public:
     ///Initialize the debug log

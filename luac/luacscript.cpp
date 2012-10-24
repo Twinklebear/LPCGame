@@ -25,6 +25,7 @@
 #include "luac/luacrectf.h"
 #include "luac/luacphysics.h"
 #include "luac/luacentity.h"
+#include "luac/luacdebug.h"
 #include "luacscript.h"
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
@@ -49,9 +50,13 @@ int LuaC::LuaScriptLib::stackDump(lua_State *l){
             case LUA_TNUMBER:
                 ss << lua_tonumber(l, i);
                 break;
-            //Other (userdata)
-            default:
+            //Userdata
+            case LUA_TUSERDATA:
                 ss << lua_typename(l, t) << "(" << readType(l, i) << ")";
+                break;
+            //Other (tables/etc)
+            default:
+                ss << lua_typename(l, t);
                 break;
         }
         ss << ", ";
@@ -217,6 +222,7 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["TestRectf"]    = &LuaC::RectfLib::luaopen_rectf;
     map["TestPhysics"]  = &LuaC::PhysicsLib::luaopen_physics;
     map["TestVector2f"] = &LuaC::Vector2fLib::luaopen_vector2f;
+    map["TestDebug"]    = &LuaC::DebugLib::luaopen_debug;
     return map;
 }
 LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){

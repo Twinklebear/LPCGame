@@ -11,6 +11,9 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    /**
+    *  The Lua library for the Vector2f class
+    */
     class Vector2fLib {
     public:
         ///Open the Vector2f library for Lua state l
