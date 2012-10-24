@@ -35,14 +35,18 @@ const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
 int LuaC::EntityLib::newEntity(lua_State *l){
     //Stack: class table, entity file
     std::string file = luaL_checkstring(l, 2);
+    std::cout << "Making new entity: " << file << std::endl;
     //Make a new Entity and register it with the manager
     Entity *e = new Entity(file);
-    std::shared_ptr<Entity> sObj(e);
+    //Can't use shared ptr until the shared_ptr can be given to entitymanager
+    //or else it goes out of scope and frees itself, leaving Lua with garbage
+    //std::shared_ptr<Entity> sObj(e);
     //Need to lookup active state via statemanager and register the entity
 
     //Make the userdata
     Entity **luaE = (Entity**)lua_newuserdata(l, sizeof(Entity*));
-    *luaE = sObj.get();
+    //*luaE = sObj.get();
+    *luaE = e;
     addEntity(l, -1);
     return 1;
 }

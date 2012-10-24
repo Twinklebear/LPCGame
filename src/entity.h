@@ -19,10 +19,10 @@ class Entity {
 public:
 	Entity();
 	/**
-	*  Construct the Entity and load its script
-	*  @param script The object's script
+	*  Construct the Entity from a entity data file
+	*  @param script The object's data file
 	*/
-	Entity(std::string script);
+	Entity(std::string file);
 	virtual ~Entity();
 	//Initialize the object
 	virtual void Init();

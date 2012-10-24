@@ -166,7 +166,7 @@ public:
 	}
     operator std::string(){
         std::stringstream s;
-        s << "Rect: (" << (std::string)pos.x 
+        s << "Rect: (" << (std::string)pos 
             << ", w: " << w << ", h: " << h << ")";
         return s.str();
     }

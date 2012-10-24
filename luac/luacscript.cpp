@@ -80,7 +80,6 @@ std::string LuaC::LuaScriptLib::readType(lua_State *l, int i){
 int LuaC::LuaScriptLib::requireLib(lua_State *l){
     //Try to look up the module desired, if it's one of ours load it, if not error
     std::string module = lua_tostring(l, -1);
-    std::cout << "Requiring: " << module << std::endl;
     LuaC::LuaScriptLib::TLuaLibs::const_iterator fnd = sLuaLibs.find(module);
     if (fnd != sLuaLibs.end())
         lua_pushcfunction(l, sLuaLibs.at(module));

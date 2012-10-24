@@ -137,10 +137,30 @@ int LuaC::RectfLib::equality(lua_State *l){
     return 1;
 }
 int LuaC::RectfLib::toString(lua_State *l){
-    //Need std::string conversion in rect
+    //Stack: userdata (Rectf)
+    Rectf *r = checkRectf(l, 1);
+    lua_pushstring(l, ((std::string)(*r)).c_str());
     return 1;
 }
 int LuaC::RectfLib::concat(lua_State *l){
-    //Need std::string conversion in rect
+    /*
+    *  Stack has 2 possible configs
+    *  1. string, userdata (Rectf)
+    *  2. userdata (Rectf), string
+    */
+    if (lua_type(l, 1) == LUA_TSTRING)
+        concatWithString(l, 2, 1);
+    else
+        concatWithString(l, 1, 2);
     return 1;
+}
+void LuaC::RectfLib::concatWithString(lua_State *l, int rIdx, int sIdx){
+    //Stack: userdata (Rectf) @ rIdx, string @ sIdx
+    Rectf *r = checkRectf(l, rIdx);
+    std::string s = luaL_checkstring(l, sIdx);
+    //Add the strings with the proper ordering
+    if (rIdx < sIdx)
+        lua_pushstring(l, ((std::string)(*r) + s).c_str());
+    else
+        lua_pushstring(l, (s + (std::string)(*r)).c_str());
 }

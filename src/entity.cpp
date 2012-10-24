@@ -10,8 +10,8 @@
 
 Entity::Entity() : mMouseOver(false), mClicked(false), mConfigFile(""){
 }
-Entity::Entity(std::string script) : mMouseOver(false), mClicked(false), mConfigFile(""){
-	mScript.OpenScript(script);
+Entity::Entity(std::string file) : mMouseOver(false), mClicked(false), mConfigFile(""){
+    Load(file);
 }
 Entity::~Entity(){
 	//Clean up any script memory

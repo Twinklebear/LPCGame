@@ -54,6 +54,13 @@ namespace LuaC {
         static int equality(lua_State *l);
         static int toString(lua_State *l);
         static int concat(lua_State *l);
+        /**
+        *  Concatenate a Rectf with a string, a helper for concat fcn
+        *  @param l The Lua state
+        *  @param rIdx The index of the Rectf in the stack
+        *  @para sIdx The index of the string in the stack
+        */
+        static void concatWithString(lua_State *l, int rIdx, int sIdx);
 
     private:
         ///Meta and Class table names
