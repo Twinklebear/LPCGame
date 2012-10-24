@@ -132,8 +132,7 @@ int LuaC::RectfLib::equality(lua_State *l){
     //Stack: userdata (Rectf), userdata (Rectf)
     Rectf *r1 = checkRectf(l, 1);
     Rectf *r2 = checkRectf(l, 2);
-    lua_pushboolean(l, (r1->X() == r2->X() && r1->Y() == r2->Y()
-                     && r1->W() == r2->W() && r1->H() == r2->H()));
+    lua_pushboolean(l, *r1 == *r2);
     return 1;
 }
 int LuaC::RectfLib::toString(lua_State *l){

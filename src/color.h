@@ -60,6 +60,7 @@ public:
 	static int RegisterLua(lua_State *l);
 	///Operator for comparing colors
 	bool operator == (const Color &c) const;
+    operator std::string() const;
 
 private:
 	SDL_Color mColor;

@@ -2,13 +2,18 @@
 --require "scripts/calltest.lua"
 
 --Testing my Lua C modules
-require "TestVector2f"
-require "TestDebug"
+require "TestColor"
 
-v = Vector2f(0, 0)
-print "Try to debug log"
-Debug.log("Hello from main menu lua")
-print "debug logged"
+c1 = Color(140, 200, 10)
+c2 = Color(150, 210, 20)
+c2.r = 140
+c2.g = 55
+c2.b = 10
+if c1 == c2 then
+	print (c1 .. " == " .. c2)
+else
+	print (c1 .. " != " .. c2)
+end
 
 function Init()
 	print "\n--------Main Menu Init--------\n"

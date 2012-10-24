@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="..\externals\json\json-forwards.h" />
     <ClInclude Include="..\externals\json\json.h" />
+    <ClInclude Include="..\luac\luaccolor.h" />
     <ClInclude Include="..\luac\luacdebug.h" />
     <ClInclude Include="..\luac\luacentity.h" />
     <ClInclude Include="..\luac\luacphysics.h" />
@@ -56,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\externals\jsoncpp.cpp" />
+    <ClCompile Include="..\luac\luaccolor.cpp" />
     <ClCompile Include="..\luac\luacdebug.cpp" />
     <ClCompile Include="..\luac\luacentity.cpp" />
     <ClCompile Include="..\luac\luacphysics.cpp" />

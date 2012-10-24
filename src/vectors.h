@@ -72,7 +72,7 @@ public:
 		y += val.y;
 		return *this;
 	}
-    bool operator == (Vector2<T> val){
+    bool operator == (Vector2<T> val) const {
         return (x == val.x && y == val.y);
     }
 	Vector2<T> operator * (Vector2<T> val) const {

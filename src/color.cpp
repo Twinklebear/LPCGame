@@ -1,7 +1,9 @@
+#include <string>
+#include <sstream>
 #include <SDL.h>
 #include <luabind/luabind.hpp>
 #include <luabind/operator.hpp>
-#include "../externals/json/json.h"
+#include "externals/json/json.h"
 #include "color.h"
 
 Color::Color(){
@@ -49,7 +51,13 @@ void Color::Load(Json::Value val){
 	Set(val["r"].asInt(), val["g"].asInt(), val["b"].asInt());
 }
 bool Color::operator == (const Color &c) const {
-	return (mColor.r == c.R() && mColor.b == c.B() && mColor.g == c.G());
+	return ((int)mColor.r == c.R() && (int)mColor.b == c.B() && (int)mColor.g == c.G());
+}
+Color::operator std::string() const {
+    std::stringstream s;
+    s << "Color: (r: " << (int)mColor.r << ", g: " << (int)mColor.g
+        << ", b: " << (int)mColor.b << ")";
+    return s.str();
 }
 int Color::RegisterLua(lua_State *l){
 	using namespace luabind;

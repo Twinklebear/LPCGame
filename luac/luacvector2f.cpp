@@ -30,6 +30,7 @@ const luaL_reg LuaC::Vector2fLib::luaVector2fLib[] = {
     { NULL, NULL }
 };
 int LuaC::Vector2fLib::newVector2f(lua_State *l){
+    LuaScriptLib::stackDump(l);
     //Stack: table (Vector2f), vals for x & y if desired
     bool initVals = (lua_gettop(l) == 3);
     Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
@@ -194,7 +195,7 @@ void LuaC::Vector2fLib::concatWithString(lua_State *l, int vIdx, int sIdx){
     //Stack: userdata (Vector2f) @ vIdx, string @ sIdx
     Vector2f *v = checkVector2f(l, vIdx);
     std::string s = luaL_checkstring(l, sIdx);
-    //add the strings with the proper ordering
+    //Add the strings with the proper ordering
     if (vIdx < sIdx)
         lua_pushstring(l, ((std::string)(*v) + s).c_str());
     else

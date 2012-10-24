@@ -26,6 +26,7 @@
 #include "luac/luacphysics.h"
 #include "luac/luacentity.h"
 #include "luac/luacdebug.h"
+#include "luac/luaccolor.h"
 #include "luacscript.h"
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
@@ -223,6 +224,7 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["TestPhysics"]  = &LuaC::PhysicsLib::luaopen_physics;
     map["TestVector2f"] = &LuaC::Vector2fLib::luaopen_vector2f;
     map["TestDebug"]    = &LuaC::DebugLib::luaopen_debug;
+    map["TestColor"]    = &LuaC::ColorLib::luaopen_color;
     return map;
 }
 LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){

@@ -137,6 +137,10 @@ public:
 			val["w"].asInt(), val["h"].asInt());
 	}
 	///Operators
+    bool operator == (Rect<T> r) const {
+        return (pos.x == r.X() && pos.y == r.Y() 
+                && w == r.w && h == r.h);
+    }
 	Rect<T>& operator += (Vector2f vec){
 		this->pos += vec;
 		return *this;
@@ -156,15 +160,15 @@ public:
 		rect.h = h;
 		return rect;
 	}
-	operator Rect<float>(){
+	operator Rect<float>() const {
 		Rect<float> rect(pos, w, h);
 		return rect;
 	}
-	operator Rect<int>(){
+	operator Rect<int>() const {
 		Rect<int> rect(pos, w, h);
 		return rect;
 	}
-    operator std::string(){
+    operator std::string() const {
         std::stringstream s;
         s << "Rect: (" << (std::string)pos 
             << ", w: " << w << ", h: " << h << ")";
