@@ -147,6 +147,9 @@
     <ClInclude Include="..\luac\luactimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\luac\luacinput.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\button.cpp">
@@ -261,6 +264,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\luac\luactimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\luac\luacinput.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

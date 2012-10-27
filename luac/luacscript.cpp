@@ -28,6 +28,7 @@
 #include "luac/luacdebug.h"
 #include "luac/luaccolor.h"
 #include "luac/luactimer.h"
+#include "luac/luacinput.h"
 #include "luacscript.h"
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
@@ -227,6 +228,7 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["TestDebug"]    = &LuaC::DebugLib::luaopen_debug;
     map["TestColor"]    = &LuaC::ColorLib::luaopen_color;
     map["TestTimer"]    = &LuaC::TimerLib::luaopen_timer;
+    map["TestInput"]    = &LuaC::InputLib::luaopen_input;
     return map;
 }
 LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){

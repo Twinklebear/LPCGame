@@ -2,43 +2,31 @@
 --require "scripts/calltest.lua"
 
 --Testing my Lua C modules
-require "TestTimer"
-
-timer = Timer()
-timer:start()
-if timer:started() then
-	print "Timer started" 
-	timer:pause()
-else
-	print "Timer stopped"
-end
-
-if timer:paused() then
-	print "Timer paused" 
-	timer:unpause()
-else
-	print "Timer running"
-end
-print ("# ticks: " .. timer:ticks())
-print "Will wait 300ms"
-while timer:ticks() < 300 do
-end
-print ("# ticks: " .. timer:ticks())
+require "TestInput"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
---	if LPC.Input.JoystickAvailable() then
---		print "Joystick is available"
---	end
+	if Input.joystickAvailable() then
+		print "joystickAvailable"
+	end
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"
 end
 function LogicUpdate()
---	if LPC.Input.KeyDown(LPC.Input.KEY_Q) then
---		print "You pushed Q!"
---	end
---	CheckKey()
+	if Input.keyDown(Input.KEY_Q) then
+		print "Q down"
+	end
+	if Input.keyDown("w") then
+		print "W down"
+	end
+	if Input.joyAxis(0) > 0 or Input.joyAxis(0) < 0 then
+		print ("Joy axis 0: " .. Input.joyAxis(0))
+	end
+	if Input.joyAxis(1) > 0 or Input.joyAxis(1) < 0 then
+		print ("Joy axis 1: " ..Input.joyAxis(1))
+	end
+	print (Input.joyHat(0))
 end
 function RenderUpdate()
 end

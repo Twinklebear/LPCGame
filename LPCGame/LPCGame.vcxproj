@@ -16,6 +16,7 @@
     <ClInclude Include="..\luac\luaccolor.h" />
     <ClInclude Include="..\luac\luacdebug.h" />
     <ClInclude Include="..\luac\luacentity.h" />
+    <ClInclude Include="..\luac\luacinput.h" />
     <ClInclude Include="..\luac\luacphysics.h" />
     <ClInclude Include="..\luac\luacrectf.h" />
     <ClInclude Include="..\luac\luacscript.h" />
@@ -61,6 +62,7 @@
     <ClCompile Include="..\luac\luaccolor.cpp" />
     <ClCompile Include="..\luac\luacdebug.cpp" />
     <ClCompile Include="..\luac\luacentity.cpp" />
+    <ClCompile Include="..\luac\luacinput.cpp" />
     <ClCompile Include="..\luac\luacphysics.cpp" />
     <ClCompile Include="..\luac\luacrectf.cpp" />
     <ClCompile Include="..\luac\luacscript.cpp" />

@@ -177,6 +177,9 @@ bool Input::KeyDown(std::string keyCode){
 	}
 }
 bool Input::KeyDown(int keyCode){
+    //Keep the keyCode in range
+    if (keyCode > 282)
+        return false;
 	return (mKeyStates[keyCode] == 1);
 }
 bool Input::MouseClick(int button){
