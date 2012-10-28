@@ -1,18 +1,18 @@
 {
    "image" : "../res/img/simplebutton.png",
-   "name" : "",
-   "param" : "gGame",
+   "name" : "returnButton",
+   "param" : "mIntro",
    "physics" : {
       "box" : {
          "h" : 100.0,
          "w" : 200.0,
-         "x" : 100.0,
-         "y" : 50.0
+         "x" : 20.0,
+         "y" : 500.0
       },
       "hAccel" : 0,
       "hSpeed" : 0
    },
-   "script" : "../res/scripts/tesbutton.lua",
+   "script" : "",
    "tag" : "",
    "text" : {
       "color" : {
@@ -22,9 +22,9 @@
       },
       "font" : "../res/fonts/SourceSansPro-Regular.ttf",
       "fontsize" : 25,
-      "message" : "Play"
+      "message" : "Return"
    },
    "type" : "objectbutton",
    "render" : true,
-   "ui" : false
+   "ui" : true
 }

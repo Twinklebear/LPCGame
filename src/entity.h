@@ -78,6 +78,14 @@ public:
 	void SetTag(std::string tag);
 	///Get the entity's tag
 	std::string Tag() const;
+    ///Set the Entity render flag
+    void Render(bool b);
+    ///Check if the Entity should be drawn
+    bool Render() const;
+    ///Set the Entity "is ui element" flag
+    void IsUiElement(bool b);
+    ///Check if the Entity is a ui element
+    bool IsUiElement() const;
 	/**
 	*  Save the Entity data to a json value and return it
 	*  The Entity instance of the function takes care of saving
@@ -129,6 +137,8 @@ protected:
     std::string mConfigFile;
 	///For tracking mouse over and clicks
 	bool mMouseOver, mClicked;
+    ///For tracking if the entity should be rendered, and if it's a ui element
+    bool mRender, mUiElement;
 	///The entity's lua script
 	LuaScript mScript;
 };

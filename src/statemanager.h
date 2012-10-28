@@ -16,7 +16,7 @@
 *  on the value returned from the state loading the next state 
 *  desired
 */
-class StateManager{
+class StateManager {
 public:
 	/**
 	*  Start the first state, mIntro

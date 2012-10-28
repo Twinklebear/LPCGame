@@ -12,6 +12,8 @@
 #include "objectbutton.h"
 #include "gamestate.h"
 
+#include "jsonhandler.h"
+
 #include <iostream>
 
 GameState::GameState(){
@@ -43,17 +45,17 @@ std::string GameState::Run(){
 		mCamera->Update();
 		mManager->Update();
 		mManager->SetCollisionMaps(mMap.get());
-		mUiManager->Update();
+		//mUiManager->Update();
 
 		float deltaT = delta.Restart() / 1000.f;
 		mManager->Move(deltaT);
-		mUiManager->Move(deltaT);
+		//mUiManager->Move(deltaT);
 
 		//Rendering
 		Window::Clear();
 		mMap->Draw(mCamera.get());
 		mManager->Draw();
-		mUiManager->Draw();
+		//mUiManager->Draw();
 
 		Window::Present();
 		
@@ -106,7 +108,7 @@ void GameState::PhysicsThread(){
 void GameState::Init(){
 	mMap 	   = std::shared_ptr<Map>(new Map());
 	mManager   = std::shared_ptr<EntityManager>(new EntityManager());
-	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
+	//mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
 	mCamera    = std::shared_ptr<Camera>(new Camera());
 	mTileSet   = std::shared_ptr<TileSet>(new TileSet());
 
@@ -123,7 +125,7 @@ Json::Value GameState::Save(){
 	Json::Value val = State::Save();
 	//val["map"] = mMap->Save();
     val["map"] = mMap->File();
-	val["ui"]  = mUiManager->Save();
+	//val["ui"]  = mUiManager->Save();
 	val["tileset"] = mTileSet->Save();
 
 	Free();
@@ -142,12 +144,23 @@ void GameState::Load(Json::Value val){
 	//Load the objects
 	Json::Value entities = val["entities"];
 	for (int i = 0; i < entities.size(); ++i){
-		Entity *e = new Entity();
-		e->Load(entities[i]["file"].asString(), entities[i]["overrides"]);
-		e->Init();
-		std::shared_ptr<Entity> sObj(e);
-		mManager->Register(sObj);
+        //Need to filter objectbuttons
+        if (entities[i]["type"].asString() == "objectbutton"){
+            ObjectButton<State> *b = new ObjectButton<State>();
+			b->RegisterCallBack(this, &State::SetExit, "");
+			b->Load(entities[i]);
+			std::shared_ptr<Entity> sObj(b);
+			mManager->Register(sObj);
+        }
+        else {
+		    Entity *e = new Entity();
+		    e->Load(entities[i]["file"].asString(), entities[i]["overrides"]);
+		    e->Init();
+		    std::shared_ptr<Entity> sObj(e);
+		    mManager->Register(sObj);
+        }
 	}
+    /*
 	//Load the ui elements
 	Json::Value uiObj = val["ui"];
 	for (int i = 0; i < uiObj.size(); ++i){
@@ -160,4 +173,5 @@ void GameState::Load(Json::Value val){
 			mUiManager->Register(sObj);
 		}
 	}
+    */
 }

@@ -47,6 +47,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
+         "render" : true,
          "script" : "",
          "tag" : "",
          "text" : {
@@ -59,7 +60,8 @@
             "fontsize" : 25,
             "message" : "Play"
          },
-         "type" : "objectbutton"
+         "type" : "objectbutton",
+         "ui" : false
       },
       {
          "image" : "../res/img/simplebutton.png",
@@ -75,6 +77,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
+         "render" : true,
          "script" : "",
          "tag" : "",
          "text" : {
@@ -87,7 +90,8 @@
             "fontsize" : 25,
             "message" : "Quit"
          },
-         "type" : "objectbutton"
+         "type" : "objectbutton",
+         "ui" : false
       },
       {
          "image" : "../res/img/simplebutton.png",
@@ -103,6 +107,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
+         "render" : true,
          "script" : "",
          "tag" : "",
          "text" : {
@@ -115,7 +120,8 @@
             "fontsize" : 25,
             "message" : "Editor"
          },
-         "type" : "objectbutton"
+         "type" : "objectbutton",
+         "ui" : false
       },
       {
          "file" : "../res/entities/quitbutton.json"

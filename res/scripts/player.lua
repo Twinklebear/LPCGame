@@ -81,3 +81,6 @@ function UpdateAnimation(direction)
 		end
 	end
 end
+function OnClick()
+	print "Player clicked!"
+end

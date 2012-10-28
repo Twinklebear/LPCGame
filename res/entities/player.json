@@ -12,5 +12,7 @@
       "hSpeed" : 300
    },
    "script" : "../res/scripts/player.lua",
-   "tag" : "focus"
+   "tag" : "focus",
+   "render" : true,
+   "ui" : false
 }

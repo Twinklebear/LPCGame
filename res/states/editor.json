@@ -4056,7 +4056,9 @@
             "fontsize" : 25,
             "message" : "Save & Return"
          },
-         "type" : "objectbutton"
+         "type" : "objectbutton",
+         "render" : true,
+         "ui" : true
       },
       {
          "attributes" : {
@@ -4082,7 +4084,9 @@
          "script" : "",
          "selector" : "../res/img/selector.png",
          "tag" : "",
-         "type" : "tilebar"
+         "type" : "tilebar",
+         "render" : true,
+         "ui" : true
       }
    ]
 }

@@ -10,9 +10,11 @@
 
 Button::Button() : mFunc(nullptr)
 {
+    IsUiElement(true);
 }
 Button::Button(std::string script) : mFunc(nullptr)
 {
+    IsUiElement(true);
 	mScript.OpenScript(script);
 }
 Button::~Button(){}

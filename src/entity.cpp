@@ -8,9 +8,11 @@
 #include "debug.h"
 #include "entity.h"
 
-Entity::Entity() : mMouseOver(false), mClicked(false), mConfigFile(""){
+Entity::Entity() : mMouseOver(false), mClicked(false), mConfigFile(""), mRender(true), mUiElement(false) 
+{
 }
-Entity::Entity(std::string file) : mMouseOver(false), mClicked(false), mConfigFile(""){
+Entity::Entity(std::string file) : mMouseOver(false), mClicked(false), mConfigFile(""), mRender(true), mUiElement(false) 
+{
     Load(file);
 }
 Entity::~Entity(){
@@ -60,7 +62,6 @@ void Entity::Move(float deltaT){
 	}
 	catch(...){
 	}
-    
 }
 void Entity::Draw(Camera *camera){
     //Draw entity
@@ -107,6 +108,7 @@ void Entity::OnClick(){
     }
 }
 void Entity::OnMouseEnter(){
+    mMouseOver = true;
 	if (!mScript.Open())
 		return;
 	try{
@@ -117,6 +119,7 @@ void Entity::OnMouseEnter(){
 }
 void Entity::OnMouseExit(){
     mClicked = false;
+    mMouseOver = false;
 	if (!mScript.Open())
 		return;
 	try {
@@ -155,6 +158,18 @@ void Entity::SetTag(std::string tag){
 std::string Entity::Tag() const {
 	return mTag;
 }
+void Entity::Render(bool b){
+    mRender = b;
+}
+bool Entity::Render() const {
+    return mRender;
+}
+void Entity::IsUiElement(bool b){
+    mUiElement = b;
+}
+bool Entity::IsUiElement() const {
+    return mUiElement;
+}
 Json::Value Entity::Save() const {
 	//How to specify overrides to save?
     Json::Value val;
@@ -166,6 +181,8 @@ Json::Value Entity::Save() const {
 	    val["tag"]	   = mTag;
 	    val["script"]  = mScript.File();
 	    val["name"]    = mName;
+        val["render"]  = mRender;
+        val["ui"]      = mUiElement;
     }
 	return val;
 }
@@ -178,6 +195,8 @@ void Entity::Save(const std::string &file) const {
 	val["tag"]	   = mTag;
 	val["script"]  = mScript.File();
 	val["name"]    = mName;
+    val["render"]  = mRender;
+    val["ui"]      = mUiElement;
     JsonHandler handler(file);
     handler.Write(val);
 }
@@ -188,6 +207,8 @@ void Entity::Load(Json::Value val){
 	mPhysics.Load(val["physics"]);
 	mImage.Load(val["image"].asString());
 	mScript.OpenScript(val["script"].asString());
+    mRender = val["render"].asBool();
+    mUiElement = val["ui"].asBool();
 }
 void Entity::Load(const std::string &file, Json::Value overrides){
     mConfigFile = file;

@@ -12,5 +12,7 @@
       "hSpeed" : 0
    },
    "script" : "../res/scripts/quitbutton.lua",
-   "tag" : "test"
+   "tag" : "test",
+   "render" : true,
+   "ui" : false
 }

@@ -19,20 +19,10 @@
       },
       {
          "file" : "../res/entities/npc.json"
-      }
-   ],
-   "map" : "../res/maps/testlevel.json",
-   "name" : "gGame",
-   "script" : "",
-   "tileset" : [
-      {
-         "file" : "../res/img/forest.png"
-      }
-   ],
-   "ui" : [
+      },
       {
          "image" : "../res/img/simplebutton.png",
-         "name" : "forest - Grass - Plain",
+         "name" : "returnButton",
          "param" : "mIntro",
          "physics" : {
             "box" : {
@@ -44,6 +34,7 @@
             "hAccel" : 0,
             "hSpeed" : 0
          },
+         "render" : true,
          "script" : "",
          "tag" : "",
          "text" : {
@@ -56,7 +47,16 @@
             "fontsize" : 25,
             "message" : "Return"
          },
-         "type" : "objectbutton"
+         "type" : "objectbutton",
+         "ui" : true
+      }
+   ],
+   "map" : "../res/maps/testlevel.json",
+   "name" : "gGame",
+   "script" : "",
+   "tileset" : [
+      {
+         "file" : "../res/img/forest.png"
       }
    ]
 }
