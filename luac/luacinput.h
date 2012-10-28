@@ -35,7 +35,7 @@ namespace LuaC {
         static int getQuit(lua_State *l);
 
 
-    private:
+    public:
         static const std::string sClassName;
     };
 };

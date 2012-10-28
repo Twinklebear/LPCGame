@@ -10,6 +10,7 @@ require "Color"
 require "StateManager"
 
 function Init()
+	print "Quitbutton Init"
 	--Load the button image
 	img = LPC.Image("../res/img/simplebutton.png")
 	box = entity:Box()
@@ -37,4 +38,8 @@ function OnMouseExit()
 end
 function OnClick()
 	LPC.StateManager.ChangeScene("quit")
+end
+--Testing cross-lua_State calls
+function Test()
+	print "Test was called"
 end

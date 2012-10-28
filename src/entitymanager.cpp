@@ -63,9 +63,24 @@ void EntityManager::SetCollisionMaps(Map *map){
 void EntityManager::Register(std::shared_ptr<Entity> obj){
 	mEntities.push_back(obj);
 }
+void EntityManager::Register(Entity *obj){
+    std::cout << "EntityManager registering entity" << std::endl;
+    mEntities.push_back(std::shared_ptr<Entity>(obj));
+    std::cout << "EntityManager registed entity" << std::endl;
+}
 void EntityManager::Register(std::shared_ptr<Camera> camera){
 	mCamera.reset();
 	mCamera = camera;
+}
+std::shared_ptr<Entity> EntityManager::GetEntity(const std::string &name){
+    //For now we do a really bad/slow lookup of looping through all entities
+    //This will change when the EntityList container type is changed
+    for (std::shared_ptr<Entity> o : mEntities){
+        if (o->Name() == name)
+            return o;
+    }
+    return nullptr;
+    //throw std::range_error("Failed to find Entity with name: " + name);
 }
 CollisionMap EntityManager::GetEntityCollisionMap(const Rectf &target, int distance){
 	//TODO: Is there a better way this can be done? Looping through the entities is kind of ok, but

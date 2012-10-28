@@ -9,7 +9,7 @@
 #include "camera.h"
 
 ///Typedef for a vector of Entity shared pointers
-///TODO: Should i instead store objects in an unordered map by their name/tag?
+///TODO: Should i instead store objects in a map by their name/tag?
 typedef std::vector<std::shared_ptr<Entity>> EntityList;
 
 ///Handles the Entities in the active state
@@ -40,12 +40,24 @@ public:
 	*  @param obj The Entity to register
 	*/
 	void Register(std::shared_ptr<Entity> obj);
+    /**
+    *  Register an Entity raw pointer
+    *  @param obj The Entity to register
+    */
+    void Register(Entity *obj);
 	/**
 	*  Register the scene camera with the manager so that 
 	*  it can be used in checking which objects to deal with
 	*  @param camera The scene camera
 	*/
 	void Register(std::shared_ptr<Camera> camera);
+    /**
+    *  Get an Entity by its name
+    *  @param name The name to lookup
+    *  @return A shared_ptr to the entity
+    *  @throw range_error "Failed to find Entity + name" for now
+    */
+    std::shared_ptr<Entity> GetEntity(const std::string &name);
 	/**
 	*  Testing the new method for mouse handling
 	*/

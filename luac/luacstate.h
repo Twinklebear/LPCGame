@@ -17,7 +17,20 @@ namespace LuaC {
     *  Allows for interaction with the active State via the Statemanager
     */
     class StateLib {
-        
+    public:
+        ///Open the State library for Lua state l
+        static int luaopen_state(lua_State *l);
+
+    private:
+        ///The Lua function library struct
+        static const luaL_reg luaStateLib[];
+        ///The various Lua function wrappers
+        static int getEntity(lua_State *l);
+        static int setExit(lua_State *l);
+        static int getName(lua_State *l);
+
+    public:
+        static const std::string sClassName;
     };
 };
 

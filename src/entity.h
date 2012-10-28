@@ -78,6 +78,9 @@ public:
 	void SetTag(std::string tag);
 	///Get the entity's tag
 	std::string Tag() const;
+    //Get and set Name
+    void SetName(std::string name);
+    std::string Name() const;
     ///Set the Entity render flag
     void Render(bool b);
     ///Check if the Entity should be drawn
@@ -86,6 +89,8 @@ public:
     void IsUiElement(bool b);
     ///Check if the Entity is a ui element
     bool IsUiElement() const;
+    ///Get a pointer to the Entity's LuaScript
+    LuaScript* Script();
 	/**
 	*  Save the Entity data to a json value and return it
 	*  The Entity instance of the function takes care of saving

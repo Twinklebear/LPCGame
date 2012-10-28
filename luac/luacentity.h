@@ -39,10 +39,13 @@ namespace LuaC {
         static const struct luaL_reg luaEntityLib[];
         ///Make a new Entity in Lua state l
         static int newEntity(lua_State *l);
+        ///Call a function on the Entity's script
+        static int callFunction(lua_State *caller);
         ///Getters
         static int getPhysics(lua_State *l);
         static int getBox(lua_State *l);
         static int getTag(lua_State *l);
+        static int getName(lua_State *l);
         ///__newindex accessor for setters
         static int newIndex(lua_State *l);
         ///Setters
@@ -54,7 +57,7 @@ namespace LuaC {
         ///Garbage collection
         static int garbageCollection(lua_State *l);
 
-    private:
+    public:
         ///Meta and Class table names
         static const std::string sMetatable, sClassName;
     };

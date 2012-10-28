@@ -25,7 +25,7 @@ namespace LuaC {
         ///For writing to the debug log
         static int log(lua_State *l);
 
-    private:
+    public:
         static const std::string sClassName;
     };
 };

@@ -48,7 +48,7 @@ namespace LuaC {
         static int started(lua_State *l);
         static int paused(lua_State *l);
 
-    private:
+    public:
         static const std::string sMetatable, sClassName;
     };
 };

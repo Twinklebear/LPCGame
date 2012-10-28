@@ -38,6 +38,12 @@ std::string MenuState::Run(){
 		else if (Input::KeyDown(SDL_SCANCODE_SPACE) && mCamera->Scene() == "test")
 			mCamera->Pan("def");
 
+        //Testing why this bullshit crash happens
+        if (Input::KeyDown(SDL_SCANCODE_1)){
+            std::shared_ptr<Entity> e = mManager->GetEntity("quitbutton");
+            std::cout << "Found entity: " << e->Name() << std::endl;
+        }
+
 		//LOGIC
 		mCamera->Update();
 		mManager->Update();

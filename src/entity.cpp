@@ -8,14 +8,15 @@
 #include "debug.h"
 #include "entity.h"
 
-Entity::Entity() : mMouseOver(false), mClicked(false), mConfigFile(""), mRender(true), mUiElement(false) 
+Entity::Entity() : mName(""), mTag(""), mConfigFile(""),  mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
 {
 }
-Entity::Entity(std::string file) : mMouseOver(false), mClicked(false), mConfigFile(""), mRender(true), mUiElement(false) 
+Entity::Entity(std::string file) : mName(""), mTag(""), mConfigFile(""), mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
 {
     Load(file);
 }
 Entity::~Entity(){
+    std::cout << "Entity destructor called" << std::endl;
 	//Clean up any script memory
 	Free();
 }
@@ -158,6 +159,12 @@ void Entity::SetTag(std::string tag){
 std::string Entity::Tag() const {
 	return mTag;
 }
+void Entity::SetName(std::string name){
+    mName = name;
+}
+std::string Entity::Name() const {
+    return mName;
+}
 void Entity::Render(bool b){
     mRender = b;
 }
@@ -169,6 +176,9 @@ void Entity::IsUiElement(bool b){
 }
 bool Entity::IsUiElement() const {
     return mUiElement;
+}
+LuaScript* Entity::Script(){
+    return &mScript;
 }
 Json::Value Entity::Save() const {
 	//How to specify overrides to save?

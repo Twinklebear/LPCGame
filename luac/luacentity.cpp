@@ -4,6 +4,9 @@
 #include "src/physics.h"
 #include "src/rect.h"
 #include "src/entitymanager.h"
+#include "src/statemanager.h"
+#include "src/state.h"
+#include "src/debug.h"
 #include "luacscript.h"
 #include "luacrectf.h"
 #include "luacvector2f.h"
@@ -17,15 +20,18 @@ int LuaC::EntityLib::luaopen_entity(lua_State *l){
     return LuaScriptLib::LuaOpenLib(l, sMetatable, sClassName, luaEntityLib, newEntity);
 }
 void LuaC::EntityLib::addEntity(lua_State *l, int i){
+    Debug::Log("Trying to add entity");
     LuaScriptLib::Add(l, i, sMetatable);
 }
 Entity** LuaC::EntityLib::checkEntity(lua_State *l, int i){
     return (Entity**)luaL_checkudata(l, i, sMetatable.c_str());
 }
 const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
+    { "callFunction", callFunction },
     { "physics", getPhysics },
     { "box", getBox },
     { "tag", getTag },
+    { "name", getName },
     { "__newindex", newIndex },
     { "__tostring", toString },
     { "__concat", concat },
@@ -35,20 +41,70 @@ const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
 int LuaC::EntityLib::newEntity(lua_State *l){
     //Stack: class table, entity file
     std::string file = luaL_checkstring(l, 2);
-    std::cout << "Making new entity: " << file << std::endl;
     //Make a new Entity and register it with the manager
     Entity *e = new Entity(file);
-    //Can't use shared ptr until the shared_ptr can be given to entitymanager
-    //or else it goes out of scope and frees itself, leaving Lua with garbage
+    //Register the Entity with the State
     //std::shared_ptr<Entity> sObj(e);
-    //Need to lookup active state via statemanager and register the entity
-
+    std::shared_ptr<State> state = StateManager::GetActiveState();
+    std::cout << "Attempting to register entity" << std::endl;
+    state->RegisterEntity(e);
     //Make the userdata
     Entity **luaE = (Entity**)lua_newuserdata(l, sizeof(Entity*));
     //*luaE = sObj.get();
     *luaE = e;
     addEntity(l, -1);
     return 1;
+}
+int LuaC::EntityLib::callFunction(lua_State *caller){
+    /*
+    *  Caller stack:
+    *  udata             - The Entity udata we want to call the function on
+    *  string (fcn name) - The function we want to call
+    *  int (# results)   - # of results to return
+    *  params            - All remaining values on the stack are the params to pass
+    */
+    //Get the lua_State of the Entity we want to call the function on
+    Entity **e = checkEntity(caller, 1);
+    lua_State *reciever = (*e)->Script()->Get();
+    //Get function name and # results
+    std::string fcnName = luaL_checkstring(caller, 2);
+    int nRes = luaL_checkint(caller, 3);
+    ///Remove the udata, fnc name and # results values from the stack
+    for (int i = 0; i < 3; ++i)
+        lua_remove(caller, 1);
+    //Caller stack: params
+    //# params = caller stack size
+    int nParam = lua_gettop(caller);
+
+    //Lookup userdata types of the params
+    std::vector<std::string> udataTypes = LuaScriptLib::checkUserData(caller);
+    //Get the function in reciever
+    lua_getglobal(reciever, fcnName.c_str());
+    //Reciever stack: function
+    //Transfer params
+    lua_xmove(caller, reciever, nParam);
+    //Caller stack: Empty
+    //Reciever stack: params
+    //Restore userdata metatables
+    LuaScriptLib::setUserData(reciever, udataTypes);
+    //Call the function
+    if (lua_pcall(reciever, nParam, nRes, 0) != 0){
+        Debug::Log("Error calling: " + fcnName + " " + lua_tostring(reciever, -1));
+        return 0;
+    }
+    //Reciever stack: results
+    //Read result userdata types
+    udataTypes = LuaScriptLib::checkUserData(reciever);
+    //Transfer results
+    lua_xmove(reciever, caller, nRes);
+    //Restore userdata metatables
+    LuaScriptLib::setUserData(caller, udataTypes);
+    /*
+    *  Final stacks:
+    *  Caller: results
+    *  Reciever: empty
+    */
+    return nRes;
 }
 int LuaC::EntityLib::getPhysics(lua_State *l){
     //Stack: udata (Entity)
@@ -76,6 +132,14 @@ int LuaC::EntityLib::getTag(lua_State *l){
     //Stack: udata (Entity)
     Entity **e = checkEntity(l, 1);
     lua_pushstring(l, (*e)->Tag().c_str());
+    return 1;
+}
+int LuaC::EntityLib::getName(lua_State *l){
+    std::cout << "Checking entity" << std::endl;
+    //Stack: udata (Entity)
+    Entity **e = checkEntity(l, 1);
+    std::cout << "Entity name: " << (*e)->Name() << std::endl;
+    lua_pushstring(l, (*e)->Name().c_str());
     return 1;
 }
 int LuaC::EntityLib::newIndex(lua_State *l){

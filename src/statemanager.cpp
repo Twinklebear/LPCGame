@@ -32,6 +32,9 @@ void StateManager::SetActiveState(std::string name){
 		return;
 	else (SetActiveState(stateCode));
 }
+std::shared_ptr<State> StateManager::GetActiveState(){
+    return mActiveState;
+}
 void StateManager::LoadState(std::string name){
     JsonHandler jsonHandler((mStatesDir + name + ".json"));
     //Differentiate between menu and game states

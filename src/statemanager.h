@@ -27,6 +27,11 @@ public:
 	*  @param name The name of the state to set active
 	*/
 	static void SetActiveState(std::string name);
+    /**
+    *  Get the active State
+    *  @return A shared_ptr to the active state
+    */
+    static std::shared_ptr<State> GetActiveState();
 	/**
 	*  Load a state from file by its name
 	*  @param name The state name to load for the state, state and file names are same

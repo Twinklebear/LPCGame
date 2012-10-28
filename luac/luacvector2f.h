@@ -70,7 +70,7 @@ namespace LuaC {
         */
         static void concatWithString(lua_State *l, int vIdx, int sIdx);
 
-    private:
+    public:
         ///Meta and Class table names
         static const std::string sMetatable, sClassName;
     };

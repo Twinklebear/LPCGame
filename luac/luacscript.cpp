@@ -29,6 +29,7 @@
 #include "luac/luaccolor.h"
 #include "luac/luactimer.h"
 #include "luac/luacinput.h"
+#include "luac/luacstate.h"
 #include "luacscript.h"
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
@@ -55,7 +56,7 @@ int LuaC::LuaScriptLib::stackDump(lua_State *l){
                 break;
             //Userdata
             case LUA_TUSERDATA:
-                ss << lua_typename(l, t) << "(" << readType(l, i) << ")";
+                ss << lua_typename(l, t) << " (" << readType(l, i) << ")";
                 break;
             //Other (tables/etc)
             default:
@@ -64,7 +65,6 @@ int LuaC::LuaScriptLib::stackDump(lua_State *l){
         }
         ss << ", ";
     }
-    ss << std::endl;
     Debug::Log(ss.str());
     return 0;
 }
@@ -229,13 +229,17 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["TestColor"]    = &LuaC::ColorLib::luaopen_color;
     map["TestTimer"]    = &LuaC::TimerLib::luaopen_timer;
     map["TestInput"]    = &LuaC::InputLib::luaopen_input;
+    map["TestState"]    = &LuaC::StateLib::luaopen_state;
     return map;
 }
 LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
     TTableAdders map;
-    map["Entity"]   = &LuaC::EntityLib::addEntity;
-    map["Rectf"]    = &LuaC::RectfLib::addRectf;
-    map["Physics"]  = &LuaC::PhysicsLib::addPhysics;
-    map["Vector2f"] = &LuaC::Vector2fLib::addVector2f;
+    map[LuaC::EntityLib::sClassName]   = &LuaC::EntityLib::addEntity;
+    map[LuaC::RectfLib::sClassName]    = &LuaC::RectfLib::addRectf;
+    map[LuaC::PhysicsLib::sClassName]  = &LuaC::PhysicsLib::addPhysics;
+    map[LuaC::Vector2fLib::sClassName] = &LuaC::Vector2fLib::addVector2f;
+    map[LuaC::ColorLib::sClassName]    = &LuaC::ColorLib::addColor;
+    map[LuaC::TimerLib::sClassName]    = &LuaC::TimerLib::addTimer;
+    
     return map;
 }

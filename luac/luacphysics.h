@@ -55,7 +55,7 @@ namespace LuaC {
         static int toString(lua_State *l);
         static int concat(lua_State *l);
 
-    private:
+    public:
         static const std::string sMetatable, sClassName;
     };
 };
