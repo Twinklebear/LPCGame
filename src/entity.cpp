@@ -237,6 +237,10 @@ int Entity::RegisterLua(lua_State *l){
 			.def("Box", &Entity::Box)
 			.def("SetTag", &Entity::SetTag)
 			.def("Tag", &Entity::Tag)
+            .def("Render", (void (Entity::*)(bool))&Entity::Render)
+            .def("Render", (bool (Entity::*)()const)&Entity::Render)
+            .def("IsUiElement", (void (Entity::*)(bool))&Entity::IsUiElement)
+            .def("IsUiElement", (bool (Entity::*)()const)&Entity::IsUiElement)
 	];
     return 1;
 }

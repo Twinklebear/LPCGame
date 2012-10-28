@@ -52,7 +52,11 @@ function Move(deltaT)
 end
 --Draw
 function Draw(camera)
-	LPC.Window.Draw(playerImg, LPC.Math.FromSceneSpace(camera, physics:Box()))
+	if not entity:IsUiElement() then
+		LPC.Window.Draw(playerImg, LPC.Math.FromSceneSpace(camera, physics:Box()))
+	else
+		LPC.Window.Draw(playerImg, physics:Box())
+	end
 end
 --Update player animation
 function UpdateAnimation(direction)
@@ -83,4 +87,19 @@ function UpdateAnimation(direction)
 end
 function OnClick()
 	print "Player clicked!"
+	--Toggle rendering
+	if not entity:Render() then
+		entity:Render(true)
+	else
+		entity:Render(false)
+	end
+	--Toggle ui status
+	--We can't do this, because Drawing is done in the lua script
+	--[[
+	if not entity:IsUiElement() then
+		entity:IsUiElement(true)
+	else
+		entity:IsUiElement(false)
+	end
+	]]
 end

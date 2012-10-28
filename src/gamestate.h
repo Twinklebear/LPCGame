@@ -2,11 +2,10 @@
 #define GAMESTATE_H
 
 #include <memory>
-#include "../externals/json/json.h"
+#include "externals/json/json.h"
 #include "state.h"
 #include "timer.h"
 #include "map.h"
-#include "uiobjectmanager.h"
 
 ///A state for running a game level
 /**
@@ -58,7 +57,6 @@ protected:
 
 private:
 	std::shared_ptr<Map> mMap;
-	//std::shared_ptr<UiObjectManager> mUiManager;
 	std::shared_ptr<TileSet> mTileSet;
 
 };

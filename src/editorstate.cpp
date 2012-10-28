@@ -1,6 +1,6 @@
 #include <string>
 #include <memory>
-#include "../externals/json/json.h"
+#include "externals/json/json.h"
 #include "entity.h"
 #include "entitymanager.h"
 #include "entityeditor.h"
@@ -41,17 +41,14 @@ std::string EditorState::Run(){
 		//LOGIC
 		mCamera->Update();
 		mManager->Update();
-		mUiManager->Update();
 
 		float deltaT = delta.Restart() / 1000.f;
 		mManager->Move(deltaT);
-		mUiManager->Move(deltaT);
 
 		//RENDERING
 		Window::Clear();
 		mMapEditor->Draw(mCamera.get());
 		mManager->Draw();
-		mUiManager->Draw();
 
 		Window::Present();
 	}
@@ -59,7 +56,6 @@ std::string EditorState::Run(){
 }
 void EditorState::Init(){
 	mMapEditor = std::shared_ptr<MapEditor>(new MapEditor());
-	mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
 	mCamera    = std::shared_ptr<Camera>(new Camera());
 	mTileSet   = std::shared_ptr<TileSet>(new TileSet());
 
@@ -82,11 +78,6 @@ Json::Value EditorState::Save(){
 	Json::Value val = State::Save();
 	val["map"] = mMapEditor->Save();
 	val["tileset"] = mTileSet->Save();
-
-	///TODO: I should save/load ui's differently. Perhaps seperate files
-	///that contain the different ui's? Ie. game ui, editor ui, etc.
-	val["ui"]  =  mUiManager->Save();
-
 	Free();
 	return val;
 }
@@ -103,21 +94,21 @@ void EditorState::Load(Json::Value val){
 	mCamera->SetBox(Rectf(0, 0, mMapEditor->Box().w, mMapEditor->Box().h));
 
 	//Load the ui elements
-	Json::Value uiObj = val["ui"];
-	for (int i = 0; i < uiObj.size(); ++i){
+	Json::Value entities = val["entities"];
+	for (int i = 0; i < entities.size(); ++i){
 		//Loading object buttons
-		if (uiObj[i]["type"].asString() == "objectbutton"){
+		if (entities[i]["type"].asString() == "objectbutton"){
 			ObjectButton<State> *b = new ObjectButton<State>();
 			b->RegisterCallBack(this, &State::SetExit, "");
-			b->Load(uiObj[i]);
+			b->Load(entities[i]);
 			std::shared_ptr<Entity> sObj(b);
-			mUiManager->Register(sObj);
+			mManager->Register(sObj);
 		}
-		if (uiObj[i]["type"].asString() == "tilebar"){
-			mTileBar->Load(uiObj[i]);
+		if (entities[i]["type"].asString() == "tilebar"){
+			mTileBar->Load(entities[i]);
 			mTileBar->LoadTileSet(mTileSet);
 			std::shared_ptr<Entity> sObj(mTileBar);
-			mUiManager->Register(sObj);
+			mManager->Register(sObj);
 		}
 	}
 }

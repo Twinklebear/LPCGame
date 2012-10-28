@@ -13,7 +13,66 @@
          "y" : 0.0
       }
    },
-   "entities" : null,
+   "entities" : [
+      {
+         "image" : "../res/img/simplebutton.png",
+         "name" : "",
+         "param" : "mIntro",
+         "physics" : {
+            "box" : {
+               "h" : 50.0,
+               "w" : 250.0,
+               "x" : 32.0,
+               "y" : 625.0
+            },
+            "hAccel" : 0,
+            "hSpeed" : 0
+         },
+         "render" : true,
+         "script" : "",
+         "tag" : "",
+         "text" : {
+            "color" : {
+               "b" : 0,
+               "g" : 0,
+               "r" : 0
+            },
+            "font" : "../res/fonts/SourceSansPro-Regular.ttf",
+            "fontsize" : 25,
+            "message" : "Save & Return"
+         },
+         "type" : "objectbutton",
+         "ui" : true
+      },
+      {
+         "attributes" : {
+            "spacer" : 5,
+            "tileHeight" : 32,
+            "tileWidth" : 32,
+            "tilesPerRow" : 7,
+            "xOffset" : 28,
+            "yOffset" : 40
+         },
+         "image" : "../res/img/white.png",
+         "name" : "",
+         "physics" : {
+            "box" : {
+               "h" : 158.0,
+               "w" : 258.0,
+               "x" : 32.0,
+               "y" : 40.0
+            },
+            "hAccel" : 0,
+            "hSpeed" : 0
+         },
+         "render" : true,
+         "script" : "",
+         "selector" : "../res/img/selector.png",
+         "tag" : "",
+         "type" : "tilebar",
+         "ui" : true
+      }
+   ],
    "map" : {
       "mBox" : {
          "h" : 640,
@@ -4027,66 +4086,6 @@
    "tileset" : [
       {
          "file" : "../res/img/forest.png"
-      }
-   ],
-   "ui" : [
-      {
-         "image" : "../res/img/simplebutton.png",
-         "name" : "",
-         "param" : "mIntro",
-         "physics" : {
-            "box" : {
-               "h" : 50.0,
-               "w" : 250.0,
-               "x" : 32.0,
-               "y" : 625.0
-            },
-            "hAccel" : 0,
-            "hSpeed" : 0
-         },
-         "script" : "",
-         "tag" : "",
-         "text" : {
-            "color" : {
-               "b" : 0,
-               "g" : 0,
-               "r" : 0
-            },
-            "font" : "../res/fonts/SourceSansPro-Regular.ttf",
-            "fontsize" : 25,
-            "message" : "Save & Return"
-         },
-         "type" : "objectbutton",
-         "render" : true,
-         "ui" : true
-      },
-      {
-         "attributes" : {
-            "spacer" : 5,
-            "tileHeight" : 32,
-            "tileWidth" : 32,
-            "tilesPerRow" : 7,
-            "xOffset" : 28,
-            "yOffset" : 40
-         },
-         "image" : "../res/img/white.png",
-         "name" : "",
-         "physics" : {
-            "box" : {
-               "h" : 158.0,
-               "w" : 258.0,
-               "x" : 32.0,
-               "y" : 40.0
-            },
-            "hAccel" : 0,
-            "hSpeed" : 0
-         },
-         "script" : "",
-         "selector" : "../res/img/selector.png",
-         "tag" : "",
-         "type" : "tilebar",
-         "render" : true,
-         "ui" : true
       }
    ]
 }

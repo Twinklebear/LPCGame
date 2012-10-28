@@ -3,7 +3,7 @@
 #include <thread>
 #include <condition_variable>
 #include <mutex>
-#include "../externals/json/json.h"
+#include "externals/json/json.h"
 #include "entity.h"
 #include "entitymanager.h"
 #include "window.h"
@@ -11,8 +11,6 @@
 #include "timer.h"
 #include "objectbutton.h"
 #include "gamestate.h"
-
-#include "jsonhandler.h"
 
 #include <iostream>
 
@@ -45,17 +43,13 @@ std::string GameState::Run(){
 		mCamera->Update();
 		mManager->Update();
 		mManager->SetCollisionMaps(mMap.get());
-		//mUiManager->Update();
-
 		float deltaT = delta.Restart() / 1000.f;
 		mManager->Move(deltaT);
-		//mUiManager->Move(deltaT);
 
 		//Rendering
 		Window::Clear();
 		mMap->Draw(mCamera.get());
 		mManager->Draw();
-		//mUiManager->Draw();
 
 		Window::Present();
 		
@@ -75,7 +69,6 @@ void GameState::RenderThread(){
 		Window::Clear();
 		mMap->Draw(mCamera.get());
 		mManager->Draw();
-		mUiManager->Draw();
 
 		Window::Present();
 		//Notify waiting threads
@@ -93,11 +86,9 @@ void GameState::PhysicsThread(){
 		mCamera->Update();
 		mManager->Update();
 		mManager->SetCollisionMaps(mMap.get());
-		mUiManager->Update();
 
 		float deltaT = delta.Restart() / 1000.f;
 		mManager->Move(deltaT);
-		mUiManager->Move(deltaT);
 
 		//Wait for notification
 		std::unique_lock<std::mutex> lock(m);
@@ -108,7 +99,6 @@ void GameState::PhysicsThread(){
 void GameState::Init(){
 	mMap 	   = std::shared_ptr<Map>(new Map());
 	mManager   = std::shared_ptr<EntityManager>(new EntityManager());
-	//mUiManager = std::shared_ptr<UiObjectManager>(new UiObjectManager());
 	mCamera    = std::shared_ptr<Camera>(new Camera());
 	mTileSet   = std::shared_ptr<TileSet>(new TileSet());
 
@@ -123,9 +113,7 @@ void GameState::Free(){
 }
 Json::Value GameState::Save(){
 	Json::Value val = State::Save();
-	//val["map"] = mMap->Save();
     val["map"] = mMap->File();
-	//val["ui"]  = mUiManager->Save();
 	val["tileset"] = mTileSet->Save();
 
 	Free();
@@ -137,14 +125,14 @@ void GameState::Load(Json::Value val){
 	mMap->Load(val["map"].asString());
 	mTileSet->Load(val["tileset"]);
 	mMap->LoadTileSet(mTileSet);
-
 	//Set scene box
 	mCamera->SetSceneBox(Rectf(0, 0, mMap->Box().w, mMap->Box().h));
 
 	//Load the objects
 	Json::Value entities = val["entities"];
 	for (int i = 0; i < entities.size(); ++i){
-        //Need to filter objectbuttons
+        //Need to filter objectbuttons, special case for now soon they'll just
+        //all be lua entities
         if (entities[i]["type"].asString() == "objectbutton"){
             ObjectButton<State> *b = new ObjectButton<State>();
 			b->RegisterCallBack(this, &State::SetExit, "");
@@ -160,18 +148,4 @@ void GameState::Load(Json::Value val){
 		    mManager->Register(sObj);
         }
 	}
-    /*
-	//Load the ui elements
-	Json::Value uiObj = val["ui"];
-	for (int i = 0; i < uiObj.size(); ++i){
-		//Loading object buttons
-		if (uiObj[i]["type"].asString() == "objectbutton"){
-			ObjectButton<State> *b = new ObjectButton<State>();
-			b->RegisterCallBack(this, &State::SetExit, "");
-			b->Load(uiObj[i]);
-			std::shared_ptr<Entity> sObj(b);
-			mUiManager->Register(sObj);
-		}
-	}
-    */
 }
