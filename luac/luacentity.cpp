@@ -6,6 +6,7 @@
 #include "src/entitymanager.h"
 #include "src/statemanager.h"
 #include "src/state.h"
+#include "src/entitymanager.h"
 #include "src/debug.h"
 #include "luacscript.h"
 #include "luacrectf.h"
@@ -20,7 +21,6 @@ int LuaC::EntityLib::luaopen_entity(lua_State *l){
     return LuaScriptLib::LuaOpenLib(l, sMetatable, sClassName, luaEntityLib, newEntity);
 }
 void LuaC::EntityLib::addEntity(lua_State *l, int i){
-    Debug::Log("Trying to add entity");
     LuaScriptLib::Add(l, i, sMetatable);
 }
 Entity** LuaC::EntityLib::checkEntity(lua_State *l, int i){
@@ -43,14 +43,12 @@ int LuaC::EntityLib::newEntity(lua_State *l){
     std::string file = luaL_checkstring(l, 2);
     //Make a new Entity and register it with the manager
     Entity *e = new Entity(file);
+    e->Init();
     //Register the Entity with the State
-    //std::shared_ptr<Entity> sObj(e);
-    std::shared_ptr<State> state = StateManager::GetActiveState();
-    std::cout << "Attempting to register entity" << std::endl;
-    state->RegisterEntity(e);
+    std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
+    manager->Register(e);
     //Make the userdata
     Entity **luaE = (Entity**)lua_newuserdata(l, sizeof(Entity*));
-    //*luaE = sObj.get();
     *luaE = e;
     addEntity(l, -1);
     return 1;
@@ -135,10 +133,8 @@ int LuaC::EntityLib::getTag(lua_State *l){
     return 1;
 }
 int LuaC::EntityLib::getName(lua_State *l){
-    std::cout << "Checking entity" << std::endl;
     //Stack: udata (Entity)
     Entity **e = checkEntity(l, 1);
-    std::cout << "Entity name: " << (*e)->Name() << std::endl;
     lua_pushstring(l, (*e)->Name().c_str());
     return 1;
 }

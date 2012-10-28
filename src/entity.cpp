@@ -16,7 +16,6 @@ Entity::Entity(std::string file) : mName(""), mTag(""), mConfigFile(""), mMouseO
     Load(file);
 }
 Entity::~Entity(){
-    std::cout << "Entity destructor called" << std::endl;
 	//Clean up any script memory
 	Free();
 }

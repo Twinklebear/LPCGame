@@ -34,18 +34,8 @@ public:
 	void SetExit(std::string val);
 	///Set exit to false
 	void UnsetExit();
-    /**
-    *  Get an Entity from the State's EntityManager
-    *  @param name The name of the entity to get
-    *  @return A shared_ptr to the Entity
-    */
-    std::shared_ptr<Entity> GetEntity(const std::string &name);
-    /**
-    *  Register an Entity with the State's EntityManager
-    *  @param entity The Entity to register
-    */
-    void RegisterEntity(std::shared_ptr<Entity> entity);
-    void RegisterEntity(Entity *obj);
+    ///Get the State's EntityManager
+    std::shared_ptr<EntityManager> Manager();
 	/**
 	*  Set the state's name
 	*  @param name The name to set

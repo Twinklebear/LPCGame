@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <memory>
-#include "../externals/json/json.h"
+#include "externals/json/json.h"
 #include "entity.h"
 #include "map.h"
 #include "camera.h"
@@ -54,8 +54,7 @@ public:
     /**
     *  Get an Entity by its name
     *  @param name The name to lookup
-    *  @return A shared_ptr to the entity
-    *  @throw range_error "Failed to find Entity + name" for now
+    *  @return A shared_ptr to the entity, nullptr if lookup failed
     */
     std::shared_ptr<Entity> GetEntity(const std::string &name);
 	/**
@@ -78,6 +77,8 @@ public:
 	*  @return Json::Value containing the gameobject data
 	*/
 	Json::Value Save();
+    //Debugging test
+    void TestManager();
 
 private:
 	/**

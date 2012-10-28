@@ -23,13 +23,16 @@ std::string GameState::Run(){
 	//std::thread tRend(&GameState::RenderThread, this);
 	//std::thread tPhys(&GameState::PhysicsThread, this);
 	//std::mutex m;
-
-	Timer delta;
+    	
 	//Unset events from earlier
 	Input::Clear();
 	//Cleanup any previous exit settings
 	UnsetExit();
 
+    //Call the script's Init
+    State::Init();
+
+    Timer delta;
 	delta.Start();
 	while (!mExit){
 		//EVENT POLLING

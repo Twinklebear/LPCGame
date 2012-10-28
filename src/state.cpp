@@ -17,6 +17,7 @@ void State::Init(){
     if (!mScript.Open())
 		return;
 	try {
+        std::cout << "Calling script: Init" << std::endl;
         lua_getglobal(mScript.Get(), "Init");
         if (lua_pcall(mScript.Get(), 0, 0, 0) != 0)
             Debug::Log("State: " + mName + " Init error: " + lua_tostring(mScript.Get(), -1));
@@ -63,19 +64,8 @@ void State::UnsetExit(){
 	mExit = false;
 	mExitCode = "quit";
 }
-std::shared_ptr<Entity> State::GetEntity(const std::string &name){
-    std::shared_ptr<Entity> entity = nullptr;
-    entity = mManager->GetEntity(name);
-    if (entity == nullptr)
-        std::cout << "Entity: " << name << " could not be found" << std::endl;
-    return entity;
-}
-void State::RegisterEntity(std::shared_ptr<Entity> entity){
-    mManager->Register(entity);
-}
-void State::RegisterEntity(Entity *obj){
-    std::cout << "State: calling manager to register entity" << std::endl;
-    mManager->Register(obj);
+std::shared_ptr<EntityManager> State::Manager(){
+    return mManager;
 }
 void State::SetName(std::string name){
 	mName = name;

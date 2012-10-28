@@ -40,6 +40,7 @@ function OnClick()
 	LPC.StateManager.ChangeScene("quit")
 end
 --Testing cross-lua_State calls
-function Test()
-	print "Test was called"
+function Test(str)
+	print ("Test was called, param: " .. str)
+	return "Howdy doo"
 end

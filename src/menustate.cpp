@@ -18,9 +18,13 @@ std::string MenuState::Run(){
 	Input::Clear();
 	//Clean up any previous exit settings
 	UnsetExit();
-
+    //Call the script's Init
+    State::Init();
 	//Setup the background destination
 	Rectf bkgndPos = Math::FromSceneSpace(mCamera.get(), mCamera->SceneBox());
+
+    //testing stuff
+    bool made = false;
 
 	Timer delta;
 	delta.Start();
@@ -37,20 +41,14 @@ std::string MenuState::Run(){
 			mCamera->Pan("test");
 		else if (Input::KeyDown(SDL_SCANCODE_SPACE) && mCamera->Scene() == "test")
 			mCamera->Pan("def");
-
-        //Testing why this bullshit crash happens
-        if (Input::KeyDown(SDL_SCANCODE_1)){
-            std::shared_ptr<Entity> e = mManager->GetEntity("quitbutton");
-            std::cout << "Found entity: " << e->Name() << std::endl;
-        }
-
-		//LOGIC
+        //LOGIC
 		mCamera->Update();
 		mManager->Update();
         //Call script's logic update
         State::LogicUpdate();
 
 		float deltaT = delta.Restart() / 1000.f;
+        mManager->Move(deltaT);
 		mCamera->Move(deltaT);
 
 		//RENDERING
@@ -83,7 +81,6 @@ void MenuState::Free(){
 Json::Value MenuState::Save(){
 	Json::Value val = State::Save();
 	val["background"] = mBackground.File();
-
 	Free();
 	return val;
 }
@@ -112,6 +109,4 @@ void MenuState::Load(Json::Value val){
             mManager->Register(sObj);
         }
 	}
-    //Call the script's Init
-    State::Init();
 }
