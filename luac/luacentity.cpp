@@ -75,17 +75,28 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     int nParam = lua_gettop(caller);
 
     //Lookup userdata types of the params
+    Debug::Log("Examining udata types");
     std::vector<std::string> udataTypes = LuaScriptLib::checkUserData(caller);
     LuaScriptLib::stackDump(caller);
     //Get the function in reciever
     lua_getglobal(reciever, fcnName.c_str());
+    Debug::Log("got function");
+    LuaScriptLib::stackDump(reciever);
     //Reciever stack: function
     //Transfer params
     lua_xmove(caller, reciever, nParam);
+    Debug::Log("Params transferred");
+    std::cout << "Params transferred" << std::endl;
+    //Can't do this here because trying to read the type field of the udata
+    //metatable will screw things up, since it isn't really sort of set
+    //LuaScriptLib::stackDump(reciever);
     //Caller stack: Empty
     //Reciever stack: params
     //Restore userdata metatables
+    std::cout << "About to setuserdata" << std::endl;
     LuaScriptLib::setUserData(reciever, udataTypes);
+    std::cout << "Userdata set" << std::endl;
+    Debug::Log("Set userdata types");
     LuaScriptLib::stackDump(reciever);
     //Call the function
     if (lua_pcall(reciever, nParam, nRes, 0) != 0){

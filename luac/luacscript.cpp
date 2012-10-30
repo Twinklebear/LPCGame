@@ -78,7 +78,8 @@ std::string LuaC::LuaScriptLib::readType(lua_State *l, int i){
         lua_getfield(l, -1, "type");
         //Stack: stuff, udata metatable, typename
         //Get the type from the stack
-        type = luaL_checkstring(l, -1);
+        if (lua_isstring(l, -1))
+            type = luaL_checkstring(l, -1);
         //Stack: stuff, udata metatable, typename
         //Stack contains the typename and the metatable, pop them off
         lua_pop(l, 2);
@@ -138,7 +139,10 @@ std::vector<std::string> LuaC::LuaScriptLib::checkUserData(lua_State *l){
     }
     return udata;
 }
-void LuaC::LuaScriptLib::setUserData(lua_State *l, std::vector<std::string> types){
+void LuaC::LuaScriptLib::setUserData(lua_State *l, const std::vector<std::string> &types){
+    std::cout << "LuaScriptLib::setUserData" << std::endl;
+    Debug::Log("LuaScriptLib::setUserData");
+    stackDump(l);
     //l stack: params
     //Step through and find udata, and register it according to the value at the vector
     //after each registration, increment vector pos
@@ -148,10 +152,20 @@ void LuaC::LuaScriptLib::setUserData(lua_State *l, std::vector<std::string> type
         std::string luaTName = lua_typename(l, t);
         //If we find some userdata, read the type and register it accordingly
         if (luaTName == "userdata"){
-            sTableAdders.at(*iter)(l, (i - top - 1));
-            ++iter;
+            std::cout << "Encountered userdata @: " << i << " ie. " << (i - top - 1)
+                << " thinking it's: " << *iter << std::endl;
+            //function not being called?
+            TTableAdders::const_iterator fnd = sTableAdders.find(*iter);
+            if (fnd != sTableAdders.end()){
+                sTableAdders.at(*iter)(l, (i - top - 1));
+                std::cout << "Added it" << std::endl;
+                ++iter;
+            }
+            else 
+                std::cout << "Failed to find: " << *iter << std::endl;
         }
     }
+    stackDump(l);
 }
 int LuaC::LuaScriptLib::LuaOpenLib(lua_State *l, const std::string &metatable,
     const std::string &className, const luaL_reg *lib, int (*call)(lua_State*))

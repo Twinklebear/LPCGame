@@ -62,7 +62,7 @@ namespace LuaC {
         *  @param l The lua_State to set the tables in
         *  @param types The vector to read typenames from
         */
-        static void setUserData(lua_State *l, std::vector<std::string> types);
+        static void setUserData(lua_State *l, const std::vector<std::string> &types);
         /**
         *  A generic luaopen_X function for opening libraries that share similar
         *  style, and have the same organization for their luaopen_X function
