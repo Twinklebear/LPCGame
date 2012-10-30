@@ -5,13 +5,19 @@
 require "TestEntity"
 require "TestState"
 require "TestInput"
+require "TestTimer"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
 	quitButton = State.getEntity("quitbutton")
 	print "Got the entity?"
 	print ("Looked up entity main menu: " .. quitButton:name())
-	result = quitButton:callFunction("Test", 1, "HI")
+
+	timer = Timer()
+	timer:start()
+	print ("Timer ticks: " .. timer:ticks())
+
+	result = quitButton:callFunction("Test", 1, timer)
 	print ("Got result: " .. result)
 	--Try to make a new entity
 	--e = Entity("../res/entities/npc.json")

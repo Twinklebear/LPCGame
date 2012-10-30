@@ -9,6 +9,9 @@ require "Text"
 require "Color"
 require "StateManager"
 
+--Testing passing userdata back and forth
+require "TestTimer"
+
 function Init()
 	print "Quitbutton Init"
 	--Load the button image
@@ -40,7 +43,15 @@ function OnClick()
 	LPC.StateManager.ChangeScene("quit")
 end
 --Testing cross-lua_State calls
-function Test(str)
-	print ("Test was called, param: " .. str)
-	return "Howdy doo"
+function Test(timer)
+	print "Test was called"
+	--[[
+	print ("Timer status: " .. timer:started())
+	ticks = timer:ticks()
+	print ("Ticks: " .. ticks)
+	print ("Returning # ticks")
+	--print ("Test was called, param: " .. str)
+	]]
+	ticks = 10
+	return ticks
 end

@@ -76,6 +76,7 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
 
     //Lookup userdata types of the params
     std::vector<std::string> udataTypes = LuaScriptLib::checkUserData(caller);
+    LuaScriptLib::stackDump(caller);
     //Get the function in reciever
     lua_getglobal(reciever, fcnName.c_str());
     //Reciever stack: function
@@ -85,6 +86,7 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     //Reciever stack: params
     //Restore userdata metatables
     LuaScriptLib::setUserData(reciever, udataTypes);
+    LuaScriptLib::stackDump(reciever);
     //Call the function
     if (lua_pcall(reciever, nParam, nRes, 0) != 0){
         Debug::Log("Error calling: " + fcnName + " " + lua_tostring(reciever, -1));

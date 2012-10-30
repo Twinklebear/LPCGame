@@ -130,8 +130,11 @@ std::vector<std::string> LuaC::LuaScriptLib::checkUserData(lua_State *l){
         int t = lua_type(l, i);
         std::string luaTName = lua_typename(l, t);
         //If we find some userdata, read the type and store it
-        if (luaTName == "userdata")
-            udata.push_back(readType(l, i));
+        if (luaTName == "userdata"){
+            std::string type = readType(l, i);
+            std::cout << "Encountered userdata @: " << i << " type: " << type << std::endl;
+            udata.push_back(type); //readType(l, i));
+        }
     }
     return udata;
 }

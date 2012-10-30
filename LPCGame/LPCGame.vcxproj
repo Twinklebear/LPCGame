@@ -134,7 +134,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>C:\Users\Will\Documents\Programs\LPCGame;C:\boost_1_50_0;C:\Program Files %28x86%29\Lua\5.1\include;C:\luabind;C:\SDL-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Will\Documents\GitHub\LPCGame;C:\Users\Will\Documents\Programs\LPCGame;C:\boost_1_50_0;C:\Program Files %28x86%29\Lua\5.1\include;C:\luabind;C:\SDL-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
