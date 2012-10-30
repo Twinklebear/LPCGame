@@ -79,10 +79,10 @@ std::string LuaC::LuaScriptLib::readType(lua_State *l, int i){
         //Stack: stuff, udata metatable, typename
         //Get the type from the stack
         type = luaL_checkstring(l, -1);
+        //Stack: stuff, udata metatable, typename
+        //Stack contains the typename and the metatable, pop them off
+        lua_pop(l, 2);
     }
-    //Stack: stuff, udata metatable, typename
-    //Stack contains the typename and the metatable, pop them off
-    lua_pop(l, 2);
     return type;
 }
 int LuaC::LuaScriptLib::requireLib(lua_State *l){

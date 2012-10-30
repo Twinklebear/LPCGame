@@ -17,7 +17,6 @@ void State::Init(){
     if (!mScript.Open())
 		return;
 	try {
-        std::cout << "Calling script: Init" << std::endl;
         lua_getglobal(mScript.Get(), "Init");
         if (lua_pcall(mScript.Get(), 0, 0, 0) != 0)
             Debug::Log("State: " + mName + " Init error: " + lua_tostring(mScript.Get(), -1));
