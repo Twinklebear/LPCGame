@@ -48,13 +48,13 @@ end
 --Testing cross-lua_State calls
 function Test(timer)
 	print "Test was called"
-	--[[
-	print ("Timer status: " .. timer:started())
-	ticks = timer:ticks()
-	print ("Ticks: " .. ticks)
-	print ("Returning # ticks")
-	--print ("Test was called, param: " .. str)
-	]]
-	ticks = 10
-	return ticks
+	if timer:started() then
+		ticks = timer:ticks()
+		print ("Ticks: " .. ticks)
+		print ("Returning # ticks")
+		return ticks
+	else
+		print "Timer param not started"
+	end
+	return 0
 end
