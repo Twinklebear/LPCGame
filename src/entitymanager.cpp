@@ -9,7 +9,6 @@
 EntityManager::EntityManager()
 	: mCamera(nullptr)
 {
-    std::cout << "EntityManager initialized" << std::endl;
 }
 EntityManager::~EntityManager(){
 	mEntities.clear();

@@ -11,6 +11,10 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    ///The Color metatable name
+    const std::string colorMeta = "LPC.Color";
+    ///The Color class/type name
+    const std::string colorClass = "Color";
     /**
     *  The Lua library for the Color class
     */

@@ -6,13 +6,12 @@
 #include "luacrectf.h"
 #include "luacphysics.h"
 
-const std::string LuaC::PhysicsLib::sMetatable = "LPC.Physics";
-const std::string LuaC::PhysicsLib::sClassName = "Physics";
-
 int LuaC::PhysicsLib::luaopen_physics(lua_State *l){
+    //We use a custom registration because Physics class shouldn't have a constructor
+    //exposed to Lua
     //Stack: lib name
     //Push the metatable to contain the fcns onto the stack
-    luaL_newmetatable(l, sMetatable.c_str());
+    luaL_newmetatable(l, physicsMeta.c_str());
     //Copy metatable from -1 to the top
     lua_pushvalue(l, -1);
     //Set table at -2 key of __index = top of stack
@@ -22,16 +21,16 @@ int LuaC::PhysicsLib::luaopen_physics(lua_State *l){
     luaL_register(l, NULL, luaPhysicsLib);
     //Stack: lib name, metatable
     //Add type identifier to the metatable
-    lua_pushstring(l, sClassName.c_str());
+    lua_pushstring(l, physicsClass.c_str());
     lua_setfield(l, -2, "type");
     //Stack: lib name, metatable
     return 1;
 }
 void LuaC::PhysicsLib::addPhysics(lua_State *l, int i){
-    LuaScriptLib::Add(l, i, sMetatable);
+    LuaScriptLib::Add(l, i, physicsMeta);
 }
 Physics** LuaC::PhysicsLib::checkPhysics(lua_State *l, int i){
-    return (Physics**)luaL_checkudata(l, i, sMetatable.c_str());
+    return (Physics**)luaL_checkudata(l, i, physicsMeta.c_str());
 }
 const struct luaL_reg LuaC::PhysicsLib::luaPhysicsLib[] = {
     { "position", position },

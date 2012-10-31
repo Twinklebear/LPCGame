@@ -132,17 +132,12 @@ std::vector<std::string> LuaC::LuaScriptLib::checkUserData(lua_State *l){
         std::string luaTName = lua_typename(l, t);
         //If we find some userdata, read the type and store it
         if (luaTName == "userdata"){
-            std::string type = readType(l, i);
-            std::cout << "Encountered userdata @: " << i << " type: " << type << std::endl;
-            udata.push_back(type); //readType(l, i));
+            udata.push_back(readType(l, i));
         }
     }
     return udata;
 }
 void LuaC::LuaScriptLib::setUserData(lua_State *l, const std::vector<std::string> &types){
-    std::cout << "LuaScriptLib::setUserData" << std::endl;
-    Debug::Log("LuaScriptLib::setUserData");
-    stackDump(l);
     //l stack: params
     //Step through and find udata, and register it according to the value at the vector
     //after each registration, increment vector pos
@@ -152,28 +147,16 @@ void LuaC::LuaScriptLib::setUserData(lua_State *l, const std::vector<std::string
         std::string luaTName = lua_typename(l, t);
         //If we find some userdata, read the type and register it accordingly
         if (luaTName == "userdata"){
-            std::cout << "Encountered userdata @: " << i << " ie. " << (i - top - 1)
-                << " thinking it's: " << *iter << std::endl;
             //function not being called?
             TTableAdders::const_iterator fnd = sTableAdders.find(*iter);
             if (fnd != sTableAdders.end()){
                 sTableAdders.at(*iter)(l, (i - top - 1));
-                std::cout << "Added it" << std::endl;
                 ++iter;
             }
-            else {
-                std::cout << "Failed to find: " << *iter << std::endl;
-                std::cout << "Length of table adders map: " << sTableAdders.size() << std::endl;
-                //Testing why timer isn't showing in the map
-                fnd = sTableAdders.find(TimerLib::sClassName);
-                if (fnd != sTableAdders.end())
-                    std::cout << "Found Timer adder" << std::endl;
-                else
-                    std::cout << "Did not find timer adder" << std::endl;
-            }
+            else
+                Debug::Log("Failed to find adder: " + *iter);
         }
     }
-    stackDump(l);
 }
 int LuaC::LuaScriptLib::LuaOpenLib(lua_State *l, const std::string &metatable,
     const std::string &className, const luaL_reg *lib, int (*call)(lua_State*))
@@ -259,14 +242,12 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
 }
 LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
     TTableAdders map;
-    map[EntityLib::sClassName]   = &EntityLib::addEntity;
-    map[RectfLib::sClassName]    = &RectfLib::addRectf;
-    map[PhysicsLib::sClassName]  = &PhysicsLib::addPhysics;
-    map[Vector2fLib::sClassName] = &Vector2fLib::addVector2f;
-    map[ColorLib::sClassName]    = &ColorLib::addColor;
-    map["Timer"]    = &TimerLib::addTimer;
-
-    std::cout << "In map, timerlib name is:" << TimerLib::sClassName << "?" << std::endl;
+    map[entityClass]    = &EntityLib::addEntity;
+    map[rectfClass]     = &RectfLib::addRectf;
+    map[physicsClass]   = &PhysicsLib::addPhysics;
+    map[vector2fClass]  = &Vector2fLib::addVector2f;
+    map[colorClass]     = &ColorLib::addColor;
+    map[timerClass]     = &TimerLib::addTimer;
 
     return map;
 }

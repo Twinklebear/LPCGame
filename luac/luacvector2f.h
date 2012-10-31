@@ -11,6 +11,10 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    ///The Vector2f metatable name
+    const std::string vector2fMeta = "LPC.Vector2f";
+    ///The Vector2f class/type name
+    const std::string vector2fClass = "Vector2f";
     /**
     *  The Lua library for the Vector2f class
     */
@@ -32,7 +36,7 @@ namespace LuaC {
         *  @param i The index of the userdata (standard index, pos #'s)
         */
         static Vector2f* checkVector2f(lua_State *l, int i);
-
+        
     private:
         ///The Lua function library struct
         static const luaL_reg luaVector2fLib[];
@@ -66,13 +70,9 @@ namespace LuaC {
         *  Concatenate a Vector2f with a string, a helper for concat fcn
         *  @param l The Lua state
         *  @param vIdx The index of the Vector2f in the stack
-        *  @para sIdx The index of the string in the stack
+        *  @param sIdx The index of the string in the stack
         */
         static void concatWithString(lua_State *l, int vIdx, int sIdx);
-
-    public:
-        ///Meta and Class table names
-        static const std::string sMetatable, sClassName;
     };
 };
 

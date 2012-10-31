@@ -12,6 +12,7 @@ require "StateManager"
 ]]
 --Testing passing userdata back and forth
 require "TestTimer"
+require "TestVector2f"
 
 function Init()
 	print "Quitbutton Init"
@@ -46,15 +47,13 @@ function OnClick()
 	--LPC.StateManager.ChangeScene("quit")
 end
 --Testing cross-lua_State calls
-function Test(timer)
-	print "Test was called"
-	if timer:started() then
-		ticks = timer:ticks()
-		print ("Ticks: " .. ticks)
-		print ("Returning # ticks")
-		return ticks
-	else
-		print "Timer param not started"
-	end
-	return 0
+function Test(val)
+	print ("Test called with " .. val)
+	res = val + Vector2f(1, 2)
+	return res
+end
+--Another cross-state test
+function AddVects(v1, v2)
+	print ("Adding: " .. v1 .. " and " .. v2)
+	return v1 + v2
 end

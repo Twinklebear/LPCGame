@@ -4,17 +4,14 @@
 #include "luacscript.h"
 #include "luactimer.h"
 
-const std::string LuaC::TimerLib::sMetatable = "LPC.Timer";
-const std::string LuaC::TimerLib::sClassName = "Timer";
-
 int LuaC::TimerLib::luaopen_timer(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, sMetatable, sClassName, luaTimerLib, newTimer);
+    return LuaScriptLib::LuaOpenLib(l, timerMeta, timerClass, luaTimerLib, newTimer);
 }
 void LuaC::TimerLib::addTimer(lua_State *l, int i){
-    LuaScriptLib::Add(l, i, sMetatable);
+    LuaScriptLib::Add(l, i, timerMeta);
 }
 Timer* LuaC::TimerLib::checkTimer(lua_State *l, int i){
-    return (Timer*)luaL_checkudata(l, i, sMetatable.c_str());
+    return (Timer*)luaL_checkudata(l, i, timerMeta.c_str());
 }
 const luaL_reg LuaC::TimerLib::luaTimerLib[] = {
     { "start", start },

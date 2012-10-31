@@ -11,6 +11,10 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    ///The Physics metatable name
+    const std::string physicsMeta = "LPC.Physics";
+    ///The Physics class/type name
+    const std::string physicsClass = "Physics";
     /**
     *  The Lua library for the Physics class
     */

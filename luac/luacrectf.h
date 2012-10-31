@@ -11,6 +11,10 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    ///The Rectf metatable name
+    const std::string rectfMeta = "LPC.Rectf";
+    ///The Rectf class/type name
+    const std::string rectfClass = "Rectf";
     /**
     *  The Lua library for the Rectf class
     */
@@ -64,10 +68,6 @@ namespace LuaC {
         *  @para sIdx The index of the string in the stack
         */
         static void concatWithString(lua_State *l, int rIdx, int sIdx);
-
-    public:
-        ///Meta and Class table names
-        static const std::string sMetatable, sClassName;
     };
 };
 

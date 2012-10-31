@@ -14,17 +14,14 @@
 #include "luacphysics.h"
 #include "luacentity.h"
 
-const std::string LuaC::EntityLib::sMetatable = "LPC.Entity";
-const std::string LuaC::EntityLib::sClassName = "Entity";
-
 int LuaC::EntityLib::luaopen_entity(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, sMetatable, sClassName, luaEntityLib, newEntity);
+    return LuaScriptLib::LuaOpenLib(l, entityMeta, entityClass, luaEntityLib, newEntity);
 }
 void LuaC::EntityLib::addEntity(lua_State *l, int i){
-    LuaScriptLib::Add(l, i, sMetatable);
+    LuaScriptLib::Add(l, i, entityMeta);
 }
 Entity** LuaC::EntityLib::checkEntity(lua_State *l, int i){
-    return (Entity**)luaL_checkudata(l, i, sMetatable.c_str());
+    return (Entity**)luaL_checkudata(l, i, entityMeta.c_str());
 }
 const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
     { "callFunction", callFunction },
@@ -75,29 +72,16 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     int nParam = lua_gettop(caller);
 
     //Lookup userdata types of the params
-    Debug::Log("Examining udata types");
     std::vector<std::string> udataTypes = LuaScriptLib::checkUserData(caller);
-    LuaScriptLib::stackDump(caller);
     //Get the function in reciever
     lua_getglobal(reciever, fcnName.c_str());
-    Debug::Log("got function");
-    LuaScriptLib::stackDump(reciever);
     //Reciever stack: function
     //Transfer params
     lua_xmove(caller, reciever, nParam);
-    Debug::Log("Params transferred");
-    std::cout << "Params transferred" << std::endl;
-    //Can't do this here because trying to read the type field of the udata
-    //metatable will screw things up, since it isn't really sort of set
-    //LuaScriptLib::stackDump(reciever);
     //Caller stack: Empty
     //Reciever stack: params
     //Restore userdata metatables
-    std::cout << "About to setuserdata" << std::endl;
     LuaScriptLib::setUserData(reciever, udataTypes);
-    std::cout << "Userdata set" << std::endl;
-    Debug::Log("Set userdata types");
-    LuaScriptLib::stackDump(reciever);
     //Call the function
     if (lua_pcall(reciever, nParam, nRes, 0) != 0){
         Debug::Log("Error calling: " + fcnName + " " + lua_tostring(reciever, -1));

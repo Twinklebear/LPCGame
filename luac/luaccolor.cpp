@@ -4,17 +4,14 @@
 #include "luacscript.h"
 #include "luaccolor.h"
 
-const std::string LuaC::ColorLib::sMetatable = "LPC.Color";
-const std::string LuaC::ColorLib::sClassName = "Color";
-
 int LuaC::ColorLib::luaopen_color(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, sMetatable, sClassName, luaColorLib, newColor);
+    return LuaScriptLib::LuaOpenLib(l, colorMeta, colorClass, luaColorLib, newColor);
 }
 void LuaC::ColorLib::addColor(lua_State *l, int i){
-    LuaScriptLib::Add(l, i, sMetatable);
+    LuaScriptLib::Add(l, i, colorMeta);
 }
 Color* LuaC::ColorLib::checkColor(lua_State *l, int i){
-    return (Color*)luaL_checkudata(l, i, sMetatable.c_str());
+    return (Color*)luaL_checkudata(l, i, colorMeta.c_str());
 }
 const luaL_reg LuaC::ColorLib::luaColorLib[] = {
     { "r", getR },

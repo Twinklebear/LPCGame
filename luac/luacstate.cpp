@@ -6,12 +6,10 @@
 #include "luacentity.h"
 #include "luacstate.h"
 
-const std::string LuaC::StateLib::sClassName = "State";
-
 int LuaC::StateLib::luaopen_state(lua_State *l){
     //Stack: lib name
     //Register the library as global table "State"
-    luaL_register(l, sClassName.c_str(), luaStateLib);
+    luaL_register(l, stateClass.c_str(), luaStateLib);
     //Stack: lib name, table
     return 0;
 }

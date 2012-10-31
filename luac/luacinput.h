@@ -11,6 +11,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    ///The Input class/type name
+    const std::string inputClass = "Input";
     /**
     *  The Lua library for the Debug class
     */
@@ -33,10 +35,6 @@ namespace LuaC {
         static int getJoyHat(lua_State *l);
         static int joySupportsHaptic(lua_State *l);
         static int getQuit(lua_State *l);
-
-
-    public:
-        static const std::string sClassName;
     };
 };
 

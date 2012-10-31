@@ -12,6 +12,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    ///The State class/type name
+    const std::string stateClass = "State";
     /**
     *  The Lua library for the State class
     *  Allows for interaction with the active State via the Statemanager
@@ -28,9 +30,6 @@ namespace LuaC {
         static int getEntity(lua_State *l);
         static int setExit(lua_State *l);
         static int getName(lua_State *l);
-
-    public:
-        static const std::string sClassName;
     };
 };
 

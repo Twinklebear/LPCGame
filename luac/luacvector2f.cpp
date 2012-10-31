@@ -4,17 +4,14 @@
 #include "luacscript.h"
 #include "luacvector2f.h"
 
-const std::string LuaC::Vector2fLib::sMetatable = "LPC.Vector2f";
-const std::string LuaC::Vector2fLib::sClassName = "Vector2f";
-
 int LuaC::Vector2fLib::luaopen_vector2f(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, sMetatable, sClassName, luaVector2fLib, newVector2f);
+    return LuaScriptLib::LuaOpenLib(l, vector2fMeta, vector2fClass, luaVector2fLib, newVector2f);
 }
 void LuaC::Vector2fLib::addVector2f(lua_State *l, int i){
-    LuaScriptLib::Add(l, i, sMetatable);
+    LuaScriptLib::Add(l, i, vector2fMeta);
 }
 Vector2f* LuaC::Vector2fLib::checkVector2f(lua_State *l, int i){
-    return (Vector2f*)luaL_checkudata(l, i, sMetatable.c_str());
+    return (Vector2f*)luaL_checkudata(l, i, vector2fMeta.c_str());
 }
 const luaL_reg LuaC::Vector2fLib::luaVector2fLib[] = {
     { "x", getX },

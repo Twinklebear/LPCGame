@@ -3,14 +3,10 @@
 #include "src/input.h"
 #include "luacinput.h"
 
-#include "luac/luacscript.h"
-
-const std::string LuaC::InputLib::sClassName = "Input";
-
 int LuaC::InputLib::luaopen_input(lua_State *l){
     //Stack: lib name
     //Register the library as global table "Input"
-    luaL_register(l, sClassName.c_str(), luaInputLib);
+    luaL_register(l, inputClass.c_str(), luaInputLib);
     //Stack: lib name, table
     openKeyEnum(l);
     openHatEnum(l);

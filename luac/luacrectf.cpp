@@ -5,17 +5,14 @@
 #include "luacvector2f.h"
 #include "luacrectf.h"
 
-const std::string LuaC::RectfLib::sMetatable = "LPC.Rectf";
-const std::string LuaC::RectfLib::sClassName = "Rectf";
-
 int LuaC::RectfLib::luaopen_rectf(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, sMetatable, sClassName, luaRectfLib, newRectf);
+    return LuaScriptLib::LuaOpenLib(l, rectfMeta, rectfClass, luaRectfLib, newRectf);
 }
 void LuaC::RectfLib::addRectf(lua_State *l, int i){
-    LuaScriptLib::Add(l, i, sMetatable);
+    LuaScriptLib::Add(l, i, rectfMeta);
 }
 Rectf* LuaC::RectfLib::checkRectf(lua_State *l, int i){
-    return (Rectf*)luaL_checkudata(l, i, sMetatable.c_str());
+    return (Rectf*)luaL_checkudata(l, i, rectfMeta.c_str());
 }
 ///The Lua function library struct
 const luaL_reg LuaC::RectfLib::luaRectfLib[] = {

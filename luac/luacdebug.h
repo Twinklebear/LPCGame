@@ -11,6 +11,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    ///The Debug class/type name
+    const std::string debugClass = "Debug";
     /**
     *  The Lua library for the Debug class
     */
@@ -24,9 +26,6 @@ namespace LuaC {
         static const struct luaL_reg luaDebugLib[];
         ///For writing to the debug log
         static int log(lua_State *l);
-
-    public:
-        static const std::string sClassName;
     };
 };
 #endif

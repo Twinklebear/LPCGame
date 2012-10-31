@@ -11,6 +11,10 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    ///The Entity metatable name
+    const std::string entityMeta = "LPC.Entity";
+    ///The Entity class/type name
+    const std::string entityClass = "Entity";
     /**
     *  Class for storing functions used to manage interaction
     *  between Lua and the Entity class. Defines the Entity Lua Lib
@@ -56,10 +60,6 @@ namespace LuaC {
         static int concat(lua_State *l);
         ///Garbage collection
         static int garbageCollection(lua_State *l);
-
-    public:
-        ///Meta and Class table names
-        static const std::string sMetatable, sClassName;
     };
 };
 
