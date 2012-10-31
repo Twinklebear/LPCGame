@@ -161,8 +161,16 @@ void LuaC::LuaScriptLib::setUserData(lua_State *l, const std::vector<std::string
                 std::cout << "Added it" << std::endl;
                 ++iter;
             }
-            else 
+            else {
                 std::cout << "Failed to find: " << *iter << std::endl;
+                std::cout << "Length of table adders map: " << sTableAdders.size() << std::endl;
+                //Testing why timer isn't showing in the map
+                fnd = sTableAdders.find(TimerLib::sClassName);
+                if (fnd != sTableAdders.end())
+                    std::cout << "Found Timer adder" << std::endl;
+                else
+                    std::cout << "Did not find timer adder" << std::endl;
+            }
         }
     }
     stackDump(l);
@@ -238,25 +246,27 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["Vector2"]       = &Vector2f::RegisterLua;
     map["Window"]        = &Window::RegisterLua;
     //Debug testing of libs
-    map["TestEntity"]   = &LuaC::EntityLib::luaopen_entity;
-    map["TestRectf"]    = &LuaC::RectfLib::luaopen_rectf;
-    map["TestPhysics"]  = &LuaC::PhysicsLib::luaopen_physics;
-    map["TestVector2f"] = &LuaC::Vector2fLib::luaopen_vector2f;
-    map["TestDebug"]    = &LuaC::DebugLib::luaopen_debug;
-    map["TestColor"]    = &LuaC::ColorLib::luaopen_color;
-    map["TestTimer"]    = &LuaC::TimerLib::luaopen_timer;
-    map["TestInput"]    = &LuaC::InputLib::luaopen_input;
-    map["TestState"]    = &LuaC::StateLib::luaopen_state;
+    map["TestEntity"]   = &EntityLib::luaopen_entity;
+    map["TestRectf"]    = &RectfLib::luaopen_rectf;
+    map["TestPhysics"]  = &PhysicsLib::luaopen_physics;
+    map["TestVector2f"] = &Vector2fLib::luaopen_vector2f;
+    map["TestDebug"]    = &DebugLib::luaopen_debug;
+    map["TestColor"]    = &ColorLib::luaopen_color;
+    map["TestTimer"]    = &TimerLib::luaopen_timer;
+    map["TestInput"]    = &InputLib::luaopen_input;
+    map["TestState"]    = &StateLib::luaopen_state;
     return map;
 }
 LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
     TTableAdders map;
-    map[LuaC::EntityLib::sClassName]   = &LuaC::EntityLib::addEntity;
-    map[LuaC::RectfLib::sClassName]    = &LuaC::RectfLib::addRectf;
-    map[LuaC::PhysicsLib::sClassName]  = &LuaC::PhysicsLib::addPhysics;
-    map[LuaC::Vector2fLib::sClassName] = &LuaC::Vector2fLib::addVector2f;
-    map[LuaC::ColorLib::sClassName]    = &LuaC::ColorLib::addColor;
-    map[LuaC::TimerLib::sClassName]    = &LuaC::TimerLib::addTimer;
-    
+    map[EntityLib::sClassName]   = &EntityLib::addEntity;
+    map[RectfLib::sClassName]    = &RectfLib::addRectf;
+    map[PhysicsLib::sClassName]  = &PhysicsLib::addPhysics;
+    map[Vector2fLib::sClassName] = &Vector2fLib::addVector2f;
+    map[ColorLib::sClassName]    = &ColorLib::addColor;
+    map["Timer"]    = &TimerLib::addTimer;
+
+    std::cout << "In map, timerlib name is:" << TimerLib::sClassName << "?" << std::endl;
+
     return map;
 }
