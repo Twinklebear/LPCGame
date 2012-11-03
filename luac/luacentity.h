@@ -2,6 +2,7 @@
 #define LUACENTITY_H
 
 #include <string>
+#include <memory>
 #include <lua.hpp>
 #include "src/entity.h"
 
@@ -36,7 +37,8 @@ namespace LuaC {
         *  @param l The Lua state
         *  @param i The index of the userdata (standard index, pos #'s)
         */
-        static Entity** checkEntity(lua_State *l, int i);
+        //static Entity** checkEntity(lua_State *l, int i);
+        static std::shared_ptr<Entity>* checkEntity(lua_State *l, int i);
 
     private:
         ///The Lua function library struct

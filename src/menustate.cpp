@@ -41,6 +41,11 @@ std::string MenuState::Run(){
 			mCamera->Pan("test");
 		else if (Input::KeyDown(SDL_SCANCODE_SPACE) && mCamera->Scene() == "test")
 			mCamera->Pan("def");
+
+        //Testing shared ptrs
+        if (Input::KeyDown(SDL_SCANCODE_1))
+            mManager->PrintSharedPtrCount();
+
         //LOGIC
 		mCamera->Update();
 		mManager->Update();

@@ -154,6 +154,10 @@ Json::Value EntityManager::Save(){
 	}
 	return val;
 }
-void EntityManager::TestManager(){
-    std::cout << "Manager: TestManager" << std::endl;
+void EntityManager::PrintSharedPtrCount(){
+    //run through list and print count and name
+    std::cout << "Entity shared_ptr counts" << std::endl;
+    for (std::shared_ptr<Entity> o : mEntities){
+        std::cout << "Entity: " << o->Name() << " count: " << o.use_count() << std::endl;
+    }
 }

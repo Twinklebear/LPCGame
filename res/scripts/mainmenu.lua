@@ -9,6 +9,7 @@ require "TestTimer"
 require "TestVector2f"
 
 function Init()
+	--[[
 	print "\n--------Main Menu Init--------\n"
 	quitButton = State.getEntity("quitbutton")
 	print ("Main menu looked up entity: " .. quitButton:name())
@@ -18,9 +19,10 @@ function Init()
 	v2 = Vector2f(1, 2)
 	result = quitButton:callFunction("AddVects", 1, v, v2)
 	print ("Got result: " .. result)
-	--Try to make a new entity
-	--e = Entity("../res/entities/npc.json")
-	--print ("Made entity: " .. e:name())
+	]]
+	print "Try to make a new entity"
+	e = Entity("../res/entities/npc.json")
+	print ("Made entity: " .. e:name())
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"

@@ -77,8 +77,8 @@ public:
 	*  @return Json::Value containing the gameobject data
 	*/
 	Json::Value Save();
-    //Debugging test
-    void TestManager();
+    //Testing shared pointers in Lua
+    void PrintSharedPtrCount();
 
 private:
 	/**
