@@ -11,7 +11,7 @@
       "hAccel" : 700,
       "hSpeed" : 400
    },
-   "script" : "../res/scripts/test2.lua",
+   "script" : "../res/scripts/npc.lua",
    "tag" : "test",
    "render" : true,
    "ui" : false

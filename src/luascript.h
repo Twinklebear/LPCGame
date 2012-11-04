@@ -24,6 +24,8 @@ public:
 	*  @param script The script file to open
 	*/
 	void OpenScript(const std::string &script);
+    ///Close the script
+	void Close();
 	/**
 	*  Get the lua_State pointer to use for calling functions/etc.
 	*  @return The lua_State pointer held by the LuaScript class
@@ -35,8 +37,6 @@ public:
 	bool Open() const;
 
 private:
-    ///Close the active script
-	void Close();
     /**
     *  Add a loader function to the package.loaders table
     *  @param loader The lua_cfunction to add

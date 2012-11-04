@@ -30,6 +30,7 @@ std::shared_ptr<Entity>* LuaC::EntityLib::checkEntity(lua_State *l, int i ){
 }
 const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
     { "callFunction", callFunction },
+    { "destroy", destroy },
     { "physics", getPhysics },
     { "box", getBox },
     { "tag", getTag },
@@ -109,6 +110,21 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     *  Reciever: empty
     */
     return nRes;
+}
+int LuaC::EntityLib::destroy(lua_State *l){
+    //Stack: udata (Entity) to be removed
+    std::shared_ptr<Entity>* e = checkEntity(l, 1);
+    if (*e != nullptr){
+        std::cout << "Will try to destroy entity: " << (*e)->Name() << std::endl;
+        //Remove it from the manager
+        std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
+        manager->Remove(*e);
+        //Come up with better way to find entity in the manager?
+        e->reset();
+    }
+    else
+        std::cout << "Entity alread destroyed" << std::endl;
+    return 0;
 }
 int LuaC::EntityLib::getPhysics(lua_State *l){
     //Stack: udata (Entity)

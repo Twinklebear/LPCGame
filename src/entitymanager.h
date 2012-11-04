@@ -40,17 +40,17 @@ public:
 	*  @param obj The Entity to register
 	*/
 	void Register(std::shared_ptr<Entity> obj);
-    /**
-    *  Register an Entity raw pointer
-    *  @param obj The Entity to register
-    */
-    void Register(Entity *obj);
 	/**
 	*  Register the scene camera with the manager so that 
 	*  it can be used in checking which objects to deal with
 	*  @param camera The scene camera
 	*/
 	void Register(std::shared_ptr<Camera> camera);
+    /**
+    *  Remove an Entity with the shared_ptr passed
+    *  @param entity The shared_ptr of the Entity to remove
+    */
+    void Remove(std::shared_ptr<Entity> entity);
     /**
     *  Get an Entity by its name
     *  @param name The name to lookup

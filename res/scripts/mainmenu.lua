@@ -33,6 +33,10 @@ function LogicUpdate()
 		print "QUITTING"
 		State.changeScene("quit")
 	end
+	if Input.keyDown(Input.KEY_E) then
+		print "Deleting entity npc"
+		e:destroy()
+	end
 end
 function RenderUpdate()
 end

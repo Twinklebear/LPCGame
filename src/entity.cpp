@@ -18,6 +18,7 @@ Entity::Entity(std::string file) : mName(""), mTag(""), mConfigFile(""), mMouseO
 Entity::~Entity(){
 	//Clean up any script memory
 	Free();
+    mScript.Close();
 }
 void Entity::Init(){
 	//We catch exceptions so that if the function doesn't exist the program 

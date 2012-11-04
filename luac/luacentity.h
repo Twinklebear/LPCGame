@@ -47,6 +47,8 @@ namespace LuaC {
         static int newEntity(lua_State *l);
         ///Call a function on the Entity's script
         static int callFunction(lua_State *caller);
+        //Destroy the Entity, removing it from the manager and existence
+        static int destroy(lua_State *l);
         ///Getters
         static int getPhysics(lua_State *l);
         static int getBox(lua_State *l);

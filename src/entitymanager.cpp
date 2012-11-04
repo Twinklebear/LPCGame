@@ -1,6 +1,7 @@
 #include <vector>
 #include <memory>
 #include "externals/json/json.h"
+#include "debug.h"
 #include "input.h"
 #include "map.h"
 #include "entity.h"
@@ -64,12 +65,20 @@ void EntityManager::SetCollisionMaps(Map *map){
 void EntityManager::Register(std::shared_ptr<Entity> obj){
 	mEntities.push_back(obj);
 }
-void EntityManager::Register(Entity *obj){
-    mEntities.push_back(std::shared_ptr<Entity>(obj));
-}
 void EntityManager::Register(std::shared_ptr<Camera> camera){
 	mCamera.reset();
 	mCamera = camera;
+}
+void EntityManager::Remove(std::shared_ptr<Entity> entity){
+    //Check if the entity is in the vector
+    EntityList::const_iterator iter;
+    for (iter = mEntities.begin(); iter < mEntities.end(); ++iter){
+        if ((*iter)->Name() == entity->Name()){
+            mEntities.erase(iter);
+            return;
+        }
+    }
+    Debug::Log("Remove Entity Error: Entity " + entity->Name() + " not found");
 }
  std::shared_ptr<Entity> EntityManager::GetEntity(const std::string &name){
     //For now we do a really bad/slow lookup of looping through all entities

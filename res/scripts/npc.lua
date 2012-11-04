@@ -19,6 +19,7 @@ function Init()
 	LPC.Debug.Log("NPC Init: Debugging test!")
 end
 function Free()
+	print "NPC Free"
 end
 --Called each frame
 function Update()
