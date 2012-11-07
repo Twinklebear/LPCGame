@@ -87,6 +87,7 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     lua_getglobal(reciever, fcnName.c_str());
     //Reciever stack: function
     //Transfer params
+    //TODO: Copy, don't move! Or it just the metatables that are being lost in the sender?
     lua_xmove(caller, reciever, nParam);
     //Caller stack: Empty
     //Reciever stack: params
@@ -101,6 +102,7 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     //Read result userdata types
     udataTypes = LuaScriptLib::checkUserData(reciever);
     //Transfer results
+    //TODO: Copy, don't move! Or it just the metatables that are being lost in the sender?
     lua_xmove(reciever, caller, nRes);
     //Restore userdata metatables
     LuaScriptLib::setUserData(caller, udataTypes);

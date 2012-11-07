@@ -54,6 +54,7 @@ function Test(val)
 end
 --Another cross-state test
 function AddVects(v1, v2)
+	v1 = v1 .. " - chicken"
 	print ("Adding: " .. v1 .. " and " .. v2)
-	return v1 + v2
+	--return v1 + v2
 end

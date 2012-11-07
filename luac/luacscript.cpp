@@ -35,7 +35,7 @@
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
 const LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::sTableAdders = LuaC::LuaScriptLib::CreateAdderMap();
 
-int LuaC::LuaScriptLib::stackDump(lua_State *l){
+int LuaC::LuaScriptLib::stackDump(lua_State *l, bool toLog){
     std::stringstream ss;
     ss << "Stack: ";
     for (int i = 1, top = lua_gettop(l); i <= top; ++i){
@@ -65,7 +65,10 @@ int LuaC::LuaScriptLib::stackDump(lua_State *l){
         }
         ss << ", ";
     }
-    Debug::Log(ss.str());
+    if (toLog)
+        Debug::Log(ss.str());
+    else 
+        std::cout << ss.str() << std::endl;
     return 0;
 }
 std::string LuaC::LuaScriptLib::readType(lua_State *l, int i){
@@ -238,6 +241,7 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["TestTimer"]    = &TimerLib::luaopen_timer;
     map["TestInput"]    = &InputLib::luaopen_input;
     map["TestState"]    = &StateLib::luaopen_state;
+    map["TestLuaScript"] = LuaScriptLib::luaopen_luascript;
     return map;
 }
 LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
@@ -250,4 +254,25 @@ LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
     map[timerClass]     = &TimerLib::addTimer;
 
     return map;
+}
+const luaL_reg LuaC::LuaScriptLib::luaScriptLib[] = {
+    { "stackDump", luaStackDump },
+    { NULL, NULL}
+};
+int LuaC::LuaScriptLib::luaopen_luascript(lua_State *l){
+    luaL_register(l, luaScriptClass.c_str(), luaScriptLib);
+    return 0;
+}
+int LuaC::LuaScriptLib::luaStackDump(lua_State *l){
+    //Stack: the lua script table, bool of whether to 
+    //dump to file, and the data to check
+    bool toLog = true;
+    //If a bool flag for toLog is passed, get it and remove it
+    //so it won't show up in the stack dump
+    if (lua_isboolean(l, 1)){
+        toLog = lua_toboolean(l, 1);
+        lua_remove(l, 1);
+    }
+    stackDump(l, toLog);
+    return 0;
 }

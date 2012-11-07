@@ -12,6 +12,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
+    ///The LuaScriptLib global table name (classname)
+    static const std::string luaScriptClass = "LuaScript";
     /**
     *  Class to store the various functions needed for interactions
     *  between Lua and LuaScript class along with some general Lua C
@@ -22,9 +24,11 @@ namespace LuaC {
         /**
         *  Perform a stack dump on the lua_State
         *  @param l The lua_State to perform the stack dump on
+        *  @param toFile If the stack dump should be written to Debug Log or console
+        *       default is Log
         *  @return Number of return values for lua to pick up
         */
-        static int stackDump(lua_State *l);
+        static int stackDump(lua_State *l, bool toLog = true);
         /**
         *  Read the type value of the metatable of some userdata at index
         *  @param l The lua_State to read from
@@ -105,6 +109,14 @@ namespace LuaC {
         *  @return A map of the various table adder functions
         */
         static TTableAdders CreateAdderMap();
+
+    private:
+        ///The Lua function library
+        static const luaL_reg luaScriptLib[];
+        ///Open the library
+        static int luaopen_luascript(lua_State *l);
+        ///Perform a stack dump to inspect some Lua data
+        static int luaStackDump(lua_State *l);
 
     private:
         ///The map of library loaders
