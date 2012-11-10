@@ -36,8 +36,24 @@ namespace LuaC {
         *  @param i The index of the userdata (standard index, pos #'s)
         */
         static Vector2f* checkVector2f(lua_State *l, int i);
+        /**
+        *  Push a Vector2f onto the stack of some Lua state
+        *  @param vector The Vector2f to push onto the stack
+        *  @param l The Lua State to push onto
+        */
+        static void PushVector2f(Vector2f *vector, lua_State *l);
         
     private:
+        /**
+        *  Allocate memory for a Vector2f on some lua_State and assign it the 
+        *  Vector2f metatable
+        *  @param l The Lua state to allocate memory on
+        *  @return Pointer to the allocated Vector2f
+        */
+        static Vector2f* AllocateVector2f(lua_State *l);
+
+    private:
+        //The Lua Functions
         ///The Lua function library struct
         static const luaL_reg luaVector2fLib[];
         ///Make a new Vector2f in Lua State l

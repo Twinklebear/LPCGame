@@ -13,6 +13,15 @@ void LuaC::Vector2fLib::addVector2f(lua_State *l, int i){
 Vector2f* LuaC::Vector2fLib::checkVector2f(lua_State *l, int i){
     return (Vector2f*)luaL_checkudata(l, i, vector2fMeta.c_str());
 }
+void LuaC::Vector2fLib::PushVector2f(Vector2f *vector, lua_State *l){
+    Vector2f *v = AllocateVector2f(l);
+    v->Set(*vector);
+}
+Vector2f* LuaC::Vector2fLib::AllocateVector2f(lua_State *l){
+    Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
+    addVector2f(l, -1);
+    return v;
+}
 const luaL_reg LuaC::Vector2fLib::luaVector2fLib[] = {
     { "x", getX },
     { "y", getY },
@@ -29,12 +38,11 @@ const luaL_reg LuaC::Vector2fLib::luaVector2fLib[] = {
 int LuaC::Vector2fLib::newVector2f(lua_State *l){
     //Stack: table (Vector2f), vals for x & y if desired
     bool initVals = (lua_gettop(l) == 3);
-    Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
+    Vector2f *v = AllocateVector2f(l);
     if (initVals)
         v->Set(luaL_checknumber(l, 2), luaL_checknumber(l, 3));
     else
         v->Set(0, 0);
-    addVector2f(l, -1);
     return 1;
 }
 int LuaC::Vector2fLib::getX(lua_State *l){

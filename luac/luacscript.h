@@ -28,7 +28,7 @@ namespace LuaC {
         *       default is Log
         *  @return Number of return values for lua to pick up
         */
-        static int stackDump(lua_State *l, bool toLog = true);
+        static int StackDump(lua_State *l, bool toLog = true);
         /**
         *  Read the type value of the metatable of some userdata at index
         *  @param l The lua_State to read from

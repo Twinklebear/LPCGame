@@ -2,27 +2,29 @@
 --require "scripts/calltest.lua"
 
 --Testing my Lua C modules
-require "TestEntity"
 require "TestState"
+require "TestVector2f"
+--[[
+require "TestEntity"
 require "TestInput"
 require "TestTimer"
-require "TestVector2f"
 require "TestLuaScript"
+]]
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
-	quitButton = State.getEntity("quitbutton")
-	print ("Main menu looked up entity: " .. quitButton:name())
+	--quitButton = State.getEntity("quitbutton")
+	--print ("Main menu looked up entity: " .. quitButton:name())
 
 	--Test call with a vector
-	val = "string"
+	--val = "string"
 	v1 = Vector2f(4, 5)
-	v2 = Vector2f(1, 2)
+	--v2 = Vector2f(1, 2)
 	print (v1)
-	quitButton:callFunction("AddVects", 1, val, v2)
+	--quitButton:callFunction("AddVects", 1, val, v2)
 	--print ("Got result of: " .. v1 .. " + " .. v2 " = " .. result)
-	print (val)
-	LuaScript.stackDump(false, v2)
+	--print (val)
+	--LuaScript.stackDump(false, v2)
 	
 	--print "Try to make a new entity"
 	--e = Entity("../res/entities/npc.json")

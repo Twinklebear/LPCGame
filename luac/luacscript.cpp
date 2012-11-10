@@ -35,7 +35,7 @@
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
 const LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::sTableAdders = LuaC::LuaScriptLib::CreateAdderMap();
 
-int LuaC::LuaScriptLib::stackDump(lua_State *l, bool toLog){
+int LuaC::LuaScriptLib::StackDump(lua_State *l, bool toLog){
     std::stringstream ss;
     ss << "Stack: ";
     for (int i = 1, top = lua_gettop(l); i <= top; ++i){
@@ -273,6 +273,6 @@ int LuaC::LuaScriptLib::luaStackDump(lua_State *l){
         toLog = lua_toboolean(l, 1);
         lua_remove(l, 1);
     }
-    stackDump(l, toLog);
+    StackDump(l, toLog);
     return 0;
 }
