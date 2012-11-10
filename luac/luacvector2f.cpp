@@ -17,6 +17,12 @@ void LuaC::Vector2fLib::PushVector2f(Vector2f *vector, lua_State *l){
     Vector2f *v = AllocateVector2f(l);
     v->Set(*vector);
 }
+void LuaC::Vector2fLib::CopyVector2f(lua_State *from, int idx, lua_State *too){
+    //Get the Vector2f from the from state
+    Vector2f *v = checkVector2f(from, idx);
+    //Push a copy into the too state
+    PushVector2f(v, too);
+}
 Vector2f* LuaC::Vector2fLib::AllocateVector2f(lua_State *l){
     Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
     addVector2f(l, -1);

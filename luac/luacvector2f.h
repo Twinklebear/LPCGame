@@ -42,6 +42,14 @@ namespace LuaC {
         *  @param l The Lua State to push onto
         */
         static void PushVector2f(Vector2f *vector, lua_State *l);
+        /**
+        *  Copy a Vector2f at some index in one Lua state's stack
+        *  to the top of some other state's stack
+        *  @param from The Lua state to copy the Vector2f from
+        *  @param idx The index in the stack of from of the Vector2f
+        *  @param too The Lua state to copy the Vector2f into
+        */
+        static void CopyVector2f(lua_State *from, int idx, lua_State *too);
         
     private:
         /**
