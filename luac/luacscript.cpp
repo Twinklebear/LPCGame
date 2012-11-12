@@ -178,8 +178,7 @@ void LuaC::LuaScriptLib::CopyStack(lua_State *sender, lua_State *reciever, int n
         CopyData(sender, i, reciever);
 }
 void LuaC::LuaScriptLib::CopyData(lua_State *sender, int idx, lua_State *reciever){
-    int t = lua_type(sender, idx);
-    switch (t) {
+    switch (lua_type(sender, idx)) {
         //Strings
         case LUA_TSTRING:
             lua_pushstring(reciever, lua_tostring(sender, idx));
