@@ -34,6 +34,7 @@
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
 const LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::sTableAdders = LuaC::LuaScriptLib::CreateAdderMap();
+const LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::sUdataCopiers = LuaC::LuaScriptLib::CreateCopierMap();
 
 int LuaC::LuaScriptLib::StackDump(lua_State *l, bool toLog){
     std::stringstream ss;
@@ -92,9 +93,9 @@ std::string LuaC::LuaScriptLib::readType(lua_State *l, int i){
 int LuaC::LuaScriptLib::requireLib(lua_State *l){
     //Try to look up the module desired, if it's one of ours load it, if not error
     std::string module = lua_tostring(l, -1);
-    LuaC::LuaScriptLib::TLuaLibs::const_iterator fnd = sLuaLibs.find(module);
+    TLuaLibs::const_iterator fnd = sLuaLibs.find(module);
     if (fnd != sLuaLibs.end())
-        lua_pushcfunction(l, sLuaLibs.at(module));
+        lua_pushcfunction(l, fnd->second);
     else {
         std::string err = "requireLib Error: Failed to find: "
             + module + "\n";
@@ -153,13 +154,61 @@ void LuaC::LuaScriptLib::setUserData(lua_State *l, const std::vector<std::string
             //function not being called?
             TTableAdders::const_iterator fnd = sTableAdders.find(*iter);
             if (fnd != sTableAdders.end()){
-                sTableAdders.at(*iter)(l, (i - top - 1));
+                fnd->second(l, (i - top - 1));
                 ++iter;
             }
             else
                 Debug::Log("Failed to find adder: " + *iter);
         }
     }
+}
+void LuaC::LuaScriptLib::CopyStack(lua_State *sender, lua_State *reciever, int numVals){
+    /*
+    *  Description of how we properly loop through the stack to preserver
+    *  the ordering of the data
+    *  stack: 10, "string", udata, 45
+    *  numVals = 2
+    *  top = 4
+    *  45 @ -1 ie. @ 4
+    *  want to pass 4 & 3 starting at 3
+    *  so loop from top - (numVals - 1) to top
+    */
+    int top = lua_gettop(sender);
+    for (int i = top - (numVals - 1); i < top + 1; ++i)
+        CopyData(sender, i, reciever);
+}
+void LuaC::LuaScriptLib::CopyData(lua_State *sender, int idx, lua_State *reciever){
+    int t = lua_type(sender, idx);
+    switch (t) {
+        //Strings
+        case LUA_TSTRING:
+            lua_pushstring(reciever, lua_tostring(sender, idx));
+            break;
+        //Bools
+        case LUA_TBOOLEAN:
+            lua_pushboolean(reciever, lua_toboolean(sender, idx));
+            break;
+        //Numbers
+        case LUA_TNUMBER:
+            lua_pushnumber(reciever, lua_tonumber(sender, idx));
+            break;
+        //Userdata
+        case LUA_TUSERDATA:
+            CopyUdata(sender, idx, reciever);
+            break;
+        //Other (tables/etc)
+        //How to copy tables?
+        default:
+            break;
+    }
+}
+void LuaC::LuaScriptLib::CopyUdata(lua_State *sender, int idx, lua_State *reciever){
+    std::string type = readType(sender, idx);
+    TUdataCopiers::const_iterator fnd = sUdataCopiers.find(type);
+    if (fnd != sUdataCopiers.end())
+        fnd->second(sender, idx, reciever);
+    else 
+        Debug::Log("LuaScriptLib::CopyUdata: Failed to find userdata copier for type: " + type);
 }
 int LuaC::LuaScriptLib::LuaOpenLib(lua_State *l, const std::string &metatable,
     const std::string &className, const luaL_reg *lib, int (*call)(lua_State*))
@@ -252,7 +301,11 @@ LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
     map[vector2fClass]  = &Vector2fLib::addVector2f;
     map[colorClass]     = &ColorLib::addColor;
     map[timerClass]     = &TimerLib::addTimer;
-
+    return map;
+}
+LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
+    TUdataCopiers map;
+    map[vector2fClass] = &Vector2fLib::CopyVector2f;
     return map;
 }
 const luaL_reg LuaC::LuaScriptLib::luaScriptLib[] = {

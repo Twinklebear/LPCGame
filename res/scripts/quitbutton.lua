@@ -47,14 +47,15 @@ function OnClick()
 	--LPC.StateManager.ChangeScene("quit")
 end
 --Testing cross-lua_State calls
-function Test(val)
-	print ("Test called with " .. val)
-	res = val + Vector2f(1, 2)
+function TestCall(val1, val2)
+	print ("Test called with " .. val1 .. " and " .. val2)
+	--res = val + Vector2f(1, 2)
+	res = 45
 	return res
 end
 --Another cross-state test
 function AddVects(v1, v2)
-	v1 = v1 .. " - chicken"
-	print ("Adding: " .. v1 .. " and " .. v2)
+	--v1 = v1 .. " - chicken"
+	--print ("Adding: " .. v1 .. " and " .. v2)
 	--return v1 + v2
 end

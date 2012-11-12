@@ -81,35 +81,25 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     //# params = caller stack size
     int nParam = lua_gettop(caller);
 
-    //Lookup userdata types of the params
-    std::vector<std::string> udataTypes = LuaScriptLib::checkUserData(caller);
     //Get the function in reciever
     lua_getglobal(reciever, fcnName.c_str());
     //Reciever stack: function
-    //Transfer params
-    //TODO: Copy, don't move! Or it just the metatables that are being lost in the sender?
-    lua_xmove(caller, reciever, nParam);
-    //Caller stack: Empty
+    //Copy params over
+    LuaScriptLib::CopyStack(caller, reciever, nParam);
+    //Caller stack: params
     //Reciever stack: params
-    //Restore userdata metatables
-    LuaScriptLib::setUserData(reciever, udataTypes);
     //Call the function
     if (lua_pcall(reciever, nParam, nRes, 0) != 0){
         Debug::Log("Error calling: " + fcnName + " " + lua_tostring(reciever, -1));
         return 0;
     }
     //Reciever stack: results
-    //Read result userdata types
-    udataTypes = LuaScriptLib::checkUserData(reciever);
-    //Transfer results
-    //TODO: Copy, don't move! Or it just the metatables that are being lost in the sender?
-    lua_xmove(reciever, caller, nRes);
-    //Restore userdata metatables
-    LuaScriptLib::setUserData(caller, udataTypes);
+    //Copy the results back
+    LuaScriptLib::CopyStack(reciever, caller, nRes);
     /*
     *  Final stacks:
-    *  Caller: results
-    *  Reciever: empty
+    *  Caller: params, results
+    *  Reciever: results
     */
     return nRes;
 }

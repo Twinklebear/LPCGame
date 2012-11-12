@@ -68,6 +68,34 @@ namespace LuaC {
         */
         static void setUserData(lua_State *l, const std::vector<std::string> &types);
         /**
+        *  Copy some number of entries from the sender stack to the reciever stack
+        *  The function will attempt to restore metatables, but the Lua libs must already
+        *  be registered in each state for it to be able to properly register
+        *  numVals data will be copied from the sender to reciever and the stack ordering
+        *  will be preserved, ie. start copying at the bottom most entry in sender and push onto
+        *  reciever so the stack will be identical
+        *  @param sender The Lua state to transfer data from
+        *  @param reciever The Lua state to transfer too
+        *  @param numVals The number of entries to copy over
+        */
+        static void CopyStack(lua_State *sender, lua_State *reciever, int numVals);
+        /**
+        *  Type check some data in sender stack at index idx and copy it to the top of 
+        *  the reciever stack
+        *  @param sender The Lua state to copy from
+        *  @param idx The index of the data to copy
+        *  @param reciever The Lua state to copy too
+        */
+        static void CopyData(lua_State *sender, int idx, lua_State *reciever);
+        /**
+        *  Copy some userdata using one of the UdataCopier functions, Log issue if 
+        *  a copier lookup failed
+        *  @param sender The Lua state to copy from
+        *  @param idx The index of the data to copy
+        *  @param reciever The Lua state to copy too
+        */
+        static void CopyUdata(lua_State *sender, int idx, lua_State *reciever);
+        /**
         *  A generic luaopen_X function for opening libraries that share similar
         *  style, and have the same organization for their luaopen_X function
         *  @param l The Lua state to register in
@@ -109,6 +137,13 @@ namespace LuaC {
         *  @return A map of the various table adder functions
         */
         static TTableAdders CreateAdderMap();
+        ///Typedef for a map of userdata copiers
+        typedef std::map<std::string, void (*)(lua_State*, int, lua_State*)> TUdataCopiers;
+        /**
+        *  Create the map of the various userdata copier functions
+        *  @return a map of the various copier functions
+        */
+        static TUdataCopiers CreateCopierMap();
 
     private:
         ///The Lua function library
@@ -122,6 +157,7 @@ namespace LuaC {
         ///The map of library loaders
         static const TLuaLibs sLuaLibs;
         static const TTableAdders sTableAdders;
+        static const TUdataCopiers sUdataCopiers;
     };
 };
 
