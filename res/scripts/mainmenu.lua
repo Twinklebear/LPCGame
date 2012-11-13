@@ -5,6 +5,7 @@
 require "TestState"
 require "TestVector2f"
 require "TestEntity"
+require "TestColor"
 --[[
 require "TestInput"
 require "TestTimer"
@@ -18,12 +19,14 @@ function Init()
 
 	--Test call with a vector
 	--val = "string"
-	v1 = Vector2f(4, 5)
+	--v1 = Vector2f(4, 5)
+	v1 = Color(20, 40, 50)
 	--v2 = Vector2f(1, 2)
 	--print (v1)
 	ret = quitButton:callFunction("TestCall", 1, "howdy!", v1)
 	print ("got back ret: " .. ret)
 	print ("v1 still: " .. v1)
+	quitButton:release()
 	--print ("Got result of: " .. v1 .. " + " .. v2 " = " .. result)
 	--print (val)
 	--LuaScript.stackDump(false, v2)

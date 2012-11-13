@@ -258,7 +258,8 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
 }
 LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     TUdataCopiers map;
-    map[vector2fClass] = &Vector2fLib::CopyVector2f;
+    map[vector2fClass]  = &Vector2fLib::CopyVector2f;
+    map[colorClass]     = &ColorLib::CopyColor;
     return map;
 }
 const luaL_reg LuaC::LuaScriptLib::luaScriptLib[] = {

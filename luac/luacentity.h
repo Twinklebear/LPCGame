@@ -49,6 +49,13 @@ namespace LuaC {
         static int callFunction(lua_State *caller);
         //Destroy the Entity, removing it from the manager and existence
         static int destroy(lua_State *l);
+        /**
+        *  Release the lua state's ownership of the Entity
+        *  WARNING: This function should be removed when changing Entity to weak_ptr
+        *  as it should no longer be necessary to prevent issues with freeing
+        *  non-existant entities in closing the State script
+        */
+        static int release(lua_State *l);
         ///Getters
         static int getPhysics(lua_State *l);
         static int getBox(lua_State *l);

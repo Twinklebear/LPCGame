@@ -36,6 +36,29 @@ namespace LuaC {
         *  @param i The index of the userdata (standard index, pos #'s)
         */
         static Color* checkColor(lua_State *l, int i);
+        /**
+        *  Push a Color onto the stack of some Lua state
+        *  @param vector The Color to push onto the stack
+        *  @param l The Lua State to push onto
+        */
+        static void PushColor(Color *color, lua_State *l);
+        /**
+        *  Copy a Color at some index in one Lua state's stack
+        *  to the top of some other state's stack
+        *  @param from The Lua state to copy the Color from
+        *  @param idx The index in the stack of from of the Color
+        *  @param too The Lua state to copy the Color into
+        */
+        static void CopyColor(lua_State *from, int idx, lua_State *too);
+
+    private:
+        /**
+        *  Allocate memory for a Color on some lua_State and assign it the 
+        *  Color metatable
+        *  @param l The Lua state to allocate memory on
+        *  @return Pointer to the allocated Color
+        */
+        static Color* AllocateColor(lua_State *l);
 
     private:
         ///The Lua function library struct

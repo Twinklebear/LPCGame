@@ -13,6 +13,7 @@ require "StateManager"
 --Testing passing userdata back and forth
 require "TestTimer"
 require "TestVector2f"
+require "TestColor"
 
 function Init()
 	print "Quitbutton Init"

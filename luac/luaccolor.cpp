@@ -13,6 +13,19 @@ void LuaC::ColorLib::addColor(lua_State *l, int i){
 Color* LuaC::ColorLib::checkColor(lua_State *l, int i){
     return (Color*)luaL_checkudata(l, i, colorMeta.c_str());
 }
+void LuaC::ColorLib::PushColor(Color *color, lua_State *l){
+    Color *c = AllocateColor(l);
+    *c = *color;
+}
+void LuaC::ColorLib::CopyColor(lua_State *from, int idx, lua_State *too){
+    Color *c = checkColor(from, idx);
+    PushColor(c, too);
+}
+Color* LuaC::ColorLib::AllocateColor(lua_State *l){
+    Color *c = (Color*)lua_newuserdata(l, sizeof(Color));
+    addColor(l, -1);
+    return c;
+}
 const luaL_reg LuaC::ColorLib::luaColorLib[] = {
     { "r", getR },
     { "g", getG },
@@ -27,12 +40,11 @@ const luaL_reg LuaC::ColorLib::luaColorLib[] = {
 int LuaC::ColorLib::newColor(lua_State *l){
     //Stack: table (Color), vals for r, g, b if desired
     bool initVals = (lua_gettop(l) == 4);
-    Color *c = (Color*)lua_newuserdata(l, sizeof(Color));
+    Color *c = AllocateColor(l);
     if (initVals)
         c->Set(luaL_checkint(l, 2), luaL_checkint(l, 3), luaL_checkint(l, 4));
     else
         c->Set(0, 0, 0);
-    addColor(l, -1);
     return 1;
 }
 int LuaC::ColorLib::getR(lua_State *l){
