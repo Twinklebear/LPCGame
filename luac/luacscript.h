@@ -52,22 +52,6 @@ namespace LuaC {
         */
         static int requireScript(lua_State *l);
         /**
-        *  Check for userdata in state l and return a vector of the types
-        *  of the userdata
-        *  @param l The state to read the userdata types from
-        *  @return Vector containing the userdata typenames in the order they
-                were encountered
-        */
-        static std::vector<std::string> checkUserData(lua_State *l);
-        /**
-        *  Set the userdata types with the appropriate metatables based off 
-        *  a vector of the typenames, the vector indices correspond to the
-        *  order the userdata is in. Ie. @1 = 1st userdata, @2 = 2nd userdata
-        *  @param l The lua_State to set the tables in
-        *  @param types The vector to read typenames from
-        */
-        static void setUserData(lua_State *l, const std::vector<std::string> &types);
-        /**
         *  Copy some number of entries from the sender stack to the reciever stack
         *  The function will attempt to restore metatables, but the Lua libs must already
         *  be registered in each state for it to be able to properly register
@@ -130,13 +114,6 @@ namespace LuaC {
         *  @return A map of the various luaopen_X functions
         */
         static TLuaLibs CreateLibMap();
-        ///Typedef for a map of metatable adder functions, for giving the desired table to some userdata
-        typedef std::map<std::string, void (*)(lua_State*, int)> TTableAdders;
-        /**
-        *  Create the map of various metatable adder functions
-        *  @return A map of the various table adder functions
-        */
-        static TTableAdders CreateAdderMap();
         ///Typedef for a map of userdata copiers
         typedef std::map<std::string, void (*)(lua_State*, int, lua_State*)> TUdataCopiers;
         /**
@@ -156,7 +133,6 @@ namespace LuaC {
     private:
         ///The map of library loaders
         static const TLuaLibs sLuaLibs;
-        static const TTableAdders sTableAdders;
         static const TUdataCopiers sUdataCopiers;
     };
 };

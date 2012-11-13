@@ -33,7 +33,6 @@
 #include "luacscript.h"
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
-const LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::sTableAdders = LuaC::LuaScriptLib::CreateAdderMap();
 const LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::sUdataCopiers = LuaC::LuaScriptLib::CreateCopierMap();
 
 int LuaC::LuaScriptLib::StackDump(lua_State *l, bool toLog){
@@ -126,41 +125,6 @@ int LuaC::LuaScriptLib::requireScript(lua_State *l){
         return 0;
     //If we found script or failed to load engine script we've got a result to return
     return 1;
-}
-std::vector<std::string> LuaC::LuaScriptLib::checkUserData(lua_State *l){
-    //l stack: params
-    //We want to step through and record the typenames of the userdata
-    std::vector<std::string> udata;
-    for (int i = 1, top = lua_gettop(l); i <= top; ++i){
-        int t = lua_type(l, i);
-        std::string luaTName = lua_typename(l, t);
-        //If we find some userdata, read the type and store it
-        if (luaTName == "userdata"){
-            udata.push_back(readType(l, i));
-        }
-    }
-    return udata;
-}
-void LuaC::LuaScriptLib::setUserData(lua_State *l, const std::vector<std::string> &types){
-    //l stack: params
-    //Step through and find udata, and register it according to the value at the vector
-    //after each registration, increment vector pos
-    std::vector<std::string>::const_iterator iter = types.begin();
-    for (int i = 1, top = lua_gettop(l); i <= top; ++i && iter != types.end()){
-        int t = lua_type(l, i);
-        std::string luaTName = lua_typename(l, t);
-        //If we find some userdata, read the type and register it accordingly
-        if (luaTName == "userdata"){
-            //function not being called?
-            TTableAdders::const_iterator fnd = sTableAdders.find(*iter);
-            if (fnd != sTableAdders.end()){
-                fnd->second(l, (i - top - 1));
-                ++iter;
-            }
-            else
-                Debug::Log("Failed to find adder: " + *iter);
-        }
-    }
 }
 void LuaC::LuaScriptLib::CopyStack(lua_State *sender, lua_State *reciever, int numVals){
     /*
@@ -290,16 +254,6 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["TestInput"]    = &InputLib::luaopen_input;
     map["TestState"]    = &StateLib::luaopen_state;
     map["TestLuaScript"] = LuaScriptLib::luaopen_luascript;
-    return map;
-}
-LuaC::LuaScriptLib::TTableAdders LuaC::LuaScriptLib::CreateAdderMap(){
-    TTableAdders map;
-    map[entityClass]    = &EntityLib::addEntity;
-    map[rectfClass]     = &RectfLib::addRectf;
-    map[physicsClass]   = &PhysicsLib::addPhysics;
-    map[vector2fClass]  = &Vector2fLib::addVector2f;
-    map[colorClass]     = &ColorLib::addColor;
-    map[timerClass]     = &TimerLib::addTimer;
     return map;
 }
 LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
