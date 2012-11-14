@@ -20,8 +20,26 @@ int LuaC::EntityLib::luaopen_entity(lua_State *l){
 void LuaC::EntityLib::addEntity(lua_State *l, int i){
     LuaScriptLib::Add(l, i, entityMeta);
 }
+/*
+std::weak_ptr<Entity>* LuaC::EntityLib::checkEntity(lua_State *l, int i ){
+    return (std::weak_ptr<Entity>*)luaL_checkudata(l, i, entityMeta.c_str());
+}
+*/
 std::shared_ptr<Entity>* LuaC::EntityLib::checkEntity(lua_State *l, int i ){
     return (std::shared_ptr<Entity>*)luaL_checkudata(l, i, entityMeta.c_str());
+}
+/*
+std::weak_ptr<Entity>* LuaC::EntityLib::AllocateEntity(lua_State *l){
+    std::weak_ptr<Entity> *e = (std::weak_ptr<Entity>*)lua_newuserdata(l, sizeof(std::weak_ptr<Entity>));
+    addEntity(l, -1);
+    return e;
+}
+*/
+std::shared_ptr<Entity>* LuaC::EntityLib::AllocateEntity(lua_State *l){
+    //Why won't Lua allocate this correctly? Using the shared_ptr only produces crashes when trying to set the value
+    std::shared_ptr<Entity> *e = (std::shared_ptr<Entity>*)lua_newuserdata(l, sizeof(std::shared_ptr<Entity>));
+    addEntity(l, -1);
+    return e;
 }
 const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
     { "callFunction", callFunction },
@@ -47,9 +65,10 @@ int LuaC::EntityLib::newEntity(lua_State *l){
     std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
     manager->Register(e);
     //Make the userdata
-    std::shared_ptr<Entity> *luaE = (std::shared_ptr<Entity>*)lua_newuserdata(l, sizeof(std::shared_ptr<Entity>));
+    //std::weak_ptr<Entity> *luaE = AllocateEntity(l);
+    std::shared_ptr<Entity> *luaE = AllocateEntity(l);
+    std::cout << "About to set entity" << std::endl;
     *luaE = e;
-    addEntity(l, -1);
     return 1;
 }
 int LuaC::EntityLib::callFunction(lua_State *caller){
@@ -61,7 +80,14 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     *  params            - All remaining values on the stack are the params to pass
     */
     //Get the lua_State of the Entity we want to call the function on
-    std::shared_ptr<Entity>* e = checkEntity(caller, 1);
+    //std::weak_ptr<Entity> *weak = checkEntity(caller, 1);
+    std::shared_ptr<Entity> *e = checkEntity(caller, 1);
+    //Use weak->expired
+    //std::shared_ptr<Entity> e = weak->lock();
+    if (e == nullptr){
+        Debug::Log("EntityLib::callFunction Error: Could not lock entity");
+        return 0;
+    }
     lua_State *reciever = (*e)->Script()->Get();
     //Get function name and # results
     std::string fcnName = luaL_checkstring(caller, 2);
@@ -97,8 +123,10 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
 }
 int LuaC::EntityLib::destroy(lua_State *l){
     //Stack: udata (Entity) to be removed
+    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
+    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    if (*e != nullptr){
+    if (e != nullptr){
         std::cout << "Will try to destroy entity: " << (*e)->Name() << std::endl;
         //Remove it from the manager
         std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
@@ -107,47 +135,81 @@ int LuaC::EntityLib::destroy(lua_State *l){
         e->reset();
     }
     else
-        std::cout << "Entity alread destroyed" << std::endl;
+        Debug::Log("EntityLib::destroy Error: Could not lock entity. Is it already destroyed?");
     return 0;
 }
 int LuaC::EntityLib::release(lua_State *l){
+    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
+    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    e->reset();
-    e = nullptr;
+    if (e != nullptr){
+        e->reset();
+        e = nullptr;
+    }
     return 0;
 }
 int LuaC::EntityLib::getPhysics(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity>* e = checkEntity(l, 1);
-    //Make a new Physics userdata
-    Physics** luaP = (Physics**)lua_newuserdata(l, sizeof(Physics*));
-    //Give it the Physics metatable
-    PhysicsLib::addPhysics(l, -1);
-    //Set it to the entity's physics
-    *luaP = (*e)->GetPhysics();
+    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
+    //std::shared_ptr<Entity> e = weak->lock();
+    std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    if (e == nullptr){
+        Debug::Log("EntityLib::physics Error: Could not lock entity");
+        lua_pushnil(l);
+    }
+    else {
+        //Make a new Physics userdata
+        Physics** luaP = (Physics**)lua_newuserdata(l, sizeof(Physics*));
+        //Give it the Physics metatable
+        PhysicsLib::addPhysics(l, -1);
+        //Set it to the entity's physics
+        *luaP = (*e)->GetPhysics();
+    }
     return 1;
 }
 int LuaC::EntityLib::getBox(lua_State *l){
     //Stack: udata (Entity)
+    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
+    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    //Make a new Rectf
-    Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
-    //Give it the Rectf metatable
-    RectfLib::addRectf(l, -1);
-    //Is this correct?
-    *r = (*e)->Box();
+    if (e == nullptr){
+        Debug::Log("EntityLib::box Error: Could not lock entity");
+        lua_pushnil(l);
+    }
+    else {
+        //Make a new Rectf
+        Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
+        //Give it the Rectf metatable
+        RectfLib::addRectf(l, -1);
+        //Is this correct?
+        *r = (*e)->Box();
+    }
     return 1;
 }
 int LuaC::EntityLib::getTag(lua_State *l){
     //Stack: udata (Entity)
+    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
+    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    lua_pushstring(l, (*e)->Tag().c_str());
+    if (e == nullptr){
+        Debug::Log("EntityLib:tag Error: Could not lock entity");
+        lua_pushnil(l);
+    }
+    else 
+        lua_pushstring(l, (*e)->Tag().c_str());
     return 1;
 }
 int LuaC::EntityLib::getName(lua_State *l){
     //Stack: udata (Entity)
+    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
+    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    lua_pushstring(l, (*e)->Name().c_str());
+    if (e == nullptr){
+        Debug::Log("EntityLib:name Error: Could not lock entity");
+        lua_pushnil(l);
+    }
+    else
+        lua_pushstring(l, (*e)->Name().c_str());
     return 1;
 }
 int LuaC::EntityLib::newIndex(lua_State *l){
@@ -163,7 +225,12 @@ int LuaC::EntityLib::newIndex(lua_State *l){
 }
 int LuaC::EntityLib::setTag(lua_State *l, int i){
     //Stack: udata, ??? with tag @ i
+    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
+    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    if (e == nullptr){
+        Debug::Log("EntityLib:setTag Error: Could not lock entity");
+    }
     std::string tag = luaL_checkstring(l, i);
     (*e)->SetTag(tag);
     return 0;
@@ -180,9 +247,15 @@ int LuaC::EntityLib::garbageCollection(lua_State *l){
     //Especially if a script holds its own entity shared_ptr, it wouldn't delete itself?
     //Stack: udata
     std::cout << "Resetting entity shared_ptr in __gc" << std::endl;
+    std::cout << "__gc does nothing for now.." << std::endl;
     //Should it also be removed from the manager? hmm
-    std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    e->reset();
-    e = nullptr;
+    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
+    //std::shared_ptr<Entity> e = weak->lock();
+    /*
+    if (e != nullptr){
+        e.reset();
+        e = nullptr;
+    }
+    */
     return 0;
 }

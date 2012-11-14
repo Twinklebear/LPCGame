@@ -37,8 +37,16 @@ namespace LuaC {
         *  @param l The Lua state
         *  @param i The index of the userdata (standard index, pos #'s)
         */
-        //static Entity** checkEntity(lua_State *l, int i);
+        //static std::weak_ptr<Entity>* checkEntity(lua_State *l, int i);
         static std::shared_ptr<Entity>* checkEntity(lua_State *l, int i);
+        /**
+        *  Allocate memory for an Entity on some lua_State and assign it the 
+        *  Entity metatable
+        *  @param l The Lua state to allocate memory on
+        *  @return Pointer to the allocated Vector2f
+        */
+        //static std::weak_ptr<Entity>* AllocateEntity(lua_State *l);
+        static std::shared_ptr<Entity>* AllocateEntity(lua_State *l);
 
     private:
         ///The Lua function library struct

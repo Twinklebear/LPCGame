@@ -50,8 +50,6 @@ namespace LuaC {
         *  @param too The Lua state to copy the Vector2f into
         */
         static void CopyVector2f(lua_State *from, int idx, lua_State *too);
-        
-    private:
         /**
         *  Allocate memory for a Vector2f on some lua_State and assign it the 
         *  Vector2f metatable

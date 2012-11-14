@@ -36,6 +36,27 @@ namespace LuaC {
         *  @param i The index of the userdata (standard index, pos #'s)
         */
         static Rectf* checkRectf(lua_State *l, int i);
+        /**
+        *  Push a Rectf onto the stack of some Lua state
+        *  @param vector The Rectf to push onto the stack
+        *  @param l The Lua State to push onto
+        */
+        static void PushRectf(Rectf *rect, lua_State *l);
+        /**
+        *  Copy a Rectf at some index in one Lua state's stack
+        *  to the top of some other state's stack
+        *  @param from The Lua state to copy the Rectf from
+        *  @param idx The index in the stack of from of the Rectf
+        *  @param too The Lua state to copy the Rectf into
+        */
+        static void CopyRectf(lua_State *from, int idx, lua_State *too);
+        /**
+        *  Allocate memory for a Rectf on some lua_State and assign it the 
+        *  Rectf metatable
+        *  @param l The Lua state to allocate memory on
+        *  @return Pointer to the allocated Rectf
+        */
+        static Rectf* AllocateRectf(lua_State *l);
 
     private:
         ///The Lua function library struct

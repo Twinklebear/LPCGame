@@ -122,9 +122,6 @@
          },
          "type" : "objectbutton",
          "ui" : false
-      },
-      {
-         "file" : "../res/entities/quitbutton.json"
       }
    ],
    "name" : "mIntro",

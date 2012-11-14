@@ -14,7 +14,20 @@ void LuaC::RectfLib::addRectf(lua_State *l, int i){
 Rectf* LuaC::RectfLib::checkRectf(lua_State *l, int i){
     return (Rectf*)luaL_checkudata(l, i, rectfMeta.c_str());
 }
-///The Lua function library struct
+void LuaC::RectfLib::PushRectf(Rectf *rect, lua_State *l){
+    Rectf *r = AllocateRectf(l);
+    *r = *rect;
+}
+void LuaC::RectfLib::CopyRectf(lua_State *from, int idx, lua_State *too){
+    Rectf *r = checkRectf(from, idx);
+    PushRectf(r, too);
+}
+Rectf* LuaC::RectfLib::AllocateRectf(lua_State *l){
+    Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
+    addRectf(l, -1);
+    r->Set(0, 0, 0, 0);
+    return r;
+}
 const luaL_reg LuaC::RectfLib::luaRectfLib[] = {
     { "pos", getPos },
     { "x", getX },

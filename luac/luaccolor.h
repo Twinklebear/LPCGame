@@ -50,8 +50,6 @@ namespace LuaC {
         *  @param too The Lua state to copy the Color into
         */
         static void CopyColor(lua_State *from, int idx, lua_State *too);
-
-    private:
         /**
         *  Allocate memory for a Color on some lua_State and assign it the 
         *  Color metatable
