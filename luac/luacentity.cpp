@@ -244,22 +244,7 @@ int LuaC::EntityLib::concat(lua_State *l){
     return 1;
 }
 int LuaC::EntityLib::garbageCollection(lua_State *l){
-    //Unsure of how to make this be called when it goes out of scope, if we exit
-    //a state and these entity shared_ptrs aren't cleaned up we'll leak some entitys i think..
-    //Especially if a script holds its own entity shared_ptr, it wouldn't delete itself?
-    //Stack: udata
-    std::cout << "Resetting entity shared_ptr in __gc" << std::endl;
-    std::cout << "__gc does nothing for now.." << std::endl;
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
     e->~shared_ptr();
-    //Should it also be removed from the manager? hmm
-    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
-    //std::shared_ptr<Entity> e = weak->lock();
-    /*
-    if (e != nullptr){
-        e.reset();
-        e = nullptr;
-    }
-    */
     return 0;
 }

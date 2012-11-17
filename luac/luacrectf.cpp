@@ -23,9 +23,9 @@ void LuaC::RectfLib::CopyRectf(lua_State *from, int idx, lua_State *too){
     PushRectf(r, too);
 }
 Rectf* LuaC::RectfLib::AllocateRectf(lua_State *l){
-    Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
+    void *block = lua_newuserdata(l, sizeof(Rectf));
+    Rectf *r = new(block) Rectf();
     addRectf(l, -1);
-    r->Set(0, 0, 0, 0);
     return r;
 }
 const luaL_reg LuaC::RectfLib::luaRectfLib[] = {

@@ -22,9 +22,9 @@ void LuaC::Vector2fLib::CopyVector2f(lua_State *from, int idx, lua_State *too){
     PushVector2f(v, too);
 }
 Vector2f* LuaC::Vector2fLib::AllocateVector2f(lua_State *l){
-    Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
+    void *block = lua_newuserdata(l, sizeof(Vector2f));
+    Vector2f *v = new(block) Vector2f();
     addVector2f(l, -1);
-    v->Set(0, 0);
     return v;
 }
 const luaL_reg LuaC::Vector2fLib::luaVector2fLib[] = {

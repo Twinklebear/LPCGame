@@ -22,9 +22,9 @@ void LuaC::ColorLib::CopyColor(lua_State *from, int idx, lua_State *too){
     PushColor(c, too);
 }
 Color* LuaC::ColorLib::AllocateColor(lua_State *l){
-    Color *c = (Color*)lua_newuserdata(l, sizeof(Color));
+    void *block = lua_newuserdata(l, sizeof(Color));
+    Color *c = new(block) Color();
     addColor(l, -1);
-    c->Set(0, 0, 0);
     return c;
 }
 const luaL_reg LuaC::ColorLib::luaColorLib[] = {
