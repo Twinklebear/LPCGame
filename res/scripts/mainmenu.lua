@@ -14,8 +14,8 @@ require "TestLuaScript"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
-	--quitButton = State.getEntity("quitbutton")
-	--print ("Main menu looked up entity: " .. quitButton:name())
+	quitButton = State.getEntity("quitbutton")
+	print ("Main menu looked up entity: " .. quitButton:name())
 	--quitButton = Entity("../res/entities/quitbutton.json")
 	--Test call with a vector
 	--val = "string"

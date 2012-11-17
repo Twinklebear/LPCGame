@@ -37,7 +37,9 @@ std::weak_ptr<Entity>* LuaC::EntityLib::AllocateEntity(lua_State *l){
 */
 std::shared_ptr<Entity>* LuaC::EntityLib::AllocateEntity(lua_State *l){
     //Why won't Lua allocate this correctly? Using the shared_ptr only produces crashes when trying to set the value
-    std::shared_ptr<Entity> *e = (std::shared_ptr<Entity>*)lua_newuserdata(l, sizeof(std::shared_ptr<Entity>));
+    //std::shared_ptr<Entity> *e = (std::shared_ptr<Entity>*)lua_newuserdata(l, sizeof(std::shared_ptr<Entity>));
+    void *block = lua_newuserdata(l, sizeof(std::shared_ptr<Entity>));
+    std::shared_ptr<Entity> *e = new(block) std::shared_ptr<Entity>();
     addEntity(l, -1);
     return e;
 }
@@ -248,6 +250,8 @@ int LuaC::EntityLib::garbageCollection(lua_State *l){
     //Stack: udata
     std::cout << "Resetting entity shared_ptr in __gc" << std::endl;
     std::cout << "__gc does nothing for now.." << std::endl;
+    std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    e->~shared_ptr();
     //Should it also be removed from the manager? hmm
     //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
     //std::shared_ptr<Entity> e = weak->lock();
