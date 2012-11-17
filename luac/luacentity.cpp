@@ -144,10 +144,7 @@ int LuaC::EntityLib::release(lua_State *l){
     //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
     //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    if (e != nullptr){
-        e->reset();
-        e = nullptr;
-    }
+    e->~shared_ptr();
     return 0;
 }
 int LuaC::EntityLib::getPhysics(lua_State *l){
