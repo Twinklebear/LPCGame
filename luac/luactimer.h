@@ -36,6 +36,27 @@ namespace LuaC {
         *  @param i The index of the userdata (standard index, pos #'s)
         */
         static Timer* checkTimer(lua_State *l, int i);
+        /**
+        *  Push a Timer onto the stack of some Lua state
+        *  @param vector The Timer to push onto the stack
+        *  @param l The Lua State to push onto
+        */
+        static void PushTimer(Timer *timer, lua_State *l);
+        /**
+        *  Copy a Timer at some index in one Lua state's stack
+        *  to the top of some other state's stack
+        *  @param from The Lua state to copy the Timer from
+        *  @param idx The index in the stack of from of the Timer
+        *  @param too The Lua state to copy the Timer into
+        */
+        static void CopyTimer(lua_State *from, int idx, lua_State *too);
+        /**
+        *  Allocate memory for a Timer on some lua_State and assign it the 
+        *  Timer metatable
+        *  @param l The Lua state to allocate memory on
+        *  @return Pointer to the allocated Timer
+        */
+        static Timer* AllocateTimer(lua_State *l);
 
     private:
         ///The Lua function library struct

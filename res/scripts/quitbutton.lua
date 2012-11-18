@@ -49,7 +49,11 @@ function OnClick()
 end
 --Testing cross-lua_State calls
 function TestCall(val1, val2)
-	print ("Test called with " .. val1 .. " and " .. val2)
+	print ("Test called with " .. val1 .. " and " .. val2:ticks())
+	while val2:ticks() < 10 do
+		print "ticking..."
+	end
+	print ("Ticks: " .. val2:ticks())
 	--res = val + Vector2f(1, 2)
 	res = 45
 	return res

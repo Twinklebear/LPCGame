@@ -6,11 +6,7 @@ require "TestState"
 require "TestVector2f"
 require "TestEntity"
 require "TestRectf"
---[[
-require "TestInput"
 require "TestTimer"
-require "TestLuaScript"
-]]
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
@@ -18,17 +14,16 @@ function Init()
 	print ("Main menu looked up entity: " .. quitButton:name())
 	--quitButton = Entity("../res/entities/quitbutton.json")
 	--Test call with a vector
-	--val = "string"
-	--v1 = Vector2f(4, 5)
-	v1 = Rectf(10, 20, 40, 50)
-	--v2 = Vector2f(1, 2)
-	ret = quitButton:callFunction("TestCall", 1, "howdy!", v1)
+	timer = Timer()
+	timer:start()
+	print ("Timer ticks: " .. timer:ticks())
+	while timer:ticks() < 5 do
+		print "mainmenu ticking"
+	end
+	ret = quitButton:callFunction("TestCall", 1, "howdy!", timer)
 	print ("got back ret: " .. ret)
 	print ("v1 still: " .. v1)
 	quitButton:release()
-	--print ("Got result of: " .. v1 .. " + " .. v2 " = " .. result)
-	--print (val)
-	--LuaScript.stackDump(false, v2)
 	
 	--print "Try to make a new entity"
 	--e = Entity("../res/entities/npc.json")

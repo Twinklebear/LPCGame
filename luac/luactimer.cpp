@@ -13,6 +13,20 @@ void LuaC::TimerLib::addTimer(lua_State *l, int i){
 Timer* LuaC::TimerLib::checkTimer(lua_State *l, int i){
     return (Timer*)luaL_checkudata(l, i, timerMeta.c_str());
 }
+void LuaC::TimerLib::PushTimer(Timer *timer, lua_State *l){
+    Timer *t = AllocateTimer(l);
+    *t = *timer;
+}
+void LuaC::TimerLib::CopyTimer(lua_State *from, int idx, lua_State *too){
+    Timer *t = checkTimer(from, idx);
+    PushTimer(t, too);
+}
+Timer* LuaC::TimerLib::AllocateTimer(lua_State *l){
+    void *block = lua_newuserdata(l, sizeof(Timer));
+    Timer *t = new(block) Timer();
+    addTimer(l, -1);
+    return t;
+}
 const luaL_reg LuaC::TimerLib::luaTimerLib[] = {
     { "start", start },
     { "stop", stop },
@@ -26,10 +40,7 @@ const luaL_reg LuaC::TimerLib::luaTimerLib[] = {
 };
 int LuaC::TimerLib::newTimer(lua_State *l){
     //Stack: table (Timer)
-    Timer *t = (Timer*)lua_newuserdata(l, sizeof(Timer));
-    //Init the timer as stopped
-    t->Stop();
-    addTimer(l, -1);
+    AllocateTimer(l);
     return 1;
 }
 int LuaC::TimerLib::start(lua_State *l){
