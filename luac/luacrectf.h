@@ -38,7 +38,7 @@ namespace LuaC {
         static Rectf* checkRectf(lua_State *l, int i);
         /**
         *  Push a Rectf onto the stack of some Lua state
-        *  @param vector The Rectf to push onto the stack
+        *  @param rect The Rectf to push onto the stack
         *  @param l The Lua State to push onto
         */
         static void PushRectf(Rectf *rect, lua_State *l);

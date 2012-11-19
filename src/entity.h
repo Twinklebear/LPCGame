@@ -2,6 +2,7 @@
 #define ENTITY_H
 
 #include <string>
+#include <memory>
 #include <luabind/luabind.hpp>
 #include "externals/json/json.h"
 #include "base.h"
@@ -67,6 +68,12 @@ public:
 	*  @return A pointer to the entity's Physics member
 	*/
 	Physics* GetPhysics();
+    /**
+    *  Get a weak_ptr to the Entity's physics lib
+    *  TODO: Migrate to using this exclusively
+    *  @return a weak_ptr to the Physics component
+    */
+    std::weak_ptr<Physics> GetPhysicsWeakPtr();
 	/**
 	*  Set a collision map for the physics member to check against
 	*  @param map The collision map
@@ -133,7 +140,7 @@ protected:
 	///should be created and given to the Lua instance to handle if an image is desired
 	Image mImage;
 	///Handle's the objects physics
-	Physics mPhysics;
+	std::shared_ptr<Physics> mPhysics;
 	///A general tag for the entity
 	std::string mTag;
 	///The entity's name

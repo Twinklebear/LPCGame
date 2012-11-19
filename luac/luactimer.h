@@ -38,7 +38,7 @@ namespace LuaC {
         static Timer* checkTimer(lua_State *l, int i);
         /**
         *  Push a Timer onto the stack of some Lua state
-        *  @param vector The Timer to push onto the stack
+        *  @param timer The Timer to push onto the stack
         *  @param l The Lua State to push onto
         */
         static void PushTimer(Timer *timer, lua_State *l);

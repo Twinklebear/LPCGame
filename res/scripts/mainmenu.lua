@@ -6,28 +6,18 @@ require "TestState"
 require "TestVector2f"
 require "TestEntity"
 require "TestRectf"
-require "TestTimer"
+require "TestPhysics"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
 	quitButton = State.getEntity("quitbutton")
 	print ("Main menu looked up entity: " .. quitButton:name())
-	--quitButton = Entity("../res/entities/quitbutton.json")
-	--Test call with a vector
-	timer = Timer()
-	timer:start()
-	print ("Timer ticks: " .. timer:ticks())
-	while timer:ticks() < 5 do
-		print "mainmenu ticking"
-	end
-	ret = quitButton:callFunction("TestCall", 1, "howdy!", timer)
-	print ("got back ret: " .. ret)
-	print ("v1 still: " .. v1)
+	print ("Getting physics component")
+	qBPhys = quitButton:physics()
+	print ("quitbutton box: " .. qBPhys:box())
+	print ("quitbutton position: " .. qBPhys:position())
+	quitButton:callFunction("TestCall", 0, quitButton, qBPhys)
 	quitButton:release()
-	
-	--print "Try to make a new entity"
-	--e = Entity("../res/entities/npc.json")
-	--print ("Made entity: " .. e:name())
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"
@@ -40,7 +30,6 @@ function LogicUpdate()
 	end
 	if Input.keyDown(Input.KEY_E) then
 		print "Deleting entity npc"
-	--	e:destroy()
 	end
 end
 function RenderUpdate()

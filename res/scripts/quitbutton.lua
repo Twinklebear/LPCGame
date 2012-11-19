@@ -11,9 +11,10 @@ require "Color"
 require "StateManager"
 ]]
 --Testing passing userdata back and forth
-require "TestTimer"
-require "TestVector2f"
+require "TestEntity"
+require "TestPhysics"
 require "TestRectf"
+require "TestVector2f"
 
 function Init()
 	print "Quitbutton Init"
@@ -49,14 +50,7 @@ function OnClick()
 end
 --Testing cross-lua_State calls
 function TestCall(val1, val2)
-	print ("Test called with " .. val1 .. " and " .. val2:ticks())
-	while val2:ticks() < 10 do
-		print "ticking..."
-	end
-	print ("Ticks: " .. val2:ticks())
-	--res = val + Vector2f(1, 2)
-	res = 45
-	return res
+	print ("TestCall called with entity: " .. val1:name() .. " and phys box" .. val2:box())
 end
 --Another cross-state test
 function AddVects(v1, v2)

@@ -38,7 +38,7 @@ namespace LuaC {
         static Color* checkColor(lua_State *l, int i);
         /**
         *  Push a Color onto the stack of some Lua state
-        *  @param vector The Color to push onto the stack
+        *  @param color The Color to push onto the stack
         *  @param l The Lua State to push onto
         */
         static void PushColor(Color *color, lua_State *l);

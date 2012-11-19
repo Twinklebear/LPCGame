@@ -10,6 +10,7 @@
 
 Entity::Entity() : mName(""), mTag(""), mConfigFile(""),  mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
 {
+    mPhysics = std::shared_ptr<Physics>(new Physics());
 }
 Entity::Entity(std::string file) : mName(""), mTag(""), mConfigFile(""), mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
 {
@@ -131,12 +132,12 @@ void Entity::OnMouseExit(){
 }
 void Entity::CheckMouseOver(const Vector2f &pos){
 	//Only trigger OnMouseEnter if the mouse is colliding and wasn't before
-	if (Math::CheckCollision(pos, mPhysics.Box()) && !mMouseOver){
+	if (Math::CheckCollision(pos, mPhysics->Box()) && !mMouseOver){
 		OnMouseEnter();
 		mMouseOver = true;
 	}
 	//Only trigger mouse exit if the mouse was colliding, but isn't anymore
-	else if (!Math::CheckCollision(pos, mPhysics.Box()) && mMouseOver){
+	else if (!Math::CheckCollision(pos, mPhysics->Box()) && mMouseOver){
 		OnMouseExit();
 		mMouseOver = false;
 	}
@@ -145,13 +146,17 @@ bool Entity::GetMouseOver() const {
 	return mMouseOver;
 }
 Physics* Entity::GetPhysics(){
-	return &mPhysics;
+	return mPhysics.get();
+}
+std::weak_ptr<Physics> Entity::GetPhysicsWeakPtr(){
+    std::weak_ptr<Physics> weak = mPhysics;
+    return weak;
 }
 void Entity::SetCollisionMap(CollisionMap map){
-	mPhysics.SetMap(map);
+	mPhysics->SetMap(map);
 }
 Rectf Entity::Box() const {
-	return mPhysics.Box();
+	return mPhysics->Box();
 }
 void Entity::SetTag(std::string tag){
 	mTag = tag;
@@ -187,7 +192,7 @@ Json::Value Entity::Save() const {
         val["file"] = mConfigFile;
     else {
 	    val["image"]   = mImage.File();
-	    val["physics"] = mPhysics.Save();
+	    val["physics"] = mPhysics->Save();
 	    val["tag"]	   = mTag;
 	    val["script"]  = mScript.File();
 	    val["name"]    = mName;
@@ -201,7 +206,7 @@ void Entity::Save(const std::string &file) const {
     //save function
     Json::Value val;
     val["image"]   = mImage.File();
-	val["physics"] = mPhysics.Save();
+	val["physics"] = mPhysics->Save();
 	val["tag"]	   = mTag;
 	val["script"]  = mScript.File();
 	val["name"]    = mName;
@@ -214,7 +219,7 @@ void Entity::Load(Json::Value val){
     //Process overrides as well
 	mTag  = val["tag"].asString();
 	mName = val["name"].asString();
-	mPhysics.Load(val["physics"]);
+	mPhysics->Load(val["physics"]);
 	mImage.Load(val["image"].asString());
 	mScript.OpenScript(val["script"].asString());
     mRender = val["render"].asBool();

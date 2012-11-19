@@ -253,7 +253,7 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["TestTimer"]    = &TimerLib::luaopen_timer;
     map["TestInput"]    = &InputLib::luaopen_input;
     map["TestState"]    = &StateLib::luaopen_state;
-    map["TestLuaScript"] = LuaScriptLib::luaopen_luascript;
+    map["TestLuaScript"] = &LuaScriptLib::luaopen_luascript;
     return map;
 }
 LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
@@ -262,6 +262,8 @@ LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     map[colorClass]    = &ColorLib::CopyColor;
     map[rectfClass]    = &RectfLib::CopyRectf;
     map[timerClass]    = &TimerLib::CopyTimer;
+    map[physicsClass]  = &PhysicsLib::CopyPhysics;
+    map[entityClass]   = &EntityLib::CopyEntity;
     return map;
 }
 const luaL_reg LuaC::LuaScriptLib::luaScriptLib[] = {

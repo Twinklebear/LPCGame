@@ -2,6 +2,7 @@
 #define LUACPHYSICS_H
 
 #include <string>
+#include <memory>
 #include <lua.hpp>
 #include "src/physics.h"
 
@@ -35,7 +36,28 @@ namespace LuaC {
         *  @param l The Lua state
         *  @param i The index of the userdata (standard index, pos #'s)
         */
-        static Physics** checkPhysics(lua_State *l, int i);
+        static std::weak_ptr<Physics>* checkPhysics(lua_State *l, int i);
+        /**
+        *  Push a Physics onto the stack of some Lua state
+        *  @param physics The Physics to push onto the stack
+        *  @param l The Lua State to push onto
+        */
+        static void PushPhysics(std::weak_ptr<Physics> *physics, lua_State *l);
+        /**
+        *  Copy a Physics at some index in one Lua state's stack
+        *  to the top of some other state's stack
+        *  @param from The Lua state to copy the Physics from
+        *  @param idx The index in the stack of from of the Physics
+        *  @param too The Lua state to copy the Physics into
+        */
+        static void CopyPhysics(lua_State *from, int idx, lua_State *too);
+        /**
+        *  Allocate memory for a Physics on some lua_State and assign it the 
+        *  Physics metatable
+        *  @param l The Lua state to allocate memory on
+        *  @return Pointer to the allocated Physics
+        */
+        static std::weak_ptr<Physics>* AllocatePhysics(lua_State *l);
 
     private:
         ///The Lua function library

@@ -37,15 +37,27 @@ namespace LuaC {
         *  @param l The Lua state
         *  @param i The index of the userdata (standard index, pos #'s)
         */
-        //static std::weak_ptr<Entity>* checkEntity(lua_State *l, int i);
         static std::shared_ptr<Entity>* checkEntity(lua_State *l, int i);
+        /**
+        *  Push a Entity onto the stack of some Lua state
+        *  @param entity The Entity to push onto the stack
+        *  @param l The Lua State to push onto
+        */
+        static void PushEntity(std::shared_ptr<Entity> *entity, lua_State *l);
+        /**
+        *  Copy a Entity at some index in one Lua state's stack
+        *  to the top of some other state's stack
+        *  @param from The Lua state to copy the Entity from
+        *  @param idx The index in the stack of from of the Entity
+        *  @param too The Lua state to copy the Vector2f into
+        */
+        static void CopyEntity(lua_State *from, int idx, lua_State *too);
         /**
         *  Allocate memory for an Entity on some lua_State and assign it the 
         *  Entity metatable
         *  @param l The Lua state to allocate memory on
         *  @return Pointer to the allocated Vector2f
         */
-        //static std::weak_ptr<Entity>* AllocateEntity(lua_State *l);
         static std::shared_ptr<Entity>* AllocateEntity(lua_State *l);
 
     private:
@@ -57,12 +69,7 @@ namespace LuaC {
         static int callFunction(lua_State *caller);
         //Destroy the Entity, removing it from the manager and existence
         static int destroy(lua_State *l);
-        /**
-        *  Release the lua state's ownership of the Entity
-        *  WARNING: This function should be removed when changing Entity to weak_ptr
-        *  as it should no longer be necessary to prevent issues with freeing
-        *  non-existant entities in closing the State script
-        */
+        //Release the Entity shared ptr
         static int release(lua_State *l);
         ///Getters
         static int getPhysics(lua_State *l);

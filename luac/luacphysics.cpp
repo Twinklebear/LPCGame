@@ -1,5 +1,6 @@
 #include <string>
 #include <lua.hpp>
+#include "src/debug.h"
 #include "src/physics.h"
 #include "luacscript.h"
 #include "luacvector2f.h"
@@ -29,8 +30,22 @@ int LuaC::PhysicsLib::luaopen_physics(lua_State *l){
 void LuaC::PhysicsLib::addPhysics(lua_State *l, int i){
     LuaScriptLib::Add(l, i, physicsMeta);
 }
-Physics** LuaC::PhysicsLib::checkPhysics(lua_State *l, int i){
-    return (Physics**)luaL_checkudata(l, i, physicsMeta.c_str());
+std::weak_ptr<Physics>* LuaC::PhysicsLib::checkPhysics(lua_State *l, int i){
+    return (std::weak_ptr<Physics>*)luaL_checkudata(l, i, physicsMeta.c_str());
+}
+void LuaC::PhysicsLib::PushPhysics(std::weak_ptr<Physics> *physics, lua_State *l){
+    std::weak_ptr<Physics> *p = AllocatePhysics(l);
+    *p = *physics;
+}
+void LuaC::PhysicsLib::CopyPhysics(lua_State *from, int idx, lua_State *too){
+    std::weak_ptr<Physics> *p = checkPhysics(from, idx);
+    PushPhysics(p, too);
+}
+std::weak_ptr<Physics>* LuaC::PhysicsLib::AllocatePhysics(lua_State *l){
+    void *block = lua_newuserdata(l, sizeof(std::weak_ptr<Physics>));
+    std::weak_ptr<Physics> *p = new(block) std::weak_ptr<Physics>();
+    addPhysics(l, -1);
+    return p;
 }
 const struct luaL_reg LuaC::PhysicsLib::luaPhysicsLib[] = {
     { "position", position },
@@ -45,45 +60,76 @@ const struct luaL_reg LuaC::PhysicsLib::luaPhysicsLib[] = {
 };
 int LuaC::PhysicsLib::position(lua_State *l){
     //Stack: userdata (Physics)
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:position error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     //Make a new vector and set it
-    Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
-    Vector2fLib::addVector2f(l, -1);
-    v->Set((*p)->Position());
+    Vector2f *v = Vector2fLib::AllocateVector2f(l);
+    *v = p->Position();
     return 1;
 }
 int LuaC::PhysicsLib::velocity(lua_State *l){
     //Stack: userdata (Physics)
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:velocity error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     //Make a new vector and set it
-    Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
-    Vector2fLib::addVector2f(l, -1);
-    v->Set((*p)->Velocity());
+    Vector2f *v = Vector2fLib::AllocateVector2f(l);
+    *v = p->Velocity();
     return 1;
 }
 int LuaC::PhysicsLib::acceleration(lua_State *l){
     //Stack: userdata (Physics)
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:acceleration error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     //Make a new vector and set it
-    Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
-    Vector2fLib::addVector2f(l, -1);
-    v->Set((*p)->Acceleration());
+    Vector2f *v = Vector2fLib::AllocateVector2f(l);
+    *v = p->Acceleration();
     return 1;
 }
 int LuaC::PhysicsLib::box(lua_State *l){
     //Stack: userdata (Physics)
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:box error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     //Make a new rectf and set it
-    Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
-    RectfLib::addRectf(l, -1);
-    r->Set((*p)->Box());
+    Rectf *r = RectfLib::AllocateRectf(l);
+    *r = p->Box();
     return 1;
 }
 int LuaC::PhysicsLib::state(lua_State *l){
     //Stack: userdata (Physics)
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:box error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     //Get the state end push it
-    lua_pushnumber(l, (*p)->State());
+    lua_pushnumber(l, p->State());
     return 1;
 }
 int LuaC::PhysicsLib::accessor(lua_State *l){
@@ -108,44 +154,86 @@ int LuaC::PhysicsLib::accessor(lua_State *l){
 }
 int LuaC::PhysicsLib::setPosition(lua_State *l){
     //Stack: userdata (Physics), userdata (Vector2f)
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:setPosition error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     Vector2f *v = Vector2fLib::checkVector2f(l, 2);
-    (*p)->SetPosition(*v);
+    p->SetPosition(*v);
     return 0;
 }
 int LuaC::PhysicsLib::setVelocity(lua_State *l){
     //Stack: userdata (Physics), userdata (Vector2f)
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:setVelocity error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     Vector2f *v = Vector2fLib::checkVector2f(l, 2);
-    (*p)->SetVelocity(*v);
+    p->SetVelocity(*v);
     return 0;
 }
 int LuaC::PhysicsLib::setAcceleration(lua_State *l){
     //Stack: userdata (Physics), userdata (Vector2f)
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:setAcceleration error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     Vector2f *v = Vector2fLib::checkVector2f(l, 2);
-    (*p)->SetAcceleration(*v);
+    p->SetAcceleration(*v);
     return 0;
 }
 int LuaC::PhysicsLib::setHorizDir(lua_State *l){
     //Stack: userdata (Physics), int for horiz dir
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:setHorizDir error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     int dir = luaL_checkint(l, 2);
-    (*p)->SetHorizDir(dir);
+    p->SetHorizDir(dir);
     return 0;
 }
 int LuaC::PhysicsLib::setVertDir(lua_State *l){
     //Stack: userdata (Physics), int for vert dir
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:setVertDir error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     int dir = luaL_checkint(l, 2);
-    (*p)->SetVertDir(dir);
+    p->SetVertDir(dir);
     return 0;
 }
 int LuaC::PhysicsLib::setBox(lua_State *l){
     //Stack: userdata (Physics), userdata (Rectf)
-    Physics **p = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    if (pWeak->expired()){
+        std::string err = "PhysicsLib:setBox error: Failed to lock Physics weak ptr";
+        Debug::Log(err);
+        lua_pushstring(l, err.c_str());
+        return 1;
+    }
+    std::shared_ptr<Physics> p = pWeak->lock();
     Rectf *r = RectfLib::checkRectf(l, 2);
-    (*p)->SetBox(*r);
+    p->SetBox(*r);
     return 0;
 }
 int LuaC::PhysicsLib::toString(lua_State *l){

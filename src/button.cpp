@@ -19,7 +19,7 @@ Button::Button(std::string script) : mFunc(nullptr)
 }
 Button::~Button(){}
 void Button::Draw(Camera *cam){
-	Rectf pos = mPhysics.Box();
+	Rectf pos = mPhysics->Box();
 	if (cam != nullptr)
 		pos = Math::FromSceneSpace(cam, pos);
 	//Apply appropriate clip for button's state
