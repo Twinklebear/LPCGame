@@ -17,9 +17,8 @@ Entity::Entity(std::string file) : mName(""), mTag(""), mConfigFile(""), mMouseO
     Load(file);
 }
 Entity::~Entity(){
-	//Clean up any script memory
-	Free();
-    mScript.Close();
+    //Make sure Free is called 
+    Free();
 }
 void Entity::Init(){
 	//We catch exceptions so that if the function doesn't exist the program 
@@ -44,6 +43,7 @@ void Entity::Free(){
 	}
 	catch(...){
 	}
+    mScript.Close();
 }
 void Entity::Update(){
     //Should deltaT be passed to update instead?

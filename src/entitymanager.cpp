@@ -12,16 +12,19 @@ EntityManager::EntityManager()
 {
 }
 EntityManager::~EntityManager(){
+    //Call free on the entities
+    for (std::shared_ptr<Entity> e : mEntities)
+        e->Free();
 	mEntities.clear();
 }
 void EntityManager::Draw(){
-	for (std::shared_ptr<Entity> o : mEntities){
-        if (o->Render()){
+	for (std::shared_ptr<Entity> e : mEntities){
+        if (e->Render()){
             //Check for Ui/Non-Ui elements
-            if (o->IsUiElement())
-                o->Draw();
-		    else if (mCamera->InCamera(o->Box()))
-    			o->Draw(mCamera.get());
+            if (e->IsUiElement())
+                e->Draw();
+		    else if (mCamera->InCamera(e->Box()))
+    			e->Draw(mCamera.get());
         }
 	}
 }
@@ -29,34 +32,34 @@ void EntityManager::Update(){
 	//Check for mouse events
 	CheckMouseEvents();
 	//Call object's update functions
-	for (std::shared_ptr<Entity> o : mEntities){
+	for (std::shared_ptr<Entity> e : mEntities){
         //Check for Ui/Non-Ui elements
-        if (o->IsUiElement())
-            o->Update();
-		else if (mCamera->InCamera(o->Box()))
-    		o->Update();
+        if (e->IsUiElement())
+            e->Update();
+		else if (mCamera->InCamera(e->Box()))
+    		e->Update();
 	}
 }
 void EntityManager::Move(float deltaT){
-	for (std::shared_ptr<Entity> o : mEntities){
+	for (std::shared_ptr<Entity> e : mEntities){
 		//Check for Ui/Non-Ui elements
-        if (o->IsUiElement())
-            o->Move(deltaT);
-		else if (mCamera->InCamera(o->Box()))
-    		o->Move(deltaT);
+        if (e->IsUiElement())
+            e->Move(deltaT);
+		else if (mCamera->InCamera(e->Box()))
+    		e->Move(deltaT);
 	}
 }
 void EntityManager::SetCollisionMaps(Map *map){
 	//TODO: Is there a better way this can be done?
 	CollisionMap collMap, entityMap;
-	for (std::shared_ptr<Entity> o : mEntities){
-		if (!o->IsUiElement() && mCamera->InCamera(o->Box())){
-			CollisionMap collMap = map->GetCollisionMap(o->Box());
-			CollisionMap entityMap = this->GetEntityCollisionMap(o->Box());
+	for (std::shared_ptr<Entity> e : mEntities){
+		if (!e->IsUiElement() && mCamera->InCamera(e->Box())){
+			CollisionMap collMap = map->GetCollisionMap(e->Box());
+			CollisionMap entityMap = this->GetEntityCollisionMap(e->Box());
 			for (Recti r : entityMap)
 				collMap.push_back(r);
 
-			o->SetCollisionMap(collMap);
+			e->SetCollisionMap(collMap);
 			collMap.clear();
 			entityMap.clear();
 		}
@@ -83,9 +86,9 @@ void EntityManager::Remove(std::shared_ptr<Entity> entity){
  std::shared_ptr<Entity> EntityManager::GetEntity(const std::string &name){
     //For now we do a really bad/slow lookup of looping through all entities
     //This will change when the EntityList container type is changed
-    for (std::shared_ptr<Entity> o : mEntities){
-        if (o->Name() == name)
-            return o;
+    for (std::shared_ptr<Entity> e : mEntities){
+        if (e->Name() == name)
+            return e;
     }
     return nullptr;
 }
@@ -93,11 +96,11 @@ CollisionMap EntityManager::GetEntityCollisionMap(const Rectf &target, int dista
 	//TODO: Is there a better way this can be done? Looping through the entities is kind of ok, but
 	//definitely not ideal
 	CollisionMap entityMap;
-	for (std::shared_ptr<Entity> o : mEntities){
-		if (!o->IsUiElement() && mCamera->InCamera(o->Box())){
-			double dist = Math::Distance(target.Pos(), o->Box().Pos());
+	for (std::shared_ptr<Entity> e : mEntities){
+		if (!e->IsUiElement() && mCamera->InCamera(e->Box())){
+			double dist = Math::Distance(target.Pos(), e->Box().Pos());
 			if (dist > 0 && dist <= distance)
-				entityMap.push_back(o->Box());
+				entityMap.push_back(e->Box());
 		}
 	}
 	return entityMap;
@@ -117,14 +120,14 @@ void EntityManager::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	tempEvt.y = mouseEvent.y;
 	HandleMouseEvent(tempEvt);
 	//Find the object that was clicked
-	for (std::shared_ptr<Entity> o : mEntities){
-		if ((o->IsUiElement() || mCamera->InCamera(o->Box())) && o->GetMouseOver()){
+	for (std::shared_ptr<Entity> e : mEntities){
+		if ((e->IsUiElement() || mCamera->InCamera(e->Box())) && e->GetMouseOver()){
 			switch (mouseEvent.type){
 				case SDL_MOUSEBUTTONDOWN:
-					o->OnMouseDown();
+					e->OnMouseDown();
 					break;
 				case SDL_MOUSEBUTTONUP:
-					o->OnMouseUp();
+					e->OnMouseUp();
 					break;
 				default:
 					break;
@@ -136,22 +139,22 @@ void EntityManager::HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent){
 	//Vector2f mousePos = Math::ToSceneSpace(mCamera.get(), Vector2f(mouseEvent.x, mouseEvent.y));
     Vector2f mousePos(mouseEvent.x, mouseEvent.y);
 	//Find the object that has the mouse over it
-	for (std::shared_ptr<Entity> o : mEntities){
+	for (std::shared_ptr<Entity> e : mEntities){
         //Check for Ui/Non-Ui elements
-        if (o->IsUiElement()){
-            if (Math::CheckCollision(mousePos, o->Box()) && !o->GetMouseOver())
-                o->OnMouseEnter();
-            else if (!Math::CheckCollision(mousePos, o->Box()) && o->GetMouseOver())
-                o->OnMouseExit();
+        if (e->IsUiElement()){
+            if (Math::CheckCollision(mousePos, e->Box()) && !e->GetMouseOver())
+                e->OnMouseEnter();
+            else if (!Math::CheckCollision(mousePos, e->Box()) && e->GetMouseOver())
+                e->OnMouseExit();
         }
         //If it's an object in the scene we must bump the collision box into
         //window space to check against the window space mouse pos
-		else if (mCamera->InCamera(o->Box())){
-            Rectf box = Math::FromSceneSpace(mCamera.get(), o->Box());
-    		if (Math::CheckCollision(mousePos, box) && !o->GetMouseOver())
-                o->OnMouseEnter();
-            else if (!Math::CheckCollision(mousePos, box) && o->GetMouseOver())
-                o->OnMouseExit();
+		else if (mCamera->InCamera(e->Box())){
+            Rectf box = Math::FromSceneSpace(mCamera.get(), e->Box());
+    		if (Math::CheckCollision(mousePos, box) && !e->GetMouseOver())
+                e->OnMouseEnter();
+            else if (!Math::CheckCollision(mousePos, box) && e->GetMouseOver())
+                e->OnMouseExit();
         }
 	}
 }
@@ -166,7 +169,7 @@ Json::Value EntityManager::Save(){
 void EntityManager::PrintSharedPtrCount(){
     //run through list and print count and name
     std::cout << "Entity shared_ptr counts" << std::endl;
-    for (std::shared_ptr<Entity> o : mEntities){
-        std::cout << "Entity: " << o->Name() << " count: " << o.use_count() << std::endl;
+    for (std::shared_ptr<Entity> e : mEntities){
+        std::cout << "Entity: " << e->Name() << " count: " << e.use_count() << std::endl;
     }
 }

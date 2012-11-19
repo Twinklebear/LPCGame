@@ -30,6 +30,9 @@ function Init()
 		(box.pos.y + box.h / 2 - text:H() / 2), text:W(), text:H())
 	]]
 end
+function Free()
+	print "Freeing quitbutton"
+end
 function Update()
 end
 function Draw(camera)
@@ -48,9 +51,9 @@ end
 function OnClick()
 	--LPC.StateManager.ChangeScene("quit")
 end
---Testing cross-lua_State calls
 function TestCall(val1, val2)
 	print ("TestCall called with entity: " .. val1:name() .. " and phys box" .. val2:box())
+	qb = val1
 end
 --Another cross-state test
 function AddVects(v1, v2)
