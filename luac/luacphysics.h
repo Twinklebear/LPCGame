@@ -80,10 +80,7 @@ namespace LuaC {
         ///Operators
         static int toString(lua_State *l);
         static int concat(lua_State *l);
-
-    public:
-        static const std::string sMetatable, sClassName;
     };
-};
+}
 
 #endif

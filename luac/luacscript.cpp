@@ -4,22 +4,6 @@
 #include <sstream>
 #include <lua.hpp>
 #include "src/debug.h"
-#include "src/animatedimage.h"
-#include "src/button.h"
-#include "src/camera.h"
-#include "src/color.h"
-#include "src/entity.h"
-#include "src/input.h"
-#include "src/math.h"
-#include "src/motionstate.h"
-#include "src/physics.h"
-#include "src/rect.h"
-#include "src/state.h"
-#include "src/statemanager.h"
-#include "src/text.h"
-#include "src/timer.h"
-#include "src/vectors.h"
-#include "src/window.h"
 #include "src/luascript.h"
 #include "luac/luacvector2f.h"
 #include "luac/luacrectf.h"
@@ -30,6 +14,7 @@
 #include "luac/luactimer.h"
 #include "luac/luacinput.h"
 #include "luac/luacstate.h"
+#include "luac/luaccamera.h"
 #include "luacscript.h"
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
@@ -244,16 +229,17 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["Vector2"]       = &Vector2f::RegisterLua;
     map["Window"]        = &Window::RegisterLua;
     //Debug testing of libs
-    map["TestEntity"]   = &EntityLib::luaopen_entity;
-    map["TestRectf"]    = &RectfLib::luaopen_rectf;
-    map["TestPhysics"]  = &PhysicsLib::luaopen_physics;
-    map["TestVector2f"] = &Vector2fLib::luaopen_vector2f;
-    map["TestDebug"]    = &DebugLib::luaopen_debug;
-    map["TestColor"]    = &ColorLib::luaopen_color;
-    map["TestTimer"]    = &TimerLib::luaopen_timer;
-    map["TestInput"]    = &InputLib::luaopen_input;
-    map["TestState"]    = &StateLib::luaopen_state;
+    map["TestEntity"]    = &EntityLib::luaopen_entity;
+    map["TestRectf"]     = &RectfLib::luaopen_rectf;
+    map["TestPhysics"]   = &PhysicsLib::luaopen_physics;
+    map["TestVector2f"]  = &Vector2fLib::luaopen_vector2f;
+    map["TestDebug"]     = &DebugLib::luaopen_debug;
+    map["TestColor"]     = &ColorLib::luaopen_color;
+    map["TestTimer"]     = &TimerLib::luaopen_timer;
+    map["TestInput"]     = &InputLib::luaopen_input;
+    map["TestState"]     = &StateLib::luaopen_state;
     map["TestLuaScript"] = &LuaScriptLib::luaopen_luascript;
+    map["TestCamera"]    = &CameraLib::luaopen_camera;
     return map;
 }
 LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
@@ -264,6 +250,7 @@ LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     map[timerClass]    = &TimerLib::CopyTimer;
     map[physicsClass]  = &PhysicsLib::CopyPhysics;
     map[entityClass]   = &EntityLib::CopyEntity;
+    map[cameraClass]   = &CameraLib::CopyCamera;
     return map;
 }
 const luaL_reg LuaC::LuaScriptLib::luaScriptLib[] = {

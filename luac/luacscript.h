@@ -135,6 +135,6 @@ namespace LuaC {
         static const TLuaLibs sLuaLibs;
         static const TUdataCopiers sUdataCopiers;
     };
-};
+}
 
 #endif

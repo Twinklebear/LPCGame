@@ -26,7 +26,7 @@ public:
 	*  Draw the object, apply an adjustment for the camera if one is desired
 	*  @param cam The camera to adjust for
 	*/
-	void Draw(Camera *cam = nullptr);
+	void Draw(std::weak_ptr<Camera> camera);
 	///On click, run the callback function if one was registered
 	///This should call a Lua script function, OnClick as well
 	virtual void OnClick();

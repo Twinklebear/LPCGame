@@ -96,6 +96,6 @@ namespace LuaC {
         */
         static void concatWithString(lua_State *l, int vIdx, int sIdx);
     };
-};
+}
 
 #endif

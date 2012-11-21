@@ -2,6 +2,7 @@
 #include <lua.hpp>
 #include <luabind/luabind.hpp>
 #include <fstream>
+#include "luac/luaccamera.h"
 #include "math.h"
 #include "luascript.h"
 #include "jsonhandler.h"
@@ -65,12 +66,18 @@ void Entity::Move(float deltaT){
 	catch(...){
 	}
 }
-void Entity::Draw(Camera *camera){
+void Entity::Draw(std::weak_ptr<Camera> camera){
     //Draw entity
 	if (!mScript.Open())
 		return;
 	try {
-		luabind::call_function<void>(mScript.Get(), "Draw", camera);
+        lua_State *l = mScript.Get();
+        lua_getglobal(l, "Draw");
+        LuaC::CameraLib::PushCamera(&camera, l);
+        if (lua_pcall(l, 1, 0, 0) != 0)
+            Debug::Log("Error calling Draw: ");// + lua_tostring(l, -1));
+        
+        //luabind::call_function<void>(mScript.Get(), "Draw", camera);
 	}
 	catch(...){
 	}

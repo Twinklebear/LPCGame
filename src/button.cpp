@@ -18,10 +18,12 @@ Button::Button(std::string script) : mFunc(nullptr)
 	mScript.OpenScript(script);
 }
 Button::~Button(){}
-void Button::Draw(Camera *cam){
+void Button::Draw(std::weak_ptr<Camera> camera){
 	Rectf pos = mPhysics->Box();
-	if (cam != nullptr)
-		pos = Math::FromSceneSpace(cam, pos);
+	if (!mUiElement && !camera.expired()){
+        auto cam = camera.lock();
+		//pos = Math::FromSceneSpace(cam, pos);
+    }
 	//Apply appropriate clip for button's state
 	Recti clip;
 	if (!mClicked)

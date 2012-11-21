@@ -87,6 +87,6 @@ namespace LuaC {
         ///Garbage collection
         static int garbageCollection(lua_State *l);
     };
-};
+}
 
 #endif

@@ -40,7 +40,7 @@ public:
 	*  Draw the Entity, apply an adjustment for the camera if one is desired
 	*  @param cam The camera to adjust for
 	*/
-	virtual void Draw(Camera *cam = nullptr);
+	virtual void Draw(std::weak_ptr<Camera> camera);
 	///On mouse down events
 	virtual void OnMouseDown();
 	///On mouse up event

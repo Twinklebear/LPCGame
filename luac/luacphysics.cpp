@@ -16,7 +16,7 @@ int LuaC::PhysicsLib::luaopen_physics(lua_State *l){
     //Copy metatable from -1 to the top
     lua_pushvalue(l, -1);
     //Set table at -2 key of __index = top of stack
-    //ie. LPC.LuaRect.__index = table containing luaRectLib_m
+    //ie. LPC.Physics.__index = table at top, ie. itself
     lua_setfield(l, -2, "__index");
     //Register the lib to the metatable at top of stack
     luaL_register(l, NULL, luaPhysicsLib);

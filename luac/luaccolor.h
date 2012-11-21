@@ -91,6 +91,6 @@ namespace LuaC {
         ///Meta and Class table names
         static const std::string sMetatable, sClassName;
     };
-};
+}
 
 #endif

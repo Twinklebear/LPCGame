@@ -31,6 +31,6 @@ namespace LuaC {
         static int setExit(lua_State *l);
         static int getName(lua_State *l);
     };
-};
+}
 
 #endif

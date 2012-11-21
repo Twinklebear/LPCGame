@@ -27,5 +27,6 @@ namespace LuaC {
         ///For writing to the debug log
         static int log(lua_State *l);
     };
-};
+}
+
 #endif

@@ -18,13 +18,12 @@ EntityManager::~EntityManager(){
 	mEntities.clear();
 }
 void EntityManager::Draw(){
+    //Weak camera ptr to pass to the entities
+    std::weak_ptr<Camera> c = mCamera;
 	for (std::shared_ptr<Entity> e : mEntities){
         if (e->Render()){
-            //Check for Ui/Non-Ui elements
-            if (e->IsUiElement())
-                e->Draw();
-		    else if (mCamera->InCamera(e->Box()))
-    			e->Draw(mCamera.get());
+            if (e->IsUiElement() || mCamera->InCamera(e->Box()))
+                e->Draw(c);
         }
 	}
 }
