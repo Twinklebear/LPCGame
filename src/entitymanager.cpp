@@ -19,11 +19,10 @@ EntityManager::~EntityManager(){
 }
 void EntityManager::Draw(){
     //Weak camera ptr to pass to the entities
-    std::weak_ptr<Camera> c = mCamera;
 	for (std::shared_ptr<Entity> e : mEntities){
         if (e->Render()){
             if (e->IsUiElement() || mCamera->InCamera(e->Box()))
-                e->Draw(c);
+                e->Draw(mCamera);
         }
 	}
 }
@@ -149,7 +148,7 @@ void EntityManager::HandleMouseEvent(const SDL_MouseMotionEvent &mouseEvent){
         //If it's an object in the scene we must bump the collision box into
         //window space to check against the window space mouse pos
 		else if (mCamera->InCamera(e->Box())){
-            Rectf box = Math::FromSceneSpace(mCamera.get(), e->Box());
+            Rectf box = Math::FromSceneSpace(mCamera, e->Box());
     		if (Math::CheckCollision(mousePos, box) && !e->GetMouseOver())
                 e->OnMouseEnter();
             else if (!Math::CheckCollision(mousePos, box) && e->GetMouseOver())

@@ -46,7 +46,7 @@ void EntityEditor::HandleMouseEvent(const SDL_MouseButtonEvent &mouseEvent){
 	//Place a tile on map
 	std::shared_ptr<MapEditor> mapEditor = mMapEditor.lock();
 	if (mapEditor && mTileBar){
-		Vector2f mousePos = Math::ToSceneSpace(mCamera.get(), Vector2f(tempEvt.x, tempEvt.y));
+		Vector2f mousePos = Math::ToSceneSpace(mCamera, Vector2f(tempEvt.x, tempEvt.y));
 		mapEditor->Insert(mousePos.x, mousePos.y, mTileBar->GetSelection());
 	}
 }

@@ -52,11 +52,13 @@ function Move(deltaT)
 end
 --Draw
 function Draw(camera)
-	if not entity:IsUiElement() then
-		LPC.Window.Draw(playerImg, LPC.Math.FromSceneSpace(camera, physics:Box()))
-	else
+	--if not entity:IsUiElement() then
+		--With the changes made in the math class to std::weak_ptr<Camera>
+		--We can no longer use the luabind library.
+		--LPC.Window.Draw(playerImg, LPC.Math.FromSceneSpace(camera, physics:Box()))
+	--else
 		LPC.Window.Draw(playerImg, physics:Box())
-	end
+	--end
 end
 --Update player animation
 function UpdateAnimation(direction)

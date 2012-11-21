@@ -47,7 +47,7 @@ std::string EditorState::Run(){
 
 		//RENDERING
 		Window::Clear();
-		mMapEditor->Draw(mCamera.get());
+		mMapEditor->Draw(mCamera);
 		mManager->Draw();
 
 		Window::Present();

@@ -1,7 +1,7 @@
 #ifndef MATH_H
 #define MATH_H
 
-#include <cmath>
+#include <memory>
 #include <luabind/luabind.hpp>
 #include "base.h"
 
@@ -9,7 +9,7 @@
 /**
 *  A math utility function class
 */
-class Math{
+class Math {
 public:
 	///Describes a direction
 	enum { UP, DOWN, LEFT, RIGHT};
@@ -85,28 +85,28 @@ public:
 	*  @param v The Vector2 to convert to scene space
 	*  @return The Vector2 transformed to scene space
 	*/
-	static Vector2f ToSceneSpace(const Camera *cam, const Vector2f &v);
+	static Vector2f ToSceneSpace(const std::weak_ptr<Camera> cam, const Vector2f &v);
 	/**
 	*  Transform a rect into scene space from window space
 	*  @param cam The camera/scene space to convert the vector to
 	*  @param r The Rect to convert to scene space
 	*  @return The Rect with its pos value transformed to scene space
 	*/
-	static Rectf ToSceneSpace(const Camera *cam, const Rectf &r);
+	static Rectf ToSceneSpace(const std::weak_ptr<Camera> cam, const Rectf &r);
 	/**
 	*  Transform a vector from scene space into window space
 	*  @param cam The camera/scene space to convert the vector to
 	*  @param v The Vector2 to convert to window space
 	*  @return The Vector2 transformed to window space
 	*/
-	static Vector2f FromSceneSpace(const Camera *cam, const Vector2f &v);
+	static Vector2f FromSceneSpace(const std::weak_ptr<Camera> cam, const Vector2f &v);
 	/**
 	*  Transform a rect from scene space to window space
 	*  @param cam The camera/scene space to convert the vector to
 	*  @param r The Rect to convert to window space
 	*  @return The Rect with its pos value converted to window space
 	*/
-	static Rectf FromSceneSpace(const Camera *cam, const Rectf &r);
+	static Rectf FromSceneSpace(const std::weak_ptr<Camera> cam, const Rectf &r);
 	/**
 	*  Register the Math class with the lua state
 	*  @param l The lua_State to register the module with

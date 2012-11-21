@@ -38,5 +38,8 @@ function Move(deltaT)
 end
 --Draw
 function Draw(camera)
-	LPC.Window.Draw(img, LPC.Math.FromSceneSpace(camera, physics:Box()))
+	--With the changes made in the math class to std::weak_ptr<Camera>
+	--We can no longer use the luabind library.
+	--LPC.Window.Draw(img, LPC.Math.FromSceneSpace(camera, physics:Box()))
+	LPC.Window.Draw(img, physics:Box())
 end

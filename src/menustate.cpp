@@ -21,7 +21,7 @@ std::string MenuState::Run(){
     //Call the script's Init
     State::Init();
 	//Setup the background destination
-	Rectf bkgndPos = Math::FromSceneSpace(mCamera.get(), mCamera->SceneBox());
+	Rectf bkgndPos = Math::FromSceneSpace(mCamera, mCamera->SceneBox());
 
     //testing stuff
     bool made = false;

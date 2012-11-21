@@ -10,7 +10,6 @@ require "Text"
 require "Color"
 require "StateManager"
 ]]
---Testing passing userdata back and forth
 require "TestEntity"
 require "TestPhysics"
 require "TestRectf"

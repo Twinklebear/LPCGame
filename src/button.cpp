@@ -21,8 +21,7 @@ Button::~Button(){}
 void Button::Draw(std::weak_ptr<Camera> camera){
 	Rectf pos = mPhysics->Box();
 	if (!mUiElement && !camera.expired()){
-        auto cam = camera.lock();
-		//pos = Math::FromSceneSpace(cam, pos);
+		pos = Math::FromSceneSpace(camera, pos);
     }
 	//Apply appropriate clip for button's state
 	Recti clip;

@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <set>
+#include <memory>
 #include "../externals/json/json.h"
 #include "base.h"
 #include "image.h"
@@ -23,7 +24,7 @@ public:
 	*  Draw the tiles on the screen, relative to the camera
 	*  @param cam The camera so we can get the offsets/check if things are in camera
 	*/
-	void Draw(Camera *cam = nullptr);
+	void Draw(std::weak_ptr<Camera> cam);
 	/**
 	*  Generate a stress testing map with a specified number of tiles
 	*  @param val The Json::Value to load the stress test from
@@ -78,6 +79,7 @@ protected:
 	Recti mBox;
 	std::shared_ptr<TileSet> mTileSet;
     std::string mFile;
+    //How does this help? It's a pointer to the same camera, so it'll always be equal
 	Camera *lastCamera;
 	std::set<int> indices;
 };

@@ -51,7 +51,7 @@ std::string GameState::Run(){
 
 		//Rendering
 		Window::Clear();
-		mMap->Draw(mCamera.get());
+		mMap->Draw(mCamera);
 		mManager->Draw();
 
 		Window::Present();

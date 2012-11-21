@@ -15,13 +15,15 @@ Map::Map() : mFile(""), lastCamera(nullptr){
 Map::~Map(){
 	mTiles.clear();
 }
-void Map::Draw(Camera *cam){
+void Map::Draw(std::weak_ptr<Camera> cam){
 	//Use the camera box to get the indices of all the tiles in visible in camera
-	if (cam != nullptr){
-		if (lastCamera == nullptr || *lastCamera != *cam){
-			indices = CalculateIndex(cam->Box());
-			lastCamera = cam;
-		}
+	if (!cam.expired()){
+        auto cameraShared = cam.lock();
+        //How does this help? It's a pointer to the same camera, so it'll always be equal
+		//if (lastCamera == nullptr || *lastCamera != cameraShared.get()){
+			indices = CalculateIndex(cameraShared->Box());
+		//	lastCamera = cam;
+		//}
 		for (int i : indices){
 			if (i < mTiles.size()){
 				Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());

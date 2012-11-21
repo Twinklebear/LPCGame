@@ -1,5 +1,8 @@
+#include <cmath>
+#include <memory>
 #include <luabind/luabind.hpp>
 #include "base.h"
+#include "debug.h"
 #include "camera.h"
 #include "math.h"
 
@@ -87,16 +90,26 @@ bool Math::CheckCollision(const Vector2f &p, const Rectf &r){
 		return true;
 	return false;
 }
-Vector2f Math::ToSceneSpace(const Camera *cam, const Vector2f &v){
-	return v + cam->Offset();
+Vector2f Math::ToSceneSpace(const std::weak_ptr<Camera> cam, const Vector2f &v){
+    if (!cam.expired()){
+        auto c = cam.lock();
+        return v + c->Offset();
+    }
+    Debug::Log("Math::ToSceneSpace vector error: Camera expired");
+    return v;
 }
-Rectf Math::ToSceneSpace(const Camera *cam, const Rectf &r){
+Rectf Math::ToSceneSpace(const std::weak_ptr<Camera> cam, const Rectf &r){
 	return Rectf(ToSceneSpace(cam, r.pos), r.w, r.h);
 }
-Vector2f Math::FromSceneSpace(const Camera *cam, const Vector2f &v){
-	return v - cam->Offset();
+Vector2f Math::FromSceneSpace(const std::weak_ptr<Camera> cam, const Vector2f &v){
+	if (!cam.expired()){
+        auto c = cam.lock();
+        return v - c->Offset();
+    }
+    Debug::Log("Math::FromSceneSpace vector error: Camera expired");
+    return v;
 }
-Rectf Math::FromSceneSpace(const Camera *cam, const Rectf &r){
+Rectf Math::FromSceneSpace(const std::weak_ptr<Camera> cam, const Rectf &r){
 	return Rectf(FromSceneSpace(cam, r.pos), r.w, r.h);
 }
 int Math::RegisterLua(lua_State *l){
@@ -114,10 +127,10 @@ int Math::RegisterLua(lua_State *l){
 				def("RectNearRect", &Math::RectNearRect),
 				def("CheckCollision", (bool (*)(const Rectf&, const Rectf&))&Math::CheckCollision),
 				def("CheckCollision", (bool (*)(const Vector2f&, const Rectf&))&Math::CheckCollision),
-				def("ToSceneSpace", (Vector2f (*)(const Camera*, const Vector2f&))&Math::ToSceneSpace),
-				def("ToSceneSpace", (Rectf (*)(const Camera*, const Rectf&))&Math::ToSceneSpace),
-				def("FromSceneSpace", (Vector2f (*)(const Camera*, const Vector2f&))&Math::FromSceneSpace),
-				def("FromSceneSpace", (Rectf (*)(const Camera*, const Rectf&))&Math::FromSceneSpace)
+				def("ToSceneSpace", (Vector2f (*)(const std::weak_ptr<Camera>, const Vector2f&))&Math::ToSceneSpace),
+				def("ToSceneSpace", (Rectf (*)(const std::weak_ptr<Camera>, const Rectf&))&Math::ToSceneSpace),
+				def("FromSceneSpace", (Vector2f (*)(const std::weak_ptr<Camera>, const Vector2f&))&Math::FromSceneSpace),
+				def("FromSceneSpace", (Rectf (*)(const std::weak_ptr<Camera>, const Rectf&))&Math::FromSceneSpace)
 			]
 			.enum_("Dir")[
 				value("UP", UP),
