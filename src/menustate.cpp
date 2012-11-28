@@ -66,6 +66,8 @@ std::string MenuState::Run(){
 
 		//refresh window
 		Window::Present();
+
+        Window::ShowAvgFps(false);
 	}
 	return mExitCode;
 }

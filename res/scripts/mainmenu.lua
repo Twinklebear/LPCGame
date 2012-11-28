@@ -10,6 +10,7 @@ require "TestPhysics"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
+	--[[
 	quitButton = State.getEntity("quitbutton")
 	print ("Main menu looked up entity: " .. quitButton:name())
 	print ("Getting physics component")
@@ -18,6 +19,7 @@ function Init()
 	print ("quitbutton position: " .. qBPhys:position())
 	quitButton:callFunction("TestCall", 0, quitButton, qBPhys)
 	quitButton:release()
+	]]
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"

@@ -17,6 +17,8 @@ std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> Window::mWindow
 	= std::unique_ptr<SDL_Window, void (*)(SDL_Window*)>(nullptr, SDL_DestroyWindow);
 std::unique_ptr<SDL_Renderer, void (*)(SDL_Renderer*)> Window::mRenderer
 	= std::unique_ptr<SDL_Renderer, void (*)(SDL_Renderer*)>(nullptr, SDL_DestroyRenderer);
+Timer Window::mTimer;
+int Window::mFrame;
 //other static members
 Recti Window::mBox;
 int Window::SCREEN_WIDTH;
@@ -47,6 +49,8 @@ void Window::Init(std::string title){
 		throw std::runtime_error("Failed to start renderer");
 	//initialize the window box
 	mBox.Set(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+    mTimer.Start();
 }
 void Window::Quit(){
 	TTF_Quit();
@@ -142,6 +146,21 @@ Recti Window::Box(){
 	//Update the box to match the current window w/h
 	SDL_GetWindowSize(mWindow.get(), &mBox.w, &mBox.h);
 	return mBox;
+}
+void Window::ShowAvgFps(bool log){
+    ++mFrame;
+    if (mTimer.Ticks() > 5000){
+        float fps = mFrame / (mTimer.Ticks() / 5000.0f);
+        std::stringstream ss;
+        ss << "Average FPS: " << fps;
+        if (log)
+            Debug::Log(ss.str());
+        else
+            std::cout << ss.str() << std::endl;
+
+        mTimer.Start();
+        mFrame = 0;
+    }
 }
 int Window::RegisterLua(lua_State *l){
 	using namespace luabind;

@@ -55,6 +55,8 @@ std::string GameState::Run(){
 		mManager->Draw();
 
 		Window::Present();
+
+        Window::ShowAvgFps(false);
 		
 		//Wait for notification
 		//std::unique_lock<std::mutex> lock(m);

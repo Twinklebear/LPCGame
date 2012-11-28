@@ -11,6 +11,7 @@
 #include "rect.h"
 #include "text.h"
 #include "color.h"
+#include "timer.h"
 
 ///Handles the window
 /**
@@ -140,10 +141,18 @@ public:
 	*  @param l The lua_State to register the module with
 	*/
 	static int RegisterLua(lua_State *l);
+    /**
+    *  Print the average framerate. To limit io action, will only print every 5 seconds
+    *  @param log If we want to print to the debug log or not, True for debug log
+    */
+    static void ShowAvgFps(bool log);
 
 private:
 	static std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> mWindow;
 	static std::unique_ptr<SDL_Renderer, void (*)(SDL_Renderer*)> mRenderer;
+    ///For measuring average FPS
+    static Timer mTimer;
+    static int mFrame;
 	static Recti mBox;
 	static int SCREEN_WIDTH;
 	static int SCREEN_HEIGHT;

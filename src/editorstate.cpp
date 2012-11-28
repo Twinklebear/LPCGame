@@ -51,6 +51,8 @@ std::string EditorState::Run(){
 		mManager->Draw();
 
 		Window::Present();
+
+        Window::ShowAvgFps(false);
 	}
 	return mExitCode;
 }

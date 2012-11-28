@@ -36,8 +36,8 @@ end
 function Update()
 end
 function Draw(camera)
-	print ("Camera centering: " .. camera:centering())
-	print ("Camera offset: " .. camera:offset())
+	--print ("Camera centering: " .. camera:centering())
+	--print ("Camera offset: " .. camera:offset())
 	--LPC.Window.Draw(img, LPC.Math.FromSceneSpace(camera, box))
 	--LPC.Window.Draw(text, LPC.Math.FromSceneSpace(camera, textBox))
 end
