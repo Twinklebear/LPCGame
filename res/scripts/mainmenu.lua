@@ -7,6 +7,7 @@ require "TestVector2f"
 require "TestEntity"
 require "TestRectf"
 require "TestPhysics"
+require "TestMath"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
@@ -20,6 +21,11 @@ function Init()
 	quitButton:callFunction("TestCall", 0, quitButton, qBPhys)
 	quitButton:release()
 	]]
+	vA = Vector2f(0, 0)
+	vB = Vector2f(1, 0)
+	dist = Math.distance(vA, vB)
+	print ("distance betw vA and vB:  " .. dist)
+	print ("Math.LEFT: " .. Math.LEFT)
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"

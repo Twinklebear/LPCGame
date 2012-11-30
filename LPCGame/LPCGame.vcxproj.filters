@@ -153,6 +153,9 @@
     <ClInclude Include="..\luac\luaccamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\luac\luacmath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\button.cpp">
@@ -273,6 +276,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\luac\luaccamera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\luac\luacmath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

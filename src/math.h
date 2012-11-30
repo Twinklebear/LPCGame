@@ -12,7 +12,7 @@
 class Math {
 public:
 	///Describes a direction
-	enum { UP, DOWN, LEFT, RIGHT};
+	enum { UP, DOWN, LEFT, RIGHT };
 	/**
 	*  Takes two vectors (points) and returns the distance between them
 	*  @param a First point
