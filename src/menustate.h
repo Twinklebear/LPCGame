@@ -12,8 +12,6 @@
 */
 class MenuState : public State{
 public:
-	MenuState();
-	~MenuState();
 	/**
 	*  Run the state
 	*  @return The next state to run, returning quit exits program

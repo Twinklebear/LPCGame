@@ -8,6 +8,7 @@ require "TestEntity"
 require "TestRectf"
 require "TestPhysics"
 require "TestMath"
+require "TestCamera"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
@@ -22,10 +23,53 @@ function Init()
 	quitButton:release()
 	]]
 	vA = Vector2f(0, 0)
-	vB = Vector2f(1, 0)
+	vB = Vector2f(0.5, 0.5)
 	dist = Math.distance(vA, vB)
 	print ("distance betw vA and vB:  " .. dist)
-	print ("Math.LEFT: " .. Math.LEFT)
+	
+	clamped = Math.clamp(1, 0, 5)
+	print ("clamped: " .. clamped)
+
+	vC = Vector2f(1, 1)
+	vCUnit = Math.normalize(vC)
+	print ("vCUnit: " .. vCUnit)
+	print ("vCUnit magnitude: " .. Math.magnitude(vCUnit))
+
+	vLerp = Math.lerp(vA, vB, 0.5)
+	print ("vLerp: " .. vLerp)
+
+	vForw = Math.forwardVector(180.0)
+	print ("vForw: " .. vForw)
+
+	rA = Rectf(0, 0, 1, 1)
+	rB = Rectf(0, 0, 1, 1)
+	side = Math.rectNearRect(rA, rB, 0)
+	print ("Near side: " .. side)
+	if side == Math.RIGHT then
+		print ("rA right side is nearest rB")
+	end
+
+	rectColl = Math.checkCollision(rA, rB)
+	if rectColl then
+		print "rA and rB are colliding!"
+	else
+		print "rA and rB aren't colliding"
+	end
+
+	print ("rA: " .. rA)
+	print ("vB: " .. vB)
+	vectColl = Math.checkCollision(vB, rA)
+	if vectColl then
+		print "vB is inside rA"
+	else
+		print "vB is outside rA"
+	end
+
+	print ("rA to scene: " .. Math.toSceneSpace(mCamera, rA))
+	print ("rA from scene" .. Math.fromSceneSpace(mCamera, rA))
+
+	print ("vA to scene: " .. Math.toSceneSpace(mCamera, vA))
+	print ("vA from scene: " .. Math.fromSceneSpace(mCamera, vA))
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"

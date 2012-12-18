@@ -108,8 +108,7 @@ int LuaC::Vector2fLib::addition(lua_State *l){
     Vector2f *v1 = checkVector2f(l, 1);
     Vector2f *v2 = checkVector2f(l, 2);
     //Create the resultant vector
-    Vector2f *res = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
-    addVector2f(l, -1);
+    Vector2f *res = AllocateVector2f(l);
     res->Set(*v1 + *v2);
     return 1;
 }
@@ -118,10 +117,8 @@ int LuaC::Vector2fLib::subtraction(lua_State *l){
     Vector2f *v1 = checkVector2f(l, 1);
     Vector2f *v2 = checkVector2f(l, 2);
     //Create the resultant vector
-    Vector2f *res = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
-    addVector2f(l, -1);
+    Vector2f *res = AllocateVector2f(l);
     res->Set(*v1 - *v2);
-    return 1;
     return 1;
 }
 int LuaC::Vector2fLib::multiplication(lua_State *l){
@@ -142,11 +139,10 @@ int LuaC::Vector2fLib::multiplication(lua_State *l){
         Vector2f *v1 = checkVector2f(l, 1);
         Vector2f *v2 = checkVector2f(l, 2);
         //Create the result
-        Vector2f *res = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
+        Vector2f *res = AllocateVector2f(l);
         res->Set((*v1) * (*v2));
     }
     //Add the metatable to the resultant vector
-    addVector2f(l, -1);
     return 1;
 }
 void LuaC::Vector2fLib::multWithFloat(lua_State *l, int vIdx, int fIdx){
@@ -154,7 +150,7 @@ void LuaC::Vector2fLib::multWithFloat(lua_State *l, int vIdx, int fIdx){
     Vector2f *v = checkVector2f(l, vIdx);
     float num = luaL_checknumber(l, fIdx);
     //Create the result
-    Vector2f *res = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
+    Vector2f *res = AllocateVector2f(l);
     res->Set((*v) * num);
 }
 int LuaC::Vector2fLib::division(lua_State *l){
@@ -168,7 +164,7 @@ int LuaC::Vector2fLib::division(lua_State *l){
         Vector2f *v = checkVector2f(l, 1);
         float num = luaL_checknumber(l, 2);
         //Create the result
-        Vector2f *res = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
+        Vector2f *res = AllocateVector2f(l);
         res->Set((*v) / num);
     }
     //Case 2:
@@ -176,10 +172,9 @@ int LuaC::Vector2fLib::division(lua_State *l){
         Vector2f *v1 = checkVector2f(l, 1);
         Vector2f *v2 = checkVector2f(l, 2);
         //Create the result
-        Vector2f *res = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
+        Vector2f *res = AllocateVector2f(l);
         res->Set((*v1) / (*v2));
     }
-    addVector2f(l, -1);
     return 1;
 }
 int LuaC::Vector2fLib::toString(lua_State *l){

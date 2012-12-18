@@ -9,15 +9,18 @@
 #include "menustate.h"
 #include "statemanager.h"
 
-MenuState::MenuState(){
-}
-MenuState::~MenuState(){
-}
+#include "luac/luaccamera.h"
+
 std::string MenuState::Run(){
 	//Unset events from earlier
 	Input::Clear();
 	//Clean up any previous exit settings
 	UnsetExit();
+
+    //Push in the camera for debug testing only
+    LuaC::CameraLib::PushCamera(&std::weak_ptr<Camera>(mCamera), mScript.Get());
+    lua_setglobal(mScript.Get(), "mCamera");
+    
     //Call the script's Init
     State::Init();
 	//Setup the background destination
