@@ -42,22 +42,19 @@ const luaL_reg LuaC::RectfLib::luaRectfLib[] = {
 int LuaC::RectfLib::newRectf(lua_State *l){
     //Stack: table (Rectf), params if desired
     bool initVals = (lua_gettop(l) == 5);
-    Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
+    Rectf *r = AllocateRectf(l);
     if (initVals)
         r->Set(luaL_checknumber(l, 2), luaL_checknumber(l, 3),
             luaL_checknumber(l, 4), luaL_checknumber(l, 5));
     else
         r->Set(0, 0, 0, 0);
-    addRectf(l, -1);
     return 1;
 }
 int LuaC::RectfLib::getPos(lua_State *l){
     //Stack: userdata (Rectf)
     Rectf *r = checkRectf(l, 1);
     //Make a new vector2f
-    Vector2f *v = (Vector2f*)lua_newuserdata(l, sizeof(Vector2f));
-    //Register the vector with the metatable
-    Vector2fLib::addVector2f(l, -1);
+    Vector2f *v = Vector2fLib::AllocateVector2f(l);
     v->Set(r->pos);
     return 1;
 }
@@ -89,6 +86,7 @@ int LuaC::RectfLib::newIndex(lua_State *l){
     //Stack: udata, string of index to set, val to set
     //Get the index to set "x", "y", so on and then remove it
     std::string index = luaL_checkstring(l, 2);
+    //TODO: Don't use this remove
     lua_remove(l, 2);
     //Stack: udata, val to set
     switch (index.at(0)){

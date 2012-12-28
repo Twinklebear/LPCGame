@@ -25,34 +25,25 @@ int LuaC::StateLib::getEntity(lua_State *l){
     //Get the active state's entitymanager and try to lookup the entity
     std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
     std::shared_ptr<Entity> entity = manager->GetEntity(name);
-    std::shared_ptr<Entity> *luaE;
     if (entity == nullptr){
         std::string err = "StateLib::getEntity: Failed to find Entity: " + name;
         Debug::Log(err);
-        lua_pushstring(l, err.c_str());
+        lua_pushnil(l);
     }            
-    else {
-        //Make a new entity on the state
-        std::cout << "Allocating new entity shared_ptr" << std::endl;
-        luaE = EntityLib::AllocateEntity(l);
-        std::cout << "Allocated...\nSetting equal to looked up entity: " << entity->Name() << std::endl;
-        (*luaE) = entity;
-    }
-    std::cout << "Returning" << std::endl;
-    //Stack: entity name, userdata (Entity) or error string
+    else
+        EntityLib::PushEntity(&entity, l);
+    //Stack: entity name, userdata (Entity) or nil
     return 1;
 }
 int LuaC::StateLib::setExit(lua_State *l){
     //Stack: statename to change too
     std::string stateName = luaL_checkstring(l, 1);
-    //std::shared_ptr<State> state = StateManager::GetActiveState();
     std::shared_ptr<State> state = StateManager::GetActiveState();
     state->SetExit(stateName);
     return 0;
 }
 int LuaC::StateLib::getName(lua_State *l){
     //Stack: empty
-    //std::shared_ptr<State> state = StateManager::GetActiveState();
     std::shared_ptr<State> state = StateManager::GetActiveState();
     lua_pushstring(l, state->Name().c_str());
     //Stack: state name

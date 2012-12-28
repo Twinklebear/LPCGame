@@ -23,22 +23,10 @@ void LuaC::EntityLib::addEntity(lua_State *l, int i){
 std::shared_ptr<Entity>* LuaC::EntityLib::checkEntity(lua_State *l, int i ){
     return (std::shared_ptr<Entity>*)luaL_checkudata(l, i, entityMeta.c_str());
 }
-/**
-*  Push a Entity onto the stack of some Lua state
-*  @param entity The Entity to push onto the stack
-*  @param l The Lua State to push onto
-*/
 void LuaC::EntityLib::PushEntity(std::shared_ptr<Entity> *entity, lua_State *l){
     std::shared_ptr<Entity> *e = AllocateEntity(l);
     *e = *entity;
 }
-/**
-*  Copy a Entity at some index in one Lua state's stack
-*  to the top of some other state's stack
-*  @param from The Lua state to copy the Entity from
-*  @param idx The index in the stack of from of the Entity
-*  @param too The Lua state to copy the Vector2f into
-*/
 void LuaC::EntityLib::CopyEntity(lua_State *from, int idx, lua_State *too){
     std::shared_ptr<Entity> *e = checkEntity(from, idx);
     PushEntity(e, too);
@@ -143,60 +131,32 @@ int LuaC::EntityLib::release(lua_State *l){
 int LuaC::EntityLib::getPhysics(lua_State *l){
     //Stack: udata (Entity)
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    if (e == nullptr){
-        Debug::Log("EntityLib::physics Error: Could not lock entity");
-        lua_pushnil(l);
-    }
-    else {
-        //Make a new Physics userdata
-        std::weak_ptr<Physics> *p = PhysicsLib::AllocatePhysics(l);
-        *p = (*e)->GetPhysicsWeakPtr();
-    }
+    //Make a new Physics userdata
+    std::weak_ptr<Physics> *p = PhysicsLib::AllocatePhysics(l);
+    *p = (*e)->GetPhysicsWeakPtr();
     return 1;
 }
 int LuaC::EntityLib::getBox(lua_State *l){
     //Stack: udata (Entity)
-    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
-    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    if (e == nullptr){
-        Debug::Log("EntityLib::box Error: Could not lock entity");
-        lua_pushnil(l);
-    }
-    else {
-        //Make a new Rectf
-        Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
-        //Give it the Rectf metatable
-        RectfLib::addRectf(l, -1);
-        //Is this correct?
-        *r = (*e)->Box();
-    }
+    //Make a new Rectf
+    Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
+    //Give it the Rectf metatable
+    RectfLib::addRectf(l, -1);
+    //Is this correct?
+    *r = (*e)->Box();
     return 1;
 }
 int LuaC::EntityLib::getTag(lua_State *l){
     //Stack: udata (Entity)
-    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
-    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    if (e == nullptr){
-        Debug::Log("EntityLib:tag Error: Could not lock entity");
-        lua_pushnil(l);
-    }
-    else 
-        lua_pushstring(l, (*e)->Tag().c_str());
+    lua_pushstring(l, (*e)->Tag().c_str());
     return 1;
 }
 int LuaC::EntityLib::getName(lua_State *l){
     //Stack: udata (Entity)
-    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
-    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    if (e == nullptr){
-        Debug::Log("EntityLib:name Error: Could not lock entity");
-        lua_pushnil(l);
-    }
-    else
-        lua_pushstring(l, (*e)->Name().c_str());
+    lua_pushstring(l, (*e)->Name().c_str());
     return 1;
 }
 int LuaC::EntityLib::newIndex(lua_State *l){
@@ -212,12 +172,7 @@ int LuaC::EntityLib::newIndex(lua_State *l){
 }
 int LuaC::EntityLib::setTag(lua_State *l, int i){
     //Stack: udata, ??? with tag @ i
-    //std::weak_ptr<Entity> *weak = checkEntity(l, 1);
-    //std::shared_ptr<Entity> e = weak->lock();
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    if (e == nullptr){
-        Debug::Log("EntityLib:setTag Error: Could not lock entity");
-    }
     std::string tag = luaL_checkstring(l, i);
     (*e)->SetTag(tag);
     return 0;
