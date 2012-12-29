@@ -16,6 +16,7 @@
 #include "luac/luacstate.h"
 #include "luac/luaccamera.h"
 #include "luac/luacmath.h"
+#include "luac/luacimage.h"
 #include "luacscript.h"
 
 const LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::sLuaLibs = LuaC::LuaScriptLib::CreateLibMap();
@@ -242,6 +243,7 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     map["TestLuaScript"] = &LuaScriptLib::luaopen_luascript;
     map["TestCamera"]    = &CameraLib::luaopen_camera;
     map["TestMath"]      = &MathLib::luaopen_math;
+    map["TestImage"]     = &ImageLib::luaopen_image;
     return map;
 }
 LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
@@ -253,6 +255,7 @@ LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     map[physicsClass]  = &PhysicsLib::CopyPhysics;
     map[entityClass]   = &EntityLib::CopyEntity;
     map[cameraClass]   = &CameraLib::CopyCamera;
+    map[imageClass]    = &ImageLib::CopyImage;
     return map;
 }
 const luaL_reg LuaC::LuaScriptLib::luaScriptLib[] = {

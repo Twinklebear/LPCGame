@@ -45,18 +45,18 @@ namespace LuaC {
         */
         static void PushEntity(std::shared_ptr<Entity> *entity, lua_State *l);
         /**
-        *  Copy a Entity at some index in one Lua state's stack
+        *  Copy an Entity at some index in one Lua state's stack
         *  to the top of some other state's stack
         *  @param from The Lua state to copy the Entity from
         *  @param idx The index in the stack of from of the Entity
-        *  @param too The Lua state to copy the Vector2f into
+        *  @param too The Lua state to copy the Entity into
         */
         static void CopyEntity(lua_State *from, int idx, lua_State *too);
         /**
         *  Allocate memory for an Entity on some lua_State and assign it the 
         *  Entity metatable
         *  @param l The Lua state to allocate memory on
-        *  @return Pointer to the allocated Vector2f
+        *  @return Pointer to the allocated Entity
         */
         static std::shared_ptr<Entity>* AllocateEntity(lua_State *l);
 

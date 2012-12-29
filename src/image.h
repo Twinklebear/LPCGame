@@ -6,7 +6,7 @@
 #include <memory>
 #include <SDL.h>
 #include <luabind/luabind.hpp>
-#include "../externals/json/json.h"
+#include <externals/json/json.h>
 #include "rect.h"
 #include "vectors.h"
 
@@ -57,7 +57,7 @@ public:
 	*  @param clipNum The clip number to get the box of
     *  @return The Recti corresponding to the clip box
 	*/
-	Recti Clip(int clipNun) const;
+	Recti Clip(int clipNum) const;
     /**
     *  Get the clip of mActiveClip
     *  @return The Recti of the active clip
