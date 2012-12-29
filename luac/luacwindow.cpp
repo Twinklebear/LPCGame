@@ -62,6 +62,14 @@ void LuaC::WindowLib::DrawImage(lua_State *l){
         Rectf *dst = RectfLib::checkRectf(l, 2);
         Window::Draw(img->get(), *dst);
     }
+    //Case 2:
+    else if (lua_gettop(l) == 3){
+        Rectf *dst = RectfLib::checkRectf(l, 2);
+        Rectf *clipf = RectfLib::checkRectf(l, 3);
+        Recti clip = *clipf;
+        Window::Draw(img->get(), *dst, &clip);
+    }
+
 }
 void LuaC::WindowLib::DrawAnimatedImage(lua_State *l){
 
