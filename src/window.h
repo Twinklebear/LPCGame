@@ -150,7 +150,7 @@ public:
 private:
 	static std::unique_ptr<SDL_Window, void (*)(SDL_Window*)> mWindow;
 	static std::unique_ptr<SDL_Renderer, void (*)(SDL_Renderer*)> mRenderer;
-    ///For measuring average FPS
+    ///Timer and frame counter for measuring average FPS
     static Timer mTimer;
     static int mFrame;
 	static Recti mBox;

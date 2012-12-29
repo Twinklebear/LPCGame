@@ -10,6 +10,8 @@ require "TestPhysics"
 require "TestMath"
 require "TestCamera"
 require "TestImage"
+require "TestWindow"
+require "TestInput"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
@@ -18,12 +20,15 @@ function Init()
 	print ("# of clips: " .. img:clipCount())
 	print ("rect of clip 0: " .. img:clip(0))
 	print ("setting active clip to 1")
-	img:setActiveClip(1)
+	img:setActiveClip(0)
 	print ("size of active clip: " .. img:clip())
 	w, h = img:size()
 	print ("Image size w, h: " .. w .. ", " .. h)
-	print ("Releasing img")
-	img:release()
+	--print ("Releasing img")
+	--img:release()
+	drawPos = Rectf(0, 0, 32, 32)
+
+	print ("Window box size: " .. Window.box())
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"
@@ -34,6 +39,12 @@ function LogicUpdate()
 		print "QUITTING"
 		State.changeScene("quit")
 	end
+	if Input.keyDown(Input.KEY_2) then
+		img:setActiveClip(1)
+	elseif Input.keyDown(Input.KEY_3) then
+		img:setActiveClip(2)
+	end
 end
 function RenderUpdate()
+	Window.draw(img, drawPos)
 end

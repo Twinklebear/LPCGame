@@ -3,7 +3,6 @@
 
 #include <string>
 #include <lua.hpp>
-#include "src/math.h"
 
 ///A namespace for storing the Lua C API code
 /**
