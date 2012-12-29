@@ -20,6 +20,8 @@ function Init()
 	print ("setting active clip to 1")
 	img:setActiveClip(1)
 	print ("size of active clip: " .. img:clip())
+	w, h = img:size()
+	print ("Image size w, h: " .. w .. ", " .. h)
 	print ("Releasing img")
 	img:release()
 end
