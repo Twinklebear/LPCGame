@@ -25,6 +25,7 @@
     <ClInclude Include="..\luac\luacscript.h" />
     <ClInclude Include="..\luac\luacstate.h" />
     <ClInclude Include="..\luac\luactimer.h" />
+    <ClInclude Include="..\luac\luacudata.h" />
     <ClInclude Include="..\luac\luacvector2f.h" />
     <ClInclude Include="..\luac\luacwindow.h" />
     <ClInclude Include="..\src\animatedimage.h" />

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <lua.hpp>
+#include "luacudata.h"
 #include "src/vectors.h"
 
 ///A namespace for storing the Lua C API code
@@ -15,6 +16,9 @@ namespace LuaC {
     const std::string vector2fMeta = "LPC.Vector2f";
     ///The Vector2f class/type name
     const std::string vector2fClass = "Vector2f";
+    ///Define Vector2f specialization for UdataLib
+    template<>
+    const std::string UdataLib<Vector2f>::mMetaTable = vector2fMeta;
     /**
     *  The Lua library for the Vector2f class
     */
