@@ -21,6 +21,8 @@ namespace LuaC {
         static int luaopen_window(lua_State *l);
 
     private:
+        ///Expose the SDL_Flip enum
+        static void openFlipEnum(lua_State *l);
         ///The Lua function library
         static const struct luaL_reg luaWindowLib[];
         /**

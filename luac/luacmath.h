@@ -21,10 +21,10 @@ namespace LuaC {
         static int luaopen_math(lua_State *l);
 
     private:
-        ///The Lua function library
-        static const struct luaL_reg luaMathLib[];
         ///Expose the direction enum
         static void openDirEnum(lua_State *l);
+        ///The Lua function library
+        static const struct luaL_reg luaMathLib[];
         //The various library functions
         static int distance(lua_State *l);
         static int clamp(lua_State *l);

@@ -1,4 +1,5 @@
 #include <string>
+#include <SDL.h>
 #include <lua.hpp>
 #include "src/debug.h"
 #include "src/image.h"
@@ -15,9 +16,18 @@ int LuaC::WindowLib::luaopen_window(lua_State *l){
     //Stack: lib name
     //Register the library as global table "Window"
     luaL_register(l, windowClass.c_str(), luaWindowLib);
+    openFlipEnum(l);
     return 0;
 }
-///The Lua function library
+void LuaC::WindowLib::openFlipEnum(lua_State *l){
+    //Stack: lib name, table
+    lua_pushinteger(l, SDL_FLIP_NONE);
+    lua_setfield(l, -2, "FLIP_NONE");
+    lua_pushinteger(l, SDL_FLIP_HORIZONTAL);
+    lua_setfield(l, -2, "FLIP_HORIZONTAL");
+    lua_pushinteger(l, SDL_FLIP_VERTICAL);
+    lua_setfield(l, -2, "FLIP_VERTICAL");
+}
 const struct luaL_reg LuaC::WindowLib::luaWindowLib[] = {
     { "draw", draw },
     { "box", getBox },
@@ -47,7 +57,6 @@ int LuaC::WindowLib::getBox(lua_State *l){
     RectfLib::PushRectf(&r, l);
     return 1;
 }
-///The functions called when resolving draw parameters
 void LuaC::WindowLib::DrawImage(lua_State *l){
     /**
     *  3 Possible stacks:
@@ -69,7 +78,15 @@ void LuaC::WindowLib::DrawImage(lua_State *l){
         Recti clip = *clipf;
         Window::Draw(img->get(), *dst, &clip);
     }
-
+    else if (lua_gettop(l) == 6){
+        Rectf *dst = RectfLib::checkRectf(l, 2);
+        Rectf *clipf = RectfLib::checkRectf(l, 3);
+        Recti clip = *clipf;
+        float rotation = luaL_checknumber(l, 4);
+        Vector2f *pivot = Vector2fLib::checkVector2f(l, 5);
+        int flip = luaL_checkint(l, 6);
+        Window::Draw(img->get(), *dst, &clip, rotation, *pivot, flip);
+    }
 }
 void LuaC::WindowLib::DrawAnimatedImage(lua_State *l){
 

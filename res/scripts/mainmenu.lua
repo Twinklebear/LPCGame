@@ -27,6 +27,10 @@ function Init()
 	--print ("Releasing img")
 	--img:release()
 	drawPos = Rectf(0, 0, 32, 32)
+	drawPos2 = Rectf(32, 0, 32, 32)
+	drawPos3 = Rectf(32, 40, 32, 32)
+	pivot = Vector2f(0, 0)
+	rotation = 0
 
 	print ("Window box size: " .. Window.box())
 end
@@ -39,12 +43,26 @@ function LogicUpdate()
 		print "QUITTING"
 		State.changeScene("quit")
 	end
+	
 	if Input.keyDown(Input.KEY_2) then
-		img:setActiveClip(1)
+		img:setActiveClip(0)
 	elseif Input.keyDown(Input.KEY_3) then
-		img:setActiveClip(2)
+		img:setActiveClip(1)
+	end
+
+	if Input.keyDown(Input.KEY_A) then
+		rotation = rotation - 2
+	elseif Input.keyDown(Input.KEY_D) then
+		rotation = rotation + 2
+	end
+	if rotation < 0 then
+		rotation = 360 + rotation
+	elseif rotation > 360 then
+		rotation = 360 - rotation
 	end
 end
 function RenderUpdate()
 	Window.draw(img, drawPos)
+	Window.draw(img, drawPos2, img:clip(2))
+	Window.draw(img, drawPos3, img:clip(5), rotation, pivot, Window.FLIP_NONE)
 end

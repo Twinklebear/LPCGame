@@ -16,6 +16,17 @@ int LuaC::MathLib::luaopen_math(lua_State *l){
     openDirEnum(l);
     return 0;
 }
+void LuaC::MathLib::openDirEnum(lua_State *l){
+    //Stack: lib name, table
+    lua_pushinteger(l, Math::UP);
+    lua_setfield(l, -2, "UP");
+    lua_pushinteger(l, Math::DOWN);
+    lua_setfield(l, -2, "DOWN");
+    lua_pushinteger(l, Math::LEFT);
+    lua_setfield(l, -2, "LEFT");
+    lua_pushinteger(l, Math::RIGHT);
+    lua_setfield(l, -2, "RIGHT");
+}
 const struct luaL_reg LuaC::MathLib::luaMathLib[] = {
     { "distance", distance },
     { "clamp", clamp },
@@ -29,17 +40,6 @@ const struct luaL_reg LuaC::MathLib::luaMathLib[] = {
     { "fromSceneSpace", fromSceneSpace },
     { NULL, NULL }
 };
-void LuaC::MathLib::openDirEnum(lua_State *l){
-    //Stack: lib name, table
-    lua_pushinteger(l, Math::UP);
-    lua_setfield(l, -2, "UP");
-    lua_pushinteger(l, Math::DOWN);
-    lua_setfield(l, -2, "DOWN");
-    lua_pushinteger(l, Math::LEFT);
-    lua_setfield(l, -2, "LEFT");
-    lua_pushinteger(l, Math::RIGHT);
-    lua_setfield(l, -2, "RIGHT");
-}
 int LuaC::MathLib::distance(lua_State *l){
     //Stack: Vector2f vA, Vector2f vB. Where we want the distance between these vectors
     Vector2f *vA = Vector2fLib::checkVector2f(l, 1);
