@@ -69,7 +69,7 @@ int LuaC::PhysicsLib::position(lua_State *l){
     }
     std::shared_ptr<Physics> p = pWeak->lock();
     //Make a new vector and set it
-    Vector2f *v = Vector2fLib::AllocateVector2f(l);
+    Vector2f *v = Vector2fLib::Allocate(l);
     *v = p->Position();
     return 1;
 }
@@ -84,7 +84,7 @@ int LuaC::PhysicsLib::velocity(lua_State *l){
     }
     std::shared_ptr<Physics> p = pWeak->lock();
     //Make a new vector and set it
-    Vector2f *v = Vector2fLib::AllocateVector2f(l);
+    Vector2f *v = Vector2fLib::Allocate(l);
     *v = p->Velocity();
     return 1;
 }
@@ -99,7 +99,7 @@ int LuaC::PhysicsLib::acceleration(lua_State *l){
     }
     std::shared_ptr<Physics> p = pWeak->lock();
     //Make a new vector and set it
-    Vector2f *v = Vector2fLib::AllocateVector2f(l);
+    Vector2f *v = Vector2fLib::Allocate(l);
     *v = p->Acceleration();
     return 1;
 }
@@ -162,7 +162,7 @@ int LuaC::PhysicsLib::setPosition(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    Vector2f *v = Vector2fLib::checkVector2f(l, 2);
+    Vector2f *v = Vector2fLib::Check(l, 2);
     p->SetPosition(*v);
     return 0;
 }
@@ -176,7 +176,7 @@ int LuaC::PhysicsLib::setVelocity(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    Vector2f *v = Vector2fLib::checkVector2f(l, 2);
+    Vector2f *v = Vector2fLib::Check(l, 2);
     p->SetVelocity(*v);
     return 0;
 }
@@ -190,7 +190,7 @@ int LuaC::PhysicsLib::setAcceleration(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    Vector2f *v = Vector2fLib::checkVector2f(l, 2);
+    Vector2f *v = Vector2fLib::Check(l, 2);
     p->SetAcceleration(*v);
     return 0;
 }

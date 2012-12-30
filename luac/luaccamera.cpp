@@ -94,7 +94,7 @@ int LuaC::CameraLib::offset(lua_State *l){
     else
         Debug::Log("CameraLib:offset error: Camera expired");
     
-    Vector2f *v = Vector2fLib::AllocateVector2f(l);
+    Vector2f *v = Vector2fLib::Allocate(l);
     *v = vect;
     return 1;
 }
@@ -109,7 +109,7 @@ int LuaC::CameraLib::centering(lua_State *l){
     else
         Debug::Log("CameraLib:offset error: Camera expired");
     
-    Vector2f *v = Vector2fLib::AllocateVector2f(l);
+    Vector2f *v = Vector2fLib::Allocate(l);
     *v = vect;
     return 1;
 }

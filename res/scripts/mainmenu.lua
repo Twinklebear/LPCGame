@@ -19,6 +19,7 @@ function Init()
 	vB = Vector2f(1, 0)
 	vC = vA - vB
 	print ("vA - vB = " .. vC)
+	vD.y = 10
 	print ("vD pushed in: " .. vD)
 	print ("vC * vD = " .. (vC * vD))
 	--[[

@@ -83,7 +83,7 @@ void LuaC::WindowLib::DrawImage(lua_State *l){
         Rectf *clipf = RectfLib::checkRectf(l, 3);
         Recti clip = *clipf;
         float rotation = luaL_checknumber(l, 4);
-        Vector2f *pivot = Vector2fLib::checkVector2f(l, 5);
+        Vector2f *pivot = Vector2fLib::Check(l, 5);
         int flip = luaL_checkint(l, 6);
         Window::Draw(img->get(), *dst, &clip, rotation, *pivot, flip);
     }

@@ -26,41 +26,6 @@ namespace LuaC {
     public:
         ///Open the Vector2f library for Lua state l
         static int luaopen_vector2f(lua_State *l);
-        /**
-        *  Add the Vector2f metatable to the userdata at index i
-        *  i is relative to top (ie. -1 is top)
-        *  @param l The Lua state
-        *  @param i The index of the userdata to add (index relative to top, neg #'s)
-        */
-        static void addVector2f(lua_State *l, int i);
-        /**
-        *  Check if the userdata at index i in the stack is a Vector2f
-        *  and return a pointer to it
-        *  @param l The Lua state
-        *  @param i The index of the userdata (standard index, pos #'s)
-        */
-        static Vector2f* checkVector2f(lua_State *l, int i);
-        /**
-        *  Push a Vector2f onto the stack of some Lua state
-        *  @param vector The Vector2f to push onto the stack
-        *  @param l The Lua State to push onto
-        */
-        static void PushVector2f(Vector2f *vector, lua_State *l);
-        /**
-        *  Copy a Vector2f at some index in one Lua state's stack
-        *  to the top of some other state's stack
-        *  @param from The Lua state to copy the Vector2f from
-        *  @param idx The index in the stack of from of the Vector2f
-        *  @param too The Lua state to copy the Vector2f into
-        */
-        static void CopyVector2f(lua_State *from, int idx, lua_State *too);
-        /**
-        *  Allocate memory for a Vector2f on some lua_State and assign it the 
-        *  Vector2f metatable
-        *  @param l The Lua state to allocate memory on
-        *  @return Pointer to the allocated Vector2f
-        */
-        static Vector2f* AllocateVector2f(lua_State *l);
 
     private:
         //The Lua Functions

@@ -42,8 +42,8 @@ const struct luaL_reg LuaC::MathLib::luaMathLib[] = {
 };
 int LuaC::MathLib::distance(lua_State *l){
     //Stack: Vector2f vA, Vector2f vB. Where we want the distance between these vectors
-    Vector2f *vA = Vector2fLib::checkVector2f(l, 1);
-    Vector2f *vB = Vector2fLib::checkVector2f(l, 2);
+    Vector2f *vA = Vector2fLib::Check(l, 1);
+    Vector2f *vB = Vector2fLib::Check(l, 2);
     lua_pushnumber(l, Math::Distance(*vA, *vB));
     return 1;
 }
@@ -57,31 +57,31 @@ int LuaC::MathLib::clamp(lua_State *l){
 }
 int LuaC::MathLib::magnitude(lua_State *l){
     //Stack: Vector2f
-    Vector2f *v = Vector2fLib::checkVector2f(l, 1);
+    Vector2f *v = Vector2fLib::Check(l, 1);
     lua_pushnumber(l, Math::Magnitude(*v));
     return 1;
 }
 int LuaC::MathLib::normalize(lua_State *l){
     //Stack: Vector2f
-    Vector2f *v = Vector2fLib::checkVector2f(l, 1);
+    Vector2f *v = Vector2fLib::Check(l, 1);
     Vector2f unit = Math::Normalize(*v);
-    Vector2fLib::PushVector2f(&unit, l);
+    Vector2fLib::Push(&unit, l);
     return 1;
 }
 int LuaC::MathLib::lerp(lua_State *l){
     //Stack: Vector2f start, Vector2f end, float percent
-    Vector2f *start = Vector2fLib::checkVector2f(l, 1);
-    Vector2f *end = Vector2fLib::checkVector2f(l, 2);
+    Vector2f *start = Vector2fLib::Check(l, 1);
+    Vector2f *end = Vector2fLib::Check(l, 2);
     float percent = luaL_checknumber(l, 3);
     Vector2f lerped = Math::Lerp(*start, *end, percent);
-    Vector2fLib::PushVector2f(&lerped, l);
+    Vector2fLib::Push(&lerped, l);
     return 1;
 }
 int LuaC::MathLib::forwardVector(lua_State *l){
     //Stack: float 
     float degrees = luaL_checknumber(l, 1);
     Vector2f v = Math::ForwardVector(degrees);
-    Vector2fLib::PushVector2f(&v, l);
+    Vector2fLib::Push(&v, l);
     return 1;
 }
 int LuaC::MathLib::rectNearRect(lua_State *l){
@@ -109,7 +109,7 @@ int LuaC::MathLib::checkCollision(lua_State *l){
         lua_pushboolean(l, coll);
     }
     else if (LuaScriptLib::readType(l, 1) == vector2fClass){
-        Vector2f *v = Vector2fLib::checkVector2f(l, 1);
+        Vector2f *v = Vector2fLib::Check(l, 1);
         Rectf *r = RectfLib::checkRectf(l, 2);
         bool coll = Math::CheckCollision(*v, *r);
         lua_pushboolean(l, coll);
@@ -134,9 +134,9 @@ int LuaC::MathLib::toSceneSpace(lua_State *l){
         RectfLib::PushRectf(&transform, l);
     }
     else if (LuaScriptLib::readType(l, 2) == vector2fClass){
-        Vector2f *v = Vector2fLib::checkVector2f(l, 2);
+        Vector2f *v = Vector2fLib::Check(l, 2);
         Vector2f transform = Math::ToSceneSpace(*cam, *v);
-        Vector2fLib::PushVector2f(&transform, l);
+        Vector2fLib::Push(&transform, l);
     }
     else {
         Debug::Log("Math.toSceneSpace Error: Must have a Rectf or Vector2f to transform");
@@ -158,9 +158,9 @@ int LuaC::MathLib::fromSceneSpace(lua_State *l){
         RectfLib::PushRectf(&transform, l);
     }
     else if (LuaScriptLib::readType(l, 2) == vector2fClass){
-        Vector2f *v = Vector2fLib::checkVector2f(l, 2);
+        Vector2f *v = Vector2fLib::Check(l, 2);
         Vector2f transform = Math::FromSceneSpace(*cam, *v);
-        Vector2fLib::PushVector2f(&transform, l);
+        Vector2fLib::Push(&transform, l);
     }
     else {
         Debug::Log("Math.fromSceneSpace Error: Must have a Rectf or Vector2f to transform");

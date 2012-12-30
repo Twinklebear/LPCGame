@@ -54,7 +54,7 @@ int LuaC::RectfLib::getPos(lua_State *l){
     //Stack: userdata (Rectf)
     Rectf *r = checkRectf(l, 1);
     //Make a new vector2f
-    Vector2f *v = Vector2fLib::AllocateVector2f(l);
+    Vector2f *v = Vector2fLib::Allocate(l);
     v->Set(r->pos);
     return 1;
 }
@@ -108,7 +108,7 @@ int LuaC::RectfLib::newIndex(lua_State *l){
 int LuaC::RectfLib::setPos(lua_State *l){
     //Stack: userdata (Rectf), userdata (Vector2f)
     Rectf *r = checkRectf(l, 1);
-    Vector2f *v = Vector2fLib::checkVector2f(l, 2);
+    Vector2f *v = Vector2fLib::Check(l, 2);
     r->Set(*v);
     return 0;
 }
