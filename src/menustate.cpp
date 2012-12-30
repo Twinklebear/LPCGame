@@ -10,6 +10,7 @@
 #include "statemanager.h"
 
 #include "luac/luaccamera.h"
+#include "luac/luacvector2f.h"
 
 std::string MenuState::Run(){
 	//Unset events from earlier
@@ -20,6 +21,10 @@ std::string MenuState::Run(){
     //Push in the camera for debug testing only
     LuaC::CameraLib::PushCamera(&std::weak_ptr<Camera>(mCamera), mScript.Get());
     lua_setglobal(mScript.Get(), "mCamera");
+
+    //Push in a vector2f
+    LuaC::Vector2fLib::Push(&Vector2f(5, 5), mScript.Get());
+    lua_setglobal(mScript.Get(), "vD");
     
     //Call the script's Init
     State::Init();

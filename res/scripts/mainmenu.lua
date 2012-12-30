@@ -15,6 +15,13 @@ require "TestInput"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
+	vA = Vector2f(0, 1)
+	vB = Vector2f(1, 0)
+	vC = vA - vB
+	print ("vA - vB = " .. vC)
+	print ("vD pushed in: " .. vD)
+	print ("vC * vD = " .. (vC * vD))
+	--[[
 	img = Image("../res/img/strip.png")
 	print ("Opened image: " .. img:file())
 	print ("# of clips: " .. img:clipCount())
@@ -33,6 +40,7 @@ function Init()
 	rotation = 0
 
 	print ("Window box size: " .. Window.box())
+	]]
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"
@@ -43,7 +51,7 @@ function LogicUpdate()
 		print "QUITTING"
 		State.changeScene("quit")
 	end
-	
+	--[[
 	if Input.keyDown(Input.KEY_2) then
 		img:setActiveClip(0)
 	elseif Input.keyDown(Input.KEY_3) then
@@ -60,9 +68,12 @@ function LogicUpdate()
 	elseif rotation > 360 then
 		rotation = 360 - rotation
 	end
+	]]
 end
 function RenderUpdate()
+	--[[
 	Window.draw(img, drawPos)
 	Window.draw(img, drawPos2, img:clip(2))
 	Window.draw(img, drawPos3, img:clip(5), rotation, pivot, Window.FLIP_NONE)
+	]]
 end

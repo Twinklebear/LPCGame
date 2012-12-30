@@ -22,7 +22,7 @@ namespace LuaC {
     /**
     *  The Lua library for the Vector2f class
     */
-    class Vector2fLib {
+    class Vector2fLib : public UdataLib<Vector2f> {
     public:
         ///Open the Vector2f library for Lua state l
         static int luaopen_vector2f(lua_State *l);

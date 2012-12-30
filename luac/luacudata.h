@@ -27,7 +27,7 @@ namespace LuaC {
         static T* Allocate(lua_State *l){
             void *block = lua_newuserdata(l, sizeof(T));
             T *obj = new(block) T();
-            AddMetaTable(l, -1, mMetaTable);
+            AddMetaTable(l, -1);
             return obj;
         }
         /**
@@ -36,7 +36,7 @@ namespace LuaC {
         *  @param l The Lua state to push onto
         */
         static void Push(T *obj, lua_State *l){
-            T *o = Allocate(l, mMetaTable);
+            T *o = Allocate(l);
             *o = *obj;
         }
         /**
@@ -46,8 +46,8 @@ namespace LuaC {
         *  @param too The Lua state to copy too
         */
         static void Copy(lua_State *from, int idx, lua_State *too){
-            T *obj = Check(from, idx, mMetaTable);
-            Push(obj, too, mMetaTable);
+            T *obj = Check(from, idx);
+            Push(obj, too);
         }
         /**
         *  Check if the userdata at some index is of type T and return a pointer to it

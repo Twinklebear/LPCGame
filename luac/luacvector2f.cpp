@@ -43,7 +43,8 @@ const luaL_reg LuaC::Vector2fLib::luaVector2fLib[] = {
 int LuaC::Vector2fLib::newVector2f(lua_State *l){
     //Stack: table (Vector2f), vals for x & y if desired
     bool initVals = (lua_gettop(l) == 3);
-    Vector2f *v = AllocateVector2f(l);
+    //Vector2f *v = AllocateVector2f(l);
+    Vector2f *v = Allocate(l);
     if (initVals)
         v->Set(luaL_checknumber(l, 2), luaL_checknumber(l, 3));
     else
@@ -52,20 +53,21 @@ int LuaC::Vector2fLib::newVector2f(lua_State *l){
 }
 int LuaC::Vector2fLib::getX(lua_State *l){
     //Stack: userdata (Vector2f)
-    Vector2f *v = checkVector2f(l, 1);
+    //Vector2f *v = checkVector2f(l, 1);
+    Vector2f *v = Check(l, 1);
     lua_pushnumber(l, v->x);
     return 1;
 }
 int LuaC::Vector2fLib::getY(lua_State *l){
     //Stack: userdata (Vector2f)
-    Vector2f *v = checkVector2f(l, 1);
+    //Vector2f *v = checkVector2f(l, 1);
+    Vector2f *v = Check(l, 1);
     lua_pushnumber(l, v->y);
     return 1;
 }
 int LuaC::Vector2fLib::newIndex(lua_State *l){
     //Stack: userdata (Vector2f), string of index to set, val for index
     std::string index = luaL_checkstring(l, 2);
-    lua_remove(l, 2);
     //Stack: userdata (Vector2f), val to set
     //Note that "set" is a function, not a value for __newindex
     switch (index.at(0)){
@@ -80,44 +82,55 @@ int LuaC::Vector2fLib::newIndex(lua_State *l){
 }
 int LuaC::Vector2fLib::set(lua_State *l){
     //Stack: userdata (Vector2f), val for x, val for y
-    Vector2f *v = checkVector2f(l, 1);
+    //Vector2f *v = checkVector2f(l, 1);
+    Vector2f *v = Check(l, 1);
     v->Set(luaL_checknumber(l, 2), luaL_checknumber(l, 3));
     return 0;
 }
 int LuaC::Vector2fLib::setX(lua_State *l){
     //Stack: userdata (Vector2f), val for x
-    Vector2f *v = checkVector2f(l, 1);
-    v->Set(luaL_checknumber(l, 2), v->y);
+    //Vector2f *v = checkVector2f(l, 1);
+    Vector2f *v = Check(l, 1);
+    v->x = luaL_checknumber(l, 3);
     return 0;
 }
 int LuaC::Vector2fLib::setY(lua_State *l){
     //Stack: userdata (Vector2f), val for x, val for y
-    Vector2f *v = checkVector2f(l, 1);
-    v->Set(v->x, luaL_checknumber(l, 2));
+    //Vector2f *v = checkVector2f(l, 1);
+    Vector2f *v = Check(l, 1);
+    v->y = luaL_checknumber(l, 3);
     return 0;
 }
 int LuaC::Vector2fLib::equality(lua_State *l){
     //Stack: userdata (Vector2f), userdata (Vector2f)
-    Vector2f *v1 = checkVector2f(l, 1);
-    Vector2f *v2 = checkVector2f(l, 2);
+    //Vector2f *v1 = checkVector2f(l, 1);
+    Vector2f *v1 = Check(l, 1);
+    //Vector2f *v2 = checkVector2f(l, 2);
+    Vector2f *v2 = Check(l, 2);
     lua_pushboolean(l, *v1 == *v2);
     return 1;
 }
 int LuaC::Vector2fLib::addition(lua_State *l){
     //Stack: userdata (Vector2f), userdata (Vector2f)
-    Vector2f *v1 = checkVector2f(l, 1);
-    Vector2f *v2 = checkVector2f(l, 2);
+    //Vector2f *v1 = checkVector2f(l, 1);
+    Vector2f *v1 = Check(l, 1);
+    //Vector2f *v2 = checkVector2f(l, 2);
+    Vector2f *v2 = Check(l, 2);
     //Create the resultant vector
-    Vector2f *res = AllocateVector2f(l);
+    //Vector2f *res = AllocateVector2f(l);
+    Vector2f *res = Allocate(l);
     res->Set(*v1 + *v2);
     return 1;
 }
 int LuaC::Vector2fLib::subtraction(lua_State *l){
     //Stack: userdata (Vector2f), userdata (Vector2f)
-    Vector2f *v1 = checkVector2f(l, 1);
-    Vector2f *v2 = checkVector2f(l, 2);
+    //Vector2f *v1 = checkVector2f(l, 1);
+    Vector2f *v1 = Check(l, 1);
+    //Vector2f *v2 = checkVector2f(l, 2);
+    Vector2f *v2 = Check(l, 2);
     //Create the resultant vector
-    Vector2f *res = AllocateVector2f(l);
+    //Vector2f *res = AllocateVector2f(l);
+    Vector2f *res = Allocate(l);
     res->Set(*v1 - *v2);
     return 1;
 }
@@ -136,10 +149,13 @@ int LuaC::Vector2fLib::multiplication(lua_State *l){
         multWithFloat(l, 1, 2);
     //Case 3:
     else {
-        Vector2f *v1 = checkVector2f(l, 1);
-        Vector2f *v2 = checkVector2f(l, 2);
+        //Vector2f *v1 = checkVector2f(l, 1);
+        //Vector2f *v2 = checkVector2f(l, 2);
+        Vector2f *v1 = Check(l, 1);
+        Vector2f *v2 = Check(l, 2);
         //Create the result
-        Vector2f *res = AllocateVector2f(l);
+        //Vector2f *res = AllocateVector2f(l);
+        Vector2f *res = Allocate(l);
         res->Set((*v1) * (*v2));
     }
     //Add the metatable to the resultant vector
@@ -147,10 +163,12 @@ int LuaC::Vector2fLib::multiplication(lua_State *l){
 }
 void LuaC::Vector2fLib::multWithFloat(lua_State *l, int vIdx, int fIdx){
     //Stack: userdata (Vector2f) and float at indices vIdx and fIdx respectively
-    Vector2f *v = checkVector2f(l, vIdx);
+    //Vector2f *v = checkVector2f(l, vIdx);
+    Vector2f *v = Check(l, vIdx);
     float num = luaL_checknumber(l, fIdx);
     //Create the result
-    Vector2f *res = AllocateVector2f(l);
+    //Vector2f *res = AllocateVector2f(l);
+    Vector2f *res = Allocate(l);
     res->Set((*v) * num);
 }
 int LuaC::Vector2fLib::division(lua_State *l){
@@ -161,16 +179,20 @@ int LuaC::Vector2fLib::division(lua_State *l){
     */
     //Case 1:
     if (lua_type(l, 2) == LUA_TNUMBER){
-        Vector2f *v = checkVector2f(l, 1);
+        //Vector2f *v = checkVector2f(l, 1);
+        Vector2f *v = Check(l, 1);
         float num = luaL_checknumber(l, 2);
         //Create the result
-        Vector2f *res = AllocateVector2f(l);
+        //Vector2f *res = AllocateVector2f(l);
+        Vector2f *res = Allocate(l);
         res->Set((*v) / num);
     }
     //Case 2:
     else {
-        Vector2f *v1 = checkVector2f(l, 1);
-        Vector2f *v2 = checkVector2f(l, 2);
+        //Vector2f *v1 = checkVector2f(l, 1);
+        //Vector2f *v2 = checkVector2f(l, 2);
+        Vector2f *v1 = Check(l, 1);
+        Vector2f *v2 = Check(l, 2);
         //Create the result
         Vector2f *res = AllocateVector2f(l);
         res->Set((*v1) / (*v2));
@@ -179,7 +201,8 @@ int LuaC::Vector2fLib::division(lua_State *l){
 }
 int LuaC::Vector2fLib::toString(lua_State *l){
     //Stack: userdata (Vector2f)
-    Vector2f *v = checkVector2f(l, 1);
+    //Vector2f *v = checkVector2f(l, 1);
+    Vector2f *v = Check(l, 1);
     lua_pushstring(l, ((std::string)(*v)).c_str());
     return 1;
 }
@@ -197,7 +220,8 @@ int LuaC::Vector2fLib::concat(lua_State *l){
 }
 void LuaC::Vector2fLib::concatWithString(lua_State *l, int vIdx, int sIdx){
     //Stack: userdata (Vector2f) @ vIdx, string @ sIdx
-    Vector2f *v = checkVector2f(l, vIdx);
+    //Vector2f *v = checkVector2f(l, vIdx);
+    Vector2f *v = Check(l, vIdx);
     std::string s = luaL_checkstring(l, sIdx);
     //Add the strings with the proper ordering
     if (vIdx < sIdx)
