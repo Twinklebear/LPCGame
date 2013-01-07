@@ -54,7 +54,7 @@ int LuaC::WindowLib::draw(lua_State *l){
 }
 int LuaC::WindowLib::getBox(lua_State *l){
     Rectf r = Window::Box();
-    RectfLib::PushRectf(&r, l);
+    RectfLib::Push(&r, l);
     return 1;
 }
 void LuaC::WindowLib::DrawImage(lua_State *l){
@@ -68,19 +68,19 @@ void LuaC::WindowLib::DrawImage(lua_State *l){
     std::shared_ptr<Image> *img = ImageLib::checkImage(l, 1);
     //Case 1:
     if (lua_gettop(l) == 2){
-        Rectf *dst = RectfLib::checkRectf(l, 2);
+        Rectf *dst = RectfLib::Check(l, 2);
         Window::Draw(img->get(), *dst);
     }
     //Case 2:
     else if (lua_gettop(l) == 3){
-        Rectf *dst = RectfLib::checkRectf(l, 2);
-        Rectf *clipf = RectfLib::checkRectf(l, 3);
+        Rectf *dst = RectfLib::Check(l, 2);
+        Rectf *clipf = RectfLib::Check(l, 3);
         Recti clip = *clipf;
         Window::Draw(img->get(), *dst, &clip);
     }
     else if (lua_gettop(l) == 6){
-        Rectf *dst = RectfLib::checkRectf(l, 2);
-        Rectf *clipf = RectfLib::checkRectf(l, 3);
+        Rectf *dst = RectfLib::Check(l, 2);
+        Rectf *clipf = RectfLib::Check(l, 3);
         Recti clip = *clipf;
         float rotation = luaL_checknumber(l, 4);
         Vector2f *pivot = Vector2fLib::Check(l, 5);

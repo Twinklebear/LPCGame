@@ -140,10 +140,7 @@ int LuaC::EntityLib::getBox(lua_State *l){
     //Stack: udata (Entity)
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
     //Make a new Rectf
-    Rectf *r = (Rectf*)lua_newuserdata(l, sizeof(Rectf));
-    //Give it the Rectf metatable
-    RectfLib::addRectf(l, -1);
-    //Is this correct?
+    Rectf *r = RectfLib::Allocate(l);
     *r = (*e)->Box();
     return 1;
 }

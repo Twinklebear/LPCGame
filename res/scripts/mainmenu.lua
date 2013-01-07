@@ -15,13 +15,10 @@ require "TestInput"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
-	vA = Vector2f(0, 1)
-	vB = Vector2f(1, 0)
-	vC = vA - vB
-	print ("vA - vB = " .. vC)
-	vD.y = 10
-	print ("vD pushed in: " .. vD)
-	print ("vC * vD = " .. (vC * vD))
+	rA = Rectf(0, 1, 20, 20)
+	print ("rA: " .. rA)
+	quitbutton = State.getEntity("quitbutton")
+	quitbutton:callFunction("TestCall", 0, rA)
 	--[[
 	img = Image("../res/img/strip.png")
 	print ("Opened image: " .. img:file())

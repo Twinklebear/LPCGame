@@ -114,7 +114,7 @@ int LuaC::PhysicsLib::box(lua_State *l){
     }
     std::shared_ptr<Physics> p = pWeak->lock();
     //Make a new rectf and set it
-    Rectf *r = RectfLib::AllocateRectf(l);
+    Rectf *r = RectfLib::Allocate(l);
     *r = p->Box();
     return 1;
 }
@@ -232,7 +232,7 @@ int LuaC::PhysicsLib::setBox(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    Rectf *r = RectfLib::checkRectf(l, 2);
+    Rectf *r = RectfLib::Check(l, 2);
     p->SetBox(*r);
     return 0;
 }

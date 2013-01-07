@@ -53,9 +53,8 @@ end
 function OnClick()
 	--LPC.StateManager.ChangeScene("quit")
 end
-function TestCall(val1, val2)
-	print ("TestCall called with entity: " .. val1:name() .. " and phys box" .. val2:box())
-	qb = val1
+function TestCall(val1)
+	print ("TestCall called with: " .. val1)
 end
 --Another cross-state test
 function AddVects(v1, v2)

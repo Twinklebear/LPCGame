@@ -88,8 +88,8 @@ int LuaC::MathLib::rectNearRect(lua_State *l){
     //Stack: Rectf rA, Rectf rB, tolerance distance
     //We want to know if the Rect's are within tolerance dist of each other, and
     //if so which side of A is closest to B
-    Rectf *rA = RectfLib::checkRectf(l, 1);
-    Rectf *rB = RectfLib::checkRectf(l, 2);
+    Rectf *rA = RectfLib::Check(l, 1);
+    Rectf *rB = RectfLib::Check(l, 2);
     int tolerance = luaL_checkint(l, 3);
     int side = Math::RectNearRect(*rA, *rB, tolerance);
     lua_pushinteger(l, side);
@@ -103,14 +103,14 @@ int LuaC::MathLib::checkCollision(lua_State *l){
     *  and we want to know if the objects are colliding/intersecting
     */
     if (LuaScriptLib::readType(l, 1) == rectfClass){
-        Rectf *rA = RectfLib::checkRectf(l, 1);
-        Rectf *rB = RectfLib::checkRectf(l, 2);
+        Rectf *rA = RectfLib::Check(l, 1);
+        Rectf *rB = RectfLib::Check(l, 2);
         bool coll = Math::CheckCollision(*rA, *rB);
         lua_pushboolean(l, coll);
     }
     else if (LuaScriptLib::readType(l, 1) == vector2fClass){
         Vector2f *v = Vector2fLib::Check(l, 1);
-        Rectf *r = RectfLib::checkRectf(l, 2);
+        Rectf *r = RectfLib::Check(l, 2);
         bool coll = Math::CheckCollision(*v, *r);
         lua_pushboolean(l, coll);
     }
@@ -129,9 +129,9 @@ int LuaC::MathLib::toSceneSpace(lua_State *l){
     */
     std::weak_ptr<Camera> *cam = CameraLib::checkCamera(l, 1);
     if (LuaScriptLib::readType(l, 2) == rectfClass){
-        Rectf *r = RectfLib::checkRectf(l, 2);
+        Rectf *r = RectfLib::Check(l, 2);
         Rectf transform = Math::ToSceneSpace(*cam, *r);
-        RectfLib::PushRectf(&transform, l);
+        RectfLib::Push(&transform, l);
     }
     else if (LuaScriptLib::readType(l, 2) == vector2fClass){
         Vector2f *v = Vector2fLib::Check(l, 2);
@@ -153,9 +153,9 @@ int LuaC::MathLib::fromSceneSpace(lua_State *l){
     */
     std::weak_ptr<Camera> *cam = CameraLib::checkCamera(l, 1);
     if (LuaScriptLib::readType(l, 2) == rectfClass){
-        Rectf *r = RectfLib::checkRectf(l, 2);
+        Rectf *r = RectfLib::Check(l, 2);
         Rectf transform = Math::FromSceneSpace(*cam, *r);
-        RectfLib::PushRectf(&transform, l);
+        RectfLib::Push(&transform, l);
     }
     else if (LuaScriptLib::readType(l, 2) == vector2fClass){
         Vector2f *v = Vector2fLib::Check(l, 2);

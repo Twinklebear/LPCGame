@@ -71,7 +71,7 @@ int LuaC::CameraLib::setFocus(lua_State *l){
 int LuaC::CameraLib::inCamera(lua_State *l){
     //Stack: camera, rectf
     std::weak_ptr<Camera> *weak = checkCamera(l, 1);
-    Rectf *r = RectfLib::checkRectf(l, 2);
+    Rectf *r = RectfLib::Check(l, 2);
     bool inCam = false;
     if (!weak->expired()){
         auto c = weak->lock();

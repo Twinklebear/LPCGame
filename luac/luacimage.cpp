@@ -64,7 +64,7 @@ int LuaC::ImageLib::getClip(lua_State *l){
     else
         clip = (*img)->Clip();
 
-    RectfLib::PushRectf(&clip, l);
+    RectfLib::Push(&clip, l);
     return 1;
 }
 int LuaC::ImageLib::setActiveClip(lua_State *l){
