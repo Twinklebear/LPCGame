@@ -6,7 +6,7 @@
 #include "externals/json/json.h"
 #include "color.h"
 
-Color::Color(){
+Color::Color() {
 	Set(0, 0, 0);
 }
 Color::Color(int r, int g, int b){

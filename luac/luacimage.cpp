@@ -22,7 +22,6 @@ const struct luaL_reg LuaC::ImageLib::luaImageLib[] = {
 int LuaC::ImageLib::newImage(lua_State *l){
     //Stack: class table, file name
     std::string file = luaL_checkstring(l, 2);
-    //Make a new Image in the state
     Push(&std::make_shared<Image>(file), l);
     return 1;
 }

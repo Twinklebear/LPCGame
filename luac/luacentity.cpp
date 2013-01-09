@@ -91,12 +91,13 @@ int LuaC::EntityLib::destroy(lua_State *l){
         std::cout << "Will try to destroy entity: " << (*e)->Name() << std::endl;
         //Remove it from the manager
         std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
-        manager->Remove(*e);
         //Come up with better way to find entity in the manager?
+        manager->Remove(*e);
         e->~shared_ptr();
     }
     else
         Debug::Log("EntityLib::destroy Error: Could not lock entity. Is it already destroyed?");
+
     return 0;
 }
 int LuaC::EntityLib::release(lua_State *l){

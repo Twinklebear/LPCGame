@@ -26,8 +26,7 @@ int LuaC::RectfLib::newRectf(lua_State *l){
     if (initVals)
         r->Set(luaL_checknumber(l, 2), luaL_checknumber(l, 3),
             luaL_checknumber(l, 4), luaL_checknumber(l, 5));
-    else
-        r->Set(0, 0, 0, 0);
+
     return 1;
 }
 int LuaC::RectfLib::getPos(lua_State *l){

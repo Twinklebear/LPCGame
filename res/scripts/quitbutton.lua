@@ -28,6 +28,7 @@ function Init()
 	img = Image("../res/img/simplebutton.png")
 	print ("Opened image: " .. img:file())
 	box = Rectf(100, 500, 200, 100)
+	print ("drawing to box: " .. box)
 	img:setActiveClip(0)
 	--Setup the button text
 	--[[

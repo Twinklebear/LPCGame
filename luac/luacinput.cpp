@@ -1,5 +1,6 @@
 #include <string>
 #include <lua.hpp>
+#include "src/debug.h"
 #include "src/input.h"
 #include "luacinput.h"
 
@@ -140,8 +141,11 @@ int LuaC::InputLib::keyDown(lua_State *l){
     //Case 2:
     else if (lua_type(l, 1) == LUA_TSTRING)
         lua_pushboolean(l, Input::KeyDown(luaL_checkstring(l, 1)));
-    else
+    //Invalid key
+    else {
+        Debug::Log("Input.keyDown error: invalid data type for key param");
         lua_pushboolean(l, false);
+    }
     return 1;
 }
 int LuaC::InputLib::joystickAvailable(lua_State *l){

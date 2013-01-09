@@ -17,8 +17,7 @@
 template<class T>
 class Rect {
 public:
-	Rect(){
-		Set(0, 0, 0, 0);
+	Rect() : pos(0, 0), w(0), h(0) {
 	}
 	/**
 	*  Construct the rect and set its properties
@@ -27,8 +26,7 @@ public:
 	*  @param pW The width
 	*  @param pH The height
 	*/
-	Rect(T pX, T pY, T pW, T pH){
-		Set(pX, pY, pW, pH);
+	Rect(T pX, T pY, T pW, T pH) : pos(pX, pY), w(pW), h(pH) {
 	}
 	/**
 	*  Construct the rect and set its properties

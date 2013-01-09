@@ -100,7 +100,6 @@ int LuaC::PhysicsLib::state(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    //Get the state end push it
     lua_pushnumber(l, p->State());
     return 1;
 }

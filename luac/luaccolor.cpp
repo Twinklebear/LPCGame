@@ -24,8 +24,7 @@ int LuaC::ColorLib::newColor(lua_State *l){
     Color *c = Allocate(l);
     if (initVals)
         c->Set(luaL_checkint(l, 2), luaL_checkint(l, 3), luaL_checkint(l, 4));
-    else
-        c->Set(0, 0, 0);
+
     return 1;
 }
 int LuaC::ColorLib::getR(lua_State *l){
@@ -109,6 +108,7 @@ int LuaC::ColorLib::concat(lua_State *l){
         concatWithString(l, 2, 1);
     else
         concatWithString(l, 1, 2);
+
     return 1;
 }
 void LuaC::ColorLib::concatWithString(lua_State *l, int cIdx, int sIdx){
