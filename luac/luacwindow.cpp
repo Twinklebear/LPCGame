@@ -56,7 +56,8 @@ int LuaC::WindowLib::draw(lua_State *l){
     return 0;
 }
 int LuaC::WindowLib::getBox(lua_State *l){
-    RectfLib::Push(&Window::Box(), l);
+    Rectf r = Window::Box();
+    RectfLib::Push(&r, l);
     return 1;
 }
 void LuaC::WindowLib::DrawImage(lua_State *l){
