@@ -27,26 +27,6 @@ int LuaC::PhysicsLib::luaopen_physics(lua_State *l){
     //Stack: lib name, metatable
     return 1;
 }
-void LuaC::PhysicsLib::addPhysics(lua_State *l, int i){
-    LuaScriptLib::Add(l, i, physicsMeta);
-}
-std::weak_ptr<Physics>* LuaC::PhysicsLib::checkPhysics(lua_State *l, int i){
-    return (std::weak_ptr<Physics>*)luaL_checkudata(l, i, physicsMeta.c_str());
-}
-void LuaC::PhysicsLib::PushPhysics(std::weak_ptr<Physics> *physics, lua_State *l){
-    std::weak_ptr<Physics> *p = AllocatePhysics(l);
-    *p = *physics;
-}
-void LuaC::PhysicsLib::CopyPhysics(lua_State *from, int idx, lua_State *too){
-    std::weak_ptr<Physics> *p = checkPhysics(from, idx);
-    PushPhysics(p, too);
-}
-std::weak_ptr<Physics>* LuaC::PhysicsLib::AllocatePhysics(lua_State *l){
-    void *block = lua_newuserdata(l, sizeof(std::weak_ptr<Physics>));
-    std::weak_ptr<Physics> *p = new(block) std::weak_ptr<Physics>();
-    addPhysics(l, -1);
-    return p;
-}
 const struct luaL_reg LuaC::PhysicsLib::luaPhysicsLib[] = {
     { "position", position },
     { "velocity", velocity },
@@ -60,7 +40,7 @@ const struct luaL_reg LuaC::PhysicsLib::luaPhysicsLib[] = {
 };
 int LuaC::PhysicsLib::position(lua_State *l){
     //Stack: userdata (Physics)
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:position error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -75,7 +55,7 @@ int LuaC::PhysicsLib::position(lua_State *l){
 }
 int LuaC::PhysicsLib::velocity(lua_State *l){
     //Stack: userdata (Physics)
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:velocity error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -90,7 +70,7 @@ int LuaC::PhysicsLib::velocity(lua_State *l){
 }
 int LuaC::PhysicsLib::acceleration(lua_State *l){
     //Stack: userdata (Physics)
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:acceleration error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -105,7 +85,7 @@ int LuaC::PhysicsLib::acceleration(lua_State *l){
 }
 int LuaC::PhysicsLib::box(lua_State *l){
     //Stack: userdata (Physics)
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:box error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -120,7 +100,7 @@ int LuaC::PhysicsLib::box(lua_State *l){
 }
 int LuaC::PhysicsLib::state(lua_State *l){
     //Stack: userdata (Physics)
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:box error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -154,7 +134,7 @@ int LuaC::PhysicsLib::accessor(lua_State *l){
 }
 int LuaC::PhysicsLib::setPosition(lua_State *l){
     //Stack: userdata (Physics), userdata (Vector2f)
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:setPosition error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -168,7 +148,7 @@ int LuaC::PhysicsLib::setPosition(lua_State *l){
 }
 int LuaC::PhysicsLib::setVelocity(lua_State *l){
     //Stack: userdata (Physics), userdata (Vector2f)
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:setVelocity error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -182,7 +162,7 @@ int LuaC::PhysicsLib::setVelocity(lua_State *l){
 }
 int LuaC::PhysicsLib::setAcceleration(lua_State *l){
     //Stack: userdata (Physics), userdata (Vector2f)
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:setAcceleration error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -196,7 +176,7 @@ int LuaC::PhysicsLib::setAcceleration(lua_State *l){
 }
 int LuaC::PhysicsLib::setHorizDir(lua_State *l){
     //Stack: userdata (Physics), int for horiz dir
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:setHorizDir error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -210,7 +190,7 @@ int LuaC::PhysicsLib::setHorizDir(lua_State *l){
 }
 int LuaC::PhysicsLib::setVertDir(lua_State *l){
     //Stack: userdata (Physics), int for vert dir
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:setVertDir error: Failed to lock Physics weak ptr";
         Debug::Log(err);
@@ -224,7 +204,7 @@ int LuaC::PhysicsLib::setVertDir(lua_State *l){
 }
 int LuaC::PhysicsLib::setBox(lua_State *l){
     //Stack: userdata (Physics), userdata (Rectf)
-    std::weak_ptr<Physics> *pWeak = checkPhysics(l, 1);
+    std::weak_ptr<Physics> *pWeak = Check(l, 1);
     if (pWeak->expired()){
         std::string err = "PhysicsLib:setBox error: Failed to lock Physics weak ptr";
         Debug::Log(err);

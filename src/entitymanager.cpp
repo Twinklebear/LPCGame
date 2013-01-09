@@ -7,9 +7,7 @@
 #include "entity.h"
 #include "entitymanager.h"
 
-EntityManager::EntityManager()
-	: mCamera(nullptr)
-{
+EntityManager::EntityManager() : mCamera(nullptr){
 }
 EntityManager::~EntityManager(){
     //Call free on the entities
@@ -32,19 +30,15 @@ void EntityManager::Update(){
 	//Call object's update functions
 	for (std::shared_ptr<Entity> e : mEntities){
         //Check for Ui/Non-Ui elements
-        if (e->IsUiElement())
+        if (e->IsUiElement() || mCamera->InCamera(e->Box()))
             e->Update();
-		else if (mCamera->InCamera(e->Box()))
-    		e->Update();
 	}
 }
 void EntityManager::Move(float deltaT){
 	for (std::shared_ptr<Entity> e : mEntities){
 		//Check for Ui/Non-Ui elements
-        if (e->IsUiElement())
+        if (e->IsUiElement() || mCamera->InCamera(e->Box()))
             e->Move(deltaT);
-		else if (mCamera->InCamera(e->Box()))
-    		e->Move(deltaT);
 	}
 }
 void EntityManager::SetCollisionMaps(Map *map){

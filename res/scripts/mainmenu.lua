@@ -18,8 +18,10 @@ require "TestTimer"
 function Init()
 	print "\n--------Main Menu Init--------\n"
 
-	--quitbutton = State.getEntity("quitbutton")
-	--quitbutton:callFunction("TestCall", 0, t)
+	quitbutton = State.getEntity("quitbutton")
+	phys = quitbutton:physics()
+	print ("Physics box: " .. phys:box())
+	quitbutton:callFunction("TestCall", 0, phys)
 	--[[
 	img = Image("../res/img/strip.png")
 	print ("Opened image: " .. img:file())

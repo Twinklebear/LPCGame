@@ -59,7 +59,7 @@ function OnClick()
 	State.changeScene("quit")
 end
 function TestCall(val1)
-	print ("TestCall called with: " .. val1)
+	print ("TestCall called with: " .. val1:box())
 end
 --Another cross-state test
 function AddVects(v1, v2)

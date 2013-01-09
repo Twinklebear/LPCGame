@@ -131,9 +131,7 @@ int LuaC::EntityLib::release(lua_State *l){
 int LuaC::EntityLib::getPhysics(lua_State *l){
     //Stack: udata (Entity)
     std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    //Make a new Physics userdata
-    std::weak_ptr<Physics> *p = PhysicsLib::AllocatePhysics(l);
-    *p = (*e)->GetPhysicsWeakPtr();
+    PhysicsLib::Push(&(*e)->GetPhysicsWeakPtr(), l);
     return 1;
 }
 int LuaC::EntityLib::getBox(lua_State *l){
