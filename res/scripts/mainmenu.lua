@@ -12,13 +12,14 @@ require "TestCamera"
 require "TestImage"
 require "TestWindow"
 require "TestInput"
+require "TestColor"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
-	rA = Rectf(0, 1, 20, 20)
-	print ("rA: " .. rA)
+	val = Color(150, 20, 255)
+	print ("val: " .. val)
 	quitbutton = State.getEntity("quitbutton")
-	quitbutton:callFunction("TestCall", 0, rA)
+	quitbutton:callFunction("TestCall", 0, val)
 	--[[
 	img = Image("../res/img/strip.png")
 	print ("Opened image: " .. img:file())

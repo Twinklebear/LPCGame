@@ -252,7 +252,7 @@ LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     TUdataCopiers map;
     //map[vector2fClass] = &Vector2fLib::CopyVector2f;
     map[vector2fClass] = &Vector2fLib::Copy;
-    map[colorClass]    = &ColorLib::CopyColor;
+    map[colorClass]    = &ColorLib::Copy;
     map[rectfClass]    = &RectfLib::Copy;
     map[timerClass]    = &TimerLib::CopyTimer;
     map[physicsClass]  = &PhysicsLib::CopyPhysics;

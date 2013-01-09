@@ -15,6 +15,7 @@ require "TestPhysics"
 require "TestRectf"
 require "TestVector2f"
 require "TestCamera"
+require "TestColor"
 
 function Init()
 	print "Quitbutton Init"

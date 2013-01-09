@@ -3,6 +3,7 @@
 
 #include <string>
 #include <lua.hpp>
+#include "luacudata.h"
 #include "src/color.h"
 
 ///A namespace for storing the Lua C API code
@@ -15,48 +16,16 @@ namespace LuaC {
     const std::string colorMeta = "LPC.Color";
     ///The Color class/type name
     const std::string colorClass = "Color";
+    ///Define Color specialization for UdataLib
+    template<>
+    const std::string UdataLib<Color>::mMetaTable = colorMeta;
     /**
     *  The Lua library for the Color class
     */
-    class ColorLib {
+    class ColorLib : public UdataLib<Color> {
     public:
         ///Open the Color library for Lua state l
         static int luaopen_color(lua_State *l);
-        /**
-        *  Add the Color metatable to the userdata at index i
-        *  i is relative to top (ie. -1 is top)
-        *  @param l The Lua state
-        *  @param i The index of the userdata to add (index relative to top, neg #'s)
-        */
-        static void addColor(lua_State *l, int i);
-        /**
-        *  Check if the userdata at index i in the stack is a Color
-        *  and return a pointer to it
-        *  @param l The Lua state
-        *  @param i The index of the userdata (standard index, pos #'s)
-        */
-        static Color* checkColor(lua_State *l, int i);
-        /**
-        *  Push a Color onto the stack of some Lua state
-        *  @param color The Color to push onto the stack
-        *  @param l The Lua State to push onto
-        */
-        static void PushColor(Color *color, lua_State *l);
-        /**
-        *  Copy a Color at some index in one Lua state's stack
-        *  to the top of some other state's stack
-        *  @param from The Lua state to copy the Color from
-        *  @param idx The index in the stack of from of the Color
-        *  @param too The Lua state to copy the Color into
-        */
-        static void CopyColor(lua_State *from, int idx, lua_State *too);
-        /**
-        *  Allocate memory for a Color on some lua_State and assign it the 
-        *  Color metatable
-        *  @param l The Lua state to allocate memory on
-        *  @return Pointer to the allocated Color
-        */
-        static Color* AllocateColor(lua_State *l);
 
     private:
         ///The Lua function library struct
@@ -86,10 +55,6 @@ namespace LuaC {
         *  @para sIdx The index of the string in the stack
         */
         static void concatWithString(lua_State *l, int cIdx, int sIdx);
-
-    public:
-        ///Meta and Class table names
-        static const std::string sMetatable, sClassName;
     };
 }
 
