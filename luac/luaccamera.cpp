@@ -29,26 +29,6 @@ int LuaC::CameraLib::luaopen_camera(lua_State *l){
     //Stack: lib name, metatable
     return 1;
 }
-void LuaC::CameraLib::addCamera(lua_State *l, int i){
-    LuaScriptLib::Add(l, i, cameraMeta.c_str());
-}
-std::weak_ptr<Camera>* LuaC::CameraLib::checkCamera(lua_State *l, int i){
-    return (std::weak_ptr<Camera>*)luaL_checkudata(l, i, cameraMeta.c_str());
-}
-void LuaC::CameraLib::PushCamera(std::weak_ptr<Camera> *camera, lua_State *l){
-    std::weak_ptr<Camera> *c = AllocateCamera(l);
-    *c = *camera;
-}
-void LuaC::CameraLib::CopyCamera(lua_State *from, int idx, lua_State *too){
-    std::weak_ptr<Camera> *c = checkCamera(from, idx);
-    PushCamera(c, too);
-}
-std::weak_ptr<Camera>* LuaC::CameraLib::AllocateCamera(lua_State *l){
-    void *block = lua_newuserdata(l, sizeof(std::weak_ptr<Camera>));
-    std::weak_ptr<Camera> *c = new(block) std::weak_ptr<Camera>();
-    addCamera(l, -1);
-    return c;
-}
 const struct luaL_reg LuaC::CameraLib::luaCameraLib[] = {
     { "setFocus", setFocus },
     { "inCamera", inCamera },
@@ -58,7 +38,7 @@ const struct luaL_reg LuaC::CameraLib::luaCameraLib[] = {
 };
 int LuaC::CameraLib::setFocus(lua_State *l){
     //Stack: camera, entity
-    std::weak_ptr<Camera> *weak = checkCamera(l, 1);
+    std::weak_ptr<Camera> *weak = Check(l, 1);
     std::shared_ptr<Entity> *e = EntityLib::checkEntity(l, 2);
     if (!weak->expired()){
         auto c = weak->lock();
@@ -70,7 +50,7 @@ int LuaC::CameraLib::setFocus(lua_State *l){
 }
 int LuaC::CameraLib::inCamera(lua_State *l){
     //Stack: camera, rectf
-    std::weak_ptr<Camera> *weak = checkCamera(l, 1);
+    std::weak_ptr<Camera> *weak = Check(l, 1);
     Rectf *r = RectfLib::Check(l, 2);
     bool inCam = false;
     if (!weak->expired()){
@@ -85,7 +65,7 @@ int LuaC::CameraLib::inCamera(lua_State *l){
 }
 int LuaC::CameraLib::offset(lua_State *l){
     //Stack: camera
-    std::weak_ptr<Camera> *weak = checkCamera(l, 1);
+    std::weak_ptr<Camera> *weak = Check(l, 1);
     Vector2f vect(0, 0);
     if (!weak->expired()){
         auto c = weak->lock();
@@ -100,7 +80,7 @@ int LuaC::CameraLib::offset(lua_State *l){
 }
 int LuaC::CameraLib::centering(lua_State *l){
     //Stack: camera
-    std::weak_ptr<Camera> *weak = checkCamera(l, 1);
+    std::weak_ptr<Camera> *weak = Check(l, 1);
     Vector2f vect(0, 0);
     if (!weak->expired()){
         auto c = weak->lock();

@@ -73,7 +73,7 @@ void Entity::Draw(std::weak_ptr<Camera> camera){
 	try {
         lua_State *l = mScript.Get();
         lua_getglobal(l, "Draw");
-        LuaC::CameraLib::PushCamera(&camera, l);
+        LuaC::CameraLib::Push(&camera, l);
         if (lua_pcall(l, 1, 0, 0) != 0)
             Debug::Log("Error calling Draw: ");// + lua_tostring(l, -1));
         

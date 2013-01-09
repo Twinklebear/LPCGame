@@ -19,7 +19,7 @@ std::string MenuState::Run(){
 	UnsetExit();
 
     //Push in the camera for debug testing only
-    LuaC::CameraLib::PushCamera(&std::weak_ptr<Camera>(mCamera), mScript.Get());
+    LuaC::CameraLib::Push(&std::weak_ptr<Camera>(mCamera), mScript.Get());
     lua_setglobal(mScript.Get(), "mCamera");
 
     //Push in a vector2f

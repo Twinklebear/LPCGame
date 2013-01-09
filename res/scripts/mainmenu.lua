@@ -17,16 +17,9 @@ require "TestTimer"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
-	t = Timer()
-	t:start()
-	print ("t ticks: " .. t:ticks())
-	while t:ticks() < 1 do
-		print "waiting"
-	end
-	print ("Ticks now" .. t:ticks())
-	quitbutton = State.getEntity("quitbutton")
-	print ("Got entity, ticks: " .. t:ticks())
-	quitbutton:callFunction("TestCall", 0, t)
+
+	--quitbutton = State.getEntity("quitbutton")
+	--quitbutton:callFunction("TestCall", 0, t)
 	--[[
 	img = Image("../res/img/strip.png")
 	print ("Opened image: " .. img:file())

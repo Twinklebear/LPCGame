@@ -257,7 +257,7 @@ LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     map[timerClass]    = &TimerLib::Copy;
     map[physicsClass]  = &PhysicsLib::CopyPhysics;
     map[entityClass]   = &EntityLib::CopyEntity;
-    map[cameraClass]   = &CameraLib::CopyCamera;
+    map[cameraClass]   = &CameraLib::Copy;
     map[imageClass]    = &ImageLib::CopyImage;
     return map;
 }

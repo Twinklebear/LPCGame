@@ -127,7 +127,7 @@ int LuaC::MathLib::toSceneSpace(lua_State *l){
     *  2. Camera, Vector2f
     *  and we want to transform the position into scene space
     */
-    std::weak_ptr<Camera> *cam = CameraLib::checkCamera(l, 1);
+    std::weak_ptr<Camera> *cam = CameraLib::Check(l, 1);
     if (LuaScriptLib::readType(l, 2) == rectfClass){
         Rectf *r = RectfLib::Check(l, 2);
         Rectf transform = Math::ToSceneSpace(*cam, *r);
@@ -151,7 +151,7 @@ int LuaC::MathLib::fromSceneSpace(lua_State *l){
     *  2. Camera, Vector2f
     *  and we want to transform the position into scene space
     */
-    std::weak_ptr<Camera> *cam = CameraLib::checkCamera(l, 1);
+    std::weak_ptr<Camera> *cam = CameraLib::Check(l, 1);
     if (LuaScriptLib::readType(l, 2) == rectfClass){
         Rectf *r = RectfLib::Check(l, 2);
         Rectf transform = Math::FromSceneSpace(*cam, *r);
