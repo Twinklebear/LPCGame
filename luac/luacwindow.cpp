@@ -44,17 +44,19 @@ int LuaC::WindowLib::draw(lua_State *l){
     //Case 1
     if (type.at(0) == 'I')
         DrawImage(l);
+    //Case 2
     else if (type.at(0) == 'A')
         DrawAnimatedImage(l);
+    //Case 3
     else if (type.at(0) == 'T')
         DrawText(l);
     else
         Debug::Log("WindowLib:draw Error: " + type + " is not drawable");
+
     return 0;
 }
 int LuaC::WindowLib::getBox(lua_State *l){
-    Rectf r = Window::Box();
-    RectfLib::Push(&r, l);
+    RectfLib::Push(&Window::Box(), l);
     return 1;
 }
 void LuaC::WindowLib::DrawImage(lua_State *l){
