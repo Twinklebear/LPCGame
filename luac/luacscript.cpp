@@ -116,7 +116,7 @@ int LuaC::LuaScriptLib::requireScript(lua_State *l){
 }
 void LuaC::LuaScriptLib::CopyStack(lua_State *sender, lua_State *reciever, int numVals){
     /*
-    *  Description of how we properly loop through the stack to preserver
+    *  Description of how we properly loop through the stack to preserve
     *  the ordering of the data
     *  stack: 10, "string", udata, 45
     *  numVals = 2
@@ -256,7 +256,7 @@ LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     map[rectfClass]    = &RectfLib::Copy;
     map[timerClass]    = &TimerLib::Copy;
     map[physicsClass]  = &PhysicsLib::Copy;
-    map[entityClass]   = &EntityLib::CopyEntity;
+    map[entityClass]   = &EntityLib::Copy;
     map[cameraClass]   = &CameraLib::Copy;
     map[imageClass]    = &ImageLib::CopyImage;
     return map;

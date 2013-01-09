@@ -17,26 +17,6 @@
 int LuaC::EntityLib::luaopen_entity(lua_State *l){
     return LuaScriptLib::LuaOpenLib(l, entityMeta, entityClass, luaEntityLib, newEntity);
 }
-void LuaC::EntityLib::addEntity(lua_State *l, int i){
-    LuaScriptLib::Add(l, i, entityMeta);
-}
-std::shared_ptr<Entity>* LuaC::EntityLib::checkEntity(lua_State *l, int i ){
-    return (std::shared_ptr<Entity>*)luaL_checkudata(l, i, entityMeta.c_str());
-}
-void LuaC::EntityLib::PushEntity(std::shared_ptr<Entity> *entity, lua_State *l){
-    std::shared_ptr<Entity> *e = AllocateEntity(l);
-    *e = *entity;
-}
-void LuaC::EntityLib::CopyEntity(lua_State *from, int idx, lua_State *too){
-    std::shared_ptr<Entity> *e = checkEntity(from, idx);
-    PushEntity(e, too);
-}
-std::shared_ptr<Entity>* LuaC::EntityLib::AllocateEntity(lua_State *l){
-    void *block = lua_newuserdata(l, sizeof(std::shared_ptr<Entity>));
-    std::shared_ptr<Entity> *e = new(block) std::shared_ptr<Entity>();
-    addEntity(l, -1);
-    return e;
-}
 const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
     { "callFunction", callFunction },
     { "destroy", destroy },
@@ -60,9 +40,8 @@ int LuaC::EntityLib::newEntity(lua_State *l){
     //Register the Entity with the State
     std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
     manager->Register(e);
-    //Make the userdata
-    std::shared_ptr<Entity> *luaE = AllocateEntity(l);
-    *luaE = e;
+    //Push the entity into the state
+    Push(&e, l);
     return 1;
 }
 int LuaC::EntityLib::callFunction(lua_State *caller){
@@ -74,17 +53,14 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     *  params            - All remaining values on the stack are the params to pass
     */
     //Get the lua_State of the Entity we want to call the function on
-    std::shared_ptr<Entity> *e = checkEntity(caller, 1);
+    std::shared_ptr<Entity> *e = Check(caller, 1);
     lua_State *reciever = (*e)->Script()->Get();
     //Get function name and # results
     std::string fcnName = luaL_checkstring(caller, 2);
     int nRes = luaL_checkint(caller, 3);
-    ///Remove the udata, fnc name and # results values from the stack
-    for (int i = 0; i < 3; ++i)
-        lua_remove(caller, 1);
-    //Caller stack: params
-    //# params = caller stack size
-    int nParam = lua_gettop(caller);
+    LuaScriptLib::StackDump(caller);
+    //# params = caller stack size - 3 (the bottom 3 are the entity, fncname and nRes)
+    int nParam = lua_gettop(caller) - 3;
 
     //Get the function in reciever
     lua_getglobal(reciever, fcnName.c_str());
@@ -110,7 +86,7 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
 }
 int LuaC::EntityLib::destroy(lua_State *l){
     //Stack: udata (Entity) to be removed
-    std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    std::shared_ptr<Entity> *e = Check(l, 1);
     if (e != nullptr){
         std::cout << "Will try to destroy entity: " << (*e)->Name() << std::endl;
         //Remove it from the manager
@@ -124,33 +100,31 @@ int LuaC::EntityLib::destroy(lua_State *l){
     return 0;
 }
 int LuaC::EntityLib::release(lua_State *l){
-    std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    std::shared_ptr<Entity> *e = Check(l, 1);
     e->~shared_ptr();
     return 0;
 }
 int LuaC::EntityLib::getPhysics(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    std::shared_ptr<Entity> *e = Check(l, 1);
     PhysicsLib::Push(&(*e)->GetPhysicsWeakPtr(), l);
     return 1;
 }
 int LuaC::EntityLib::getBox(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = checkEntity(l, 1);
-    //Make a new Rectf
-    Rectf *r = RectfLib::Allocate(l);
-    *r = (*e)->Box();
+    std::shared_ptr<Entity> *e = Check(l, 1);
+    RectfLib::Push(&(*e)->Box(), l);
     return 1;
 }
 int LuaC::EntityLib::getTag(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    std::shared_ptr<Entity> *e = Check(l, 1);
     lua_pushstring(l, (*e)->Tag().c_str());
     return 1;
 }
 int LuaC::EntityLib::getName(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    std::shared_ptr<Entity> *e = Check(l, 1);
     lua_pushstring(l, (*e)->Name().c_str());
     return 1;
 }
@@ -167,7 +141,7 @@ int LuaC::EntityLib::newIndex(lua_State *l){
 }
 int LuaC::EntityLib::setTag(lua_State *l, int i){
     //Stack: udata, ??? with tag @ i
-    std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    std::shared_ptr<Entity> *e = Check(l, 1);
     std::string tag = luaL_checkstring(l, i);
     (*e)->SetTag(tag);
     return 0;
@@ -179,7 +153,7 @@ int LuaC::EntityLib::concat(lua_State *l){
     return 1;
 }
 int LuaC::EntityLib::garbageCollection(lua_State *l){
-    std::shared_ptr<Entity> *e = checkEntity(l, 1);
+    std::shared_ptr<Entity> *e = Check(l, 1);
     e->~shared_ptr();
     return 0;
 }

@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
+#include "luacudata.h"
 #include "src/entity.h"
 
 ///A namespace for storing the Lua C API code
@@ -16,49 +17,17 @@ namespace LuaC {
     const std::string entityMeta = "LPC.Entity";
     ///The Entity class/type name
     const std::string entityClass = "Entity";
+    ///Define Entity specialization for UdataLib
+    template<>
+    const std::string UdataLib<std::shared_ptr<Entity>>::mMetaTable = entityMeta;
     /**
     *  Class for storing functions used to manage interaction
     *  between Lua and the Entity class. Defines the Entity Lua Lib
     */
-    class EntityLib {
+    class EntityLib : public UdataLib<std::shared_ptr<Entity>> {
     public:
         ///Open the Entity Lua library for Lua state l
         static int luaopen_entity(lua_State *l);
-        /**
-        *  Add the Entity metatable to the userdata at index i
-        *  i is relative to top (ie. -1 is top)
-        *  @param l The Lua state
-        *  @param i The index of the userdata to add (index relative to top, neg #'s)
-        */
-        static void addEntity(lua_State *l, int i);
-        /**
-        *  Check if the userdata at index i in the stack is an Entity
-        *  and return a pointer to it
-        *  @param l The Lua state
-        *  @param i The index of the userdata (standard index, pos #'s)
-        */
-        static std::shared_ptr<Entity>* checkEntity(lua_State *l, int i);
-        /**
-        *  Push a Entity onto the stack of some Lua state
-        *  @param entity The Entity to push onto the stack
-        *  @param l The Lua State to push onto
-        */
-        static void PushEntity(std::shared_ptr<Entity> *entity, lua_State *l);
-        /**
-        *  Copy an Entity at some index in one Lua state's stack
-        *  to the top of some other state's stack
-        *  @param from The Lua state to copy the Entity from
-        *  @param idx The index in the stack of from of the Entity
-        *  @param too The Lua state to copy the Entity into
-        */
-        static void CopyEntity(lua_State *from, int idx, lua_State *too);
-        /**
-        *  Allocate memory for an Entity on some lua_State and assign it the 
-        *  Entity metatable
-        *  @param l The Lua state to allocate memory on
-        *  @return Pointer to the allocated Entity
-        */
-        static std::shared_ptr<Entity>* AllocateEntity(lua_State *l);
 
     private:
         ///The Lua function library struct

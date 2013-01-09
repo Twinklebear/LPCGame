@@ -17,7 +17,7 @@ namespace LuaC {
     const std::string cameraMeta = "LPC.Camera";
     ///The Camera class/type name
     const std::string cameraClass = "Camera";
-    ///Define template specialization for Camera
+    ///Define Camera specialization for UdataLib
     template<>
     const std::string UdataLib<std::weak_ptr<Camera>>::mMetaTable = cameraMeta;
     /**

@@ -31,7 +31,7 @@ int LuaC::StateLib::getEntity(lua_State *l){
         lua_pushnil(l);
     }            
     else
-        EntityLib::PushEntity(&entity, l);
+        EntityLib::Push(&entity, l);
     //Stack: entity name, userdata (Entity) or nil
     return 1;
 }
