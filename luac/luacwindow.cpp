@@ -65,7 +65,7 @@ void LuaC::WindowLib::DrawImage(lua_State *l){
     *  3. Image, Rectf destination, Rectf clip, float rotation,
     *     Vector2f pivot, int flip value
     */
-    std::shared_ptr<Image> *img = ImageLib::checkImage(l, 1);
+    std::shared_ptr<Image> *img = ImageLib::Check(l, 1);
     //Case 1:
     if (lua_gettop(l) == 2){
         Rectf *dst = RectfLib::Check(l, 2);

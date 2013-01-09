@@ -48,9 +48,7 @@ int LuaC::PhysicsLib::position(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    //Make a new vector and set it
-    Vector2f *v = Vector2fLib::Allocate(l);
-    *v = p->Position();
+    Vector2fLib::Push(&p->Position(), l);
     return 1;
 }
 int LuaC::PhysicsLib::velocity(lua_State *l){
@@ -63,9 +61,7 @@ int LuaC::PhysicsLib::velocity(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    //Make a new vector and set it
-    Vector2f *v = Vector2fLib::Allocate(l);
-    *v = p->Velocity();
+    Vector2fLib::Push(&p->Velocity(), l);
     return 1;
 }
 int LuaC::PhysicsLib::acceleration(lua_State *l){
@@ -78,9 +74,7 @@ int LuaC::PhysicsLib::acceleration(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    //Make a new vector and set it
-    Vector2f *v = Vector2fLib::Allocate(l);
-    *v = p->Acceleration();
+    Vector2fLib::Push(&p->Acceleration(), l);
     return 1;
 }
 int LuaC::PhysicsLib::box(lua_State *l){
@@ -93,9 +87,7 @@ int LuaC::PhysicsLib::box(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    //Make a new rectf and set it
-    Rectf *r = RectfLib::Allocate(l);
-    *r = p->Box();
+    RectfLib::Push(&p->Box(), l);
     return 1;
 }
 int LuaC::PhysicsLib::state(lua_State *l){

@@ -250,7 +250,6 @@ LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
 }
 LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     TUdataCopiers map;
-    //map[vector2fClass] = &Vector2fLib::CopyVector2f;
     map[vector2fClass] = &Vector2fLib::Copy;
     map[colorClass]    = &ColorLib::Copy;
     map[rectfClass]    = &RectfLib::Copy;
@@ -258,7 +257,7 @@ LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     map[physicsClass]  = &PhysicsLib::Copy;
     map[entityClass]   = &EntityLib::Copy;
     map[cameraClass]   = &CameraLib::Copy;
-    map[imageClass]    = &ImageLib::CopyImage;
+    map[imageClass]    = &ImageLib::Copy;
     return map;
 }
 const luaL_reg LuaC::LuaScriptLib::luaScriptLib[] = {

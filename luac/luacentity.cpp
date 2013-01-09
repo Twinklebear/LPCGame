@@ -35,7 +35,7 @@ int LuaC::EntityLib::newEntity(lua_State *l){
     //Stack: class table, entity file
     std::string file = luaL_checkstring(l, 2);
     //Make a new Entity and register it with the manager
-    std::shared_ptr<Entity> e(new Entity(file));
+    std::shared_ptr<Entity> e = std::make_shared<Entity>(file);
     e->Init();
     //Register the Entity with the State
     std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
