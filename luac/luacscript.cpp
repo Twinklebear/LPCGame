@@ -57,6 +57,7 @@ int LuaC::LuaScriptLib::StackDump(lua_State *l, bool toLog){
         Debug::Log(ss.str());
     else 
         std::cout << ss.str() << std::endl;
+
     return 0;
 }
 std::string LuaC::LuaScriptLib::readType(lua_State *l, int i){
@@ -72,7 +73,8 @@ std::string LuaC::LuaScriptLib::readType(lua_State *l, int i){
         if (lua_isstring(l, -1))
             type = luaL_checkstring(l, -1);
         //Stack: stuff, udata metatable, typename
-        //Stack contains the typename and the metatable, pop them off
+        //Stack contains the typename and the metatable
+        //pop them off to restore original stack state
         lua_pop(l, 2);
     }
     return type;
@@ -273,7 +275,7 @@ int LuaC::LuaScriptLib::luaStackDump(lua_State *l){
     //dump to file, and the data to check
     bool toLog = true;
     //If a bool flag for toLog is passed, get it and remove it
-    //so it won't show up in the stack dump
+    //so it won't show up in the stack dump (this is a rare case where remove is ok!)
     if (lua_isboolean(l, 1)){
         toLog = lua_toboolean(l, 1);
         lua_remove(l, 1);

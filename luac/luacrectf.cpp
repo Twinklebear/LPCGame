@@ -134,6 +134,7 @@ int LuaC::RectfLib::concat(lua_State *l){
         concatWithString(l, 2, 1);
     else
         concatWithString(l, 1, 2);
+
     return 1;
 }
 void LuaC::RectfLib::concatWithString(lua_State *l, int rIdx, int sIdx){
