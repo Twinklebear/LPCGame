@@ -61,7 +61,7 @@ bool LuaScript::Open() const {
 	return (mL != nullptr);
 }
 void LuaScript::AddLoader(int (*loader)(lua_State*)){
-    //Get the package.loaders table
+    //We want to get the package.loaders table and add a new entry
     lua_getfield(mL, LUA_GLOBALSINDEX, "package");
     //Stack: package table
     //Get the loaders table
