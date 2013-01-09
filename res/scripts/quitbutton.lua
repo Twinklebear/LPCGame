@@ -16,6 +16,7 @@ require "TestRectf"
 require "TestVector2f"
 require "TestCamera"
 require "TestColor"
+require "TestTimer"
 
 function Init()
 	print "Quitbutton Init"
@@ -55,7 +56,7 @@ function OnClick()
 	--LPC.StateManager.ChangeScene("quit")
 end
 function TestCall(val1)
-	print ("TestCall called with: " .. val1)
+	print ("TestCall called with: " .. val1:ticks())
 end
 --Another cross-state test
 function AddVects(v1, v2)

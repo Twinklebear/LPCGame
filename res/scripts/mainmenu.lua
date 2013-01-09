@@ -13,13 +13,20 @@ require "TestImage"
 require "TestWindow"
 require "TestInput"
 require "TestColor"
+require "TestTimer"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
-	val = Color(150, 20, 255)
-	print ("val: " .. val)
+	t = Timer()
+	t:start()
+	print ("t ticks: " .. t:ticks())
+	while t:ticks() < 1 do
+		print "waiting"
+	end
+	print ("Ticks now" .. t:ticks())
 	quitbutton = State.getEntity("quitbutton")
-	quitbutton:callFunction("TestCall", 0, val)
+	print ("Got entity, ticks: " .. t:ticks())
+	quitbutton:callFunction("TestCall", 0, t)
 	--[[
 	img = Image("../res/img/strip.png")
 	print ("Opened image: " .. img:file())
