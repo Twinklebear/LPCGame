@@ -15,16 +15,14 @@
 template<class T>
 class Vector2 {
 public:
-	Vector2(){
-		Set(0, 0);
+	Vector2() : x(0), y(0) {
 	}
 	/**
 	*  Setup the vector with an x & y value
 	*  @param pX The x value to set
 	*  @param pY The y value to set
 	*/
-	Vector2(T pX, T pY){
-		Set(pX, pY);
+	Vector2(T pX, T pY) : x(pX), y(pY) {
 	}
 	/**
 	*  Setup the vector with an x & y value

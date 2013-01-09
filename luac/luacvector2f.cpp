@@ -26,8 +26,7 @@ int LuaC::Vector2fLib::newVector2f(lua_State *l){
     Vector2f *v = Allocate(l);
     if (initVals)
         v->Set(luaL_checknumber(l, 2), luaL_checknumber(l, 3));
-    else
-        v->Set(0, 0);
+
     return 1;
 }
 int LuaC::Vector2fLib::getX(lua_State *l){
@@ -85,18 +84,18 @@ int LuaC::Vector2fLib::addition(lua_State *l){
     //Stack: userdata (Vector2f), userdata (Vector2f)
     Vector2f *v1 = Check(l, 1);
     Vector2f *v2 = Check(l, 2);
-    //Create the resultant vector
-    Vector2f *res = Allocate(l);
-    res->Set(*v1 + *v2);
+    //Calculate and push the result
+    Vector2f res = *v1 + *v2;
+    Push(&res, l);
     return 1;
 }
 int LuaC::Vector2fLib::subtraction(lua_State *l){
     //Stack: userdata (Vector2f), userdata (Vector2f)
     Vector2f *v1 = Check(l, 1);
     Vector2f *v2 = Check(l, 2);
-    //Create the resultant vector
-    Vector2f *res = Allocate(l);
-    res->Set(*v1 - *v2);
+    //Calculate and push the result
+    Vector2f res = *v1 - *v2;
+    Push(&res, l);
     return 1;
 }
 int LuaC::Vector2fLib::multiplication(lua_State *l){
@@ -116,9 +115,9 @@ int LuaC::Vector2fLib::multiplication(lua_State *l){
     else {
         Vector2f *v1 = Check(l, 1);
         Vector2f *v2 = Check(l, 2);
-        //Create the result
-        Vector2f *res = Allocate(l);
-        res->Set((*v1) * (*v2));
+        //Calculate and push the result
+        Vector2f res = (*v1) * (*v2);
+        Push(&res, l);
     }
     return 1;
 }
@@ -126,9 +125,9 @@ void LuaC::Vector2fLib::multWithFloat(lua_State *l, int vIdx, int fIdx){
     //Stack: userdata (Vector2f) and float at indices vIdx and fIdx respectively
     Vector2f *v = Check(l, vIdx);
     float num = luaL_checknumber(l, fIdx);
-    //Create the result
-    Vector2f *res = Allocate(l);
-    res->Set((*v) * num);
+    //Calculate and push the result
+    Vector2f res = (*v) * num;
+    Push(&res, l);
 }
 int LuaC::Vector2fLib::division(lua_State *l){
     /*
@@ -140,17 +139,17 @@ int LuaC::Vector2fLib::division(lua_State *l){
     if (lua_type(l, 2) == LUA_TNUMBER){
         Vector2f *v = Check(l, 1);
         float num = luaL_checknumber(l, 2);
-        //Create the result
-        Vector2f *res = Allocate(l);
-        res->Set((*v) / num);
+        //Calculate and push the result
+        Vector2f res = (*v) / num;
+        Push(&res, l);
     }
     //Case 2:
     else {
         Vector2f *v1 = Check(l, 1);
         Vector2f *v2 = Check(l, 2);
-        //Create the result
-        Vector2f *res = Allocate(l);
-        res->Set((*v1) / (*v2));
+        //Calculate and push the result
+        Vector2f res = (*v1) / (*v2);
+        Push(&res, l);
     }
     return 1;
 }
@@ -170,6 +169,7 @@ int LuaC::Vector2fLib::concat(lua_State *l){
         concatWithString(l, 2, 1);
     else
         concatWithString(l, 1, 2);
+
     return 1;
 }
 void LuaC::Vector2fLib::concatWithString(lua_State *l, int vIdx, int sIdx){
