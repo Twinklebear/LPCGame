@@ -25,13 +25,13 @@ int LuaC::StateLib::getEntity(lua_State *l){
     //Get the active state's entitymanager and try to lookup the entity
     std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
     std::shared_ptr<Entity> entity = manager->GetEntity(name);
-    if (entity == nullptr){
+    if (entity != nullptr)
+        EntityLib::Push(&entity, l);       
+    else {
         std::string err = "StateLib::getEntity: Failed to find Entity: " + name;
         Debug::Log(err);
         lua_pushnil(l);
-    }            
-    else
-        EntityLib::Push(&entity, l);
+    }        
     //Stack: entity name, userdata (Entity) or nil
     return 1;
 }
@@ -46,6 +46,5 @@ int LuaC::StateLib::getName(lua_State *l){
     //Stack: empty
     std::shared_ptr<State> state = StateManager::GetActiveState();
     lua_pushstring(l, state->Name().c_str());
-    //Stack: state name
     return 1;
 }
