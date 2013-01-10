@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClInclude Include="..\externals\json\json-forwards.h" />
     <ClInclude Include="..\externals\json\json.h" />
+    <ClInclude Include="..\luac\luacanimatedimage.h" />
     <ClInclude Include="..\luac\luaccamera.h" />
     <ClInclude Include="..\luac\luaccolor.h" />
     <ClInclude Include="..\luac\luacdebug.h" />
@@ -64,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\externals\jsoncpp.cpp" />
+    <ClCompile Include="..\luac\luacanimatedimage.cpp" />
     <ClCompile Include="..\luac\luaccamera.cpp" />
     <ClCompile Include="..\luac\luaccolor.cpp" />
     <ClCompile Include="..\luac\luacdebug.cpp" />
