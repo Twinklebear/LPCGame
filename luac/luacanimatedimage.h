@@ -39,6 +39,14 @@ namespace LuaC {
         static int play(lua_State *l);
         ///Check which animation sequence is playing
         static int playing(lua_State *l);
+        ///Get the size of the image
+        static int size(lua_State *l);
+        ///Get the image filename
+        static int file(lua_State *l);
+        ///Explicitly release the shared pointer
+        static int release(lua_State *l);
+        ///Release the shared pointer at garbage collection
+        static int garbageCollection(lua_State *l);
     };
 }
 
