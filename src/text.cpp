@@ -66,6 +66,18 @@ void Text::SetColor(Color color){
 	if (mTex == nullptr)
 		Debug::Log("Failed to set message texture");
 }
+std::string Text::GetMessage(){
+    return mMessage;
+}
+std::string Text::GetFont(){
+    return mFontFile;
+}
+int Text::GetFontSize(){
+    return mFontSize;
+}
+Color Text::GetColor(){
+    return mColor;
+}
 SDL_Texture* Text::Texture(){
 	return mTex.get();
 }

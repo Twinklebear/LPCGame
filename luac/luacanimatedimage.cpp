@@ -2,9 +2,9 @@
 #include <memory>
 #include <lua.hpp>
 #include "luacudata.h"
-#include "src/animatedimage.h"
 #include "luacscript.h"
 #include "luacrectf.h"
+#include "src/animatedimage.h"
 #include "luacanimatedimage.h"
 
 int LuaC::AnimatedImageLib::luaopen_animatedimage(lua_State *l){

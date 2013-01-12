@@ -76,9 +76,8 @@ int LuaC::RectfLib::newIndex(lua_State *l){
         case 'p':
             return setPos(l);
         default:
-            break;
-    }
-    return 0;
+            return 0;;
+    } 
 }
 int LuaC::RectfLib::setPos(lua_State *l){
     //Stack: userdata (Rectf), string of index to set, userdata (Vector2f)

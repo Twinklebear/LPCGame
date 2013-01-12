@@ -25,6 +25,7 @@
     <ClInclude Include="..\luac\luacrectf.h" />
     <ClInclude Include="..\luac\luacscript.h" />
     <ClInclude Include="..\luac\luacstate.h" />
+    <ClInclude Include="..\luac\luactext.h" />
     <ClInclude Include="..\luac\luactimer.h" />
     <ClInclude Include="..\luac\luacudata.h" />
     <ClInclude Include="..\luac\luacvector2f.h" />
@@ -77,6 +78,7 @@
     <ClCompile Include="..\luac\luacrectf.cpp" />
     <ClCompile Include="..\luac\luacscript.cpp" />
     <ClCompile Include="..\luac\luacstate.cpp" />
+    <ClCompile Include="..\luac\luactext.cpp" />
     <ClCompile Include="..\luac\luactimer.cpp" />
     <ClCompile Include="..\luac\luacvector2f.cpp" />
     <ClCompile Include="..\luac\luacwindow.cpp" />

@@ -60,6 +60,26 @@ public:
 	*  @param color The color to use
 	*/
 	void SetColor(Color color);
+    /**
+    *  Get the message text being displayed
+    *  @return the message
+    */
+    std::string GetMessage();
+    /**
+    *  Get the font file currently being used
+    *  @return the font file path
+    */
+    std::string GetFont();
+    /**
+    *  Get the font size currently being used
+    *  @return the current font size
+    */
+    int GetFontSize();
+    /**
+    *  Get the current text color
+    *  @return the text color
+    */
+    Color GetColor();
 	/**
 	*  Get the texture pointer of the font, used for the window's draw functions
 	*  @see Window
@@ -99,14 +119,14 @@ public:
 
 private:
 	///Disable copy construction
-	Text(const Text&a);
+	Text(const Text &a);
 	Text& operator = (const Text &a);
 
 private:
 	std::shared_ptr<SDL_Texture> mTex;
-	Color mColor;
 	std::string mMessage, mFontFile;
 	int mFontSize;
+    Color mColor;
 };
 
 #endif

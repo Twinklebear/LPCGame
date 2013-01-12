@@ -42,7 +42,7 @@ int LuaC::Vector2fLib::getY(lua_State *l){
     return 1;
 }
 int LuaC::Vector2fLib::newIndex(lua_State *l){
-    //Stack: userdata (Vector2f), string of index to set, val for index
+    //Stack: Vector2f, string of index to set, val for index
     std::string index = luaL_checkstring(l, 2);
     //Note that "set" is a function, not a value for __newindex
     switch (index.at(0)){
@@ -51,9 +51,8 @@ int LuaC::Vector2fLib::newIndex(lua_State *l){
         case 'y':
             return setY(l);
         default:
-            break;
+            return 0;
     }
-    return 0;
 }
 int LuaC::Vector2fLib::set(lua_State *l){
     //Stack: userdata (Vector2f), val for x, val for y
@@ -62,13 +61,13 @@ int LuaC::Vector2fLib::set(lua_State *l){
     return 0;
 }
 int LuaC::Vector2fLib::setX(lua_State *l){
-    //Stack: userdata (Vector2f), val for x
+    //Stack: userdata (Vector2f), string of index to set, val for x
     Vector2f *v = Check(l, 1);
     v->x = luaL_checknumber(l, 3);
     return 0;
 }
 int LuaC::Vector2fLib::setY(lua_State *l){
-    //Stack: userdata (Vector2f), val for x, val for y
+    //Stack: userdata (Vector2f), string of index to set, val for y
     Vector2f *v = Check(l, 1);
     v->y = luaL_checknumber(l, 3);
     return 0;

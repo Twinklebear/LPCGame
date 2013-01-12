@@ -21,7 +21,7 @@ namespace LuaC {
     template<>
     const std::string UdataLib<std::shared_ptr<AnimatedImage>>::mMetaTable = animatedImageMeta;
     /**
-    *  The Lua library for the AnimatedImage class
+    * The Lua library for the AnimatedImage class
     */
     class AnimatedImageLib : public UdataLib<std::shared_ptr<AnimatedImage>> {
     public:
