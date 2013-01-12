@@ -8,6 +8,7 @@
 #include "src/window.h"
 #include "luacscript.h"
 #include "luacimage.h"
+#include "luacanimatedimage.h"
 #include "luacrectf.h"
 #include "luacvector2f.h"
 #include "luacwindow.h"
@@ -62,10 +63,10 @@ int LuaC::WindowLib::getBox(lua_State *l){
 }
 void LuaC::WindowLib::DrawImage(lua_State *l){
     /**
-    *  3 Possible stacks:
-    *  1. Image, Rectf destination
-    *  2. Image, Rectf destination, Rectf clip
-    *  3. Image, Rectf destination, Rectf clip, float rotation,
+    * 3 Possible stacks:
+    * 1. Image, Rectf destination
+    * 2. Image, Rectf destination, Rectf clip
+    * 3. Image, Rectf destination, Rectf clip, float rotation,
     *     Vector2f pivot, int flip value
     */
     std::shared_ptr<Image> *img = ImageLib::Check(l, 1);
@@ -85,14 +86,37 @@ void LuaC::WindowLib::DrawImage(lua_State *l){
         Rectf *dst = RectfLib::Check(l, 2);
         Rectf *clipf = RectfLib::Check(l, 3);
         Recti clip = *clipf;
-        float rotation = luaL_checknumber(l, 4);
+        float angle = luaL_checknumber(l, 4);
         Vector2f *pivot = Vector2fLib::Check(l, 5);
         int flip = luaL_checkint(l, 6);
-        Window::Draw(img->get(), *dst, &clip, rotation, *pivot, flip);
+        Window::Draw(img->get(), *dst, &clip, angle, *pivot, flip);
     }
+    else
+        Debug::Log("Window.draw(Image...) invalid number of parameters: \nstack:" + LuaScriptLib::StackDump(l));
 }
 void LuaC::WindowLib::DrawAnimatedImage(lua_State *l){
-
+    /**
+    * 2 Possible stacks:
+    * 1. AnimatedImage, Rectf destination
+    * 2. AnimatedImage, Rectf destination, float rotation, Vector2f pivot,
+    *       int flip value
+    */
+    std::shared_ptr<AnimatedImage> *img = AnimatedImageLib::Check(l, 1);
+    //Case 1:
+    if (lua_gettop(l) == 2){
+        Rectf *dst = RectfLib::Check(l, 2);
+        Window::Draw(img->get(), *dst);
+    }
+    //Case 2:
+    else if (lua_gettop(l) == 5){
+        Rectf *dst = RectfLib::Check(l, 2);
+        float angle = luaL_checknumber(l, 3);
+        Vector2f *pivot = Vector2fLib::Check(l, 4);
+        int flip = luaL_checknumber(l, 5);
+        Window::Draw(img->get(), *dst, angle, *pivot, flip);
+    }
+    else
+        Debug::Log("Window.draw(AnimatedImage...) invalid number of parameters: \nstack:" + LuaScriptLib::StackDump(l));
 }
 void LuaC::WindowLib::DrawText(lua_State *l){
 

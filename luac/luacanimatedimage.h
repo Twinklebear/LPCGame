@@ -30,7 +30,7 @@ namespace LuaC {
 
     private:
         ///The Lua function library
-        static const struct luaL_Reg luaAnimatedImageLib[];
+        static const struct luaL_reg luaAnimatedImageLib[];
         ///Make a new AnimatedImage in Lua state l
         static int newAnimatedImage(lua_State *l);
         ///Update the Animation frame

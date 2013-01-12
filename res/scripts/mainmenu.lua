@@ -14,15 +14,25 @@ require "TestWindow"
 require "TestInput"
 require "TestColor"
 require "TestTimer"
+require "TestAnimatedImage"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
 
+	animImg = AnimatedImage("../res/img/walking.png")
+	animImg:play("run-right")
+	drawPos = Rectf(0, 0, 64, 64)
+	print ("AnimatedImage: " .. animImg:file() .. " loaded")
+	w, h = animImg:size()
+	print ("AnimatedImage total size w: " .. w .. ", h: " .. h)
+	print ("Currently playing: " .. animImg:playing())
+	--[[
 	quitbutton = State.getEntity("quitbutton")
 	phys = quitbutton:physics()
 	print ("Physics box: " .. phys:box())
 	x, y = quitbutton:callFunction("TestCall", 2, phys, "chjicken")
 	print ("got back: " .. x .. ", " .. y)
+	]]
 	--[[
 	img = Image("../res/img/strip.png")
 	print ("Opened image: " .. img:file())
@@ -53,6 +63,7 @@ function LogicUpdate()
 		print "QUITTING"
 		State.changeScene("quit")
 	end
+	animImg:update()
 	--[[
 	if Input.keyDown(Input.KEY_2) then
 		img:setActiveClip(0)
@@ -73,8 +84,8 @@ function LogicUpdate()
 	]]
 end
 function RenderUpdate()
+	Window.draw(animImg, drawPos, 45, Vector2f(0, 0), Window.FLIP_VERTICAL)
 	--[[
-	Window.draw(img, drawPos)
 	Window.draw(img, drawPos2, img:clip(2))
 	Window.draw(img, drawPos3, img:clip(5), rotation, pivot, Window.FLIP_NONE)
 	]]
