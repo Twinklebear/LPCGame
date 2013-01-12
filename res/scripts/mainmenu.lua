@@ -26,13 +26,10 @@ function Init()
 	w, h = animImg:size()
 	print ("AnimatedImage total size w: " .. w .. ", h: " .. h)
 	print ("Currently playing: " .. animImg:playing())
-	--[[
+
 	quitbutton = State.getEntity("quitbutton")
-	phys = quitbutton:physics()
-	print ("Physics box: " .. phys:box())
-	x, y = quitbutton:callFunction("TestCall", 2, phys, "chjicken")
-	print ("got back: " .. x .. ", " .. y)
-	]]
+	quitbutton:callFunction("TestCall", 0, animImg)
+	
 	--[[
 	img = Image("../res/img/strip.png")
 	print ("Opened image: " .. img:file())

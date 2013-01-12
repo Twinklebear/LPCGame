@@ -13,11 +13,11 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
-    ///The Vector2f metatable name
+    ///The AnimatedImage metatable name
     const std::string animatedImageMeta = "LPC.AnimatedImage";
-    ///The Vector2f class/type name
+    ///The AnimatedImage class/type name
     const std::string animatedImageClass = "AnimatedImage";
-    ///Define Vector2f specialization for UdataLib
+    ///Define AnimatedImage specialization for UdataLib
     template<>
     const std::string UdataLib<std::shared_ptr<AnimatedImage>>::mMetaTable = animatedImageMeta;
     /**

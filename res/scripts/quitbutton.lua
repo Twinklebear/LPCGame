@@ -21,6 +21,7 @@ require "TestImage"
 require "TestWindow"
 require "TestMath"
 require "TestState"
+require "TestAnimatedImage"
 
 function Init()
 	print "Quitbutton Init"
@@ -60,9 +61,8 @@ end
 function OnClick()
 	State.changeScene("quit")
 end
-function TestCall(val1, v2)
-	print ("TestCall called with: " .. val1:box() .. " and " .. v2)
-	return "yuay", 10
+function TestCall(val1)
+	print ("TestCall called with anim img file: " .. val1:file())
 end
 --Another cross-state test
 function AddVects(v1, v2)
