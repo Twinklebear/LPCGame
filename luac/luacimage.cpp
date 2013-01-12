@@ -14,6 +14,8 @@ const struct luaL_reg LuaC::ImageLib::luaImageLib[] = {
     { "setActiveClip", setActiveClip },
     { "clipCount", clipCount },
     { "size", size },
+    { "w", width },
+    { "h", height },
     { "file", file },
     { "release", release },
     { "__gc", garbageCollection },
@@ -64,6 +66,18 @@ int LuaC::ImageLib::size(lua_State *l){
     lua_pushinteger(l, (*img)->W());
     lua_pushinteger(l, (*img)->H());
     return 2;
+}
+int LuaC::ImageLib::width(lua_State *l){
+    //Stack: image
+    std::shared_ptr<Image> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->W());
+    return 1;
+}
+int LuaC::ImageLib::height(lua_State *l){
+    //Stack: image
+    std::shared_ptr<Image> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->H());
+    return 1;
 }
 int LuaC::ImageLib::file(lua_State *l){
     //Stack: image (udata)

@@ -27,7 +27,7 @@ void Text::Set(std::string message, std::string font, Color color, int fontSize)
 	mFontSize = fontSize;
 	mTex.reset(Window::RenderText(mMessage, mFontFile, mColor, mFontSize), SDL_DestroyTexture);
 	if (mTex == nullptr)
-		Debug::Log("Failed to setup message");
+		Debug::Log("Failed to setup text");
 }
 void Text::SetMessage(std::string message){
 	//Make sure we don't do it if the messages already match

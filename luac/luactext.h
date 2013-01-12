@@ -49,6 +49,10 @@ namespace LuaC {
         static int getColor(lua_State *l);
         ///Get the size (w & h) of the text
         static int size(lua_State *l);
+        ///Get the image width
+        static int width(lua_State *l);
+        ///Get the imag height
+        static int height(lua_State *l);
         ///Explicitly release the shared ptr
         static int release(lua_State *l);
         ///Release the shared ptr at garbage collection

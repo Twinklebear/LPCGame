@@ -58,7 +58,6 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     //Get function name and # results
     std::string fcnName = luaL_checkstring(caller, 2);
     int nRes = luaL_checkint(caller, 3);
-    LuaScriptLib::StackDump(caller);
     //# params = caller stack size - 3 (the bottom 3 are the entity, fncname and nRes)
     int nParam = lua_gettop(caller) - 3;
 

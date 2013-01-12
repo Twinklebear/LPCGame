@@ -12,12 +12,14 @@ int LuaC::TextLib::luaopen_text(lua_State *l){
 }
 const struct luaL_reg LuaC::TextLib::luaTextLib[] = {
     { "set", set },
-    { "size", size },
     { "release", release },
     { "message", getMessage },
     { "font", getFont },
     { "fontSize", getFontSize },
     { "color", getColor },
+    { "size", size },
+    { "w", width },
+    { "h", height },
     { "__newindex", newIndex },
     { "__gc", garbageCollection },
     { NULL, NULL }
@@ -117,6 +119,18 @@ int LuaC::TextLib::size(lua_State *l){
     lua_pushinteger(l, (*txt)->W());
     lua_pushinteger(l, (*txt)->H());
     return 2;
+}
+int LuaC::TextLib::width(lua_State *l){
+    //Stack: text
+    std::shared_ptr<Text> *txt = Check(l, 1);
+    lua_pushinteger(l, (*txt)->W());
+    return 1;
+}
+int LuaC::TextLib::height(lua_State *l){
+    //Stack: text
+    std::shared_ptr<Text> *txt = Check(l, 1);
+    lua_pushinteger(l, (*txt)->H());
+    return 1;
 }
 int LuaC::TextLib::release(lua_State *l){
     //Stack: text

@@ -42,6 +42,10 @@ namespace LuaC {
         static int clipCount(lua_State *l);
         ///Get the size of the image
         static int size(lua_State *l);
+        ///Get the image width
+        static int width(lua_State *l);
+        ///Get the imag height
+        static int height(lua_State *l);
         ///Get the image filename
         static int file(lua_State *l);
         ///Explicitly release the shared pointer

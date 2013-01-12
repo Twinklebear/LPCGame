@@ -16,6 +16,8 @@ const struct luaL_reg LuaC::AnimatedImageLib::luaAnimatedImageLib[] = {
     { "play", play },
     { "playing", playing },
     { "size", size },
+    { "w", width },
+    { "h", height },
     { "file", file },
     { "release", release },
     { "__gc", garbageCollection },
@@ -52,6 +54,18 @@ int LuaC::AnimatedImageLib::size(lua_State *l){
     lua_pushinteger(l, (*img)->W());
     lua_pushinteger(l, (*img)->H());
     return 2;
+}
+int LuaC::AnimatedImageLib::width(lua_State *l){
+    //Stack: animated image
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->W());
+    return 1;
+}
+int LuaC::AnimatedImageLib::height(lua_State *l){
+    //Stack: animated image
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->H());
+    return 1;
 }
 int LuaC::AnimatedImageLib::file(lua_State *l){
     //Stack: animated image

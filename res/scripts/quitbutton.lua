@@ -22,6 +22,7 @@ require "TestWindow"
 require "TestMath"
 require "TestState"
 require "TestAnimatedImage"
+require "TestText"
 
 function Init()
 	print "Quitbutton Init"
@@ -32,13 +33,17 @@ function Init()
 	print ("drawing to box: " .. box)
 	box.x = 100
 	img:setActiveClip(0)
+
 	--Setup the button text
-	--[[
-	local textColor = LPC.Color(0, 0, 0)
-	text = LPC.Text("Lua Button Test", "../res/fonts/SourceSansPro-Regular.ttf", textColor, 25)
-	textBox = LPC.Rectf((box.pos.x + box.w / 2 - text:W() / 2), 
-		(box.pos.y + box.h / 2 - text:H() / 2), text:W(), text:H())
-	]]
+	local txtColor = Color(0, 0, 0)
+	print ("Text color: " .. txtColor)
+	print "Making text"
+	text = Text("Lua Button Test", "../res/fonts/SourceSansPro-Regular.ttf", 
+		txtColor, 25)
+	print ("Made text with message: " .. text:message())
+	textBox = Rectf((box:x() + box:w() / 2 - text:w() / 2),
+		(box:y() + box:h() / 2 - text:h() / 2), text:w(), text:h())
+	print ("Text box: " .. textBox)
 end
 function Free()
 	print "Freeing quitbutton"
@@ -46,7 +51,8 @@ end
 function Update()
 end
 function Draw(camera)
-	Window.draw(img, Math.fromSceneSpace(camera,box))
+	Window.draw(img, Math.fromSceneSpace(camera, box))
+	Window.draw(text, Math.fromSceneSpace(camera, textBox))
 	--LPC.Window.Draw(text, LPC.Math.FromSceneSpace(camera, textBox))
 end
 function OnMouseDown()

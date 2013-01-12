@@ -63,7 +63,6 @@ int LuaC::RectfLib::newIndex(lua_State *l){
     //Stack: udata, string of index to set, val to set
     //Get the index to set "x", "y", so on and then remove it
     std::string index = luaL_checkstring(l, 2);
-    LuaScriptLib::StackDump(l);
     switch (index.at(0)){
         case 'x':
             return setX(l);
