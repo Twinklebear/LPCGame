@@ -41,13 +41,25 @@ namespace LuaC {
         const static std::function<void(lua_State*, T)> mPusher;
     };
     //Pusher function specializations
-    //Doubles
+    //Bool
+    typedef LuaPrimitiveParam<bool> BoolParam;
+    template<>
+    const std::function<void(lua_State*, bool)> LuaPrimitiveParam<bool>::mPusher = lua_pushboolean;
+    //Double
     typedef LuaPrimitiveParam<double> DoubleParam;
     template<>
     const std::function<void(lua_State*, double)> LuaPrimitiveParam<double>::mPusher = lua_pushnumber;
-    //Ints
+    //Float
+    typedef LuaPrimitiveParam<float> FloatParam;
+    template<>
+    const std::function<void(lua_State*, float)> LuaPrimitiveParam<float>::mPusher = lua_pushnumber;
+    //Int
     typedef LuaPrimitiveParam<int> IntParam;
     template<>
     const std::function<void(lua_State*, int)> LuaPrimitiveParam<int>::mPusher = lua_pushinteger;
+    //String (a lambda function is used b/c lua_pushstring takes a char* not a std::string)
+    typedef LuaPrimitiveParam<std::string> StringParam;
+    const std::function<void(lua_State*, std::string)>
+        LuaPrimitiveParam<std::string>::mPusher = [](lua_State *l, std::string str) { lua_pushstring(l, str.c_str()); };
 }
 #endif

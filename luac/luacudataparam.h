@@ -72,6 +72,36 @@ namespace LuaC {
     template<>
     const std::function<void(lua_State*, const std::weak_ptr<Camera>*)> 
         LuaUdataParam<std::weak_ptr<Camera>>::mPusher = &CameraLib::Push;  
+    //Color
+    typedef LuaUdataParam<Color> ColorParam;
+    const std::function<void(lua_State*, const Color*)>
+        LuaUdataParam<Color>::mPusher = &ColorLib::Push;
+    //Entity
+    typedef LuaUdataParam<std::shared_ptr<Entity>> EntityParam;
+    const std::function<void(lua_State*, const std::shared_ptr<Entity>*)>
+        LuaUdataParam<std::shared_ptr<Entity>>::mPusher = &EntityLib::Push;
+    //Image
+    typedef LuaUdataParam<std::shared_ptr<Image>> ImageParam;
+    const std::function<void(lua_State*, const std::shared_ptr<Image>*)>
+        LuaUdataParam<std::shared_ptr<Image>>::mPusher = &ImageLib::Push;
+    //Physics
+    typedef LuaUdataParam<std::weak_ptr<Physics>> PhysicsParam;
+    const std::function<void(lua_State*, const std::weak_ptr<Physics>*)>
+        LuaUdataParam<std::weak_ptr<Physics>>::mPusher = &PhysicsLib::Push;
+    //Rectf
+    typedef LuaUdataParam<Rectf> RectfParam;
+    template<>
+    const std::function<void(lua_State*, const Rectf*)> 
+        LuaUdataParam<Rectf>::mPusher = &RectfLib::Push;
+    //Text
+    typedef LuaUdataParam<std::shared_ptr<Text>> TextParam;
+    const std::function<void(lua_State*, const std::shared_ptr<Text>*)>
+        LuaUdataParam<std::shared_ptr<Text>>::mPusher = &TextLib::Push;
+    //Timer
+    typedef LuaUdataParam<Timer> TimerParam;
+    template<>
+    const std::function<void(lua_State*, const Timer*)> 
+        LuaUdataParam<Timer>::mPusher = &TimerLib::Push;
     //Vector2f
     typedef LuaUdataParam<Vector2f> Vector2fParam;
     template<>
