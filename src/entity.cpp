@@ -9,6 +9,10 @@
 #include "debug.h"
 #include "entity.h"
 
+#include "luac/luacparam.h"
+#include "luac/luacudataparam.h"
+#include "luac/luacprimitiveparam.h"
+
 Entity::Entity() : mName(""), mTag(""), mConfigFile(""),  mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
 {
     mPhysics = std::shared_ptr<Physics>(new Physics());

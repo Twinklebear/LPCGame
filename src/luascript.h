@@ -6,8 +6,6 @@
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 
-#include "luac/luacparam.h"
-
 ///A class to enable lua scripts to load various modules
 /**
 *  ModuleManager enables Lua scripts to import other necessary modules

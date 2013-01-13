@@ -40,6 +40,13 @@ namespace LuaC {
         const T mObj;
         const static std::function<void(lua_State*, T)> mPusher;
     };
+    //Pusher function specializations
+    //Doubles
+    typedef LuaPrimitiveParam<double> DoubleParam;
+    template<>
+    const std::function<void(lua_State*, double)> LuaPrimitiveParam<double>::mPusher = lua_pushnumber;
+    //Ints
+    typedef LuaPrimitiveParam<int> IntParam;
     template<>
     const std::function<void(lua_State*, int)> LuaPrimitiveParam<int>::mPusher = lua_pushinteger;
 }

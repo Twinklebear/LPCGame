@@ -3,9 +3,24 @@
 
 #include <functional>
 #include <string>
+#include <memory>
 #include <lua.hpp>
 #include "luacparam.h"
 #include "luacvector2f.h"
+#include "luacrectf.h"
+#include "luacphysics.h"
+#include "luacentity.h"
+#include "luacdebug.h"
+#include "luaccolor.h"
+#include "luactimer.h"
+#include "luacinput.h"
+#include "luacstate.h"
+#include "luaccamera.h"
+#include "luacmath.h"
+#include "luacimage.h"
+#include "luacwindow.h"
+#include "luacanimatedimage.h"
+#include "luactext.h"
 
 ///A namespace for storing the Lua C API code
 /**
@@ -46,7 +61,21 @@ namespace LuaC {
         const T *mObj;
         const static std::function<void(lua_State*, const T*)> mPusher;
     };
+    //Pusher function specializations & shorthand typedefs
+    //Animated Image
+    typedef LuaUdataParam<std::shared_ptr<AnimatedImage>> AnimImgParam;
     template<>
-    const std::function<void(lua_State*, const Vector2f*)> LuaUdataParam<Vector2f>::mPusher = &Vector2fLib::Push;
+    const std::function<void(lua_State*, const std::shared_ptr<AnimatedImage>*)> 
+        LuaUdataParam<std::shared_ptr<AnimatedImage>>::mPusher = &AnimatedImageLib::Push;
+    //Camera
+    typedef LuaUdataParam<std::weak_ptr<Camera>> CameraParam;
+    template<>
+    const std::function<void(lua_State*, const std::weak_ptr<Camera>*)> 
+        LuaUdataParam<std::weak_ptr<Camera>>::mPusher = &CameraLib::Push;  
+    //Vector2f
+    typedef LuaUdataParam<Vector2f> Vector2fParam;
+    template<>
+    const std::function<void(lua_State*, const Vector2f*)> 
+        LuaUdataParam<Vector2f>::mPusher = &Vector2fLib::Push;
 }
 #endif
