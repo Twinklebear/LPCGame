@@ -24,13 +24,13 @@ namespace LuaC {
         * Push the parameter value on to a Lua state using the pusher function
         * @param l The Lua state to push the object onto
         */
-        virtual void Push(lua_State *l){}
+        virtual void Push(lua_State *l) = 0;
         /**
         * Push the parameter onto a Lua state as a global variable with some name
         * @param l Lua state to push onto
         * @param name Global name to be given to the object
         */
-        virtual void Push(lua_State *l, std::string name){}
+        virtual void Push(lua_State *l, std::string name) = 0;
     };
 }
 #endif
