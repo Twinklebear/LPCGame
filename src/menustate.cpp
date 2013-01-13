@@ -1,4 +1,5 @@
 #include <memory>
+#include <initializer_list>
 #include "../externals/json/json.h"
 #include "entity.h"
 #include "entitymanager.h"
@@ -9,7 +10,7 @@
 #include "menustate.h"
 #include "statemanager.h"
 
-#include "luac/luaccamera.h"
+#include "luac/luacudataparam.h"
 #include "luac/luacvector2f.h"
 
 std::string MenuState::Run(){
@@ -23,8 +24,12 @@ std::string MenuState::Run(){
 	//Setup the background destination
 	Rectf bkgndPos = Math::FromSceneSpace(mCamera, mCamera->SceneBox());
 
-    //testing stuff
-    bool made = false;
+    //Testing the new initializer list call
+    Vector2f v(10, 10);
+    Vector2f v2(15, 2);
+    LuaC::Vector2fParam vectParam(&v);
+    LuaC::Vector2fParam vectParam2(&v2);
+    mScript.CallFunction("Test2", { &vectParam, &vectParam2 });
 
 	Timer delta;
 	delta.Start();

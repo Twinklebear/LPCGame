@@ -1,26 +1,12 @@
 #include <string>
 #include <fstream>
+#include <initializer_list>
 #include <lua.hpp>
 #include <luabind/luabind.hpp>
 #include "externals/json/json.h"
-#include "animatedimage.h"
-#include "button.h"
-#include "camera.h"
-#include "color.h"
-#include "entity.h"
-#include "input.h"
-#include "math.h"
-#include "motionstate.h"
-#include "physics.h"
-#include "rect.h"
-#include "state.h"
-#include "statemanager.h"
-#include "text.h"
-#include "timer.h"
-#include "vectors.h"
-#include "window.h"
 #include "debug.h"
 #include "luac/luacscript.h"
+#include "luac/luacparam.h"
 #include "luascript.h"
 
 LuaScript::LuaScript() : mL(nullptr), mFile(""){
@@ -50,6 +36,18 @@ void LuaScript::Close(){
         lua_close(mL);
         mL = nullptr;
     }
+}
+void LuaScript::CallFunction(std::string function, std::initializer_list<LuaC::LuaParam*> args){
+    //Get the function to be called
+    lua_getglobal(mL, function.c_str());
+    //Push the parameters onto the stack
+    for (LuaC::LuaParam *p : args)
+        p->Push(mL);
+
+    //Call the function
+    int nParams = lua_gettop(mL) - 1;
+    if (lua_pcall(mL, nParams, 0, 0) != 0)
+        Debug::Log("Error calling: " + function + " " + lua_tostring(mL, -1));
 }
 lua_State* LuaScript::Get(){
 	return mL;

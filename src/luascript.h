@@ -3,8 +3,10 @@
 
 #include <string>
 #include <map>
+#include <initializer_list>
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
+#include "luac/luacparam.h"
 
 ///A class to enable lua scripts to load various modules
 /**
@@ -26,6 +28,12 @@ public:
 	void OpenScript(const std::string &script);
     ///Close the script
 	void Close();
+    /**
+    * Call a function on the Lua state and pass arguments to it
+    * @param function Name of the function to call
+    * @param args List of arguments to be pushed onto the stack for the function
+    */
+    void CallFunction(std::string function, std::initializer_list<LuaC::LuaParam*> args);
 	/**
 	*  Get the lua_State pointer to use for calling functions/etc.
 	*  @return The lua_State pointer held by the LuaScript class
