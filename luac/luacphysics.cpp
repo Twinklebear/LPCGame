@@ -48,7 +48,7 @@ int LuaC::PhysicsLib::position(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    Vector2fLib::Push(&p->Position(), l);
+    Vector2fLib::Push(l, &p->Position());
     return 1;
 }
 int LuaC::PhysicsLib::velocity(lua_State *l){
@@ -61,7 +61,7 @@ int LuaC::PhysicsLib::velocity(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    Vector2fLib::Push(&p->Velocity(), l);
+    Vector2fLib::Push(l, &p->Velocity());
     return 1;
 }
 int LuaC::PhysicsLib::acceleration(lua_State *l){
@@ -74,7 +74,7 @@ int LuaC::PhysicsLib::acceleration(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    Vector2fLib::Push(&p->Acceleration(), l);
+    Vector2fLib::Push(l, &p->Acceleration());
     return 1;
 }
 int LuaC::PhysicsLib::box(lua_State *l){
@@ -87,7 +87,7 @@ int LuaC::PhysicsLib::box(lua_State *l){
         return 1;
     }
     std::shared_ptr<Physics> p = pWeak->lock();
-    RectfLib::Push(&p->Box(), l);
+    RectfLib::Push(l, &p->Box());
     return 1;
 }
 int LuaC::PhysicsLib::state(lua_State *l){

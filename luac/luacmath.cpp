@@ -65,7 +65,7 @@ int LuaC::MathLib::normalize(lua_State *l){
     //Stack: Vector2f
     Vector2f *v = Vector2fLib::Check(l, 1);
     Vector2f unit = Math::Normalize(*v);
-    Vector2fLib::Push(&unit, l);
+    Vector2fLib::Push(l, &unit);
     return 1;
 }
 int LuaC::MathLib::lerp(lua_State *l){
@@ -74,14 +74,14 @@ int LuaC::MathLib::lerp(lua_State *l){
     Vector2f *end = Vector2fLib::Check(l, 2);
     float percent = luaL_checknumber(l, 3);
     Vector2f lerped = Math::Lerp(*start, *end, percent);
-    Vector2fLib::Push(&lerped, l);
+    Vector2fLib::Push(l, &lerped);
     return 1;
 }
 int LuaC::MathLib::forwardVector(lua_State *l){
     //Stack: float 
     float degrees = luaL_checknumber(l, 1);
     Vector2f v = Math::ForwardVector(degrees);
-    Vector2fLib::Push(&v, l);
+    Vector2fLib::Push(l, &v);
     return 1;
 }
 int LuaC::MathLib::rectNearRect(lua_State *l){
@@ -131,12 +131,12 @@ int LuaC::MathLib::toSceneSpace(lua_State *l){
     if (LuaScriptLib::readType(l, 2) == rectfClass){
         Rectf *r = RectfLib::Check(l, 2);
         Rectf transform = Math::ToSceneSpace(*cam, *r);
-        RectfLib::Push(&transform, l);
+        RectfLib::Push(l, &transform);
     }
     else if (LuaScriptLib::readType(l, 2) == vector2fClass){
         Vector2f *v = Vector2fLib::Check(l, 2);
         Vector2f transform = Math::ToSceneSpace(*cam, *v);
-        Vector2fLib::Push(&transform, l);
+        Vector2fLib::Push(l, &transform);
     }
     else {
         Debug::Log("Math.toSceneSpace Error: Must have a Rectf or Vector2f to transform");
@@ -155,12 +155,12 @@ int LuaC::MathLib::fromSceneSpace(lua_State *l){
     if (LuaScriptLib::readType(l, 2) == rectfClass){
         Rectf *r = RectfLib::Check(l, 2);
         Rectf transform = Math::FromSceneSpace(*cam, *r);
-        RectfLib::Push(&transform, l);
+        RectfLib::Push(l, &transform);
     }
     else if (LuaScriptLib::readType(l, 2) == vector2fClass){
         Vector2f *v = Vector2fLib::Check(l, 2);
         Vector2f transform = Math::FromSceneSpace(*cam, *v);
-        Vector2fLib::Push(&transform, l);
+        Vector2fLib::Push(l, &transform);
     }
     else {
         Debug::Log("Math.fromSceneSpace Error: Must have a Rectf or Vector2f to transform");

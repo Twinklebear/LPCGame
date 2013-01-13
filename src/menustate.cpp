@@ -17,14 +17,6 @@ std::string MenuState::Run(){
 	Input::Clear();
 	//Clean up any previous exit settings
 	UnsetExit();
-
-    //Push in the camera for debug testing only
-    LuaC::CameraLib::Push(&std::weak_ptr<Camera>(mCamera), mScript.Get());
-    lua_setglobal(mScript.Get(), "mCamera");
-
-    //Push in a vector2f
-    LuaC::Vector2fLib::Push(&Vector2f(5, 5), mScript.Get());
-    lua_setglobal(mScript.Get(), "vD");
     
     //Call the script's Init
     State::Init();

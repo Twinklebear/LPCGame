@@ -32,7 +32,7 @@ int LuaC::RectfLib::newRectf(lua_State *l){
 int LuaC::RectfLib::getPos(lua_State *l){
     //Stack: userdata (Rectf)
     Rectf *r = Check(l, 1);
-    Vector2fLib::Push(&r->pos, l);
+    Vector2fLib::Push(l, &r->pos);
     return 1;
 }
 int LuaC::RectfLib::getX(lua_State *l){

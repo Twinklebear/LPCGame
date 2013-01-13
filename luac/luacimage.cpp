@@ -24,7 +24,7 @@ const struct luaL_reg LuaC::ImageLib::luaImageLib[] = {
 int LuaC::ImageLib::newImage(lua_State *l){
     //Stack: class table, file name
     std::string file = luaL_checkstring(l, 2);
-    Push(&std::make_shared<Image>(file), l);
+    Push(l, &std::make_shared<Image>(file));
     return 1;
 }
 int LuaC::ImageLib::getClip(lua_State *l){
@@ -44,7 +44,7 @@ int LuaC::ImageLib::getClip(lua_State *l){
     else
         clip = (*img)->Clip();
 
-    RectfLib::Push(&clip, l);
+    RectfLib::Push(l, &clip);
     return 1;
 }
 int LuaC::ImageLib::setActiveClip(lua_State *l){

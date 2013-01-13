@@ -31,7 +31,7 @@ int LuaC::TextLib::newText(lua_State *l){
     Color *color = ColorLib::Check(l, 4);
     int size = luaL_checkint(l, 5);
 
-    Push(&std::make_shared<Text>(msg, fontFile, *color, size), l);
+    Push(l, &std::make_shared<Text>(msg, fontFile, *color, size));
     return 1;
 }
 int LuaC::TextLib::set(lua_State *l){
@@ -110,7 +110,7 @@ int LuaC::TextLib::getFontSize(lua_State *l){
 int LuaC::TextLib::getColor(lua_State *l){
     //Stack: text
     std::shared_ptr<Text> *txt = Check(l, 1);
-    ColorLib::Push(&(*txt)->GetColor(), l);
+    ColorLib::Push(l, &(*txt)->GetColor());
     return 1;
 }
 int LuaC::TextLib::size(lua_State *l){

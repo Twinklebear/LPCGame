@@ -41,7 +41,7 @@ int LuaC::EntityLib::newEntity(lua_State *l){
     std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
     manager->Register(e);
     //Push the entity into the state
-    Push(&e, l);
+    Push(l, &e);
     return 1;
 }
 int LuaC::EntityLib::callFunction(lua_State *caller){
@@ -107,13 +107,13 @@ int LuaC::EntityLib::release(lua_State *l){
 int LuaC::EntityLib::getPhysics(lua_State *l){
     //Stack: udata (Entity)
     std::shared_ptr<Entity> *e = Check(l, 1);
-    PhysicsLib::Push(&(*e)->GetPhysicsWeakPtr(), l);
+    PhysicsLib::Push(l, &(*e)->GetPhysicsWeakPtr());
     return 1;
 }
 int LuaC::EntityLib::getBox(lua_State *l){
     //Stack: udata (Entity)
     std::shared_ptr<Entity> *e = Check(l, 1);
-    RectfLib::Push(&(*e)->Box(), l);
+    RectfLib::Push(l, &(*e)->Box());
     return 1;
 }
 int LuaC::EntityLib::getTag(lua_State *l){

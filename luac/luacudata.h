@@ -35,7 +35,7 @@ namespace LuaC {
         *  @param obj The object to push
         *  @param l The Lua state to push onto
         */
-        static void Push(lua_State *l, T *obj){
+        static void Push(lua_State *l, const T *obj){
             T *o = Allocate(l);
             *o = *obj;
         }
@@ -47,7 +47,7 @@ namespace LuaC {
         */
         static void Copy(lua_State *from, int idx, lua_State *too){
             T *obj = Check(from, idx);
-            Push(obj, too);
+            Push(too, obj);
         }
         /**
         *  Check if the userdata at some index is of type T and return a pointer to it

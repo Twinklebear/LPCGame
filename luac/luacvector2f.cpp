@@ -85,7 +85,7 @@ int LuaC::Vector2fLib::addition(lua_State *l){
     Vector2f *v2 = Check(l, 2);
     //Calculate and push the result
     Vector2f res = *v1 + *v2;
-    Push(&res, l);
+    Push(l, &res);
     return 1;
 }
 int LuaC::Vector2fLib::subtraction(lua_State *l){
@@ -94,7 +94,7 @@ int LuaC::Vector2fLib::subtraction(lua_State *l){
     Vector2f *v2 = Check(l, 2);
     //Calculate and push the result
     Vector2f res = *v1 - *v2;
-    Push(&res, l);
+    Push(l, &res);
     return 1;
 }
 int LuaC::Vector2fLib::multiplication(lua_State *l){
@@ -116,7 +116,7 @@ int LuaC::Vector2fLib::multiplication(lua_State *l){
         Vector2f *v2 = Check(l, 2);
         //Calculate and push the result
         Vector2f res = (*v1) * (*v2);
-        Push(&res, l);
+        Push(l, &res);
     }
     return 1;
 }
@@ -126,7 +126,7 @@ void LuaC::Vector2fLib::multWithFloat(lua_State *l, int vIdx, int fIdx){
     float num = luaL_checknumber(l, fIdx);
     //Calculate and push the result
     Vector2f res = (*v) * num;
-    Push(&res, l);
+    Push(l, &res);
 }
 int LuaC::Vector2fLib::division(lua_State *l){
     /*
@@ -140,7 +140,7 @@ int LuaC::Vector2fLib::division(lua_State *l){
         float num = luaL_checknumber(l, 2);
         //Calculate and push the result
         Vector2f res = (*v) / num;
-        Push(&res, l);
+        Push(l, &res);
     }
     //Case 2:
     else {
@@ -148,7 +148,7 @@ int LuaC::Vector2fLib::division(lua_State *l){
         Vector2f *v2 = Check(l, 2);
         //Calculate and push the result
         Vector2f res = (*v1) / (*v2);
-        Push(&res, l);
+        Push(l, &res);
     }
     return 1;
 }
