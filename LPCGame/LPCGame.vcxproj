@@ -21,6 +21,7 @@
     <ClInclude Include="..\luac\luacimage.h" />
     <ClInclude Include="..\luac\luacinput.h" />
     <ClInclude Include="..\luac\luacmath.h" />
+    <ClInclude Include="..\luac\luacparam.h" />
     <ClInclude Include="..\luac\luacphysics.h" />
     <ClInclude Include="..\luac\luacrectf.h" />
     <ClInclude Include="..\luac\luacscript.h" />

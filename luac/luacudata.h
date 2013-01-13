@@ -35,7 +35,7 @@ namespace LuaC {
         *  @param obj The object to push
         *  @param l The Lua state to push onto
         */
-        static void Push(T *obj, lua_State *l){
+        static void Push(lua_State *l, T *obj){
             T *o = Allocate(l);
             *o = *obj;
         }
