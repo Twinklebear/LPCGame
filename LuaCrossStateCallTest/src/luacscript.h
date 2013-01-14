@@ -5,6 +5,7 @@
 #include <map>
 #include <vector>
 #include <lua.hpp>
+#include "luaprimitiveparam.h"
 
 ///A version of the LuaScript class written with the Lua C API
 class LuaCScript {
@@ -17,6 +18,7 @@ public:
     std::string File() const;
     std::string Name() const;
     bool Open() const;
+    
 
 private:
     //Private members
