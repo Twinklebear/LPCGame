@@ -17,9 +17,6 @@ function Init()
 	print "\n--------Quitbutton Init--------\n"
 
 	print ("My name is: " .. self:name())
-	--self = State.getEntity("quitbutton")
-	--print ("Self name: " .. self:name())
-	--[[
 	--Load the button image
 	img = Image("../res/img/simplebutton.png")
 	box = Rectf(100, 500, 200, 100)
@@ -32,33 +29,25 @@ function Init()
 		txtColor, 25)
 	textBox = Rectf((box:x() + box:w() / 2 - text:w() / 2),
 		(box:y() + box:h() / 2 - text:h() / 2), text:w(), text:h())
-	]]
 end
 function Free()
 	print "\n--------Quitbutton Free--------\n"
-	--self:release()
 end
 function Update()
-	--[[
-	if Input.keyDown(Input.KEY_E) then
-		self = State.getEntity("quitbutton")
-		print ("self name: " .. self:name())
-	end
-	]]
 end
 function Draw(camera)
-	--Window.draw(img, Math.fromSceneSpace(camera, box))
-	--Window.draw(text, Math.fromSceneSpace(camera, textBox))
+	Window.draw(img, Math.fromSceneSpace(camera, box))
+	Window.draw(text, Math.fromSceneSpace(camera, textBox))
 end
 function OnMouseDown()
-	--img:setActiveClip(1)
+	img:setActiveClip(1)
 end
 function OnMouseUp()
-	--img:setActiveClip(0)
+	img:setActiveClip(0)
 end
 function OnMouseExit()
-	--img:setActiveClip(0)
+	img:setActiveClip(0)
 end
 function OnClick()
-	--State.changeScene("quit")
+	State.changeScene("quit")
 end
