@@ -11,11 +11,10 @@
 #include "luac/luacprimitiveparam.h"
 #include "entity.h"
 
-Entity::Entity() : mName(""), mTag(""), mConfigFile(""),  mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
+Entity::Entity() : mPhysics(new Physics()), mName(""), mTag(""), mConfigFile(""),  mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
 {
-    mPhysics = std::shared_ptr<Physics>(new Physics());
 }
-Entity::Entity(std::string file) : mName(""), mTag(""), mConfigFile(""), mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
+Entity::Entity(std::string file) : mPhysics(new Physics()), mName(""), mTag(""), mConfigFile(""), mMouseOver(false), mClicked(false), mRender(true), mUiElement(false)
 {
     Load(file);
 }
@@ -231,8 +230,7 @@ void Entity::Load(Json::Value val){
 	mTag  = val["tag"].asString();
 	mName = val["name"].asString();
 	mPhysics->Load(val["physics"]);
-    if (val["image"].asString() != "")
-    	mImage.Load(val["image"].asString());
+    //mImage.Load(val["image"].asString());
 	mScript.OpenScript(val["script"].asString());
     mRender = val["render"].asBool();
     mUiElement = val["ui"].asBool();

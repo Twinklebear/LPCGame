@@ -113,7 +113,8 @@ void MenuState::Load(Json::Value val){
         //Loading scripted entities
         else {
             std::cout << "about to load entity from file: " << entities[i]["file"].asString() << std::endl;
-            std::shared_ptr<Entity> e = std::make_shared<Entity>(entities[i]["file"].asString());
+            //std::shared_ptr<Entity> e = std::make_shared<Entity>(entities[i]["file"].asString());
+            std::shared_ptr<Entity> e(new Entity(entities[i]["file"].asString()));
             std::cout << "Entity loaded" << std::endl;
             mManager->Register(e);
             //Maybe pass the shared_ptr in here to be pushed onto the state?
