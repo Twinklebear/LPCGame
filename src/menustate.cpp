@@ -1,5 +1,4 @@
 #include <memory>
-#include <initializer_list>
 #include "../externals/json/json.h"
 #include "entity.h"
 #include "entitymanager.h"

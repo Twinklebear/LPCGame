@@ -17,7 +17,7 @@ void State::Init(){
     if (!mScript.Open())
 		return;
 	try {
-        mScript.CallFunction("Init", {});
+        mScript.CallFunction("Init");
         /*
         lua_getglobal(mScript.Get(), "Init");
         if (lua_pcall(mScript.Get(), 0, 0, 0) != 0)

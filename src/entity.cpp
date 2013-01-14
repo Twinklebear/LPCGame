@@ -41,7 +41,7 @@ void Entity::Init(std::shared_ptr<Entity> self){
     LuaC::EntityParam globalSelf(&selfWeak);
     globalSelf.Push(mScript.Get(), "self");
     */
-    mScript.CallFunction("Init", {});
+    mScript.CallFunction("Init");
 }
 void Entity::Free(){
     std::cout << "Entity: " << mName << " free" << std::endl;
@@ -50,7 +50,7 @@ void Entity::Free(){
 		return;
     }
     std::cout << "mscript open" << std::endl;
-    mScript.CallFunction("Free", {});
+    mScript.CallFunction("Free");
     mScript.Close();
 }
 void Entity::Update(){

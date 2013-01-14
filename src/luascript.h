@@ -3,7 +3,8 @@
 
 #include <string>
 #include <map>
-#include <initializer_list>
+//#include <initializer_list>
+#include <vector>
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "luac/luacparam.h"
@@ -30,10 +31,22 @@ public:
     void Close();
     /**
     * Call a function on the Lua state and pass arguments to it
+    * Don't use this initializer list verison until the compiler version is officially released
     * @param function Name of the function to call
     * @param args List of arguments to be pushed onto the stack for the function
     */
-    void CallFunction(std::string function, std::initializer_list<LuaC::LuaParam*> args);
+    //void CallFunction(std::string function, std::initializer_list<LuaC::LuaParam*> args);
+    /**
+    * Call a function on the Lua state with no arguments
+    * @param function Name of the function to be called
+    */
+    //void CallFunction(std::string function);
+    /**
+    * Call a function on the Lua state and pass some arguments to it
+    * @param function Name of the function to be called
+    * @param args Vector of arguments to be passed
+    */
+    void CallFunction(std::string function, std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>());
     /**
     *  Get the lua_State pointer to use for calling functions/etc.
     *  @return The lua_State pointer held by the LuaScript class

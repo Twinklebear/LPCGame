@@ -1,7 +1,8 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-#include <initializer_list>
+//#include <initializer_list>
+#include <vector>
 #include <lua.hpp>
 #include <luabind/luabind.hpp>
 #include "externals/json/json.h"
@@ -37,7 +38,7 @@ void LuaScript::OpenScript(const std::string &script){
 void LuaScript::Close(){
     std::cout << "Script " << mFile << " Close - mOpen: " << (mOpen ? "true" : "false") << std::endl;
     if (Open()){
-        CallFunction("Free", {});
+        CallFunction("Free");
         std::cout << "script file: " << mFile << " closing" << std::endl;
         lua_close(mL);
         mL = NULL;
@@ -45,7 +46,27 @@ void LuaScript::Close(){
         std::cout << "mOpen: " << (mOpen ? "true" : "false") << std::endl;
     }
 }
+/*
 void LuaScript::CallFunction(std::string function, std::initializer_list<LuaC::LuaParam*> args){
+    //Get the function to be called
+    lua_getglobal(mL, function.c_str());
+    std::stringstream ss;
+    ss << " top: " << lua_gettop(mL);
+    Debug::Log("Script: " + mFile + " calling function: " + function + ss.str());
+    std::cout << "top: " << lua_gettop(mL) << std::endl;
+    LuaC::LuaScriptLib::StackDump(mL);
+    //Push the parameters onto the stack
+    for (LuaC::LuaParam *p : args)
+        p->Push(mL);
+
+    //Call the function
+    int nParams = lua_gettop(mL) - 1;
+    std::cout << "Calling: " << function << " with #params: " << nParams << std::endl;
+    if (lua_pcall(mL, nParams, 0, 0) != 0)
+        Debug::Log("Error calling: " + function + " " + lua_tostring(mL, -1));
+}
+*/
+void LuaScript::CallFunction(std::string function, std::vector<LuaC::LuaParam*> args){
     //Get the function to be called
     lua_getglobal(mL, function.c_str());
     std::stringstream ss;
