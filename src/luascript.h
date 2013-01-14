@@ -37,11 +37,6 @@ public:
     */
     //void CallFunction(std::string function, std::initializer_list<LuaC::LuaParam*> args);
     /**
-    * Call a function on the Lua state with no arguments
-    * @param function Name of the function to be called
-    */
-    //void CallFunction(std::string function);
-    /**
     * Call a function on the Lua state and pass some arguments to it
     * @param function Name of the function to be called
     * @param args Vector of arguments to be passed

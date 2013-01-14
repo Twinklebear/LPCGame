@@ -20,8 +20,6 @@ Entity::Entity(std::string file) : mPhysics(new Physics()), mName(""), mTag(""),
 }
 Entity::~Entity(){
     std::cout << "Entity: " << mName << " destructor" << std::endl;
-    //Make sure Free is called 
-    Free();
 }
 void Entity::Init(std::shared_ptr<Entity> self){
 	//We catch exceptions so that if the function doesn't exist the program 
@@ -35,22 +33,9 @@ void Entity::Init(std::shared_ptr<Entity> self){
         LuaC::EntityParam luaSelf(&self);
         luaSelf.Push(mScript.Get(), "self");
     }
-    /*
-    std::shared_ptr<Entity> self(this);
-    std::weak_ptr<Entity> selfWeak = self;
-    LuaC::EntityParam globalSelf(&selfWeak);
-    globalSelf.Push(mScript.Get(), "self");
-    */
     mScript.CallFunction("Init");
 }
 void Entity::Free(){
-    std::cout << "Entity: " << mName << " free" << std::endl;
-	if (!mScript.Open()){
-        std::cout << "mscript closed" << std::endl;
-		return;
-    }
-    std::cout << "mscript open" << std::endl;
-    mScript.CallFunction("Free");
     mScript.Close();
 }
 void Entity::Update(){

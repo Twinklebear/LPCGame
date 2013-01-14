@@ -29,15 +29,7 @@ void State::Init(){
 	}
 }
 void State::Free(){
-    //Call the script
-    if (!mScript.Open())
-		return;
-	try {
-        //mScript.CallFunction("Free", {});
-		//luabind::call_function<void>(mScript.Get(), "Free");
-	}
-	catch(...){
-	}
+    mScript.Close();
 }
 void State::LogicUpdate(){
     //Call the script

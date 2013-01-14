@@ -36,14 +36,11 @@ void LuaScript::OpenScript(const std::string &script){
     }
 }
 void LuaScript::Close(){
-    std::cout << "Script " << mFile << " Close - mOpen: " << (mOpen ? "true" : "false") << std::endl;
     if (Open()){
         CallFunction("Free");
-        std::cout << "script file: " << mFile << " closing" << std::endl;
         lua_close(mL);
         mL = NULL;
         mOpen = false;
-        std::cout << "mOpen: " << (mOpen ? "true" : "false") << std::endl;
     }
 }
 /*
@@ -70,18 +67,13 @@ void LuaScript::CallFunction(std::string function, std::vector<LuaC::LuaParam*> 
     //Get the function to be called
     lua_getglobal(mL, function.c_str());
     std::stringstream ss;
-    ss << " top: " << lua_gettop(mL);
-    Debug::Log("Script: " + mFile + " calling function: " + function + ss.str());
-    std::cout << "top: " << lua_gettop(mL) << std::endl;
-    LuaC::LuaScriptLib::StackDump(mL, false);
     //Push the parameters onto the stack
     for (LuaC::LuaParam *p : args)
         p->Push(mL);
 
     //Call the function
     int nParams = args.size();
-    std::cout << "Script: " << mFile << " calling: " << function << " with #params: " << nParams << std::endl;
-    if (lua_pcall(mL, nParams, 0, 0) != 0)
+    if (lua_pcall(mL, args.size(), 0, 0) != 0)
         Debug::Log("Error calling: " + function + " " + lua_tostring(mL, -1));
 }
 lua_State* LuaScript::Get(){
