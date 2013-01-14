@@ -73,14 +73,14 @@ void LuaScript::CallFunction(std::string function, std::vector<LuaC::LuaParam*> 
     ss << " top: " << lua_gettop(mL);
     Debug::Log("Script: " + mFile + " calling function: " + function + ss.str());
     std::cout << "top: " << lua_gettop(mL) << std::endl;
-    LuaC::LuaScriptLib::StackDump(mL);
+    LuaC::LuaScriptLib::StackDump(mL, false);
     //Push the parameters onto the stack
     for (LuaC::LuaParam *p : args)
         p->Push(mL);
 
     //Call the function
-    int nParams = lua_gettop(mL) - 1;
-    std::cout << "Calling: " << function << " with #params: " << nParams << std::endl;
+    int nParams = args.size();
+    std::cout << "Script: " << mFile << " calling: " << function << " with #params: " << nParams << std::endl;
     if (lua_pcall(mL, nParams, 0, 0) != 0)
         Debug::Log("Error calling: " + function + " " + lua_tostring(mL, -1));
 }
