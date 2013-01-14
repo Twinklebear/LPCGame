@@ -231,7 +231,8 @@ void Entity::Load(Json::Value val){
 	mTag  = val["tag"].asString();
 	mName = val["name"].asString();
 	mPhysics->Load(val["physics"]);
-	mImage.Load(val["image"].asString());
+    if (val["image"].asString() != "")
+    	mImage.Load(val["image"].asString());
 	mScript.OpenScript(val["script"].asString());
     mRender = val["render"].asBool();
     mUiElement = val["ui"].asBool();

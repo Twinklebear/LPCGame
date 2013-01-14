@@ -17,8 +17,7 @@ Image::Image()
 Image::Image(const std::string &file)
 	: mTexture(nullptr, SDL_DestroyTexture), mFile(""), mClips(nullptr), mNumClips(0), mActiveClip(-1)
 {
-	mFile = file;
-	Load(file);
+    Load(file);
 }
 Image::~Image(){
 	if (mClips != nullptr)
