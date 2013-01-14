@@ -17,7 +17,6 @@ LuaScript::LuaScript(std::string script) : mL(nullptr), mFile(""), mOpen(false) 
     OpenScript(script);
 }
 LuaScript::~LuaScript(){
-    std::cout << "Script: " << mFile << " destructor" << std::endl;
     Close();
 }
 void LuaScript::OpenScript(const std::string &script){

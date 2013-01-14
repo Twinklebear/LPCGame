@@ -95,7 +95,6 @@ int LuaC::EntityLib::destroy(lua_State *l){
     return 0;
 }
 int LuaC::EntityLib::release(lua_State *l){
-    std::cout << "EntityLib release" << std::endl;
     std::shared_ptr<Entity> *e = Check(l, 1);
     e->~shared_ptr();
     return 0;

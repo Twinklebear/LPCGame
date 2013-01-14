@@ -19,7 +19,6 @@ Entity::Entity(std::string file) : mPhysics(new Physics()), mName(""), mTag(""),
     Load(file);
 }
 Entity::~Entity(){
-    std::cout << "Entity: " << mName << " destructor" << std::endl;
 }
 void Entity::Init(std::shared_ptr<Entity> self){
 	//We catch exceptions so that if the function doesn't exist the program 
