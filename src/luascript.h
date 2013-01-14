@@ -44,18 +44,20 @@ public:
     ///Check if there's a script open
     bool Open() const;
 
-    private:
+private:
     /**
     *  Add a loader function to the package.loaders table
     *  @param loader The lua_cfunction to add
     */
     void AddLoader(int (*loader)(lua_State*));
     
-    private:
+private:
     ///The lua state running the script
     lua_State *mL;
     ///The script file name
     std::string mFile;
+    ///Tracking if the script is open
+    bool mOpen;
 };
 
 #endif

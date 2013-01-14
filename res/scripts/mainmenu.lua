@@ -18,14 +18,11 @@ require "TestAnimatedImage"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
-
+	--[[
 	animImg = AnimatedImage("../res/img/walking.png")
 	animImg:play("run-right")
 	drawPos = Rectf(0, 0, 64, 64)
-	print ("AnimatedImage: " .. animImg:file() .. " loaded")
-	w, h = animImg:size()
-	print ("AnimatedImage total size w: " .. w .. ", h: " .. h)
-	print ("Currently playing: " .. animImg:playing())
+	]]
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"
@@ -35,10 +32,10 @@ function LogicUpdate()
 	if Input.keyDown(Input.KEY_Q) then
 		State.changeScene("quit")
 	end
-	animImg:update()
+	--animImg:update()
 end
 function RenderUpdate()
-	Window.draw(animImg, drawPos, 45, Vector2f(0, 0), Window.FLIP_VERTICAL)
+	--Window.draw(animImg, drawPos, 45, Vector2f(0, 0), Window.FLIP_VERTICAL)
 end
 function TestCall(v)
 	print ("Test call called")

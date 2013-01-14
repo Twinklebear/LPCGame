@@ -25,9 +25,9 @@ std::string MenuState::Run(){
 	Rectf bkgndPos = Math::FromSceneSpace(mCamera, mCamera->SceneBox());
 
     //Testing the new initializer list call
-    Vector2f v2(15, 2);
+    //Vector2f v2(15, 2);
     //Will this be ok? All these references to temporaries?
-    mScript.CallFunction("Test2", { &LuaC::Vector2fParam(&Vector2f(10, 10)), &LuaC::Vector2fParam(&v2) });
+    //mScript.CallFunction("Test2", { &LuaC::Vector2fParam(&Vector2f(10, 10)), &LuaC::Vector2fParam(&v2) });
 
 	Timer delta;
 	delta.Start();

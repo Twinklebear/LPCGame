@@ -17,6 +17,21 @@
 int LuaC::EntityLib::luaopen_entity(lua_State *l){
     return LuaScriptLib::LuaOpenLib(l, entityMeta, entityClass, luaEntityLib, newEntity);
 }
+/**
+* Check if the weak pointer is expired, if yes spit out debug log and return nullptr
+* if not expired return weak_ptr
+* @param weak The weak_ptr to check
+* @param function The function name to show in the debug log
+* @return shared_ptr if the ptr hasn't expired, nullptr if it has
+*/
+std::shared_ptr<Entity> LuaC::EntityLib::GetShared(std::weak_ptr<Entity> weak, std::string function){
+    if (weak.expired()){
+        Debug::Log("Entity lib " + function + " Error: the weak pointer has expired");
+        return nullptr;
+    }
+    else
+        return weak.lock();
+}
 const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
     { "callFunction", callFunction },
     { "destroy", destroy },
@@ -40,8 +55,9 @@ int LuaC::EntityLib::newEntity(lua_State *l){
     //Register the Entity with the State
     std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
     manager->Register(e);
+    std::weak_ptr<Entity> eWeak = e;
     //Push the entity into the state
-    Push(l, &e);
+    Push(l, &eWeak);
     return 1;
 }
 int LuaC::EntityLib::callFunction(lua_State *caller){
@@ -53,8 +69,12 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     *  params            - All remaining values on the stack are the params to pass
     */
     //Get the lua_State of the Entity we want to call the function on
-    std::shared_ptr<Entity> *e = Check(caller, 1);
-    lua_State *reciever = (*e)->Script()->Get();
+    std::weak_ptr<Entity> *eWeak = Check(caller, 1);
+    std::shared_ptr<Entity> e = GetShared(*eWeak, "callFunction");
+    if (e == nullptr)
+        return 0;
+
+    lua_State *reciever = e->Script()->Get();
     //Get function name and # results
     std::string fcnName = luaL_checkstring(caller, 2);
     int nRes = luaL_checkint(caller, 3);
@@ -85,47 +105,63 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
 }
 int LuaC::EntityLib::destroy(lua_State *l){
     //Stack: udata (Entity) to be removed
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    if (e != nullptr){
-        std::cout << "Will try to destroy entity: " << (*e)->Name() << std::endl;
-        //Remove it from the manager
-        std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
-        //Come up with better way to find entity in the manager?
-        manager->Remove(*e);
-        e->~shared_ptr();
-    }
-    else
-        Debug::Log("EntityLib::destroy Error: Could not lock entity. Is it already destroyed?");
+    std::weak_ptr<Entity> *eWeak = Check(l, 1);
+    std::shared_ptr<Entity> e = GetShared(*eWeak, "destroy");
+    if (e == nullptr)
+        return 0;
+
+    std::cout << "Will try to destroy entity: " << e->Name() << std::endl;
+    //Remove it from the manager
+    std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
+    //Come up with better way to find entity in the manager?
+    manager->Remove(e);
 
     return 0;
 }
 int LuaC::EntityLib::release(lua_State *l){
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    e->~shared_ptr();
+    std::cout << "EntityLib release" << std::endl;
+    std::weak_ptr<Entity> *e = Check(l, 1);
+    e->~weak_ptr();
     return 0;
 }
 int LuaC::EntityLib::getPhysics(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    PhysicsLib::Push(l, &(*e)->GetPhysicsWeakPtr());
+    std::weak_ptr<Entity> *eWeak = Check(l, 1);
+    std::shared_ptr<Entity> e = GetShared(*eWeak, "physics");
+    if (e == nullptr)
+        return 0;
+
+    PhysicsLib::Push(l, &e->GetPhysicsWeakPtr());
     return 1;
 }
 int LuaC::EntityLib::getBox(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    RectfLib::Push(l, &(*e)->Box());
+    std::weak_ptr<Entity> *eWeak = Check(l, 1);
+    std::shared_ptr<Entity> e = GetShared(*eWeak, "box");
+    if (e == nullptr)
+        return 0;
+
+    RectfLib::Push(l, &e->Box());
     return 1;
 }
 int LuaC::EntityLib::getTag(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    lua_pushstring(l, (*e)->Tag().c_str());
+    std::weak_ptr<Entity> *eWeak = Check(l, 1);
+    std::shared_ptr<Entity> e = GetShared(*eWeak, "tag");
+    if (e == nullptr)
+        return 0;
+
+    lua_pushstring(l, e->Tag().c_str());
     return 1;
 }
 int LuaC::EntityLib::getName(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    lua_pushstring(l, (*e)->Name().c_str());
+    std::weak_ptr<Entity> *eWeak = Check(l, 1);
+    std::shared_ptr<Entity> e = GetShared(*eWeak, "name");
+    if (e == nullptr)
+        return 0;
+
+    lua_pushstring(l, e->Name().c_str());
     return 1;
 }
 int LuaC::EntityLib::newIndex(lua_State *l){
@@ -141,9 +177,13 @@ int LuaC::EntityLib::newIndex(lua_State *l){
 }
 int LuaC::EntityLib::setTag(lua_State *l, int i){
     //Stack: udata, ??? with tag @ i
-    std::shared_ptr<Entity> *e = Check(l, 1);
+    std::weak_ptr<Entity> *eWeak = Check(l, 1);
+    std::shared_ptr<Entity> e = GetShared(*eWeak, "set tag");
+    if (e == nullptr)
+        return 0;
+
     std::string tag = luaL_checkstring(l, i);
-    (*e)->SetTag(tag);
+    e->SetTag(tag);
     return 0;
 }
 int LuaC::EntityLib::toString(lua_State *l){
@@ -153,7 +193,6 @@ int LuaC::EntityLib::concat(lua_State *l){
     return 1;
 }
 int LuaC::EntityLib::garbageCollection(lua_State *l){
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    e->~shared_ptr();
+    release(l);
     return 0;
 }

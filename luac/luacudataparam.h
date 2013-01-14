@@ -77,9 +77,9 @@ namespace LuaC {
     const std::function<void(lua_State*, const Color*)>
         LuaUdataParam<Color>::mPusher = &ColorLib::Push;
     //Entity
-    typedef LuaUdataParam<std::shared_ptr<Entity>> EntityParam;
-    const std::function<void(lua_State*, const std::shared_ptr<Entity>*)>
-        LuaUdataParam<std::shared_ptr<Entity>>::mPusher = &EntityLib::Push;
+    typedef LuaUdataParam<std::weak_ptr<Entity>> EntityParam;
+    const std::function<void(lua_State*, const std::weak_ptr<Entity>*)>
+        LuaUdataParam<std::weak_ptr<Entity>>::mPusher = &EntityLib::Push;
     //Image
     typedef LuaUdataParam<std::shared_ptr<Image>> ImageParam;
     const std::function<void(lua_State*, const std::shared_ptr<Image>*)>

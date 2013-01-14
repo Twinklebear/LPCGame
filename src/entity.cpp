@@ -7,11 +7,9 @@
 #include "luascript.h"
 #include "jsonhandler.h"
 #include "debug.h"
-#include "entity.h"
-
-#include "luac/luacparam.h"
 #include "luac/luacudataparam.h"
 #include "luac/luacprimitiveparam.h"
+#include "entity.h"
 
 Entity::Entity() : mName(""), mTag(""), mConfigFile(""),  mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
 {
@@ -22,6 +20,7 @@ Entity::Entity(std::string file) : mName(""), mTag(""), mConfigFile(""), mMouseO
     Load(file);
 }
 Entity::~Entity(){
+    std::cout << "Entity: " << mName << " destructor" << std::endl;
     //Make sure Free is called 
     Free();
 }
@@ -31,23 +30,24 @@ void Entity::Init(){
 	//int scripts
 	if (!mScript.Open())
 		return;
-	try {
-        //We push the entity onto the global table
-        luabind::globals(mScript.Get())["entity"] = this;
-		luabind::call_function<void>(mScript.Get(), "Init");
-	}
-	catch(const std::exception &e){
-        Debug::Log("Entity: " + mName + " Init issue: " + e.what());
-	}
+
+    //We push the entity onto the global table
+    /*
+    std::shared_ptr<Entity> self(this);
+    std::weak_ptr<Entity> selfWeak = self;
+    LuaC::EntityParam globalSelf(&selfWeak);
+    globalSelf.Push(mScript.Get(), "self");
+    */
+    mScript.CallFunction("Init", {});
 }
 void Entity::Free(){
-	if (!mScript.Open())
+    std::cout << "Entity: " << mName << " free" << std::endl;
+	if (!mScript.Open()){
+        std::cout << "mscript closed" << std::endl;
 		return;
-	try {
-		luabind::call_function<void>(mScript.Get(), "Free");
-	}
-	catch(...){
-	}
+    }
+    std::cout << "mscript open" << std::endl;
+    mScript.CallFunction("Free", {});
     mScript.Close();
 }
 void Entity::Update(){

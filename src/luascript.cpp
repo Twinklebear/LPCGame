@@ -9,12 +9,13 @@
 #include "luac/luacparam.h"
 #include "luascript.h"
 
-LuaScript::LuaScript() : mL(nullptr), mFile(""){
+LuaScript::LuaScript() : mL(nullptr), mFile(""), mOpen(false) {
 }
-LuaScript::LuaScript(std::string script) : mL(nullptr), mFile(""){
+LuaScript::LuaScript(std::string script) : mL(nullptr), mFile(""), mOpen(false) {
     OpenScript(script);
 }
 LuaScript::~LuaScript(){
+    std::cout << "Script: " << mFile << " destructor" << std::endl;
     Close();
 }
 void LuaScript::OpenScript(const std::string &script){
@@ -29,12 +30,17 @@ void LuaScript::OpenScript(const std::string &script){
         AddLoader(LuaC::LuaScriptLib::requireLib);
         AddLoader(LuaC::LuaScriptLib::requireScript);
         luaL_dofile(mL, mFile.c_str());
+        mOpen = true;
     }
 }
 void LuaScript::Close(){
+    std::cout << "mOpen: " << (mOpen ? "true" : "false") << std::endl;
     if (Open()){
+        std::cout << "script file: " << mFile << " closing" << std::endl;
         lua_close(mL);
-        mL = nullptr;
+        mL = NULL;
+        mOpen = false;
+        std::cout << "mOpen: " << (mOpen ? "true" : "false") << std::endl;
     }
 }
 void LuaScript::CallFunction(std::string function, std::initializer_list<LuaC::LuaParam*> args){
@@ -56,7 +62,7 @@ std::string LuaScript::File() const {
 	return mFile;
 }
 bool LuaScript::Open() const {
-	return (mL != nullptr);
+	return mOpen;
 }
 void LuaScript::AddLoader(int (*loader)(lua_State*)){
     //We want to get the package.loaders table and add a new entry
