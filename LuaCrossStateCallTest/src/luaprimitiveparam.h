@@ -78,10 +78,11 @@ namespace LuaC {
         StringParam::mPusher = [](lua_State *l, std::string str){ lua_pushstring(l, str.c_str()); };
     //const std::function<std::string(lua_State*, int)>
         //StringParam::mRetriever = luaL_checkstring;
-    //For void return type
+    /*
+    //For void return type something else needs to be done
     typedef LuaPrimitiveParam<void> VoidParam;
     const std::function<void(lua_State*, int)>
         VoidParam::mRetriever = [](lua_State *l, int idx){ return; };
-    
+    */
 }
 #endif

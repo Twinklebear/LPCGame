@@ -19,7 +19,9 @@ public:
     std::string Name() const;
     bool Open() const;
     template<class ReturnType>
-    auto CallFunction(std::string function, std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>()){
+    auto CallFunction(std::string function, 
+        std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>()) -> decltype(ReturnType::Retrieve(mL)) 
+    {
         //Get the function to be called
         lua_getglobal(mL, function.c_str());
         std::stringstream ss;
@@ -32,7 +34,7 @@ public:
         if (lua_pcall(mL, args.size(), 0, 0) != 0)
             std::cout << "Error calling: " + function + " " + lua_tostring(mL, -1) << std::endl;
 
-        return ReturnType::Retrive(mL);
+        return ReturnType::Retrieve(mL);
     }
 
 private:

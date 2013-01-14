@@ -13,7 +13,7 @@ int main(int argc, char** argv){
     LuaC::StringParam strParam("Howder");
     std::vector<LuaC::LuaParam*> params;
     params.push_back(&strParam);
-    sA.CallFunction("Test", params);
+    //sA.CallFunction("Test", params);
     //LuaCScript sB("../res/scripts/scriptB.lua");
     return 0;
 }
