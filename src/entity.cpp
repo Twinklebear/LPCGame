@@ -23,14 +23,18 @@ Entity::~Entity(){
     //Make sure Free is called 
     Free();
 }
-void Entity::Init(){
+void Entity::Init(std::shared_ptr<Entity> self){
 	//We catch exceptions so that if the function doesn't exist the program 
 	//won't crash. This lets us skip implementing functions we don't need
 	//int scripts
 	if (!mScript.Open())
 		return;
-
-    //We push the entity onto the global table
+    
+    if (self != nullptr){
+        //Push the self pointer onto the state so the script can use it
+        LuaC::EntityParam luaSelf(&self);
+        luaSelf.Push(mScript.Get(), "self");
+    }
     /*
     std::shared_ptr<Entity> self(this);
     std::weak_ptr<Entity> selfWeak = self;
@@ -230,7 +234,7 @@ void Entity::Load(Json::Value val){
 	mTag  = val["tag"].asString();
 	mName = val["name"].asString();
 	mPhysics->Load(val["physics"]);
-    //mImage.Load(val["image"].asString());
+    mImage.Load(val["image"].asString());
 	mScript.OpenScript(val["script"].asString());
     mRender = val["render"].asBool();
     mUiElement = val["ui"].asBool();

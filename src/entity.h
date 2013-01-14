@@ -25,8 +25,13 @@ public:
 	*/
 	Entity(std::string file);
 	virtual ~Entity();
-	//Initialize the object
-	virtual void Init();
+	/**
+    * Initialize the object and give the script the shared_ptr to the 
+    * entity it's managing
+    * @param self The shared_ptr to this entity that the manager is also using, so 
+    * references are counted properly
+    */
+	virtual void Init(std::shared_ptr<Entity> self = nullptr);
 	//Free the object's memory
 	virtual void Free();
 	///Update the game object

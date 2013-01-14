@@ -11,10 +11,12 @@ require "TestMath"
 require "TestState"
 require "TestAnimatedImage"
 require "TestText"
+require "TestInput"
 
 function Init()
-	print "Quitbutton Init"
+	print "\n--------Quitbutton Init--------\n"
 
+	print ("My name is: " .. self:name())
 	--self = State.getEntity("quitbutton")
 	--print ("Self name: " .. self:name())
 	--[[
@@ -33,10 +35,16 @@ function Init()
 	]]
 end
 function Free()
-	print "Quitbutton free LUA"
+	print "\n--------Quitbutton Free--------\n"
 	--self:release()
 end
 function Update()
+	--[[
+	if Input.keyDown(Input.KEY_E) then
+		self = State.getEntity("quitbutton")
+		print ("self name: " .. self:name())
+	end
+	]]
 end
 function Draw(camera)
 	--Window.draw(img, Math.fromSceneSpace(camera, box))

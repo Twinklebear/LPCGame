@@ -11,6 +11,8 @@ EntityManager::EntityManager() : mCamera(nullptr){
 }
 EntityManager::~EntityManager(){
     std::cout << "ENTITYMANAGER: Destructor" << std::endl;
+    for (std::shared_ptr<Entity> e : mEntities)
+        e->Free();
 }
 void EntityManager::Draw(){
     //Weak camera ptr to pass to the entities

@@ -18,7 +18,6 @@ JsonHandler::JsonHandler() : mFile(""){
 JsonHandler::~JsonHandler(){
 }
 Json::Value JsonHandler::Read() const {
-    Debug::Log("JsonHandler reading: " + mFile);
     std::ifstream fileIn(mFile.c_str(), std::ifstream::binary);
     Json::Value root;
     if (fileIn){

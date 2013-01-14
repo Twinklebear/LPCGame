@@ -24,9 +24,9 @@ int LuaC::StateLib::getEntity(lua_State *l){
     std::string name = luaL_checkstring(l, 1);
     //Get the active state's entitymanager and try to lookup the entity
     std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
-    std::weak_ptr<Entity> entity = manager->GetEntity(name);
-    if (!entity.expired())
-        EntityLib::Push(l, &entity);       
+    std::shared_ptr<Entity> entity = manager->GetEntity(name);
+    if (entity != nullptr)
+        EntityLib::Push(l, &entity);
     else {
         std::string err = "StateLib::getEntity: Failed to find Entity: " + name;
         Debug::Log(err);

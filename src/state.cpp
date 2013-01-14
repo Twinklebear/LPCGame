@@ -33,7 +33,8 @@ void State::Free(){
     if (!mScript.Open())
 		return;
 	try {
-		luabind::call_function<void>(mScript.Get(), "Free");
+        mScript.CallFunction("Free", {});
+		//luabind::call_function<void>(mScript.Get(), "Free");
 	}
 	catch(...){
 	}
