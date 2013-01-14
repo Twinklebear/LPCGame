@@ -6,6 +6,7 @@
 #include "luarect.h"
 #include "vectors.h"
 #include "luacscript.h"
+#include "luaprimitiveparam.h"
 
 //Static data
 const LuaCScript::TRegisterMap LuaCScript::sRegisterFuncs = LuaCScript::CreateMap();

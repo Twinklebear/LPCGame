@@ -11,8 +11,14 @@
 * Lua via the Lua C API
 */
 namespace LuaC {
+    class LuaParam {
+    public:
+        virtual void Push(lua_State *l) = 0;
+        virtual void Push(lua_State *l, std::string name) = 0;
+    };
+
     template<class T>
-    class LuaPrimitiveParam {
+    class LuaPrimitiveParam : public LuaParam {
     public:
         /**
         * Construct the parameter, giving it the value it will be pushing onto the state
@@ -23,7 +29,7 @@ namespace LuaC {
         * Push the parameter value on to a Lua state using the pusher function
         * @param l The Lua state to push the object onto
         */
-        void Push(lua_State *l){
+        void Push(lua_State *l) override {
             mPusher(l, mObj);
         }
         /**
@@ -31,7 +37,7 @@ namespace LuaC {
         * @param l Lua state to push onto
         * @param name Global name to be given to the object
         */
-        void Push(lua_State *l, std::string name){
+        void Push(lua_State *l, std::string name) override {
             Push(l);
             lua_setglobal(l, name.c_str());
         }
@@ -51,30 +57,21 @@ namespace LuaC {
     //Pusher function specializations
     //Bool
     typedef LuaPrimitiveParam<bool> BoolParam;
-    template<>
-    const std::function<void(lua_State*, bool)> LuaPrimitiveParam<bool>::mPusher = lua_pushboolean;
-    //Syntax error my ass what the hell msvc
-    //template<>
-    //const std::function<bool(lua_State*, int)>
-        //LuaPrimitiveParam<bool>::mRetriever = [](lua_State *l, int idx)->bool { return lua_toboolean(l, idx) == 1; };
+    const std::function<void(lua_State*, bool)> BoolParam::mPusher = lua_pushboolean;
+    const std::function<bool(lua_State*, int)>
+        BoolParam::mRetriever = [](lua_State *l, int idx) { return lua_toboolean(l, idx) == 1; };
     //Double
     typedef LuaPrimitiveParam<double> DoubleParam;
-    template<>
-    const std::function<void(lua_State*, double)> LuaPrimitiveParam<double>::mPusher = lua_pushnumber;
-    template<>
-    const std::function<double(lua_State*, int)> LuaPrimitiveParam<double>::mRetriever = luaL_checknumber;
+    const std::function<void(lua_State*, double)> DoubleParam::mPusher = lua_pushnumber;
+    const std::function<double(lua_State*, int)> DoubleParam::mRetriever = luaL_checknumber;
     //Float
     typedef LuaPrimitiveParam<float> FloatParam;
-    template<>
-    const std::function<void(lua_State*, float)> LuaPrimitiveParam<float>::mPusher = lua_pushnumber;
-    template<>
-    const std::function<float(lua_State*, int)> LuaPrimitiveParam<float>::mRetriever = luaL_checknumber;
+    const std::function<void(lua_State*, float)> FloatParam::mPusher = lua_pushnumber;
+    const std::function<float(lua_State*, int)> FloatParam::mRetriever = luaL_checknumber;
     //Int
     typedef LuaPrimitiveParam<int> IntParam;
-    template<>
-    const std::function<void(lua_State*, int)> LuaPrimitiveParam<int>::mPusher = lua_pushinteger;
-    //template<>
-    //const std::function<int(lua_State*, int)> LuaPrimitiveParam<int>::mRetriever = luaL_checkinteger;
+    const std::function<void(lua_State*, int)> IntParam::mPusher = lua_pushinteger;
+    const std::function<int(lua_State*, int)> IntParam::mRetriever = luaL_checkinteger;
     //String (a lambda function is used b/c lua_pushstring takes a char* not a std::string)
     typedef LuaPrimitiveParam<std::string> StringParam;
     const std::function<void(lua_State*, std::string)>
