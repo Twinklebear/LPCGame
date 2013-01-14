@@ -28,14 +28,6 @@ namespace LuaC {
     public:
         ///Open the Entity Lua library for Lua state l
         static int luaopen_entity(lua_State *l);
-        /**
-        * Check if the weak pointer is expired, if yes spit out debug log and return nullptr
-        * if not expired return weak_ptr
-        * @param weak The weak_ptr to check
-        * @param function The function name to show in the debug log
-        * @return shared_ptr if the ptr hasn't expired, nullptr if it has
-        */
-        static std::shared_ptr<Entity> GetShared(std::weak_ptr<Entity> weak, std::string function);
 
     private:
         ///The Lua function library struct

@@ -39,12 +39,8 @@ const struct luaL_reg LuaC::CameraLib::luaCameraLib[] = {
 int LuaC::CameraLib::setFocus(lua_State *l){
     //Stack: camera, entity
     std::weak_ptr<Camera> *weak = Check(l, 1);
-    /*
-    std::weak_ptr<Entity> *eWeak = EntityLib::Check(l, 2);
-    std::shared_ptr<Entity> e = EntityLib::GetShared(*eWeak, "Camera lib:setFocus");
-    */
     std::shared_ptr<Entity> *e = EntityLib::Check(l, 1);
-    if (!weak->expired()){ //&& e != nullptr){
+    if (!weak->expired()){
         auto c = weak->lock();
         c->SetFocus(*e);
     }
