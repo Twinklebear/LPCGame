@@ -1,5 +1,6 @@
 #include <string>
 #include <fstream>
+#include <sstream>
 #include <initializer_list>
 #include <lua.hpp>
 #include <luabind/luabind.hpp>
@@ -47,7 +48,11 @@ void LuaScript::Close(){
 void LuaScript::CallFunction(std::string function, std::initializer_list<LuaC::LuaParam*> args){
     //Get the function to be called
     lua_getglobal(mL, function.c_str());
+    std::stringstream ss;
+    ss << " top: " << lua_gettop(mL);
+    Debug::Log("Script: " + mFile + " calling function: " + function + ss.str());
     std::cout << "top: " << lua_gettop(mL) << std::endl;
+    LuaC::LuaScriptLib::StackDump(mL);
     //Push the parameters onto the stack
     for (LuaC::LuaParam *p : args)
         p->Push(mL);
