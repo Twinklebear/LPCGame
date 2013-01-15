@@ -5,5 +5,5 @@ print "Script A!"
 
 function Test (r)
 	print ("ScriptA Test, r: " .. r)
-	return 15.0
+	return "Hi how are you?"
 end

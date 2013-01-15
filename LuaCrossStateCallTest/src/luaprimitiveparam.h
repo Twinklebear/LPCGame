@@ -72,12 +72,15 @@ namespace LuaC {
     typedef LuaPrimitiveParam<int> IntParam;
     const std::function<void(lua_State*, int)> IntParam::mPusher = lua_pushinteger;
     const std::function<int(lua_State*, int)> IntParam::mRetriever = luaL_checkinteger;
-    //String (a lambda function is used b/c lua_pushstring takes a char* not a std::string)
+    /*
+    * String (a lambda function is used b/c lua_pushstring takes a char* not a std::string)
+    * we do the same for checkstring as it returns a const char*
+    */
     typedef LuaPrimitiveParam<std::string> StringParam;
     const std::function<void(lua_State*, std::string)>
         StringParam::mPusher = [](lua_State *l, std::string str){ lua_pushstring(l, str.c_str()); };
-    //const std::function<std::string(lua_State*, int)>
-        //StringParam::mRetriever = luaL_checkstring;
+    const std::function<std::string(lua_State*, int)>
+        StringParam::mRetriever = [](lua_State *l, int idx){ return luaL_checkstring(l, idx); };
     /*
     //For void return type something else needs to be done
     typedef LuaPrimitiveParam<void> VoidParam;

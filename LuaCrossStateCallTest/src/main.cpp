@@ -13,7 +13,7 @@ int main(int argc, char** argv){
     LuaC::StringParam strParam("Howder");
     std::vector<LuaC::LuaParam*> params;
     params.push_back(&strParam);
-    float res = sA.CallFunction<LuaC::FloatParam>("Test", params);
+    std::string res = sA.CallFunction<LuaC::StringParam>("Test", params);
 
     std::cout << "Got result: " << res << std::endl;
 
