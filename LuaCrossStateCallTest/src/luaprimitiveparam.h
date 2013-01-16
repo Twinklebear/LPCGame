@@ -57,30 +57,44 @@ namespace LuaC {
     //Pusher function specializations
     //Bool
     typedef LuaPrimitiveParam<bool> BoolParam;
+    template<>
     const std::function<void(lua_State*, bool)> BoolParam::mPusher = lua_pushboolean;
+    //This is the solution we must use to get this to compile on msvc/gcc for now due to compiler issues
+    //Once they're resolved the inbetween std::function will be removed and the member set directly
+    static auto bRetrieve = [](lua_State *l, int idx) { return lua_toboolean(l, idx) == 1; };
+    template<>
     const std::function<bool(lua_State*, int)>
-        BoolParam::mRetriever = [](lua_State *l, int idx) { return lua_toboolean(l, idx) == 1; };
+        BoolParam::mRetriever = bRetrieve;
     //Double
     typedef LuaPrimitiveParam<double> DoubleParam;
+    template<>
     const std::function<void(lua_State*, double)> DoubleParam::mPusher = lua_pushnumber;
+    template<>
     const std::function<double(lua_State*, int)> DoubleParam::mRetriever = luaL_checknumber;
     //Float
     typedef LuaPrimitiveParam<float> FloatParam;
+    template<>
     const std::function<void(lua_State*, float)> FloatParam::mPusher = lua_pushnumber;
+    template<>
     const std::function<float(lua_State*, int)> FloatParam::mRetriever = luaL_checknumber;
     //Int
     typedef LuaPrimitiveParam<int> IntParam;
+    template<>
     const std::function<void(lua_State*, int)> IntParam::mPusher = lua_pushinteger;
+    template<>
     const std::function<int(lua_State*, int)> IntParam::mRetriever = luaL_checkinteger;
     /*
     * String (a lambda function is used b/c lua_pushstring takes a char* not a std::string)
     * we do the same for checkstring as it returns a const char*
     */
     typedef LuaPrimitiveParam<std::string> StringParam;
+    static auto strPush = [](lua_State *l, std::string str){ lua_pushstring(l, str.c_str()); };
+    template<>
     const std::function<void(lua_State*, std::string)>
-        StringParam::mPusher = [](lua_State *l, std::string str){ lua_pushstring(l, str.c_str()); };
+        StringParam::mPusher = strPush;
+    static auto strRetrieve = [](lua_State *l, int idx){ return luaL_checkstring(l, idx); };
     const std::function<std::string(lua_State*, int)>
-        StringParam::mRetriever = [](lua_State *l, int idx){ return luaL_checkstring(l, idx); };
+        StringParam::mRetriever = strRetrieve;
     /*
     //For void return type something else needs to be done
     typedef LuaPrimitiveParam<void> VoidParam;
