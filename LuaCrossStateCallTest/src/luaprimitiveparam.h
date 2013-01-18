@@ -95,11 +95,5 @@ namespace LuaC {
     static auto strRetrieve = [](lua_State *l, int idx){ return luaL_checkstring(l, idx); };
     const std::function<std::string(lua_State*, int)>
         StringParam::mRetriever = strRetrieve;
-    /*
-    //For void return type something else needs to be done
-    typedef LuaPrimitiveParam<void> VoidParam;
-    const std::function<void(lua_State*, int)>
-        VoidParam::mRetriever = [](lua_State *l, int idx){ return; };
-    */
 }
 #endif

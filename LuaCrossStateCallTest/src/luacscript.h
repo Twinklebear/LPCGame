@@ -35,6 +35,18 @@ public:
 
         return ReturnType::Retrieve(mL);
     }
+    void CallFunction(std::string function, std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>()){
+        //Get the function to be called
+        lua_getglobal(mL, function.c_str());
+        //Push the parameters onto the stack
+        for (LuaC::LuaParam *p : args)
+            p->Push(mL);
+
+        //Call the function
+        int nParams = args.size();
+        if (lua_pcall(mL, args.size(), 1, 0) != 0)
+            std::cout << "Error calling: " + function + " " + lua_tostring(mL, -1) << std::endl;
+    }
 
 private:
     //Private members
