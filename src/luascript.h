@@ -3,10 +3,10 @@
 
 #include <string>
 #include <map>
-//#include <initializer_list>
 #include <vector>
 #include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
+#include "debug.h"
 #include "luac/luacparam.h"
 
 ///A class to enable lua scripts to load various modules
@@ -30,19 +30,6 @@ public:
     ///Close the script
     void Close();
     /**
-    * Call a function on the Lua state and pass arguments to it
-    * Don't use this initializer list verison until the compiler version is officially released
-    * @param function Name of the function to call
-    * @param args List of arguments to be pushed onto the stack for the function
-    */
-    //void CallFunction(std::string function, std::initializer_list<LuaC::LuaParam*> args);
-    /**
-    * Call a function on the Lua state and pass some arguments to it
-    * @param function Name of the function to be called
-    * @param args Vector of arguments to be passed
-    */
-    void CallFunction(std::string function, std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>());
-    /**
     *  Get the lua_State pointer to use for calling functions/etc.
     *  @return The lua_State pointer held by the LuaScript class
     */
@@ -51,6 +38,39 @@ public:
     std::string File() const;
     ///Check if there's a script open
     bool Open() const;
+    /**
+    * Call a function on the Lua state and pass some arguments to it
+    * @param function Name of the function to be called
+    * @param args Vector of arguments to be passed
+    */
+    template<class ReturnType>
+    auto CallFunction(std::string function, 
+        std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>()) -> decltype(ReturnType::Retrieve(mL))
+    {
+        //Get the function to be called
+        lua_getglobal(mL, function.c_str());
+        //Push params onto stack
+        for (LuaC::LuaParam *p : args)
+            p->Push(mL);
+
+        //Call the function
+        if (lua_pcall(mL, args.size(), 1, 0) != 0)
+            Debug::Log("Error calling: " + function + " in script: " + mFile + " " + lua_tostring(mL, -1));
+
+        return ReturnType::Retrieve(mL);
+    }
+    //For calling a function with no return values
+    void CallFunctionVoid(std::string function, std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>()){
+        //Get the function to be called
+        lua_getglobal(mL, function.c_str());
+        //Push params onto stack
+        for (LuaC::LuaParam *p : args)
+            p->Push(mL);
+
+        //Call the function
+        if (lua_pcall(mL, args.size(), 0, 0) != 0)
+            Debug::Log("Error calling: " + function + " in script: " + mFile + " " + lua_tostring(mL, -1));
+    }
 
 private:
     /**

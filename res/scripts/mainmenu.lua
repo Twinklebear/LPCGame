@@ -40,8 +40,6 @@ end
 function TestCall(v)
 	print ("Test call called")
 	print ("Param: " .. v)
-end
-function Test2(v1, v2)
-	print "Test2"
-	print ("v1: " .. v1 .. " v2: " .. v2)
+
+	return "Howdy hoooo"
 end

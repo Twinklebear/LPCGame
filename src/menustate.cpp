@@ -10,6 +10,7 @@
 #include "statemanager.h"
 
 #include "luac/luacudataparam.h"
+#include "luac/luacprimitiveparam.h"
 #include "luac/luacvector2f.h"
 
 std::string MenuState::Run(){
@@ -22,11 +23,12 @@ std::string MenuState::Run(){
     State::Init();
 	//Setup the background destination
 	Rectf bkgndPos = Math::FromSceneSpace(mCamera, mCamera->SceneBox());
-
-    //Testing the new initializer list call
-    //Vector2f v2(15, 2);
-    //Will this be ok? All these references to temporaries?
-    //mScript.CallFunction("Test2", { &LuaC::Vector2fParam(&Vector2f(10, 10)), &LuaC::Vector2fParam(&v2) });
+    Color color(0, 0, 0);
+    LuaC::ColorParam c(&color);
+    std::vector<LuaC::LuaParam*> params;
+    params.push_back(&c);
+    std::string result = mScript.CallFunction<LuaC::IntParam>("TestCall", params);
+    std::cout << "Called TestCall, got back: " << result << std::endl;
 
 	Timer delta;
 	delta.Start();
