@@ -41,5 +41,5 @@ function TestCall(v)
 	print ("Test call called")
 	print ("Param: " .. v)
 
-	return "Howdy hoooo"
+	return 100
 end
