@@ -40,7 +40,7 @@ namespace LuaC {
         * Used for retrieving the return value of a Lua function call
         * @param l Lua state to get result from
         */
-        T Retrieve(lua_State *l) {
+        static T Retrieve(lua_State *l) {
             return mRetriever(l, -1);
         }
 
