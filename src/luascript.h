@@ -60,7 +60,7 @@ public:
         return ReturnType::Retrieve(mL);
     }
     //For calling a function with no return values
-    void CallFunctionVoid(std::string function, std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>()){
+    void CallFunction(std::string function, std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>()){
         //Get the function to be called
         lua_getglobal(mL, function.c_str());
         //Push params onto stack

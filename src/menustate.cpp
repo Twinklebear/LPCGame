@@ -27,7 +27,7 @@ std::string MenuState::Run(){
     LuaC::ColorParam c(&color);
     std::vector<LuaC::LuaParam*> params;
     params.push_back(&c);
-    std::string result = mScript.CallFunction<LuaC::IntParam>("TestCall", params);
+    std::string result = mScript.CallFunction<LuaC::StringParam>("TestCall", params);
     std::cout << "Called TestCall, got back: " << result << std::endl;
 
 	Timer delta;
