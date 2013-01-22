@@ -1,20 +1,21 @@
 #include <string>
 #include <lua.hpp>
-#include <luabind/luabind.hpp>
 #include <fstream>
 #include "luac/luaccamera.h"
+#include "luac/luacudataparam.h"
+#include "luac/luacprimitiveparam.h"
 #include "math.h"
 #include "luascript.h"
 #include "jsonhandler.h"
 #include "debug.h"
-#include "luac/luacudataparam.h"
-#include "luac/luacprimitiveparam.h"
 #include "entity.h"
 
-Entity::Entity() : mPhysics(new Physics()), mName(""), mTag(""), mConfigFile(""),  mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
+Entity::Entity() : mPhysics(new Physics()), mName(""), mTag(""), mConfigFile(""), 
+    mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
 {
 }
-Entity::Entity(std::string file) : mPhysics(new Physics()), mName(""), mTag(""), mConfigFile(""), mMouseOver(false), mClicked(false), mRender(true), mUiElement(false)
+Entity::Entity(std::string file) : mPhysics(new Physics()), mName(""), mTag(""), mConfigFile(""),
+    mMouseOver(false), mClicked(false), mRender(true), mUiElement(false)
 {
     Load(file);
 }
@@ -41,47 +42,36 @@ void Entity::Update(){
     //Should deltaT be passed to update instead?
 	if (!mScript.Open())
 		return;
-	try {
-		luabind::call_function<void>(mScript.Get(), "Update");
-	}
-	catch(...){
-	}
-    //Should we call Physics::Move here?
+	
+    mScript.CallFunction("Update");
 }
 void Entity::Move(float deltaT){
+    //Shouldn't we call Physics::Move here?
 	if (!mScript.Open())
 		return;
-	try {
-		luabind::call_function<void>(mScript.Get(), "Move", deltaT);
-	}
-	catch(...){
-	}
+
+    LuaC::FloatParam delta(deltaT);
+    std::vector<LuaC::LuaParam*> params;
+    params.push_back(&delta);
+    mScript.CallFunction("Move", params);
 }
 void Entity::Draw(std::weak_ptr<Camera> camera){
     //Draw entity
 	if (!mScript.Open())
 		return;
-	try {
-        lua_State *l = mScript.Get();
-        lua_getglobal(l, "Draw");
-        LuaC::CameraLib::Push(l, &camera);
-        if (lua_pcall(l, 1, 0, 0) != 0)
-            Debug::Log("Error calling Draw: ");// + lua_tostring(l, -1));
-        
-        //luabind::call_function<void>(mScript.Get(), "Draw", camera);
-	}
-	catch(...){
-	}
+    //Shouldn't i be drawing the base image here though, instead
+    //of making the script have to even draw the basic entity image?
+    LuaC::CameraParam cam(&camera);
+    std::vector<LuaC::LuaParam*> params;
+    params.push_back(&cam);
+    mScript.CallFunction("Draw", params);
 }
 void Entity::OnMouseDown(){
     mClicked = true;
+
 	if (!mScript.Open())
 		return;
-	try {
-		luabind::call_function<void>(mScript.Get(), "OnMouseDown");
-	}
-	catch(...){
-	}
+    mScript.CallFunction("OnMouseDown");
 }
 void Entity::OnMouseUp(){
     //We have to do this here for now b/c ObjectButtons don't have 
@@ -92,41 +82,23 @@ void Entity::OnMouseUp(){
 	
     if (!mScript.Open())
 		return;
-	try {
-		luabind::call_function<void>(mScript.Get(), "OnMouseUp");
-	}
-	catch(...){
-	}
+    mScript.CallFunction("OnMouseUp");
 }
 void Entity::OnClick(){
     if (!mScript.Open())
         return;
-    try {
-        luabind::call_function<void>(mScript.Get(), "OnClick");
-    }
-    catch(...){
-    }
+    mScript.CallFunction("OnClick");
 }
 void Entity::OnMouseEnter(){
     mMouseOver = true;
 	if (!mScript.Open())
 		return;
-	try{
-		luabind::call_function<void>(mScript.Get(), "OnMouseEnter");
-	}
-	catch(...){
-	}
+	mScript.CallFunction("OnMouseEnter");
 }
 void Entity::OnMouseExit(){
     mClicked = false;
     mMouseOver = false;
-	if (!mScript.Open())
-		return;
-	try {
-		luabind::call_function<void>(mScript.Get(), "OnMouseExit");
-	}
-	catch(...){
-	}
+	mScript.CallFunction("OnMouseExit");
 }
 void Entity::CheckMouseOver(const Vector2f &pos){
 	//Only trigger OnMouseEnter if the mouse is colliding and wasn't before
@@ -229,31 +201,4 @@ void Entity::Load(const std::string &file, Json::Value overrides){
     Json::Value data = handler.Read();
     data["overrides"] = overrides;
     Load(data);
-}
-int Entity::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Entity>("Entity")
-			.def(constructor<>())
-			.def(constructor<std::string>())
-			.def("Init", &Entity::Init)
-			.def("Free", &Entity::Free)
-			.def("Update", &Entity::Update)
-			.def("Move", &Entity::Move)
-			.def("Draw", &Entity::Draw)
-			.def("OnMouseDown", &Entity::OnMouseDown)
-			.def("OnMouseUp", &Entity::OnMouseUp)
-			.def("OnMouseEnter", &Entity::OnMouseEnter)
-			.def("OnMouseExit", &Entity::OnMouseExit)
-			.def("GetPhysics", &Entity::GetPhysics)
-			.def("Box", &Entity::Box)
-			.def("SetTag", &Entity::SetTag)
-			.def("Tag", &Entity::Tag)
-            .def("Render", (void (Entity::*)(bool))&Entity::Render)
-            .def("Render", (bool (Entity::*)()const)&Entity::Render)
-            .def("IsUiElement", (void (Entity::*)(bool))&Entity::IsUiElement)
-            .def("IsUiElement", (bool (Entity::*)()const)&Entity::IsUiElement)
-	];
-    return 1;
 }

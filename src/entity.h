@@ -3,7 +3,6 @@
 
 #include <string>
 #include <memory>
-#include <luabind/luabind.hpp>
 #include "externals/json/json.h"
 #include "base.h"
 #include "physics.h"
@@ -129,11 +128,6 @@ public:
     *  @param overrides The state-specific overrides to load
     */
     virtual void Load(const std::string &file, Json::Value overrides = Json::Value());
-	/**
-	*  Register the Entity class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 private:
 	///Game objects should not be copy-constructable
