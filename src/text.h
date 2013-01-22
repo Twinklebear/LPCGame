@@ -6,7 +6,6 @@
 #include <memory>
 #include <SDL.h>
 #include <SDL_ttf.h>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
 #include "color.h"
@@ -111,11 +110,6 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-	/**
-	*  Register the Text class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 private:
 	///Disable copy construction

@@ -3,7 +3,6 @@
 #include <memory>
 #include <SDL.h>
 #include <SDL_ttf.h>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
 #include "window.h"
@@ -111,24 +110,4 @@ void Text::Load(Json::Value val){
 	mColor.Load(val["color"]);
 	Set(val["message"].asString(), val["font"].asString(), 
 		mColor, val["fontsize"].asInt());
-}
-int Text::RegisterLua(lua_State *l){
-	using namespace luabind;
-	//Text module requires the Color module, so register that first
-	//Color::RegisterLua(l);
-
-	module(l, "LPC")[
-		class_<Text>("Text")
-			.def(constructor<>())
-			.def(constructor<std::string, std::string, Color, int>())
-			.def("Set", &Text::Set)
-			.def("SetMessage", &Text::SetMessage)
-			.def("SetFont", &Text::SetFont)
-			.def("SetFontSize", &Text::SetFontSize)
-			.def("SetColor", &Text::SetColor)
-			.def("Size", (Recti (Text::*)()const)&Text::Size)
-            .def("W", &Text::W)
-            .def("H", &Text::H)
-	];
-    return 1;
 }
