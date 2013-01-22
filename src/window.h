@@ -51,7 +51,7 @@ public:
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
 	*/
-	static void Draw(Image *image, const Rectf &dstRect, Recti *clip,
+	static void Draw(Image *image, const Rectf &dstRect, Recti *clip = NULL,
 		float angle, Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
 	/**
 	*  Draw an Image to the screen with no extra effects
@@ -83,7 +83,7 @@ public:
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
 	*/
-    static void Draw(AnimatedImage* img, const Rectf &dstRect, float angle, 
+    static void Draw(AnimatedImage* img, const Rectf &dstRect, float angle = 0.0, 
                      Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
     /**
 	*  Draw a Text object to the screen at some position
@@ -100,7 +100,7 @@ public:
 	*               offsets correspond to distance from image center
 	*  @param flip The flip to apply to the image, default is none
 	*/
-	static void Draw(Text *text, const Rectf &dstRect, float angle, Vector2f pivot = Vector2f(0, 0),
+	static void Draw(Text *text, const Rectf &dstRect, float angle = 0.0, Vector2f pivot = Vector2f(0, 0),
 		int flip = SDL_FLIP_NONE);
 	/**
 	*  Load an image file as a SDL_Texture and return it
