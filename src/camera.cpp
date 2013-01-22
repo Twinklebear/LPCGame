@@ -1,5 +1,4 @@
 #include <memory>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "math.h"
 #include "window.h"
@@ -150,28 +149,4 @@ bool Camera::operator == (const Camera &c) const {
 }
 bool Camera::operator != (const Camera &c) const {
     return !(*this == c);
-}
-int Camera::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Camera>("Camera")
-			.def(constructor<>())
-			//Lua doesn't know what a shared pointer is, will I need to change this function
-			//to take a raw Entity* ?
-			.def("SetFocus", &Camera::SetFocus)
-			.def("Update", &Camera::Update)
-			.def("InCamera", &Camera::InCamera)
-			.def("Move", (void (Camera::*)(Vector2f))&Camera::Move)
-			.def("Move", (void (Camera::*)(float))&Camera::Move)
-			.def("Pan", &Camera::Pan)
-			.def("Scene", &Camera::Scene)
-			.def("SetBox", &Camera::SetBox)
-			.def("Box", &Camera::Box)
-			.def("SetSceneBox", &Camera::SetSceneBox)
-			.def("SceneBox", &Camera::SceneBox)
-			.def("Offset", &Camera::Offset)
-			.def("Centering", &Camera::Centering)
-	];
-    return 1;
 }

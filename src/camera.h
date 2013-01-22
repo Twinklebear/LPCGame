@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <vector>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "base.h"
 #include "window.h"
@@ -103,11 +102,6 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-	/**
-	*  Register the Camera class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
     ///Operators
     bool operator == (const Camera &c) const;
     bool operator != (const Camera &c) const;
