@@ -6,6 +6,7 @@
 #include <stdexcept>
 #include <thread>
 
+//TODO: Why do i have this, it's never used
 ///An object pool
 /**
 *  An object pool where users can request objects,
