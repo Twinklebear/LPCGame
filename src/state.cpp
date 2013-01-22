@@ -1,4 +1,3 @@
-#include <luabind/luabind.hpp>
 #include "externals/json/json.h"
 #include "debug.h"
 #include "state.h"
@@ -26,21 +25,15 @@ void State::LogicUpdate(){
     //Call the script
     if (!mScript.Open())
 		return;
-	try {
-		luabind::call_function<void>(mScript.Get(), "LogicUpdate");
-	}
-	catch(...){
-	}
+
+    mScript.CallFunction("LogicUpdate");
 }
 void State::RenderUpdate(){
     //Call the script
     if (!mScript.Open())
 		return;
-	try {
-		luabind::call_function<void>(mScript.Get(), "RenderUpdate");
-	}
-	catch(...){
-	}
+
+    mScript.CallFunction("RenderUpdate");
 }
 void State::SetExit(std::string val){
 	mExit = true;
@@ -72,17 +65,4 @@ void State::Load(Json::Value val){
 	mName = val["name"].asString();
 	mCamera->Load(val["camera"]);
     mScript.OpenScript(val["script"].asString());
-}
-int State::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<State>("State")
-			.def(constructor<>())
-			.def("SetExit", &State::SetExit)
-			.def("UnsetExit", &State::UnsetExit)
-			.def("SetName", &State::SetName)
-			.def("Name", &State::Name)
-	];
-    return 1;
 }

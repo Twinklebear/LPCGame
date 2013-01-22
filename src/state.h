@@ -5,7 +5,6 @@
 #include <memory>
 #include <atomic>
 #include <condition_variable>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "entitymanager.h"
 #include "camera.h"
@@ -53,11 +52,6 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
-	/**
-	*  Register the State class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 protected:
 	/**
