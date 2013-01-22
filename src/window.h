@@ -52,7 +52,7 @@ public:
 	*  @param flip The flip to apply to the image, default is none
 	*/
 	static void Draw(Image *image, const Rectf &dstRect, Recti *clip = NULL,
-		float angle, Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
+		float angle = 0.0, Vector2f pivot = Vector2f(0, 0), int flip = SDL_FLIP_NONE);
 	/**
 	*  Draw an Image to the screen with no extra effects
 	*  @param image The image to draw

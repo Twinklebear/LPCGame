@@ -43,12 +43,8 @@ public:
         //Attempt to call the script if one is open
         if (!mScript.Open())
 		    return;
-	    ///Call the script
-	    try{
-		    luabind::call_function<void>(mScript.Get(), "OnClick");
-	    }
-	    catch(...){
-	    }
+
+        mScript.CallFunction("OnClick");
 	}
 	/**
 	*  Save the object data to a json value and return it
