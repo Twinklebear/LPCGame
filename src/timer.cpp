@@ -1,5 +1,4 @@
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "timer.h"
 
 Timer::Timer() 
@@ -47,21 +46,4 @@ bool Timer::Started() const {
 }
 bool Timer::Paused() const {
 	return mPaused;
-}
-int Timer::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Timer>("Timer")
-			.def(constructor<>())
-			.def("Start", &Timer::Start)
-			.def("Stop", &Timer::Stop)
-			.def("Restart", &Timer::Restart)
-			.def("Pause", &Timer::Pause)
-			.def("Unpause", &Timer::Unpause)
-			.def("GetTicks", &Timer::Ticks)
-			.def("Started", &Timer::Started)
-			.def("Paused", &Timer::Paused)
-	];
-    return 1;
 }
