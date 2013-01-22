@@ -1,8 +1,6 @@
 #include <string>
 #include <sstream>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
-#include <luabind/operator.hpp>
 #include "externals/json/json.h"
 #include "color.h"
 
@@ -58,23 +56,4 @@ Color::operator std::string() const {
     s << "Color: (r: " << (int)mColor.r << ", g: " << (int)mColor.g
         << ", b: " << (int)mColor.b << ")";
     return s.str();
-}
-int Color::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Color>("Color")
-			.def(constructor<>())
-			.def(constructor<int, int, int>())
-			.def("Set", &Color::Set)
-			.def("R", (int (Color::*)() const)&Color::R)
-            .def("R", (void (Color::*)(int))&Color::R)
-			.def("G", (int (Color::*)() const)&Color::G)
-            .def("G", (void (Color::*)(int))&Color::G)
-			.def("B", (int (Color::*)() const)&Color::B)
-            .def("B", (void (Color::*)(int))&Color::B)
-            //operators
-            .def(const_self == other<Color>())
-	];
-    return 1;
 }

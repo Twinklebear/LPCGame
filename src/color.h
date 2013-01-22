@@ -2,7 +2,6 @@
 #define COLOR_H
 
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 
 ///A light wrapper around SDL_Color
@@ -53,11 +52,6 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	void Load(Json::Value val);
-	/**
-	*  Register the Color class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 	///Operator for comparing colors
 	bool operator == (const Color &c) const;
     operator std::string() const;
