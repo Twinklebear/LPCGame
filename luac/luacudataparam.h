@@ -71,7 +71,8 @@ namespace LuaC {
         const static std::function<T*(lua_State*, int)> mRetriever;
     };
     //Is there a way i can enable doing this? I'd need to somehow deduce the lib
-    //from the type T
+    //from the type T, i guess i could use auto and decltype for returns and then do
+    //typedefs based on the lib name. hmm
     /*
     template<class T>
     const std::function<void(lua_State*, const T*)>

@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "base.h"
 #include "image.h"
 #include "timer.h"
@@ -65,11 +64,6 @@ public:
     *  @param file The file to save to
 	*/
 	void Save(const std::string &file) const;
-	/**
-	*  Register the AnimatedImage class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 private:
     /**

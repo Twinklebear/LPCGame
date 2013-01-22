@@ -1,7 +1,6 @@
 #include <vector>
 #include <string>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "base.h"
 #include "window.h"
 #include "image.h"
@@ -87,20 +86,4 @@ void AnimatedImage::Load(Json::Value val){
 		seq.Load(val["sequences"][i]);
 		mSequences.push_back(seq);
 	}
-}
-int AnimatedImage::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<AnimatedImage>("AnimatedImage")
-			.def(constructor<>())
-            .def(constructor<std::string>())
-			.def("Update", &AnimatedImage::Update)
-			.def("Play", &AnimatedImage::Play)
-			.def("Playing", &AnimatedImage::Playing)
-			//Inherited members from Image
-			.def("Load", (void (AnimatedImage::*)(const std::string&))&Image::Load)
-			.def("SetClips", &Image::SetClips)
-	];
-    return 1;
 }
