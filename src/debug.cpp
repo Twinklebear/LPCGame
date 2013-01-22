@@ -1,7 +1,6 @@
 #include <fstream>
 #include <string>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "debug.h"
 
 std::ofstream Debug::logOut;
@@ -19,15 +18,4 @@ void Debug::Log(const std::string text){
     int min = (sec / 60) - hrs * 3600;
     sec = (int)(sec - hrs * 3600 - min * 60);
     logOut << hrs << ":" << min << ":" << sec << " - " << text << std::endl;
-}
-int Debug::RegisterLua(lua_State *l){
-    using namespace luabind;
-
-    module(l, "LPC")[
-        class_<Debug>("Debug")
-            .scope[
-                def("Log", &Debug::Log)
-            ]
-    ];
-    return 1;
 }

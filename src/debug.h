@@ -3,7 +3,6 @@
 
 #include <fstream>
 #include <string>
-#include <luabind/luabind.hpp>
 
 /**
 *  A simple debug logging class, will write strings to debug.log
@@ -22,11 +21,6 @@ public:
     *  @param text The text to log
     */
     static void Log(const std::string text);
-    /**
-	*  Register the Debug class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 private:
     static std::ofstream logOut;
