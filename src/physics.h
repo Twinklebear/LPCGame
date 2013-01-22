@@ -3,7 +3,6 @@
 
 #include <cmath>
 #include <vector>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "base.h"
 #include "math.h"
@@ -62,11 +61,6 @@ public:
 	*  @param val The Json::Value containing the properties to load
 	*/
 	void Load(Json::Value val);
-	/**
-	*  Register the Physics class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 private:
 	/**

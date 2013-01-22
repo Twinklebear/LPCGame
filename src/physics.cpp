@@ -1,4 +1,3 @@
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "math.h"
 #include "motionstate.h"
@@ -200,32 +199,4 @@ void Physics::Load(Json::Value val){
 	mKinematic.Accel = Vector2f(0, 0);
 	mHorizDir = MOVE::STOP;
 	mVertDir  = MOVE::STOP;
-}
-int Physics::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Physics>("Physics")
-			.def(constructor<>())
-			.def("Move", &Physics::Move)
-			.def("Position", &Physics::Position)
-			.def("Velocity", &Physics::Velocity)
-			.def("Acceleration", &Physics::Acceleration)
-			.def("Box", &Physics::Box)
-			.def("State", &Physics::State)
-			.def("SetPosition", &Physics::SetPosition)
-			.def("SetVelocity", &Physics::SetVelocity)
-			.def("SetAcceleration", &Physics::SetAcceleration)
-			.def("SetHorizDir", &Physics::SetHorizDir)
-			.def("SetVertDir", &Physics::SetVertDir)
-            .def("SetDirection", &Physics::SetDirection)
-			.def("SetPhysConstants", &Physics::SetPhysConstants)
-			.def("SetBox", &Physics::SetBox)
-			.def("SetMap", &Physics::SetMap)
-
-			.enum_("MOVE")[
-				value("STOP", Physics::MOVE::STOP)
-			]
-	];
-    return 1;
 }
