@@ -3,7 +3,6 @@
 #include <string>
 #include <fstream>
 #include <memory>
-#include <luabind/luabind.hpp>
 #include "state.h"
 #include "gamestate.h"
 #include "menustate.h"
@@ -68,15 +67,4 @@ void StateManager::SaveState(std::string name){
 }
 void StateManager::ChangeScene(std::string scene){
     mActiveState->SetExit(scene);
-}
-int StateManager::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<StateManager>("StateManager")
-			.scope[
-				def("ChangeScene", &StateManager::ChangeScene)
-			]
-	];
-    return 1;
 }

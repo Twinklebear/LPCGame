@@ -4,7 +4,6 @@
 #include <vector>
 #include <string>
 #include <memory>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "state.h"
 #include "gamestate.h"
@@ -47,11 +46,6 @@ public:
 	*  @param scene The scene to change to
 	*/
 	static void ChangeScene(std::string scene);
-	/**
-	*  Register the StateManager class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 private:
 	/**
