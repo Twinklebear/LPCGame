@@ -5,7 +5,6 @@
 #include <vector>
 #include <memory>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include <externals/json/json.h>
 #include "rect.h"
 #include "vectors.h"
@@ -96,11 +95,6 @@ public:
     *  @see Window::LoadTexture for the texture loading function
     */
     virtual void Load(const std::string &file);
-	/**
-	*  Register the Image class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 protected:
     /**

@@ -2,7 +2,6 @@
 #include <memory>
 #include <fstream>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
 #include "window.h"
@@ -117,22 +116,4 @@ Json::Value Image::SaveClips() const {
         val["clips"][i] = mClips[i].Save();
     }
     return val;
-}
-int Image::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Image>("Image")
-			.def(constructor<>())
-			.def(constructor<std::string>())
-			.def("Load", (void (Image::*)(const std::string&))&Image::Load)
-			.def("SetClips", &Image::SetClips)
-			.def("GenClips", &Image::GenClips)
-			.def("Clip", (Recti (Image::*)(int) const)&Image::Clip)
-            .def("Clip", (Recti (Image::*)() const)&Image::Clip)
-            .def("SetActiveClip", &Image::SetActiveClip)
-            .def("W", &Image::W)
-            .def("H", &Image::H)
-	];
-    return 1;
 }
