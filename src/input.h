@@ -4,7 +4,6 @@
 #include <memory>
 #include <string>
 #include <SDL.h>
-#include <luabind\luabind.hpp>
 #include "base.h"
 
 ///Enum for the 3 mouse buttons
@@ -84,11 +83,6 @@ public:
 	static void Clear();
     ///Close the joystick and any other input items that need to be exited
     static void Close();
-	/**
-	*  Register the Input class Lua module
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State* l);
 
 private:
 	static void ClearQuit();
