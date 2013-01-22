@@ -13,6 +13,10 @@ Physics::Physics(){
 }
 Physics::~Physics(){}
 void Physics::Move(float deltaT){
+    //Objects that shouldn't move are given accel = 0, so early out on those
+    if (mPhysConstants.hAccel == 0)
+        return;
+
 	//Update the velocity
 	UpdateVelocity(deltaT);
 	//test if the move is ok before applying changes

@@ -2,6 +2,7 @@
 #include <lua.hpp>
 #include "src/debug.h"
 #include "src/input.h"
+#include "luacvector2f.h"
 #include "luacinput.h"
 
 int LuaC::InputLib::luaopen_input(lua_State *l){
@@ -21,6 +22,7 @@ const struct luaL_reg LuaC::InputLib::luaInputLib[] = {
     { "joyHat", getJoyHat },
     { "joySupportsHaptic", joySupportsHaptic },
     { "getQuit", getQuit },
+    { "mousePos", getMousePos },
     { NULL, NULL }
 };
 void LuaC::InputLib::openKeyEnum(lua_State *l){
@@ -176,5 +178,10 @@ int LuaC::InputLib::joySupportsHaptic(lua_State *l){
 int LuaC::InputLib::getQuit(lua_State *l){
     //Stack: empty
     lua_pushboolean(l, Input::Quit());
+    return 1;
+}
+int LuaC::InputLib::getMousePos(lua_State *l){
+    Vector2f pos = Input::MousePos();
+    Vector2fLib::Push(l, &pos);
     return 1;
 }

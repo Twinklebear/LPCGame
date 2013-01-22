@@ -35,6 +35,7 @@ namespace LuaC {
         static int getJoyHat(lua_State *l);
         static int joySupportsHaptic(lua_State *l);
         static int getQuit(lua_State *l);
+        static int getMousePos(lua_State *l);
     };
 }
 

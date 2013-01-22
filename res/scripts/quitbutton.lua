@@ -36,6 +36,8 @@ function Free()
 end
 function Update()
 end
+function Move(deltaT)
+end
 function Draw(camera)
 	Window.draw(img, Math.fromSceneSpace(camera, box))
 	Window.draw(text, Math.fromSceneSpace(camera, textBox))
@@ -47,6 +49,8 @@ function OnMouseUp()
 	img:setActiveClip(0)
 end
 function OnMouseEnter()
+	mousePos = Input.mousePos()
+	print ("Mouse enter, mouse pos: " .. mousePos)
 end
 function OnMouseExit()
 	img:setActiveClip(0)
