@@ -2,7 +2,6 @@
 #define MATH_H
 
 #include <memory>
-#include <luabind/luabind.hpp>
 #include "base.h"
 
 ///A math utility function class
@@ -107,11 +106,6 @@ public:
 	*  @return The Rect with its pos value converted to window space
 	*/
 	static Rectf FromSceneSpace(const std::weak_ptr<Camera> cam, const Rectf &r);
-	/**
-	*  Register the Math class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 };
 
 #endif

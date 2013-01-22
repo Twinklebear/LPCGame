@@ -1,6 +1,5 @@
 #include <cmath>
 #include <memory>
-#include <luabind/luabind.hpp>
 #include "base.h"
 #include "debug.h"
 #include "camera.h"
@@ -111,33 +110,4 @@ Vector2f Math::FromSceneSpace(const std::weak_ptr<Camera> cam, const Vector2f &v
 }
 Rectf Math::FromSceneSpace(const std::weak_ptr<Camera> cam, const Rectf &r){
 	return Rectf(FromSceneSpace(cam, r.pos), r.w, r.h);
-}
-int Math::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Math>("Math")
-			.scope[
-				def("Distance", &Math::Distance),
-				def("Clamp", &Math::Clamp),
-				def("Magnitude", &Math::Magnitude),
-				def("Normalize", &Math::Normalize),
-				def("Lerp", &Math::Lerp),
-				def("ForwardVector", &Math::ForwardVector),
-				def("RectNearRect", &Math::RectNearRect),
-				def("CheckCollision", (bool (*)(const Rectf&, const Rectf&))&Math::CheckCollision),
-				def("CheckCollision", (bool (*)(const Vector2f&, const Rectf&))&Math::CheckCollision),
-				def("ToSceneSpace", (Vector2f (*)(const std::weak_ptr<Camera>, const Vector2f&))&Math::ToSceneSpace),
-				def("ToSceneSpace", (Rectf (*)(const std::weak_ptr<Camera>, const Rectf&))&Math::ToSceneSpace),
-				def("FromSceneSpace", (Vector2f (*)(const std::weak_ptr<Camera>, const Vector2f&))&Math::FromSceneSpace),
-				def("FromSceneSpace", (Rectf (*)(const std::weak_ptr<Camera>, const Rectf&))&Math::FromSceneSpace)
-			]
-			.enum_("Dir")[
-				value("UP", UP),
-				value("DOWN", DOWN),
-				value("LEFT", LEFT),
-				value("RIGHT", RIGHT)
-			]
-	];
-    return 1;
 }
