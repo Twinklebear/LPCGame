@@ -5,7 +5,6 @@
 #include <stdexcept>
 #include <memory>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "image.h"
 #include "animatedimage.h"
 #include "rect.h"
@@ -59,7 +58,7 @@ public:
 	*  @param image The image to draw
 	*  @param dstRect The destination rectangle to draw too 
 	*/
-	static void Draw(Image *image, const Rectf &dstRect);
+	//static void Draw(Image *image, const Rectf &dstRect);
 	/**
 	*  Drawn an Image to the screen with some clip applied
 	*  the version passing with reference is for testing only
@@ -67,13 +66,13 @@ public:
 	*  @param dstRect The destination rectangle to draw too
 	*  @param clip The clip to apply to the image
 	*/
-	static void Draw(Image *image, const Rectf &dstRect, Recti *clip);
+	//static void Draw(Image *image, const Rectf &dstRect, Recti *clip);
     /**
     *  Draw an AnimatedImage object to the screen using the active animation clip
     *  @param img The AnimatedImage to draw
     *  @param dstRect The destination rect to draw too
     */
-    static void Draw(AnimatedImage* img, const Rectf &dstRect);
+    //static void Draw(AnimatedImage* img, const Rectf &dstRect);
 	/**
 	*  Draw an AnimatedImage object to the screen using the active animation clip and apply
     *  some rotation and flip if desired
@@ -91,7 +90,7 @@ public:
 	*  @param text The text type to draw
 	*  @param dstRect The destination rect to draw too, w and h vals will be queried from texture
 	*/
-    static void Draw(Text *text, const Rectf &dstRect);
+    //static void Draw(Text *text, const Rectf &dstRect);
 	/**
 	*  Draw a Text object to the screen at some position
 	*  @param text The text type to draw
@@ -136,11 +135,6 @@ public:
 	static void HandleEvents(SDL_Event &e);
 	///Get the window's box
 	static Recti Box();
-	/**
-	*  Register the Window class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
     /**
     *  Print the average framerate. To limit io action, will only print every 5 seconds
     *  @param log If we want to print to the debug log or not, True for debug log

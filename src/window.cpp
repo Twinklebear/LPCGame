@@ -5,7 +5,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_ttf.h>
-#include <luabind/luabind.hpp>
 #include "rect.h"
 #include "image.h"
 #include "animatedimage.h"
@@ -75,15 +74,15 @@ void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip,
 {
 	DrawTexture(image->Texture(), dstRect, clip, angle, pivot, (SDL_RendererFlip)flip);
 }
-void Window::Draw(Image *image, const Rectf &dstRect){
-	Draw(image, dstRect, &image->Clip(), 0);
-}
-void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip){
-	Draw(image, dstRect, clip, 0);
-}
-void Window::Draw(AnimatedImage* img, const Rectf &dstRect){
-    Draw(img, dstRect, &img->Clip());
-}
+//void Window::Draw(Image *image, const Rectf &dstRect){
+//	Draw(image, dstRect, &image->Clip(), 0);
+//}
+//void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip){
+//	Draw(image, dstRect, clip, 0);
+//}
+//void Window::Draw(AnimatedImage* img, const Rectf &dstRect){
+//    Draw(img, dstRect, &img->Clip());
+//}
 void Window::Draw(AnimatedImage* img, const Rectf &dstRect, float angle, 
                   Vector2f pivot, int flip)
 {
@@ -98,9 +97,9 @@ void Window::Draw(Text *text, const Rectf &dstRect, float angle,
     Rectf dst(dstRect.X(), dstRect.Y(), w, h);
     DrawTexture(text->Texture(), dst, NULL);
 }
-void Window::Draw(Text *text, const Rectf &dstRect){
-    Draw(text, dstRect, 0.0);
-}
+//void Window::Draw(Text *text, const Rectf &dstRect){
+//    Draw(text, dstRect, 0.0);
+//}
 SDL_Texture* Window::LoadTexture(std::string file){
 	SDL_Texture *tex = nullptr;
 	tex = IMG_LoadTexture(mRenderer.get(), file.c_str());
@@ -161,34 +160,4 @@ void Window::ShowAvgFps(bool log){
         mTimer.Start();
         mFrame = 0;
     }
-}
-int Window::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Window>("Window")
-			.scope[
-				//Note: These binding methods don't allow for default paramaters to have an effect, as such
-				//I must define an individual function each time
-                //Bindings for Image drawing
-				def("Draw", (void (*)(Image*, const Rectf&))&Window::Draw),
-				def("Draw", (void (*)(Image*, const Rectf&, Recti*))&Window::Draw),
-				def("Draw", (void (*)(Image*, const Rectf&, Recti*, float, Vector2f, int))&Window::Draw),
-                //Bindings for AnimatedImage drawing
-                def("Draw", (void (*)(AnimatedImage*, const Rectf&))&Window::Draw),
-                def("Draw", (void (*)(AnimatedImage*, const Rectf&, float, Vector2f, int))&Window::Draw),
-                //Bindings for Text drawing
-                def("Draw", (void (*)(Text*, const Rectf&))&Window::Draw),
-				def("Draw", (void (*)(Text*, const Rectf&, float, Vector2f, int))&Window::Draw),
-				def("Clear", &Window::Clear),
-				def("Present", &Window::Present),
-				def("Box", &Window::Box)
-			]
-			.enum_("RendererFlip")[
-				value("FLIP_NONE", SDL_FLIP_NONE),
-				value("FLIP_HORIZ", SDL_FLIP_HORIZONTAL),
-				value("FLIP_VERT", SDL_FLIP_VERTICAL)
-			]
-	];
-    return 1;
 }
