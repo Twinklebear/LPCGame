@@ -4,15 +4,13 @@
 #include <unordered_map>
 #include <fstream>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
 #include "jsonhandler.h"
 #include "tileset.h"
 #include "window.h"
 
-TileSet::TileSet()
-{
+TileSet::TileSet(){
 }
 TileSet::~TileSet(){
 	for(mImageSetMap::iterator it = mImageSet.begin(); it != mImageSet.end(); it++)
@@ -37,13 +35,13 @@ void TileSet::Add(const std::string &file){
     JsonHandler handler(file);
     //You may want to catch potential errors being thrown by read
     ParseImageJson(handler.Read(), file);
-	mTileSetBegin = mTileSet.begin();
-	mTileSetEnd   = mTileSet.end();
+	mTileSetBegin  = mTileSet.begin();
+	mTileSetEnd    = mTileSet.end();
 	mImageSetBegin = mImageSet.begin();
 	mImageSetEnd   = mImageSet.end();
-	lastTexture = nullptr;
+	lastTexture    = nullptr;
 	lastTextureName = "";
-	lastTileName = "";
+	lastTileName    = "";
 }
 SDL_Texture* TileSet::Texture(const std::string &tile){
 	std::string fileName = tile.substr(0, tile.find(' - '));
@@ -135,7 +133,6 @@ void TileSet::ParseImageJson(Json::Value val, const std::string &file){
 			//Add tile to tileset
 			std::string tileSetEntry = fileName + " - " + tile["name"].asString();
 			mTileSet[tileSetEntry] = newTile;
-
 		}
 	}
 }

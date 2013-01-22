@@ -7,7 +7,6 @@
 #include <unordered_map>
 #include <memory>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "rect.h"
 #include "tile.h"
@@ -16,7 +15,6 @@
 /**
 *  A class for storing and retreiving tiles
 */
-
 typedef std::unordered_map<std::string, Tile> mTileSetMap;
 typedef std::unordered_map<std::string, std::shared_ptr<SDL_Texture>> mImageSetMap;
 class TileSet {
@@ -99,7 +97,6 @@ private:
 	void ParseImageJson(Json::Value val, const std::string &file);
 
 protected:
-	
 	mTileSetMap mTileSet;
 	mImageSetMap mImageSet;
 	mTileSetMap::iterator mTileSetBegin;

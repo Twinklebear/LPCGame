@@ -1,5 +1,6 @@
 #ifndef TILE_H
 #define TILE_H
+
 #include <string>
 #include "../externals/json/json.h"
 #include "rect.h"
