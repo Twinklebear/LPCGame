@@ -1,6 +1,5 @@
 #include <string>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
 #include "rect.h"
 #include "vectors.h"
 #include "window.h"
@@ -37,16 +36,18 @@ void Button::Draw(std::weak_ptr<Camera> camera){
 	Window::Draw(&mText, textBox);
 }
 void Button::OnClick(){
-	if (mFunc != nullptr)
-		mFunc(mParam);
-	if (!mScript.Open())
-		return;
-	///Call the script
-	try{
-		luabind::call_function<void>(mScript.Get(), "OnClick");
-	}
-	catch(...){
-	}
+    //TODO: The distinction between button and entity will be
+    //defined in scripts from now on. Button and ObjectButton will become obsolete.
+	//if (mFunc != nullptr)
+	//	mFunc(mParam);
+	//if (!mScript.Open())
+	//	return;
+	/////Call the script
+	//try{
+	//	luabind::call_function<void>(mScript.Get(), "OnClick");
+	//}
+	//catch(...){
+	//}
 }
 void Button::RegisterCallBack(void (*f)(std::string), std::string param){
 	mFunc = f;
@@ -64,23 +65,4 @@ void Button::Load(Json::Value val){
 	Entity::Load(val);
 	mParam = val["param"].asString();
 	mText.Load(val["text"]);
-}
-int Button::RegisterLua(lua_State *l){
-	using namespace luabind;
-
-	module(l, "LPC")[
-		class_<Button>("Button")
-			.def(constructor<>())
-			.def(constructor<std::string>())
-			.def("Init", &Entity::Init)
-			.def("Update", &Entity::Update)
-			.def("Draw", &Entity::Draw)
-			.def("Move", &Entity::Move)
-			.def("OnMouseDown", &Button::OnMouseDown)
-			.def("OnMouseUp", &Button::OnMouseUp)
-			.def("OnMouseEnter", &Button::OnMouseEnter)
-			.def("OnMouseExit", &Button::OnMouseExit)
-			.def("OnClick", &Button::OnClick)
-	];
-    return 1;
 }

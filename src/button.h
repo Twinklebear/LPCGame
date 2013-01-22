@@ -2,7 +2,6 @@
 #define BUTTON_H
 
 #include <string>
-#include <luabind/luabind.hpp>
 #include "../externals/json/json.h"
 #include "entity.h"
 #include "image.h"
@@ -49,11 +48,6 @@ public:
 	*  @param val The Json::Value to load from
 	*/
 	virtual void Load(Json::Value val);
-	/**
-	*  Register the Button class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 protected:
 	Text mText;
