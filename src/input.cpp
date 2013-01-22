@@ -2,7 +2,6 @@
 #include <string>
 #include <SDL.h>
 #include <SDL_haptic.h>
-#include <luabind\luabind.hpp>
 #include "window.h"
 #include "math.h"
 #include "input.h"
