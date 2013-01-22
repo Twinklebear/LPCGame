@@ -72,6 +72,8 @@ void Window::DrawTexture(SDL_Texture *tex, const Rectf &dstRect, Recti *clip,
 void Window::Draw(Image *image, const Rectf &dstRect, Recti *clip, 
                   float angle, Vector2f pivot, int flip)
 {
+    if (clip == NULL)
+        clip = &image->Clip();
 	DrawTexture(image->Texture(), dstRect, clip, angle, pivot, (SDL_RendererFlip)flip);
 }
 //void Window::Draw(Image *image, const Rectf &dstRect){
