@@ -25,6 +25,7 @@ const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
     { "box", getBox },
     { "tag", getTag },
     { "name", getName },
+    { "render", render },
     { "__newindex", newIndex },
     { "__tostring", toString },
     { "__concat", concat },
@@ -122,6 +123,27 @@ int LuaC::EntityLib::getName(lua_State *l){
     std::shared_ptr<Entity> *e = Check(l, 1);
     lua_pushstring(l, (*e)->Name().c_str());
     return 1;
+}
+int LuaC::EntityLib::render(lua_State *l){
+    /*
+    * 2 possible stacks:
+    * 1. entity, boolean value to set for render
+    * 2. entity 
+    * case 2 we want to get the value of render (T/F)
+    */
+    std::shared_ptr<Entity> *e = Check(l, 1);
+    //Case 1:
+    if (lua_gettop(l) == 2){
+        bool rend = lua_toboolean(l, 2);
+        (*e)->Render(rend);
+        return 0;
+    }
+    //Case 2:
+    else if (lua_gettop(l) == 1){
+        lua_pushboolean(l, (*e)->Render());
+        return 1;
+    }
+    return 0;
 }
 int LuaC::EntityLib::newIndex(lua_State *l){
     //Stack: udata (Entity), string of index to set, val to set as

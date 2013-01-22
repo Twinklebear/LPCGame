@@ -1,4 +1,4 @@
-require "Rect"
+require "Rectf"
 require "Entity"
 require "AnimatedImage"
 require "Window"
@@ -11,10 +11,10 @@ require "Debug"
 
 --Init the script
 function Init()
-	physics = entity:GetPhysics()
+	physics = self:GetPhysics()
 	--Load image
-	playerImg = LPC.AnimatedImage("../res/img/walking.png")
-	playerImg:Play("idle-left")
+	playerImg = AnimatedImage("../res/img/walking.png")
+	playerImg:play("idle-left")
 end
 function Free()
 end
@@ -23,24 +23,24 @@ function Update()
 	--Read input
 	local direction = -1
 	--Horizontal motion
-	if LPC.Input.KeyDown(LPC.Input.KEY_A) then
-		physics:SetHorizDir(LPC.Math.LEFT)
-		direction = LPC.Math.LEFT
-	elseif LPC.Input.KeyDown(LPC.Input.KEY_D) then
-		physics:SetHorizDir(LPC.Math.RIGHT)
-		direction = LPC.Math.RIGHT
+	if Input.keyDown(Input.KEY_A) then
+		physics:setHorizDir(Math.LEFT)
+		direction = Math.LEFT
+	elseif Input.keyDown(Input.KEY_D) then
+		physics:setHorizDir(Math.RIGHT)
+		direction = Math.RIGHT
 	else
-		physics:SetHorizDir(LPC.Physics.STOP)
+		physics:setHorizDir(Physics.STOP)
 	end
 	--Vertical motion
-	if LPC.Input.KeyDown(LPC.Input.KEY_W) then
-		physics:SetVertDir(LPC.Math.UP)
-		direction = LPC.Math.UP
-	elseif LPC.Input.KeyDown(LPC.Input.KEY_S) then
-		physics:SetVertDir(LPC.Math.DOWN)
-		direction = LPC.Math.DOWN
+	if Input.keyDown(Input.KEY_W) then
+		physics:setVertDir(Math.UP)
+		direction = Math.UP
+	elseif Input.keyDown(Input.KEY_S) then
+		physics:setVertDir(Math.DOWN)
+		direction = Math.DOWN
 	else
-		physics:SetVertDir(LPC.Physics.STOP)
+		physics:setVertDir(Physics.STOP)
 	end
 
 	--Update animation
@@ -48,7 +48,7 @@ function Update()
 end
 --Use for movement
 function Move(deltaT)
-	physics:Move(deltaT)
+	physics:move(deltaT)
 end
 --Draw
 function Draw(camera)
@@ -57,15 +57,17 @@ function Draw(camera)
 		--We can no longer use the luabind library.
 		--LPC.Window.Draw(playerImg, LPC.Math.FromSceneSpace(camera, physics:Box()))
 	--else
-		LPC.Window.Draw(playerImg, physics:Box())
+		Window.draw(playerImg, Math.fromSceneSpace(camera, physics:Box()))
 	--end
 end
 --Update player animation
 function UpdateAnimation(direction)
 	--Update animation
-	playerImg:Update()
+	playerImg:update()
 	--Check for animation changes
-	if physics:State() == LPC.MotionState.IDLE then
+	--Motion state isn't implemented as a lua lib
+	--[[
+	if physics:state() == MotionState.IDLE then
 		if playerImg:Playing() == "run-left" then
 			playerImg:Play("idle-left")
 		elseif playerImg:Playing() == "run-right" then
@@ -86,14 +88,15 @@ function UpdateAnimation(direction)
 			playerImg:Play("run-down")
 		end
 	end
+	]]
 end
 function OnClick()
 	print "Player clicked!"
 	--Toggle rendering
-	if not entity:Render() then
-		entity:Render(true)
+	if not self:render() then
+		self:render(true)
 	else
-		entity:Render(false)
+		entity:render(false)
 	end
 	--Toggle ui status
 	--We can't do this, because Drawing is done in the lua script

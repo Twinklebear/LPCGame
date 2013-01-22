@@ -45,6 +45,8 @@ namespace LuaC {
         static int getBox(lua_State *l);
         static int getTag(lua_State *l);
         static int getName(lua_State *l);
+        //Toggle rendering
+        static int render(lua_State *l);
         ///__newindex accessor for setters
         static int newIndex(lua_State *l);
         ///Setters

@@ -1,20 +1,16 @@
---require "Input"
---require "scripts/calltest.lua"
-
---Testing my Lua C modules
-require "TestState"
-require "TestVector2f"
-require "TestEntity"
-require "TestRectf"
-require "TestPhysics"
-require "TestMath"
-require "TestCamera"
-require "TestImage"
-require "TestWindow"
-require "TestInput"
-require "TestColor"
-require "TestTimer"
-require "TestAnimatedImage"
+require "State"
+require "Vector2f"
+require "Entity"
+require "Rectf"
+require "Physics"
+require "Math"
+require "Camera"
+require "Image"
+require "Window"
+require "Input"
+require "Color"
+require "Timer"
+require "AnimatedImage"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"
@@ -38,7 +34,7 @@ function RenderUpdate()
 	--Window.draw(animImg, drawPos, 45, Vector2f(0, 0), Window.FLIP_VERTICAL)
 end
 function TestCall(v)
-	print ("Test call called")
+	print ("TestCall called")
 	print ("Param: " .. v)
 
 	return 100
