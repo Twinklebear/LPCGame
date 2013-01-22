@@ -1,10 +1,8 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-//#include <initializer_list>
 #include <vector>
 #include <lua.hpp>
-#include <luabind/luabind.hpp>
 #include "externals/json/json.h"
 #include "debug.h"
 #include "luac/luacscript.h"
@@ -27,7 +25,6 @@ void LuaScript::OpenScript(const std::string &script){
         mFile = script;
         mL = lua_open();
         luaL_openlibs(mL);
-        luabind::open(mL);
         AddLoader(LuaC::LuaScriptLib::requireLib);
         AddLoader(LuaC::LuaScriptLib::requireScript);
         luaL_dofile(mL, mFile.c_str());

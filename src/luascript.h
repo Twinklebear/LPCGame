@@ -4,7 +4,7 @@
 #include <string>
 #include <map>
 #include <vector>
-#include <luabind/luabind.hpp>
+#include <lua.hpp>
 #include "../externals/json/json.h"
 #include "debug.h"
 #include "luac/luacparam.h"
