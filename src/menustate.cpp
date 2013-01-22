@@ -23,12 +23,6 @@ std::string MenuState::Run(){
     State::Init();
 	//Setup the background destination
 	Rectf bkgndPos = Math::FromSceneSpace(mCamera, mCamera->SceneBox());
-    Color color(0, 0, 0);
-    LuaC::ColorParam c(&color);
-    std::vector<LuaC::LuaParam*> params;
-    params.push_back(&c);
-    int result = mScript.CallFunction<LuaC::IntParam>("TestCall", params);
-    std::cout << "Called TestCall, got back: " << result << std::endl;
 
 	Timer delta;
 	delta.Start();

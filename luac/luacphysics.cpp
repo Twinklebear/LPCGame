@@ -108,16 +108,18 @@ int LuaC::PhysicsLib::accessor(lua_State *l){
     std::string index = luaL_checkstring(l, 2);
     lua_remove(l, 2);
     switch (index.at(0)){
+        case 'a':
+            return setAcceleration(l);
+        case 'b':
+            return setBox(l);
+        case 'h':
+            return setHorizDir(l);
         case 'p':
             return setPosition(l);
         case 'v':
             //We must check the third char, for l or r to tell which we want
             //velocity or vertDir
             return ((index.at(2) == 'l') ? setVelocity(l) : setVertDir(l));
-        case 'a':
-            return setAcceleration(l);
-        case 'b':
-            return setBox(l);
         default:
             break;
     }

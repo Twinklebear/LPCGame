@@ -108,7 +108,7 @@ public:
 	}
     operator std::string() const {
         std::stringstream s;
-        s << "Vector2: (x: " << x << ", "
+        s << "Vector2: (x: " << x << ", y: "
             << y << ")";
         return s.str();
     }

@@ -12,6 +12,7 @@ require "State"
 require "AnimatedImage"
 require "Text"
 require "Input"
+require "Debug"
 
 --Init the script
 function Init()
@@ -35,15 +36,16 @@ function Move(deltaT)
 	--rect.pos.y = rect.pos.y + LPC.Input.GetJoyAxis(1) * speed * deltaT
 	--This gives some odd behaviors
 	local v = Vector2f(0, 0)
-	v.x = Input.GetJoyAxis(0)
-	v.y = Input.GetJoyAxis(1)
-	physics:setDirection(v)
-	physics:move(deltaT)
+	v.x = Input.joyAxis(0)
+	v.y = Input.joyAxis(1)
+	--Set direction isn't implemented
+	--physics:setDirection(v)
+	--physics:move(deltaT)
 end
 --Draw
 function Draw(camera)
 	--With the changes made in the math class to std::weak_ptr<Camera>
 	--We can no longer use the luabind library.
 	--LPC.Window.Draw(img, LPC.Math.FromSceneSpace(camera, physics:Box()))
-	Window.draw(img, Math.fromSceneSpace(camera, physics:Box()))
+	Window.draw(img, Math.fromSceneSpace(camera, physics:box()))
 end

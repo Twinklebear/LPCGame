@@ -12,6 +12,7 @@ require "State"
 require "AnimatedImage"
 require "Text"
 require "Input"
+require "Debug"
 
 --Init the script
 function Init()
@@ -28,23 +29,25 @@ function Update()
 	local direction = -1
 	--Horizontal motion
 	if Input.keyDown(Input.KEY_A) then
-		physics:setHorizDir(Math.LEFT)
+		physics.horizDir = Math.LEFT
 		direction = Math.LEFT
 	elseif Input.keyDown(Input.KEY_D) then
-		physics:setHorizDir(Math.RIGHT)
+		physics.horizDir = Math.RIGHT
 		direction = Math.RIGHT
 	else
-		physics:setHorizDir(Physics.STOP)
+		-- -1 corresponds to Physics::STOP
+		physics.horizDir = -1
 	end
 	--Vertical motion
 	if Input.keyDown(Input.KEY_W) then
-		physics:setVertDir(Math.UP)
+		physics.vertDir = Math.UP
 		direction = Math.UP
 	elseif Input.keyDown(Input.KEY_S) then
-		physics:setVertDir(Math.DOWN)
+		physics.vertDir = Math.DOWN
 		direction = Math.DOWN
 	else
-		physics:setVertDir(Physics.STOP)
+		-- -1 corresponds to Physics::STOP
+		physics.vertDir = -1
 	end
 
 	--Update animation
@@ -52,7 +55,7 @@ function Update()
 end
 --Use for movement
 function Move(deltaT)
-	physics:move(deltaT)
+	--physics:move(deltaT)
 end
 --Draw
 function Draw(camera)
@@ -61,7 +64,7 @@ function Draw(camera)
 		--We can no longer use the luabind library.
 		--LPC.Window.Draw(playerImg, LPC.Math.FromSceneSpace(camera, physics:Box()))
 	--else
-		Window.draw(playerImg, Math.fromSceneSpace(camera, physics:Box()))
+		Window.draw(playerImg, Math.fromSceneSpace(camera, physics:box()))
 	--end
 end
 --Update player animation

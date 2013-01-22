@@ -33,9 +33,3 @@ end
 function RenderUpdate()
 	--Window.draw(animImg, drawPos, 45, Vector2f(0, 0), Window.FLIP_VERTICAL)
 end
-function TestCall(v)
-	print ("TestCall called")
-	print ("Param: " .. v)
-
-	return 100
-end

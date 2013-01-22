@@ -54,6 +54,8 @@ void Entity::Move(float deltaT){
     std::vector<LuaC::LuaParam*> params;
     params.push_back(&delta);
     mScript.CallFunction("Move", params);
+    //Move the object
+    mPhysics->Move(deltaT);
 }
 void Entity::Draw(std::weak_ptr<Camera> camera){
     //Draw entity

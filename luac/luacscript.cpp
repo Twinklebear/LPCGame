@@ -270,14 +270,14 @@ LuaC::LuaScriptLib::TUdataCopiers LuaC::LuaScriptLib::CreateCopierMap(){
     return map;
 }
 const luaL_reg LuaC::LuaScriptLib::luaScriptLib[] = {
-    { "stackDump", luaStackDump },
+    { "stackDump", stackDump },
     { NULL, NULL}
 };
 int LuaC::LuaScriptLib::luaopen_luascript(lua_State *l){
     luaL_register(l, luaScriptClass.c_str(), luaScriptLib);
     return 0;
 }
-int LuaC::LuaScriptLib::luaStackDump(lua_State *l){
+int LuaC::LuaScriptLib::stackDump(lua_State *l){
     //Stack: the lua script table, bool of whether to 
     //dump to file, and the data to check
     bool toLog = true;

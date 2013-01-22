@@ -134,7 +134,7 @@ int LuaC::EntityLib::render(lua_State *l){
     std::shared_ptr<Entity> *e = Check(l, 1);
     //Case 1:
     if (lua_gettop(l) == 2){
-        bool rend = lua_toboolean(l, 2);
+        bool rend = lua_toboolean(l, 2) == 1;
         (*e)->Render(rend);
         return 0;
     }

@@ -128,7 +128,7 @@ namespace LuaC {
         ///Open the library
         static int luaopen_luascript(lua_State *l);
         ///Perform a stack dump to inspect some Lua data
-        static int luaStackDump(lua_State *l);
+        static int stackDump(lua_State *l);
 
     private:
         ///The map of library loaders
