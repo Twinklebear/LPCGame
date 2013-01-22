@@ -1,7 +1,6 @@
 #ifndef MOTIONSTATE_H
 #define MOTIONSTATE_H
 
-#include <luabind/luabind.hpp>
 #include "vectors.h"
 
 ///Struct to track velocity and acceleration
@@ -42,12 +41,6 @@ public:
 	void SetMotionState(int state);
 	///enum for describing motion states
 	enum { IDLE, RUNNING };
-	/**
-	*  Register the MotionState class with the lua state
-	*  TODO: Is this necessary? Shouldn't this sort of physics be done by the user?
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l);
 
 private:
 	int mState;

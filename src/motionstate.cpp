@@ -1,4 +1,3 @@
-#include <luabind/luabind.hpp>
 #include "vectors.h"
 #include "motionstate.h"
 
@@ -19,20 +18,4 @@ int MotionState::State() const{
 }
 void MotionState::SetMotionState(int state){
 	mState = state;
-}
-int MotionState::RegisterLua(lua_State *l){
-    using namespace luabind;
-
-    module(l, "LPC")[
-        class_<MotionState>("MotionState")
-            .def(constructor<>())
-            .def("State", &MotionState::State)
-            .def("SetMotionState", &MotionState::SetMotionState)
-
-            .enum_("STATE")[
-				value("IDLE", IDLE),
-				value("RUNNING", RUNNING)
-			]
-    ];
-    return 1;
 }
