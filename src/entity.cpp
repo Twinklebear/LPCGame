@@ -98,6 +98,9 @@ void Entity::OnMouseEnter(){
 void Entity::OnMouseExit(){
     mClicked = false;
     mMouseOver = false;
+
+    if (!mScript.Open())
+        return;
 	mScript.CallFunction("OnMouseExit");
 }
 void Entity::CheckMouseOver(const Vector2f &pos){
