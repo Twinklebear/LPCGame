@@ -4,8 +4,6 @@
 #include <string>
 #include <sstream>
 #include <SDL.h>
-#include <luabind/luabind.hpp>
-#include <luabind/operator.hpp>
 #include "externals/json/json.h"
 #include "vectors.h"
 
@@ -172,60 +170,6 @@ public:
             << ", w: " << w << ", h: " << h << ")";
         return s.str();
     }
-	/**
-	*  Register the Rect class with the lua state
-	*  @param l The lua_State to register the module with
-	*/
-	static int RegisterLua(lua_State *l){
-		using namespace luabind;
-		///Does Lua/LuaBind support templates?
-		module(l, "LPC")[
-			//For Rect<int>
-			class_<Rect<int>>("Recti")
-				.def(constructor<>())
-				.def(constructor<int, int, int, int>())
-				.def(constructor<Vector2f, int, int>())
-				.def("Set", (void (Rect<int>::*)(int, int, int, int))&Rect<int>::Set)
-				.def("Set", (void (Rect<int>::*)(Vector2i, int, int))&Rect<int>::Set)
-				.def("Set", (void (Rect<int>::*)(int, int))&Rect<int>::Set)
-				.def("Set", (void (Rect<int>::*)(Vector2i))&Rect<int>::Set)
-				.def("Pos", &Rect<int>::Pos)
-				.def("X", &Rect<int>::X)
-				.def("Y", &Rect<int>::Y)
-				.def("W", &Rect<int>::W)
-				.def("H", &Rect<int>::H)
-				//accessors
-				.def_readwrite("pos", &Rect<int>::pos)
-				.def_readwrite("w", &Rect<int>::w)
-				.def_readwrite("h", &Rect<int>::h)
-				//operators
-				.def(const_self + Vector2i())
-				.def(const_self - Vector2i()),
-
-			//For Rect<float>
-			class_<Rect<float>>("Rectf")
-				.def(constructor<>())
-				.def(constructor<float, float, float, float>())
-				.def(constructor<Vector2f, float, float>())
-				.def("Set", (void (Rect<float>::*)(float, float, float, float))&Rect<float>::Set)
-				.def("Set", (void (Rect<float>::*)(Vector2f, float, float))&Rect<float>::Set)
-				.def("Set", (void (Rect<float>::*)(float, float))&Rect<float>::Set)
-				.def("Set", (void (Rect<float>::*)(Vector2f))&Rect<float>::Set)
-				.def("Pos", &Rect<float>::Pos)
-				.def("X", &Rect<float>::X)
-				.def("Y", &Rect<float>::Y)
-				.def("W", &Rect<float>::W)
-				.def("H", &Rect<float>::H)
-				//accessors
-				.def_readwrite("pos", &Rect<float>::pos)
-				.def_readwrite("w", &Rect<float>::w)
-				.def_readwrite("h", &Rect<float>::h)
-				//operators
-				.def(const_self + Vector2f())
-				.def(const_self - Vector2f())
-		];
-        return 1;
-	}
 
 public:
 	Vector2<T> pos;
