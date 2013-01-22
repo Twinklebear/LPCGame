@@ -1,13 +1,17 @@
 require "Entity"
-require "Input"
-require "Rectf"
-require "AnimatedImage"
-require "Vector2f"
 require "Physics"
-require "Window"
+require "Rectf"
+require "Vector2f"
 require "Camera"
+require "Color"
+require "Timer"
+require "Image"
+require "Window"
 require "Math"
-require "Debug"
+require "State"
+require "AnimatedImage"
+require "Text"
+require "Input"
 
 --Init the script
 function Init()
@@ -15,7 +19,7 @@ function Init()
 	img = AnimatedImage("../res/img/animtest.png")
 	img:play("idle")
 	--rect = entity:Box()
-	physics = self:getPhysics()
+	physics = self:physics()
 	Debug.log("NPC Init: Debugging test!")
 end
 function Free()

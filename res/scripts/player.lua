@@ -1,17 +1,21 @@
-require "Rectf"
 require "Entity"
-require "AnimatedImage"
-require "Window"
-require "Camera"
-require "Math"
-require "Input"
 require "Physics"
-require "MotionState"
-require "Debug"
+require "Rectf"
+require "Vector2f"
+require "Camera"
+require "Color"
+require "Timer"
+require "Image"
+require "Window"
+require "Math"
+require "State"
+require "AnimatedImage"
+require "Text"
+require "Input"
 
 --Init the script
 function Init()
-	physics = self:GetPhysics()
+	physics = self:physics()
 	--Load image
 	playerImg = AnimatedImage("../res/img/walking.png")
 	playerImg:play("idle-left")

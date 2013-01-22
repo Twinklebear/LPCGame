@@ -146,11 +146,9 @@ void GameState::Load(Json::Value val){
 			mManager->Register(sObj);
         }
         else {
-		    Entity *e = new Entity();
-		    e->Load(entities[i]["file"].asString(), entities[i]["overrides"]);
-		    e->Init();
-		    std::shared_ptr<Entity> sObj(e);
-		    mManager->Register(sObj);
+            std::shared_ptr<Entity> e = std::make_shared<Entity>(entities[i]["file"].asString());
+            mManager->Register(e);
+            e->Init(e);
         }
 	}
 }

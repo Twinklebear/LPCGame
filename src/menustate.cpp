@@ -115,7 +115,6 @@ void MenuState::Load(Json::Value val){
         else {
             std::shared_ptr<Entity> e = std::make_shared<Entity>(entities[i]["file"].asString());
             mManager->Register(e);
-            //Maybe pass the shared_ptr in here to be pushed onto the state?
             e->Init(e);
         }
 	}
