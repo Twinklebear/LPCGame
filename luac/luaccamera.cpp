@@ -32,6 +32,8 @@ int LuaC::CameraLib::luaopen_camera(lua_State *l){
 const struct luaL_reg LuaC::CameraLib::luaCameraLib[] = {
     { "setFocus", setFocus },
     { "inCamera", inCamera },
+    { "box", getBox },
+    { "sceneBox", getSceneBox },
     { "offset", offset },
     { "centering", centering },
     { NULL, NULL }
@@ -62,6 +64,34 @@ int LuaC::CameraLib::inCamera(lua_State *l){
         Debug::Log("CameraLib:inCamera error: Camera expired");
 
     lua_pushboolean(l, inCam);
+    return 1;
+}
+int LuaC::CameraLib::getBox(lua_State *l){
+    //Stack: camera
+    std::weak_ptr<Camera> *weak = Check(l, 1);
+    Rectf box;
+    if (!weak->expired()){
+        auto c = weak->lock();
+        box = c->Box();
+    }
+    else
+        Debug::Log("CameraLib:box error: Camera expired");
+
+    RectfLib::Push(l, &box);
+    return 1;
+}
+int LuaC::CameraLib::getSceneBox(lua_State *l){
+    //Stack: camera
+    std::weak_ptr<Camera> *weak = Check(l, 1);
+    Rectf box;
+    if (!weak->expired()){
+        auto c = weak->lock();
+        box = c->SceneBox();
+    }
+    else
+        Debug::Log("CameraLib:sceneBox error: Camera expired");
+
+    RectfLib::Push(l, &box);
     return 1;
 }
 int LuaC::CameraLib::offset(lua_State *l){

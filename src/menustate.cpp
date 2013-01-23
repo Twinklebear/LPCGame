@@ -21,8 +21,6 @@ std::string MenuState::Run(){
     
     //Call the script's Init
     State::Init();
-	//Setup the background destination
-	Rectf bkgndPos = Math::FromSceneSpace(mCamera, mCamera->SceneBox());
 
 	Timer delta;
 	delta.Start();
@@ -56,11 +54,9 @@ std::string MenuState::Run(){
 
 		//RENDERING
 		Window::Clear();
-		Window::Draw(&mBackground, bkgndPos, &(Recti)mCamera->Box());
-		mManager->Draw();
-
-        //Call script's rendering
+        //Call state's rendering for background effects
         State::RenderUpdate();
+		mManager->Draw();
 
 		//refresh window
 		Window::Present();
@@ -85,31 +81,18 @@ void MenuState::Free(){
 }
 Json::Value MenuState::Save(){
 	Json::Value val = State::Save();
-	val["background"] = mBackground.File();
 	Free();
 	return val;
 }
 void MenuState::Load(Json::Value val){
 	Init();
 	State::Load(val);
-	mBackground.Load(val["background"].asString());
 
     //Load the objects
 	Json::Value entities = val["entities"];
 	for (int i = 0; i < entities.size(); ++i){
-		//Loading object buttons
-		if (entities[i]["type"].asString() == "objectbutton"){
-			ObjectButton<State> *b = new ObjectButton<State>();
-			b->RegisterCallBack(this, &State::SetExit, "");
-			b->Load(entities[i]);
-			std::shared_ptr<Entity> sObj(b);
-			mManager->Register(sObj);
-		}
-        //Loading scripted entities
-        else {
-            std::shared_ptr<Entity> e = std::make_shared<Entity>(entities[i]["file"].asString());
-            mManager->Register(e);
-            e->Init(e);
-        }
+        std::shared_ptr<Entity> e = std::make_shared<Entity>(entities[i]["file"].asString());
+        mManager->Register(e);
+        e->Init(e);
 	}
 }

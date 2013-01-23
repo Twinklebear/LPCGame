@@ -1,7 +1,6 @@
 {
-   "image" : "../res/img/simplebutton.png",
-   "name" : "",
-   "param" : "gGame",
+   "image" : "",
+   "name" : "playbutton",
    "physics" : {
       "box" : {
          "h" : 100.0,
@@ -12,19 +11,8 @@
       "hAccel" : 0,
       "hSpeed" : 0
    },
-   "script" : "../res/scripts/tesbutton.lua",
-   "tag" : "",
-   "text" : {
-      "color" : {
-         "b" : 0,
-         "g" : 0,
-         "r" : 0
-      },
-      "font" : "../res/fonts/SourceSansPro-Regular.ttf",
-      "fontsize" : 25,
-      "message" : "Play"
-   },
-   "type" : "objectbutton",
+   "script" : "../res/scripts/playbutton.lua",
+   "tag" : "play",
    "render" : true,
    "ui" : false
 }

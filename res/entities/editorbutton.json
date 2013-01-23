@@ -1,17 +1,17 @@
 {
    "image" : "",
-   "name" : "quitbutton",
+   "name" : "editorbutton",
    "physics" : {
       "box" : {
          "h" : 100.0,
          "w" : 200.0,
          "x" : 100.0,
-         "y" : 350.0
+         "y" : 200.0
       },
       "hAccel" : 0,
       "hSpeed" : 0
    },
-   "script" : "../res/scripts/quitbutton.lua",
+   "script" : "../res/scripts/editorbutton.lua",
    "tag" : "test",
    "render" : true,
    "ui" : false

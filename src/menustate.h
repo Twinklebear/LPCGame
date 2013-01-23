@@ -4,7 +4,6 @@
 #include "../externals/json/json.h"
 #include "state.h"
 #include "button.h"
-#include "objectbutton.h"
 
 ///A state for running a menu system
 /**
@@ -50,9 +49,6 @@ protected:
 	void Init();
 	///Free state memory
 	void Free();
-
-private:
-	Image mBackground;
 };
 
 #endif

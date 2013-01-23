@@ -42,9 +42,9 @@ namespace LuaC {
         //static int move(lua_State *l);
         //static int pan(lua_State *l);
         //static int scene(lua_State *l);
-        //static int getBox(lua_State *l);
+        static int getBox(lua_State *l);
         //static int setBox(lua_State *l);
-        //static int getSceneBox(lua_State *l);
+        static int getSceneBox(lua_State *l);
         //static int setSceneBox(lua_State *l);
         static int offset(lua_State *l);
         static int centering(lua_State *l);

@@ -137,6 +137,7 @@ private:
 protected:
 	///Note: Once Lua entity scripting is fully implemented, Image should no longer be a member, but rather
 	///should be created and given to the Lua instance to handle if an image is desired
+    //I'm not sure if i agree with this idea anymore....
 	Image mImage;
 	///Handle's the objects physics
 	std::shared_ptr<Physics> mPhysics;

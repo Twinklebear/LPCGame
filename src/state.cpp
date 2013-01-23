@@ -1,5 +1,6 @@
 #include "externals/json/json.h"
 #include "debug.h"
+#include "luac/luacudataparam.h"
 #include "state.h"
 
 State::State() 
@@ -26,6 +27,7 @@ void State::LogicUpdate(){
     if (!mScript.Open())
 		return;
 
+
     mScript.CallFunction("LogicUpdate");
 }
 void State::RenderUpdate(){
@@ -33,7 +35,11 @@ void State::RenderUpdate(){
     if (!mScript.Open())
 		return;
 
-    mScript.CallFunction("RenderUpdate");
+    std::weak_ptr<Camera> camera = mCamera;
+    LuaC::CameraParam cam(&camera);
+    std::vector<LuaC::LuaParam*> params;
+    params.push_back(&cam);
+    mScript.CallFunction("RenderUpdate", params);
 }
 void State::SetExit(std::string val){
 	mExit = true;
