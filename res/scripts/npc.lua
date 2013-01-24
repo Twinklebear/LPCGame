@@ -16,7 +16,6 @@ require "Debug"
 
 --Init the script
 function Init()
-	print "Test 2 init"
 	img = AnimatedImage("../res/img/animtest.png")
 	img:play("idle")
 	--rect = entity:Box()

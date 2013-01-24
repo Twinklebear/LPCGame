@@ -25,9 +25,6 @@ function Init()
 		txtColor, 25)
 	textBox = Rectf((box:x() + box:w() / 2 - text:w() / 2),
 		(box:y() + box:h() / 2 - text:h() / 2), text:w(), text:h())
-
-	--this crashes, perhaps name is null or something?
-	print ("State name: " .. State.name())
 end
 function Free()
 end
