@@ -15,7 +15,7 @@ require "Input"
 function Init()
 	--Load the button image
 	img = Image("../res/img/simplebutton.png")
-	box = self:box()
+	box = entity:box()
 	img:setActiveClip(0)
 
 	--Setup the button text

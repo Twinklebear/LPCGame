@@ -19,7 +19,7 @@ function Init()
 	img = AnimatedImage("../res/img/animtest.png")
 	img:play("idle")
 	--rect = entity:Box()
-	physics = self:physics()
+	physics = entity:physics()
 	Debug.log("NPC Init: Debugging test!")
 end
 function Free()

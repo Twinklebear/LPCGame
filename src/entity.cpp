@@ -31,7 +31,7 @@ void Entity::Init(std::shared_ptr<Entity> self){
     if (self != nullptr){
         //Push the self pointer onto the state so the script can use it
         LuaC::EntityParam luaSelf(&self);
-        luaSelf.Push(mScript.Get(), "self");
+        luaSelf.Push(mScript.Get(), "entity");
     }
     mScript.CallFunction("Init");
 }

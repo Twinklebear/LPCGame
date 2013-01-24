@@ -16,7 +16,7 @@ require "Debug"
 
 --Init the script
 function Init()
-	physics = self:physics()
+	physics = entity:physics()
 	--Load image
 	playerImg = AnimatedImage("../res/img/walking.png")
 	playerImg:play("idle-left")
@@ -100,8 +100,8 @@ end
 function OnClick()
 	print "Player clicked!"
 	--Toggle rendering
-	if not self:render() then
-		self:render(true)
+	if not entity:render() then
+		entity:render(true)
 	else
 		entity:render(false)
 	end

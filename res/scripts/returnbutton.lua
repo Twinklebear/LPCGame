@@ -14,14 +14,14 @@ require "Input"
 function Init()
 	--Load the button image
 	img = Image("../res/img/simplebutton.png")
-	box = self:box()
+	box = entity:box()
 	img:setActiveClip(0)
 
 	--Configure the position and text depending if we're in the editor or game
 	local message = ""
 	if State.name() ~= "gGame" then
 		box:set(32, 625, 250, 50)
-		self:physics().box = box
+		entity:physics().box = box
 		message = "Save & Quit"
 	else
 		message = "Return"
