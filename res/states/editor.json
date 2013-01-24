@@ -15,36 +15,6 @@
    },
    "entities" : [
       {
-         "image" : "../res/img/simplebutton.png",
-         "name" : "",
-         "param" : "mIntro",
-         "physics" : {
-            "box" : {
-               "h" : 50.0,
-               "w" : 250.0,
-               "x" : 32.0,
-               "y" : 625.0
-            },
-            "hAccel" : 0,
-            "hSpeed" : 0
-         },
-         "render" : true,
-         "script" : "",
-         "tag" : "",
-         "text" : {
-            "color" : {
-               "b" : 0,
-               "g" : 0,
-               "r" : 0
-            },
-            "font" : "../res/fonts/SourceSansPro-Regular.ttf",
-            "fontsize" : 25,
-            "message" : "Save & Return"
-         },
-         "type" : "objectbutton",
-         "ui" : true
-      },
-      {
          "attributes" : {
             "spacer" : 5,
             "tileHeight" : 32,
@@ -71,6 +41,9 @@
          "tag" : "",
          "type" : "tilebar",
          "ui" : true
+      },
+      {
+         "file" : "../res/entities/returntointrobutton.json"
       }
    ],
    "map" : {
@@ -736,7 +709,7 @@
                "x" : 160,
                "y" : 96
             },
-            "name" : "forest - Path - Rock",
+            "name" : "",
             "solid" : false
          },
          {
@@ -926,7 +899,7 @@
                "x" : 128,
                "y" : 128
             },
-            "name" : "forest - Grass - Flowers",
+            "name" : "",
             "solid" : false
          },
          {
@@ -936,7 +909,7 @@
                "x" : 160,
                "y" : 128
             },
-            "name" : "forest - Path - Rock",
+            "name" : "",
             "solid" : false
          },
          {
@@ -1546,7 +1519,7 @@
                "x" : 192,
                "y" : 224
             },
-            "name" : "forest - Grass - Plain",
+            "name" : "",
             "solid" : false
          },
          {
@@ -1946,7 +1919,7 @@
                "x" : 192,
                "y" : 288
             },
-            "name" : "forest - Grass - Plain",
+            "name" : "",
             "solid" : false
          },
          {
@@ -2146,7 +2119,7 @@
                "x" : 192,
                "y" : 320
             },
-            "name" : "forest - Grass - Plain",
+            "name" : "",
             "solid" : false
          },
          {
@@ -2346,7 +2319,7 @@
                "x" : 192,
                "y" : 352
             },
-            "name" : "forest - Grass - Plain",
+            "name" : "",
             "solid" : false
          },
          {

@@ -21,34 +21,7 @@
          "file" : "../res/entities/npc.json"
       },
       {
-         "image" : "../res/img/simplebutton.png",
-         "name" : "returnButton",
-         "param" : "mIntro",
-         "physics" : {
-            "box" : {
-               "h" : 100.0,
-               "w" : 200.0,
-               "x" : 20.0,
-               "y" : 500.0
-            },
-            "hAccel" : 0,
-            "hSpeed" : 0
-         },
-         "render" : true,
-         "script" : "",
-         "tag" : "",
-         "text" : {
-            "color" : {
-               "b" : 0,
-               "g" : 0,
-               "r" : 0
-            },
-            "font" : "../res/fonts/SourceSansPro-Regular.ttf",
-            "fontsize" : 25,
-            "message" : "Return"
-         },
-         "type" : "objectbutton",
-         "ui" : true
+         "file" : "../res/entities/returntointrobutton.json"
       }
    ],
    "map" : "../res/maps/testlevel.json",

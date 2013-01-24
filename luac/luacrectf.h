@@ -42,6 +42,8 @@ namespace LuaC {
         ///__newindex accessor for setters
         static int newIndex(lua_State *l);
         ///Setters
+        //set all values of the rect
+        static int setBox(lua_State *l);
         static int setPos(lua_State *l);
         static int setX(lua_State *l);
         static int setY(lua_State *l);

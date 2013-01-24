@@ -112,5 +112,10 @@ void EditorState::Load(Json::Value val){
 			std::shared_ptr<Entity> sObj(mTileBar);
 			mManager->Register(sObj);
 		}
+        if (entities[i]["file"] != Json::nullValue){
+            std::shared_ptr<Entity> e = std::make_shared<Entity>(entities[i]["file"].asString());
+            mManager->Register(e);
+            e->Init(e);
+        }
 	}
 }

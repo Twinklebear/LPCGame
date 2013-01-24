@@ -14,6 +14,7 @@ const luaL_reg LuaC::RectfLib::luaRectfLib[] = {
     { "y", getY },
     { "w", getW },
     { "h", getH },
+    { "set", setBox },
     { "__newindex", newIndex },
     { "__tostring", toString },
     { "__concat", concat },
@@ -77,6 +78,13 @@ int LuaC::RectfLib::newIndex(lua_State *l){
         default:
             return 0;;
     } 
+}
+int LuaC::RectfLib::setBox(lua_State *l){
+    //Stack: rectf, 4 floats to set x, y, w, h
+    Rectf *r = Check(l, 1);
+    r->Set(luaL_checknumber(l, 2), luaL_checknumber(l, 3),
+        luaL_checknumber(l, 4), luaL_checknumber(l, 5));
+    return 0;
 }
 int LuaC::RectfLib::setPos(lua_State *l){
     //Stack: userdata (Rectf), string of index to set, userdata (Vector2f)

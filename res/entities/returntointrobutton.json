@@ -1,0 +1,18 @@
+{
+   "image" : "",
+   "name" : "introbutton",
+   "physics" : {
+      "box" : {
+         "h" : 100.0,
+         "w" : 200.0,
+         "x" : 20.0,
+         "y" : 500.0
+      },
+      "hAccel" : 0,
+      "hSpeed" : 0
+   },
+   "script" : "../res/scripts/returnbutton.lua",
+   "tag" : "returnbutton",
+   "render" : true,
+   "ui" : true
+}
