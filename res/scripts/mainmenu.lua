@@ -10,6 +10,8 @@ require "Input"
 function Init()
 	print "\n--------Main Menu Init--------\n"
 	bkgnd = Image("../res/img/introback.png")
+
+	print ("State name: " .. State.name())
 end
 function Free()
 	print "\n--------Main Menu Free--------\n"
