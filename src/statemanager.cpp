@@ -29,6 +29,7 @@ void StateManager::SetActiveState(std::string name){
 
 	if (stateCode == "quit")
 		return;
+    //This should be a do-while setup instead.
 	else (SetActiveState(stateCode));
 }
 std::shared_ptr<State> StateManager::GetActiveState(){
