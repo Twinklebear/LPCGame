@@ -42,20 +42,20 @@ void StateManager::LoadState(std::string name){
     //the only differences should be in the script/json? hmm
     if (name.at(0) == 'm'){
         MenuState *menu = new MenuState();
-        menu->Load(jsonHandler.Read());
         SetState((State*)menu);
+        menu->Load(jsonHandler.Read());
         return;
     }
     if (name.at(0) == 'g'){
         GameState *game = new GameState();
-        game->Load(jsonHandler.Read());
         SetState((State*)game);
+        game->Load(jsonHandler.Read());
         return;
     }
     if (name.at(0) == 'e'){
         EditorState *editor = new EditorState();
-        editor->Load(jsonHandler.Read());
         SetState((State*)editor);
+        editor->Load(jsonHandler.Read());
         return;
     }
     //Currently log invalid state names however I think everything but

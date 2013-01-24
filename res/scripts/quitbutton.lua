@@ -27,7 +27,7 @@ function Init()
 		(box:y() + box:h() / 2 - text:h() / 2), text:w(), text:h())
 
 	--this crashes, perhaps name is null or something?
-	--print ("State name: " .. State.name())
+	print ("State name: " .. State.name())
 end
 function Free()
 end
