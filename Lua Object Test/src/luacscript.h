@@ -29,7 +29,6 @@ public:
             p->Push(mL);
 
         //Call the function
-        int nParams = args.size();
         if (lua_pcall(mL, args.size(), 1, 0) != 0)
             std::cout << "Error calling: " + function + " " + lua_tostring(mL, -1) << std::endl;
 
@@ -43,7 +42,6 @@ public:
             p->Push(mL);
 
         //Call the function
-        int nParams = args.size();
         if (lua_pcall(mL, args.size(), 1, 0) != 0)
             std::cout << "Error calling: " + function + " " + lua_tostring(mL, -1) << std::endl;
     }

@@ -8,7 +8,7 @@ function Entity:initialize(name)
 end
 
 function Entity:speak()
-	print ("my name is: " .. self.name)
+	print ("Entity here, my name is: " .. self.name)
 end
 
 SillyEntity = class(Entity)
@@ -16,7 +16,7 @@ function SillyEntity:speak()
 	print ("SillyEntity here, my name is: " .. self.name)
 end
 
-local entity = Entity:new("Roberto")
+entity = Entity:new("Roberto")
 local sillyEntity = SillyEntity:new("Rogelio")
 entity:speak()
 sillyEntity:speak()
