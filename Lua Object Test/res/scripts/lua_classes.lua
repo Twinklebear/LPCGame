@@ -13,11 +13,11 @@ Object = class()
 
 function Object:new(...)
 	local instance = setmetatable({}, self)
-	instance:intialize(...)
+	instance:initialize(...)
 	return instance
 end
 
-function Object:intialize()
+function Object:initialize()
 	print "Object init"
 end
 
