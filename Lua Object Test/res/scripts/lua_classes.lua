@@ -20,24 +20,3 @@ end
 function Object:initialize()
 	print "Object init"
 end
-
---Testing the implementation
-Entity = class(Object)
-function Entity:initialize(name)
-	print "entity init"
-	self.name = name
-end
-
-function Entity:speak()
-	print ("my name is: " .. self.name)
-end
-
-SillyEntity = class(Entity)
-function SillyEntity:speak()
-	print ("SillyEntity here, my name is: " .. self.name)
-end
-
-local entity = Entity:new("Roberto")
-local sillyEntity = SillyEntity:new("Rogelio")
-entity:speak()
-sillyEntity:speak()

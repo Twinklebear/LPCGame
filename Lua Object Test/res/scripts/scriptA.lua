@@ -1,12 +1,22 @@
-require "LuaRect"
-require "Vector2f"
+require "scripts/lua_classes.lua"
 
-print "Script A!"
+--Testing the implementation
+Entity = class(Object)
+function Entity:initialize(name)
+	print "entity init"
+	self.name = name
+end
 
-function Test (r)
-	print ("ScriptA Test, r: " .. r)
-	return "Hi how are you?"
+function Entity:speak()
+	print ("my name is: " .. self.name)
 end
-function TestVoid (r)
-	print ("ScriptA TestVoid, r: " .. r)
+
+SillyEntity = class(Entity)
+function SillyEntity:speak()
+	print ("SillyEntity here, my name is: " .. self.name)
 end
+
+local entity = Entity:new("Roberto")
+local sillyEntity = SillyEntity:new("Rogelio")
+entity:speak()
+sillyEntity:speak()

@@ -66,6 +66,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\luacscript.cpp" />
+    <ClCompile Include="..\src\luarect.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\luacscript.h" />
+    <ClInclude Include="..\src\luaprimitiveparam.h" />
+    <ClInclude Include="..\src\luarect.h" />
+    <ClInclude Include="..\src\vectors.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
