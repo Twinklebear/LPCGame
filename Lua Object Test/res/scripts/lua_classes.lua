@@ -39,5 +39,5 @@ end
 
 local entity = Entity:new("Roberto")
 local sillyEntity = SillyEntity:new("Rogelio")
---entity:speak()
---sillyEntity:speak()
+entity:speak()
+sillyEntity:speak()
