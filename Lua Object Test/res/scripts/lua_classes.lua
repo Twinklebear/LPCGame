@@ -31,11 +31,3 @@ function Object:instanceOf(class)
 	end
 	return false
 end
-
---Short demo of using instanceOf
-TestObj = class(Object)
-Entity = class(Object)
-testObj = TestObj:new()
-
-print ("testObj:instanceOf(Object)? " .. tostring(testObj:instanceOf(Object)))
-print ("testObj:instanceOf(Object)? " .. tostring(testObj:instanceOf(Entity)))
