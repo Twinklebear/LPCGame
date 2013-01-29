@@ -18,5 +18,24 @@ function Object:new(...)
 end
 
 function Object:initialize()
-	print "Object init"
 end
+
+function Object:instanceOf(class)
+	local currentClass = self
+	--Check through all parent classes
+	while currentClass ~= nil do
+		if currentClass == class then
+			return true
+		end
+		currentClass = currentClass.super
+	end
+	return false
+end
+
+--Short demo of using instanceOf
+TestObj = class(Object)
+Entity = class(Object)
+testObj = TestObj:new()
+
+print ("testObj:instanceOf(Object)? " .. tostring(testObj:instanceOf(Object)))
+print ("testObj:instanceOf(Object)? " .. tostring(testObj:instanceOf(Entity)))
