@@ -17,6 +17,23 @@ int main(int argc, char** argv){
     entityRef.Push();
     lua_getfield(l, 1, "name");
     std::cout << "Entity name: " << lua_tostring(l, 2) << std::endl;
+    //Pop the name off
+    lua_pop(l, 1);
+    
+    //Can i do references to functions?
+    lua_getfield(l, 1, "speak");
+    LuaRef fcnRef(l, -1);
+    //Clear stack
+    lua_pop(l, 2);
+    sA.stackDump(l);
+
+    //Try calling the function with the self table as param
+    fcnRef.Push();
+    entityRef.Push();
+    sA.stackDump(l);
+    if (lua_pcall(l, 1, 0, 0) != 0)
+        std::cout << "Error calling: Entity:speak :" << lua_tostring(l, -1) << std::endl;
+
     //Get a reference system pointer to the entity
     //int entityRef = luaL_ref(l, LUA_REGISTRYINDEX);
     ////Stack is now empty, object has been popped and referenced
