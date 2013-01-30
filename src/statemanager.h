@@ -25,7 +25,7 @@ public:
 	*  Set a state active based on its name
 	*  @param name The name of the state to set active
 	*/
-	static void SetActiveState(std::string name);
+	static void RunState(std::string name);
     /**
     *  Get the active State
     *  @return A shared_ptr to the active state
@@ -46,13 +46,6 @@ public:
 	*  @param scene The scene to change to
 	*/
 	static void ChangeScene(std::string scene);
-
-private:
-	/**
-	*  Set the mActiveState as the State pointer passed
-	*  @param state The state to run
-	*/
-	static void SetState(State* state);
 
 private:
 	static std::shared_ptr<State> mActiveState;

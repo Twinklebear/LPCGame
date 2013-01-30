@@ -15,22 +15,16 @@ std::shared_ptr<State> StateManager::mActiveState;
 const std::string StateManager::mStatesDir = "../res/states/";
 
 void StateManager::InitIntro(){
-	SetActiveState("mIntro");
+	RunState("mIntro");
 }
-void StateManager::SetState(State* state){
-	mActiveState.reset(state);
-}
-void StateManager::SetActiveState(std::string name){
-    LoadState(name);
-    std::string stateCode = "quit";
-    //Catching state errors for debugging, if error thrown program quits
-    stateCode = mActiveState->Run();
-	SaveState(mActiveState->Name());
-
-	if (stateCode == "quit")
-		return;
-    //This should be a do-while setup instead.
-	else (SetActiveState(stateCode));
+void StateManager::RunState(std::string name){
+    std::string nextState = name;
+    do {
+        LoadState(nextState);
+        nextState = mActiveState->Run();
+        SaveState(mActiveState->Name());
+    }
+    while (nextState != "quit");
 }
 std::shared_ptr<State> StateManager::GetActiveState(){
     return mActiveState;
@@ -39,28 +33,24 @@ void StateManager::LoadState(std::string name){
     JsonHandler jsonHandler((mStatesDir + name + ".json"));
     //Differentiate between menu and game states
     //Todo: will this be necessary? in the future if states are more scripted
-    //the only differences should be in the script/json? hmm
+    //the only differences should be in the script/json? yes, this change will come soon
     if (name.at(0) == 'm'){
-        MenuState *menu = new MenuState();
-        SetState((State*)menu);
-        menu->Load(jsonHandler.Read());
-        return;
+        mActiveState = std::make_shared<MenuState>();
     }
-    if (name.at(0) == 'g'){
-        GameState *game = new GameState();
-        SetState((State*)game);
-        game->Load(jsonHandler.Read());
-        return;
+    else if (name.at(0) == 'g'){
+        mActiveState = std::make_shared<GameState>();
     }
-    if (name.at(0) == 'e'){
-        EditorState *editor = new EditorState();
-        SetState((State*)editor);
-        editor->Load(jsonHandler.Read());
-        return;
+    else if (name.at(0) == 'e'){
+        mActiveState = std::make_shared<EditorState>();
     }
     //Currently log invalid state names however I think everything but
     //Editor state should be rolled into a single generic State with no letter prefix to its name
-    Debug::Log("StateManager: Invalid statename - " + name);
+    else {
+        Debug::Log("StateManager: Invalid statename - " + name);
+        exit(1);
+    }
+    //Load the state
+    mActiveState->Load(jsonHandler.Read());
 }
 void StateManager::SaveState(std::string name){
     JsonHandler jsonHandler((mStatesDir + name + ".json"));

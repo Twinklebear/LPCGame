@@ -37,9 +37,7 @@ int LuaC::StateLib::getEntity(lua_State *l){
 }
 int LuaC::StateLib::setExit(lua_State *l){
     //Stack: statename to change too
-    std::string stateName = luaL_checkstring(l, 1);
-    std::shared_ptr<State> state = StateManager::GetActiveState();
-    state->SetExit(stateName);
+    StateManager::ChangeScene(luaL_checkstring(l, 1));
     return 0;
 }
 int LuaC::StateLib::getName(lua_State *l){
