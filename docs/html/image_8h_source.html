@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/image.h Source File</title>
+<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/core/image.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -66,7 +68,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -89,7 +90,7 @@ $(document).ready(function(){initNavTree('image_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,57 +104,61 @@ $(document).ready(function(){initNavTree('image_8h_source.html','');});
 <div class="title">image.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="image_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef IMAGE_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef IMAGE_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define IMAGE_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;luabind/luabind.hpp&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="rect_8h.html">rect.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="vectors_8h.html">vectors.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="code" href="class_image.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_image.html#a58edd1c45b4faeb5f789b0d036d02313">Image</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_image.html#a58edd1c45b4faeb5f789b0d036d02313">Image</a>(<span class="keyword">const</span> std::string &amp;file);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_image.html#a0294f63700543e11c0f0da85601c7ae5">~Image</a>();</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_image.html#adde1729339310e43975360e80fbaf047">SetClips</a>(<span class="keyword">const</span> std::vector&lt;Recti&gt; &amp;clips);</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_image.html#ac4fa0d3229083625644d5dbd7456f6d3">GenClips</a>(<span class="keywordtype">int</span> cW, <span class="keywordtype">int</span> cH);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    SDL_Texture* <a class="code" href="class_image.html#ac9e9ce4acaefbb70716ab080b91fed6f">Texture</a>();</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_rect.html">Recti</a> <a class="code" href="class_image.html#a5ba1a4e9fed4c21d245ca333ba78e0c0">Clip</a>(<span class="keywordtype">int</span> clipNum) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::string <a class="code" href="class_image.html#abcdf79fa4c50a7e4acf3459cc9233de2" title="Get the Image filename.">File</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_image.html#add34132dbb7e76fbead31712231d21b8">Save</a>(<span class="keyword">const</span> std::string &amp;file) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_image.html#a8ac2329cc4a46185705b16083eb4342c">Load</a>(<span class="keyword">const</span> std::string &amp;file);</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_image.html#a717ea585cf27888403cc2b060ae14037">RegisterLua</a>(lua_State *l);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_image.html#a8ac2329cc4a46185705b16083eb4342c">Load</a>(Json::Value val);</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    Json::Value <a class="code" href="class_image.html#a823f3f6993a97cd5513b71512b77b736">SaveClips</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    <a class="code" href="class_image.html#a58edd1c45b4faeb5f789b0d036d02313">Image</a>(<span class="keyword">const</span> <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> &amp;a);</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a>&amp; operator = (<span class="keyword">const</span> <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> &amp;a);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00097"></a><span class="lineno"><a class="code" href="class_image.html#a2c1dba2048324c175a5b52686631d982">   97</a></span>&#160;    std::shared_ptr&lt;SDL_Texture&gt; <a class="code" href="class_image.html#a2c1dba2048324c175a5b52686631d982">mTexture</a>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="code" href="class_image.html#a393d4018bc1b1d35174e4b1a742a424b">   98</a></span>&#160;    std::string <a class="code" href="class_image.html#a393d4018bc1b1d35174e4b1a742a424b">mFile</a>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno"><a class="code" href="class_image.html#a087550ea42538abe7cf0cb1e5afc6d0c">   99</a></span>&#160;    <a class="code" href="class_rect.html">Recti</a> *<a class="code" href="class_image.html#a087550ea42538abe7cf0cb1e5afc6d0c">mClips</a>;</div>
-<div class="line"><a name="l00100"></a><span class="lineno"><a class="code" href="class_image.html#a068d3056b75c45e59f616bb0f673bc37">  100</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_image.html#a068d3056b75c45e59f616bb0f673bc37">mNumClips</a>;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="comment">//std::vector&lt;Recti&gt; mClips;</span></div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;};</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;external/json/json.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;rect.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;vectors.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="code" href="class_image.html">   17</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a>();</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a>(<span class="keyword">const</span> std::string &amp;file);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_image.html#a0294f63700543e11c0f0da85601c7ae5">~Image</a>();</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_image.html#adde1729339310e43975360e80fbaf047">SetClips</a>(<span class="keyword">const</span> std::vector&lt;Recti&gt; &amp;clips);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_image.html#ac4fa0d3229083625644d5dbd7456f6d3">GenClips</a>(<span class="keywordtype">int</span> cW, <span class="keywordtype">int</span> cH);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    SDL_Texture* <a class="code" href="class_image.html#ac9e9ce4acaefbb70716ab080b91fed6f">Texture</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_rect.html" title="A rectangle.">Recti</a> <a class="code" href="class_image.html#a7ef8230347f1bfae3788372854bc58ab">Clip</a>(<span class="keywordtype">int</span> clipNum) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <a class="code" href="class_rect.html" title="A rectangle.">Recti</a> <a class="code" href="class_image.html#a7ef8230347f1bfae3788372854bc58ab">Clip</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_image.html#a7d73deb36cac388515d9cd38568cd74e">SetActiveClip</a>(<span class="keywordtype">int</span> clip);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_image.html#a37da7d477ec9be226acc97c14fb7d6af">ClipCount</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_image.html#ad04f736518d8f8f98b17f47f0a785521">Size</a>(<span class="keywordtype">int</span> *w, <span class="keywordtype">int</span> *h = NULL) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_image.html#a509cd376d4dfd4eaa8cdd59a912fa2c0" title="Get the Image texture&#39;s width.">W</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_image.html#aeeff03a1e9554c2624177f388b97f0b7" title="Get the Image texture&#39;s height.">H</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    std::string <a class="code" href="class_image.html#abcdf79fa4c50a7e4acf3459cc9233de2" title="Get the Image filename.">File</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_image.html#add34132dbb7e76fbead31712231d21b8">Save</a>(<span class="keyword">const</span> std::string &amp;file) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_image.html#a8ac2329cc4a46185705b16083eb4342c">Load</a>(<span class="keyword">const</span> std::string &amp;file);</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_image.html#a8ac2329cc4a46185705b16083eb4342c">Load</a>(<a class="code" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> val);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <a class="code" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> <a class="code" href="class_image.html#a823f3f6993a97cd5513b71512b77b736">SaveClips</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a>(<span class="keyword">const</span> <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> &amp;a);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a>&amp; operator = (<span class="keyword">const</span> <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> &amp;a);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    std::shared_ptr&lt;SDL_Texture&gt; mTexture;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    std::string mFile;</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="class_rect.html" title="A rectangle.">Recti</a> *mClips;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <span class="keywordtype">int</span> mNumClips;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <span class="keywordtype">int</span> mActiveClip;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;};</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="image_8h.html">image.h</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:16 for LPCGame by
+    <li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_c5b396cf6041de3f720e619bdc2e9b5f.html">Will</a></li><li class="navelem"><a class="el" href="dir_6202fc1653fe2c11199ca9b0c84676ab.html">Documents</a></li><li class="navelem"><a class="el" href="dir_3f734311a550ac7670f621aed1307696.html">Programs</a></li><li class="navelem"><a class="el" href="dir_ff290f9688089faa1bba9dd416a0522b.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_349c8f16cf6293549b53f7c14cc3fbf3.html">src</a></li><li class="navelem"><a class="el" href="dir_ab39e78cee724661482be65dc43ced5d.html">core</a></li><li class="navelem"><b>image.h</b></li>
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

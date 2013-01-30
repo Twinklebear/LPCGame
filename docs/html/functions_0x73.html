@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -77,7 +79,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
-      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -130,7 +131,7 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -140,7 +141,7 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
+<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
 
 <h3><a class="anchor" id="index_s"></a>- s -</h3><ul>
 <li>Save()
@@ -155,9 +156,10 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 , <a class="el" href="class_tile.html#a61ed303736b6c9a8e63c8e84a2259be5">Tile</a>
 , <a class="el" href="class_color.html#a91952cdc29e82ee2cd3403b250d400d9">Color</a>
 , <a class="el" href="class_game_state.html#ab08875b5a73d038bdfa514267cb7d2f5">GameState</a>
-, <a class="el" href="class_tile_bar.html#aca66f8082ae5304e7f8a02f067cbb069">TileBar</a>
-, <a class="el" href="class_vector2.html#adeb17735820a2dc8b2ff855189789c3b">Vector2&lt; T &gt;</a>
+, <a class="el" href="class_tile_bar.html#a93b5e7286208a39bdc79cac8f38ad931">TileBar</a>
+, <a class="el" href="class_tile_set.html#a9134419f777087107f7ff6fa786e8bb1">TileSet</a>
 , <a class="el" href="class_image.html#add34132dbb7e76fbead31712231d21b8">Image</a>
+, <a class="el" href="class_vector2.html#adeb17735820a2dc8b2ff855189789c3b">Vector2&lt; T &gt;</a>
 , <a class="el" href="class_button.html#a78575d27f94b5a34f085e381e3777c1c">Button</a>
 , <a class="el" href="class_editor_state.html#a2061ebd10922653f5c429ce3d03061cd">EditorState</a>
 , <a class="el" href="class_map.html#a4c23bd890dee8f19499c6479e5277b08">Map</a>
@@ -178,21 +180,21 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>SceneBox()
 : <a class="el" href="class_camera.html#a44a4f6834c8446f48f12cc988f5e7ad5">Camera</a>
 </li>
+<li>Script()
+: <a class="el" href="class_entity.html#a6bf7c3f62a23ab80b6b0db5f1ff5ec16">Entity</a>
+</li>
 <li>Set()
-: <a class="el" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">Vector2&lt; T &gt;</a>
-, <a class="el" href="class_color.html#ac5bc4861e63acdf1e66b121808b10b57">Color</a>
-, <a class="el" href="class_rect.html#a7fe70ddabbc1eba80d95113dc7c8e6d4">Rect&lt; T &gt;</a>
+: <a class="el" href="class_rect.html#a7a0500d10cd2c00705e5a06ed37bafc4">Rect&lt; T &gt;</a>
 , <a class="el" href="class_text.html#a16e8110866cee173a239e7b101e6f1b8">Text</a>
+, <a class="el" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">Vector2&lt; T &gt;</a>
+, <a class="el" href="class_color.html#ac5bc4861e63acdf1e66b121808b10b57">Color</a>
+, <a class="el" href="class_rect.html#a07a3514fec9e96bb8f0e3fc6f59f1948">Rect&lt; T &gt;</a>
 </li>
-<li>SetAcceleration()
-: <a class="el" href="class_physics.html#a14307728b2ee5c52cad4d5f80916b331">Physics</a>
-</li>
-<li>SetActiveState()
-: <a class="el" href="class_state_manager.html#ad9c3c5f8ca57881774ffb64902d80d64">StateManager</a>
+<li>SetActiveClip()
+: <a class="el" href="class_image.html#a7d73deb36cac388515d9cd38568cd74e">Image</a>
 </li>
 <li>SetBox()
 : <a class="el" href="class_camera.html#a8d7728da233afdeee1baf82392151453">Camera</a>
-, <a class="el" href="class_physics.html#a510cf55441d9c8fedef2de95ae1d39fc">Physics</a>
 , <a class="el" href="class_tile.html#a9003595cbb5434af5c7004ac0e99a74e">Tile</a>
 </li>
 <li>SetClips()
@@ -207,11 +209,20 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>SetColor()
 : <a class="el" href="class_text.html#af5ed43cdf3827c8983ae43455b0da4ee">Text</a>
 </li>
+<li>setComment()
+: <a class="el" href="class_json_1_1_value.html#a29f3a30f7e5d3af6f38d57999bf5b480">Json::Value</a>
+</li>
+<li>SetDirection()
+: <a class="el" href="class_physics.html#a3a0d443572ba43ee768adf07bb2a97bf">Physics</a>
+</li>
 <li>SetExit()
 : <a class="el" href="class_state.html#a595415c02961abb82336a90bf36b0ffb">State</a>
 </li>
 <li>SetFile()
 : <a class="el" href="class_json_handler.html#a87fb578c1f78c3359fab330cdfcb5c51">JsonHandler</a>
+</li>
+<li>SetFilename()
+: <a class="el" href="class_tile.html#a9f0511c0fa85f32f33c0566f92df1660">Tile</a>
 </li>
 <li>SetFocus()
 : <a class="el" href="class_camera.html#ac97b35ad358c8c671876ae1d5b3bf7c9">Camera</a>
@@ -225,9 +236,6 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>SetHorizDir()
 : <a class="el" href="class_physics.html#a2c8093b4e8319f21d3dfd776a5ab7aec">Physics</a>
 </li>
-<li>SetMap()
-: <a class="el" href="class_physics.html#acae05a528f58185ef0d80d9d53244f54">Physics</a>
-</li>
 <li>SetMessage()
 : <a class="el" href="class_text.html#a3d796d5e3cbde9da0e74860ebad8de5d">Text</a>
 </li>
@@ -235,10 +243,8 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_motion_state.html#a99b73db6d818411104ca9b0a3fc03378">MotionState</a>
 </li>
 <li>SetName()
-: <a class="el" href="class_state.html#a0aa838bac877e885a40846b40f7fb3f7">State</a>
-</li>
-<li>SetPhysConstants()
-: <a class="el" href="class_physics.html#ae48e6ad547f04acf9d9c59007161d748">Physics</a>
+: <a class="el" href="class_tile.html#aeb7ea0bdab692e36ee3da6243df14356">Tile</a>
+, <a class="el" href="class_state.html#a0aa838bac877e885a40846b40f7fb3f7">State</a>
 </li>
 <li>SetPosition()
 : <a class="el" href="class_physics.html#a7253248d79b4109e5f344bf6e608c37f">Physics</a>
@@ -252,23 +258,28 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <li>SetTag()
 : <a class="el" href="class_entity.html#ae79aa02418deb682bff401a6c9d2664f">Entity</a>
 </li>
-<li>SetType()
-: <a class="el" href="class_tile.html#ab36ac27aa9f710e7f67c392f57f5d4d7">Tile</a>
-</li>
-<li>SetVelocity()
-: <a class="el" href="class_physics.html#afd0f6172885c8314da2f9f7f7baf348e">Physics</a>
-</li>
 <li>SetVertDir()
 : <a class="el" href="class_physics.html#af5ec992954cdbcb618138966f037556c">Physics</a>
 </li>
+<li>ShowAvgFps()
+: <a class="el" href="class_window.html#af30d23598c53fa8b48cb28e0f92751ce">Window</a>
+</li>
 <li>Size()
-: <a class="el" href="class_text.html#a0354f1f6cb2b8973cd1fa80e57f364c6">Text</a>
+: <a class="el" href="class_image.html#ad04f736518d8f8f98b17f47f0a785521">Image</a>
+, <a class="el" href="class_tile_set.html#a6a7599789d4d0869a62cb48eb9dc94e8">TileSet</a>
+</li>
+<li>size()
+: <a class="el" href="class_json_1_1_value.html#a4ca8ee6c48a34ca6c2f131956bab5e05">Json::Value</a>
+</li>
+<li>Size()
+: <a class="el" href="class_text.html#aa7bb0065f5352774cd571362339ee341">Text</a>
 </li>
 <li>Solid()
-: <a class="el" href="class_tile.html#ac59d1e235b82c4e7a39e0339a8b079c5">Tile</a>
+: <a class="el" href="class_tile_set.html#a33d64bb19c429ae814413cd53c12504b">TileSet</a>
+, <a class="el" href="class_tile.html#ac59d1e235b82c4e7a39e0339a8b079c5">Tile</a>
 </li>
-<li>speed
-: <a class="el" href="struct_camera_pan.html#a439d3f03fe4fbf6e6d272f2d2f351603">CameraPan</a>
+<li>StackDump()
+: <a class="el" href="class_lua_c_1_1_lua_script_lib.html#a2cfb1375e90cafe0181fc4cc1b62a7ed">LuaC::LuaScriptLib</a>
 </li>
 <li>Start()
 : <a class="el" href="class_timer.html#a4e607b129b392c11adddd9641a320436">Timer</a>
@@ -277,18 +288,25 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 : <a class="el" href="class_timer.html#a6073bcffd0b4ac075f5ac94cd56025e3">Timer</a>
 </li>
 <li>State()
-: <a class="el" href="class_physics.html#aa736197e7f374184ea7393f84e1a28ae">Physics</a>
-, <a class="el" href="class_state.html#ab91bb1dd5aa6260ab2a456581daf9ec2">State</a>
-, <a class="el" href="class_motion_state.html#ad9371ca9f9d214cc9fdc7bc7baec280a">MotionState</a>
+: <a class="el" href="class_motion_state.html#ad9371ca9f9d214cc9fdc7bc7baec280a">MotionState</a>
+</li>
+<li>stateClass
+: <a class="el" href="struct_lua_c.html#a59aa479402e1dd5e70d3131073c967da">LuaC</a>
 </li>
 <li>Stop()
 : <a class="el" href="class_timer.html#a6379e797f968aaee6ac3bb12dc6b81c5">Timer</a>
 </li>
-<li>STOP
-: <a class="el" href="class_physics.html#a8146f5776a9b7eaec85b2f15cb814a54a40a3d338f6e0d1492aa9d429c1d96578">Physics</a>
+<li>strictMode()
+: <a class="el" href="class_json_1_1_features.html#ae23176c14b2e79e81fb61fb1a8ab58ee">Json::Features</a>
+</li>
+<li>strictRoot_
+: <a class="el" href="class_json_1_1_features.html#a1162c37a1458adc32582b585b552f9c3">Json::Features</a>
 </li>
 <li>SurfaceToTexture()
 : <a class="el" href="class_window.html#a9a6dfef3bbd4dcf07af6862048167855">Window</a>
+</li>
+<li>swap()
+: <a class="el" href="class_json_1_1_value.html#aab841120d78e296e1bc06a373345e822">Json::Value</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -296,7 +314,7 @@ $(document).ready(function(){initNavTree('functions_0x73.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:10 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

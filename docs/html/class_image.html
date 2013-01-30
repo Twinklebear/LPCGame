@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('class_image.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,7 +105,6 @@ $(document).ready(function(){initNavTree('class_image.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="class_image-members.html">List of all members</a>  </div>
@@ -116,82 +117,77 @@ $(document).ready(function(){initNavTree('class_image.html','');});
  <a href="class_image.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="image_8h_source.html">image.h</a>&gt;</code></p>
-<div class="dynheader">
-Inheritance diagram for Image:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="class_image.png" usemap="#Image_map" alt=""/>
-  <map id="Image_map" name="Image_map">
-<area href="class_animated_image.html" title="An image that can store and play animation sequences." alt="AnimatedImage" shape="rect" coords="0,56,97,80"/>
-</map>
- </div></div>
+
+<p>Inherited by <a class="el" href="class_animated_image.html">AnimatedImage</a>.</p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a58edd1c45b4faeb5f789b0d036d02313"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a58edd1c45b4faeb5f789b0d036d02313">Image</a> ()</td></tr>
-<tr class="separator:a58edd1c45b4faeb5f789b0d036d02313"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0e7dc7797fc5b626c78b811386dec4b0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0e7dc7797fc5b626c78b811386dec4b0">Image</a> (const std::string &amp;file)</td></tr>
 <tr class="separator:a0e7dc7797fc5b626c78b811386dec4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0294f63700543e11c0f0da85601c7ae5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a0294f63700543e11c0f0da85601c7ae5">~Image</a> ()</td></tr>
 <tr class="separator:a0294f63700543e11c0f0da85601c7ae5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adde1729339310e43975360e80fbaf047"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#adde1729339310e43975360e80fbaf047">SetClips</a> (const std::vector&lt; <a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a> &gt; &amp;clips)</td></tr>
+<tr class="memitem:adde1729339310e43975360e80fbaf047"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#adde1729339310e43975360e80fbaf047">SetClips</a> (const std::vector&lt; <a class="el" href="class_rect.html">Recti</a> &gt; &amp;clips)</td></tr>
 <tr class="separator:adde1729339310e43975360e80fbaf047"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4fa0d3229083625644d5dbd7456f6d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ac4fa0d3229083625644d5dbd7456f6d3">GenClips</a> (int cW, int cH)</td></tr>
 <tr class="separator:ac4fa0d3229083625644d5dbd7456f6d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac9e9ce4acaefbb70716ab080b91fed6f"><td class="memItemLeft" align="right" valign="top">SDL_Texture *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ac9e9ce4acaefbb70716ab080b91fed6f">Texture</a> ()</td></tr>
 <tr class="separator:ac9e9ce4acaefbb70716ab080b91fed6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5ba1a4e9fed4c21d245ca333ba78e0c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a5ba1a4e9fed4c21d245ca333ba78e0c0">Clip</a> (int clipNum) const </td></tr>
+<tr class="memitem:a5ba1a4e9fed4c21d245ca333ba78e0c0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a5ba1a4e9fed4c21d245ca333ba78e0c0">Clip</a> (int clipNum) const </td></tr>
 <tr class="separator:a5ba1a4e9fed4c21d245ca333ba78e0c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcdf79fa4c50a7e4acf3459cc9233de2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#abcdf79fa4c50a7e4acf3459cc9233de2">File</a> () const </td></tr>
-<tr class="memdesc:abcdf79fa4c50a7e4acf3459cc9233de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> filename.  <a href="#abcdf79fa4c50a7e4acf3459cc9233de2"></a><br/></td></tr>
+<tr class="memitem:a7ef8230347f1bfae3788372854bc58ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_rect.html">Recti</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a7ef8230347f1bfae3788372854bc58ab">Clip</a> () const </td></tr>
+<tr class="separator:a7ef8230347f1bfae3788372854bc58ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d73deb36cac388515d9cd38568cd74e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a7d73deb36cac388515d9cd38568cd74e">SetActiveClip</a> (int clip)</td></tr>
+<tr class="separator:a7d73deb36cac388515d9cd38568cd74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37da7d477ec9be226acc97c14fb7d6af"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a37da7d477ec9be226acc97c14fb7d6af">ClipCount</a> () const </td></tr>
+<tr class="separator:a37da7d477ec9be226acc97c14fb7d6af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad04f736518d8f8f98b17f47f0a785521"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#ad04f736518d8f8f98b17f47f0a785521">Size</a> (int *w, int *h=NULL) const </td></tr>
+<tr class="separator:ad04f736518d8f8f98b17f47f0a785521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a509cd376d4dfd4eaa8cdd59a912fa2c0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a509cd376d4dfd4eaa8cdd59a912fa2c0"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a509cd376d4dfd4eaa8cdd59a912fa2c0">W</a> () const </td></tr>
+<tr class="memdesc:a509cd376d4dfd4eaa8cdd59a912fa2c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> texture's width. <br/></td></tr>
+<tr class="separator:a509cd376d4dfd4eaa8cdd59a912fa2c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeff03a1e9554c2624177f388b97f0b7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeeff03a1e9554c2624177f388b97f0b7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#aeeff03a1e9554c2624177f388b97f0b7">H</a> () const </td></tr>
+<tr class="memdesc:aeeff03a1e9554c2624177f388b97f0b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> texture's height. <br/></td></tr>
+<tr class="separator:aeeff03a1e9554c2624177f388b97f0b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcdf79fa4c50a7e4acf3459cc9233de2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abcdf79fa4c50a7e4acf3459cc9233de2"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#abcdf79fa4c50a7e4acf3459cc9233de2">File</a> () const </td></tr>
+<tr class="memdesc:abcdf79fa4c50a7e4acf3459cc9233de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> filename. <br/></td></tr>
 <tr class="separator:abcdf79fa4c50a7e4acf3459cc9233de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add34132dbb7e76fbead31712231d21b8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#add34132dbb7e76fbead31712231d21b8">Save</a> (const std::string &amp;file) const </td></tr>
 <tr class="separator:add34132dbb7e76fbead31712231d21b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8ac2329cc4a46185705b16083eb4342c"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a8ac2329cc4a46185705b16083eb4342c">Load</a> (const std::string &amp;file)</td></tr>
 <tr class="separator:a8ac2329cc4a46185705b16083eb4342c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a717ea585cf27888403cc2b060ae14037"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a717ea585cf27888403cc2b060ae14037">RegisterLua</a> (lua_State *l)</td></tr>
-<tr class="separator:a717ea585cf27888403cc2b060ae14037"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a9e4cfdd1f0582a6e1f17a344d6e10f8a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Load</a> (Json::Value val)</td></tr>
+<tr class="memitem:a9e4cfdd1f0582a6e1f17a344d6e10f8a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Load</a> (<a class="el" href="class_json_1_1_value.html">Json::Value</a> val)</td></tr>
 <tr class="separator:a9e4cfdd1f0582a6e1f17a344d6e10f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a823f3f6993a97cd5513b71512b77b736"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a823f3f6993a97cd5513b71512b77b736">SaveClips</a> () const </td></tr>
+<tr class="memitem:a823f3f6993a97cd5513b71512b77b736"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_json_1_1_value.html">Json::Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a823f3f6993a97cd5513b71512b77b736">SaveClips</a> () const </td></tr>
 <tr class="separator:a823f3f6993a97cd5513b71512b77b736"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a2c1dba2048324c175a5b52686631d982"><td class="memItemLeft" align="right" valign="top">std::shared_ptr&lt; SDL_Texture &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a2c1dba2048324c175a5b52686631d982">mTexture</a></td></tr>
+<tr class="memitem:a2c1dba2048324c175a5b52686631d982"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c1dba2048324c175a5b52686631d982"></a>
+std::shared_ptr&lt; SDL_Texture &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mTexture</b></td></tr>
 <tr class="separator:a2c1dba2048324c175a5b52686631d982"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a393d4018bc1b1d35174e4b1a742a424b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a393d4018bc1b1d35174e4b1a742a424b">mFile</a></td></tr>
+<tr class="memitem:a393d4018bc1b1d35174e4b1a742a424b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a393d4018bc1b1d35174e4b1a742a424b"></a>
+std::string&#160;</td><td class="memItemRight" valign="bottom"><b>mFile</b></td></tr>
 <tr class="separator:a393d4018bc1b1d35174e4b1a742a424b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a087550ea42538abe7cf0cb1e5afc6d0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a087550ea42538abe7cf0cb1e5afc6d0c">mClips</a></td></tr>
+<tr class="memitem:a087550ea42538abe7cf0cb1e5afc6d0c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a087550ea42538abe7cf0cb1e5afc6d0c"></a>
+<a class="el" href="class_rect.html">Recti</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>mClips</b></td></tr>
 <tr class="separator:a087550ea42538abe7cf0cb1e5afc6d0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a068d3056b75c45e59f616bb0f673bc37"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_image.html#a068d3056b75c45e59f616bb0f673bc37">mNumClips</a></td></tr>
+<tr class="memitem:a068d3056b75c45e59f616bb0f673bc37"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a068d3056b75c45e59f616bb0f673bc37"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>mNumClips</b></td></tr>
 <tr class="separator:a068d3056b75c45e59f616bb0f673bc37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb7c7cc6979228719a104228bc61d1d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adb7c7cc6979228719a104228bc61d1d3"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>mActiveClip</b></td></tr>
+<tr class="separator:adb7c7cc6979228719a104228bc61d1d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Wrapper around the SDL_Texture to make things easier. </p>
 <p>A wrapper around the SDL_Texture class to make using images and setting clips or loading/saving them easier </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a58edd1c45b4faeb5f789b0d036d02313"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Image::Image </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a0e7dc7797fc5b626c78b811386dec4b0"></a>
 <div class="memitem">
 <div class="memproto">
@@ -238,7 +234,7 @@ Protected Attributes</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a> Image::Clip </td>
+          <td class="memname"><a class="el" href="class_rect.html">Recti</a> Image::Clip </td>
           <td>(</td>
           <td class="paramtype">int&#160;</td>
           <td class="paramname"><em>clipNum</em></td><td>)</td>
@@ -253,23 +249,41 @@ Protected Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section return"><dt>Returns</dt><dd>The Recti corresponding to the clip box </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="abcdf79fa4c50a7e4acf3459cc9233de2"></a>
+<a class="anchor" id="a7ef8230347f1bfae3788372854bc58ab"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string Image::File </td>
+          <td class="memname"><a class="el" href="class_rect.html">Recti</a> Image::Clip </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Get the clip of mActiveClip </p>
+<dl class="section return"><dt>Returns</dt><dd>The Recti of the active clip </dd></dl>
 
-<p>Get the <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> filename. </p>
+</div>
+</div>
+<a class="anchor" id="a37da7d477ec9be226acc97c14fb7d6af"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Image::ClipCount </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the number of clips in the image </p>
+<dl class="section return"><dt>Returns</dt><dd>int The number of clips. </dd></dl>
 
 </div>
 </div>
@@ -349,7 +363,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Image::Load </td>
           <td>(</td>
-          <td class="paramtype">Json::Value&#160;</td>
+          <td class="paramtype"><a class="el" href="class_json_1_1_value.html">Json::Value</a>&#160;</td>
           <td class="paramname"><em>val</em></td><td>)</td>
           <td></td>
         </tr>
@@ -360,41 +374,10 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Load an <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a>'s properties from a Json::Value </p>
+<p>Load an <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a>'s properties from a <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">val</td><td>The Json::Value to load from </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a717ea585cf27888403cc2b060ae14037"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Image::RegisterLua </td>
-          <td>(</td>
-          <td class="paramtype">lua_State *&#160;</td>
-          <td class="paramname"><em>l</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Register the <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> class with the lua state </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">l</td><td>The lua_State to register the module with </td></tr>
+    <tr><td class="paramname">val</td><td>The <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> to load from </td></tr>
   </table>
   </dd>
 </dl>
@@ -422,7 +405,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Save an <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a>'s properties to a Json formatted file </p>
+<p>Save an <a class="el" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a>'s properties to a <a class="el" href="namespace_json.html" title="JSON (JavaScript Object Notation).">Json</a> formatted file </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">file</td><td>The file to save to </td></tr>
@@ -442,7 +425,7 @@ Protected Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Json::Value Image::SaveClips </td>
+          <td class="memname"><a class="el" href="class_json_1_1_value.html">Json::Value</a> Image::SaveClips </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -454,8 +437,31 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Write the clips to a Json::Value and return it </p>
-<dl class="section return"><dt>Returns</dt><dd>a Json::Value containing the clips information </dd></dl>
+<p>Write the clips to a <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> and return it </p>
+<dl class="section return"><dt>Returns</dt><dd>a <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> containing the clips information </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a7d73deb36cac388515d9cd38568cd74e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Image::SetActiveClip </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>clip</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Set the active clip </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">clip</td><td>The clip number to set active </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -466,7 +472,7 @@ Protected Attributes</h2></td></tr>
         <tr>
           <td class="memname">void Image::SetClips </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a> &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="class_rect.html">Recti</a> &gt; &amp;&#160;</td>
           <td class="paramname"><em>clips</em></td><td>)</td>
           <td></td>
         </tr>
@@ -480,6 +486,40 @@ Protected Attributes</h2></td></tr>
   </dd>
 </dl>
 <p>TODO: Will Lua be able to pass a vector to C++? Will a Lua array convert ok? curious what will happen here </p>
+
+</div>
+</div>
+<a class="anchor" id="ad04f736518d8f8f98b17f47f0a785521"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Image::Size </td>
+          <td>(</td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>w</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int *&#160;</td>
+          <td class="paramname"><em>h</em> = <code>NULL</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Store the width and height values of the texture in the values passed </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">w</td><td>The value to store the width in </td></tr>
+    <tr><td class="paramname">h</td><td>The value to store the height in </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -501,90 +541,9 @@ Protected Attributes</h2></td></tr>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a087550ea42538abe7cf0cb1e5afc6d0c"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#ad5884c160f442779efa7b4872ffa3e3c">Recti</a>* Image::mClips</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a393d4018bc1b1d35174e4b1a742a424b"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::string Image::mFile</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a068d3056b75c45e59f616bb0f673bc37"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Image::mNumClips</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2c1dba2048324c175a5b52686631d982"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">std::shared_ptr&lt;SDL_Texture&gt; Image::mTexture</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="image_8h_source.html">image.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="image_8cpp.html">image.cpp</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/core/<a class="el" href="image_8h_source.html">image.h</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/core/image.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -592,7 +551,7 @@ Protected Attributes</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_image.html">Image</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

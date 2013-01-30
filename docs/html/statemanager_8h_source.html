@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/statemanager.h Source File</title>
+<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/core/statemanager.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -66,7 +68,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -89,7 +90,7 @@ $(document).ready(function(){initNavTree('statemanager_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,44 +104,38 @@ $(document).ready(function(){initNavTree('statemanager_8h_source.html','');});
 <div class="title">statemanager.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="statemanager_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef STATEMANAGER_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef STATEMANAGER_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define STATEMANAGER_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;luabind/luabind.hpp&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="state_8h.html">state.h</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="gamestate_8h.html">gamestate.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="menustate_8h.html">menustate.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="code" href="class_state_manager.html">   19</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_state_manager.html" title="Handles picking a state to run and loading/saveing them.">StateManager</a>{</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_state_manager.html#ac7901dad1d72e49fe1c1ab4ce5fc04ad">InitIntro</a>();</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_state_manager.html#ad9c3c5f8ca57881774ffb64902d80d64">SetActiveState</a>(std::string name);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_state_manager.html#ac93c0fce0614b41603ef14a287f101f4">LoadState</a>(std::string name);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_state_manager.html#a9a42e083e1e1c7949a603b25dd3437c2">SaveState</a>(std::string name);</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_state_manager.html#ac4804697a73f34f7d5ecf8e21e8a3a82">ChangeScene</a>(std::string scene);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_state_manager.html#a9933912ff15aa663ee50302053c0f459">RegisterLua</a>(lua_State *l);</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> SetState(<a class="code" href="class_state.html" title="Base class for states.">State</a>* state);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;State&gt; mActiveState;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keyword">const</span> <span class="keyword">static</span> std::string mStatesDir;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;};</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;external/json/json.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;state.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="class_state_manager.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_state_manager.html" title="Handles picking a state to run and loading/saveing them.">StateManager</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_state_manager.html#ac7901dad1d72e49fe1c1ab4ce5fc04ad">InitIntro</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_state_manager.html#a645b73fa2bcdcadcc663febcfb93b62b">RunState</a>(std::string name);</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;State&gt; <a class="code" href="class_state_manager.html#a59e6561e5552df992189f53360ce82f4">GetActiveState</a>();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_state_manager.html#af6a0cfa68ade0926c319007a7c2853b0">LoadState</a>(std::string name);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_state_manager.html#a9a42e083e1e1c7949a603b25dd3437c2">SaveState</a>(std::string name);</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code" href="class_state_manager.html#ac4804697a73f34f7d5ecf8e21e8a3a82">ChangeScene</a>(std::string scene);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">static</span> std::shared_ptr&lt;State&gt; mActiveState;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">const</span> <span class="keyword">static</span> std::string mStatesDir;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;};</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="statemanager_8h.html">statemanager.h</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_c5b396cf6041de3f720e619bdc2e9b5f.html">Will</a></li><li class="navelem"><a class="el" href="dir_6202fc1653fe2c11199ca9b0c84676ab.html">Documents</a></li><li class="navelem"><a class="el" href="dir_3f734311a550ac7670f621aed1307696.html">Programs</a></li><li class="navelem"><a class="el" href="dir_ff290f9688089faa1bba9dd416a0522b.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_349c8f16cf6293549b53f7c14cc3fbf3.html">src</a></li><li class="navelem"><a class="el" href="dir_ab39e78cee724661482be65dc43ced5d.html">core</a></li><li class="navelem"><b>statemanager.h</b></li>
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

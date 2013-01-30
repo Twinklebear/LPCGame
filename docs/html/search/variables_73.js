@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['speed',['speed',['../struct_camera_pan.html#a439d3f03fe4fbf6e6d272f2d2f351603',1,'CameraPan']]]
+  ['stateclass',['stateClass',['../struct_lua_c.html#a59aa479402e1dd5e70d3131073c967da',1,'LuaC']]],
+  ['strictroot_5f',['strictRoot_',['../class_json_1_1_features.html#a1162c37a1458adc32582b585b552f9c3',1,'Json::Features']]]
 ];

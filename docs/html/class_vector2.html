@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('class_vector2.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,7 +105,6 @@ $(document).ready(function(){initNavTree('class_vector2.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="class_vector2-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -118,51 +119,65 @@ $(document).ready(function(){initNavTree('class_vector2.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae2f1223cb0d664aa73afb789086a4174"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#ae2f1223cb0d664aa73afb789086a4174">Vector2</a> ()</td></tr>
-<tr class="separator:ae2f1223cb0d664aa73afb789086a4174"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a00754eb06888a6466bada2f0e0b222"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a2a00754eb06888a6466bada2f0e0b222">Vector2</a> (T pX, T pY)</td></tr>
 <tr class="separator:a2a00754eb06888a6466bada2f0e0b222"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f9432936ee24e7dd0fee4b5b77a22da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">Set</a> (T pX, T pY)</td></tr>
 <tr class="separator:a5f9432936ee24e7dd0fee4b5b77a22da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adeb17735820a2dc8b2ff855189789c3b"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#adeb17735820a2dc8b2ff855189789c3b">Save</a> ()</td></tr>
+<tr class="memitem:a9ac567b8a4c97a268e17115db1e6991d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a9ac567b8a4c97a268e17115db1e6991d">Set</a> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; &amp;v)</td></tr>
+<tr class="separator:a9ac567b8a4c97a268e17115db1e6991d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adeb17735820a2dc8b2ff855189789c3b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_json_1_1_value.html">Json::Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#adeb17735820a2dc8b2ff855189789c3b">Save</a> ()</td></tr>
 <tr class="separator:adeb17735820a2dc8b2ff855189789c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6402928f496a040700326cabef97458e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a6402928f496a040700326cabef97458e">Load</a> (Json::Value val)</td></tr>
+<tr class="memitem:a6402928f496a040700326cabef97458e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a6402928f496a040700326cabef97458e">Load</a> (<a class="el" href="class_json_1_1_value.html">Json::Value</a> val)</td></tr>
 <tr class="separator:a6402928f496a040700326cabef97458e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7095179b0dc975a8cf15bec086c2347b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a7095179b0dc975a8cf15bec086c2347b">operator+</a> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val) const </td></tr>
-<tr class="memdesc:a7095179b0dc975a8cf15bec086c2347b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operators.  <a href="#a7095179b0dc975a8cf15bec086c2347b"></a><br/></td></tr>
+<tr class="memitem:a7095179b0dc975a8cf15bec086c2347b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7095179b0dc975a8cf15bec086c2347b"></a>
+<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a7095179b0dc975a8cf15bec086c2347b">operator+</a> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val) const </td></tr>
+<tr class="memdesc:a7095179b0dc975a8cf15bec086c2347b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operators. <br/></td></tr>
 <tr class="separator:a7095179b0dc975a8cf15bec086c2347b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a10c44d910cafe1332881fe103972a7ef"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a10c44d910cafe1332881fe103972a7ef">operator-</a> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val) const </td></tr>
+<tr class="memitem:a10c44d910cafe1332881fe103972a7ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a10c44d910cafe1332881fe103972a7ef"></a>
+<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator-</b> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val) const </td></tr>
 <tr class="separator:a10c44d910cafe1332881fe103972a7ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbd9e4ce8adfe2163f5c6dc9ccb3375d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#adbd9e4ce8adfe2163f5c6dc9ccb3375d">operator+=</a> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val)</td></tr>
+<tr class="memitem:adbd9e4ce8adfe2163f5c6dc9ccb3375d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adbd9e4ce8adfe2163f5c6dc9ccb3375d"></a>
+<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>operator+=</b> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val)</td></tr>
 <tr class="separator:adbd9e4ce8adfe2163f5c6dc9ccb3375d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af12eb918d6258035fc9d6a065bdbceb4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#af12eb918d6258035fc9d6a065bdbceb4">operator*</a> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val) const </td></tr>
+<tr class="memitem:a58a25030ca199cb9feed1cfecccafe0d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a58a25030ca199cb9feed1cfecccafe0d"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val) const </td></tr>
+<tr class="separator:a58a25030ca199cb9feed1cfecccafe0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af12eb918d6258035fc9d6a065bdbceb4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af12eb918d6258035fc9d6a065bdbceb4"></a>
+<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val) const </td></tr>
 <tr class="separator:af12eb918d6258035fc9d6a065bdbceb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abceb71ed3198f444e91bc1a777a3f04c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#abceb71ed3198f444e91bc1a777a3f04c">operator*</a> (float val) const </td></tr>
+<tr class="memitem:abceb71ed3198f444e91bc1a777a3f04c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abceb71ed3198f444e91bc1a777a3f04c"></a>
+<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator*</b> (float val) const </td></tr>
 <tr class="separator:abceb71ed3198f444e91bc1a777a3f04c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a7cb908a09e8b38d2b47b359d0b5931"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a2a7cb908a09e8b38d2b47b359d0b5931">operator/</a> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val) const </td></tr>
+<tr class="memitem:a2a7cb908a09e8b38d2b47b359d0b5931"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a7cb908a09e8b38d2b47b359d0b5931"></a>
+<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; val) const </td></tr>
 <tr class="separator:a2a7cb908a09e8b38d2b47b359d0b5931"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3118c1e18487d00820d40284b20f8353"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a3118c1e18487d00820d40284b20f8353">operator/</a> (float val) const </td></tr>
+<tr class="memitem:a3118c1e18487d00820d40284b20f8353"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3118c1e18487d00820d40284b20f8353"></a>
+<a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>operator/</b> (float val) const </td></tr>
 <tr class="separator:a3118c1e18487d00820d40284b20f8353"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d98b7d91fc9fbf7e221a71c53fb9c03"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a4d98b7d91fc9fbf7e221a71c53fb9c03">operator Vector2&lt; int &gt;</a> () const </td></tr>
-<tr class="memdesc:a4d98b7d91fc9fbf7e221a71c53fb9c03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversions.  <a href="#a4d98b7d91fc9fbf7e221a71c53fb9c03"></a><br/></td></tr>
+<tr class="memitem:a4d98b7d91fc9fbf7e221a71c53fb9c03"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d98b7d91fc9fbf7e221a71c53fb9c03"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a4d98b7d91fc9fbf7e221a71c53fb9c03">operator Vector2&lt; int &gt;</a> () const </td></tr>
+<tr class="memdesc:a4d98b7d91fc9fbf7e221a71c53fb9c03"><td class="mdescLeft">&#160;</td><td class="mdescRight">Conversions. <br/></td></tr>
 <tr class="separator:a4d98b7d91fc9fbf7e221a71c53fb9c03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7ab2584b6b931b488768af70fa0a8f2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#ad7ab2584b6b931b488768af70fa0a8f2">operator Vector2&lt; float &gt;</a> () const </td></tr>
+<tr class="memitem:ad7ab2584b6b931b488768af70fa0a8f2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad7ab2584b6b931b488768af70fa0a8f2"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>operator Vector2&lt; float &gt;</b> () const </td></tr>
 <tr class="separator:ad7ab2584b6b931b488768af70fa0a8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69a40beb702437a92a3d17f99f0207c5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a69a40beb702437a92a3d17f99f0207c5">operator Vector2&lt; double &gt;</a> () const </td></tr>
+<tr class="memitem:a69a40beb702437a92a3d17f99f0207c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a69a40beb702437a92a3d17f99f0207c5"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>operator Vector2&lt; double &gt;</b> () const </td></tr>
 <tr class="separator:a69a40beb702437a92a3d17f99f0207c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7bd0eec80d2d63850bd7c70c194af5ad"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a7bd0eec80d2d63850bd7c70c194af5ad">operator SDL_Point</a> () const </td></tr>
+<tr class="memitem:a7bd0eec80d2d63850bd7c70c194af5ad"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7bd0eec80d2d63850bd7c70c194af5ad"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>operator SDL_Point</b> () const </td></tr>
 <tr class="separator:a7bd0eec80d2d63850bd7c70c194af5ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a1b6075b7a4e24069d1686c3235007d2c"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a1b6075b7a4e24069d1686c3235007d2c">RegisterLua</a> (lua_State *l)</td></tr>
-<tr class="separator:a1b6075b7a4e24069d1686c3235007d2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a96305c93ce4b01641a697b83a59a4555"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a96305c93ce4b01641a697b83a59a4555"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>operator std::string</b> () const </td></tr>
+<tr class="separator:a96305c93ce4b01641a697b83a59a4555"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a78fa1f2ed5e261c7fbeb8f3536a1ee34"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a></td></tr>
+<tr class="memitem:a78fa1f2ed5e261c7fbeb8f3536a1ee34"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a78fa1f2ed5e261c7fbeb8f3536a1ee34"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>x</b></td></tr>
 <tr class="separator:a78fa1f2ed5e261c7fbeb8f3536a1ee34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6cfed8355591aa269f4dba43bd806ef9"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a></td></tr>
+<tr class="memitem:a6cfed8355591aa269f4dba43bd806ef9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6cfed8355591aa269f4dba43bd806ef9"></a>
+T&#160;</td><td class="memItemRight" valign="bottom"><b>y</b></td></tr>
 <tr class="separator:a6cfed8355591aa269f4dba43bd806ef9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -172,31 +187,6 @@ class Vector2&lt; T &gt;</h3>
 <p>A 2D vector. </p>
 <p>A 2D vector </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="ae2f1223cb0d664aa73afb789086a4174"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::<a class="el" href="class_vector2.html">Vector2</a> </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a2a00754eb06888a6466bada2f0e0b222"></a>
 <div class="memitem">
 <div class="memproto">
@@ -254,7 +244,7 @@ template&lt;class T&gt; </div>
         <tr>
           <td class="memname">void <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::Load </td>
           <td>(</td>
-          <td class="paramtype">Json::Value&#160;</td>
+          <td class="paramtype"><a class="el" href="class_json_1_1_value.html">Json::Value</a>&#160;</td>
           <td class="paramname"><em>val</em></td><td>)</td>
           <td></td>
         </tr>
@@ -265,329 +255,10 @@ template&lt;class T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Load the vector from a Json::Value </p>
+<p>Load the vector from a <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">val</td><td>The Json::Value to load from </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a class="anchor" id="a7bd0eec80d2d63850bd7c70c194af5ad"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator SDL_Point </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a69a40beb702437a92a3d17f99f0207c5"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator <a class="el" href="class_vector2.html">Vector2</a>&lt; double &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ad7ab2584b6b931b488768af70fa0a8f2"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator <a class="el" href="class_vector2.html">Vector2</a>&lt; float &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a4d98b7d91fc9fbf7e221a71c53fb9c03"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator <a class="el" href="class_vector2.html">Vector2</a>&lt; int &gt; </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Conversions. </p>
-
-</div>
-</div>
-<a class="anchor" id="af12eb918d6258035fc9d6a065bdbceb4"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt;T&gt; <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="abceb71ed3198f444e91bc1a777a3f04c"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt;T&gt; <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator* </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a7095179b0dc975a8cf15bec086c2347b"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt;T&gt; <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator+ </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Operators. </p>
-
-</div>
-</div>
-<a class="anchor" id="adbd9e4ce8adfe2163f5c6dc9ccb3375d"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt;T&gt;&amp; <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator+= </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a10c44d910cafe1332881fe103972a7ef"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt;T&gt; <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator- </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2a7cb908a09e8b38d2b47b359d0b5931"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt;T&gt; <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator/ </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a3118c1e18487d00820d40284b20f8353"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="class_vector2.html">Vector2</a>&lt;T&gt; <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::operator/ </td>
-          <td>(</td>
-          <td class="paramtype">float&#160;</td>
-          <td class="paramname"><em>val</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a1b6075b7a4e24069d1686c3235007d2c"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static int <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::RegisterLua </td>
-          <td>(</td>
-          <td class="paramtype">lua_State *&#160;</td>
-          <td class="paramname"><em>l</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Register the Vector class with the lua state </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">l</td><td>The lua_State to register the module with </td></tr>
+    <tr><td class="paramname">val</td><td>The <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> to load from </td></tr>
   </table>
   </dd>
 </dl>
@@ -604,7 +275,7 @@ template&lt;class T&gt; </div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Json::Value <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::Save </td>
+          <td class="memname"><a class="el" href="class_json_1_1_value.html">Json::Value</a> <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::Save </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -616,8 +287,8 @@ template&lt;class T&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Save the vector to a Json::Value </p>
-<dl class="section return"><dt>Returns</dt><dd>The Json::Value containg the vector data </dd></dl>
+<p>Save the vector to a <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> </p>
+<dl class="section return"><dt>Returns</dt><dd>The <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> containg the vector data </dd></dl>
 
 </div>
 </div>
@@ -665,37 +336,41 @@ template&lt;class T&gt; </div>
 
 </div>
 </div>
-<h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a78fa1f2ed5e261c7fbeb8f3536a1ee34"></a>
+<a class="anchor" id="a9ac567b8a4c97a268e17115db1e6991d"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;class T&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">T <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::x</td>
+          <td class="memname">void <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::Set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt; &amp;&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
+          <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a6cfed8355591aa269f4dba43bd806ef9"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;class T&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">T <a class="el" href="class_vector2.html">Vector2</a>&lt; T &gt;::y</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Set the vector with the same values as another vector </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>the vector to get vals from </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="vectors_8h_source.html">vectors.h</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/core/<a class="el" href="vectors_8h_source.html">vectors.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -703,7 +378,7 @@ template&lt;class T&gt; </div>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_vector2.html">Vector2</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:10 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/vectors.h Source File</title>
+<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/core/vectors.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -66,7 +68,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -89,7 +90,7 @@ $(document).ready(function(){initNavTree('vectors_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,148 +104,110 @@ $(document).ready(function(){initNavTree('vectors_8h_source.html','');});
 <div class="title">vectors.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="vectors_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef VECTORS_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef VECTORS_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define VECTORS_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;luabind/luabind.hpp&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;luabind/operator.hpp&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;external/json/json.h&quot;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
 <div class="line"><a name="l00014"></a><span class="lineno"><a class="code" href="class_vector2.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_vector2.html" title="A 2D vector.">Vector2</a> {</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="code" href="class_vector2.html#ae2f1223cb0d664aa73afb789086a4174">   16</a></span>&#160;    <a class="code" href="class_vector2.html#ae2f1223cb0d664aa73afb789086a4174">Vector2</a>(){</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <a class="code" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">Set</a>(0, 0);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    }</div>
-<div class="line"><a name="l00024"></a><span class="lineno"><a class="code" href="class_vector2.html#a2a00754eb06888a6466bada2f0e0b222">   24</a></span>&#160;    <a class="code" href="class_vector2.html#a2a00754eb06888a6466bada2f0e0b222">Vector2</a>(T pX, T pY){</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <a class="code" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">Set</a>(pX, pY);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="code" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">   32</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">Set</a>(T pX, T pY){</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        <a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> = pX;</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        <a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> = pY;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    }</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="code" href="class_vector2.html#adeb17735820a2dc8b2ff855189789c3b">   40</a></span>&#160;    Json::Value <a class="code" href="class_vector2.html#adeb17735820a2dc8b2ff855189789c3b">Save</a>(){</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        Json::Value val;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        val[<span class="stringliteral">&quot;x&quot;</span>] = <a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        val[<span class="stringliteral">&quot;y&quot;</span>] = <a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordflow">return</span> val;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    }</div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="code" href="class_vector2.html#a6402928f496a040700326cabef97458e">   50</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vector2.html#a6402928f496a040700326cabef97458e">Load</a>(Json::Value val){</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">Set</a>(val[<span class="stringliteral">&quot;x&quot;</span>].asFloat(), val[<span class="stringliteral">&quot;y&quot;</span>].asFloat());</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    }</div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="code" href="class_vector2.html#a7095179b0dc975a8cf15bec086c2347b">   54</a></span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> <a class="code" href="class_vector2.html#a7095179b0dc975a8cf15bec086c2347b" title="Operators.">operator + </a>(<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a>(this-&gt;<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> + val.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>, this-&gt;<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> + val.<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    }</div>
-<div class="line"><a name="l00057"></a><span class="lineno"><a class="code" href="class_vector2.html#a10c44d910cafe1332881fe103972a7ef">   57</a></span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> <a class="code" href="class_vector2.html#a10c44d910cafe1332881fe103972a7ef">operator - </a>(<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a>(this-&gt;<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> - val.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>, this-&gt;<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> - val.<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="class_vector2.html#adbd9e4ce8adfe2163f5c6dc9ccb3375d">   60</a></span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a>&amp; <a class="code" href="class_vector2.html#adbd9e4ce8adfe2163f5c6dc9ccb3375d">operator += </a>(<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val){</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        this-&gt;<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> += val.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        this-&gt;<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> += val.<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="code" href="class_vector2.html#af12eb918d6258035fc9d6a065bdbceb4">   65</a></span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> <a class="code" href="class_vector2.html#af12eb918d6258035fc9d6a065bdbceb4">operator * </a>(<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> a;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        a.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> = this-&gt;<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> * val.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        a.<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> = this-&gt;<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> * val.<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> a;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2</a>() : x(0), y(0) {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    }</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="code" href="class_vector2.html#a2a00754eb06888a6466bada2f0e0b222">   23</a></span>&#160;    <a class="code" href="class_vector2.html#a2a00754eb06888a6466bada2f0e0b222">Vector2</a>(T pX, T pY) : x(pX), y(pY) {</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    }</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="code" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">   30</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">Set</a>(T pX, T pY){</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        x = pX;</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        y = pY;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    }</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="code" href="class_vector2.html#a9ac567b8a4c97a268e17115db1e6991d">   38</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vector2.html#a9ac567b8a4c97a268e17115db1e6991d">Set</a>(<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> &amp;v){</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        x = v.x;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        y = v.y;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="code" href="class_vector2.html#adeb17735820a2dc8b2ff855189789c3b">   46</a></span>&#160;    <a class="code" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> <a class="code" href="class_vector2.html#adeb17735820a2dc8b2ff855189789c3b">Save</a>(){</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        <a class="code" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> val;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        val[<span class="stringliteral">&quot;x&quot;</span>] = x;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        val[<span class="stringliteral">&quot;y&quot;</span>] = y;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <span class="keywordflow">return</span> val;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    }</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="code" href="class_vector2.html#a6402928f496a040700326cabef97458e">   56</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vector2.html#a6402928f496a040700326cabef97458e">Load</a>(<a class="code" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> val){</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="class_vector2.html#a5f9432936ee24e7dd0fee4b5b77a22da">Set</a>(val[<span class="stringliteral">&quot;x&quot;</span>].asFloat(), val[<span class="stringliteral">&quot;y&quot;</span>].asFloat());</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="code" href="class_vector2.html#a7095179b0dc975a8cf15bec086c2347b">   60</a></span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> <a class="code" href="class_vector2.html#a7095179b0dc975a8cf15bec086c2347b" title="Operators.">operator + </a>(<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a>(x + val.x, y + val.y);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> operator - (<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a>(x - val.x, y - val.y);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    }</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a>&amp; operator += (<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val){</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        x += val.x;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        y += val.y;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    }</div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="code" href="class_vector2.html#abceb71ed3198f444e91bc1a777a3f04c">   71</a></span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> <a class="code" href="class_vector2.html#af12eb918d6258035fc9d6a065bdbceb4">operator * </a>(<span class="keywordtype">float</span> val)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> a;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        a.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> = this-&gt;<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> * val;</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        a.<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> = this-&gt;<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> * val;</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">return</span> a;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno"><a class="code" href="class_vector2.html#a2a7cb908a09e8b38d2b47b359d0b5931">   77</a></span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> <a class="code" href="class_vector2.html#a2a7cb908a09e8b38d2b47b359d0b5931">operator / </a>(<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> a;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        a.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> = this-&gt;<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> / val.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        a.<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> = this-&gt;<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> / val.<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">return</span> a;</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="code" href="class_vector2.html#a3118c1e18487d00820d40284b20f8353">   83</a></span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> <a class="code" href="class_vector2.html#a2a7cb908a09e8b38d2b47b359d0b5931">operator / </a>(<span class="keywordtype">float</span> val)<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> a;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        a.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> = this-&gt;<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> / val;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        a.<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> = this-&gt;<a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a> / val;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span> a;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="code" href="class_vector2.html#a4d98b7d91fc9fbf7e221a71c53fb9c03">   90</a></span>&#160;    <span class="keyword">operator</span> <a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a>() <span class="keyword">const</span> {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;        <a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a> vect(<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>, <a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>);</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <span class="keywordflow">return</span> vect;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
-<div class="line"><a name="l00094"></a><span class="lineno"><a class="code" href="class_vector2.html#ad7ab2584b6b931b488768af70fa0a8f2">   94</a></span>&#160;    <span class="keyword">operator</span> <a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a>() <span class="keyword">const</span> {</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a> vect(<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>, <a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <span class="keywordflow">return</span> vect;</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    }</div>
-<div class="line"><a name="l00098"></a><span class="lineno"><a class="code" href="class_vector2.html#a69a40beb702437a92a3d17f99f0207c5">   98</a></span>&#160;    <span class="keyword">operator</span> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;double&gt;</a>() <span class="keyword">const</span> {</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;double&gt;</a> vect(<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>, <a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>);</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <span class="keywordflow">return</span> vect;</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    }</div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="code" href="class_vector2.html#a7bd0eec80d2d63850bd7c70c194af5ad">  102</a></span>&#160;    <span class="keyword">operator</span> SDL_Point()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        SDL_Point p;</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        p.<a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a> = <a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>;</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        p.y = <a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        <span class="keywordflow">return</span> p;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;    }</div>
-<div class="line"><a name="l00112"></a><span class="lineno"><a class="code" href="class_vector2.html#a1b6075b7a4e24069d1686c3235007d2c">  112</a></span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_vector2.html#a1b6075b7a4e24069d1686c3235007d2c">RegisterLua</a>(lua_State *l){</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keyword">using namespace </span>luabind;</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        module(l, <span class="stringliteral">&quot;LPC&quot;</span>)[</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;            <span class="comment">//For Vector2&lt;int&gt;</span></div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            class_&lt;Vector2&lt;int&gt;&gt;(<span class="stringliteral">&quot;Vector2i&quot;</span>)</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;                .def(constructor&lt;&gt;())</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;                .def(constructor&lt;int, int&gt;())</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;                .def(<span class="stringliteral">&quot;Set&quot;</span>, &amp;<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;int&gt;::Set</a>)</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;                <span class="comment">//accessors</span></div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;                .def_readwrite(<span class="stringliteral">&quot;x&quot;</span>, &amp;<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;int&gt;::x</a>)</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                .def_readwrite(<span class="stringliteral">&quot;y&quot;</span>, &amp;<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;int&gt;::y</a>)</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;                <span class="comment">//operators</span></div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;                .def(const_self + other&lt;<a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a>&gt;())</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;                .def(const_self - other&lt;<a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a>&gt;())</div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;                .def(const_self * other&lt;<a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a>&gt;())</div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;                .def(const_self * other&lt;<a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a>&gt;())</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;                .def(const_self * <span class="keywordtype">float</span>())</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;                .def(const_self / other&lt;<a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a>&gt;())</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;                .def(const_self / other&lt;<a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a>&gt;())</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;                .def(const_self / <span class="keywordtype">float</span>()),</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            <span class="comment">//For Vector2&lt;float&gt;</span></div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;            class_&lt;Vector2&lt;float&gt;&gt;(<span class="stringliteral">&quot;Vector2f&quot;</span>)</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;                .def(constructor&lt;&gt;())</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;                .def(constructor&lt;float, float&gt;())</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;                .def(<span class="stringliteral">&quot;Set&quot;</span>, &amp;<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;float&gt;::Set</a>)</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;                <span class="comment">//accessors</span></div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;                .def_readwrite(<span class="stringliteral">&quot;x&quot;</span>, &amp;<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;float&gt;::x</a>)</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                .def_readwrite(<span class="stringliteral">&quot;y&quot;</span>, &amp;<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;float&gt;::y</a>)</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                <span class="comment">//operators</span></div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                .def(const_self + other&lt;<a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a>&gt;())</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;                .def(const_self - other&lt;<a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a>&gt;())</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;                .def(const_self * other&lt;<a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a>&gt;())</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;                .def(const_self * other&lt;<a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a>&gt;())</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;                .def(const_self * <span class="keywordtype">float</span>())</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                .def(const_self / other&lt;<a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a>&gt;())</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;                .def(const_self / other&lt;<a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a>&gt;())</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;                .def(const_self / <span class="keywordtype">float</span>())</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        ];</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00155"></a><span class="lineno"><a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">  155</a></span>&#160;    T <a class="code" href="class_vector2.html#a78fa1f2ed5e261c7fbeb8f3536a1ee34">x</a>, <a class="code" href="class_vector2.html#a6cfed8355591aa269f4dba43bd806ef9">y</a>;</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;};</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;</div>
-<div class="line"><a name="l00158"></a><span class="lineno"><a class="code" href="vectors_8h.html#aa83d444bd6cbecb112158663c2e0c213">  158</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a> <a class="code" href="vectors_8h.html#aa83d444bd6cbecb112158663c2e0c213">Vector2i</a>;</div>
-<div class="line"><a name="l00159"></a><span class="lineno"><a class="code" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">  159</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a> <a class="code" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>;</div>
-<div class="line"><a name="l00160"></a><span class="lineno"><a class="code" href="vectors_8h.html#aa24c210e370bbcafa705a5ba97a2f025">  160</a></span>&#160;<span class="keyword">typedef</span> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;double&gt;</a> <a class="code" href="vectors_8h.html#aa24c210e370bbcafa705a5ba97a2f025">Vector2d</a>;</div>
-<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;</div>
-<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">bool</span> operator == (<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <span class="keywordflow">return</span> (x == val.x &amp;&amp; y == val.y);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> operator * (<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> a(x * val.x, y * val.y);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">return</span> a;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> operator * (<span class="keywordtype">float</span> val)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> a(x * val, y * val);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">return</span> a;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> operator / (<a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> val)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> a(x / val.x, y / val.y);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <span class="keywordflow">return</span> a;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    }</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> operator / (<span class="keywordtype">float</span> val)<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;T&gt;</a> a(x / val, y / val);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;        <span class="keywordflow">return</span> a;</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="code" href="class_vector2.html#a4d98b7d91fc9fbf7e221a71c53fb9c03">   91</a></span>&#160;    <span class="keyword">operator</span> <a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a>() <span class="keyword">const</span> {</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        <a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a> vect(x, y);</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        <span class="keywordflow">return</span> vect;</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    }</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">operator</span> <a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a>() <span class="keyword">const</span> {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a> vect(x, y);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <span class="keywordflow">return</span> vect;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    }</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    <span class="keyword">operator</span> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;double&gt;</a>() <span class="keyword">const</span> {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;        <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;double&gt;</a> vect(x, y);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <span class="keywordflow">return</span> vect;</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    }</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    <span class="keyword">operator</span> SDL_Point()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        SDL_Point p;</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        p.x = x;</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        p.y = y;</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">return</span> p;</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    }</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">operator</span> std::string()<span class="keyword"> const </span>{</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        std::stringstream s;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;        s &lt;&lt; <span class="stringliteral">&quot;Vector2: (x: &quot;</span> &lt;&lt; x &lt;&lt; <span class="stringliteral">&quot;, y: &quot;</span></div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;            &lt;&lt; y &lt;&lt; <span class="stringliteral">&quot;)&quot;</span>;</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <span class="keywordflow">return</span> s.str();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    T x, y;</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;};</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;<span class="keyword">typedef</span> <a class="code" href="class_vector2.html">Vector2&lt;int&gt;</a> <a class="code" href="class_vector2.html">Vector2i</a>;</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">typedef</span> <a class="code" href="class_vector2.html">Vector2&lt;float&gt;</a> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2f</a>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;<span class="keyword">typedef</span> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2&lt;double&gt;</a> <a class="code" href="class_vector2.html" title="A 2D vector.">Vector2d</a>;</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="vectors_8h.html">vectors.h</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_c5b396cf6041de3f720e619bdc2e9b5f.html">Will</a></li><li class="navelem"><a class="el" href="dir_6202fc1653fe2c11199ca9b0c84676ab.html">Documents</a></li><li class="navelem"><a class="el" href="dir_3f734311a550ac7670f621aed1307696.html">Programs</a></li><li class="navelem"><a class="el" href="dir_ff290f9688089faa1bba9dd416a0522b.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_349c8f16cf6293549b53f7c14cc3fbf3.html">src</a></li><li class="navelem"><a class="el" href="dir_ab39e78cee724661482be65dc43ced5d.html">core</a></li><li class="navelem"><b>vectors.h</b></li>
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

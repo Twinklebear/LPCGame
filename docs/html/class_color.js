@@ -9,10 +9,10 @@ var class_color =
     [ "G", "class_color.html#a7d697dbc16fa505697f772989e2c0d6e", null ],
     [ "Get", "class_color.html#a9bac11f8bf56acb26631eaea8900d933", null ],
     [ "Load", "class_color.html#a914bcd054bf3419fcc48657a99dd6bdb", null ],
-    [ "operator==", "class_color.html#a16a698e8bcb237203bef938cb97e3613", null ],
+    [ "operator std::string", "class_color.html#a003d14e1c63981ad66238fe3d30bef7b", null ],
+    [ "operator==", "class_color.html#a1373e891e072884e7a4a496da2e8abb8", null ],
     [ "R", "class_color.html#a9a5a92e757f5bc4aa7318dbe84f24e29", null ],
     [ "R", "class_color.html#a78b39696d1fccfb3bcc6d3f39eab0542", null ],
-    [ "RegisterLua", "class_color.html#a6f48008e718530c2395702c55eb6187d", null ],
     [ "Save", "class_color.html#a91952cdc29e82ee2cd3403b250d400d9", null ],
     [ "Set", "class_color.html#ac5bc4861e63acdf1e66b121808b10b57", null ]
 ];

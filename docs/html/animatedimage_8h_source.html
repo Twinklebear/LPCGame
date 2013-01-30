@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/animatedimage.h Source File</title>
+<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/core/animatedimage.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -66,7 +68,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -89,7 +90,7 @@ $(document).ready(function(){initNavTree('animatedimage_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,55 +104,52 @@ $(document).ready(function(){initNavTree('animatedimage_8h_source.html','');});
 <div class="title">animatedimage.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="animatedimage_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ANIMATEDIMAGE_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ANIMATEDIMAGE_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define ANIMATEDIMAGE_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;SDL.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;luabind/luabind.hpp&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="base_8h.html">base.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="image_8h.html">image.h</a>&quot;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="timer_8h.html">timer.h</a>&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="struct_animation_sequence.html">   13</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_animation_sequence.html" title="Describes an animation sequence.">AnimationSequence</a> {</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    Json::Value <a class="code" href="struct_animation_sequence.html#aca197d776576d84e917dee4f542e9ae3">Save</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_animation_sequence.html#ae903fb6ea9f76e3e8d1250a1921acd54">Load</a>(Json::Value val);</div>
-<div class="line"><a name="l00025"></a><span class="lineno"><a class="code" href="struct_animation_sequence.html#ab535c020243097795c3638657363ea1c">   25</a></span>&#160;    std::vector&lt;int&gt; <a class="code" href="struct_animation_sequence.html#ab535c020243097795c3638657363ea1c" title="The clips in the animated image clip array.">clipIndices</a>;</div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="code" href="struct_animation_sequence.html#a4ce30e1ef4f70de7f0b15c0d64640fca">   27</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="struct_animation_sequence.html#a4ce30e1ef4f70de7f0b15c0d64640fca" title="The framerate to play the animation at.">frameRate</a>;</div>
-<div class="line"><a name="l00029"></a><span class="lineno"><a class="code" href="struct_animation_sequence.html#a6c7410029a5953ec1ea6c628b465d94a">   29</a></span>&#160;    std::string <a class="code" href="struct_animation_sequence.html#a6c7410029a5953ec1ea6c628b465d94a" title="The sequence name.">name</a>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;};</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="code" href="class_animated_image.html">   36</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_animated_image.html" title="An image that can store and play animation sequences.">AnimatedImage</a> : <span class="keyword">public</span> <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> {</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_animated_image.html#aeaf892cc2898046724a3c353595983bf">AnimatedImage</a>(<span class="keyword">const</span> std::string &amp;file);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_animated_image.html#aeaf892cc2898046724a3c353595983bf">AnimatedImage</a>();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="class_animated_image.html#a986dd5168d16ae6460f2ec26dd365246">~AnimatedImage</a>();</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_animated_image.html#ae26cded1b36e1499b5f80a5c693b0ffe">Update</a>();</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_animated_image.html#a9154418aded1130138998c0047af13d3">Play</a>(std::string name);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    std::string <a class="code" href="class_animated_image.html#afc9ebe0cbf9532e9b52acc1a645b0f66">Playing</a>();</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordtype">int</span> <a class="code" href="class_animated_image.html#acf1b3063dc680e0c41ea917d11322ef5">ActiveClip</a>();</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_animated_image.html#a097def429534c5f980bd8a9c9741f2fb">Save</a>(<span class="keyword">const</span> std::string &amp;file) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_animated_image.html#a1509cdce47227dbfccc7b3d147206ec2">RegisterLua</a>(lua_State *l);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> Load(Json::Value val);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    std::vector&lt;AnimationSequence&gt; mSequences;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">int</span> mActiveAnimation;</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="keywordtype">int</span> mFrame;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <a class="code" href="class_timer.html" title="Measures time, it&#39;s a timer.">Timer</a> mTimer;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;};</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;base.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;image.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;timer.h&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="struct_animation_sequence.html">   12</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct_animation_sequence.html" title="Describes an animation sequence.">AnimationSequence</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> <a class="code" href="struct_animation_sequence.html#aca197d776576d84e917dee4f542e9ae3">Save</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="struct_animation_sequence.html#ae903fb6ea9f76e3e8d1250a1921acd54">Load</a>(<a class="code" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> val);</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="code" href="struct_animation_sequence.html#ab535c020243097795c3638657363ea1c">   24</a></span>&#160;    std::vector&lt;int&gt; <a class="code" href="struct_animation_sequence.html#ab535c020243097795c3638657363ea1c" title="The clips in the animated image clip array.">clipIndices</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="code" href="struct_animation_sequence.html#a4ce30e1ef4f70de7f0b15c0d64640fca">   26</a></span>&#160;    <span class="keywordtype">double</span> <a class="code" href="struct_animation_sequence.html#a4ce30e1ef4f70de7f0b15c0d64640fca" title="The framerate to play the animation at.">frameRate</a>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="code" href="struct_animation_sequence.html#a6c7410029a5953ec1ea6c628b465d94a">   28</a></span>&#160;    std::string <a class="code" href="struct_animation_sequence.html#a6c7410029a5953ec1ea6c628b465d94a" title="The sequence name.">name</a>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="code" href="class_animated_image.html">   35</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_animated_image.html" title="An image that can store and play animation sequences.">AnimatedImage</a> : <span class="keyword">public</span> <a class="code" href="class_image.html" title="Wrapper around the SDL_Texture to make things easier.">Image</a> {</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <a class="code" href="class_animated_image.html" title="An image that can store and play animation sequences.">AnimatedImage</a>(<span class="keyword">const</span> std::string &amp;file);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="class_animated_image.html" title="An image that can store and play animation sequences.">AnimatedImage</a>();</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    ~<a class="code" href="class_animated_image.html" title="An image that can store and play animation sequences.">AnimatedImage</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_animated_image.html#ae26cded1b36e1499b5f80a5c693b0ffe">Update</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_animated_image.html#a9154418aded1130138998c0047af13d3">Play</a>(std::string name);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    std::string <a class="code" href="class_animated_image.html#afc9ebe0cbf9532e9b52acc1a645b0f66">Playing</a>();</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_animated_image.html#a097def429534c5f980bd8a9c9741f2fb">Save</a>(<span class="keyword">const</span> std::string &amp;file) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> Load(<a class="code" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> val);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    std::vector&lt;AnimationSequence&gt; mSequences;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">int</span> mActiveAnimation;</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">int</span> mFrame;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <a class="code" href="class_timer.html" title="Measures time, it&#39;s a timer.">Timer</a> mTimer;</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;};</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="animatedimage_8h.html">animatedimage.h</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:16 for LPCGame by
+    <li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_c5b396cf6041de3f720e619bdc2e9b5f.html">Will</a></li><li class="navelem"><a class="el" href="dir_6202fc1653fe2c11199ca9b0c84676ab.html">Documents</a></li><li class="navelem"><a class="el" href="dir_3f734311a550ac7670f621aed1307696.html">Programs</a></li><li class="navelem"><a class="el" href="dir_ff290f9688089faa1bba9dd416a0522b.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_349c8f16cf6293549b53f7c14cc3fbf3.html">src</a></li><li class="navelem"><a class="el" href="dir_ab39e78cee724661482be65dc43ced5d.html">core</a></li><li class="navelem"><b>animatedimage.h</b></li>
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

@@ -12,8 +12,6 @@ Release/
 # ignore builds
 *.exe
 
-# ignore my doxygen file
-*.doxy
 # ignore logging files
 *.log
 

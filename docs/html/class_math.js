@@ -9,13 +9,12 @@ var class_math =
     [ "Clamp", "class_math.html#accf92ae46293735b9ec67e7b53eda32f", null ],
     [ "Distance", "class_math.html#a3caada48e8fdeef772a97173478ddd17", null ],
     [ "ForwardVector", "class_math.html#aaf7d6559f1d2b5a77a79ca966a11b81f", null ],
-    [ "FromSceneSpace", "class_math.html#a8ab20b6ad8b2004779ea5835fcb37648", null ],
-    [ "FromSceneSpace", "class_math.html#a68623903d73079faa1f09f7ff043e2ed", null ],
+    [ "FromSceneSpace", "class_math.html#aac34ccc330428a5a3f14e817a12ee6f2", null ],
+    [ "FromSceneSpace", "class_math.html#aae5b897f4c838c4f437c3f811fa10cae", null ],
     [ "Lerp", "class_math.html#abda933ff6b76891acd5f18f6b50f65dd", null ],
     [ "Magnitude", "class_math.html#a1908cd0d6a79f390463252a398a7b076", null ],
     [ "Normalize", "class_math.html#a93d3bd69c05d09514d5b674f94dc180f", null ],
     [ "RectNearRect", "class_math.html#a729df13db67f5fdc154dd8d03f95d643", null ],
-    [ "RegisterLua", "class_math.html#a16cf71c621e345e02a54e347e3624785", null ],
-    [ "ToSceneSpace", "class_math.html#a9bea8b44094830e0c96b3505ef2402bf", null ],
-    [ "ToSceneSpace", "class_math.html#ab93dbfe8152303d4b35bc77a35192468", null ]
+    [ "ToSceneSpace", "class_math.html#a9ac1d7d06527fc8a6ba107c58da2ab5c", null ],
+    [ "ToSceneSpace", "class_math.html#a49e662174931ab5bce613a7c7eaec75a", null ]
 ];

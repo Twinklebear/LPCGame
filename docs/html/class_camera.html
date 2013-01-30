@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('class_camera.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,7 +105,6 @@ $(document).ready(function(){initNavTree('class_camera.html','');});
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_camera-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Camera Class Reference</div>  </div>
@@ -117,18 +118,15 @@ $(document).ready(function(){initNavTree('class_camera.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a01f94c3543f56ede7af49dc778f19331"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a01f94c3543f56ede7af49dc778f19331">Camera</a> ()</td></tr>
-<tr class="separator:a01f94c3543f56ede7af49dc778f19331"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1897942d0ccf91052386388a497349f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ad1897942d0ccf91052386388a497349f">~Camera</a> ()</td></tr>
-<tr class="separator:ad1897942d0ccf91052386388a497349f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac97b35ad358c8c671876ae1d5b3bf7c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ac97b35ad358c8c671876ae1d5b3bf7c9">SetFocus</a> (std::shared_ptr&lt; <a class="el" href="class_entity.html">Entity</a> &gt; obj)</td></tr>
 <tr class="separator:ac97b35ad358c8c671876ae1d5b3bf7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a596a3ea1fdc7d244ba4268031a360b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a4a596a3ea1fdc7d244ba4268031a360b">Update</a> ()</td></tr>
-<tr class="memdesc:a4a596a3ea1fdc7d244ba4268031a360b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the camera's position to keep the object centered.  <a href="#a4a596a3ea1fdc7d244ba4268031a360b"></a><br/></td></tr>
+<tr class="memitem:a4a596a3ea1fdc7d244ba4268031a360b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4a596a3ea1fdc7d244ba4268031a360b"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a4a596a3ea1fdc7d244ba4268031a360b">Update</a> ()</td></tr>
+<tr class="memdesc:a4a596a3ea1fdc7d244ba4268031a360b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the camera's position to keep the object centered. <br/></td></tr>
 <tr class="separator:a4a596a3ea1fdc7d244ba4268031a360b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13a3a0fa441df9cf793ec209ba538340"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a13a3a0fa441df9cf793ec209ba538340">InCamera</a> (<a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> box) const </td></tr>
+<tr class="memitem:a13a3a0fa441df9cf793ec209ba538340"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a13a3a0fa441df9cf793ec209ba538340">InCamera</a> (<a class="el" href="class_rect.html">Rectf</a> box) const </td></tr>
 <tr class="separator:a13a3a0fa441df9cf793ec209ba538340"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73dbe7ba01c2adeff49db363cb5b8e75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a73dbe7ba01c2adeff49db363cb5b8e75">Move</a> (<a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> v)</td></tr>
+<tr class="memitem:a73dbe7ba01c2adeff49db363cb5b8e75"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a73dbe7ba01c2adeff49db363cb5b8e75">Move</a> (<a class="el" href="class_vector2.html">Vector2f</a> v)</td></tr>
 <tr class="separator:a73dbe7ba01c2adeff49db363cb5b8e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a24864538f46aad662ff3b5d420ad0717"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a24864538f46aad662ff3b5d420ad0717">Move</a> (float deltaT)</td></tr>
 <tr class="separator:a24864538f46aad662ff3b5d420ad0717"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -136,88 +134,44 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab5c274ae0609f8b2567dd5771eee0598"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65699bfef1ad853e494d500f0e88f292"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a65699bfef1ad853e494d500f0e88f292">Scene</a> ()</td></tr>
 <tr class="separator:a65699bfef1ad853e494d500f0e88f292"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d7728da233afdeee1baf82392151453"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a8d7728da233afdeee1baf82392151453">SetBox</a> (<a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> box)</td></tr>
+<tr class="memitem:a8d7728da233afdeee1baf82392151453"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a8d7728da233afdeee1baf82392151453">SetBox</a> (<a class="el" href="class_rect.html">Rectf</a> box)</td></tr>
 <tr class="separator:a8d7728da233afdeee1baf82392151453"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2b387efc4f2cdf8ad265a689858658d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ad2b387efc4f2cdf8ad265a689858658d">Box</a> () const </td></tr>
-<tr class="memdesc:ad2b387efc4f2cdf8ad265a689858658d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the camera's box.  <a href="#ad2b387efc4f2cdf8ad265a689858658d"></a><br/></td></tr>
+<tr class="memitem:ad2b387efc4f2cdf8ad265a689858658d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2b387efc4f2cdf8ad265a689858658d"></a>
+<a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ad2b387efc4f2cdf8ad265a689858658d">Box</a> () const </td></tr>
+<tr class="memdesc:ad2b387efc4f2cdf8ad265a689858658d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the camera's box. <br/></td></tr>
 <tr class="separator:ad2b387efc4f2cdf8ad265a689858658d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b9e3f03ffc39c1269f54d405e014c28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a2b9e3f03ffc39c1269f54d405e014c28">SetSceneBox</a> (<a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> box)</td></tr>
+<tr class="memitem:a2b9e3f03ffc39c1269f54d405e014c28"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a2b9e3f03ffc39c1269f54d405e014c28">SetSceneBox</a> (<a class="el" href="class_rect.html">Rectf</a> box)</td></tr>
 <tr class="separator:a2b9e3f03ffc39c1269f54d405e014c28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a44a4f6834c8446f48f12cc988f5e7ad5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a44a4f6834c8446f48f12cc988f5e7ad5">SceneBox</a> () const </td></tr>
-<tr class="memdesc:a44a4f6834c8446f48f12cc988f5e7ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the scene box.  <a href="#a44a4f6834c8446f48f12cc988f5e7ad5"></a><br/></td></tr>
+<tr class="memitem:a44a4f6834c8446f48f12cc988f5e7ad5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a44a4f6834c8446f48f12cc988f5e7ad5"></a>
+<a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a44a4f6834c8446f48f12cc988f5e7ad5">SceneBox</a> () const </td></tr>
+<tr class="memdesc:a44a4f6834c8446f48f12cc988f5e7ad5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the scene box. <br/></td></tr>
 <tr class="separator:a44a4f6834c8446f48f12cc988f5e7ad5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a30f709a528d2ced072fcbf83c8c316dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a30f709a528d2ced072fcbf83c8c316dc">Offset</a> () const </td></tr>
+<tr class="memitem:a30f709a528d2ced072fcbf83c8c316dc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a30f709a528d2ced072fcbf83c8c316dc">Offset</a> () const </td></tr>
 <tr class="separator:a30f709a528d2ced072fcbf83c8c316dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc0ccf084f53237f740bc242efa6e77d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#abc0ccf084f53237f740bc242efa6e77d">Centering</a> () const </td></tr>
+<tr class="memitem:abc0ccf084f53237f740bc242efa6e77d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#abc0ccf084f53237f740bc242efa6e77d">Centering</a> () const </td></tr>
 <tr class="separator:abc0ccf084f53237f740bc242efa6e77d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a390a882cd59378c794c480c20e33f934"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a390a882cd59378c794c480c20e33f934">Save</a> ()</td></tr>
+<tr class="memitem:a390a882cd59378c794c480c20e33f934"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_json_1_1_value.html">Json::Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a390a882cd59378c794c480c20e33f934">Save</a> ()</td></tr>
 <tr class="separator:a390a882cd59378c794c480c20e33f934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a414fa361742dec72c9c9b3e3c06d0280"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a414fa361742dec72c9c9b3e3c06d0280">Load</a> (Json::Value val)</td></tr>
+<tr class="memitem:a414fa361742dec72c9c9b3e3c06d0280"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a414fa361742dec72c9c9b3e3c06d0280">Load</a> (<a class="el" href="class_json_1_1_value.html">Json::Value</a> val)</td></tr>
 <tr class="separator:a414fa361742dec72c9c9b3e3c06d0280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:ae53aa391c85eef720173fe2a0e4bf06d"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#ae53aa391c85eef720173fe2a0e4bf06d">RegisterLua</a> (lua_State *l)</td></tr>
-<tr class="separator:ae53aa391c85eef720173fe2a0e4bf06d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26e942c15654723ddbe7a24fed83a93a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a26e942c15654723ddbe7a24fed83a93a"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_camera.html#a26e942c15654723ddbe7a24fed83a93a">operator==</a> (const <a class="el" href="class_camera.html">Camera</a> &amp;c) const </td></tr>
+<tr class="memdesc:a26e942c15654723ddbe7a24fed83a93a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operators. <br/></td></tr>
+<tr class="separator:a26e942c15654723ddbe7a24fed83a93a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51e10978fb154c338c7c3fe2276dc959"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a51e10978fb154c338c7c3fe2276dc959"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="class_camera.html">Camera</a> &amp;c) const </td></tr>
+<tr class="separator:a51e10978fb154c338c7c3fe2276dc959"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A camera to draw the scene in. </p>
 <p>A simple camera that can be given a gameobject to focus on and follow, or can be moved manually </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a01f94c3543f56ede7af49dc778f19331"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Camera::Camera </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ad1897942d0ccf91052386388a497349f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Camera::~Camera </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="ad2b387efc4f2cdf8ad265a689858658d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> Camera::Box </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns the camera's box. </p>
-
-</div>
-</div>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="abc0ccf084f53237f740bc242efa6e77d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> Camera::Centering </td>
+          <td class="memname"><a class="el" href="class_vector2.html">Vector2f</a> Camera::Centering </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -236,7 +190,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">bool Camera::InCamera </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_rect.html">Rectf</a>&#160;</td>
           <td class="paramname"><em>box</em></td><td>)</td>
           <td> const</td>
         </tr>
@@ -260,16 +214,16 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Camera::Load </td>
           <td>(</td>
-          <td class="paramtype">Json::Value&#160;</td>
+          <td class="paramtype"><a class="el" href="class_json_1_1_value.html">Json::Value</a>&#160;</td>
           <td class="paramname"><em>val</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Load the camera configuration from a Json::Value </p>
+<p>Load the camera configuration from a <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">val</td><td>The Json::Value to load from </td></tr>
+    <tr><td class="paramname">val</td><td>The <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> to load from </td></tr>
   </table>
   </dd>
 </dl>
@@ -283,7 +237,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Camera::Move </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td>
           <td class="paramname"><em>v</em></td><td>)</td>
           <td></td>
         </tr>
@@ -327,7 +281,7 @@ Static Public Member Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> Camera::Offset </td>
+          <td class="memname"><a class="el" href="class_vector2.html">Vector2f</a> Camera::Offset </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
@@ -362,43 +316,12 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ae53aa391c85eef720173fe2a0e4bf06d"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Camera::RegisterLua </td>
-          <td>(</td>
-          <td class="paramtype">lua_State *&#160;</td>
-          <td class="paramname"><em>l</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Register the <a class="el" href="class_camera.html" title="A camera to draw the scene in.">Camera</a> class with the lua state </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">l</td><td>The lua_State to register the module with </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a390a882cd59378c794c480c20e33f934"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Json::Value Camera::Save </td>
+          <td class="memname"><a class="el" href="class_json_1_1_value.html">Json::Value</a> Camera::Save </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -406,7 +329,7 @@ Static Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Save the camera information to file </p>
-<dl class="section return"><dt>Returns</dt><dd>Json::Value containing the camera's information </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> containing the camera's information </dd></dl>
 
 </div>
 </div>
@@ -427,23 +350,6 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a44a4f6834c8446f48f12cc988f5e7ad5"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> Camera::SceneBox </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Get the scene box. </p>
-
-</div>
-</div>
 <a class="anchor" id="a8d7728da233afdeee1baf82392151453"></a>
 <div class="memitem">
 <div class="memproto">
@@ -451,7 +357,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Camera::SetBox </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_rect.html">Rectf</a>&#160;</td>
           <td class="paramname"><em>box</em></td><td>)</td>
           <td></td>
         </tr>
@@ -497,7 +403,7 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Camera::SetSceneBox </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="class_rect.html">Rectf</a>&#160;</td>
           <td class="paramname"><em>box</em></td><td>)</td>
           <td></td>
         </tr>
@@ -513,26 +419,9 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4a596a3ea1fdc7d244ba4268031a360b"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Camera::Update </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Update the camera's position to keep the object centered. </p>
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="camera_8h_source.html">camera.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="camera_8cpp.html">camera.cpp</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/core/<a class="el" href="camera_8h_source.html">camera.h</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/core/camera.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -540,7 +429,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_camera.html">Camera</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

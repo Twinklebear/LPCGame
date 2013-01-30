@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/entitymanager.h Source File</title>
+<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/core/entitymanager.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -66,7 +68,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -89,7 +90,7 @@ $(document).ready(function(){initNavTree('entitymanager_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,50 +104,54 @@ $(document).ready(function(){initNavTree('entitymanager_8h_source.html','');});
 <div class="title">entitymanager.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="entitymanager_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ENTITYMANAGER_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef ENTITYMANAGER_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define ENTITYMANAGER_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;../externals/json/json.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="entity_8h.html">entity.h</a>&quot;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="map_8h.html">map.h</a>&quot;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="camera_8h.html">camera.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;external/json/json.h&quot;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &quot;entity.h&quot;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;map.h&quot;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;camera.h&quot;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
-<div class="line"><a name="l00013"></a><span class="lineno"><a class="code" href="entitymanager_8h.html#a17b8a28bf0fa6bab90e79141f78f67e9">   13</a></span>&#160;<span class="keyword">typedef</span> std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt; <a class="code" href="entitymanager_8h.html#a17b8a28bf0fa6bab90e79141f78f67e9">EntityList</a>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">typedef</span> std::vector&lt;std::shared_ptr&lt;Entity&gt;&gt; EntityList;</div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;</div>
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="code" href="class_entity_manager.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_entity_manager.html" title="Handles the Entities in the active state.">EntityManager</a> {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_entity_manager.html#a7555637657d090171be6ceee8451de0a">EntityManager</a>();</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_entity_manager.html#a71a36c9fb8d579a1a1ec108e0fccf175">~EntityManager</a>();</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_entity_manager.html" title="Handles the Entities in the active state.">EntityManager</a>();</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ~<a class="code" href="class_entity_manager.html" title="Handles the Entities in the active state.">EntityManager</a>();</div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a4d0674ff9362e93edfe4f2e952b49ba8" title="Draw the entities.">Draw</a>();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a67d32e544e5de16dd5a160988bfd3257" title="Update the objects.">Update</a>();</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a672d90f9824a532f6c551e1941dec8ce">Move</a>(<span class="keywordtype">float</span> deltaT);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a2a467c70f14a1387119f2c6ffc6f355e">SetCollisionMaps</a>(<a class="code" href="class_map.html" title="Handles the tile map.">Map</a> *map);</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a27a70ec9ec3dcce820575fdc6586be29">Register</a>(std::shared_ptr&lt;Entity&gt; obj);</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a27a70ec9ec3dcce820575fdc6586be29">Register</a>(std::shared_ptr&lt;Camera&gt; camera);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a922cb9eb39ec28278312ea8d2b27acfb">CheckMouseEvents</a>();</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a2c63274d44854c4d9e188a7642e4366e">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseButtonEvent &amp;mouseEvent);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a2c63274d44854c4d9e188a7642e4366e">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseMotionEvent &amp;mouseEvent);</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    Json::Value <a class="code" href="class_entity_manager.html#a1c02901cbbecb41532f490755c3fddb5">Save</a>();</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="base_8h.html#a9f9733a49b8f313ba6659ffc58abd436" title="A collision map of solid tiles/objects, it&#39;s just a vector of Recti.">CollisionMap</a> GetEntityCollisionMap(<span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;target, <span class="keywordtype">int</span> distance = 2 * <a class="code" href="tile_8h.html#a9308a8ccab88ca272b896567bf38e736">TILE_WIDTH</a>);</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00081"></a><span class="lineno"><a class="code" href="class_entity_manager.html#a4f890510e6f5543c2a16db819b377fdc">   81</a></span>&#160;    <a class="code" href="entitymanager_8h.html#a17b8a28bf0fa6bab90e79141f78f67e9">EntityList</a> <a class="code" href="class_entity_manager.html#a4f890510e6f5543c2a16db819b377fdc" title="The list of entities in the scene.">mEntities</a>;</div>
-<div class="line"><a name="l00082"></a><span class="lineno"><a class="code" href="class_entity_manager.html#a3767ae6f31d7bd84d6fe3dfdebf2f47e">   82</a></span>&#160;    std::shared_ptr&lt;Camera&gt; <a class="code" href="class_entity_manager.html#a3767ae6f31d7bd84d6fe3dfdebf2f47e">mCamera</a>;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a0e2ff131a309321e9e1a8da07982a9b1">Remove</a>(std::shared_ptr&lt;Entity&gt; entity);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    std::shared_ptr&lt;Entity&gt; <a class="code" href="class_entity_manager.html#afb3bc70b64c4f6623e1807619b4964d1">GetEntity</a>(<span class="keyword">const</span> std::string &amp;name);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a922cb9eb39ec28278312ea8d2b27acfb">CheckMouseEvents</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a2c63274d44854c4d9e188a7642e4366e">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseButtonEvent &amp;mouseEvent);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="class_entity_manager.html#a2c63274d44854c4d9e188a7642e4366e">HandleMouseEvent</a>(<span class="keyword">const</span> SDL_MouseMotionEvent &amp;mouseEvent);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <a class="code" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> <a class="code" href="class_entity_manager.html#a1c02901cbbecb41532f490755c3fddb5">Save</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="comment">//Testing shared pointers in Lua</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> PrintSharedPtrCount();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    CollisionMap GetEntityCollisionMap(<span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;target, <span class="keywordtype">int</span> distance = 2 * TILE_WIDTH);</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;<span class="keyword">protected</span>:</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="code" href="class_entity_manager.html#a4f890510e6f5543c2a16db819b377fdc">   94</a></span>&#160;    EntityList <a class="code" href="class_entity_manager.html#a4f890510e6f5543c2a16db819b377fdc" title="The list of entities in the scene.">mEntities</a>;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    std::shared_ptr&lt;Camera&gt; mCamera;</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;};</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="entitymanager_8h.html">entitymanager.h</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:16 for LPCGame by
+    <li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_c5b396cf6041de3f720e619bdc2e9b5f.html">Will</a></li><li class="navelem"><a class="el" href="dir_6202fc1653fe2c11199ca9b0c84676ab.html">Documents</a></li><li class="navelem"><a class="el" href="dir_3f734311a550ac7670f621aed1307696.html">Programs</a></li><li class="navelem"><a class="el" href="dir_ff290f9688089faa1bba9dd416a0522b.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_349c8f16cf6293549b53f7c14cc3fbf3.html">src</a></li><li class="navelem"><a class="el" href="dir_ab39e78cee724661482be65dc43ced5d.html">core</a></li><li class="navelem"><b>entitymanager.h</b></li>
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>
