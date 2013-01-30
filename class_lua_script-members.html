@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('class_lua_script.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -108,19 +110,22 @@ $(document).ready(function(){initNavTree('class_lua_script.html','');});
 
 <p>This is the complete list of members for <a class="el" href="class_lua_script.html">LuaScript</a>, including all inherited members.</p>
 <table class="directory">
-  <tr class="even"><td class="entry"><a class="el" href="class_lua_script.html#a8e003aab673af5e40151095ecc821cd1">File</a>() const </td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_lua_script.html#aadda710c579dcbbc5b407065af0ddef5">Get</a>()</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_lua_script.html#ad1c228fb9c3e3ecaabf76cc6852a7227">LuaScript</a>()</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_lua_script.html#abf4c6fe29f88c87d708ce63c3a3dde08">LuaScript</a>(std::string script)</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_lua_script.html#af7d35a0b3a9f93869d6e1ad3920dfed9">Open</a>() const </td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_lua_script.html#a196ec7c5db7fafdfa36e2896bdca6fdc">OpenScript</a>(const std::string &amp;script)</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_lua_script.html#a5660ae45ebd4b7a621ae21a2ed0e784b">~LuaScript</a>()</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lua_script.html#ad6193ccef45177baa2b4ab99c92384c9">CallFunction</a>(std::string function, std::vector&lt; LuaC::LuaParam * &gt; args=std::vector&lt; LuaC::LuaParam * &gt;()) -&gt; decltype(ReturnType::Retrieve(mL))</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>CallFunction</b>(std::string function, std::vector&lt; LuaC::LuaParam * &gt; args=std::vector&lt; LuaC::LuaParam * &gt;()) (defined in <a class="el" href="class_lua_script.html">LuaScript</a>)</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lua_script.html#a865467185e88b9d59d15714552477d6d">Close</a>()</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lua_script.html#a8e003aab673af5e40151095ecc821cd1">File</a>() const </td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lua_script.html#aadda710c579dcbbc5b407065af0ddef5">Get</a>()</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>LuaScript</b>() (defined in <a class="el" href="class_lua_script.html">LuaScript</a>)</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lua_script.html#abf4c6fe29f88c87d708ce63c3a3dde08">LuaScript</a>(std::string script)</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_lua_script.html#af7d35a0b3a9f93869d6e1ad3920dfed9">Open</a>() const </td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_lua_script.html#a196ec7c5db7fafdfa36e2896bdca6fdc">OpenScript</a>(const std::string &amp;script)</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~LuaScript</b>() (defined in <a class="el" href="class_lua_script.html">LuaScript</a>)</td><td class="entry"><a class="el" href="class_lua_script.html">LuaScript</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

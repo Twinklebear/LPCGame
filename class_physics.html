@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('class_physics.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -104,7 +106,6 @@ $(document).ready(function(){initNavTree('class_physics.html','');});
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_physics-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Physics Class Reference</div>  </div>
@@ -118,36 +119,40 @@ $(document).ready(function(){initNavTree('class_physics.html','');});
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a8146f5776a9b7eaec85b2f15cb814a54"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a8146f5776a9b7eaec85b2f15cb814a54">MOVE</a> { <a class="el" href="class_physics.html#a8146f5776a9b7eaec85b2f15cb814a54a40a3d338f6e0d1492aa9d429c1d96578">STOP</a> = -1
+<tr class="memitem:a8146f5776a9b7eaec85b2f15cb814a54"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a8146f5776a9b7eaec85b2f15cb814a54">MOVE</a> { <b>STOP</b> = -1
  }</td></tr>
 <tr class="memdesc:a8146f5776a9b7eaec85b2f15cb814a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Move enum, at the moment just has one for Stop as <a class="el" href="class_math.html" title="A math utility function class.">Math</a> enum is used for dir.  <a href="class_physics.html#a8146f5776a9b7eaec85b2f15cb814a54">More...</a><br/></td></tr>
 <tr class="separator:a8146f5776a9b7eaec85b2f15cb814a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4b2ebc0a344f04f48d227c72f0d0fbda"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a4b2ebc0a344f04f48d227c72f0d0fbda">Physics</a> ()</td></tr>
-<tr class="separator:a4b2ebc0a344f04f48d227c72f0d0fbda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a045c3788e28059d3920136499942490f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a045c3788e28059d3920136499942490f">~Physics</a> ()</td></tr>
-<tr class="separator:a045c3788e28059d3920136499942490f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a584d0abb66d0126b5e7b4a882ab644ec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a584d0abb66d0126b5e7b4a882ab644ec">Move</a> (float deltaT)</td></tr>
 <tr class="separator:a584d0abb66d0126b5e7b4a882ab644ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a567dd3b9d95afd0d58fe8c0dd6cd5dc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a567dd3b9d95afd0d58fe8c0dd6cd5dc1">Position</a> () const </td></tr>
-<tr class="memdesc:a567dd3b9d95afd0d58fe8c0dd6cd5dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getters.  <a href="#a567dd3b9d95afd0d58fe8c0dd6cd5dc1"></a><br/></td></tr>
+<tr class="memitem:a567dd3b9d95afd0d58fe8c0dd6cd5dc1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a567dd3b9d95afd0d58fe8c0dd6cd5dc1"></a>
+<a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a567dd3b9d95afd0d58fe8c0dd6cd5dc1">Position</a> () const </td></tr>
+<tr class="memdesc:a567dd3b9d95afd0d58fe8c0dd6cd5dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getters. <br/></td></tr>
 <tr class="separator:a567dd3b9d95afd0d58fe8c0dd6cd5dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21e4bcb3cdb4f61d092011b61f54cd4c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a21e4bcb3cdb4f61d092011b61f54cd4c">Velocity</a> () const </td></tr>
+<tr class="memitem:a21e4bcb3cdb4f61d092011b61f54cd4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a21e4bcb3cdb4f61d092011b61f54cd4c"></a>
+<a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Velocity</b> () const </td></tr>
 <tr class="separator:a21e4bcb3cdb4f61d092011b61f54cd4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6338819347d0282ac17a5c60227dbf30"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a6338819347d0282ac17a5c60227dbf30">Acceleration</a> () const </td></tr>
+<tr class="memitem:a6338819347d0282ac17a5c60227dbf30"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6338819347d0282ac17a5c60227dbf30"></a>
+<a class="el" href="class_vector2.html">Vector2f</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Acceleration</b> () const </td></tr>
 <tr class="separator:a6338819347d0282ac17a5c60227dbf30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dad885397ef7b3060a1573753e2b25d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a6dad885397ef7b3060a1573753e2b25d">Box</a> () const </td></tr>
+<tr class="memitem:a6dad885397ef7b3060a1573753e2b25d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6dad885397ef7b3060a1573753e2b25d"></a>
+<a class="el" href="class_rect.html">Rectf</a>&#160;</td><td class="memItemRight" valign="bottom"><b>Box</b> () const </td></tr>
 <tr class="separator:a6dad885397ef7b3060a1573753e2b25d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa736197e7f374184ea7393f84e1a28ae"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#aa736197e7f374184ea7393f84e1a28ae">State</a> () const </td></tr>
+<tr class="memitem:aa736197e7f374184ea7393f84e1a28ae"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa736197e7f374184ea7393f84e1a28ae"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>State</b> () const </td></tr>
 <tr class="separator:aa736197e7f374184ea7393f84e1a28ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7253248d79b4109e5f344bf6e608c37f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a7253248d79b4109e5f344bf6e608c37f">SetPosition</a> (<a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> pos)</td></tr>
-<tr class="memdesc:a7253248d79b4109e5f344bf6e608c37f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setters.  <a href="#a7253248d79b4109e5f344bf6e608c37f"></a><br/></td></tr>
+<tr class="memitem:a7253248d79b4109e5f344bf6e608c37f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7253248d79b4109e5f344bf6e608c37f"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a7253248d79b4109e5f344bf6e608c37f">SetPosition</a> (<a class="el" href="class_vector2.html">Vector2f</a> pos)</td></tr>
+<tr class="memdesc:a7253248d79b4109e5f344bf6e608c37f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Setters. <br/></td></tr>
 <tr class="separator:a7253248d79b4109e5f344bf6e608c37f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd0f6172885c8314da2f9f7f7baf348e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#afd0f6172885c8314da2f9f7f7baf348e">SetVelocity</a> (<a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> vel)</td></tr>
+<tr class="memitem:afd0f6172885c8314da2f9f7f7baf348e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd0f6172885c8314da2f9f7f7baf348e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetVelocity</b> (<a class="el" href="class_vector2.html">Vector2f</a> vel)</td></tr>
 <tr class="separator:afd0f6172885c8314da2f9f7f7baf348e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14307728b2ee5c52cad4d5f80916b331"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a14307728b2ee5c52cad4d5f80916b331">SetAcceleration</a> (<a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> accel)</td></tr>
+<tr class="memitem:a14307728b2ee5c52cad4d5f80916b331"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a14307728b2ee5c52cad4d5f80916b331"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetAcceleration</b> (<a class="el" href="class_vector2.html">Vector2f</a> accel)</td></tr>
 <tr class="separator:a14307728b2ee5c52cad4d5f80916b331"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c8093b4e8319f21d3dfd776a5ab7aec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a2c8093b4e8319f21d3dfd776a5ab7aec">SetHorizDir</a> (int moveDir)</td></tr>
 <tr class="memdesc:a2c8093b4e8319f21d3dfd776a5ab7aec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the horizontal move direction.  <a href="#a2c8093b4e8319f21d3dfd776a5ab7aec"></a><br/></td></tr>
@@ -155,21 +160,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af5ec992954cdbcb618138966f037556c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#af5ec992954cdbcb618138966f037556c">SetVertDir</a> (int moveDir)</td></tr>
 <tr class="memdesc:af5ec992954cdbcb618138966f037556c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the vertical move direction.  <a href="#af5ec992954cdbcb618138966f037556c"></a><br/></td></tr>
 <tr class="separator:af5ec992954cdbcb618138966f037556c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae48e6ad547f04acf9d9c59007161d748"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#ae48e6ad547f04acf9d9c59007161d748">SetPhysConstants</a> (<a class="el" href="struct_physical_constants.html">PhysicalConstants</a> physConstants)</td></tr>
+<tr class="memitem:a3a0d443572ba43ee768adf07bb2a97bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a3a0d443572ba43ee768adf07bb2a97bf">SetDirection</a> (<a class="el" href="class_vector2.html">Vector2f</a> v)</td></tr>
+<tr class="separator:a3a0d443572ba43ee768adf07bb2a97bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae48e6ad547f04acf9d9c59007161d748"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae48e6ad547f04acf9d9c59007161d748"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetPhysConstants</b> (<a class="el" href="struct_physical_constants.html">PhysicalConstants</a> physConstants)</td></tr>
 <tr class="separator:ae48e6ad547f04acf9d9c59007161d748"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a510cf55441d9c8fedef2de95ae1d39fc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a510cf55441d9c8fedef2de95ae1d39fc">SetBox</a> (<a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> box)</td></tr>
+<tr class="memitem:a510cf55441d9c8fedef2de95ae1d39fc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a510cf55441d9c8fedef2de95ae1d39fc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetBox</b> (<a class="el" href="class_rect.html">Rectf</a> box)</td></tr>
 <tr class="separator:a510cf55441d9c8fedef2de95ae1d39fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acae05a528f58185ef0d80d9d53244f54"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#acae05a528f58185ef0d80d9d53244f54">SetMap</a> (<a class="el" href="base_8h.html#a9f9733a49b8f313ba6659ffc58abd436">CollisionMap</a> map)</td></tr>
+<tr class="memitem:acae05a528f58185ef0d80d9d53244f54"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acae05a528f58185ef0d80d9d53244f54"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>SetMap</b> (CollisionMap map)</td></tr>
 <tr class="separator:acae05a528f58185ef0d80d9d53244f54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0d719b4d48abe0020aa4672fecfa7fa3"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a0d719b4d48abe0020aa4672fecfa7fa3">Save</a> () const </td></tr>
+<tr class="memitem:a0d719b4d48abe0020aa4672fecfa7fa3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_json_1_1_value.html">Json::Value</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a0d719b4d48abe0020aa4672fecfa7fa3">Save</a> () const </td></tr>
 <tr class="separator:a0d719b4d48abe0020aa4672fecfa7fa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f3c17b426110578c06395c3594eb2b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a4f3c17b426110578c06395c3594eb2b6">Load</a> (Json::Value val)</td></tr>
+<tr class="memitem:a4f3c17b426110578c06395c3594eb2b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a4f3c17b426110578c06395c3594eb2b6">Load</a> (<a class="el" href="class_json_1_1_value.html">Json::Value</a> val)</td></tr>
 <tr class="separator:a4f3c17b426110578c06395c3594eb2b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
-Static Public Member Functions</h2></td></tr>
-<tr class="memitem:a11ca610579f7f21c734ae1c50b95d7d4"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_physics.html#a11ca610579f7f21c734ae1c50b95d7d4">RegisterLua</a> (lua_State *l)</td></tr>
-<tr class="separator:a11ca610579f7f21c734ae1c50b95d7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides physics functions for an object. </p>
@@ -187,77 +192,10 @@ Static Public Member Functions</h2></td></tr>
 
 <p>Move enum, at the moment just has one for Stop as <a class="el" href="class_math.html" title="A math utility function class.">Math</a> enum is used for dir. </p>
 <dl class="section see"><dt>See Also</dt><dd><a class="el" href="class_math.html" title="A math utility function class.">Math</a> </dd></dl>
-<dl><dt><b>Enumerator: </b></dt><dd><table border="0" cellspacing="2" cellpadding="0">
-<tr><td valign="top"><em><a class="anchor" id="a8146f5776a9b7eaec85b2f15cb814a54a40a3d338f6e0d1492aa9d429c1d96578"></a>STOP</em>&nbsp;</td><td>
-</td></tr>
-</table>
-</dd>
-</dl>
-
-</div>
-</div>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a4b2ebc0a344f04f48d227c72f0d0fbda"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Physics::Physics </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a045c3788e28059d3920136499942490f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">Physics::~Physics </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a6338819347d0282ac17a5c60227dbf30"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> Physics::Acceleration </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a6dad885397ef7b3060a1573753e2b25d"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a> Physics::Box </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a4f3c17b426110578c06395c3594eb2b6"></a>
 <div class="memitem">
 <div class="memproto">
@@ -265,16 +203,16 @@ Static Public Member Functions</h2></td></tr>
         <tr>
           <td class="memname">void Physics::Load </td>
           <td>(</td>
-          <td class="paramtype">Json::Value&#160;</td>
+          <td class="paramtype"><a class="el" href="class_json_1_1_value.html">Json::Value</a>&#160;</td>
           <td class="paramname"><em>val</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Load the object's physical properties from a Json::Value </p>
+<p>Load the object's physical properties from a <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">val</td><td>The Json::Value containing the properties to load </td></tr>
+    <tr><td class="paramname">val</td><td>The <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> containing the properties to load </td></tr>
   </table>
   </dd>
 </dl>
@@ -304,100 +242,43 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a567dd3b9d95afd0d58fe8c0dd6cd5dc1"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> Physics::Position </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Getters. </p>
-
-</div>
-</div>
-<a class="anchor" id="a11ca610579f7f21c734ae1c50b95d7d4"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Physics::RegisterLua </td>
-          <td>(</td>
-          <td class="paramtype">lua_State *&#160;</td>
-          <td class="paramname"><em>l</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Register the <a class="el" href="class_physics.html" title="Provides physics functions for an object.">Physics</a> class with the lua state </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">l</td><td>The lua_State to register the module with </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
 <a class="anchor" id="a0d719b4d48abe0020aa4672fecfa7fa3"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Json::Value Physics::Save </td>
+          <td class="memname"><a class="el" href="class_json_1_1_value.html">Json::Value</a> Physics::Save </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Save the physical properties of the object to a Json::Value </p>
-<dl class="section return"><dt>Returns</dt><dd>Json::Value containing the object's physical properties </dd></dl>
+<p>Save the physical properties of the object to a <a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> </p>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="class_json_1_1_value.html" title="Represents a JSON value.">Json::Value</a> containing the object's physical properties </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a14307728b2ee5c52cad4d5f80916b331"></a>
+<a class="anchor" id="a3a0d443572ba43ee768adf07bb2a97bf"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Physics::SetAcceleration </td>
+          <td class="memname">void Physics::SetDirection </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td>
-          <td class="paramname"><em>accel</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="class_vector2.html">Vector2f</a>&#160;</td>
+          <td class="paramname"><em>v</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a510cf55441d9c8fedef2de95ae1d39fc"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Physics::SetBox </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="rect_8h.html#a72bbf42989aebda81ab76753d34422c9">Rectf</a>&#160;</td>
-          <td class="paramname"><em>box</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p>Set the direction of motion </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">v</td><td>The vector direction to move in, will be normalized </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -420,72 +301,6 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="acae05a528f58185ef0d80d9d53244f54"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Physics::SetMap </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="base_8h.html#a9f9733a49b8f313ba6659ffc58abd436">CollisionMap</a>&#160;</td>
-          <td class="paramname"><em>map</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ae48e6ad547f04acf9d9c59007161d748"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Physics::SetPhysConstants </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_physical_constants.html">PhysicalConstants</a>&#160;</td>
-          <td class="paramname"><em>physConstants</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a7253248d79b4109e5f344bf6e608c37f"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Physics::SetPosition </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td>
-          <td class="paramname"><em>pos</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Setters. </p>
-
-</div>
-</div>
-<a class="anchor" id="afd0f6172885c8314da2f9f7f7baf348e"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Physics::SetVelocity </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a>&#160;</td>
-          <td class="paramname"><em>vel</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="af5ec992954cdbcb618138966f037556c"></a>
 <div class="memitem">
 <div class="memproto">
@@ -505,39 +320,9 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="aa736197e7f374184ea7393f84e1a28ae"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">int Physics::State </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a21e4bcb3cdb4f61d092011b61f54cd4c"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="vectors_8h.html#a9f3739462b0605dcb64299fa289b6afe">Vector2f</a> Physics::Velocity </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="physics_8h_source.html">physics.h</a></li>
-<li>C:/Users/Will/Documents/Programs/LPCGame/src/<a class="el" href="physics_8cpp.html">physics.cpp</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/core/<a class="el" href="physics_8h_source.html">physics.h</a></li>
+<li>C:/Users/Will/Documents/Programs/LPCGame/src/core/physics.cpp</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -545,7 +330,7 @@ Static Public Member Functions</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_physics.html">Physics</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

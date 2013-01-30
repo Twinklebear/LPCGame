@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -77,7 +79,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li class="current"><a href="functions_func.html"><span>Functions</span></a></li>
       <li><a href="functions_vars.html"><span>Variables</span></a></li>
       <li><a href="functions_enum.html"><span>Enumerations</span></a></li>
-      <li><a href="functions_eval.html"><span>Enumerator</span></a></li>
     </ul>
   </div>
   <div id="navrow4" class="tabs3">
@@ -130,7 +131,7 @@ $(document).ready(function(){initNavTree('functions_func_0x62.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -146,16 +147,18 @@ $(document).ready(function(){initNavTree('functions_func_0x62.html','');});
 <li>B()
 : <a class="el" href="class_color.html#af5b8b16b040922e4bc5f612c94134413">Color</a>
 </li>
+<li>Begin()
+: <a class="el" href="class_tile_set.html#aae3ca05e339cf6cb1dfbc6a8afb03069">TileSet</a>
+</li>
 <li>Box()
-: <a class="el" href="class_entity.html#a44fff99d14bb684428d6f21da799ad4a">Entity</a>
-, <a class="el" href="class_window.html#a233b3469e0bd6ab08ad7bfefd1137081">Window</a>
-, <a class="el" href="class_tile.html#a2a112d3fa9d6f02b90885adb08a101be">Tile</a>
-, <a class="el" href="class_physics.html#a6dad885397ef7b3060a1573753e2b25d">Physics</a>
-, <a class="el" href="class_map.html#a3aea75988f570a42f0d3cd2c20b3fa88">Map</a>
+: <a class="el" href="class_tile.html#a2a112d3fa9d6f02b90885adb08a101be">Tile</a>
 , <a class="el" href="class_camera.html#ad2b387efc4f2cdf8ad265a689858658d">Camera</a>
+, <a class="el" href="class_entity.html#a44fff99d14bb684428d6f21da799ad4a">Entity</a>
+, <a class="el" href="class_window.html#a233b3469e0bd6ab08ad7bfefd1137081">Window</a>
+, <a class="el" href="class_map.html#a3aea75988f570a42f0d3cd2c20b3fa88">Map</a>
 </li>
 <li>Button()
-: <a class="el" href="class_button.html#a3b36df1ae23c58aedb9e15a713159459">Button</a>
+: <a class="el" href="class_button.html#a8c40e453abb428b2bb547fe62419f790">Button</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -163,7 +166,7 @@ $(document).ready(function(){initNavTree('functions_func_0x62.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:10 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

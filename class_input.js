@@ -19,6 +19,5 @@ var class_input =
     [ "MouseMotion", "class_input.html#aca208f1576a346c72427f9aff1d45cf6", null ],
     [ "MousePos", "class_input.html#af30a88b5d8ad94f11ce9d526dafc44ac", null ],
     [ "PollEvent", "class_input.html#a495f9772bf0daaccca4330ff8d1aef4b", null ],
-    [ "Quit", "class_input.html#a65c1295c0eb07525e236bee2f28dc762", null ],
-    [ "RegisterLua", "class_input.html#a004a8dcca92cad6c48ce7c66ad5963ff", null ]
+    [ "Quit", "class_input.html#a65c1295c0eb07525e236bee2f28dc762", null ]
 ];

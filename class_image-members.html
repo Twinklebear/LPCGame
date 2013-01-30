@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('class_image.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -109,28 +111,34 @@ $(document).ready(function(){initNavTree('class_image.html','');});
 <p>This is the complete list of members for <a class="el" href="class_image.html">Image</a>, including all inherited members.</p>
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_image.html#a5ba1a4e9fed4c21d245ca333ba78e0c0">Clip</a>(int clipNum) const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_image.html#a7ef8230347f1bfae3788372854bc58ab">Clip</a>() const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a37da7d477ec9be226acc97c14fb7d6af">ClipCount</a>() const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_image.html#abcdf79fa4c50a7e4acf3459cc9233de2">File</a>() const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_image.html#ac4fa0d3229083625644d5dbd7456f6d3">GenClips</a>(int cW, int cH)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_image.html#a58edd1c45b4faeb5f789b0d036d02313">Image</a>()</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a0e7dc7797fc5b626c78b811386dec4b0">Image</a>(const std::string &amp;file)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_image.html#a8ac2329cc4a46185705b16083eb4342c">Load</a>(const std::string &amp;file)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Load</a>(Json::Value val)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_image.html#a087550ea42538abe7cf0cb1e5afc6d0c">mClips</a></td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a393d4018bc1b1d35174e4b1a742a424b">mFile</a></td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_image.html#a068d3056b75c45e59f616bb0f673bc37">mNumClips</a></td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a2c1dba2048324c175a5b52686631d982">mTexture</a></td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_image.html#a717ea585cf27888403cc2b060ae14037">RegisterLua</a>(lua_State *l)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_image.html#add34132dbb7e76fbead31712231d21b8">Save</a>(const std::string &amp;file) const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_image.html#a823f3f6993a97cd5513b71512b77b736">SaveClips</a>() const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_image.html#aeeff03a1e9554c2624177f388b97f0b7">H</a>() const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>Image</b>() (defined in <a class="el" href="class_image.html">Image</a>)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_image.html#a0e7dc7797fc5b626c78b811386dec4b0">Image</a>(const std::string &amp;file)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a8ac2329cc4a46185705b16083eb4342c">Load</a>(const std::string &amp;file)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_image.html#a9e4cfdd1f0582a6e1f17a344d6e10f8a">Load</a>(Json::Value val)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>mActiveClip</b> (defined in <a class="el" href="class_image.html">Image</a>)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>mClips</b> (defined in <a class="el" href="class_image.html">Image</a>)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>mFile</b> (defined in <a class="el" href="class_image.html">Image</a>)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>mNumClips</b> (defined in <a class="el" href="class_image.html">Image</a>)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>mTexture</b> (defined in <a class="el" href="class_image.html">Image</a>)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_image.html#add34132dbb7e76fbead31712231d21b8">Save</a>(const std::string &amp;file) const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_image.html#a823f3f6993a97cd5513b71512b77b736">SaveClips</a>() const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_image.html#a7d73deb36cac388515d9cd38568cd74e">SetActiveClip</a>(int clip)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_image.html#adde1729339310e43975360e80fbaf047">SetClips</a>(const std::vector&lt; Recti &gt; &amp;clips)</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_image.html#ac9e9ce4acaefbb70716ab080b91fed6f">Texture</a>()</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_image.html#ad04f736518d8f8f98b17f47f0a785521">Size</a>(int *w, int *h=NULL) const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_image.html#ac9e9ce4acaefbb70716ab080b91fed6f">Texture</a>()</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_image.html#a509cd376d4dfd4eaa8cdd59a912fa2c0">W</a>() const </td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_image.html#a0294f63700543e11c0f0da85601c7ae5">~Image</a>()</td><td class="entry"><a class="el" href="class_image.html">Image</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

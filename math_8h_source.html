@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
-<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/math.h Source File</title>
+<title>LPCGame: C:/Users/Will/Documents/Programs/LPCGame/src/core/math.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -66,7 +68,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
-      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -89,7 +90,7 @@ $(document).ready(function(){initNavTree('math_8h_source.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,41 +104,39 @@ $(document).ready(function(){initNavTree('math_8h_source.html','');});
 <div class="title">math.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="math_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MATH_H</span></div>
+<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef MATH_H</span></div>
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define MATH_H</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;cmath&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;luabind/luabind.hpp&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="base_8h.html">base.h</a>&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="code" href="class_math.html">   12</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_math.html" title="A math utility function class.">Math</a>{</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="code" href="class_math.html#a7436d9682eac6b791a06ec11b1187a09a52baf9fd57ffe954f9ced2373434a308">   15</a></span>&#160;    <span class="keyword">enum</span> { <a class="code" href="class_math.html#a7436d9682eac6b791a06ec11b1187a09a52baf9fd57ffe954f9ced2373434a308">UP</a>, <a class="code" href="class_math.html#a7436d9682eac6b791a06ec11b1187a09aaa9d99a0d871f5746fd55c0ffc39e50a">DOWN</a>, <a class="code" href="class_math.html#a7436d9682eac6b791a06ec11b1187a09a0e724269f642f402f5936f76d9060778">LEFT</a>, <a class="code" href="class_math.html#a7436d9682eac6b791a06ec11b1187a09a9b02519c3b92cba444adc5ff4838d28d">RIGHT</a>};</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_math.html#a3caada48e8fdeef772a97173478ddd17">Distance</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;a, <span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;b);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_math.html#accf92ae46293735b9ec67e7b53eda32f">Clamp</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> x, <span class="keyword">const</span> <span class="keywordtype">float</span> min, <span class="keyword">const</span> <span class="keywordtype">float</span> max);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_math.html#a1908cd0d6a79f390463252a398a7b076">Magnitude</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;v);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#a93d3bd69c05d09514d5b674f94dc180f">Normalize</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;v);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#abda933ff6b76891acd5f18f6b50f65dd">Lerp</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;start, <span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;end, <span class="keywordtype">float</span> percent);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#aaf7d6559f1d2b5a77a79ca966a11b81f">ForwardVector</a>(<span class="keywordtype">float</span> degrees);</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_math.html#a729df13db67f5fdc154dd8d03f95d643">RectNearRect</a>(<span class="keyword">const</span> <a class="code" href="class_rect.html" title="A rectangle.">Rectf</a> &amp;a, <span class="keyword">const</span> <a class="code" href="class_rect.html" title="A rectangle.">Rectf</a> &amp;b, <span class="keywordtype">int</span> tolerance = 0);</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_math.html#a0dcddce5d37b62846254ce98c62d8c02">CheckCollision</a>(<span class="keyword">const</span> <a class="code" href="class_rect.html" title="A rectangle.">Rectf</a> &amp;a, <span class="keyword">const</span> <a class="code" href="class_rect.html" title="A rectangle.">Rectf</a> &amp;b);</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_math.html#a0dcddce5d37b62846254ce98c62d8c02">CheckCollision</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;p, <span class="keyword">const</span> <a class="code" href="class_rect.html" title="A rectangle.">Rectf</a> &amp;r);</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#a9bea8b44094830e0c96b3505ef2402bf">ToSceneSpace</a>(<span class="keyword">const</span> <a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a> *cam, <span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;v);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_rect.html" title="A rectangle.">Rectf</a> <a class="code" href="class_math.html#a9bea8b44094830e0c96b3505ef2402bf">ToSceneSpace</a>(<span class="keyword">const</span> <a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a> *cam, <span class="keyword">const</span> <a class="code" href="class_rect.html" title="A rectangle.">Rectf</a> &amp;r);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#a8ab20b6ad8b2004779ea5835fcb37648">FromSceneSpace</a>(<span class="keyword">const</span> <a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a> *cam, <span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;v);</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_rect.html" title="A rectangle.">Rectf</a> <a class="code" href="class_math.html#a8ab20b6ad8b2004779ea5835fcb37648">FromSceneSpace</a>(<span class="keyword">const</span> <a class="code" href="class_camera.html" title="A camera to draw the scene in.">Camera</a> *cam, <span class="keyword">const</span> <a class="code" href="class_rect.html" title="A rectangle.">Rectf</a> &amp;r);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_math.html#a16cf71c621e345e02a54e347e3624785">RegisterLua</a>(lua_State *l);</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;};</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;base.h&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="code" href="class_math.html">   11</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_math.html" title="A math utility function class.">Math</a> {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keyword">enum</span> { UP, DOWN, LEFT, RIGHT };</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_math.html#a3caada48e8fdeef772a97173478ddd17">Distance</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;a, <span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;b);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_math.html#accf92ae46293735b9ec67e7b53eda32f">Clamp</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> x, <span class="keyword">const</span> <span class="keywordtype">float</span> min, <span class="keyword">const</span> <span class="keywordtype">float</span> max);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">float</span> <a class="code" href="class_math.html#a1908cd0d6a79f390463252a398a7b076">Magnitude</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;v);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#a93d3bd69c05d09514d5b674f94dc180f">Normalize</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;v);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#abda933ff6b76891acd5f18f6b50f65dd">Lerp</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;start, <span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;end, <span class="keywordtype">float</span> percent);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#aaf7d6559f1d2b5a77a79ca966a11b81f">ForwardVector</a>(<span class="keywordtype">float</span> degrees);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="class_math.html#a729df13db67f5fdc154dd8d03f95d643">RectNearRect</a>(<span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;a, <span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;b, <span class="keywordtype">int</span> tolerance = 0);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_math.html#a0dcddce5d37b62846254ce98c62d8c02">CheckCollision</a>(<span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;a, <span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;b);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">bool</span> <a class="code" href="class_math.html#a0dcddce5d37b62846254ce98c62d8c02">CheckCollision</a>(<span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;p, <span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;r);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#a9ac1d7d06527fc8a6ba107c58da2ab5c">ToSceneSpace</a>(<span class="keyword">const</span> std::weak_ptr&lt;Camera&gt; cam, <span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;v);</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_rect.html">Rectf</a> <a class="code" href="class_math.html#a9ac1d7d06527fc8a6ba107c58da2ab5c">ToSceneSpace</a>(<span class="keyword">const</span> std::weak_ptr&lt;Camera&gt; cam, <span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;r);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector2.html">Vector2f</a> <a class="code" href="class_math.html#aac34ccc330428a5a3f14e817a12ee6f2">FromSceneSpace</a>(<span class="keyword">const</span> std::weak_ptr&lt;Camera&gt; cam, <span class="keyword">const</span> <a class="code" href="class_vector2.html">Vector2f</a> &amp;v);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_rect.html">Rectf</a> <a class="code" href="class_math.html#aac34ccc330428a5a3f14e817a12ee6f2">FromSceneSpace</a>(<span class="keyword">const</span> std::weak_ptr&lt;Camera&gt; cam, <span class="keyword">const</span> <a class="code" href="class_rect.html">Rectf</a> &amp;r);</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;};</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="math_8h.html">math.h</a></li>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="navelem"><a class="el" href="dir_8ceffd4ee35c3518d4e8bdc7e638efe8.html">Users</a></li><li class="navelem"><a class="el" href="dir_c5b396cf6041de3f720e619bdc2e9b5f.html">Will</a></li><li class="navelem"><a class="el" href="dir_6202fc1653fe2c11199ca9b0c84676ab.html">Documents</a></li><li class="navelem"><a class="el" href="dir_3f734311a550ac7670f621aed1307696.html">Programs</a></li><li class="navelem"><a class="el" href="dir_ff290f9688089faa1bba9dd416a0522b.html">LPCGame</a></li><li class="navelem"><a class="el" href="dir_349c8f16cf6293549b53f7c14cc3fbf3.html">src</a></li><li class="navelem"><a class="el" href="dir_ab39e78cee724661482be65dc43ced5d.html">core</a></li><li class="navelem"><b>math.h</b></li>
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

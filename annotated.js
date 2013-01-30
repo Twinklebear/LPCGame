@@ -1,11 +1,14 @@
 var annotated =
 [
+    [ "Json", "namespace_json.html", "namespace_json" ],
+    [ "LuaC", "namespace_lua_c.html", null ],
     [ "AnimatedImage", "class_animated_image.html", "class_animated_image" ],
     [ "AnimationSequence", "struct_animation_sequence.html", "struct_animation_sequence" ],
     [ "Button", "class_button.html", "class_button" ],
     [ "Camera", "class_camera.html", "class_camera" ],
     [ "CameraPan", "struct_camera_pan.html", "struct_camera_pan" ],
     [ "Color", "class_color.html", "class_color" ],
+    [ "Debug", "class_debug.html", "class_debug" ],
     [ "EditorState", "class_editor_state.html", "class_editor_state" ],
     [ "Entity", "class_entity.html", "class_entity" ],
     [ "EntityEditor", "class_entity_editor.html", "class_entity_editor" ],
@@ -15,6 +18,7 @@ var annotated =
     [ "Input", "class_input.html", "class_input" ],
     [ "JsonHandler", "class_json_handler.html", "class_json_handler" ],
     [ "Kinematic", "struct_kinematic.html", "struct_kinematic" ],
+    [ "LuaC", "struct_lua_c.html", "struct_lua_c" ],
     [ "LuaScript", "class_lua_script.html", "class_lua_script" ],
     [ "Map", "class_map.html", "class_map" ],
     [ "MapEditor", "class_map_editor.html", "class_map_editor" ],
@@ -22,7 +26,6 @@ var annotated =
     [ "MenuState", "class_menu_state.html", "class_menu_state" ],
     [ "MotionState", "class_motion_state.html", "class_motion_state" ],
     [ "ObjectButton", "class_object_button.html", "class_object_button" ],
-    [ "ObjectPool", "class_object_pool.html", "class_object_pool" ],
     [ "PhysicalConstants", "struct_physical_constants.html", "struct_physical_constants" ],
     [ "Physics", "class_physics.html", "class_physics" ],
     [ "Rect", "class_rect.html", "class_rect" ],
@@ -31,8 +34,8 @@ var annotated =
     [ "Text", "class_text.html", "class_text" ],
     [ "Tile", "class_tile.html", "class_tile" ],
     [ "TileBar", "class_tile_bar.html", "class_tile_bar" ],
+    [ "TileSet", "class_tile_set.html", "class_tile_set" ],
     [ "Timer", "class_timer.html", "class_timer" ],
-    [ "UiObjectManager", "class_ui_object_manager.html", "class_ui_object_manager" ],
     [ "Vector2", "class_vector2.html", "class_vector2" ],
     [ "Window", "class_window.html", "class_window" ]
 ];

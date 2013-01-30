@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('class_entity_manager.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -110,24 +112,27 @@ $(document).ready(function(){initNavTree('class_entity_manager.html','');});
 <table class="directory">
   <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a922cb9eb39ec28278312ea8d2b27acfb">CheckMouseEvents</a>()</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_entity_manager.html#a4d0674ff9362e93edfe4f2e952b49ba8">Draw</a>()</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a7555637657d090171be6ceee8451de0a">EntityManager</a>()</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_entity_manager.html#a2c63274d44854c4d9e188a7642e4366e">HandleMouseEvent</a>(const SDL_MouseButtonEvent &amp;mouseEvent)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a9c7d4dc53f38552e38d3c33ce303446d">HandleMouseEvent</a>(const SDL_MouseMotionEvent &amp;mouseEvent)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_entity_manager.html#a3767ae6f31d7bd84d6fe3dfdebf2f47e">mCamera</a></td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a4f890510e6f5543c2a16db819b377fdc">mEntities</a></td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_entity_manager.html#a672d90f9824a532f6c551e1941dec8ce">Move</a>(float deltaT)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>EntityManager</b>() (defined in <a class="el" href="class_entity_manager.html">EntityManager</a>)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_entity_manager.html#afb3bc70b64c4f6623e1807619b4964d1">GetEntity</a>(const std::string &amp;name)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a2c63274d44854c4d9e188a7642e4366e">HandleMouseEvent</a>(const SDL_MouseButtonEvent &amp;mouseEvent)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_entity_manager.html#a9c7d4dc53f38552e38d3c33ce303446d">HandleMouseEvent</a>(const SDL_MouseMotionEvent &amp;mouseEvent)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>mCamera</b> (defined in <a class="el" href="class_entity_manager.html">EntityManager</a>)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr><td class="entry"><a class="el" href="class_entity_manager.html#a4f890510e6f5543c2a16db819b377fdc">mEntities</a></td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">protected</span></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a672d90f9824a532f6c551e1941dec8ce">Move</a>(float deltaT)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>PrintSharedPtrCount</b>() (defined in <a class="el" href="class_entity_manager.html">EntityManager</a>)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a27a70ec9ec3dcce820575fdc6586be29">Register</a>(std::shared_ptr&lt; Entity &gt; obj)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_entity_manager.html#ad2b56df1f06710de1b47c0a0bae74e3c">Register</a>(std::shared_ptr&lt; Camera &gt; camera)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a1c02901cbbecb41532f490755c3fddb5">Save</a>()</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_entity_manager.html#a2a467c70f14a1387119f2c6ffc6f355e">SetCollisionMaps</a>(Map *map)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a67d32e544e5de16dd5a160988bfd3257">Update</a>()</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_entity_manager.html#a71a36c9fb8d579a1a1ec108e0fccf175">~EntityManager</a>()</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a0e2ff131a309321e9e1a8da07982a9b1">Remove</a>(std::shared_ptr&lt; Entity &gt; entity)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_entity_manager.html#a1c02901cbbecb41532f490755c3fddb5">Save</a>()</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_entity_manager.html#a2a467c70f14a1387119f2c6ffc6f355e">SetCollisionMaps</a>(Map *map)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_entity_manager.html#a67d32e544e5de16dd5a160988bfd3257">Update</a>()</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>~EntityManager</b>() (defined in <a class="el" href="class_entity_manager.html">EntityManager</a>)</td><td class="entry"><a class="el" href="class_entity_manager.html">EntityManager</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>

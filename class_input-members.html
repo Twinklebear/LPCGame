@@ -29,7 +29,7 @@
   <td style="padding-left: 0.5em;">
    <div id="projectname">LPCGame
    </div>
-   <div id="projectbrief">A 2d game &#39;engine&#39; written in C++</div>
+   <div id="projectbrief">A Simple 2d Game Engine</div>
   </td>
  </tr>
  </tbody>
@@ -43,6 +43,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
+      <li><a href="namespaces.html"><span>Namespaces</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -91,7 +93,7 @@ $(document).ready(function(){initNavTree('class_input.html','');});
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerator</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Enumerator</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -116,7 +118,7 @@ $(document).ready(function(){initNavTree('class_input.html','');});
   <tr><td class="entry"><a class="el" href="class_input.html#acd61f39ae0b27da25c487cce8384ebd2">GetJoyHat</a>(int hat)</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_input.html#ae7be3422c655af8e3c45118a6377647f">GetMotion</a>()</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_input.html#a5197114da7299198826ff7277ee12bff">Init</a>()</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_input.html#abae3f379d3f157cf42dc857309832dba">Input</a>()</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"class="even"><td class="entry"><b>Input</b>() (defined in <a class="el" href="class_input.html">Input</a>)</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="class_input.html#a21fbf7a311c4777e8db89b73f334d8d8">JoystickAvailable</a>()</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_input.html#a9025f35976e8c91977e07d4b38aa2072">JoySupportsHaptic</a>()</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_input.html#aaa2285a148fe63c1253f211893e46387">KeyDown</a>(std::string keyCode)</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
@@ -127,14 +129,13 @@ $(document).ready(function(){initNavTree('class_input.html','');});
   <tr class="even"><td class="entry"><a class="el" href="class_input.html#af30a88b5d8ad94f11ce9d526dafc44ac">MousePos</a>()</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr><td class="entry"><a class="el" href="class_input.html#a495f9772bf0daaccca4330ff8d1aef4b">PollEvent</a>()</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
   <tr class="even"><td class="entry"><a class="el" href="class_input.html#a65c1295c0eb07525e236bee2f28dc762">Quit</a>()</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr><td class="entry"><a class="el" href="class_input.html#a004a8dcca92cad6c48ce7c66ad5963ff">RegisterLua</a>(lua_State *l)</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"><span class="mlabel">static</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_input.html#af2db35ba67c8a8ccd23bef6a482fc291">~Input</a>()</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>~Input</b>() (defined in <a class="el" href="class_input.html">Input</a>)</td><td class="entry"><a class="el" href="class_input.html">Input</a></td><td class="entry"></td></tr>
 </table></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Oct 11 2012 18:07:17 for LPCGame by
+    <li class="footer">Generated on Tue Jan 29 2013 18:58:09 for LPCGame by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.2 </li>
   </ul>
