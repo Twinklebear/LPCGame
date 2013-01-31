@@ -15,6 +15,20 @@ int main(int argc, char** argv){
     LuaRef entityRef(l, 1);*/
     LuaRef entityRef(l, "entity");
     entityRef.Push();
+    //Push on a new field entry
+    lua_pushstring(l, "test");
+    lua_pushstring(l, "testOKEYDOKEY");
+    lua_rawset(l, 1);
+    std::cout << "setfield, stack: ";
+    sA.stackDump(l);
+    std::cout << "getting field test contains: ";
+    lua_getfield(l, 1, "test");
+    std::cout << lua_tostring(l, -1) << std::endl;
+    std::cout << "stack post get: ";
+    sA.stackDump(l);
+    //pop it off
+    lua_pop(l, 1);
+
     lua_getfield(l, 1, "name");
     std::cout << "Entity name: " << lua_tostring(l, 2) << std::endl;
     //Pop the name off
