@@ -45,13 +45,11 @@ bool InitSDLGL(){
         SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     //Create the gl context and setup matrix
     glContext = SDL_GL_CreateContext(win);
-    glMatrixMode(GL_PROJECTION | GL_MODELVIEW);
-    glLoadIdentity();
-    glOrtho(-1.0, 1.0, -1.0, 1.0, 0.0, 1.0);
+    //Is glMatrixMode and LoadIdentity used at all in OpenGL3+ when using shaders? I don't think it is
+    /*glMatrixMode(GL_PROJECTION | GL_MODELVIEW);
+    glLoadIdentity();*/
     glEnable(GL_MULTISAMPLE_ARB);
     GL::SetupGLFunctions();
-    //SDL sets this for us
-    //glViewport(0, 0, 640, 480);
 
     //print the GL version
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl
@@ -178,7 +176,7 @@ int main(int argc, char** argv){
     //Load the shaders
     //programID = LoadShaders("../res/shader.v.glsl", "../res/shader.f.glsl");
     InitializeShaderProgram();
-    
+    //Todo: GL_VERTEX_ARRAY?
     //Create our vertex buffer
     GL::GenBuffers(1, &vertexBuffer);
     GL::BindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
