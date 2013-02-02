@@ -9,6 +9,7 @@
 #include "map.h"
 #include "image.h"
 #include "luascript.h"
+#include "luac/luaref.h"
 
 ///The Entity class, to provide functions that call to attached Lua scripts
 /**

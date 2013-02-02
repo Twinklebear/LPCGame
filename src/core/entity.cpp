@@ -4,6 +4,7 @@
 #include "luac/luaccamera.h"
 #include "luac/luacudataparam.h"
 #include "luac/luacprimitiveparam.h"
+#include "luac/luaref.h"
 #include "math.h"
 #include "luascript.h"
 #include "jsonhandler.h"
@@ -27,6 +28,9 @@ void Entity::Init(std::shared_ptr<Entity> self){
 	//int scripts
 	if (!mScript.Open())
 		return;
+    
+    //The Entity's table will be the global table
+    //with the entity's name
     
     if (self != nullptr){
         //Push the self pointer onto the state so the script can use it
