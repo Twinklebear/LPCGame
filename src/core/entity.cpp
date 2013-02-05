@@ -11,11 +11,11 @@
 #include "debug.h"
 #include "entity.h"
 
-Entity::Entity() : mPhysics(new Physics()), mName(""), mTag(""), mConfigFile(""), 
+Entity::Entity() : mPhysics(std::make_shared<Physics>()), mName(""), mTag(""), mConfigFile(""), 
     mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
 {
 }
-Entity::Entity(std::string file) : mPhysics(new Physics()), mName(""), mTag(""), mConfigFile(""),
+Entity::Entity(std::string file) : mPhysics(std::make_shared<Physics>()), mName(""), mTag(""), mConfigFile(""),
     mMouseOver(false), mClicked(false), mRender(true), mUiElement(false)
 {
     Load(file);

@@ -5,6 +5,7 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
+#include "luacudata.h"
 #include "luacparam.h"
 #include "luacvector2f.h"
 #include "luacrectf.h"
@@ -70,106 +71,24 @@ namespace LuaC {
         const static std::function<void(lua_State*, const T*)> mPusher;
         const static std::function<T*(lua_State*, int)> mRetriever;
     };
-    //Is there a way i can enable doing this? I'd need to somehow deduce the lib
-    //from the type T, i guess i could use auto and decltype for returns and then do
-    //typedefs based on the lib name. hmm
-    /*
+    //We use UdataLib's Push/Check functions for each type so get the appropriate instance
     template<class T>
     const std::function<void(lua_State*, const T*)>
-        LuaUdataParam<T>::mPusher = &T::Push;
+        LuaUdataParam<T>::mPusher = &UdataLib<T>::Push;
     template<class T>
     const std::function<T*(lua_State*, int)>
-        LuaUdataParam<T>::mRetriever = &T::Check;
-        */
-    //Pusher function specializations & shorthand typedefs
-    //Animated Image
-    typedef LuaUdataParam<std::shared_ptr<AnimatedImage>> AnimImgParam;
-    template<>
-    const std::function<void(lua_State*, const std::shared_ptr<AnimatedImage>*)> 
-        AnimImgParam::mPusher = &AnimatedImageLib::Push;
-    template<>
-    const std::function<std::shared_ptr<AnimatedImage>*(lua_State*, int)>
-        AnimImgParam::mRetriever = &AnimatedImageLib::Check;
+        LuaUdataParam<T>::mRetriever = &UdataLib<T>::Check;
 
-    //Camera
+    //Shorthand typedefs
+    typedef LuaUdataParam<std::shared_ptr<AnimatedImage>> AnimImgParam;
     typedef LuaUdataParam<std::weak_ptr<Camera>> CameraParam;
-    template<>
-    const std::function<void(lua_State*, const std::weak_ptr<Camera>*)> 
-        CameraParam::mPusher = &CameraLib::Push;
-    template<>
-    const std::function<std::weak_ptr<Camera>*(lua_State*, int)>
-        CameraParam::mRetriever = &CameraLib::Check;
-        
-    //Color
     typedef LuaUdataParam<Color> ColorParam;
-    template<>
-    const std::function<void(lua_State*, const Color*)>
-        ColorParam::mPusher = &ColorLib::Push;
-    template<>
-    const std::function<Color*(lua_State*, int)>
-        ColorParam::mRetriever = &ColorLib::Check;
-        
-    //Entity
     typedef LuaUdataParam<std::shared_ptr<Entity>> EntityParam;
-    template<>
-    const std::function<void(lua_State*, const std::shared_ptr<Entity>*)>
-        EntityParam::mPusher = &EntityLib::Push;
-    template<>
-    const std::function<std::shared_ptr<Entity>*(lua_State*, int)>
-        EntityParam::mRetriever = &EntityLib::Check;
-        
-    //Image
     typedef LuaUdataParam<std::shared_ptr<Image>> ImageParam;
-    template<>
-    const std::function<void(lua_State*, const std::shared_ptr<Image>*)>
-        ImageParam::mPusher = &ImageLib::Push;
-    template<>
-    const std::function<std::shared_ptr<Image>*(lua_State*, int)>
-        ImageParam::mRetriever = &ImageLib::Check;
-        
-    //Physics
     typedef LuaUdataParam<std::weak_ptr<Physics>> PhysicsParam;
-    template<>
-    const std::function<void(lua_State*, const std::weak_ptr<Physics>*)>
-        PhysicsParam::mPusher = &PhysicsLib::Push;
-    template<>
-    const std::function<std::weak_ptr<Physics>*(lua_State*, int)>
-        PhysicsParam::mRetriever = &PhysicsLib::Check;
-        
-    //Rectf
     typedef LuaUdataParam<Rectf> RectfParam;
-    template<>
-    const std::function<void(lua_State*, const Rectf*)>
-        RectfParam::mPusher = &RectfLib::Push;
-    template<>
-    const std::function<Rectf*(lua_State*, int)>
-        RectfParam::mRetriever = &RectfLib::Check;
-        
-    //Text
     typedef LuaUdataParam<std::shared_ptr<Text>> TextParam;
-    template<>
-    const std::function<void(lua_State*, const std::shared_ptr<Text>*)>
-        TextParam::mPusher = &TextLib::Push;
-    template<>
-    const std::function<std::shared_ptr<Text>*(lua_State*, int)>
-        TextParam::mRetriever = &TextLib::Check;
-        
-    //Timer
     typedef LuaUdataParam<Timer> TimerParam;
-    template<>
-    const std::function<void(lua_State*, const Timer*)> 
-        TimerParam::mPusher = &TimerLib::Push;
-    template<>
-    const std::function<Timer*(lua_State*, int)>
-        TimerParam::mRetriever = &TimerLib::Check;
-        
-    //Vector2f
     typedef LuaUdataParam<Vector2f> Vector2fParam;
-    template<>
-    const std::function<void(lua_State*, const Vector2f*)> 
-        Vector2fParam::mPusher = &Vector2fLib::Push;
-    template<>
-    const std::function<Vector2f*(lua_State*, int)>
-        Vector2fParam::mRetriever = &Vector2fLib::Check;
 }
 #endif
