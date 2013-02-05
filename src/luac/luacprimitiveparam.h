@@ -49,7 +49,6 @@ namespace LuaC {
         const static std::function<void(lua_State*, T)> mPusher;
         const static std::function<T(lua_State*, int)> mRetriever;
     };
-    //Pusher function specializations
     //Bool
     typedef LuaPrimitiveParam<bool> BoolParam;
     template<>
