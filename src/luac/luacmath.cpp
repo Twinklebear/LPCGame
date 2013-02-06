@@ -42,9 +42,9 @@ const struct luaL_reg LuaC::MathLib::luaMathLib[] = {
 };
 int LuaC::MathLib::distance(lua_State *l){
     //Stack: Vector2f vA, Vector2f vB. Where we want the distance between these vectors
-    Vector2f *vA = Vector2fLib::Check(l, 1);
-    Vector2f *vB = Vector2fLib::Check(l, 2);
-    lua_pushnumber(l, Math::Distance(*vA, *vB));
+    Vector2f vA = Vector2fLib::Check(l, 1);
+    Vector2f vB = Vector2fLib::Check(l, 2);
+    lua_pushnumber(l, Math::Distance(vA, vB));
     return 1;
 }
 int LuaC::MathLib::clamp(lua_State *l){
@@ -57,42 +57,38 @@ int LuaC::MathLib::clamp(lua_State *l){
 }
 int LuaC::MathLib::magnitude(lua_State *l){
     //Stack: Vector2f
-    Vector2f *v = Vector2fLib::Check(l, 1);
-    lua_pushnumber(l, Math::Magnitude(*v));
+    Vector2f v = Vector2fLib::Check(l, 1);
+    lua_pushnumber(l, Math::Magnitude(v));
     return 1;
 }
 int LuaC::MathLib::normalize(lua_State *l){
     //Stack: Vector2f
-    Vector2f *v = Vector2fLib::Check(l, 1);
-    Vector2f unit = Math::Normalize(*v);
-    Vector2fLib::Push(l, &unit);
+    Vector2f v = Vector2fLib::Check(l, 1);
+    Vector2fLib::Push(l, Math::Normalize(v));
     return 1;
 }
 int LuaC::MathLib::lerp(lua_State *l){
     //Stack: Vector2f start, Vector2f end, float percent
-    Vector2f *start = Vector2fLib::Check(l, 1);
-    Vector2f *end = Vector2fLib::Check(l, 2);
+    Vector2f start = Vector2fLib::Check(l, 1);
+    Vector2f end = Vector2fLib::Check(l, 2);
     float percent = luaL_checknumber(l, 3);
-    Vector2f lerped = Math::Lerp(*start, *end, percent);
-    Vector2fLib::Push(l, &lerped);
+    Vector2fLib::Push(l, Math::Lerp(start, end, percent));
     return 1;
 }
 int LuaC::MathLib::forwardVector(lua_State *l){
     //Stack: float 
     float degrees = luaL_checknumber(l, 1);
-    Vector2f v = Math::ForwardVector(degrees);
-    Vector2fLib::Push(l, &v);
+    Vector2fLib::Push(l, Math::ForwardVector(degrees));
     return 1;
 }
 int LuaC::MathLib::rectNearRect(lua_State *l){
     //Stack: Rectf rA, Rectf rB, tolerance distance
     //We want to know if the Rect's are within tolerance dist of each other, and
     //if so which side of A is closest to B
-    Rectf *rA = RectfLib::Check(l, 1);
-    Rectf *rB = RectfLib::Check(l, 2);
+    Rectf rA = RectfLib::Check(l, 1);
+    Rectf rB = RectfLib::Check(l, 2);
     int tolerance = luaL_checkint(l, 3);
-    int side = Math::RectNearRect(*rA, *rB, tolerance);
-    lua_pushinteger(l, side);
+    lua_pushinteger(l, Math::RectNearRect(rA, rB, tolerance));
     return 1;
 }
 int LuaC::MathLib::checkCollision(lua_State *l){
@@ -103,16 +99,14 @@ int LuaC::MathLib::checkCollision(lua_State *l){
     *  and we want to know if the objects are colliding/intersecting
     */
     if (LuaScriptLib::readType(l, 1) == rectfClass){
-        Rectf *rA = RectfLib::Check(l, 1);
-        Rectf *rB = RectfLib::Check(l, 2);
-        bool coll = Math::CheckCollision(*rA, *rB);
-        lua_pushboolean(l, coll);
+        Rectf rA = RectfLib::Check(l, 1);
+        Rectf rB = RectfLib::Check(l, 2);
+        lua_pushboolean(l, Math::CheckCollision(rA, rB));
     }
     else if (LuaScriptLib::readType(l, 1) == vector2fClass){
-        Vector2f *v = Vector2fLib::Check(l, 1);
-        Rectf *r = RectfLib::Check(l, 2);
-        bool coll = Math::CheckCollision(*v, *r);
-        lua_pushboolean(l, coll);
+        Vector2f v = Vector2fLib::Check(l, 1);
+        Rectf r = RectfLib::Check(l, 2);
+        lua_pushboolean(l, Math::CheckCollision(v, r));
     }
     else {
         Debug::Log("Math.checkCollision Error: first type must be a Rectf or Vector2f");
@@ -127,16 +121,14 @@ int LuaC::MathLib::toSceneSpace(lua_State *l){
     *  2. Camera, Vector2f
     *  and we want to transform the position into scene space
     */
-    std::weak_ptr<Camera> *cam = CameraLib::Check(l, 1);
+    std::weak_ptr<Camera> cam = CameraLib::Check(l, 1);
     if (LuaScriptLib::readType(l, 2) == rectfClass){
-        Rectf *r = RectfLib::Check(l, 2);
-        Rectf transform = Math::ToSceneSpace(*cam, *r);
-        RectfLib::Push(l, &transform);
+        Rectf r = RectfLib::Check(l, 2);
+        RectfLib::Push(l, Math::ToSceneSpace(cam, r));
     }
     else if (LuaScriptLib::readType(l, 2) == vector2fClass){
-        Vector2f *v = Vector2fLib::Check(l, 2);
-        Vector2f transform = Math::ToSceneSpace(*cam, *v);
-        Vector2fLib::Push(l, &transform);
+        Vector2f v = Vector2fLib::Check(l, 2);
+        Vector2fLib::Push(l, Math::ToSceneSpace(cam, v));
     }
     else {
         Debug::Log("Math.toSceneSpace Error: Must have a Rectf or Vector2f to transform");
@@ -151,16 +143,14 @@ int LuaC::MathLib::fromSceneSpace(lua_State *l){
     *  2. Camera, Vector2f
     *  and we want to transform the position into scene space
     */
-    std::weak_ptr<Camera> *cam = CameraLib::Check(l, 1);
+    std::weak_ptr<Camera> cam = CameraLib::Check(l, 1);
     if (LuaScriptLib::readType(l, 2) == rectfClass){
-        Rectf *r = RectfLib::Check(l, 2);
-        Rectf transform = Math::FromSceneSpace(*cam, *r);
-        RectfLib::Push(l, &transform);
+        Rectf r = RectfLib::Check(l, 2);
+        RectfLib::Push(l, Math::FromSceneSpace(cam, r));
     }
     else if (LuaScriptLib::readType(l, 2) == vector2fClass){
-        Vector2f *v = Vector2fLib::Check(l, 2);
-        Vector2f transform = Math::FromSceneSpace(*cam, *v);
-        Vector2fLib::Push(l, &transform);
+        Vector2f v = Vector2fLib::Check(l, 2);
+        Vector2fLib::Push(l, Math::FromSceneSpace(cam, v));
     }
     else {
         Debug::Log("Math.fromSceneSpace Error: Must have a Rectf or Vector2f to transform");

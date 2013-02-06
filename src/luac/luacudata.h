@@ -31,13 +31,13 @@ namespace LuaC {
             return obj;
         }
         /**
-        *  Push an object of type T onto the stack of the Lua state
+        *  Push a copy of an object of type T onto the stack of the Lua state
         *  @param obj The object to push
         *  @param l The Lua state to push onto
         */
-        static void Push(lua_State *l, const T *obj){
+        static void Push(lua_State *l, const T obj){
             T *o = Allocate(l);
-            *o = *obj;
+            *o = obj;
         }
         /**
         *  Copy an object of type T from one Lua state at index i to another Lua state
@@ -46,12 +46,11 @@ namespace LuaC {
         *  @param too The Lua state to copy too
         */
         static void Copy(lua_State *from, int idx, lua_State *too){
-            T *obj = Check(from, idx);
-            Push(too, obj);
+            T* obj = Check(from, idx);
+            Push(too, *obj);
         }
         /**
-        *  Check if the userdata at some index is of type T and return a pointer to it
-        *  if it is
+        *  Check if the userdata at some index is of type T and return it if it is
         *  @param l The Lua state
         *  @param i The index of the userdata
         */
@@ -75,6 +74,22 @@ namespace LuaC {
     };
     template<class T>
     const std::string UdataLib<T>::mMetaTable = "";
+
+    ////Specialization for primitive types
+    //typedef UdataLib<int> IntLib;
+    //template<>
+    //static void IntLib::Push(lua_State *l, const int obj){
+    //    lua_pushinteger(l, obj);
+    //}
+    //template<>
+    //static void IntLib::Copy(lua_State *from, int idx, lua_State *too){
+    //    int val = luaL_checkint(from, idx);
+    //    lua_pushinteger(too, val);
+    //}
+    //template<>
+    //static int& IntLib::Check(lua_State *l, int i){
+    //    return luaL_checkint(l, i);
+    //}
 }
 
 #endif
