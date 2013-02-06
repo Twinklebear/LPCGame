@@ -26,57 +26,57 @@ const struct luaL_reg LuaC::AnimatedImageLib::luaAnimatedImageLib[] = {
 int LuaC::AnimatedImageLib::newAnimatedImage(lua_State *l){
     //Stack: class table, file name
     std::string file = luaL_checkstring(l, 2);
-    Push(l, std::make_shared<AnimatedImage>(file));
+    Push(l, &std::make_shared<AnimatedImage>(file));
     return 1;
 }
 int LuaC::AnimatedImageLib::update(lua_State *l){
     //Stack: animated image
-    std::shared_ptr<AnimatedImage> img = Check(l, 1);
-    img->Update();
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
+    (*img)->Update();
     return 0;
 }
 int LuaC::AnimatedImageLib::play(lua_State *l){
     //Stack: animated image, name of sequence to play
-    std::shared_ptr<AnimatedImage> img = Check(l, 1);
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
     std::string name = luaL_checkstring(l, 2);
-    img->Play(name);
+    (*img)->Play(name);
     return 0;
 }
 int LuaC::AnimatedImageLib::playing(lua_State *l){
     //Stack: animated image
-    std::shared_ptr<AnimatedImage> img = Check(l, 1);
-    lua_pushstring(l, img->Playing().c_str());
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
+    lua_pushstring(l, (*img)->Playing().c_str());
     return 1;
 }
 int LuaC::AnimatedImageLib::size(lua_State *l){
     //Stack: animated image
-    std::shared_ptr<AnimatedImage> img = Check(l, 1);
-    lua_pushinteger(l, img->W());
-    lua_pushinteger(l, img->H());
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->W());
+    lua_pushinteger(l, (*img)->H());
     return 2;
 }
 int LuaC::AnimatedImageLib::width(lua_State *l){
     //Stack: animated image
-    std::shared_ptr<AnimatedImage> img = Check(l, 1);
-    lua_pushinteger(l, img->W());
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->W());
     return 1;
 }
 int LuaC::AnimatedImageLib::height(lua_State *l){
     //Stack: animated image
-    std::shared_ptr<AnimatedImage> img = Check(l, 1);
-    lua_pushinteger(l, img->H());
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->H());
     return 1;
 }
 int LuaC::AnimatedImageLib::file(lua_State *l){
     //Stack: animated image
-    std::shared_ptr<AnimatedImage> img = Check(l, 1);
-    lua_pushstring(l, img->File().c_str());
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
+    lua_pushstring(l, (*img)->File().c_str());
     return 1;
 }
 int LuaC::AnimatedImageLib::release(lua_State *l){
     //Stack: animated image
-    std::shared_ptr<AnimatedImage> img = Check(l, 1);
-    img.~shared_ptr();
+    std::shared_ptr<AnimatedImage> *img = Check(l, 1);
+    img->~shared_ptr();
     return 0;
 }
 int LuaC::AnimatedImageLib::garbageCollection(lua_State *l){
