@@ -26,7 +26,7 @@ const struct luaL_reg LuaC::AnimatedImageLib::luaAnimatedImageLib[] = {
 int LuaC::AnimatedImageLib::newAnimatedImage(lua_State *l){
     //Stack: class table, file name
     std::string file = luaL_checkstring(l, 2);
-    Push(l, &std::make_shared<AnimatedImage>(file));
+    Push(l, std::make_shared<AnimatedImage>(file));
     return 1;
 }
 int LuaC::AnimatedImageLib::update(lua_State *l){
