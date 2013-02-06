@@ -27,7 +27,6 @@ void State::LogicUpdate(){
     if (!mScript.Open())
 		return;
 
-
     mScript.CallFunction("LogicUpdate");
 }
 void State::RenderUpdate(){
@@ -36,7 +35,8 @@ void State::RenderUpdate(){
 		return;
 
     std::weak_ptr<Camera> camera = mCamera;
-    LuaC::CameraParam cam(&camera);
+    //TODO: Why is LuaC::CameraParam cam(std::weak_ptr<Camera>(mCamera)) not valid?
+    LuaC::CameraParam cam(camera);
     std::vector<LuaC::LuaParam*> params;
     params.push_back(&cam);
     mScript.CallFunction("RenderUpdate", params);

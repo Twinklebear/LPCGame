@@ -42,7 +42,7 @@ int LuaC::EntityLib::newEntity(lua_State *l){
     manager->Register(e);
     e->Init(e);
     //Push the entity into the state
-    Push(l, &e);
+    Push(l, e);
     return 1;
 }
 int LuaC::EntityLib::callFunction(lua_State *caller){
@@ -54,8 +54,8 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
     *  params            - All remaining values on the stack are the params to pass
     */
     //Get the lua_State of the Entity we want to call the function on
-    std::shared_ptr<Entity> *e = Check(caller, 1);
-    lua_State *reciever = (*e)->Script()->Get();
+    std::shared_ptr<Entity> e = Check(caller, 1);
+    lua_State *reciever = e->Script()->Get();
     //Get function name and # results
     std::string fcnName = luaL_checkstring(caller, 2);
     int nRes = luaL_checkint(caller, 3);
@@ -86,42 +86,42 @@ int LuaC::EntityLib::callFunction(lua_State *caller){
 }
 int LuaC::EntityLib::destroy(lua_State *l){
     //Stack: udata (Entity) to be removed
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    std::cout << "Will try to destroy entity: " << (*e)->Name() << std::endl;
+    std::shared_ptr<Entity> e = Check(l, 1);
+    std::cout << "Will try to destroy entity: " << e->Name() << std::endl;
     //Remove it from the manager
     std::shared_ptr<EntityManager> manager = StateManager::GetActiveState()->Manager();
     //Come up with better way to find entity in the manager?
-    manager->Remove(*e);
+    manager->Remove(e);
 
     return 0;
 }
 int LuaC::EntityLib::release(lua_State *l){
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    e->~shared_ptr();
+    std::shared_ptr<Entity> e = Check(l, 1);
+    e.~shared_ptr();
     return 0;
 }
 int LuaC::EntityLib::getPhysics(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    PhysicsLib::Push(l, &(*e)->GetPhysicsWeakPtr());
+    std::shared_ptr<Entity> e = Check(l, 1);
+    PhysicsLib::Push(l, e->GetPhysicsWeakPtr());
     return 1;
 }
 int LuaC::EntityLib::getBox(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    RectfLib::Push(l, &(*e)->Box());
+    std::shared_ptr<Entity> e = Check(l, 1);
+    RectfLib::Push(l, e->Box());
     return 1;
 }
 int LuaC::EntityLib::getTag(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    lua_pushstring(l, (*e)->Tag().c_str());
+    std::shared_ptr<Entity> e = Check(l, 1);
+    lua_pushstring(l, e->Tag().c_str());
     return 1;
 }
 int LuaC::EntityLib::getName(lua_State *l){
     //Stack: udata (Entity)
-    std::shared_ptr<Entity> *e = Check(l, 1);
-    lua_pushstring(l, (*e)->Name().c_str());
+    std::shared_ptr<Entity> e = Check(l, 1);
+    lua_pushstring(l, e->Name().c_str());
     return 1;
 }
 int LuaC::EntityLib::render(lua_State *l){
@@ -131,16 +131,16 @@ int LuaC::EntityLib::render(lua_State *l){
     * 2. entity 
     * case 2 we want to get the value of render (T/F)
     */
-    std::shared_ptr<Entity> *e = Check(l, 1);
+    std::shared_ptr<Entity> e = Check(l, 1);
     //Case 1:
     if (lua_gettop(l) == 2){
         bool rend = lua_toboolean(l, 2) == 1;
-        (*e)->Render(rend);
+        e->Render(rend);
         return 0;
     }
     //Case 2:
     else if (lua_gettop(l) == 1){
-        lua_pushboolean(l, (*e)->Render());
+        lua_pushboolean(l, e->Render());
         return 1;
     }
     return 0;
@@ -158,9 +158,9 @@ int LuaC::EntityLib::newIndex(lua_State *l){
 }
 int LuaC::EntityLib::setTag(lua_State *l, int i){
     //Stack: udata, ??? with tag @ i
-    std::shared_ptr<Entity> *e = Check(l, 1);
+    std::shared_ptr<Entity> e = Check(l, 1);
     std::string tag = luaL_checkstring(l, i);
-    (*e)->SetTag(tag);
+    e->SetTag(tag);
     return 0;
 }
 int LuaC::EntityLib::toString(lua_State *l){

@@ -6,6 +6,8 @@ require "Camera"
 require "Image"
 require "Window"
 require "Input"
+require "Debug"
+require "LuaScript"
 
 function Init()
 	print "\n--------Main Menu Init--------\n"

@@ -35,9 +35,9 @@ namespace LuaC {
         *  @param obj The object to push
         *  @param l The Lua state to push onto
         */
-        static void Push(lua_State *l, const T *obj){
+        static void Push(lua_State *l, const T obj){
             T *o = Allocate(l);
-            *o = *obj;
+            *o = obj;
         }
         /**
         *  Copy an object of type T from one Lua state at index i to another Lua state
@@ -46,17 +46,16 @@ namespace LuaC {
         *  @param too The Lua state to copy too
         */
         static void Copy(lua_State *from, int idx, lua_State *too){
-            T *obj = Check(from, idx);
+            T obj = Check(from, idx);
             Push(too, obj);
         }
         /**
-        *  Check if the userdata at some index is of type T and return a pointer to it
-        *  if it is
+        *  Check if the userdata at some index is of type T and return it if it is
         *  @param l The Lua state
         *  @param i The index of the userdata
         */
-        static T* Check(lua_State *l, int i){
-            return (T*)luaL_checkudata(l, i, mMetaTable.c_str());
+        static T Check(lua_State *l, int i){
+            return *(T*)luaL_checkudata(l, i, mMetaTable.c_str());
         }
 
     private:
