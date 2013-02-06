@@ -217,25 +217,6 @@ int LuaC::LuaScriptLib::doScript(lua_State *l){
 }
 LuaC::LuaScriptLib::TLuaLibs LuaC::LuaScriptLib::CreateLibMap(){
     TLuaLibs map;
-    //map["AnimatedImage"] = &AnimatedImage::RegisterLua;
-    //map["Button"]        = &Button::RegisterLua;
-    //map["Camera"]        = &Camera::RegisterLua;
-    //map["Color"]         = &Color::RegisterLua;
-    //map["Debug"]         = &Debug::RegisterLua;
-    //map["Entity"]        = &Entity::RegisterLua;
-    //map["Image"]         = &Image::RegisterLua;
-    //map["Input"]         = &Input::RegisterLua;
-    //map["Math"]          = &Math::RegisterLua;
-    //map["MotionState"]   = &MotionState::RegisterLua;
-    //map["Physics"]       = &Physics::RegisterLua;
-    //map["Rect"]          = &Rectf::RegisterLua;
-    //map["State"]         = &State::RegisterLua;
-    //map["StateManager"]  = &StateManager::RegisterLua;
-    //map["Text"]          = &Text::RegisterLua;
-    //map["Timer"]         = &Timer::RegisterLua;
-    //map["Vector2"]       = &Vector2f::RegisterLua;
-    //map["Window"]        = &Window::RegisterLua;
-    //Debug testing of libs
     map[animatedImageClass] = &AnimatedImageLib::luaopen_animatedimage;
     map[cameraClass]    = &CameraLib::luaopen_camera;
     map[colorClass]     = &ColorLib::luaopen_color;
@@ -284,7 +265,7 @@ int LuaC::LuaScriptLib::stackDump(lua_State *l){
     //If a bool flag for toLog is passed, get it and remove it
     //so it won't show up in the stack dump (this is a rare case where remove is ok!)
     if (lua_isboolean(l, 1)){
-        toLog = lua_toboolean(l, 1);
+        toLog = (lua_toboolean(l, 1) == 1);
         lua_remove(l, 1);
     }
     StackDump(l, toLog);

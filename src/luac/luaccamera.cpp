@@ -40,11 +40,11 @@ const struct luaL_reg LuaC::CameraLib::luaCameraLib[] = {
 };
 int LuaC::CameraLib::setFocus(lua_State *l){
     //Stack: camera, entity
-    std::weak_ptr<Camera> *weak = Check(l, 1);
-    std::shared_ptr<Entity> *e = EntityLib::Check(l, 1);
-    if (!weak->expired()){
-        auto c = weak->lock();
-        c->SetFocus(*e);
+    std::weak_ptr<Camera> weak = Check(l, 1);
+    std::shared_ptr<Entity> e = EntityLib::Check(l, 1);
+    if (!weak.expired()){
+        auto c = weak.lock();
+        c->SetFocus(e);
     }
     else
         Debug::Log("CameraLib:setFocus error: Camera expired or Entity expired");
@@ -53,12 +53,12 @@ int LuaC::CameraLib::setFocus(lua_State *l){
 }
 int LuaC::CameraLib::inCamera(lua_State *l){
     //Stack: camera, rectf
-    std::weak_ptr<Camera> *weak = Check(l, 1);
-    Rectf *r = RectfLib::Check(l, 2);
+    std::weak_ptr<Camera> weak = Check(l, 1);
+    Rectf r = RectfLib::Check(l, 2);
     bool inCam = false;
-    if (!weak->expired()){
-        auto c = weak->lock();
-        inCam = c->InCamera(*r);
+    if (!weak.expired()){
+        auto c = weak.lock();
+        inCam = c->InCamera(r);
     }
     else 
         Debug::Log("CameraLib:inCamera error: Camera expired");
@@ -68,57 +68,57 @@ int LuaC::CameraLib::inCamera(lua_State *l){
 }
 int LuaC::CameraLib::getBox(lua_State *l){
     //Stack: camera
-    std::weak_ptr<Camera> *weak = Check(l, 1);
+    std::weak_ptr<Camera> weak = Check(l, 1);
     Rectf box;
-    if (!weak->expired()){
-        auto c = weak->lock();
+    if (!weak.expired()){
+        auto c = weak.lock();
         box = c->Box();
     }
     else
         Debug::Log("CameraLib:box error: Camera expired");
 
-    RectfLib::Push(l, &box);
+    RectfLib::Push(l, box);
     return 1;
 }
 int LuaC::CameraLib::getSceneBox(lua_State *l){
     //Stack: camera
-    std::weak_ptr<Camera> *weak = Check(l, 1);
+    std::weak_ptr<Camera> weak = Check(l, 1);
     Rectf box;
-    if (!weak->expired()){
-        auto c = weak->lock();
+    if (!weak.expired()){
+        auto c = weak.lock();
         box = c->SceneBox();
     }
     else
         Debug::Log("CameraLib:sceneBox error: Camera expired");
 
-    RectfLib::Push(l, &box);
+    RectfLib::Push(l, box);
     return 1;
 }
 int LuaC::CameraLib::offset(lua_State *l){
     //Stack: camera
-    std::weak_ptr<Camera> *weak = Check(l, 1);
+    std::weak_ptr<Camera> weak = Check(l, 1);
     Vector2f vect(0, 0);
-    if (!weak->expired()){
-        auto c = weak->lock();
+    if (!weak.expired()){
+        auto c = weak.lock();
         vect = c->Offset();
     }
     else
         Debug::Log("CameraLib:offset error: Camera expired");
     
-    Vector2fLib::Push(l, &vect);
+    Vector2fLib::Push(l, vect);
     return 1;
 }
 int LuaC::CameraLib::centering(lua_State *l){
     //Stack: camera
-    std::weak_ptr<Camera> *weak = Check(l, 1);
+    std::weak_ptr<Camera> weak = Check(l, 1);
     Vector2f vect(0, 0);
-    if (!weak->expired()){
-        auto c = weak->lock();
+    if (!weak.expired()){
+        auto c = weak.lock();
         vect = c->Centering();
     }
     else
         Debug::Log("CameraLib:offset error: Camera expired");
     
-    Vector2fLib::Push(l, &vect);
+    Vector2fLib::Push(l, vect);
     return 1;
 }

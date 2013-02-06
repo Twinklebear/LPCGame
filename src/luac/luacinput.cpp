@@ -182,6 +182,6 @@ int LuaC::InputLib::getQuit(lua_State *l){
 }
 int LuaC::InputLib::getMousePos(lua_State *l){
     Vector2f pos = Input::MousePos();
-    Vector2fLib::Push(l, &pos);
+    Vector2fLib::Push(l, pos);
     return 1;
 }
