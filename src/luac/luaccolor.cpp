@@ -29,26 +29,26 @@ int LuaC::ColorLib::newColor(lua_State *l){
 }
 int LuaC::ColorLib::getR(lua_State *l){
     //Stack: userdata (Color)
-    Color c = Check(l, 1);
-    lua_pushinteger(l, c.R());
+    Color *c = Check(l, 1);
+    lua_pushinteger(l, c->R());
     return 1;
 }
 int LuaC::ColorLib::getG(lua_State *l){
     //Stack: userdata (Color)
-    Color c = Check(l, 1);
-    lua_pushinteger(l, c.G());
+    Color *c = Check(l, 1);
+    lua_pushinteger(l, c->G());
     return 1;
 }
 int LuaC::ColorLib::getB(lua_State *l){
     //Stack: userdata (Color)
-    Color c = Check(l, 1);
-    lua_pushinteger(l, c.B());
+    Color *c = Check(l, 1);
+    lua_pushinteger(l, c->B());
     return 1;
 }
 int LuaC::ColorLib::set(lua_State *l){
     //Stack: userdata (Color), vals for r, g, b
-    Color c = Check(l, 1);
-    c.Set(luaL_checkint(l, 2), luaL_checkint(l, 3), luaL_checkint(l, 4));
+    Color *c = Check(l, 1);
+    c->Set(luaL_checkint(l, 2), luaL_checkint(l, 3), luaL_checkint(l, 4));
     return 0;
 }
 int LuaC::ColorLib::newIndex(lua_State *l){
@@ -69,33 +69,33 @@ int LuaC::ColorLib::newIndex(lua_State *l){
 }
 int LuaC::ColorLib::setR(lua_State *l){
     //Stack: userdata (Color), val for R
-    Color c = Check(l, 1);
-    c.R(luaL_checkint(l, 2));
+    Color *c = Check(l, 1);
+    c->R(luaL_checkint(l, 2));
     return 0;
 }
 int LuaC::ColorLib::setG(lua_State *l){
     //Stack: userdata (Color), val for G
-    Color c = Check(l, 1);
-    c.G(luaL_checkint(l, 2));
+    Color *c = Check(l, 1);
+    c->G(luaL_checkint(l, 2));
     return 0;
 }
 int LuaC::ColorLib::setB(lua_State *l){
     //Stack: userdata (Color), val for B
-    Color c = Check(l, 1);
-    c.B(luaL_checkint(l, 2));
+    Color *c = Check(l, 1);
+    c->B(luaL_checkint(l, 2));
     return 0;
 }
 int LuaC::ColorLib::equality(lua_State *l){
     //Stack: userdata (Color), userdata (Color)
-    Color c1 = Check(l, 1);
-    Color c2 = Check(l, 2);
-    lua_pushboolean(l, c1 == c2);
+    Color *c1 = Check(l, 1);
+    Color *c2 = Check(l, 2);
+    lua_pushboolean(l, *c1 == *c2);
     return 1;
 }
 int LuaC::ColorLib::toString(lua_State *l){
     //Stack: userdata (Color)
-    Color c = Check(l, 1);
-    lua_pushstring(l, ((std::string)c).c_str());
+    Color *c = Check(l, 1);
+    lua_pushstring(l, ((std::string)(*c)).c_str());
     return 1;
 }
 int LuaC::ColorLib::concat(lua_State *l){
@@ -113,11 +113,11 @@ int LuaC::ColorLib::concat(lua_State *l){
 }
 void LuaC::ColorLib::concatWithString(lua_State *l, int cIdx, int sIdx){
     //Stack: userdata (Color) @ cIdx, string @ sIdx
-    Color c = Check(l, cIdx);
+    Color *c = Check(l, cIdx);
     std::string s = luaL_checkstring(l, sIdx);
     //Add the strings with proper ordering
     if (cIdx < sIdx)
-        lua_pushstring(l, ((std::string)c + s).c_str());
+        lua_pushstring(l, ((std::string)(*c) + s).c_str());
     else
-        lua_pushstring(l, (s + (std::string)c).c_str());
+        lua_pushstring(l, (s + (std::string)(*c)).c_str());
 }

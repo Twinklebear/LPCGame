@@ -62,18 +62,14 @@ namespace LuaC {
         * Used for retrieving the return value of a Lua function call
         * @param l Lua state to get result from
         */
-        static T Retrieve(lua_State *l) {
+        static T* Retrieve(lua_State *l) {
             return mRetriever(l, -1);
-        }
-        //Debug function only, get the param stored
-        const T DebugGet(){
-            return mObj;
         }
 
     private:
         const T mObj;
         const static std::function<void(lua_State*, const T)> mPusher;
-        const static std::function<T(lua_State*, int)> mRetriever;
+        const static std::function<T*(lua_State*, int)> mRetriever;
     };
     //We use UdataLib's Push/Check functions for each type so get the appropriate instance
     template<class T>

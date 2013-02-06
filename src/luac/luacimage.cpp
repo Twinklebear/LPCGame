@@ -33,61 +33,61 @@ int LuaC::ImageLib::getClip(lua_State *l){
     *  1. image userdata, index of the clip to get
     *  2. image userdata. clip desired is the active clip
     */
-    std::shared_ptr<Image> img = Check(l, 1);
+    std::shared_ptr<Image> *img = Check(l, 1);
     Rectf clip;
     //Case 1:
     if (lua_isnumber(l, 2)){
         int idx = luaL_checkint(l, 2);
-        clip = img->Clip(idx);
+        clip = (*img)->Clip(idx);
     }
     //Case 2:
     else
-        clip = img->Clip();
+        clip = (*img)->Clip();
 
     RectfLib::Push(l, clip);
     return 1;
 }
 int LuaC::ImageLib::setActiveClip(lua_State *l){
     //Stack: image (udata), clip to set active
-    std::shared_ptr<Image> img = Check(l, 1);
+    std::shared_ptr<Image> *img = Check(l, 1);
     int clipNum = luaL_checkint(l, 2);
-    img->SetActiveClip(clipNum);
+    (*img)->SetActiveClip(clipNum);
     return 0;
 }
 int LuaC::ImageLib::clipCount(lua_State *l){
     //Stack: image (udata)
-    std::shared_ptr<Image> img = Check(l, 1);
-    lua_pushinteger(l, img->ClipCount());
+    std::shared_ptr<Image> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->ClipCount());
     return 1;
 }
 int LuaC::ImageLib::size(lua_State *l){
     //Stack: image (udata)
-    std::shared_ptr<Image> img = Check(l, 1);
-    lua_pushinteger(l, img->W());
-    lua_pushinteger(l, img->H());
+    std::shared_ptr<Image> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->W());
+    lua_pushinteger(l, (*img)->H());
     return 2;
 }
 int LuaC::ImageLib::width(lua_State *l){
     //Stack: image
-    std::shared_ptr<Image> img = Check(l, 1);
-    lua_pushinteger(l, img->W());
+    std::shared_ptr<Image> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->W());
     return 1;
 }
 int LuaC::ImageLib::height(lua_State *l){
     //Stack: image
-    std::shared_ptr<Image> img = Check(l, 1);
-    lua_pushinteger(l, img->H());
+    std::shared_ptr<Image> *img = Check(l, 1);
+    lua_pushinteger(l, (*img)->H());
     return 1;
 }
 int LuaC::ImageLib::file(lua_State *l){
     //Stack: image (udata)
-    std::shared_ptr<Image> img = Check(l, 1);
-    lua_pushstring(l, img->File().c_str());
+    std::shared_ptr<Image> *img = Check(l, 1);
+    lua_pushstring(l, (*img)->File().c_str());
     return 1;
 }
 int LuaC::ImageLib::release(lua_State *l){
-    std::shared_ptr<Image> img = Check(l, 1);
-    img.~shared_ptr();
+    std::shared_ptr<Image> *img = Check(l, 1);
+    img->~shared_ptr();
     return 0;
 }
 int LuaC::ImageLib::garbageCollection(lua_State *l){
