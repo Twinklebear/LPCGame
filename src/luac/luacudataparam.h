@@ -40,7 +40,7 @@ namespace LuaC {
         * Construct the parameter, giving it a pointer to the object it's pushing
         * @param obj The object to be pushed into the state
         */
-        LuaUdataParam(T obj) : mObj(obj) {}
+        LuaUdataParam(T* obj) : mObj(obj) {}
         /**
         * Push the parameter value on to a Lua state using the pusher function
         * @param l The Lua state to push the object onto
@@ -62,25 +62,21 @@ namespace LuaC {
         * Used for retrieving the return value of a Lua function call
         * @param l Lua state to get result from
         */
-        static T Retrieve(lua_State *l) {
+        static T* Retrieve(lua_State *l) {
             return mRetriever(l, -1);
-        }
-        //Debug function only, get the param stored
-        const T DebugGet(){
-            return mObj;
         }
 
     private:
-        const T mObj;
-        const static std::function<void(lua_State*, const T)> mPusher;
-        const static std::function<T(lua_State*, int)> mRetriever;
+        const T *mObj;
+        const static std::function<void(lua_State*, const T*)> mPusher;
+        const static std::function<T*(lua_State*, int)> mRetriever;
     };
     //We use UdataLib's Push/Check functions for each type so get the appropriate instance
     template<class T>
-    const std::function<void(lua_State*, const T)>
+    const std::function<void(lua_State*, const T*)>
         LuaUdataParam<T>::mPusher = &UdataLib<T>::Push;
     template<class T>
-    const std::function<T(lua_State*, int)>
+    const std::function<T*(lua_State*, int)>
         LuaUdataParam<T>::mRetriever = &UdataLib<T>::Check;
 
     //Shorthand typedefs

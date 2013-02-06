@@ -34,7 +34,7 @@ void Entity::Init(std::shared_ptr<Entity> self){
     
     if (self != nullptr){
         //Push the self pointer onto the state so the script can use it
-        LuaC::EntityParam luaSelf(self);
+        LuaC::EntityParam luaSelf(&self);
         luaSelf.Push(mScript.Get(), "entity");
     }
     mScript.CallFunction("Init");
@@ -67,7 +67,7 @@ void Entity::Draw(std::weak_ptr<Camera> camera){
 		return;
     //Shouldn't i be drawing the base image here though, instead
     //of making the script have to even draw the basic entity image?
-    LuaC::CameraParam cam(camera);
+    LuaC::CameraParam cam(&camera);
     std::vector<LuaC::LuaParam*> params;
     params.push_back(&cam);
     mScript.CallFunction("Draw", params);

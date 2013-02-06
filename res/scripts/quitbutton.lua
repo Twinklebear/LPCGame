@@ -15,7 +15,6 @@ require "State"
 
 function Init()
 	--Load the button image
-	print "quitbutton init"
 	img = Image("../res/img/simplebutton.png")
 	box = entity:box()
 	img:setActiveClip(0)
