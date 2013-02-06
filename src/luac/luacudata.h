@@ -74,6 +74,25 @@ namespace LuaC {
     };
     template<class T>
     const std::string UdataLib<T>::mMetaTable = "";
+
+    //Specialization for primitive types
+    typedef UdataLib<int> IntLib;
+    template<>
+    static void IntLib::Push(lua_State *l, const int obj){
+        lua_pushinteger(l, obj);
+    }
+    template<>
+    static void IntLib::Copy(lua_State *from, int idx, lua_State *too){
+        int val = luaL_checkint(from, idx);
+        lua_pushinteger(too, val);
+    }
+    template<>
+    static int IntLib::Check(lua_State *l, int i){
+        return luaL_checkint(l, i);
+    }
+
+
+
 }
 
 #endif
