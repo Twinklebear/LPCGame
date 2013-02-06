@@ -33,6 +33,12 @@
    },
    "entities" : [
       {
+         "file" : "../res/entities/playbutton.json"
+      },
+      {
+         "file" : "../res/entities/editorbutton.json"
+      },
+      {
          "file" : "../res/entities/quitbutton.json"
       }
    ],

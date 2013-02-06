@@ -79,15 +79,18 @@ void LuaC::WindowLib::DrawImage(lua_State *l){
     else if (lua_gettop(l) == 3){
         Rectf *dst = RectfLib::Check(l, 2);
         Rectf *clip = RectfLib::Check(l, 3);
-        Window::Draw(img->get(), *dst, &(Recti)clip);
+        //TODO: Look into converting Rectf* <-> Recti*
+        Recti clipi = *clip;
+        Window::Draw(img->get(), *dst, &clipi);
     }
     else if (lua_gettop(l) == 6){
         Rectf *dst = RectfLib::Check(l, 2);
         Rectf *clip = RectfLib::Check(l, 3);
+        Recti clipi = *clip;
         float angle = luaL_checknumber(l, 4);
         Vector2f *pivot = Vector2fLib::Check(l, 5);
         int flip = luaL_checkint(l, 6);
-        Window::Draw(img->get(), *dst, &(Recti)clip, angle, *pivot, flip);
+        Window::Draw(img->get(), *dst, &clipi, angle, *pivot, flip);
     }
     else
         Debug::Log("Window.draw(Image, ...) invalid number of parameters: \nstack:" + LuaScriptLib::StackDump(l));
