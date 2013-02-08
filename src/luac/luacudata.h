@@ -19,10 +19,10 @@ namespace LuaC {
     class UdataLib {
     public:
         /**
-        *  Allocate memory for an instance of T in the Lua state, initialize it, 
-        *  assign the appropriate metatable and return a pointer to the object
-        *  @param l The Lua state to make the object in
-        *  @return pointer to the allocated object
+        * Allocate memory for an instance of T in the Lua state, initialize it, 
+        * assign the appropriate metatable and return a pointer to the object
+        * @param l The Lua state to make the object in
+        * @return pointer to the allocated object
         */
         static T* Allocate(lua_State *l){
             void *block = lua_newuserdata(l, sizeof(T));
@@ -31,32 +31,41 @@ namespace LuaC {
             return obj;
         }
         /**
-        *  Push a copy of an object of type T onto the stack of the Lua state
-        *  @param obj The object to push
-        *  @param l The Lua state to push onto
+        * Push a copy of an object of type T onto the stack of the Lua state
+        * @param obj The object to push
+        * @param l The Lua state to push onto
         */
         static void Push(lua_State *l, const T obj){
             T *o = Allocate(l);
             *o = obj;
         }
         /**
-        *  Copy an object of type T from one Lua state at index i to another Lua state
-        *  @param from The Lua state to copy from
-        *  @param idx The index of the data in the from stack
-        *  @param too The Lua state to copy too
+        * Copy an object of type T from one Lua state at index i to another Lua state
+        * @param from The Lua state to copy from
+        * @param idx The index of the data in the from stack
+        * @param too The Lua state to copy too
         */
         static void Copy(lua_State *from, int idx, lua_State *too){
             T* obj = Check(from, idx);
             Push(too, *obj);
         }
         /**
-        *  Check if the userdata at some index is of type T and return it if it is
-        *  @param l The Lua state
-        *  @param i The index of the userdata
+        * Check if the userdata at some index is of type T and return it
+        * @param l The Lua state
+        * @param i The index of the userdata
         */
         static T* Check(lua_State *l, int i){
             return (T*)luaL_checkudata(l, i, mMetaTable.c_str());
         }
+        /**
+        * Check if the userdata at some index is of type T and return a copy of it
+        * @param l The Lua state
+        * @param i Index of the data
+        */
+        static T GetCopy(lua_State *l, int i){
+            return *(T*)luaL_checkudata(l, i, mMetaTable.c_str());
+        }
+
 
     private:
         /**
