@@ -83,21 +83,53 @@ namespace LuaC {
     template<class T>
     const std::string DataLib<T>::mMetaTable = "";
 
-    ////Specialization for primitive types
-    //typedef UdataLib<int> IntLib;
-    //template<>
-    //static void IntLib::Push(lua_State *l, const int obj){
-    //    lua_pushinteger(l, obj);
-    //}
-    //template<>
-    //static void IntLib::Copy(lua_State *from, int idx, lua_State *too){
-    //    int val = luaL_checkint(from, idx);
-    //    lua_pushinteger(too, val);
-    //}
-    //template<>
-    //static int& IntLib::Check(lua_State *l, int i){
-    //    return luaL_checkint(l, i);
-    //}
+    //Specialization for primitive types
+    typedef DataLib<int> IntLib;
+    template<>
+    static void IntLib::Push(lua_State *l, const int obj){
+        lua_pushinteger(l, obj);
+    }
+    template<>
+    static void IntLib::Copy(lua_State *from, int idx, lua_State *too){
+        int val = luaL_checkint(from, idx);
+        lua_pushinteger(too, val);
+    }
+    template<>
+    static int IntLib::GetCopy(lua_State *l, int i){
+        return luaL_checkint(l, i);
+    }
+
+    typedef DataLib<float> FloatLib;
+    template<>
+    static void FloatLib::Push(lua_State *l, const float obj){
+        lua_pushnumber(l, obj);
+    }
+    template<>
+    static void FloatLib::Copy(lua_State *from, int idx, lua_State *too){
+        float val = luaL_checknumber(from, idx);
+        lua_pushinteger(too, val);
+    }
+    template<>
+    static float FloatLib::GetCopy(lua_State *l, int i){
+        return luaL_checknumber(l, i);
+    }
+
+    typedef DataLib<bool> BoolLib;
+    template<>
+    static void BoolLib::Push(lua_State *l, const bool obj){
+        lua_pushboolean(l, obj);
+    }
+    template<>
+    static void BoolLib::Copy(lua_State *from, int idx, lua_State *too){
+        bool val = luaL_checknumber(from, idx);
+        lua_pushboolean(too, val);
+    }
+    template<>
+    static bool BoolLib::GetCopy(lua_State *l, int i){
+        if (!lua_isboolean(l, i))
+            return false;
+        return lua_toboolean(l, i);
+    }
 }
 
 #endif
