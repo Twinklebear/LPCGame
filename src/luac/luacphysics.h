@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "core/physics.h"
 
 ///A namespace for storing the Lua C API code
@@ -19,11 +19,11 @@ namespace LuaC {
     const std::string physicsClass = "Physics";
     ///Define Physics specialization for UdataLib
     template<>
-    const std::string UdataLib<std::weak_ptr<Physics>>::mMetaTable = physicsMeta;
+    const std::string DataLib<std::weak_ptr<Physics>>::mMetaTable = physicsMeta;
     /**
     *  The Lua library for the Physics class
     */
-    class PhysicsLib : public UdataLib<std::weak_ptr<Physics>> {
+    class PhysicsLib : public DataLib<std::weak_ptr<Physics>> {
     public:
         ///Open the Physics library for Lua state l
         static int luaopen_physics(lua_State *l);

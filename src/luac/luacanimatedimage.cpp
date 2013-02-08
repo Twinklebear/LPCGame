@@ -1,7 +1,6 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
-#include "luacudata.h"
 #include "luacscript.h"
 #include "luacrectf.h"
 #include "core/animatedimage.h"

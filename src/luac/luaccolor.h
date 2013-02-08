@@ -3,7 +3,7 @@
 
 #include <string>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "core/color.h"
 
 ///A namespace for storing the Lua C API code
@@ -18,11 +18,11 @@ namespace LuaC {
     const std::string colorClass = "Color";
     ///Define Color specialization for UdataLib
     template<>
-    const std::string UdataLib<Color>::mMetaTable = colorMeta;
+    const std::string DataLib<Color>::mMetaTable = colorMeta;
     /**
     *  The Lua library for the Color class
     */
-    class ColorLib : public UdataLib<Color> {
+    class ColorLib : public DataLib<Color> {
     public:
         ///Open the Color library for Lua state l
         static int luaopen_color(lua_State *l);

@@ -203,9 +203,6 @@
     <ClInclude Include="..\src\luac\luactimer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\luac\luacudata.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\luac\luacudataparam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -312,6 +309,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\luac\luaref.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\luac\luacdata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

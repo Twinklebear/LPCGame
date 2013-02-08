@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "core/camera.h"
 
 ///A namespace for storing the Lua C API code
@@ -19,11 +19,11 @@ namespace LuaC {
     const std::string cameraClass = "Camera";
     ///Define Camera specialization for UdataLib
     template<>
-    const std::string UdataLib<std::weak_ptr<Camera>>::mMetaTable = cameraMeta;
+    const std::string DataLib<std::weak_ptr<Camera>>::mMetaTable = cameraMeta;
     /**
     *  The Lua library for the Camera class
     */
-    class CameraLib : public UdataLib<std::weak_ptr<Camera>> {
+    class CameraLib : public DataLib<std::weak_ptr<Camera>> {
     public:
         ///Open the Camera library for Lua state l
         static int luaopen_camera(lua_State *l);

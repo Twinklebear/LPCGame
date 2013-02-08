@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "core/entity.h"
 
 ///A namespace for storing the Lua C API code
@@ -19,12 +19,12 @@ namespace LuaC {
     const std::string entityClass = "Entity";
     ///Define Entity specialization for UdataLib
     template<>
-    const std::string UdataLib<std::shared_ptr<Entity>>::mMetaTable = entityMeta;
+    const std::string DataLib<std::shared_ptr<Entity>>::mMetaTable = entityMeta;
     /**
     *  Class for storing functions used to manage interaction
     *  between Lua and the Entity class. Defines the Entity Lua Lib
     */
-    class EntityLib : public UdataLib<std::shared_ptr<Entity>> {
+    class EntityLib : public DataLib<std::shared_ptr<Entity>> {
     public:
         ///Open the Entity Lua library for Lua state l
         static int luaopen_entity(lua_State *l);

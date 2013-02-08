@@ -5,7 +5,7 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "luacparam.h"
 #include "luacvector2f.h"
 #include "luacrectf.h"
@@ -74,10 +74,10 @@ namespace LuaC {
     //We use UdataLib's Push/Check functions for each type so get the appropriate instance
     template<class T>
     const std::function<void(lua_State*, const T)>
-        LuaUdataParam<T>::mPusher = &UdataLib<T>::Push;
+        LuaUdataParam<T>::mPusher = &DataLib<T>::Push;
     template<class T>
     const std::function<T(lua_State*, int)>
-        LuaUdataParam<T>::mRetriever = &UdataLib<T>::Check;
+        LuaUdataParam<T>::mRetriever = &DataLib<T>::Check;
 
     //Shorthand typedefs
     typedef LuaUdataParam<std::shared_ptr<AnimatedImage>> AnimImgParam;

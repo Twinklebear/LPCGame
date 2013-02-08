@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "core/animatedimage.h"
 
 ///A namespace for storing the Lua C API code
@@ -19,11 +19,11 @@ namespace LuaC {
     const std::string animatedImageClass = "AnimatedImage";
     ///Define AnimatedImage specialization for UdataLib
     template<>
-    const std::string UdataLib<std::shared_ptr<AnimatedImage>>::mMetaTable = animatedImageMeta;
+    const std::string DataLib<std::shared_ptr<AnimatedImage>>::mMetaTable = animatedImageMeta;
     /**
     * The Lua library for the AnimatedImage class
     */
-    class AnimatedImageLib : public UdataLib<std::shared_ptr<AnimatedImage>> {
+    class AnimatedImageLib : public DataLib<std::shared_ptr<AnimatedImage>> {
     public:
         ///Open the Animated Image library in Lua state l
         static int luaopen_animatedimage(lua_State *l);

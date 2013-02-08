@@ -12,11 +12,11 @@
 */
 namespace LuaC {
     /**
-    *  A base template class for inherting methods for performing udata
-    *  memory operations on Lua states
+    * A base template class for inherting methods for performing operations
+    * on objects in Lua such as getting, pushing and copying between states
     */
     template<class T>
-    class UdataLib {
+    class DataLib {
     public:
         /**
         * Allocate memory for an instance of T in the Lua state, initialize it, 
@@ -66,7 +66,6 @@ namespace LuaC {
             return *(T*)luaL_checkudata(l, i, mMetaTable.c_str());
         }
 
-
     private:
         /**
         *  Add the metatable for the type to the userdata at index i relative to top
@@ -82,7 +81,7 @@ namespace LuaC {
         static const std::string mMetaTable;
     };
     template<class T>
-    const std::string UdataLib<T>::mMetaTable = "";
+    const std::string DataLib<T>::mMetaTable = "";
 
     ////Specialization for primitive types
     //typedef UdataLib<int> IntLib;

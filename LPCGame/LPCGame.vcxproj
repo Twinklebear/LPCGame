@@ -107,7 +107,7 @@
     <ClInclude Include="..\src\luac\luacstate.h" />
     <ClInclude Include="..\src\luac\luactext.h" />
     <ClInclude Include="..\src\luac\luactimer.h" />
-    <ClInclude Include="..\src\luac\luacudata.h" />
+    <ClInclude Include="..\src\luac\luacdata.h" />
     <ClInclude Include="..\src\luac\luacudataparam.h" />
     <ClInclude Include="..\src\luac\luacvector2f.h" />
     <ClInclude Include="..\src\luac\luacwindow.h" />

@@ -2,7 +2,6 @@
 #include <memory>
 #include <lua.hpp>
 #include "core/text.h"
-#include "luacudata.h"
 #include "luacscript.h"
 #include "luaccolor.h"
 #include "luactext.h"

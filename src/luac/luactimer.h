@@ -3,7 +3,7 @@
 
 #include <string>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "core/timer.h"
 
 ///A namespace for storing the Lua C API code
@@ -18,11 +18,11 @@ namespace LuaC {
     const std::string timerClass = "Timer";
     ///Define Timer template specialization for UdataLib
     template<>
-    const std::string UdataLib<Timer>::mMetaTable = timerMeta;
+    const std::string DataLib<Timer>::mMetaTable = timerMeta;
     /**
     *  The Lua library for the Timer class
     */
-    class TimerLib : public UdataLib<Timer> {
+    class TimerLib : public DataLib<Timer> {
     public:
         ///Open the Timer library for Lua state l
         static int luaopen_timer(lua_State *l);

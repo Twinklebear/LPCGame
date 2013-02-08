@@ -3,7 +3,7 @@
 
 #include <string>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "core/vectors.h"
 
 ///A namespace for storing the Lua C API code
@@ -18,11 +18,11 @@ namespace LuaC {
     const std::string vector2fClass = "Vector2f";
     ///Define Vector2f specialization for UdataLib
     template<>
-    const std::string UdataLib<Vector2f>::mMetaTable = vector2fMeta;
+    const std::string DataLib<Vector2f>::mMetaTable = vector2fMeta;
     /**
     *  The Lua library for the Vector2f class
     */
-    class Vector2fLib : public UdataLib<Vector2f> {
+    class Vector2fLib : public DataLib<Vector2f> {
     public:
         ///Open the Vector2f library for Lua state l
         static int luaopen_vector2f(lua_State *l);

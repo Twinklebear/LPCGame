@@ -3,7 +3,7 @@
 
 #include <string>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "core/rect.h"
 
 ///A namespace for storing the Lua C API code
@@ -18,11 +18,11 @@ namespace LuaC {
     const std::string rectfClass = "Rectf";
     ///Define Rectf specialization for UdataLib
     template<>
-    const std::string UdataLib<Rectf>::mMetaTable = rectfMeta;
+    const std::string DataLib<Rectf>::mMetaTable = rectfMeta;
     /**
     *  The Lua library for the Rectf class
     */
-    class RectfLib : public UdataLib<Rectf> {
+    class RectfLib : public DataLib<Rectf> {
     public:
         ///Open the Rectf library for Lua state l
         static int luaopen_rectf(lua_State *l);

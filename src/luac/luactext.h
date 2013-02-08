@@ -4,7 +4,7 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
-#include "luacudata.h"
+#include "luacdata.h"
 #include "core/text.h"
 
 ///A namespace for storing the Lua C API code
@@ -19,11 +19,11 @@ namespace LuaC {
     const std::string textClass = "Text";
     ///Define Text specialization for UdataLib
     template<>
-    const std::string UdataLib<std::shared_ptr<Text>>::mMetaTable = textMeta;
+    const std::string DataLib<std::shared_ptr<Text>>::mMetaTable = textMeta;
     /**
     * The Lua library for the Text class
     */
-    class TextLib : public UdataLib<std::shared_ptr<Text>> {
+    class TextLib : public DataLib<std::shared_ptr<Text>> {
     public:
         ///Open the Text library in Lua state l
         static int luaopen_text(lua_State *l);
