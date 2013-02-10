@@ -96,6 +96,7 @@
     <ClInclude Include="..\src\luac\luaccolor.h" />
     <ClInclude Include="..\src\luac\luacdebug.h" />
     <ClInclude Include="..\src\luac\luacentity.h" />
+    <ClInclude Include="..\src\luac\luacfunctioninterface.h" />
     <ClInclude Include="..\src\luac\luacimage.h" />
     <ClInclude Include="..\src\luac\luacinput.h" />
     <ClInclude Include="..\src\luac\luacmath.h" />
@@ -124,7 +125,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120_CTP_Nov2012</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

@@ -17,7 +17,11 @@ void State::Init(){
     if (!mScript.Open())
 		return;
 
-    mScript.CallFunction("Init");
+    mScript.FunctionInterface()->CallFunction<void>("Init");
+    //Testing
+    Vector2f testV(10, 4);
+    std::string hi = mScript.FunctionInterface()->CallFunction<std::string>("TestCall", 2.0, 3, testV);
+    std::cout << "Got back: " << hi << std::endl;
 }
 void State::Free(){
     mScript.Close();
@@ -27,19 +31,21 @@ void State::LogicUpdate(){
     if (!mScript.Open())
 		return;
 
-    mScript.CallFunction("LogicUpdate");
+    mScript.FunctionInterface()->CallFunction<void>("LogicUpdate");
+    //mScript.CallFunction("LogicUpdate");
 }
 void State::RenderUpdate(){
     //Call the script
     if (!mScript.Open())
 		return;
 
-    std::weak_ptr<Camera> camera = mCamera;
-    //TODO: Why is LuaC::CameraParam cam(std::weak_ptr<Camera>(mCamera)) not valid?
-    LuaC::CameraParam cam(camera);
-    std::vector<LuaC::LuaParam*> params;
-    params.push_back(&cam);
-    mScript.CallFunction("RenderUpdate", params);
+    //std::weak_ptr<Camera> camera = mCamera;
+    ////TODO: Why is LuaC::CameraParam cam(std::weak_ptr<Camera>(mCamera)) not valid?
+    //LuaC::CameraParam cam(camera);
+    //std::vector<LuaC::LuaParam*> params;
+    //params.push_back(&cam);
+    //mScript.CallFunction("RenderUpdate", params);
+    mScript.FunctionInterface()->CallFunction<void>("RenderUpdate", std::weak_ptr<Camera>(mCamera));
 }
 void State::SetExit(std::string val){
 	mExit = true;

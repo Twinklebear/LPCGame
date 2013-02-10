@@ -92,7 +92,7 @@ namespace LuaC {
     template<>
     static void IntLib::Copy(lua_State *from, int idx, lua_State *too){
         int val = luaL_checkint(from, idx);
-        lua_pushinteger(too, val);
+        Push(too, val);
     }
     template<>
     static int IntLib::GetCopy(lua_State *l, int i){
@@ -107,10 +107,25 @@ namespace LuaC {
     template<>
     static void FloatLib::Copy(lua_State *from, int idx, lua_State *too){
         float val = luaL_checknumber(from, idx);
-        lua_pushinteger(too, val);
+        Push(too, val);
     }
     template<>
     static float FloatLib::GetCopy(lua_State *l, int i){
+        return luaL_checknumber(l, i);
+    }
+
+    typedef DataLib<double> DoubleLib;
+    template<>
+    static void DoubleLib::Push(lua_State *l, const double obj){
+        lua_pushnumber(l, obj);
+    }
+    template<>
+    static void DoubleLib::Copy(lua_State *from, int idx, lua_State *too){
+        double val = luaL_checknumber(from, idx);
+        Push(too, val);
+    }
+    template<>
+    static double DoubleLib::GetCopy(lua_State *l, int i){
         return luaL_checknumber(l, i);
     }
 
@@ -122,13 +137,43 @@ namespace LuaC {
     template<>
     static void BoolLib::Copy(lua_State *from, int idx, lua_State *too){
         bool val = luaL_checknumber(from, idx);
-        lua_pushboolean(too, val);
+        Push(too, val);
     }
     template<>
     static bool BoolLib::GetCopy(lua_State *l, int i){
         if (!lua_isboolean(l, i))
             return false;
-        return lua_toboolean(l, i);
+        return (lua_toboolean(l, i) == 1);
+    }
+
+    typedef DataLib<std::string> StringLib;
+    template<>
+    static void StringLib::Push(lua_State *l, const std::string obj){
+        lua_pushstring(l, obj.c_str());
+    }
+    template<>
+    static void StringLib::Copy(lua_State *from, int idx, lua_State *too){
+        std::string str = luaL_checkstring(from, idx);
+        Push(too, str);        
+    }
+    template<>
+    static std::string StringLib::GetCopy(lua_State *l, int i){
+        return luaL_checkstring(l, i);
+    }
+    //String literals like "hello" are char *
+    typedef DataLib<const char*> CharLib;
+    template<>
+    static void CharLib::Push(lua_State *l, const char *obj){
+        lua_pushstring(l, obj);
+    }
+    template<>
+    static void CharLib::Copy(lua_State *from, int idx, lua_State *too){
+        std::string str = luaL_checkstring(from, idx);
+        Push(too, str.c_str());        
+    }
+    template<>
+    static const char* CharLib::GetCopy(lua_State *l, int i){
+        return luaL_checkstring(l, i);
     }
 }
 

@@ -314,5 +314,8 @@
     <ClInclude Include="..\src\luac\luacdata.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\luac\luacfunctioninterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

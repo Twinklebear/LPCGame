@@ -37,7 +37,8 @@ void Entity::Init(std::shared_ptr<Entity> self){
         LuaC::EntityParam luaSelf(self);
         luaSelf.Push(mScript.Get(), "entity");
     }
-    mScript.CallFunction("Init");
+    //mScript.CallFunction("Init");
+    mScript.FunctionInterface()->CallFunction<void>("Init");
 }
 void Entity::Free(){
     mScript.Close();
@@ -47,17 +48,19 @@ void Entity::Update(){
 	if (!mScript.Open())
 		return;
 	
-    mScript.CallFunction("Update");
+    //mScript.CallFunction("Update");
+    mScript.FunctionInterface()->CallFunction<void>("Update");
 }
 void Entity::Move(float deltaT){
     //Shouldn't we call Physics::Move here?
 	if (!mScript.Open())
 		return;
 
-    LuaC::FloatParam delta(deltaT);
-    std::vector<LuaC::LuaParam*> params;
-    params.push_back(&delta);
-    mScript.CallFunction("Move", params);
+    //LuaC::FloatParam delta(deltaT);
+    //std::vector<LuaC::LuaParam*> params;
+    //params.push_back(&delta);
+    //mScript.CallFunction("Move", params);
+    mScript.FunctionInterface()->CallFunction<void>("Move", deltaT);
     //Move the object
     mPhysics->Move(deltaT);
 }
@@ -67,17 +70,19 @@ void Entity::Draw(std::weak_ptr<Camera> camera){
 		return;
     //Shouldn't i be drawing the base image here though, instead
     //of making the script have to even draw the basic entity image?
-    LuaC::CameraParam cam(camera);
-    std::vector<LuaC::LuaParam*> params;
-    params.push_back(&cam);
-    mScript.CallFunction("Draw", params);
+    //LuaC::CameraParam cam(camera);
+    //std::vector<LuaC::LuaParam*> params;
+    //params.push_back(&cam);
+    //mScript.CallFunction("Draw", params);
+    mScript.FunctionInterface()->CallFunction<void>("Draw", camera);
 }
 void Entity::OnMouseDown(){
     mClicked = true;
 
 	if (!mScript.Open())
 		return;
-    mScript.CallFunction("OnMouseDown");
+    //mScript.CallFunction("OnMouseDown");
+    mScript.FunctionInterface()->CallFunction<void>("OnMouseDown");
 }
 void Entity::OnMouseUp(){
     //We have to do this here for now b/c ObjectButtons don't have 
@@ -88,18 +93,21 @@ void Entity::OnMouseUp(){
 	
     if (!mScript.Open())
 		return;
-    mScript.CallFunction("OnMouseUp");
+    //mScript.CallFunction("OnMouseUp");
+    mScript.FunctionInterface()->CallFunction<void>("OnMouseUp");
 }
 void Entity::OnClick(){
     if (!mScript.Open())
         return;
-    mScript.CallFunction("OnClick");
+    //mScript.CallFunction("OnClick");
+    mScript.FunctionInterface()->CallFunction<void>("OnClick");
 }
 void Entity::OnMouseEnter(){
     mMouseOver = true;
 	if (!mScript.Open())
 		return;
-	mScript.CallFunction("OnMouseEnter");
+	//mScript.CallFunction("OnMouseEnter");
+    mScript.FunctionInterface()->CallFunction<void>("OnMouseEnter");
 }
 void Entity::OnMouseExit(){
     mClicked = false;
@@ -107,7 +115,8 @@ void Entity::OnMouseExit(){
 
     if (!mScript.Open())
         return;
-	mScript.CallFunction("OnMouseExit");
+	//mScript.CallFunction("OnMouseExit");
+    mScript.FunctionInterface()->CallFunction<void>("OnMouseExit");
 }
 void Entity::CheckMouseOver(const Vector2f &pos){
 	//Only trigger OnMouseEnter if the mouse is colliding and wasn't before

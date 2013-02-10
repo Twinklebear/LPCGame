@@ -14,6 +14,8 @@ defined by scripts attached to them, in this case Lua scripts since Lua's easy t
 To build the project you'll need the Lua 5.1 (headers & libs) along with SDL2.0, which you may need to compile yourself. The JsonCPP library is included as the amalgamated version under src/external. If you 
 encounter any issues feel free to ask or open an issue.
 
+Note that if you plan to use msvc to compile the project you must use the November CTP compiler to have support for variadic templates. 
+
 ## Documentation/Reference:
 - [Code](http://twinklebear.github.com/LPCGame/)
 - [SDL 2.0](http://wiki.libsdl.org/moin.cgi/FrontPage)

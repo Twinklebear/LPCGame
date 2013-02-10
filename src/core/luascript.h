@@ -8,6 +8,8 @@
 #include "external/json/json.h"
 #include "debug.h"
 #include "luac/luacparam.h"
+#include "luac/luacdata.h"
+#include "luac/luacfunctioninterface.h"
 
 ///A class to enable lua scripts to load various modules
 /**
@@ -39,38 +41,10 @@ public:
     ///Check if there's a script open
     bool Open() const;
     /**
-    * Call a function on the Lua state and pass some arguments to it
-    * @param function Name of the function to be called
-    * @param args Vector of arguments to be passed
+    * Get a pointer to the function interface to call a function
+    * @return Pointer to the scripts' function interface
     */
-    template<class ReturnType>
-    auto CallFunction(std::string function, 
-        std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>()) -> decltype(ReturnType::Retrieve(mL))
-    {
-        //Get the function to be called
-        lua_getglobal(mL, function.c_str());
-        //Push params onto stack
-        for (LuaC::LuaParam *p : args)
-            p->Push(mL);
-
-        //Call the function
-        if (lua_pcall(mL, args.size(), 1, 0) != 0)
-            Debug::Log("Error calling: " + function + " in script: " + mFile + " " + lua_tostring(mL, -1));
-
-        return ReturnType::Retrieve(mL);
-    }
-    //For calling a function with no return values
-    void CallFunction(std::string function, std::vector<LuaC::LuaParam*> args = std::vector<LuaC::LuaParam*>()){
-        //Get the function to be called
-        lua_getglobal(mL, function.c_str());
-        //Push params onto stack
-        for (LuaC::LuaParam *p : args)
-            p->Push(mL);
-
-        //Call the function
-        if (lua_pcall(mL, args.size(), 0, 0) != 0)
-            Debug::Log("Error calling: " + function + " in script: " + mFile + " " + lua_tostring(mL, -1));
-    }
+    LuaC::FunctionInterface* FunctionInterface();
 
 private:
     /**
@@ -86,6 +60,8 @@ private:
     std::string mFile;
     ///Tracking if the script is open
     bool mOpen;
+    ///The function interface
+    LuaC::FunctionInterface mFcnInterface;
 };
 
 #endif

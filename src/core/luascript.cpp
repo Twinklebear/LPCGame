@@ -29,11 +29,14 @@ void LuaScript::OpenScript(const std::string &script){
         AddLoader(LuaC::LuaScriptLib::requireScript);
         luaL_dofile(mL, mFile.c_str());
         mOpen = true;
+        //Setup function interface
+        mFcnInterface = LuaC::FunctionInterface(mL, mFile);
     }
 }
 void LuaScript::Close(){
     if (Open()){
-        CallFunction("Free");
+        //CallFunction("Free");
+        mFcnInterface.CallFunction<void>("Free");
         lua_close(mL);
         mL = NULL;
         mOpen = false;
@@ -79,4 +82,7 @@ void LuaScript::AddLoader(int (*loader)(lua_State*)){
     //Stack: loaders table
     //Pop the table off
     lua_pop(mL, 1);
+}
+LuaC::FunctionInterface* LuaScript::FunctionInterface(){
+    return &mFcnInterface;
 }

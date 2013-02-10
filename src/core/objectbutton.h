@@ -45,7 +45,8 @@ public:
         if (!mScript.Open())
 		    return;
 
-        mScript.CallFunction("OnClick");
+        //mScript.CallFunction("OnClick");
+        mScript.FunctionInterface()->CallFunction<void>("OnClick");
 	}
 	/**
 	*  Save the object data to a json value and return it
