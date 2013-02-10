@@ -22,9 +22,3 @@ end
 function RenderUpdate(camera)
 	Window.draw(bkgnd, Math.fromSceneSpace(camera, camera:sceneBox()), camera:box())
 end
-
-function TestCall(pA, pB, pC)
-	print "TestCall called with: "
-	print ("pA: " .. pA .. " pB: " .. pB .. " pC: " .. pC)
-	return "howdy"
-end
