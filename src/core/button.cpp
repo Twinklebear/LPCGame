@@ -5,6 +5,7 @@
 #include "window.h"
 #include "image.h"
 #include "text.h"
+#include "luascript.h"
 #include "button.h"
 
 Button::Button() : mFunc(nullptr)
@@ -14,7 +15,7 @@ Button::Button() : mFunc(nullptr)
 Button::Button(std::string script) : mFunc(nullptr)
 {
     IsUiElement(true);
-	mScript.OpenScript(script);
+	mScript->OpenScript(script);
 }
 Button::~Button(){}
 void Button::Draw(std::weak_ptr<Camera> camera){

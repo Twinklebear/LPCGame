@@ -13,13 +13,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
-    ///The Text metatable name
-    const std::string textMeta = "LPC.Text";
     ///the Text class/type name
     const std::string textClass = "Text";
-    ///Define Text specialization for UdataLib
-    template<>
-    const std::string DataLib<std::shared_ptr<Text>>::mMetaTable = textMeta;
     /**
     * The Lua library for the Text class
     */

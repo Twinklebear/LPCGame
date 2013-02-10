@@ -6,7 +6,7 @@
 #include "luacrectf.h"
 
 int LuaC::RectfLib::luaopen_rectf(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, rectfMeta, rectfClass, luaRectfLib, newRectf);
+    return LuaScriptLib::LuaOpenLib(l, mMetaTable, rectfClass, luaRectfLib, newRectf);
 }
 const luaL_reg LuaC::RectfLib::luaRectfLib[] = {
     { "pos", getPos },

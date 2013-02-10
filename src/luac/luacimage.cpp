@@ -7,7 +7,7 @@
 #include "luacimage.h"
 
 int LuaC::ImageLib::luaopen_image(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, imageMeta, imageClass, luaImageLib, newImage);
+    return LuaScriptLib::LuaOpenLib(l, mMetaTable, imageClass, luaImageLib, newImage);
 }
 const struct luaL_reg LuaC::ImageLib::luaImageLib[] = {
     { "clip", getClip },

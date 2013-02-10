@@ -13,13 +13,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
-    ///The Entity metatable name
-    const std::string entityMeta = "LPC.Entity";
     ///The Entity class/type name
     const std::string entityClass = "Entity";
-    ///Define Entity specialization for UdataLib
-    template<>
-    const std::string DataLib<std::shared_ptr<Entity>>::mMetaTable = entityMeta;
     /**
     *  Class for storing functions used to manage interaction
     *  between Lua and the Entity class. Defines the Entity Lua Lib

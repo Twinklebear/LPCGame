@@ -1,10 +1,7 @@
 #include <string>
 #include <lua.hpp>
 #include <fstream>
-#include "luac/luaccamera.h"
-#include "luac/luacudataparam.h"
-#include "luac/luacprimitiveparam.h"
-#include "luac/luaref.h"
+#include "luac/luacentity.h"
 #include "math.h"
 #include "luascript.h"
 #include "jsonhandler.h"
@@ -12,11 +9,11 @@
 #include "entity.h"
 
 Entity::Entity() : mPhysics(std::make_shared<Physics>()), mName(""), mTag(""), mConfigFile(""), 
-    mMouseOver(false), mClicked(false), mRender(true), mUiElement(false) 
+    mMouseOver(false), mClicked(false), mRender(true), mUiElement(false), mScript(std::make_shared<LuaScript>())
 {
 }
 Entity::Entity(std::string file) : mPhysics(std::make_shared<Physics>()), mName(""), mTag(""), mConfigFile(""),
-    mMouseOver(false), mClicked(false), mRender(true), mUiElement(false)
+    mMouseOver(false), mClicked(false), mRender(true), mUiElement(false), mScript(std::make_shared<LuaScript>())
 {
     Load(file);
 }
@@ -26,63 +23,50 @@ void Entity::Init(std::shared_ptr<Entity> self){
 	//We catch exceptions so that if the function doesn't exist the program 
 	//won't crash. This lets us skip implementing functions we don't need
 	//int scripts
-	if (!mScript.Open())
+	if (!mScript->Open())
 		return;
     
     //The Entity's table will be the global table
     //with the entity's name
-    
     if (self != nullptr){
         //Push the self pointer onto the state so the script can use it
-        LuaC::EntityParam luaSelf(self);
-        luaSelf.Push(mScript.Get(), "entity");
+        LuaC::EntityLib::Push(mScript->Get(), self, "entity");
     }
-    //mScript.CallFunction("Init");
-    mScript.FunctionInterface()->CallFunction<void>("Init");
+    mScript->FunctionInterface()->CallFunction<void>("Init");
 }
 void Entity::Free(){
-    mScript.Close();
+    mScript->Close();
 }
 void Entity::Update(){
     //Should deltaT be passed to update instead?
-	if (!mScript.Open())
+	if (!mScript->Open())
 		return;
 	
-    //mScript.CallFunction("Update");
-    mScript.FunctionInterface()->CallFunction<void>("Update");
+    mScript->FunctionInterface()->CallFunction<void>("Update");
 }
 void Entity::Move(float deltaT){
     //Shouldn't we call Physics::Move here?
-	if (!mScript.Open())
+	if (!mScript->Open())
 		return;
 
-    //LuaC::FloatParam delta(deltaT);
-    //std::vector<LuaC::LuaParam*> params;
-    //params.push_back(&delta);
-    //mScript.CallFunction("Move", params);
-    mScript.FunctionInterface()->CallFunction<void>("Move", deltaT);
+    mScript->FunctionInterface()->CallFunction<void>("Move", deltaT);
     //Move the object
     mPhysics->Move(deltaT);
 }
 void Entity::Draw(std::weak_ptr<Camera> camera){
     //Draw entity
-	if (!mScript.Open())
+	if (!mScript->Open())
 		return;
     //Shouldn't i be drawing the base image here though, instead
     //of making the script have to even draw the basic entity image?
-    //LuaC::CameraParam cam(camera);
-    //std::vector<LuaC::LuaParam*> params;
-    //params.push_back(&cam);
-    //mScript.CallFunction("Draw", params);
-    mScript.FunctionInterface()->CallFunction<void>("Draw", camera);
+    mScript->FunctionInterface()->CallFunction<void>("Draw", camera);
 }
 void Entity::OnMouseDown(){
     mClicked = true;
 
-	if (!mScript.Open())
+	if (!mScript->Open())
 		return;
-    //mScript.CallFunction("OnMouseDown");
-    mScript.FunctionInterface()->CallFunction<void>("OnMouseDown");
+    mScript->FunctionInterface()->CallFunction<void>("OnMouseDown");
 }
 void Entity::OnMouseUp(){
     //We have to do this here for now b/c ObjectButtons don't have 
@@ -91,32 +75,28 @@ void Entity::OnMouseUp(){
         OnClick();
     mClicked = false;
 	
-    if (!mScript.Open())
+    if (!mScript->Open())
 		return;
-    //mScript.CallFunction("OnMouseUp");
-    mScript.FunctionInterface()->CallFunction<void>("OnMouseUp");
+    mScript->FunctionInterface()->CallFunction<void>("OnMouseUp");
 }
 void Entity::OnClick(){
-    if (!mScript.Open())
+    if (!mScript->Open())
         return;
-    //mScript.CallFunction("OnClick");
-    mScript.FunctionInterface()->CallFunction<void>("OnClick");
+    mScript->FunctionInterface()->CallFunction<void>("OnClick");
 }
 void Entity::OnMouseEnter(){
     mMouseOver = true;
-	if (!mScript.Open())
+	if (!mScript->Open())
 		return;
-	//mScript.CallFunction("OnMouseEnter");
-    mScript.FunctionInterface()->CallFunction<void>("OnMouseEnter");
+    mScript->FunctionInterface()->CallFunction<void>("OnMouseEnter");
 }
 void Entity::OnMouseExit(){
     mClicked = false;
     mMouseOver = false;
 
-    if (!mScript.Open())
+    if (!mScript->Open())
         return;
-	//mScript.CallFunction("OnMouseExit");
-    mScript.FunctionInterface()->CallFunction<void>("OnMouseExit");
+    mScript->FunctionInterface()->CallFunction<void>("OnMouseExit");
 }
 void Entity::CheckMouseOver(const Vector2f &pos){
 	//Only trigger OnMouseEnter if the mouse is colliding and wasn't before
@@ -170,8 +150,8 @@ void Entity::IsUiElement(bool b){
 bool Entity::IsUiElement() const {
     return mUiElement;
 }
-LuaScript* Entity::Script(){
-    return &mScript;
+std::shared_ptr<LuaScript> Entity::Script(){
+    return mScript;
 }
 Json::Value Entity::Save() const {
 	//How to specify overrides to save?
@@ -182,7 +162,7 @@ Json::Value Entity::Save() const {
 	    val["image"]   = mImage.File();
 	    val["physics"] = mPhysics->Save();
 	    val["tag"]	   = mTag;
-	    val["script"]  = mScript.File();
+	    val["script"]  = mScript->File();
 	    val["name"]    = mName;
         val["render"]  = mRender;
         val["ui"]      = mUiElement;
@@ -196,7 +176,7 @@ void Entity::Save(const std::string &file) const {
     val["image"]   = mImage.File();
 	val["physics"] = mPhysics->Save();
 	val["tag"]	   = mTag;
-	val["script"]  = mScript.File();
+	val["script"]  = mScript->File();
 	val["name"]    = mName;
     val["render"]  = mRender;
     val["ui"]      = mUiElement;
@@ -209,7 +189,7 @@ void Entity::Load(Json::Value val){
 	mName = val["name"].asString();
 	mPhysics->Load(val["physics"]);
     mImage.Load(val["image"].asString());
-	mScript.OpenScript(val["script"].asString());
+	mScript->OpenScript(val["script"].asString());
     mRender = val["render"].asBool();
     mUiElement = val["ui"].asBool();
 }

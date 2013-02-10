@@ -12,13 +12,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
-    ///The Vector2f metatable name
-    const std::string vector2fMeta = "LPC.Vector2f";
     ///The Vector2f class/type name
     const std::string vector2fClass = "Vector2f";
-    ///Define Vector2f specialization for UdataLib
-    template<>
-    const std::string DataLib<Vector2f>::mMetaTable = vector2fMeta;
     /**
     *  The Lua library for the Vector2f class
     */

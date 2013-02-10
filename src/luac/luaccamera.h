@@ -13,13 +13,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
-    ///The Camera metatable name
-    const std::string cameraMeta = "LPC.Camera";
     ///The Camera class/type name
     const std::string cameraClass = "Camera";
-    ///Define Camera specialization for UdataLib
-    template<>
-    const std::string DataLib<std::weak_ptr<Camera>>::mMetaTable = cameraMeta;
     /**
     *  The Lua library for the Camera class
     */

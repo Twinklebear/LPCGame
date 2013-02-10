@@ -12,13 +12,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
-    ///The Rectf metatable name
-    const std::string rectfMeta = "LPC.Rectf";
     ///The Rectf class/type name
     const std::string rectfClass = "Rectf";
-    ///Define Rectf specialization for UdataLib
-    template<>
-    const std::string DataLib<Rectf>::mMetaTable = rectfMeta;
     /**
     *  The Lua library for the Rectf class
     */

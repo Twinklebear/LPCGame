@@ -42,11 +42,10 @@ public:
 		else if (mFunc != nullptr)
 			mFunc(mParam);
         //Attempt to call the script if one is open
-        if (!mScript.Open())
+        if (!mScript->Open())
 		    return;
 
-        //mScript.CallFunction("OnClick");
-        mScript.FunctionInterface()->CallFunction<void>("OnClick");
+        mScript->FunctionInterface()->CallFunction<void>("OnClick");
 	}
 	/**
 	*  Save the object data to a json value and return it

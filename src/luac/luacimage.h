@@ -13,13 +13,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
-    //The Image metatable name
-    const std::string imageMeta = "LPC.Image";
     //The Image class/type name
     const std::string imageClass = "Image";
-    ///Define Image specialization for UdataLib
-    template<>
-    const std::string DataLib<std::shared_ptr<Image>>::mMetaTable = imageMeta;
     /**
     *  Class for storing functions for interacting with Image objects
     *  from Lua. Defines the Image Lua Lib

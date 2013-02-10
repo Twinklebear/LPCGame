@@ -5,7 +5,7 @@
 #include "luacvector2f.h"
 
 int LuaC::Vector2fLib::luaopen_vector2f(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, vector2fMeta, vector2fClass, luaVector2fLib, newVector2f);
+    return LuaScriptLib::LuaOpenLib(l, mMetaTable, vector2fClass, luaVector2fLib, newVector2f);
 }
 const luaL_reg LuaC::Vector2fLib::luaVector2fLib[] = {
     { "x", getX },

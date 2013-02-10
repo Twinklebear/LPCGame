@@ -179,13 +179,7 @@
     <ClInclude Include="..\src\luac\luacmath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\luac\luacparam.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\luac\luacphysics.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\luac\luacprimitiveparam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\luac\luacrectf.h">
@@ -201,9 +195,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\luac\luactimer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\luac\luacudataparam.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\luac\luacvector2f.h">

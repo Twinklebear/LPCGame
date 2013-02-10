@@ -5,7 +5,7 @@
 #include "luaccolor.h"
 
 int LuaC::ColorLib::luaopen_color(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, colorMeta, colorClass, luaColorLib, newColor);
+    return LuaScriptLib::LuaOpenLib(l, mMetaTable, colorClass, luaColorLib, newColor);
 }
 const luaL_reg LuaC::ColorLib::luaColorLib[] = {
     { "r", getR },

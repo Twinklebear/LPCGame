@@ -12,13 +12,8 @@
 *  Lua via the Lua C API
 */
 namespace LuaC {
-    ///The Timer metatable name
-    const std::string timerMeta = "LPC.Timer";
     ///The Timer class/type name
     const std::string timerClass = "Timer";
-    ///Define Timer template specialization for UdataLib
-    template<>
-    const std::string DataLib<Timer>::mMetaTable = timerMeta;
     /**
     *  The Lua library for the Timer class
     */

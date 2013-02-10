@@ -12,7 +12,7 @@ int LuaC::PhysicsLib::luaopen_physics(lua_State *l){
     //exposed to Lua
     //Stack: lib name
     //Push the metatable to contain the fcns onto the stack
-    luaL_newmetatable(l, physicsMeta.c_str());
+    luaL_newmetatable(l, mMetaTable.c_str());
     //Copy metatable from -1 to the top
     lua_pushvalue(l, -1);
     //Set table at -2 key of __index = top of stack

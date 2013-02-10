@@ -14,7 +14,7 @@ int LuaC::CameraLib::luaopen_camera(lua_State *l){
     //an exposed constructor
     //Stack: lib name
     //Push the metatable to contain fcns onto the stack
-    luaL_newmetatable(l, cameraMeta.c_str());
+    luaL_newmetatable(l, mMetaTable.c_str());
     //Copy metatable from -1 to top
     lua_pushvalue(l, -1);
     //Set table at -2 key of __index = top of stack,

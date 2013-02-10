@@ -8,8 +8,10 @@
 #include "physics.h"
 #include "map.h"
 #include "image.h"
-#include "luascript.h"
-#include "luac/luaref.h"
+
+//Forward declaration of LuaScript class, needed due to luacdata needing to include this file in the header
+//since it's a template and luascript including luacdata. Is there a better way around this?
+class LuaScript;
 
 ///The Entity class, to provide functions that call to attached Lua scripts
 /**
@@ -70,6 +72,7 @@ public:
 	/**
 	*  Get a pointer to the object's Physics component, for use in allowing
 	*  it to be gotten and used in a script
+    *  TODO: This should be removed right?
 	*  @return A pointer to the entity's Physics member
 	*/
 	Physics* GetPhysics();
@@ -102,7 +105,7 @@ public:
     ///Check if the Entity is a ui element
     bool IsUiElement() const;
     ///Get a pointer to the Entity's LuaScript
-    LuaScript* Script();
+    std::shared_ptr<LuaScript> Script();
 	/**
 	*  Save the Entity data to a json value and return it
 	*  The Entity instance of the function takes care of saving
@@ -153,7 +156,7 @@ protected:
     ///For tracking if the entity should be rendered, and if it's a ui element
     bool mRender, mUiElement;
 	///The entity's lua script
-	LuaScript mScript;
+	std::shared_ptr<LuaScript> mScript;
 };
 
 #endif

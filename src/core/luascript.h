@@ -7,8 +7,6 @@
 #include <lua.hpp>
 #include "external/json/json.h"
 #include "debug.h"
-#include "luac/luacparam.h"
-#include "luac/luacdata.h"
 #include "luac/luacfunctioninterface.h"
 
 ///A class to enable lua scripts to load various modules

@@ -5,7 +5,7 @@
 #include <lua.hpp>
 #include "external/json/json.h"
 #include "luac/luacscript.h"
-#include "luac/luacparam.h"
+#include "luac/luacfunctioninterface.h"
 #include "debug.h"
 #include "luascript.h"
 

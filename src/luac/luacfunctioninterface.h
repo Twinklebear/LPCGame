@@ -5,8 +5,6 @@
 #include "core/debug.h"
 #include "luacdata.h"
 
-#include <iostream>
-
 ///A namespace for storing the Lua C API code
 /**
 *  A namespace to store the various functions for interacting with

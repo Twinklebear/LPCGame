@@ -3,7 +3,19 @@
 
 #include <string>
 #include <lua.hpp>
+#include <memory>
+#include "core/animatedimage.h"
+#include "core/camera.h"
+#include "core/color.h"
+#include "core/entity.h"
+#include "core/image.h"
+#include "core/physics.h"
+#include "core/rect.h"
+#include "core/text.h"
+#include "core/timer.h"
+#include "core/vectors.h"
 #include "luacscript.h"
+
 
 ///A namespace for storing the Lua C API code
 /**
@@ -38,6 +50,16 @@ namespace LuaC {
         static void Push(lua_State *l, const T obj){
             T *o = Allocate(l);
             *o = obj;
+        }
+        /**
+        * Push a copy of an object of type T onto the stack as a global with some name
+        * @param obj The object to push
+        * @param l The Lua state to push onto
+        * @param name The global name to assign the object
+        */
+        static void Push(lua_State *l, const T obj, std::string name){
+            Push(l, obj);
+            lua_setglobal(l, name.c_str());
         }
         /**
         * Copy an object of type T from one Lua state at index i to another Lua state
@@ -76,12 +98,33 @@ namespace LuaC {
             LuaScriptLib::Add(l, i, mMetaTable);
         }
 
-    private:
+    protected:
         ///The metatable name, value is set via template specialization for the desired class
         static const std::string mMetaTable;
     };
     template<class T>
     const std::string DataLib<T>::mMetaTable = "";
+    //Define metatable names for the libs
+    template<>
+    const std::string DataLib<std::shared_ptr<AnimatedImage>>::mMetaTable = "LPC.AnimatedImage";
+    template<>
+    const std::string DataLib<std::weak_ptr<Camera>>::mMetaTable = "LPC.Camera";
+    template<>
+    const std::string DataLib<Color>::mMetaTable = "LPC.Color";
+    template<>
+    const std::string DataLib<std::shared_ptr<Entity>>::mMetaTable = "LPC.Entity";
+    template<>
+    const std::string DataLib<std::shared_ptr<Image>>::mMetaTable = "LPC.Image";
+    template<>
+    const std::string DataLib<std::weak_ptr<Physics>>::mMetaTable = "LPC.Physics";
+    template<>
+    const std::string DataLib<Rectf>::mMetaTable = "LPC.Rectf";
+    template<>
+    const std::string DataLib<std::shared_ptr<Text>>::mMetaTable = "LPC.Text";
+    template<>
+    const std::string DataLib<Timer>::mMetaTable = "LPC.Timer";
+    template<>
+    const std::string DataLib<Vector2f>::mMetaTable = "LPC.Vector2f";
 
     //Specialization for primitive types
     typedef DataLib<int> IntLib;

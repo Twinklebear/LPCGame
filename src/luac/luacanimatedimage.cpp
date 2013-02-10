@@ -7,7 +7,7 @@
 #include "luacanimatedimage.h"
 
 int LuaC::AnimatedImageLib::luaopen_animatedimage(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, animatedImageMeta, animatedImageClass, 
+    return LuaScriptLib::LuaOpenLib(l, mMetaTable, animatedImageClass, 
         luaAnimatedImageLib, newAnimatedImage);
 }
 const struct luaL_reg LuaC::AnimatedImageLib::luaAnimatedImageLib[] = {

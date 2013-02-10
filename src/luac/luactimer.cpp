@@ -5,7 +5,7 @@
 #include "luactimer.h"
 
 int LuaC::TimerLib::luaopen_timer(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, timerMeta, timerClass, luaTimerLib, newTimer);
+    return LuaScriptLib::LuaOpenLib(l, mMetaTable, timerClass, luaTimerLib, newTimer);
 }
 const luaL_reg LuaC::TimerLib::luaTimerLib[] = {
     { "start", start },

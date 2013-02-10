@@ -15,7 +15,7 @@
 #include "luacentity.h"
 
 int LuaC::EntityLib::luaopen_entity(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, entityMeta, entityClass, luaEntityLib, newEntity);
+    return LuaScriptLib::LuaOpenLib(l, mMetaTable, entityClass, luaEntityLib, newEntity);
 }
 const struct luaL_reg LuaC::EntityLib::luaEntityLib[] = {
     { "callFunction", callFunction },

@@ -7,7 +7,7 @@
 #include "luactext.h"
 
 int LuaC::TextLib::luaopen_text(lua_State *l){
-    return LuaScriptLib::LuaOpenLib(l, textMeta, textClass, luaTextLib, newText);
+    return LuaScriptLib::LuaOpenLib(l, mMetaTable, textClass, luaTextLib, newText);
 }
 const struct luaL_reg LuaC::TextLib::luaTextLib[] = {
     { "set", set },
