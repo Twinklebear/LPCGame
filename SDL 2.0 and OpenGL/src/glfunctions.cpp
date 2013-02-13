@@ -32,6 +32,7 @@ void GL::SetupGLFunctions(){
     UniformMatrix4fv =          (PFNGLUNIFORMMATRIX4FVPROC)SDL_GL_GetProcAddress("glUniformMatrix4fv");
     GetAttribLocation =         (PFNGLGETATTRIBLOCATIONPROC)SDL_GL_GetProcAddress("glGetAttribLocation");
     VertexAttrib1F =            (PFNGLVERTEXATTRIB1FPROC)SDL_GL_GetProcAddress("glVertexAttrib1F");
+    ActiveTexture =             (PFNGLACTIVETEXTUREPROC)SDL_GL_GetProcAddress("glActiveTexture");
 }
 PFNGLGENVERTEXARRAYSPROC GL::GenVertexArrays = nullptr;
 PFNGLDELETEVERTEXARRAYSPROC GL::DeleteVertexArrays = nullptr;
@@ -62,3 +63,4 @@ PFNGLUNIFORM1FPROC GL::Uniform1f = nullptr;
 PFNGLUNIFORMMATRIX4FVPROC GL::UniformMatrix4fv = nullptr;
 PFNGLGETATTRIBLOCATIONPROC GL::GetAttribLocation = nullptr;
 PFNGLVERTEXATTRIB1FPROC GL::VertexAttrib1F = nullptr;
+PFNGLACTIVETEXTUREPROC GL::ActiveTexture = nullptr;

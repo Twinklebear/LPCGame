@@ -43,6 +43,7 @@ namespace GL {
     extern PFNGLUNIFORMMATRIX4FVPROC UniformMatrix4fv;
     extern PFNGLGETATTRIBLOCATIONPROC GetAttribLocation;
     extern PFNGLVERTEXATTRIB1FPROC VertexAttrib1F;
+    extern PFNGLACTIVETEXTUREPROC ActiveTexture;
 }
 
 #endif

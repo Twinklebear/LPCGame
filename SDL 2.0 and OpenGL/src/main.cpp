@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <SDL_image.h>
 #include <SDL_opengl.h>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>
@@ -23,9 +24,20 @@ GLuint programID;
 
 //Vertex buffer data for a triangle
 static const float vertexBufferData[] = {
-    0.75f, 0.75f, 0.0f, 1.0f,
-    0.75f, -0.75f, 0.0f, 1.0f,
-    -0.75f, -0.75f, 0.0f, 1.0f
+    //The vertices
+    1.0f, 1.0f, 0.0f, 1.0f,
+    1.0f, -1.0f, 0.0f, 1.0f,
+    -1.0f, -1.0f, 0.0f, 1.0f,
+    -1.0f, -1.0f, 0.0f, 1.0f,
+    -1.0f, 1.0f, 0.0f, 1.0f,
+    1.0f, 1.0f, 0.0f, 1.0f,
+    //U V coords
+    1.0f, 1.0f,
+    1.0f, 0.0f,
+    0.0f, 0.0f,
+    0.0f, 0.0f,
+    0.0f, 1.0f,
+    1.0f, 1.0f
 };
 
 bool InitSDLGL(){
@@ -146,23 +158,50 @@ void DrawGLTriangle(){
     //Draw our triangle VAO
     GL::UseProgram(programID);
     GL::BindVertexArray(vertexArrObj);
-    glDrawArrays(GL_TRIANGLES, 0, 3);
+    //We pass 6 now because we're drawing a square (2 triangles)
+    glDrawArrays(GL_TRIANGLES, 0, 6);
     GL::BindVertexArray(0);
     GL::UseProgram(0);
 }
 
-int TestHandle(){
-    GLuint a = 10;
-    auto funDel = [](GLuint x){ std::cout << "i'm deleting: " << x << std::endl; };
-    GL::Handle h1(a, funDel);
-    GL::Handle h2(h1);
-    GLuint b = 20;
-    GL::Handle h3(b, funDel);
-    std::cout << "setting h3 = h2" << std::endl;
-    h3 = h2;
-    std::cout << "set" << std::endl;
+void DrawTexturedTri(GLuint tex){
+    //Draw our triangle VAO
+    GL::UseProgram(programID);
+    GL::ActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, tex);
+    GL::BindVertexArray(vertexArrObj);
+    //We pass 6 now because we're drawing a square (2 triangles)
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    GL::BindVertexArray(0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    GL::UseProgram(0);
+}
 
-    return 0;
+//Load an image to an OpenGL texture and return its reference
+GLuint LoadTexture(std::string file){
+    GLuint texId;
+    SDL_Surface *img = nullptr;
+    img = IMG_Load(file.c_str());
+    if (img == nullptr){
+        std::cout << "failed to load: " << file << std::endl;
+        return 0;
+    }
+    
+    //Get a texture reference from openGL
+    glGenTextures(1, &texId);
+    //Bind it for use
+    glBindTexture(GL_TEXTURE_2D, texId);
+    //Load in our image
+    int mode = (img->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB);
+    glTexImage2D(GL_TEXTURE_2D, 0, mode, img->w, img->h, 0, mode, GL_UNSIGNED_BYTE, img->pixels);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    //unbind
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    return texId;
 }
 
 //#undef main
@@ -173,6 +212,9 @@ int main(int argc, char** argv){
 
     //Load the shaders
     InitializeShaderProgram();
+
+    //Load the texture
+    GLuint texture = LoadTexture("../res/texture.png");
     
     //Create our vertex buffer
     GLuint vbo;
@@ -193,13 +235,21 @@ int main(int argc, char** argv){
     GL::EnableVertexAttribArray(posAttrib);
     GL::VertexAttribPointer(posAttrib, 4, GL_FLOAT, GL_FALSE, 0, 0);
 
+    GLint texCoordAttrib = GL::GetAttribLocation(programID, "texCoord");
+    GL::EnableVertexAttribArray(texCoordAttrib);
+    //We need to offset by 4 floats per vertex, times 3 vertices per triangle, with 2 triangles
+    GL::VertexAttribPointer(texCoordAttrib, 2, GL_FLOAT, GL_FALSE, 0, (void*)(4 * 3 * 2 * sizeof(float)));
+
     //Need to bind when setting uniforms
     GL::UseProgram(programID);
     GLint widthAttrib = GL::GetUniformLocation(programID, "width");
     GL::Uniform1f(widthAttrib, 480.0f);
 
+    //Setup texture sampler?
+
+
     //Setup model matrix
-    glm::mat4x4 model = glm::translate<GLfloat>(0.0, 0.0, -1.0) * glm::scale<GLfloat>(0.5, 0.5, 1.0);
+    glm::mat4x4 model = glm::translate<GLfloat>(0.0, 0.0, -1.0) * glm::scale<GLfloat>(0.25, 0.25, 1.0);
 
     //Setup view matrix
     glm::mat4x4 view = glm::lookAt<GLfloat>(glm::vec3(0, 0, 1), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
@@ -250,7 +300,8 @@ int main(int argc, char** argv){
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-        DrawGLTriangle();
+        //DrawGLTriangle();
+        DrawTexturedTri(texture);
 
         SDL_GL_SwapWindow(win);
 	}
