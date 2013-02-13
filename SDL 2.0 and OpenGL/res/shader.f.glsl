@@ -1,10 +1,13 @@
 //#version 420
 //laptop only supports 330
+//Actually is now able to support 400
 #version 330
 
-smooth in vec4 theColor;
-out vec4 outputColor;
+out vec4 outColor;
+uniform float width;
 
 void main(){
-	outputColor = theColor;
+	float lerpVal = gl_FragCoord.y / width;
+	outColor = mix(vec4(0.0f, 0.0f, 1.0f, 1.0f),
+		vec4(1.0f, 0.0f, 0.0f, 1.0f), lerpVal);
 }

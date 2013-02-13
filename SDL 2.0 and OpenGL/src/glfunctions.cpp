@@ -4,6 +4,7 @@
 
 void GL::SetupGLFunctions(){
     GenVertexArrays =           (PFNGLGENVERTEXARRAYSPROC)SDL_GL_GetProcAddress("glGenVertexArrays");
+    DeleteVertexArrays =        (PFNGLDELETEVERTEXARRAYSPROC)SDL_GL_GetProcAddress("glDeleteVertexArrays");
     BindVertexArray =           (PFNGLBINDVERTEXARRAYPROC)SDL_GL_GetProcAddress("glBindVertexArray");
     GenBuffers =                (PFNGLGENBUFFERSPROC)SDL_GL_GetProcAddress("glGenBuffers");
     DeleteBuffers =             (PFNGLDELETEBUFFERSPROC)SDL_GL_GetProcAddress("glDeleteBuffers");
@@ -26,8 +27,14 @@ void GL::SetupGLFunctions(){
     DeleteShader =              (PFNGLDELETESHADERPROC)SDL_GL_GetProcAddress("glDeleteShader");
     UseProgram =                (PFNGLUSEPROGRAMPROC)SDL_GL_GetProcAddress("glUseProgram");
     DeleteProgram =             (PFNGLDELETEPROGRAMPROC)SDL_GL_GetProcAddress("glDeleteProgram");
+    GetUniformLocation =        (PFNGLGETUNIFORMLOCATIONPROC)SDL_GL_GetProcAddress("glGetUniformLocation");
+    Uniform1f =                 (PFNGLUNIFORM1FPROC)SDL_GL_GetProcAddress("glUniform1f");
+    UniformMatrix4fv =          (PFNGLUNIFORMMATRIX4FVPROC)SDL_GL_GetProcAddress("glUniformMatrix4fv");
+    GetAttribLocation =         (PFNGLGETATTRIBLOCATIONPROC)SDL_GL_GetProcAddress("glGetAttribLocation");
+    VertexAttrib1F =            (PFNGLVERTEXATTRIB1FPROC)SDL_GL_GetProcAddress("glVertexAttrib1F");
 }
 PFNGLGENVERTEXARRAYSPROC GL::GenVertexArrays = nullptr;
+PFNGLDELETEVERTEXARRAYSPROC GL::DeleteVertexArrays = nullptr;
 PFNGLBINDVERTEXARRAYPROC GL::BindVertexArray = nullptr;
 PFNGLGENBUFFERSPROC GL::GenBuffers = nullptr;
 PFNGLDELETEBUFFERSPROC GL::DeleteBuffers = nullptr;
@@ -50,3 +57,8 @@ PFNGLDETACHSHADERPROC GL::DetachShader = nullptr;
 PFNGLDELETESHADERPROC GL::DeleteShader = nullptr;
 PFNGLUSEPROGRAMPROC GL::UseProgram = nullptr;
 PFNGLDELETEPROGRAMPROC GL::DeleteProgram = nullptr;
+PFNGLGETUNIFORMLOCATIONPROC GL::GetUniformLocation = nullptr;
+PFNGLUNIFORM1FPROC GL::Uniform1f = nullptr;
+PFNGLUNIFORMMATRIX4FVPROC GL::UniformMatrix4fv = nullptr;
+PFNGLGETATTRIBLOCATIONPROC GL::GetAttribLocation = nullptr;
+PFNGLVERTEXATTRIB1FPROC GL::VertexAttrib1F = nullptr;

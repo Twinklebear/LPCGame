@@ -15,6 +15,7 @@ namespace GL {
     void SetupGLFunctions();
     ///The GL functions
     extern PFNGLGENVERTEXARRAYSPROC GenVertexArrays;
+    extern PFNGLDELETEVERTEXARRAYSPROC DeleteVertexArrays;
     extern PFNGLBINDVERTEXARRAYPROC BindVertexArray;
     extern PFNGLGENBUFFERSPROC GenBuffers;
     extern PFNGLDELETEBUFFERSPROC DeleteBuffers;
@@ -37,6 +38,11 @@ namespace GL {
     extern PFNGLDELETESHADERPROC DeleteShader;
     extern PFNGLUSEPROGRAMPROC UseProgram;
     extern PFNGLDELETEPROGRAMPROC DeleteProgram;
+    extern PFNGLGETUNIFORMLOCATIONPROC GetUniformLocation;
+    extern PFNGLUNIFORM1FPROC Uniform1f;
+    extern PFNGLUNIFORMMATRIX4FVPROC UniformMatrix4fv;
+    extern PFNGLGETATTRIBLOCATIONPROC GetAttribLocation;
+    extern PFNGLVERTEXATTRIB1FPROC VertexAttrib1F;
 }
 
 #endif

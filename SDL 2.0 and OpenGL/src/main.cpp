@@ -1,5 +1,7 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
+#include <glm/glm.hpp>
+#include <glm/ext.hpp>
 #include <stdexcept>
 #include <string>
 #include <fstream>
@@ -7,30 +9,23 @@
 #include <vector>
 #include <algorithm>
 #include "glfunctions.h"
+#include "handle.h"
 #include "window.h"
 
 SDL_Window *win = nullptr;
 SDL_GLContext glContext;
 
-//The vertex buffer
-GLuint vertexBuffer;
+//The vertex array object
+//GLuint vao;
+GL::Handle vertexArrObj;
 //Shader program
 GLuint programID;
 
 //Vertex buffer data for a triangle
 static const float vertexBufferData[] = {
-    0.75f, 0.75f, 0.0f, 1.0f,
-    0.75f, -0.75f, 0.0f, 1.0f,
-    -0.75f, -0.75f, 0.0f, 1.0f,
-};
-//Vertex buffer data for a triangle and colors to use for it
-static const float coloredVertexBufferData[] = {
-    0.0f, 0.5f, 0.0f, 1.0f,
-    0.5f, -0.366f, 0.0f, 1.0f,
-    -0.5f, -0.366f, 0.0f, 1.0f,
-    1.0f, 0.0f, 0.0f, 1.0f,
-    0.0f, 1.0f, 0.0f, 1.0f,
-    0.0f, 0.0f, 1.0f, 1.0f,
+    0.75f, 0.75f, 1.0f, 1.0f,
+    0.75f, -0.75f, 1.0f, 1.0f,
+    -0.75f, -0.75f, 1.0f, 1.0f
 };
 
 bool InitSDLGL(){
@@ -40,15 +35,15 @@ bool InitSDLGL(){
     //Enable 8x AA
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLEBUFFERS, 1);
     SDL_GL_SetAttribute(SDL_GL_MULTISAMPLESAMPLES, 8);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
     win = SDL_CreateWindow("SDL GL Test", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480,
         SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     //Create the gl context and setup matrix
     glContext = SDL_GL_CreateContext(win);
-    //Is glMatrixMode and LoadIdentity used at all in OpenGL3+ when using shaders? I don't think it is
-    /*glMatrixMode(GL_PROJECTION | GL_MODELVIEW);
-    glLoadIdentity();*/
-    glEnable(GL_MULTISAMPLE_ARB);
+    glEnable(GL_MULTISAMPLE);
+    glEnable(GL_DEPTH_TEST);
     GL::SetupGLFunctions();
 
     //print the GL version
@@ -142,47 +137,94 @@ void InitializeShaderProgram(){
     std::vector<GLuint> shaderList;
     shaderList.push_back(CreateShader(GL_VERTEX_SHADER, "../res/shader.v.glsl"));
     shaderList.push_back(CreateShader(GL_FRAGMENT_SHADER, "../res/shader.f.glsl"));
-    
-    programID = CreateShaderProgram(shaderList);
 
+    programID = CreateShaderProgram(shaderList);
     //clean up the shaders
     std::for_each(shaderList.begin(), shaderList.end(), GL::DeleteShader);
 }
 void DrawGLTriangle(){
-    //Use the shader
+    //Draw our triangle VAO
     GL::UseProgram(programID);
-
-    //Set the state to be drawn
-    GL::BindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    GL::EnableVertexAttribArray(0);
-    GL::EnableVertexAttribArray(1);
-    GL::VertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 0, 0);
-    GL::VertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, (void*)48);
-
-    //Draw the state
-    //We draw 6 verts bc we have that many in the array. How can i do without hardcoding?
+    GL::BindVertexArray(vertexArrObj);
     glDrawArrays(GL_TRIANGLES, 0, 3);
-    
-    GL::DisableVertexAttribArray(0);
-    GL::DisableVertexAttribArray(1);
-    GL::BindBuffer(GL_ARRAY_BUFFER, 0);
+    GL::BindVertexArray(0);
     GL::UseProgram(0);
 }
-#undef main
+
+int TestHandle(){
+    GLuint a = 10;
+    auto funDel = [](GLuint x){ std::cout << "i'm deleting: " << x << std::endl; };
+    GL::Handle h1(a, funDel);
+    GL::Handle h2(h1);
+    GLuint b = 20;
+    GL::Handle h3(b, funDel);
+    std::cout << "setting h3 = h2" << std::endl;
+    h3 = h2;
+    std::cout << "set" << std::endl;
+
+    return 0;
+}
+
+//#undef main
 int main(int argc, char** argv){
-    //Window::Init("Lesson 7");
+    //return TestHandle();
+
     InitSDLGL();
 
     //Load the shaders
-    //programID = LoadShaders("../res/shader.v.glsl", "../res/shader.f.glsl");
     InitializeShaderProgram();
-    //Todo: GL_VERTEX_ARRAY?
+    
     //Create our vertex buffer
-    GL::GenBuffers(1, &vertexBuffer);
-    GL::BindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-    //Use stream draw if planning to move the object
-    GL::BufferData(GL_ARRAY_BUFFER, sizeof(coloredVertexBufferData), coloredVertexBufferData, GL_STATIC_DRAW);
+    GLuint vbo;
+    GL::GenBuffers(1, &vbo);
+    GL::BindBuffer(GL_ARRAY_BUFFER, vbo);
+    //Use shaders + transform matrices to move object
+    GL::BufferData(GL_ARRAY_BUFFER, sizeof(vertexBufferData), vertexBufferData, GL_STATIC_DRAW);
     GL::BindBuffer(GL_ARRAY_BUFFER, 0);
+
+    //Setup the VAO to draw
+    GLuint vao;
+    GL::GenVertexArrays(1, &vao);
+    GL::BindVertexArray(vao);
+    GL::BindBuffer(GL_ARRAY_BUFFER, vbo);
+
+    //Set attribs for program
+    GLint posAttrib = GL::GetAttribLocation(programID, "position");
+    GL::EnableVertexAttribArray(posAttrib);
+    GL::VertexAttribPointer(posAttrib, 4, GL_FLOAT, GL_FALSE, 0, 0);
+
+    //Need to bind when setting uniforms
+    GL::UseProgram(programID);
+    GLint widthAttrib = GL::GetUniformLocation(programID, "width");
+    GL::Uniform1f(widthAttrib, 480.0f);
+
+    //Setup model matrix
+    //For some reason the view transform flips the x axis, so i flip it back. Perhaps I'm just
+    //specifying my verts incorrectly?
+    glm::mat4x4 model = glm::scale<GLfloat>(-0.5, 0.5, 0.5);// * glm::rotate<GLfloat>(-5, glm::vec3(0, 0, 1));
+
+    //Setup view matrix
+    glm::mat4x4 view = glm::lookAt<GLfloat>(glm::vec3(0, 0, -1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+
+    //Setup projection matrix
+    glm::mat4x4 ortho = glm::ortho<GLfloat>(-1.0, 1.0, -1.0, 1.0, -1.0, 100.0);
+    glm::mat4x4 persp = glm::perspective<GLfloat>(45.0f, 640.0f/480.0f, 0.1f, 100.0f);
+
+    //Create & pass the MVP matrix
+    GLint mvpAttrib = GL::GetUniformLocation(programID, "mvp");
+    glm::mat4x4 mvp = ortho * view * model;
+    GL::UniformMatrix4fv(mvpAttrib, 1, GL_FALSE, glm::value_ptr(mvp));
+
+    GL::UseProgram(0);
+
+    //Unbind the state
+    GL::BindBuffer(GL_ARRAY_BUFFER, 0);
+    GL::BindVertexArray(0);
+
+    //Store the vao in the handle, we also make this anonymous fcn because GL::DeleteVertexArrays takes a 
+    //number of arrs and a pointer to the first in the array to be freed
+    auto vaoDeleter = [](GLuint x){ GL::DeleteVertexArrays(1, &x); };
+    vertexArrObj = GL::Handle(vao, vaoDeleter);
 
     //Our event structure
 	SDL_Event e;
@@ -207,21 +249,18 @@ int main(int argc, char** argv){
 			}
 		}
         //RENDERING
-        //Window::Clear();
         glClearColor(0, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         DrawGLTriangle();
 
         SDL_GL_SwapWindow(win);
-
-        //Window::Present();
 	}
     GL::DeleteProgram(programID);
-    GL::DeleteBuffers(1, &vertexBuffer);
+    //GL::DeleteVertexArrays(1, &vao);
     SDL_GL_DeleteContext(glContext);
     SDL_DestroyWindow(win);
-    //Window::Quit();
-	
+    SDL_Quit();
+
 	return 0;
 }

@@ -1,13 +1,11 @@
 //#version 420
 //laptop only supports 330
+//Actually is now able to support 400
 #version 330
 
-layout(location = 0) in vec4 position;
-layout(location = 1) in vec4 color;
-
-smooth out vec4 theColor;
+in vec4 position;
+uniform mat4 mvp;
 
 void main(){
-	gl_Position = position;
-	theColor = color;
+	gl_Position = mvp * position;
 }
