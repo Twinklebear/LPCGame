@@ -199,12 +199,10 @@ int main(int argc, char** argv){
     GL::Uniform1f(widthAttrib, 480.0f);
 
     //Setup model matrix
-    //For some reason the view transform flips the x axis, so i flip it back. Perhaps I'm just
-    //specifying my verts incorrectly?
-    glm::mat4x4 model = glm::scale<GLfloat>(-0.5, 0.5, 0.5);// * glm::rotate<GLfloat>(-5, glm::vec3(0, 0, 1));
+    glm::mat4x4 model = glm::scale<GLfloat>(0.5, 0.5, 0.5);// * glm::rotate<GLfloat>(-5, glm::vec3(0, 0, 1));
 
     //Setup view matrix
-    glm::mat4x4 view = glm::lookAt<GLfloat>(glm::vec3(0, 0, -1), glm::vec3(0, 0, 0), glm::vec3(0, 1, 0));
+    glm::mat4x4 view = glm::lookAt<GLfloat>(glm::vec3(0, 0, 1), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
 
     //Setup projection matrix
     glm::mat4x4 ortho = glm::ortho<GLfloat>(-1.0, 1.0, -1.0, 1.0, -1.0, 100.0);
