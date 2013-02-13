@@ -23,9 +23,9 @@ GLuint programID;
 
 //Vertex buffer data for a triangle
 static const float vertexBufferData[] = {
-    0.75f, 0.75f, 1.0f, 1.0f,
-    0.75f, -0.75f, 1.0f, 1.0f,
-    -0.75f, -0.75f, 1.0f, 1.0f
+    0.75f, 0.75f, 0.0f, 1.0f,
+    0.75f, -0.75f, 0.0f, 1.0f,
+    -0.75f, -0.75f, 0.0f, 1.0f
 };
 
 bool InitSDLGL(){
@@ -199,18 +199,18 @@ int main(int argc, char** argv){
     GL::Uniform1f(widthAttrib, 480.0f);
 
     //Setup model matrix
-    glm::mat4x4 model = glm::scale<GLfloat>(0.5, 0.5, 0.5);// * glm::rotate<GLfloat>(-5, glm::vec3(0, 0, 1));
+    glm::mat4x4 model = glm::translate<GLfloat>(0.0, 0.0, -1.0) * glm::scale<GLfloat>(0.5, 0.5, 1.0);
 
     //Setup view matrix
     glm::mat4x4 view = glm::lookAt<GLfloat>(glm::vec3(0, 0, 1), glm::vec3(0, 0, -1), glm::vec3(0, 1, 0));
 
     //Setup projection matrix
-    glm::mat4x4 ortho = glm::ortho<GLfloat>(-1.0, 1.0, -1.0, 1.0, -1.0, 100.0);
+    glm::mat4x4 ortho = glm::ortho<GLfloat>(-1.0f, 1.0f, -1.0f, 1.0f, 0.1f, 100.0f);
     glm::mat4x4 persp = glm::perspective<GLfloat>(45.0f, 640.0f/480.0f, 0.1f, 100.0f);
 
     //Create & pass the MVP matrix
     GLint mvpAttrib = GL::GetUniformLocation(programID, "mvp");
-    glm::mat4x4 mvp = ortho * view * model;
+    glm::mat4x4 mvp = persp * view * model;
     GL::UniformMatrix4fv(mvpAttrib, 1, GL_FALSE, glm::value_ptr(mvp));
 
     GL::UseProgram(0);
