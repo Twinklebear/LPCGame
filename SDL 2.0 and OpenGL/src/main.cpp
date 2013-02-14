@@ -250,7 +250,11 @@ int main(int argc, char** argv){
     GLint widthAttrib = GL::GetUniformLocation(programID, "width");
     GL::Uniform1f(widthAttrib, 480.0f);
 
-    //Setup texture sampler?
+    //Setup texture sampler? It seems i can just do
+    //GL::ActiveTexture(GL_TEXTURE0);
+    //glBindTexture(GL_TEXTURE_2D, tex);
+    //But is that ok to do? Ie. is it just creating a sampler each time without telling me?
+    //and it'd be faster to make my own and re-use it? I'm not sure...
 
 
     //Setup model matrix

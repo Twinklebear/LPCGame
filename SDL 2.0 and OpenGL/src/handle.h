@@ -9,7 +9,9 @@
 * OpenGL objects. It's basically a simple shared_ptr that will 
 * implicitly behave like a GLuint
 * could i just inherit from shared pointer? or use a shared pointer to
-* a GLuint internally?
+* a GLuint internally? shared_ptr doesn't seem to want to accept my destructor 
+* function, I'm not sure why. I'll keep using this handle for now and perhaps
+* reinvestigate its internals later
 */
 namespace GL {
     class Handle {
