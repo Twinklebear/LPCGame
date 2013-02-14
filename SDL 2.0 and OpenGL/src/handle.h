@@ -12,6 +12,7 @@
 * a GLuint internally? shared_ptr doesn't seem to want to accept my destructor 
 * function, I'm not sure why. I'll keep using this handle for now and perhaps
 * reinvestigate its internals later
+* Perhaps a shared_ptr is best choice for reliability?
 */
 namespace GL {
     class Handle {
