@@ -209,9 +209,28 @@ GLuint LoadTexture(std::string file){
     return texId;
 }
 
-//#undef main
+int TestHandle(){
+    GLuint a = 10;
+    auto funDel = [](GLuint x){ std::cout << "i'm deleting: " << x << std::endl; };
+    GL::Handle h1(a, funDel);
+    GL::Handle h2(h1);
+    GLuint b = 20;
+    GL::Handle h3(b, funDel);
+    std::cout << "setting h3 = h2" << std::endl;
+    h3 = h2;
+    std::cout << "set" << std::endl;
+    GLuint c = 30;
+    h3 = 30;
+    h2 = h3;
+    std::cout << "setting h1 = h2, and prev h2 = h3, and prev h3 = 30" << std::endl;
+    h1 = h2;
+    std::cout << "set" << std::endl;
+
+    return 0;
+}
+
 int main(int argc, char** argv){
-    //return TestHandle();
+    return TestHandle();
 
     InitSDLGL();
 

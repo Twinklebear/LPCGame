@@ -2,12 +2,11 @@
 #include <SDL_opengl.h>
 #include "handle.h"
 
-GL::Handle::Handle() : mRefCnt(nullptr), mObj(nullptr) {}
+GL::Handle::Handle() : mRefCnt(nullptr) {}
 GL::Handle::Handle(GLuint obj, std::function<void(GLuint)> del) 
-    : mRefCnt(nullptr), mObj(nullptr), mDeleter(del)
+    : mRefCnt(nullptr), mDeleter(del)
 {
-    mObj = new GLuint;
-    *mObj = obj;
+    mObj = obj;
     mRefCnt = new int;
     *mRefCnt = 1;
 }
@@ -24,11 +23,9 @@ void GL::Handle::Release(){
     //Otherwise decrease ref count and check if we should free the variable
     (*mRefCnt)--;
     if (*mRefCnt == 0){
-        mDeleter(*mObj);
-        delete mObj;
+        mDeleter(mObj);
         delete mRefCnt;
         mRefCnt = nullptr;
-        mObj = nullptr;
     }
 }
 void GL::Handle::Reference(const Handle &h){
@@ -44,6 +41,13 @@ GL::Handle& GL::Handle::operator=(const Handle &h){
     Reference(h);
     return *this;
 }
+GL::Handle& GL::Handle::operator=(const GLuint &g){
+    Release();
+    mRefCnt = new int;
+    *mRefCnt = 1;
+    mObj = g;
+    return *this;
+}
 GL::Handle::operator GLuint(){
-    return *mObj;
+    return mObj;
 }

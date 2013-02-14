@@ -26,6 +26,8 @@ namespace GL {
         ~Handle();
         //Need to increment # of references when copying a handle
         Handle& operator=(const Handle &h);
+        //Allow for treating it like a GLuint
+        Handle& operator=(const GLuint &g);
         //Behave like the stored object (GLuint) implicitly
         operator GLuint();
 
@@ -37,7 +39,7 @@ namespace GL {
 
     private:
         int *mRefCnt;
-        GLuint *mObj;
+        GLuint mObj;
         std::function<void(GLuint)> mDeleter;
     };
 }
