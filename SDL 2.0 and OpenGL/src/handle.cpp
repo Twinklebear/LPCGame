@@ -11,7 +11,7 @@ GL::Handle::Handle(GLuint obj, std::function<void(GLuint)> del)
     mRefCnt = new int;
     *mRefCnt = 1;
 }
-GL::Handle::Handle(const Handle &h) : mRefCnt(nullptr) {
+GL::Handle::Handle(const Handle &h){
     Reference(h);
 }
 GL::Handle::~Handle(){
