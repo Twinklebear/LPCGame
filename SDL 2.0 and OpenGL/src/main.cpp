@@ -31,13 +31,17 @@ static const float vertexBufferData[] = {
     -1.0f, -1.0f, 0.0f, 1.0f,
     -1.0f, 1.0f, 0.0f, 1.0f,
     1.0f, 1.0f, 0.0f, 1.0f,
-    //U V coords
-    1.0f, 1.0f,
+    //U V coords, the y is flipped because OpenGL
+    //reads images with top-left corner as 0, 0. 
+    //How will this effect loading textures and applying them to 
+    //models that define their own coords. Will I need to invert the Y 
+    //while reading the image?
     1.0f, 0.0f,
-    0.0f, 0.0f,
-    0.0f, 0.0f,
+    1.0f, 1.0f,
     0.0f, 1.0f,
-    1.0f, 1.0f
+    0.0f, 1.0f,
+    0.0f, 0.0f,
+    1.0f, 0.0f
 };
 
 bool InitSDLGL(){
@@ -194,6 +198,7 @@ GLuint LoadTexture(std::string file){
     //Load in our image
     int mode = (img->format->BytesPerPixel == 4 ? GL_RGBA : GL_RGB);
     glTexImage2D(GL_TEXTURE_2D, 0, mode, img->w, img->h, 0, mode, GL_UNSIGNED_BYTE, img->pixels);
+    //How to do mip map?
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);

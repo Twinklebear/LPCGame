@@ -44,6 +44,7 @@ namespace GL {
     extern PFNGLGETATTRIBLOCATIONPROC GetAttribLocation;
     extern PFNGLVERTEXATTRIB1FPROC VertexAttrib1F;
     extern PFNGLACTIVETEXTUREPROC ActiveTexture;
+    extern PFNGLGENERATEMIPMAPPROC GenerateMipMap;
 }
 
 #endif
