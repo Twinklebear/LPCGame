@@ -230,7 +230,7 @@ int TestHandle(){
 }
 
 int main(int argc, char** argv){
-    return TestHandle();
+    //return TestHandle();
 
     InitSDLGL();
 
