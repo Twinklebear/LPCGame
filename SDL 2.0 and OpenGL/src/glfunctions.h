@@ -1,6 +1,7 @@
 #ifndef GLFUNCTIONS_H
 #define GLFUNCTIONS_H
 
+#include <string>
 #include <SDL_opengl.h>
 
 /**
@@ -13,6 +14,11 @@ namespace GL {
     *  Get all the GL functions via SDL_GL_ProcAddress
     */
     void SetupGLFunctions();
+    ///Take a PFNGL function pointer and point it at the right thing
+    template<class T>
+    void SetProcAddress(T &func, std::string proc){
+        func = (T)SDL_GL_GetProcAddress(proc.c_str());
+    }
     ///The GL functions
     extern PFNGLGENVERTEXARRAYSPROC GenVertexArrays;
     extern PFNGLDELETEVERTEXARRAYSPROC DeleteVertexArrays;
@@ -42,7 +48,7 @@ namespace GL {
     extern PFNGLUNIFORM1FPROC Uniform1f;
     extern PFNGLUNIFORMMATRIX4FVPROC UniformMatrix4fv;
     extern PFNGLGETATTRIBLOCATIONPROC GetAttribLocation;
-    extern PFNGLVERTEXATTRIB1FPROC VertexAttrib1F;
+    extern PFNGLVERTEXATTRIB1FPROC VertexAttrib1f;
     extern PFNGLACTIVETEXTUREPROC ActiveTexture;
     extern PFNGLGENERATEMIPMAPPROC GenerateMipMap;
 }
