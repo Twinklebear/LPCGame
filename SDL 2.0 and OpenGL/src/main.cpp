@@ -77,8 +77,6 @@ std::string ReadShader(const std::string &shaderFile){
         std::string line = "";
         while (std::getline(shaderFStream, line))
             shaderCode += line + "\n";
-        
-        shaderFStream.close();
     }
     return shaderCode;
 }
