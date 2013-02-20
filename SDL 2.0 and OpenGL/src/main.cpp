@@ -70,15 +70,14 @@ bool InitSDLGL(){
 
     return true;
 }
-std::string ReadShader(const std::string &shaderFile){
-    std::string shaderCode = "";
-    std::ifstream shaderFStream(shaderFile);
-    if (shaderFStream.is_open()){
-        std::string line = "";
-        while (std::getline(shaderFStream, line))
-            shaderCode += line + "\n";
+std::string ReadShader(const std::string &file){
+    std::string content = "";
+    std::ifstream fileIn(file.c_str());
+    if (fileIn.is_open()){
+        content = std::string((std::istreambuf_iterator<char>(fileIn)), 
+            std::istreambuf_iterator<char>());
     }
-    return shaderCode;
+    return content;
 }
 GLuint CreateShader(GLenum shaderType, const std::string &shaderFile){
     GLuint shader = GL::CreateShader(shaderType);
