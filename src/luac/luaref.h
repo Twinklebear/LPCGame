@@ -2,6 +2,7 @@
 #define LUAREF_H
 
 #include <string>
+#include <memory>
 #include <lua.hpp>
 #include "luacdata.h"
 
@@ -23,7 +24,7 @@ namespace LuaC {
         /**
         * Blank constructor, the reference will be set to null (LUA_REFNIL)
         */
-        LuaRef() : mRef(LUA_REFNIL) {}
+        LuaRef();
         /**
         * Store a reference to the item at index i in the stack of lua_State l
         * @param l The state that the item exists in
@@ -60,8 +61,13 @@ namespace LuaC {
 
     private:
         //The reference number
-        int mRef;
-        //The state the reference is in
+        //int mRef;
+        /**
+        * The reference number, we use a shared_ptr to track how many
+        * things are referencing the item so we don't free it early
+        */
+        std::shared_ptr<int> mRef;
+        ///The state the reference is in
         lua_State *mState;
     };
 }
