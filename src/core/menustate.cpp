@@ -23,6 +23,7 @@ std::string MenuState::Run(){
     //Testing LuaRef function calling
     LuaC::LuaRef refTest(mScript.Get(), "RefTest");
     mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
+    mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
 
 	Timer delta;
 	delta.Start();
