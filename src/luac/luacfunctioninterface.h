@@ -49,8 +49,10 @@ namespace LuaC {
             if (nParam == 0)
                 lua_getglobal(mL, fcn.c_str());
 
-            if (lua_pcall(mL, nParam, 1, 0) != 0)
+            if (lua_pcall(mL, nParam, 1, 0) != 0){
                 Debug::Log("Error calling: " + fcn + " in file " + mFile + lua_tostring(mL, -1));
+                LuaC::LuaScriptLib::StackDump(mL);
+            }
             
             return LuaC::DataLib<R>::GetCopy(mL, -1);
         }
@@ -66,8 +68,10 @@ namespace LuaC {
             if (nParam == 0)
                 lua_getglobal(mL, fcn.c_str());
 
-            if (lua_pcall(mL, nParam, 1, 0) != 0)
+            if (lua_pcall(mL, nParam, 1, 0) != 0){
                 Debug::Log("Error calling: " + fcn + " in file " + mFile + lua_tostring(mL, -1));
+                LuaC::LuaScriptLib::StackDump(mL);
+            }
         }
         /**
         * Call a function fcn on the script specifying any desired number of parameters
@@ -83,6 +87,14 @@ namespace LuaC {
             DataLib<T>::Push(mL, param);
             return Call<R>(fcn, 1, args...);
         }
+        /**
+        * Call a function fcn on the script specifying any desired number of parameters
+        * since this is the first level of recursion we get the function, then push
+        * on the first parameter and recurse through the parameter pack pushing each one on
+        * @param fcn A LuaRef of the function to call
+        * @param param The first parameter to push onto the state
+        * @param args The variadic template parameter pack
+        */
         template<class R, class T, class... Args>
         R CallFunction(LuaRef fcn, T param, Args... args){
             fcn.Push(mL);
