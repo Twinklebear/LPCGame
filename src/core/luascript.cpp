@@ -1,7 +1,4 @@
 #include <string>
-#include <fstream>
-#include <sstream>
-#include <vector>
 #include <lua.hpp>
 #include "external/json/json.h"
 #include "luac/luacscript.h"
@@ -41,6 +38,35 @@ void LuaScript::Close(){
         mL = NULL;
         mOpen = false;
     }
+}
+void LuaScript::Reference(std::string name){
+    mReferences[name] = LuaC::LuaRef(mL, name);
+}
+void LuaScript::Reference(std::string table, std::string field){
+    //Check if we've got a reference to the table
+    std::map<std::string, LuaC::LuaRef>::const_iterator fnd = 
+        mReferences.find(table);
+    if (fnd != mReferences.end()){
+        fnd->second.Push(mL);
+        //Get the field desired and store a reference to it
+        lua_getfield(mL, -1, field.c_str());
+        mReferences[field] = LuaC::LuaRef(mL, -1);
+    }
+    //If we don't have the table referenced try to get it as a global
+    else {
+        lua_getglobal(mL, table.c_str());
+        lua_getfield(mL, -1, field.c_str());
+        mReferences[field] = LuaC::LuaRef(mL, -1);
+    }
+}
+LuaC::LuaRef LuaScript::GetReference(std::string name){
+    //Lookup the reference in the map
+    std::map<std::string, LuaC::LuaRef>::const_iterator fnd = 
+        mReferences.find(name);
+    if (fnd != mReferences.end())
+        return fnd->second;
+    //If we didn't find it, return blank reference, ie. LUA_REFNIL
+    return LuaC::LuaRef();
 }
 lua_State* LuaScript::Get(){
 	return mL;

@@ -3,7 +3,6 @@
 
 #include <string>
 #include <map>
-#include <vector>
 #include <lua.hpp>
 #include "external/json/json.h"
 #include "debug.h"
@@ -29,6 +28,26 @@ public:
     void OpenScript(const std::string &script);
     ///Close the script
     void Close();
+    /**
+    * Store a reference to a global variable with some name
+    * the reference will be stored in the reference map with
+    * the same name passed in
+    * @param name The name of the global to reference
+    */
+    void Reference(std::string name);
+    /**
+    * Store a reference to a the value of a field in a table
+    * if the table is already in the reference system it'll be pushed
+    * on and the field gotten from there
+    * @param table The name of the table to get the field from
+    * @param field The name of the field to reference
+    */
+    void Reference(std::string table, std::string field);
+    /**
+    * Get the LuaRef stored with some name
+    * @param name The name of the reference to get
+    */
+    LuaC::LuaRef GetReference(std::string name);
     /**
     *  Get the lua_State pointer to use for calling functions/etc.
     *  @return The lua_State pointer held by the LuaScript class
@@ -60,6 +79,8 @@ private:
     bool mOpen;
     ///The function interface
     LuaC::FunctionInterface mFcnInterface;
+    ///The map of LuaReferences
+    std::map<std::string, LuaC::LuaRef> mReferences;
 };
 
 #endif

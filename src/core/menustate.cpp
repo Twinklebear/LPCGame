@@ -25,6 +25,12 @@ std::string MenuState::Run(){
     mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
     mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
 
+    //Testing usage of table references and calling self
+    mScript.Reference("testTable");
+    mScript.Reference("testTable", "speak");
+    mScript.FunctionInterface()->CallFunction<void>(mScript.GetReference("speak"),
+        mScript.GetReference("testTable"));
+
 	Timer delta;
 	delta.Start();
 	while (!mExit){

@@ -25,3 +25,10 @@ end
 function RefTest(hi)
 	print ("RefTest called with: " .. hi)
 end
+
+--Testing reference of table fields and calling self functions
+testTable = {}
+testTable.name = "Jim"
+function testTable:speak()
+	print ("This is table with name: " .. self.name .. " speaking")
+end
