@@ -4,6 +4,16 @@
 #include <lua.hpp>
 #include "core/debug.h"
 #include "luacdata.h"
+#include "luac/luacanimatedimage.h"
+#include "luac/luaccamera.h"
+#include "luac/luaccolor.h"
+#include "luac/luacentity.h"
+#include "luac/luacimage.h"
+#include "luac/luacphysics.h"
+#include "luac/luacrectf.h"
+#include "luac/luactext.h"
+#include "luac/luactimer.h"
+#include "luac/luacvector2f.h"
 
 ///A namespace for storing the Lua C API code
 /**
@@ -113,7 +123,6 @@ namespace LuaC {
         R Call(std::string fcn, int nParam){
             return CallFunction<R>(fcn, nParam);
         }
-
 
     private:
         lua_State *mL;

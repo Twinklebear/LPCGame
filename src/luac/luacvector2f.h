@@ -14,6 +14,8 @@
 namespace LuaC {
     ///The Vector2f class/type name
     const std::string vector2fClass = "Vector2f";
+    template<>
+    const std::string DataLib<Vector2f>::mMetaTable = "LPC.Vector2f";
     /**
     *  The Lua library for the Vector2f class
     */

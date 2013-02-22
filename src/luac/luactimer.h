@@ -14,6 +14,8 @@
 namespace LuaC {
     ///The Timer class/type name
     const std::string timerClass = "Timer";
+    template<>
+    const std::string DataLib<Timer>::mMetaTable = "LPC.Timer";
     /**
     *  The Lua library for the Timer class
     */

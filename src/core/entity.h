@@ -9,8 +9,7 @@
 #include "map.h"
 #include "image.h"
 
-//Forward declaration of LuaScript class, needed due to luacdata needing to include this file in the header
-//since it's a template and luascript including luacdata. Is there a better way around this?
+//Forward declaration of the LuaScript class b/c circular inclusion
 class LuaScript;
 
 ///The Entity class, to provide functions that call to attached Lua scripts

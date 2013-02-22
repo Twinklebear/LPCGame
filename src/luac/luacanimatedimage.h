@@ -15,6 +15,8 @@
 namespace LuaC {
     ///The AnimatedImage class/type name
     const std::string animatedImageClass = "AnimatedImage";
+    template<>
+    const std::string DataLib<std::shared_ptr<AnimatedImage>>::mMetaTable = "LPC.AnimatedImage";
     /**
     * The Lua library for the AnimatedImage class
     */

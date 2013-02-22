@@ -4,16 +4,6 @@
 #include <string>
 #include <lua.hpp>
 #include <memory>
-#include "core/animatedimage.h"
-#include "core/camera.h"
-#include "core/color.h"
-#include "core/entity.h"
-#include "core/image.h"
-#include "core/physics.h"
-#include "core/rect.h"
-#include "core/text.h"
-#include "core/timer.h"
-#include "core/vectors.h"
 #include "luacscript.h"
 
 
@@ -104,28 +94,7 @@ namespace LuaC {
     };
     template<class T>
     const std::string DataLib<T>::mMetaTable = "";
-    //Define metatable names for the libs
-    template<>
-    const std::string DataLib<std::shared_ptr<AnimatedImage>>::mMetaTable = "LPC.AnimatedImage";
-    template<>
-    const std::string DataLib<std::weak_ptr<Camera>>::mMetaTable = "LPC.Camera";
-    template<>
-    const std::string DataLib<Color>::mMetaTable = "LPC.Color";
-    template<>
-    const std::string DataLib<std::shared_ptr<Entity>>::mMetaTable = "LPC.Entity";
-    template<>
-    const std::string DataLib<std::shared_ptr<Image>>::mMetaTable = "LPC.Image";
-    template<>
-    const std::string DataLib<std::weak_ptr<Physics>>::mMetaTable = "LPC.Physics";
-    template<>
-    const std::string DataLib<Rectf>::mMetaTable = "LPC.Rectf";
-    template<>
-    const std::string DataLib<std::shared_ptr<Text>>::mMetaTable = "LPC.Text";
-    template<>
-    const std::string DataLib<Timer>::mMetaTable = "LPC.Timer";
-    template<>
-    const std::string DataLib<Vector2f>::mMetaTable = "LPC.Vector2f";
-
+   
     //Specialization for primitive types
     typedef DataLib<int> IntLib;
     template<>

@@ -15,6 +15,8 @@
 namespace LuaC {
     //The Image class/type name
     const std::string imageClass = "Image";
+    template<>
+    const std::string DataLib<std::shared_ptr<Image>>::mMetaTable = "LPC.Image";
     /**
     *  Class for storing functions for interacting with Image objects
     *  from Lua. Defines the Image Lua Lib

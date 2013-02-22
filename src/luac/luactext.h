@@ -15,6 +15,8 @@
 namespace LuaC {
     ///the Text class/type name
     const std::string textClass = "Text";
+    template<>
+    const std::string DataLib<std::shared_ptr<Text>>::mMetaTable = "LPC.Text";
     /**
     * The Lua library for the Text class
     */

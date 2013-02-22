@@ -14,6 +14,8 @@
 namespace LuaC {
     ///The Color class/type name
     const std::string colorClass = "Color";
+    template<>
+    const std::string DataLib<Color>::mMetaTable = "LPC.Color";
     /**
     *  The Lua library for the Color class
     */

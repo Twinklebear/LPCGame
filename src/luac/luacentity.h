@@ -15,6 +15,8 @@
 namespace LuaC {
     ///The Entity class/type name
     const std::string entityClass = "Entity";
+    template<>
+    const std::string DataLib<std::shared_ptr<Entity>>::mMetaTable = "LPC.Entity";
     /**
     *  Class for storing functions used to manage interaction
     *  between Lua and the Entity class. Defines the Entity Lua Lib

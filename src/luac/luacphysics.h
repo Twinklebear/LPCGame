@@ -15,6 +15,8 @@
 namespace LuaC {
     ///The Physics class/type name
     const std::string physicsClass = "Physics";
+    template<>
+    const std::string DataLib<std::weak_ptr<Physics>>::mMetaTable = "LPC.Physics";
     /**
     *  The Lua library for the Physics class
     */

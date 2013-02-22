@@ -15,6 +15,8 @@
 namespace LuaC {
     ///The Camera class/type name
     const std::string cameraClass = "Camera";
+    template<>
+    const std::string DataLib<std::weak_ptr<Camera>>::mMetaTable = "LPC.Camera";
     /**
     *  The Lua library for the Camera class
     */

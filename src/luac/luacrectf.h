@@ -14,6 +14,8 @@
 namespace LuaC {
     ///The Rectf class/type name
     const std::string rectfClass = "Rectf";
+    template<>
+    const std::string DataLib<Rectf>::mMetaTable = "LPC.Rectf";
     /**
     *  The Lua library for the Rectf class
     */
