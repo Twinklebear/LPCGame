@@ -9,6 +9,8 @@
 #include "menustate.h"
 #include "statemanager.h"
 
+#include "luac/luaref.h"
+
 std::string MenuState::Run(){
 	//Unset events from earlier
 	Input::Clear();
@@ -17,6 +19,10 @@ std::string MenuState::Run(){
     
     //Call the script's Init
     State::Init();
+
+    //Testing LuaRef function calling
+    LuaC::LuaRef refTest(mScript.Get(), "RefTest");
+    mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
 
 	Timer delta;
 	delta.Start();

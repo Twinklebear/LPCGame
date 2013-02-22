@@ -3,6 +3,7 @@
 
 #include <string>
 #include <lua.hpp>
+#include "luacdata.h"
 
 ///A namespace for storing the Lua C API code
 /**
@@ -45,7 +46,7 @@ namespace LuaC {
         * @param l The Lua state we want the object to be pushed in, checked against
         *   the state the reference exists in
         */
-        void Push(lua_State *l);
+        void Push(lua_State *l) const;
         /**
         * Push the reference onto the stack of its Lua state. A check is performed
         * to make sure that the state being pushed onto is the same as the one being 
@@ -55,7 +56,7 @@ namespace LuaC {
         *   the state the reference exists in
         * @param name The global name to be assigned to the variable
         */
-        void Push(lua_State *l, std::string name);
+        void Push(lua_State *l, std::string name) const;
 
     private:
         //The reference number

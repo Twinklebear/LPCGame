@@ -57,6 +57,7 @@
     <ClCompile Include="..\src\luac\luacvector2f.cpp" />
     <ClCompile Include="..\src\luac\luacwindow.cpp" />
     <ClCompile Include="..\src\luac\luaref.cpp" />
+    <ClCompile Include="..\src\luac\luareflib.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\core\animatedimage.h" />
@@ -102,6 +103,7 @@
     <ClInclude Include="..\src\luac\luacmath.h" />
     <ClInclude Include="..\src\luac\luacphysics.h" />
     <ClInclude Include="..\src\luac\luacrectf.h" />
+    <ClInclude Include="..\src\luac\luacreflib.h" />
     <ClInclude Include="..\src\luac\luacscript.h" />
     <ClInclude Include="..\src\luac\luacstate.h" />
     <ClInclude Include="..\src\luac\luactext.h" />
@@ -148,6 +150,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>C:\Users\Will\Documents\GitHub\LPCGame\src;C:\Users\Will\Documents\Programs\LPCGame\src;C:\Program Files %28x86%29\Lua\5.1\include;C:\SDL-2.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <ShowIncludes>false</ShowIncludes>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

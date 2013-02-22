@@ -22,3 +22,6 @@ end
 function RenderUpdate(camera)
 	Window.draw(bkgnd, Math.fromSceneSpace(camera, camera:sceneBox()), camera:box())
 end
+function RefTest(hi)
+	print ("RefTest called with: " .. hi)
+end

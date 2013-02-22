@@ -11,6 +11,7 @@
 #include "luac/luacimage.h"
 #include "luac/luacphysics.h"
 #include "luac/luacrectf.h"
+#include "luac/luacreflib.h"
 #include "luac/luactext.h"
 #include "luac/luactimer.h"
 #include "luac/luacvector2f.h"
@@ -81,6 +82,12 @@ namespace LuaC {
             lua_getglobal(mL, fcn.c_str());
             DataLib<T>::Push(mL, param);
             return Call<R>(fcn, 1, args...);
+        }
+        template<class R, class T, class... Args>
+        R CallFunction(LuaRef fcn, T param, Args... args){
+            fcn.Push(mL);
+            DataLib<T>::Push(mL, param);
+            return Call<R>("LuaRefFcn", 1, args...);
         }
 
     private:

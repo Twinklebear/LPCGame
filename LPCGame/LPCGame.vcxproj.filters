@@ -153,6 +153,9 @@
     <ClCompile Include="..\src\luac\luaref.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\luac\luareflib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\luac\luacanimatedimage.h">
@@ -306,6 +309,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\luac\luacfunctioninterface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\luac\luacreflib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
