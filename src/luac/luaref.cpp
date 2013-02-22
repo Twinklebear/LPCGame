@@ -3,8 +3,6 @@
 #include <lua.hpp>
 #include "luaref.h"
 
-#include <iostream>
-
 LuaC::LuaRef::LuaRef() 
     : mRef(std::make_shared<int>(LUA_REFNIL)), mState(NULL)
 {
@@ -23,10 +21,8 @@ LuaC::LuaRef::LuaRef(lua_State *l, std::string name)
 }
 LuaC::LuaRef::~LuaRef(){
     //If we're the last one using the reference, release it
-    if (mRef.use_count() == 1){
+    if (mRef.use_count() == 1)
         luaL_unref(mState, LUA_REGISTRYINDEX, *mRef);
-        std::cout << "LuaRef released" << std::endl;
-    }
 }
 void LuaC::LuaRef::Push(lua_State *l) const {
     //Make sure the state we want to push into is the one the reference exists in
