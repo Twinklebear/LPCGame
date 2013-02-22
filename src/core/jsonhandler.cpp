@@ -20,16 +20,14 @@ JsonHandler::~JsonHandler(){
 Json::Value JsonHandler::Read() const {
     std::ifstream fileIn(mFile.c_str(), std::ifstream::binary);
     Json::Value root;
-    if (fileIn){
+    if (fileIn.is_open()){
         Json::Reader reader;
-        if (reader.parse(fileIn, root, false))
-            fileIn.close();
-        else
+        if (!reader.parse(fileIn, root, false))
             Debug::Log("JsonHandler: Failed to parse: " + mFile);
     }
     else
         Debug::Log("JsonHandler: Failed to find: " + mFile);
-    fileIn.close();
+
     return root;
 }
 void JsonHandler::Write(const Json::Value &data) const {
@@ -41,7 +39,6 @@ void JsonHandler::Write(const Json::Value &data) const {
     Json::StyledWriter writer;
     std::string strData = writer.write(data);
     fileOut << strData << std::endl;
-    fileOut.close();
 }
 void JsonHandler::SetFile(const std::string file){
     mFile = file;
