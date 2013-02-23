@@ -74,12 +74,8 @@ std::string ReadShader(const std::string &file){
     std::string content = "";
     std::ifstream fileIn(file.c_str());
     if (fileIn.is_open()){
-        //Allocate the appropriate size string
-        fileIn.seekg(0, std::ios::end);
-        content.resize(fileIn.tellg());
-        //Return to beginning and read contents
-        fileIn.seekg(0, std::ios::beg);
-        fileIn.read(&content[0], content.size());
+        content = std::string((std::istreambuf_iterator<char>(fileIn)),
+            std::istreambuf_iterator<char>());
     }
     return content;
 }
