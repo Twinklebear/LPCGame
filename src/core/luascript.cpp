@@ -61,8 +61,8 @@ void LuaScript::Reference(std::string table, std::string field){
         lua_getfield(mL, -1, field.c_str());
         mReferences[field] = LuaC::LuaRef(mL, -1);
     }
-    //Pop the table off the stack
-    lua_pop(mL, 1);
+    //Pop the table and function off the stack
+    lua_pop(mL, 2);
     LuaC::LuaScriptLib::StackDump(mL);
 }
 LuaC::LuaRef LuaScript::GetReference(std::string name){

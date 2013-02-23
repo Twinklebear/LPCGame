@@ -12,8 +12,8 @@ LuaC::LuaRef::LuaRef()
 LuaC::LuaRef::LuaRef(lua_State *l, int i) 
     : mRef(std::make_shared<int>(LUA_REFNIL)), mState(l) 
 {
-    //lua_pushvalue(mState, i);
-    Debug::Log("Storing ref to data @ i: " + (char)i);
+    lua_pushvalue(mState, i);
+    Debug::Log("Storing ref to data @ i: " + std::to_string(i));
     LuaC::LuaScriptLib::StackDump(l);
     mRef = std::make_shared<int>(luaL_ref(mState, LUA_REGISTRYINDEX));
 }

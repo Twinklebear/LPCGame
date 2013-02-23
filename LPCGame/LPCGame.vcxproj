@@ -57,7 +57,7 @@
     <ClCompile Include="..\src\luac\luacvector2f.cpp" />
     <ClCompile Include="..\src\luac\luacwindow.cpp" />
     <ClCompile Include="..\src\luac\luaref.cpp" />
-    <ClCompile Include="..\src\luac\luareflib.cpp" />
+    <ClCompile Include="..\src\luac\luacreflib.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\core\animatedimage.h" />
