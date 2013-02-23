@@ -3,7 +3,6 @@
 
 #include <lua.hpp>
 #include "core/debug.h"
-#include "luacdata.h"
 #include "luac/luacanimatedimage.h"
 #include "luac/luaccamera.h"
 #include "luac/luaccolor.h"

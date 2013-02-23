@@ -11,8 +11,8 @@ LuaC::LuaRef* LuaC::LuaRefLib::Allocate(lua_State *l){
     return nullptr;
 }
 void LuaC::LuaRefLib::Push(lua_State *l, const LuaRef obj){
-    obj.Push(l);
     std::cout << "LuaRefLib pushing" << std::endl;
+    obj.Push(l);
     Debug::Log("Pushing a luaref, stackdumping");
     LuaScriptLib::StackDump(l);
 }

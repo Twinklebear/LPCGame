@@ -6,6 +6,7 @@
 #include <memory>
 #include "luacscript.h"
 
+#include "core/debug.h"
 
 ///A namespace for storing the Lua C API code
 /**
@@ -38,6 +39,7 @@ namespace LuaC {
         * @param l The Lua state to push onto
         */
         static void Push(lua_State *l, const T obj){
+            Debug::Log("DataLib pushing, metatable: " + mMetaTable);
             T *o = Allocate(l);
             *o = obj;
         }
