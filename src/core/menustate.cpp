@@ -23,15 +23,15 @@ std::string MenuState::Run(){
     Debug::Log("Post-init stack dump");
     LuaC::LuaScriptLib::StackDump(mScript.Get());
     //Testing LuaRef function calling
-    LuaC::LuaRef refTest(mScript.Get(), "RefTest");
-    mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
-    mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
+    //LuaC::LuaRef refTest(mScript.Get(), "RefTest");
+    //mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
+    //mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
 
-    //Testing usage of table references and calling self
-    mScript.Reference("testTable");
-    mScript.Reference("testTable", "speak");
-    mScript.FunctionInterface()->CallFunction<void>(mScript.GetReference("speak"),
-        mScript.GetReference("testTable"));
+    ////Testing usage of table references and calling self
+    //mScript.Reference("testTable");
+    //mScript.Reference("testTable", "speak");
+    //mScript.FunctionInterface()->CallFunction<void>(mScript.GetReference("speak"),
+    //    mScript.GetReference("testTable"));
 
 	Timer delta;
 	delta.Start();
