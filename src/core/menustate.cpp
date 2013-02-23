@@ -16,10 +16,12 @@ std::string MenuState::Run(){
 	Input::Clear();
 	//Clean up any previous exit settings
 	UnsetExit();
-    
+    Debug::Log("Pre-init stack dump");
+    LuaC::LuaScriptLib::StackDump(mScript.Get());
     //Call the script's Init
     State::Init();
-
+    Debug::Log("Post-init stack dump");
+    LuaC::LuaScriptLib::StackDump(mScript.Get());
     //Testing LuaRef function calling
     LuaC::LuaRef refTest(mScript.Get(), "RefTest");
     mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");

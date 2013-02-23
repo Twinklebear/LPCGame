@@ -3,6 +3,8 @@
 #include <lua.hpp>
 #include "luaref.h"
 
+#include "core/debug.h"
+
 LuaC::LuaRef::LuaRef() 
     : mRef(std::make_shared<int>(LUA_REFNIL)), mState(NULL)
 {
@@ -10,13 +12,17 @@ LuaC::LuaRef::LuaRef()
 LuaC::LuaRef::LuaRef(lua_State *l, int i) 
     : mRef(std::make_shared<int>(LUA_REFNIL)), mState(l) 
 {
-    lua_pushvalue(mState, i);
+    //lua_pushvalue(mState, i);
+    Debug::Log("Storing ref to data @ i: " + (char)i);
+    LuaC::LuaScriptLib::StackDump(l);
     mRef = std::make_shared<int>(luaL_ref(mState, LUA_REGISTRYINDEX));
 }
 LuaC::LuaRef::LuaRef(lua_State *l, std::string name) 
     : mRef(std::make_shared<int>(LUA_REFNIL)), mState(l) 
 {
+    Debug::Log("Storing ref to global data: " + name);
     lua_getglobal(mState, name.c_str());
+    LuaC::LuaScriptLib::StackDump(l);
     mRef = std::make_shared<int>(luaL_ref(mState, LUA_REGISTRYINDEX));
 }
 LuaC::LuaRef::~LuaRef(){

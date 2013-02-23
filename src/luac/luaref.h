@@ -27,6 +27,7 @@ namespace LuaC {
         LuaRef();
         /**
         * Store a reference to the item at index i in the stack of lua_State l
+        * and pop it from the stack
         * @param l The state that the item exists in
         * @param i The stack index of the item to be referenced
         */
