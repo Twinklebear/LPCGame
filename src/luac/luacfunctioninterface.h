@@ -45,7 +45,6 @@ namespace LuaC {
         */
         template<class R>
         R CallFunction(std::string fcn, int nParam = 0){
-            std::cout << "Calling non-void " << fcn << std::endl;
             //if no params, get the function
             if (nParam == 0)
                 lua_getglobal(mL, fcn.c_str());
@@ -53,8 +52,7 @@ namespace LuaC {
             if (lua_pcall(mL, nParam, 1, 0) != 0){
                 Debug::Log("Error calling: " + fcn + " in file " + mFile + lua_tostring(mL, -1));
                 LuaC::LuaScriptLib::StackDump(mL);
-            }
-            
+            }            
             return LuaC::DataLib<R>::GetCopy(mL, -1);
         }
         /**
@@ -65,11 +63,6 @@ namespace LuaC {
         */
         template<>
         void CallFunction(std::string fcn, int nParam){
-            Debug::Log("calling void " + fcn);
-            std::cout << "Calling void " << fcn << " with nParam: " << nParam 
-                << std::endl;
-            Debug::Log("nparam: " + std::to_string(nParam));
-            LuaC::LuaScriptLib::StackDump(mL);
             //if no params, get the function
             if (nParam == 0)
                 lua_getglobal(mL, fcn.c_str());
@@ -78,7 +71,6 @@ namespace LuaC {
                 Debug::Log("Error calling: " + fcn + " in file " + mFile + lua_tostring(mL, -1));
                 LuaC::LuaScriptLib::StackDump(mL);
             }
-            LuaC::LuaScriptLib::StackDump(mL);
         }
         /**
         * Call a function fcn on the script specifying any desired number of parameters

@@ -1,5 +1,6 @@
 #include "external/json/json.h"
 #include "debug.h"
+#include "luascript.h"
 #include "state.h"
 
 State::State() 
