@@ -4,7 +4,6 @@
 #include <string>
 #include <memory>
 #include <lua.hpp>
-#include "luacdata.h"
 
 ///A namespace for storing the Lua C API code
 /**

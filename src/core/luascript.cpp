@@ -40,7 +40,6 @@ void LuaScript::Close(){
     }
 }
 void LuaScript::Reference(std::string name){
-    Debug::Log("Creating new reference");
     mReferences[name] = LuaC::LuaRef(mL, name);
 }
 void LuaScript::Reference(std::string table, std::string field){
@@ -48,12 +47,10 @@ void LuaScript::Reference(std::string table, std::string field){
     std::map<std::string, LuaC::LuaRef>::const_iterator fnd = 
         mReferences.find(table);
     if (fnd != mReferences.end()){
-        Debug::Log("Found ref in table");
         fnd->second.Push(mL);
         //Get the field desired and store a reference to it
         lua_getfield(mL, -1, field.c_str());
         mReferences[field] = LuaC::LuaRef(mL, -1);
-        LuaC::LuaScriptLib::StackDump(mL);
     }
     //If we don't have the table referenced try to get it as a global
     else {
@@ -63,7 +60,6 @@ void LuaScript::Reference(std::string table, std::string field){
     }
     //Pop the table and function off the stack
     lua_pop(mL, 2);
-    LuaC::LuaScriptLib::StackDump(mL);
 }
 LuaC::LuaRef LuaScript::GetReference(std::string name){
     //Lookup the reference in the map

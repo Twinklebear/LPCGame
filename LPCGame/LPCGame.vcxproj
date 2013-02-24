@@ -57,7 +57,6 @@
     <ClCompile Include="..\src\luac\luacvector2f.cpp" />
     <ClCompile Include="..\src\luac\luacwindow.cpp" />
     <ClCompile Include="..\src\luac\luaref.cpp" />
-    <ClCompile Include="..\src\luac\luacreflib.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\core\animatedimage.h" />
@@ -103,7 +102,6 @@
     <ClInclude Include="..\src\luac\luacmath.h" />
     <ClInclude Include="..\src\luac\luacphysics.h" />
     <ClInclude Include="..\src\luac\luacrectf.h" />
-    <ClInclude Include="..\src\luac\luacreflib.h" />
     <ClInclude Include="..\src\luac\luacscript.h" />
     <ClInclude Include="..\src\luac\luacstate.h" />
     <ClInclude Include="..\src\luac\luactext.h" />

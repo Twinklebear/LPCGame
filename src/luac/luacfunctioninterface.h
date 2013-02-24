@@ -3,17 +3,17 @@
 
 #include <lua.hpp>
 #include "core/debug.h"
-#include "luac/luacanimatedimage.h"
-#include "luac/luaccamera.h"
-#include "luac/luaccolor.h"
-#include "luac/luacentity.h"
-#include "luac/luacimage.h"
-#include "luac/luacphysics.h"
-#include "luac/luacrectf.h"
-#include "luac/luacreflib.h"
-#include "luac/luactext.h"
-#include "luac/luactimer.h"
-#include "luac/luacvector2f.h"
+#include "luacscript.h"
+#include "luacanimatedimage.h"
+#include "luaccamera.h"
+#include "luaccolor.h"
+#include "luacentity.h"
+#include "luacimage.h"
+#include "luacphysics.h"
+#include "luacrectf.h"
+#include "luactext.h"
+#include "luactimer.h"
+#include "luacvector2f.h"
 
 ///A namespace for storing the Lua C API code
 /**

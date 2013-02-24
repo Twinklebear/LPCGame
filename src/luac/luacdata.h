@@ -4,9 +4,8 @@
 #include <string>
 #include <lua.hpp>
 #include <memory>
+#include "luaref.h"
 #include "luacscript.h"
-
-#include "core/debug.h"
 
 ///A namespace for storing the Lua C API code
 /**
@@ -39,7 +38,6 @@ namespace LuaC {
         * @param l The Lua state to push onto
         */
         static void Push(lua_State *l, const T obj){
-            Debug::Log("DataLib pushing, metatable: " + mMetaTable);
             T *o = Allocate(l);
             *o = obj;
         }
@@ -96,6 +94,26 @@ namespace LuaC {
     };
     template<class T>
     const std::string DataLib<T>::mMetaTable = "";
+
+    //Specialization for Lua References
+    typedef DataLib<LuaRef> LuaRefLib;
+    LuaRef* LuaRefLib::Allocate(lua_State *l){
+        return nullptr;
+    }
+    void LuaRefLib::Push(lua_State *l, const LuaRef obj){
+        obj.Push(l);
+    }
+    void LuaRefLib::Push(lua_State *l, const LuaRef obj, std::string name){
+        obj.Push(l, name);
+    }
+    void LuaRefLib::Copy(lua_State *from, int idx, lua_State *too){
+    }
+    LuaRef* LuaRefLib::Check(lua_State *l, int i){
+        return nullptr;
+    }
+    LuaRef LuaRefLib::GetCopy(lua_State *l, int i){
+        return LuaC::LuaRef();
+    }
    
     //Specialization for primitive types
     typedef DataLib<int> IntLib;
