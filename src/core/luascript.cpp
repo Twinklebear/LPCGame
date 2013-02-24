@@ -32,6 +32,8 @@ void LuaScript::OpenScript(const std::string &script){
 }
 void LuaScript::Close(){
     if (Open()){
+        //Release references
+        mReferences.clear();
         lua_close(mL);
         mL = NULL;
         mOpen = false;
