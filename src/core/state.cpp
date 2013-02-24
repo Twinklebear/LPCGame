@@ -17,9 +17,12 @@ void State::Init(){
     if (!mScript.Open())
 		return;
 
-    mScript.FunctionInterface()->CallFunction<void>("Init");
+    mScript.FunctionInterface()->CallFunction<void>(mScript.GetReference("Init"),
+        mScript.GetReference(mScript.TableName()));
 }
 void State::Free(){
+    mScript.FunctionInterface()->CallFunction<void>(mScript.GetReference("Free"),
+        mScript.GetReference(mScript.TableName()));
     mScript.Close();
 }
 void State::LogicUpdate(){
@@ -27,14 +30,16 @@ void State::LogicUpdate(){
     if (!mScript.Open())
 		return;
 
-    mScript.FunctionInterface()->CallFunction<void>("LogicUpdate");
+    mScript.FunctionInterface()->CallFunction<void>(mScript.GetReference("LogicUpdate"),
+        mScript.GetReference(mScript.TableName()));
 }
 void State::RenderUpdate(){
     //Call the script
     if (!mScript.Open())
 		return;
 
-    mScript.FunctionInterface()->CallFunction<void>("RenderUpdate", std::weak_ptr<Camera>(mCamera));
+    mScript.FunctionInterface()->CallFunction<void>(mScript.GetReference("RenderUpdate"),
+        mScript.GetReference(mScript.TableName()), std::weak_ptr<Camera>(mCamera));
 }
 void State::SetExit(std::string val){
 	mExit = true;
@@ -66,4 +71,14 @@ void State::Load(Json::Value val){
 	mName = val["name"].asString();
 	mCamera->Load(val["camera"]);
     mScript.OpenScript(val["script"].asString());
+    //Setup references in the Lua script
+    StoreRefs();
+}
+void State::StoreRefs(){
+    std::string table = mScript.TableName();
+    mScript.Reference(table);
+    mScript.Reference(table, "Init");
+    mScript.Reference(table, "Free");
+    mScript.Reference(table, "LogicUpdate");
+    mScript.Reference(table, "RenderUpdate");
 }

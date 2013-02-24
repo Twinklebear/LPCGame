@@ -75,6 +75,13 @@ protected:
     ///Call the script's RenderUpdate function
     virtual void RenderUpdate();
 
+private:
+    /**
+    * Store references to the state object in the script and 
+    * the functions we'll be calling on it
+    */
+    void StoreRefs();
+
 protected:
 	std::shared_ptr<EntityManager> mManager;
 	std::shared_ptr<Camera> mCamera;

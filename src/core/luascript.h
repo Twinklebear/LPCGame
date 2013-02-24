@@ -55,6 +55,8 @@ public:
     lua_State* Get();
     ///Get the script filename
     std::string File() const;
+    ///Get the name we're expecting for the object defined in the script (file - .lua)
+    std::string TableName() const;
     ///Check if there's a script open
     bool Open() const;
     /**

@@ -20,17 +20,6 @@ std::string MenuState::Run(){
     //Call the script's Init
     State::Init();
 
-    //Testing LuaRef function calling
-    LuaC::LuaRef refTest(mScript.Get(), "RefTest");
-    mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
-    mScript.FunctionInterface()->CallFunction<void>(refTest, "test ok!");
-
-    //Testing usage of table references and calling self
-    mScript.Reference("testTable");
-    mScript.Reference("testTable", "speak");
-    mScript.FunctionInterface()->CallFunction<void>(mScript.GetReference("speak"),
-        mScript.GetReference("testTable"));
-
 	Timer delta;
 	delta.Start();
 	while (!mExit){
@@ -81,10 +70,6 @@ void MenuState::Init(){
 	mManager->Register(mCamera);
 }
 void MenuState::Free(){
-	//We don't reset the shared pts b/c then they don't delete the object
-	//when destroyed, and we get leaks
-	//mCamera.reset()
-	//mManager.reset();
     //Call script's Free
     State::Free();
 }

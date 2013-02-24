@@ -7,28 +7,20 @@ require "Image"
 require "Window"
 require "Input"
 
-function Init()
+mainmenu = {}
+
+function mainmenu:Init()
 	print "\n--------Main Menu Init--------\n"
-	bkgnd = Image("../res/img/introback.png")
+	mainmenu.bkgnd = Image("../res/img/introback.png")
 end
-function Free()
+function mainmenu:Free()
 	print "\n--------Main Menu Free--------\n"
 end
-function LogicUpdate()
+function mainmenu:LogicUpdate()
 	if Input.keyDown(Input.KEY_Q) then
 		State.changeScene("quit")
 	end
 end
-function RenderUpdate(camera)
-	Window.draw(bkgnd, Math.fromSceneSpace(camera, camera:sceneBox()), camera:box())
-end
-function RefTest(hi)
-	print ("RefTest called with: " .. hi)
-end
-
---Testing reference of table fields and calling self functions
-testTable = {}
-testTable.name = "Jim"
-function testTable:speak()
-	print ("This is table with name: " .. self.name .. " speaking")
+function mainmenu:RenderUpdate(camera)
+	Window.draw(self.bkgnd, Math.fromSceneSpace(camera, camera:sceneBox()), camera:box())
 end

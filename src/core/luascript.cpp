@@ -32,8 +32,6 @@ void LuaScript::OpenScript(const std::string &script){
 }
 void LuaScript::Close(){
     if (Open()){
-        //CallFunction("Free");
-        mFcnInterface.CallFunction<void>("Free");
         lua_close(mL);
         mL = NULL;
         mOpen = false;
@@ -75,6 +73,13 @@ lua_State* LuaScript::Get(){
 }
 std::string LuaScript::File() const {
 	return mFile;
+}
+std::string LuaScript::TableName() const {
+    //We want the actual filename, without the extension, this is found
+    //between the final '/' and the final '.'
+    size_t start = mFile.find_last_of('/') + 1;
+    size_t length = mFile.find_last_of('.') - start;
+    return mFile.substr(start, length);
 }
 bool LuaScript::Open() const {
 	return mOpen;
