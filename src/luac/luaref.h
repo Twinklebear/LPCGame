@@ -67,7 +67,7 @@ namespace LuaC {
         */
         std::shared_ptr<int> mRef;
         ///The state the reference is in
-        lua_State *mState;
+        lua_State *mL;
     };
 }
 

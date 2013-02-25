@@ -4,34 +4,34 @@
 #include "luaref.h"
 
 LuaC::LuaRef::LuaRef() 
-    : mRef(std::make_shared<int>(LUA_REFNIL)), mState(NULL)
+    : mRef(std::make_shared<int>(LUA_REFNIL)), mL(NULL)
 {
 }
 LuaC::LuaRef::LuaRef(lua_State *l, int i) 
-    : mRef(std::make_shared<int>(LUA_REFNIL)), mState(l) 
+    : mRef(std::make_shared<int>(LUA_REFNIL)), mL(l) 
 {
-    lua_pushvalue(mState, i);
-    mRef = std::make_shared<int>(luaL_ref(mState, LUA_REGISTRYINDEX));
+    lua_pushvalue(mL, i);
+    mRef = std::make_shared<int>(luaL_ref(mL, LUA_REGISTRYINDEX));
 }
 LuaC::LuaRef::LuaRef(lua_State *l, std::string name) 
-    : mRef(std::make_shared<int>(LUA_REFNIL)), mState(l) 
+    : mRef(std::make_shared<int>(LUA_REFNIL)), mL(l) 
 {
-    lua_getglobal(mState, name.c_str());
-    mRef = std::make_shared<int>(luaL_ref(mState, LUA_REGISTRYINDEX));
+    lua_getglobal(mL, name.c_str());
+    mRef = std::make_shared<int>(luaL_ref(mL, LUA_REGISTRYINDEX));
 }
 LuaC::LuaRef::~LuaRef(){
     //If we're the last one using the reference, release it
-    if (mRef.use_count() == 1)
-        luaL_unref(mState, LUA_REGISTRYINDEX, *mRef);
+    if (mRef.use_count() == 1 && mL != NULL)
+        luaL_unref(mL, LUA_REGISTRYINDEX, *mRef);
 }
 void LuaC::LuaRef::Push(lua_State *l) const {
     //Make sure the state we want to push into is the one the reference exists in
-    _ASSERT(mState == l);
-    lua_rawgeti(mState, LUA_REGISTRYINDEX, *mRef);
+    _ASSERT(mL == l);
+    lua_rawgeti(mL, LUA_REGISTRYINDEX, *mRef);
 }
 void LuaC::LuaRef::Push(lua_State *l, std::string name) const {
     //Make sure the state we want to push into is the one the reference exists in
-    _ASSERT(mState == l);
-    lua_rawgeti(mState, LUA_REGISTRYINDEX, *mRef);
+    _ASSERT(mL == l);
+    lua_rawgeti(mL, LUA_REGISTRYINDEX, *mRef);
     lua_setglobal(l, name.c_str());
 }
