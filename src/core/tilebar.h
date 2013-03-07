@@ -22,9 +22,9 @@ public:
 	*  Draw the tilebar, apply an adjustment for the camera if one is desired
 	*  @param cam The camera to adjust for
 	*/
-	void Draw(Camera *cam = nullptr);
+	void Draw(std::weak_ptr<Camera> cam) override;
 	///On mouse up event
-	void OnMouseDown();
+	void OnMouseDown() override;
 	/**
 	*  Get the selected tile type
 	*  @return The tile type that is currently selected

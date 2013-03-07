@@ -11,7 +11,7 @@ TileBar::TileBar() : mSelectedTile(0){
 }
 TileBar::~TileBar(){
 }
-void TileBar::Draw(Camera *cam){
+void TileBar::Draw(std::weak_ptr<Camera> cam){
 	//Calculate the number of tiles
 	int tile_count = mTileSet->Size();
 
