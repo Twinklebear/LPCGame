@@ -49,7 +49,7 @@ namespace LuaC {
                 lua_getglobal(mL, fcn.c_str());
 
             if (lua_pcall(mL, nParam, 1, 0) != 0){
-                Debug::Log("Error calling: " + fcn + " in file " + mFile + lua_tostring(mL, -1));
+                Debug::Log("Error calling: " + fcn + " in file " + mFile + " - " + lua_tostring(mL, -1));
                 LuaC::LuaScriptLib::StackDump(mL);
             }            
             return LuaC::DataLib<R>::GetCopy(mL, -1);
@@ -67,7 +67,7 @@ namespace LuaC {
                 lua_getglobal(mL, fcn.c_str());
 
             if (lua_pcall(mL, nParam, 0, 0) != 0){
-                Debug::Log("Error calling: " + fcn + " in file " + mFile + lua_tostring(mL, -1));
+                Debug::Log("Error calling: " + fcn + " in file " + mFile + " - " + lua_tostring(mL, -1));
                 LuaC::LuaScriptLib::StackDump(mL);
             }
         }

@@ -43,13 +43,18 @@ namespace LuaC {
         }
         /**
         * Push a copy of an object of type T onto the stack as a global with some name
+        * if the name is of the form table:field it'll be pushed onto the table under that field
         * @param obj The object to push
         * @param l The Lua state to push onto
         * @param name The global name to assign the object
         */
         static void Push(lua_State *l, const T obj, std::string name){
-            Push(l, obj);
-            lua_setglobal(l, name.c_str());
+            if (TableField(name))
+                PushField(l, obj, name);
+            else {
+                Push(l, obj);
+                lua_setglobal(l, name.c_str());
+            }
         }
         /**
         * Copy an object of type T from one Lua state at index i to another Lua state
@@ -86,6 +91,30 @@ namespace LuaC {
         */
         static void AddMetaTable(lua_State *l, int i){
             LuaScriptLib::Add(l, i, mMetaTable);
+        }
+        /**
+        * Check if we're pushing onto a table ie, if there's a : in the name such as table:field
+        * @param str The string to check if it's a table:field string
+        * @return True if we're pushing a table value
+        */
+        static bool TableField(std::string str){
+            return (str.find_first_of(':') != -1);
+        }
+        /**
+        * Push a value on as a table field entry, using the string table:field and push
+        * the value onto the table under the desired field
+        * @param l The Lua state
+        * @param obj The object to push
+        * @param str The table:field formatted string
+        */
+        static void PushField(lua_State *l, T obj, std::string str){
+            size_t colon = str.find_first_of(':');
+            std::string table = str.substr(0, colon);
+            std::string field = str.substr(colon + 1, str.size() - colon + 1);
+            lua_getglobal(l, table.c_str());
+            Push(l, obj);
+            lua_setfield(l, -2, field.c_str());
+            lua_pop(l, 1);
         }
 
     protected:

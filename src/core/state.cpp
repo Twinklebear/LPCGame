@@ -72,7 +72,8 @@ void State::Load(Json::Value val){
 	mCamera->Load(val["camera"]);
     mScript.OpenScript(val["script"].asString());
     //Setup references in the Lua script
-    StoreRefs();
+    if (mScript.Open())
+        StoreRefs();
 }
 void State::StoreRefs(){
     std::string table = mScript.TableName();

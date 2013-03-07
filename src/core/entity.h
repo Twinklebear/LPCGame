@@ -133,6 +133,10 @@ public:
     virtual void Load(const std::string &file, Json::Value overrides = Json::Value());
 
 private:
+    //Store references to the entity's metatable and the functions we'll be calling
+    void StoreRefs();
+
+private:
 	///Game objects should not be copy-constructable
 	Entity(const Entity &a);
 	Entity& operator = (const Entity &a);

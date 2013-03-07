@@ -30,9 +30,10 @@ void Entity::Init(std::shared_ptr<Entity> self){
     //with the entity's name
     if (self != nullptr){
         //Push the self pointer onto the state so the script can use it
-        LuaC::EntityLib::Push(mScript->Get(), self, "entity");
+        LuaC::EntityLib::Push(mScript->Get(), self, mScript->TableName() + ":entity");
     }
-    mScript->FunctionInterface()->CallFunction<void>("Init");
+    mScript->FunctionInterface()->CallFunction<void>(mScript->GetReference("Init"),
+        mScript->GetReference(mScript->TableName()));
 }
 void Entity::Free(){
     mScript->Close();
@@ -42,14 +43,16 @@ void Entity::Update(){
 	if (!mScript->Open())
 		return;
 	
-    mScript->FunctionInterface()->CallFunction<void>("Update");
+    mScript->FunctionInterface()->CallFunction<void>(mScript->GetReference("Update"),
+        mScript->GetReference(mScript->TableName()));
 }
 void Entity::Move(float deltaT){
     //Shouldn't we call Physics::Move here?
 	if (!mScript->Open())
 		return;
 
-    mScript->FunctionInterface()->CallFunction<void>("Move", deltaT);
+    mScript->FunctionInterface()->CallFunction<void>(mScript->GetReference("Move"),
+        mScript->GetReference(mScript->TableName()), deltaT);
     //Move the object
     mPhysics->Move(deltaT);
 }
@@ -59,14 +62,16 @@ void Entity::Draw(std::weak_ptr<Camera> camera){
 		return;
     //Shouldn't i be drawing the base image here though, instead
     //of making the script have to even draw the basic entity image?
-    mScript->FunctionInterface()->CallFunction<void>("Draw", camera);
+    mScript->FunctionInterface()->CallFunction<void>(mScript->GetReference("Draw"),
+        mScript->GetReference(mScript->TableName()), camera);
 }
 void Entity::OnMouseDown(){
     mClicked = true;
 
 	if (!mScript->Open())
 		return;
-    mScript->FunctionInterface()->CallFunction<void>("OnMouseDown");
+    mScript->FunctionInterface()->CallFunction<void>(mScript->GetReference("OnMouseDown"),
+        mScript->GetReference(mScript->TableName()));
 }
 void Entity::OnMouseUp(){
     //We have to do this here for now b/c ObjectButtons don't have 
@@ -77,18 +82,21 @@ void Entity::OnMouseUp(){
 	
     if (!mScript->Open())
 		return;
-    mScript->FunctionInterface()->CallFunction<void>("OnMouseUp");
+    mScript->FunctionInterface()->CallFunction<void>(mScript->GetReference("OnMouseUp"),
+        mScript->GetReference(mScript->TableName()));
 }
 void Entity::OnClick(){
     if (!mScript->Open())
         return;
-    mScript->FunctionInterface()->CallFunction<void>("OnClick");
+    mScript->FunctionInterface()->CallFunction<void>(mScript->GetReference("OnClick"),
+        mScript->GetReference(mScript->TableName()));
 }
 void Entity::OnMouseEnter(){
     mMouseOver = true;
 	if (!mScript->Open())
 		return;
-    mScript->FunctionInterface()->CallFunction<void>("OnMouseEnter");
+    mScript->FunctionInterface()->CallFunction<void>(mScript->GetReference("OnMouseEnter"),
+        mScript->GetReference(mScript->TableName()));
 }
 void Entity::OnMouseExit(){
     mClicked = false;
@@ -96,7 +104,8 @@ void Entity::OnMouseExit(){
 
     if (!mScript->Open())
         return;
-    mScript->FunctionInterface()->CallFunction<void>("OnMouseExit");
+    mScript->FunctionInterface()->CallFunction<void>(mScript->GetReference("OnMouseExit"),
+        mScript->GetReference(mScript->TableName()));
 }
 void Entity::CheckMouseOver(const Vector2f &pos){
 	//Only trigger OnMouseEnter if the mouse is colliding and wasn't before
@@ -189,9 +198,12 @@ void Entity::Load(Json::Value val){
 	mName = val["name"].asString();
 	mPhysics->Load(val["physics"]);
     mImage.Load(val["image"].asString());
-	mScript->OpenScript(val["script"].asString());
     mRender = val["render"].asBool();
     mUiElement = val["ui"].asBool();
+	mScript->OpenScript(val["script"].asString());
+    //Store function and table references
+    if (mScript->Open())
+        StoreRefs();
 }
 void Entity::Load(const std::string &file, Json::Value overrides){
     mConfigFile = file;
@@ -200,3 +212,18 @@ void Entity::Load(const std::string &file, Json::Value overrides){
     data["overrides"] = overrides;
     Load(data);
 }
+void Entity::StoreRefs(){
+    std::string table = mScript->TableName();
+    mScript->Reference(table);
+    mScript->Reference(table, "Init");
+    mScript->Reference(table, "Free");
+    mScript->Reference(table, "Update");
+    mScript->Reference(table, "Move");
+    mScript->Reference(table, "Draw");
+    mScript->Reference(table, "OnMouseDown");
+    mScript->Reference(table, "OnMouseUp");
+    mScript->Reference(table, "OnClick");
+    mScript->Reference(table, "OnMouseEnter");
+    mScript->Reference(table, "OnMouseExit");
+}
+

@@ -13,23 +13,18 @@ require "AnimatedImage"
 require "Text"
 require "Input"
 require "Debug"
+require "scripts/luaclass/entity.lua"
+
+npc = class(Entity)
 
 --Init the script
-function Init()
-	img = AnimatedImage("../res/img/animtest.png")
-	img:play("idle")
-	--rect = entity:Box()
-	physics = entity:physics()
-	Debug.log("NPC Init: Debugging test!")
+function npc:Init()
+	self.img = AnimatedImage("../res/img/animtest.png")
+	self.img:play("idle")
+	self.physics = self.entity:physics()
 end
-function Free()
-	print "NPC Free"
-end
---Called each frame
-function Update()
-end
---Use for movement
-function Move(deltaT)
+
+function npc:Move(deltaT)
 	--local speed = 200
 	--rect.pos.x = rect.pos.x + LPC.Input.GetJoyAxis(0) * speed * deltaT
 	--rect.pos.y = rect.pos.y + LPC.Input.GetJoyAxis(1) * speed * deltaT
@@ -41,10 +36,10 @@ function Move(deltaT)
 	--physics:setDirection(v)
 	--physics:move(deltaT)
 end
---Draw
-function Draw(camera)
+
+function npc:Draw(camera)
 	--With the changes made in the math class to std::weak_ptr<Camera>
 	--We can no longer use the luabind library.
 	--LPC.Window.Draw(img, LPC.Math.FromSceneSpace(camera, physics:Box()))
-	Window.draw(img, Math.fromSceneSpace(camera, physics:box()))
+	Window.draw(self.img, Math.fromSceneSpace(camera, self.physics:box()))
 end

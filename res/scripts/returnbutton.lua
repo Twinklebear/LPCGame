@@ -1,62 +1,27 @@
-require "Entity"
-require "Physics"
-require "Rectf"
-require "Vector2f"
-require "Camera"
-require "Color"
-require "Image"
-require "Window"
-require "Math"
 require "State"
-require "Text"
-require "Input"
+require "scripts/button.lua"
 
-function Init()
-	--Load the button image
-	img = Image("../res/img/simplebutton.png")
-	box = entity:box()
-	img:setActiveClip(0)
+returnbutton = class(Button)
 
-	--Configure the position and text depending if we're in the editor or game
-	local message = ""
+function returnbutton:Init()
+	self.super.entity = self.entity
+	--configure the box location
+	local msg = ""
 	if State.name() ~= "gGame" then
-		box:set(32, 625, 250, 50)
-		entity:physics().box = box
-		message = "Save & Quit"
+		self.entity:box():set(32, 625, 250, 50)
+		msg = "Save & Quit"
 	else
-		message = "Return"
+		msg = "Return"
 	end
 
-	--Setup the button text
-	local txtColor = Color(0, 0, 0)
-	text = Text(message, "../res/fonts/SourceSansPro-Regular.ttf",
-		txtColor, 25)
-	textBox = Rectf((box:x() + box:w() / 2 - text:w() / 2),
-		(box:y() + box:h() / 2 - text:h() / 2), text:w(), text:h())
+	self.super:Init("Return")
 end
-function Free()
-end
-function Update()
-end
-function Move(deltaT)
-end
-function Draw(camera)
-	--It's not a UI element so we don't transform
-	Window.draw(img, box)
-	Window.draw(text, textBox)
-end
-function OnMouseDown()
-	img:setActiveClip(1)
-end
-function OnMouseUp()
-	img:setActiveClip(0)
-end
-function OnMouseEnter()
 
+function returnbutton:Draw(camera)
+	Window.draw(self.super.img, self.entity:box())
+	Window.draw(self.super.text, self.super.textBox)
 end
-function OnMouseExit()
-	img:setActiveClip(0)
-end
-function OnClick()
+
+function returnbutton:OnClick()
 	State.changeScene("mIntro")
 end
