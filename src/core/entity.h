@@ -47,6 +47,7 @@ public:
 	*  @param cam The camera to adjust for
 	*/
 	virtual void Draw(std::weak_ptr<Camera> camera);
+    //I'd like the various mouse interaction calls to pass the mouse position
 	///On mouse down events
 	virtual void OnMouseDown();
 	///On mouse up event

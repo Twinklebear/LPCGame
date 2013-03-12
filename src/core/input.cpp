@@ -24,53 +24,7 @@ void Input::Init(){
         //This number value should be changed? Support for multiple sticks?
         mJoystick = SDL_JoystickOpen(0);
         if (mJoystick){
-            /*
-            *  Leave this code here for now for reference when creating the HapticEffect class
-            std::cout << "Joystick 0 Dump:" << std::endl
-                << "  Name: " << SDL_JoystickName(0) << std::endl
-                << "  # Axes: " << SDL_JoystickNumAxes(mJoystick) << std::endl
-                << "  # Buttons: " << SDL_JoystickNumButtons(mJoystick) << std::endl
-                << "  # Balls: " << SDL_JoystickNumBalls(mJoystick) << std::endl
-                << "  # Hats: " << SDL_JoystickNumHats(mJoystick) << std::endl;;
-            //Testing force feedback
-            std::cout << "Will now test force feedback" << std::endl;
-            std::cout << "Joystick haptic status: " << SDL_JoystickIsHaptic(mJoystick) << std::endl;
-            //Joystick only seems to be haptic when in DirectInput mode, and even then fails to play the effect
-            */
             SDL_InitSubSystem(SDL_INIT_HAPTIC);
-            /*
-            SDL_Haptic *haptic = nullptr;
-            int effectId;
-            
-            haptic = SDL_HapticOpenFromJoystick(mJoystick);
-            if (!haptic){
-                std::cout << "Couldn't open haptic on: " << SDL_JoystickName(0) << std::endl;
-                return;
-            }
-            if ((SDL_HapticQuery(haptic) & SDL_HAPTIC_SINE) == 0){
-                SDL_HapticClose(haptic);
-                std::cout << "No sine effect available" << std::endl;
-                return;
-            }
-            //Create the effect
-            SDL_HapticEffect *effect = new SDL_HapticEffect();
-            effect->type = SDL_HAPTIC_SINE;
-            effect->periodic.direction.type = SDL_HAPTIC_POLAR;
-            effect->periodic.direction.dir[0] = 18000;
-            effect->periodic.period = 1000;
-            effect->periodic.magnitude = 20000;
-            effect->periodic.length = 5000;
-            effect->periodic.attack_length = 1000;
-            effect->periodic.fade_length = 1000;
-
-            //Upload the effect
-            effectId = SDL_HapticNewEffect(haptic, effect);
-            SDL_HapticRunEffect(haptic, effectId, 1);
-            SDL_Delay(5000);
-            //Destroy the effect and close haptic
-            SDL_HapticDestroyEffect(haptic, effectId);
-            SDL_HapticClose(haptic);
-            */
         }
     }
 }
