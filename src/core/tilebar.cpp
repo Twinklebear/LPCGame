@@ -39,6 +39,7 @@ void TileBar::Draw(std::weak_ptr<Camera> cam){
 	}	
 
 	Color white(255,255,255);
+    //Can we cache these? Creating a text object is not so fast.
 	Text name(mSelectedTileName, "../res/fonts/SourceSansPro-Regular.ttf", white, 20);
 	Text solid(mTileSet->Solid(mSelectedTileName) ? "Solid: True" : "Solid: False", "../res/fonts/SourceSansPro-Regular.ttf", white, 14);
 	Text file(mTileSet->File(mSelectedTileName), "../res/fonts/SourceSansPro-Regular.ttf", white, 14);
