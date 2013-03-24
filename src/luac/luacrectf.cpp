@@ -39,25 +39,25 @@ int LuaC::RectfLib::getPos(lua_State *l){
 int LuaC::RectfLib::getX(lua_State *l){
     //Stack: userdata (Rectf)
     Rectf *r = Check(l, 1);
-    lua_pushnumber(l, r->X());
+    lua_pushnumber(l, r->pos.x);
     return 1;
 }
 int LuaC::RectfLib::getY(lua_State *l){
     //Stack: userdata (Rectf)
     Rectf *r = Check(l, 1);
-    lua_pushnumber(l, r->Y());
+    lua_pushnumber(l, r->pos.y);
     return 1;
 }
 int LuaC::RectfLib::getW(lua_State *l){
     //Stack: userdata (Rectf)
     Rectf *r = Check(l, 1);
-    lua_pushnumber(l, r->W());
+    lua_pushnumber(l, r->w);
     return 1;
 }
 int LuaC::RectfLib::getH(lua_State *l){
     //Stack: userdata (Rectf)
     Rectf *r = Check(l, 1);
-    lua_pushnumber(l, r->H());
+    lua_pushnumber(l, r->h);
     return 1;
 }
 int LuaC::RectfLib::newIndex(lua_State *l){
@@ -90,7 +90,7 @@ int LuaC::RectfLib::setPos(lua_State *l){
     //Stack: userdata (Rectf), string of index to set, userdata (Vector2f)
     Rectf *r = Check(l, 1);
     Vector2f *v = Vector2fLib::Check(l, 3);
-    r->Set(*v);
+    r->pos = *v;
     return 0;
 }
 int LuaC::RectfLib::setX(lua_State *l){

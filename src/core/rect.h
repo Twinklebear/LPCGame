@@ -42,16 +42,6 @@ public:
 	Rect(Json::Value val){
 		Load(val);
 	}
-    /**
-    *  Set the rect to have the same values as some other rect
-    *  @param r The Rect to get values from
-    */
-    void Set(const Rect<T> &r){
-        pos.x = r.pos.x;
-        pos.y = r.pos.y;
-        w = r.w;
-        h = r.h;
-    }
 	/**
 	*  Set the rect's properties
 	*  @param pX The x position
@@ -77,42 +67,6 @@ public:
 		h = pH;
 	}
 	/**
-	*  Set the rect's position
-	*  @param pX The x position
-	*  @param pY The y position
-	*/
-	void Set(T pX, T pY){
-		pos.x = pX;
-		pos.y = pY;
-	}
-	/**
-	*  Set the rect's position
-	*  @param pPos The position vector
-	*/
-	void Set(Vector2<T> pPos){
-		pos = pPos;
-	}
-	///Get the rect's position vector
-	Vector2<T> Pos() const{
-		return pos;
-	}
-	///Get x value
-	T X() const{
-		return pos.x;
-	}
-	///Get y value
-	T Y() const{
-		return pos.y;
-	}
-	///Get width
-	T W() const{
-		return w;
-	}
-	///Get height
-	T H() const{
-		return h;
-	}
-	/**
 	*  Save the box's properties to a Json::Value and return it
 	*  @return Json::Value containing the box's properties
 	*/
@@ -134,8 +88,8 @@ public:
 	}
 	///Operators
     bool operator == (Rect<T> r) const {
-        return (pos.x == r.X() && pos.y == r.Y() 
-                && w == r.w && h == r.h);
+        return (pos.x == r.pos.x && pos.y == r.pos.y 
+            && w == r.w && h == r.h);
     }
 	Rect<T>& operator += (Vector2f vec){
 		this->pos += vec;

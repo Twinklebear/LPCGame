@@ -6,7 +6,7 @@
 #include "camera.h"
 
 Camera::Camera() : mActivePan(-1), mScene("def"){
-	mBox.Set(0, 0, Window::Box().W(), Window::Box().H());
+	mBox.Set(0, 0, Window::Box().w, Window::Box().h);
 	mSceneBox.Set(0, 0, 0, 0);
 }
 Camera::~Camera(){
@@ -34,11 +34,11 @@ void Camera::Update(){
 	Rectf focBox = s->Box();
 	//Adjust camera position
 	float x, y;
-	x = (focBox.X() + focBox.w / 2) - mBox.w / 2;
-	y = (focBox.Y() + focBox.h / 2) - mBox.h / 2;
+	x = (focBox.pos.x + focBox.w / 2) - mBox.w / 2;
+	y = (focBox.pos.y + focBox.h / 2) - mBox.h / 2;
 
 	//Clamp the camera values to keep them in range
-	mBox.Set(Math::Clamp(x, 0, mSceneBox.w - mBox.w), 
+	mBox.pos = Vector2f(Math::Clamp(x, 0, mSceneBox.w - mBox.w), 
 		Math::Clamp(y, 0, mSceneBox.h - mBox.h));
 }
 bool Camera::InCamera(Rectf box) const{
@@ -52,7 +52,7 @@ void Camera::Move(float deltaT){
 		//If the distance between the camera and destination is less than the distance moved in a frame,
 		//set the camera to the destination
 		if (Math::Distance(mBox.pos, mPans.at(mActivePan).destination) <= mPans.at(mActivePan).speed * deltaT){
-			mBox.Set(mPans.at(mActivePan).destination);
+			mBox.pos = mPans.at(mActivePan).destination;
 			mScene = mPans.at(mActivePan).name;
 			mActivePan = -1;
 			return;
@@ -79,7 +79,7 @@ std::string Camera::Scene(){
 void Camera::SetBox(Rectf box){
 	//The camera box can't be bigger than the scene box
 	if (mSceneBox.w != 0 && mSceneBox.h != 0){
-		mBox.Set(mBox.X(), mBox.Y(), 
+		mBox.Set(mBox.pos.x, mBox.pos.y, 
 			Math::Clamp(box.w, 0, mSceneBox.w),
 			Math::Clamp(box.h, 0, mSceneBox.h));
 	}
@@ -91,7 +91,7 @@ void Camera::SetBox(Rectf box){
 void Camera::SetSceneBox(Rectf box){
 	mSceneBox = box;
 	//Make sure the camera is smaller than the scene box
-	mBox.Set(mBox.X(), mBox.Y(),
+	mBox.Set(mBox.pos.x, mBox.pos.y,
 		Math::Clamp(mBox.w, 0, mSceneBox.w),
 		Math::Clamp(mBox.h, 0, mSceneBox.h));
 }
@@ -102,7 +102,7 @@ Rectf Camera::Box() const{
 	return mBox;
 }
 Vector2f Camera::Offset() const{
-	return Vector2f(mBox.X() - Centering().x, mBox.Y() - Centering().y);
+	return Vector2f(mBox.pos.x - Centering().x, mBox.pos.y - Centering().y);
 }
 Vector2f Camera::Centering() const{
 	Recti winBox = Window::Box();
@@ -144,7 +144,7 @@ void Camera::Load(Json::Value val){
 }
 bool Camera::operator == (const Camera &c) const {
     Rectf cBox = c.Box();
-    return (mBox.X() == cBox.X() && mBox.Y() == cBox.Y() &&
+    return (mBox.pos.x == cBox.pos.x && mBox.pos.y == cBox.pos.y &&
             mBox.w == cBox.w && mBox.h == cBox.h);
 }
 bool Camera::operator != (const Camera &c) const {

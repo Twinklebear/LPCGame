@@ -70,12 +70,12 @@ std::set<int> Map::CalculateIndex(Recti area) const{
 	//TODO: How can this be done without all the for loops?
     //Generating these beforehand so that there does not
 	//have to be so many calls during the future loops
-	int area_x = area.X();
-	int area_y = area.Y();
-	int area_w = area.W();
-	int area_h = area.H();
-	int mbox_w = mBox.W();
-	int mbox_h = mBox.H();
+	int area_x = area.pos.x;
+	int area_y = area.pos.y;
+	int area_w = area.w;
+	int area_h = area.h;
+	int mbox_w = mBox.w;
+	int mbox_h = mBox.h;
 	std::set<int>::iterator it = tileIndices.begin();
 	int lastIndex = -1;
 	for (int y = area_y; y <= area_y + area_h; y += TILE_HEIGHT / 2){
@@ -92,9 +92,9 @@ std::set<int> Map::CalculateIndex(Recti area) const{
 }
 CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 	//get the indices of the desired tiles
-	Recti area(target.X() - distance * TILE_WIDTH, target.Y() - distance * TILE_HEIGHT,
-		((target.X() + target.W() + distance * TILE_WIDTH) - (target.X() - distance * TILE_WIDTH)),
-		((target.Y() + target.H() + distance * TILE_HEIGHT) - (target.Y() - distance * TILE_HEIGHT)));
+	Recti area(target.pos.x - distance * TILE_WIDTH, target.pos.y - distance * TILE_HEIGHT,
+		((target.pos.x + target.w + distance * TILE_WIDTH) - (target.pos.x - distance * TILE_WIDTH)),
+		((target.pos.y + target.h + distance * TILE_HEIGHT) - (target.pos.y - distance * TILE_HEIGHT)));
 
 	std::set<int> indices = CalculateIndex(area);
 	//Setup the collision map

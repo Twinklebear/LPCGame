@@ -32,7 +32,7 @@ void Button::Draw(std::weak_ptr<Camera> camera){
 	Window::Draw(&mImage, pos, &clip);
 
 	//Draw the text
-    Recti textBox((pos.X() + pos.W() / 2) - mText.W() / 2, (pos.Y() + pos.H() / 2) - mText.H() / 2,
+    Recti textBox((pos.pos.x + pos.w / 2) - mText.W() / 2, (pos.pos.y + pos.h  / 2) - mText.H() / 2,
         mText.W(), mText.H());
 	Window::Draw(&mText, textBox);
 }

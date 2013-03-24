@@ -88,7 +88,7 @@ CollisionMap EntityManager::GetEntityCollisionMap(const Rectf &target, int dista
 	CollisionMap entityMap;
 	for (std::shared_ptr<Entity> e : mEntities){
 		if (!e->IsUiElement() && mCamera->InCamera(e->Box())){
-			double dist = Math::Distance(target.Pos(), e->Box().Pos());
+			double dist = Math::Distance(target.pos, e->Box().pos);
 			if (dist > 0 && dist <= distance)
 				entityMap.push_back(e->Box());
 		}

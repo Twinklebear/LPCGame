@@ -14,8 +14,11 @@ typedef std::vector<std::shared_ptr<Entity>> EntityList;
 
 ///Handles the Entities in the active state
 /**
- * A class to simplify handling of the Entities, and simple
- * collision interactions between them
+* A class to simplify handling of the Entities, and simple
+* collision interactions between them
+* Note: When we actually care about optimization, all the for loops calling
+* move, update, collision maps, draw, etc should be replaced with something more
+* intelligent/faster
 */
 class EntityManager {
 public:

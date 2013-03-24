@@ -43,22 +43,22 @@ int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 	Vector2f aSides[4], bSides[4];
 
 	//setup the points
-	aSides[UP].x	= a.X() + a.W() / 2.0f;
-	aSides[UP].y	= a.Y();
+	aSides[UP].x	= a.pos.x + a.w / 2.0f;
+	aSides[UP].y	= a.pos.y;
 	aSides[DOWN].x	= aSides[UP].x;
-	aSides[DOWN].y	= a.Y() + a.H();
-	aSides[LEFT].x	= a.X();
-	aSides[LEFT].y	= a.Y() + a.H() / 2.0f;
-	aSides[RIGHT].x = a.X() + a.W();
+	aSides[DOWN].y	= a.pos.y + a.h;
+	aSides[LEFT].x	= a.pos.x;
+	aSides[LEFT].y	= a.pos.y + a.h / 2.0f;
+	aSides[RIGHT].x = a.pos.x + a.w;
 	aSides[RIGHT].y = aSides[LEFT].y;
 
-	bSides[UP].x	= b.X() + b.W() / 2.0f;
-	bSides[UP].y	= b.Y();
+	bSides[UP].x	= b.pos.x + b.w / 2.0f;
+	bSides[UP].y	= b.pos.y;
 	bSides[DOWN].x	= bSides[UP].x;
-	bSides[DOWN].y	= b.Y() + b.H();
-	bSides[LEFT].x	= b.X();
-	bSides[LEFT].y	= b.Y() + b.H() / 2.0f;
-	bSides[RIGHT].x = b.X() + b.W();
+	bSides[DOWN].y	= b.pos.y + b.h;
+	bSides[LEFT].x	= b.pos.x;
+	bSides[LEFT].y	= b.pos.y + b.h / 2.0f;
+	bSides[RIGHT].x = b.pos.x + b.w;
 	bSides[RIGHT].y = bSides[LEFT].y;
 
 	//now we check which side of A is closest to the opposite side of B
@@ -73,19 +73,19 @@ int Math::RectNearRect(const Rectf &a, const Rectf &b, int tolerance){
 }
 bool Math::CheckCollision(const Rectf &a, const Rectf &b){
 	//Do easy out checks first, as it's more likely that there isn't a collision
-	if (a.Y() + a.H() <= b.Y())
+	if (a.pos.y + a.h <= b.pos.y)
 		return false;
-	if (a.Y() >= b.Y() + b.H())
+	if (a.pos.y >= b.pos.y + b.h)
 		return false;
-	if (a.X() + a.W() <= b.X())
+	if (a.pos.x + a.w <= b.pos.x)
 		return false;
-	if (a.X() >= b.X() + b.W())
+	if (a.pos.x >= b.pos.x + b.w)
 		return false;
 	//if no early outs trigger, there is a collision
 	return true;
 }
 bool Math::CheckCollision(const Vector2f &p, const Rectf &r){
-	if ((p.x > r.X() && p.x < r.X() + r.W()) && (p.y > r.Y() && p.y < r.Y() + r.H()))
+	if ((p.x > r.pos.x && p.x < r.pos.x + r.w) && (p.y > r.pos.y && p.y < r.pos.y + r.h))
 		return true;
 	return false;
 }

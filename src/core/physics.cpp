@@ -21,7 +21,7 @@ void Physics::Move(float deltaT){
 	UpdateVelocity(deltaT);
 	//test if the move is ok before applying changes
 	Vector2f testPos;
-	testPos = mBox.Pos() + (mKinematic.Vel * deltaT);
+	testPos = mBox.pos + (mKinematic.Vel * deltaT);
 
 	//Clamp the test position x & y
 	//TODO: Change these clamp ranges to be the map range, ie. map.x min map.x + map.w max
@@ -30,17 +30,17 @@ void Physics::Move(float deltaT){
 	testPos.y = Math::Clamp(testPos.y, 0.0, 320.0);
 
 	//x axis collision checks
-	if (CheckCollision(Rectf(testPos.x, mBox.Y(), mBox.W(), mBox.H()))){
+	if (CheckCollision(Rectf(testPos.x, mBox.pos.y, mBox.w, mBox.h))){
         //Send on collision event?
 	}
 	else 
-		mBox.Set(testPos.x, mBox.Y());
+		mBox.pos = Vector2f(testPos.x, mBox.pos.y);
 	//y axis collision checks
-	if (CheckCollision(Rectf(mBox.X(), testPos.y, mBox.W(), mBox.H()))){
+	if (CheckCollision(Rectf(mBox.pos.x, testPos.y, mBox.w, mBox.h))){
         //Send on collision event?
 	}
 	else
-		mBox.Set(mBox.X(), testPos.y);
+		mBox.pos = Vector2f(mBox.pos.x, testPos.y);
 
 	mMotionState.UpdateState(mKinematic);
 }
@@ -115,7 +115,7 @@ bool Physics::CheckCollision(Rectf box){
 	return colliding;
 }
 Vector2f Physics::Position() const{
-	return mBox.Pos();
+	return mBox.pos;
 }
 Vector2f Physics::Velocity() const{
 	return mKinematic.Vel;
@@ -130,7 +130,7 @@ int Physics::State() const{
 	return mMotionState.State();
 }
 void Physics::SetPosition(Vector2f pos){
-	mBox.Set(pos);
+	mBox.pos = pos;
 }
 void Physics::SetVelocity(Vector2f vel){
 	mKinematic.Vel = vel;

@@ -32,7 +32,7 @@ void TileBar::Draw(std::weak_ptr<Camera> cam){
 		int clip_x = spacer + ((i % tilesPerRow) * (tileWidth + spacer));
 		int clip_y = spacer + ((i / tilesPerRow) * (tileHeight + spacer));
 		Recti clipBox(clip_x, clip_y, tileWidth, tileHeight);
-		Window::DrawTexture(mTileSet->Texture(it->first), clipBox + tilebarBox.Pos(), &(Recti)mTileSet->Clip(it->first));
+		Window::DrawTexture(mTileSet->Texture(it->first), clipBox + tilebarBox.pos, &(Recti)mTileSet->Clip(it->first));
 		if (mSelectedTile == i)
 			mSelectedTileName = it->first; //Set the selected tile name.
 		++i;
@@ -55,7 +55,7 @@ void TileBar::Draw(std::weak_ptr<Camera> cam){
 	int selector_x = ((mSelectedTile % tilesPerRow) * (tileWidth + spacer)) + spacer;
 	int selector_y = ((mSelectedTile / tilesPerRow) * (tileHeight + spacer)) + spacer;
 	Recti selector_box(selector_x,selector_y,box_width,box_height);
-	Window::Draw(&mSelector, Recti((selector_box.Pos() + tilebarBox.Pos() - Vector2i(2, 2)), tileWidth + 4, tileHeight + 4));
+	Window::Draw(&mSelector, Recti((selector_box.pos + tilebarBox.pos - Vector2i(2, 2)), tileWidth + 4, tileHeight + 4));
 }
 void TileBar::OnMouseDown(){
 	Vector2f mousePos = Input::MousePos();

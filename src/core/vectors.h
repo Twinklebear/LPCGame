@@ -57,21 +57,21 @@ public:
 		Set(val["x"].asFloat(), val["y"].asFloat());
 	}
 	///Operators
-	Vector2<T> operator + (Vector2<T> val) const {
+	Vector2<T> operator + (const Vector2<T> &val) const {
 		return Vector2<T>(x + val.x, y + val.y);
 	}
-	Vector2<T> operator - (Vector2<T> val) const {
+	Vector2<T> operator - (const Vector2<T> &val) const {
 		return Vector2<T>(x - val.x, y - val.y);
 	}
-	Vector2<T>& operator += (Vector2<T> val){
+	Vector2<T>& operator += (const Vector2<T> &val){
 		x += val.x;
 		y += val.y;
 		return *this;
 	}
-    bool operator == (Vector2<T> val) const {
+    bool operator == (const Vector2<T> &val) const {
         return (x == val.x && y == val.y);
     }
-	Vector2<T> operator * (Vector2<T> val) const {
+	Vector2<T> operator * (const Vector2<T> &val) const {
 		Vector2<T> a(x * val.x, y * val.y);
 		return a;
 	}
@@ -79,7 +79,7 @@ public:
 		Vector2<T> a(x * val, y * val);
 		return a;
 	}
-	Vector2<T> operator / (Vector2<T> val) const {
+	Vector2<T> operator / (const Vector2<T> &val) const {
 		Vector2<T> a(x / val.x, y / val.y);
 		return a;
 	}

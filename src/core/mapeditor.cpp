@@ -34,7 +34,7 @@ void MapEditor::GenerateBlank(int x, int y){
 	}
 }
 void MapEditor::Insert(int x, int y, std::string name){
-	int i = CalculateIndex(x, y, mBox.W(), mBox.H());
+	int i = CalculateIndex(x, y, mBox.w, mBox.h);
     if (i > -1)
 	    mTiles.at(i).SetName(name);
 }
