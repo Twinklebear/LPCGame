@@ -52,6 +52,9 @@ void Window::Init(std::string title){
     mTimer.Start();
 }
 void Window::Quit(){
+    //Release the window and renderer
+    mRenderer.~unique_ptr();
+    mWindow.~unique_ptr();
     TTF_Quit();
     SDL_Quit();
 }
