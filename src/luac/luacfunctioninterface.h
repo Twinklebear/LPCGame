@@ -51,8 +51,11 @@ namespace LuaC {
             if (lua_pcall(mL, nParam, 1, 0) != 0){
                 Debug::Log("Error calling: " + fcn + " in file " + mFile + " - " + lua_tostring(mL, -1));
                 LuaC::LuaScriptLib::StackDump(mL);
-            }            
-            return LuaC::DataLib<R>::GetCopy(mL, -1);
+            }
+            //We need to pop the value from the stack so get it then pop
+            R res = LuaC::DataLib<R>::GetCopy(mL, -1);
+            lua_pop(mL, 1);
+            return res;
         }
         /**
         * Void specialization of CallFunction, call a function that
