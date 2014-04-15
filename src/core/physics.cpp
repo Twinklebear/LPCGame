@@ -25,9 +25,9 @@ void Physics::Move(float deltaT){
 
 	//Clamp the test position x & y
 	//TODO: Change these clamp ranges to be the map range, ie. map.x min map.x + map.w max
-	//map.y min map.y + map.h max
-	testPos.x = Math::Clamp(testPos.x, 0.0, 320.0);
-	testPos.y = Math::Clamp(testPos.y, 0.0, 320.0);
+	//map.y min map.y + map.h max. 
+	testPos.x = Math::Clamp(testPos.x, 0.0, 640.0 - 1);
+	testPos.y = Math::Clamp(testPos.y, 0.0, 640.0 - 1);
 
 	//x axis collision checks
 	if (CheckCollision(Rectf(testPos.x, mBox.pos.y, mBox.w, mBox.h))){

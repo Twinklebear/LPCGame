@@ -26,6 +26,13 @@ public:
 	*/
 	void Draw(std::weak_ptr<Camera> cam);
 	/**
+	*  Builds the full map into one texture.
+	*  This is much slower than a single frame draw, but greatly improves preformance
+	*  because it will only have to generate the texture when needed.
+	*  @param cam The camera so we can get the offsets/check if things are in camera
+	*/
+	void RebuildMap();
+	/**
 	*  Generate a stress testing map with a specified number of tiles
 	*  @param val The Json::Value to load the stress test from
 	*/
@@ -57,17 +64,12 @@ public:
 	///Sets the tileset
 	void LoadTileSet(std::shared_ptr<TileSet> ts) { mTileSet = ts; }
     ///Get the map filename
-    std::string File() const;
+    std::string Filename() const;
 	/**
 	*  Save the map data to a Json::Value
 	*  @return The map data as a Json::Value
 	*/
-	Json::Value Save();
-	/**
-	*  Load the map from a Json::Value
-	*  @param val The Json::Value to load from
-	*/
-	void Load(Json::Value val);
+	void Save();
     /**
     *  Load the map from another file
     *  @param file The file to load the map from
@@ -78,10 +80,11 @@ protected:
 	std::vector<Tile> mTiles;
 	Recti mBox;
 	std::shared_ptr<TileSet> mTileSet;
-    std::string mFile;
-    //How does this help? It's a pointer to the same camera, so it'll always be equal
-	Camera *lastCamera;
+    std::string filename;
 	std::set<int> indices;
+	int rows;
+	int columns;
+	SDL_Texture* mapTexture;
 };
 
 #endif

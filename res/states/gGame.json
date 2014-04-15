@@ -1,14 +1,14 @@
 {
    "camera" : {
       "mBox" : {
-         "h" : 320.0,
-         "w" : 320.0,
+         "h" : 640.0,
+         "w" : 640.0,
          "x" : 0.0,
          "y" : 0.0
       },
       "sceneBox" : {
-         "h" : 320.0,
-         "w" : 320.0,
+         "h" : 640.0,
+         "w" : 640.0,
          "x" : 0.0,
          "y" : 0.0
       }
@@ -24,7 +24,7 @@
          "file" : "../res/entities/returntointrobutton.json"
       }
    ],
-   "map" : "../res/maps/testlevel.json",
+   "map" : "../res/maps/editor.json",
    "name" : "gGame",
    "script" : "",
    "tileset" : [

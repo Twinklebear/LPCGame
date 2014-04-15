@@ -78,8 +78,10 @@ void EditorState::Free(){
 }
 Json::Value EditorState::Save(){
 	Json::Value val = State::Save();
-	val["map"] = mMapEditor->Save();
 	val["tileset"] = mTileSet->Save();
+	val["map"] = mMapEditor->Filename();
+
+	mMapEditor->Save();
 	Free();
 	return val;
 }
@@ -89,7 +91,7 @@ void EditorState::Load(Json::Value val){
 	//Generate the tileset
 	mTileSet->Load(val["tileset"]);
 	//Generate map here if some options are passed?
-	mMapEditor->Load(val["map"]);
+	mMapEditor->Load(val["map"].asString());
 	mMapEditor->LoadTileSet(mTileSet);
 	//mMapEditor->GenerateBlank(20, 20);
 	mCamera->SetSceneBox(Rectf(0, 0, mMapEditor->Box().w, mMapEditor->Box().h));
