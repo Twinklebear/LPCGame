@@ -2,6 +2,7 @@
 #include <set>
 #include <string>
 #include <cmath>
+#include <SDL_image.h>
 #include "external/json/json.h"
 #include "window.h"
 #include "image.h"
@@ -10,32 +11,71 @@
 #include "jsonhandler.h"
 #include "map.h"
 
-Map::Map() : mFile(""), lastCamera(nullptr){
+Map::Map() : filename(""), mapTexture(nullptr) {
 }
 Map::~Map(){
 	mTiles.clear();
 }
 void Map::Draw(std::weak_ptr<Camera> cam){
-	//Use the camera box to get the indices of all the tiles in visible in camera
-	if (!cam.expired()){
-        auto cameraShared = cam.lock();
-        //How does this help? It's a pointer to the same camera, so it'll always be equal
-		//if (lastCamera == nullptr || *lastCamera != cameraShared.get()){
-			indices = CalculateIndex(cameraShared->Box());
-		//	lastCamera = cam;
-		//}
-		for (int i : indices){
-			if (i < mTiles.size()){
-				Rectf pos = Math::FromSceneSpace(cam, mTiles.at(i).Box());
-				Window::DrawTexture(mTileSet->Texture(mTiles.at(i).Name()), pos, &(Recti)mTileSet->Clip(mTiles.at(i).Name()));
-			}
-		}
+	if (mapTexture == nullptr){
+		RebuildMap();
 	}
-	//If no camera we default to drawing all tiles
-	else
-		for (int i = 0; i < mTiles.size(); ++i){
-			Window::DrawTexture(mTileSet->Texture(mTiles.at(i).Name()),  mTiles.at(i).Box(), &(Recti)mTileSet->Clip(mTiles.at(i).Name()));
+
+	auto cameraShared = cam.lock();
+
+	Rectf pos(cameraShared->Centering().x, cameraShared->Centering().y, cameraShared->Box().w, cameraShared->Box().h);
+	Window::DrawTexture(mapTexture, pos);
+}
+void Map::RebuildMap(){
+	//Create empty surface to be used as the canvas for the map texture
+	SDL_Surface* newMap = SDL_CreateRGBSurface(0, rows * TILE_WIDTH, columns * TILE_HEIGHT, 32, 0, 0, 0, 0);
+	std::map<std::string,SDL_Surface*> mymap;
+
+	if (newMap < 0)
+		std::cout << SDL_GetError() << std::endl;
+
+	//Blit each tile onto the map's surface
+	for (int i = 0; i < mTiles.size(); i++){
+		SDL_Surface* surf;
+
+		//Get the surface for the current tile
+		std::string file = mTileSet.get()->File(mTiles[i].Name()).c_str();
+		std::map<std::string,SDL_Surface*>::const_iterator found = mymap.find(file);
+		if (found == mymap.end()){
+			mymap[file] = IMG_Load(file.c_str());
+			surf = mymap[file];
 		}
+		else
+			surf = found->second;
+
+		//Display error if surface isn't found
+		if (surf < 0)
+			std::cout << SDL_GetError() << std::endl;
+
+		//Determine boxes for the Blit
+		// rectFrom is the cordinates for the tile from the TileSet image
+		// rectTo is the cordinates on the map which the tile image will be placed 
+		Rectf rectTo = mTiles[i].Box();
+		Rectf rectFrom = mTileSet->Clip(mTiles[i].Name());
+		SDL_Rect rectToSDL = {rectTo.pos.x, rectTo.pos.y, rectTo.h, rectTo.w};
+		SDL_Rect rectFromSDL = {rectFrom.pos.x, rectFrom.pos.y, rectFrom.h,	rectFrom.w};
+
+		//Preform Blit
+		if (SDL_BlitSurface(surf, &rectFromSDL, newMap, &rectToSDL))
+			std::cout << SDL_GetError() << std::endl;
+	}
+
+	//Destory the old map.
+	if (mapTexture != nullptr)
+		SDL_DestroyTexture(mapTexture);
+
+	//Set the new map
+	mapTexture = Window::SurfaceToTexture(newMap);
+
+	//Free the surfaces
+	for(std::map<std::string,SDL_Surface*>::iterator it = mymap.begin(); it != mymap.end(); it++)
+		SDL_FreeSurface(it->second);
+	mymap.clear();
 }
 void Map::GenerateStressMap(Json::Value val){
 	int numTiles = val["numTiles"].asInt();
@@ -108,37 +148,50 @@ CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 Recti Map::Box() const {
 	return mBox;
 }
-std::string Map::File() const {
-    return mFile;
+std::string Map::Filename() const {
+    return filename;
 }
-Json::Value Map::Save(){
+void Map::Save(){
+    JsonHandler jsonHandler(filename);
+
 	Json::Value map;
 	//Save the map width and height
-	map["mBox"]["w"] = mBox.w;
-	map["mBox"]["h"] = mBox.h;
-//	map["image"] = mImage.File();
-	//Save the tiles
-	for (int i = 0; i < mTiles.size(); ++i){
-		map["tiles"][i] = mTiles.at(i).Save();
-	}
-	
-	return map;
-}
-void Map::Load(Json::Value val){
-	mBox.Set(0, 0, val["mBox"]["w"].asInt(), val["mBox"]["h"].asInt());
-//	mImage.Load(val["image"].asString());
+	map["rows"] = rows;
+	map["columns"] = columns;
 
-	//Load the tiles
-	Json::Value tiles = val["tiles"];
-	for (int i = 0; i < tiles.size(); ++i){
-		Tile tempTile;
-		tempTile.Load(tiles[i]);
-		mTiles.push_back(tempTile);
-	}
+	//Save the tiles
+	for (int i = 0; i < mTiles.size(); ++i)
+		map["tiles"][mTiles.at(i).Name()].append(i);
+
+    jsonHandler.Write(map);
 }
 void Map::Load(const std::string &file){
-    mFile = file;
-    JsonHandler handler(mFile);
-    Load(handler.Read());
-	lastCamera = nullptr;
+	//Read map file
+	JsonHandler handler(file);
+	Json::Value map = handler.Read();
+
+	filename = file;
+
+	rows = map["rows"].asInt();
+	columns = map["columns"].asInt();
+
+	//Build the map for all tiles
+	for (int i = 0; i < rows * columns; i++){
+		Tile tempTile;
+		mTiles.push_back(tempTile);
+	}
+
+	//Update map for each tile. They won't come in order, thats why we had to build the map first.
+	for (int i = 0; i < map["tiles"].size(); i++){
+		std::string name = map["tiles"].getMemberNames()[i];
+		for (int x = 0; x < map["tiles"][name].size(); x++){
+			int tileNumber = map["tiles"][name][x].asInt();
+			Rectf box(tileNumber % columns * 32, tileNumber / columns * 32,32,32);
+			mTiles[tileNumber].SetName(name);
+			mTiles[tileNumber].SetBox(box);
+		}
+	}
+
+	//Set the box accordingly
+	mBox.Set(0, 0, columns * 32, rows * 32);
 }

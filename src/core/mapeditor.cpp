@@ -34,9 +34,14 @@ void MapEditor::GenerateBlank(int x, int y){
 	}
 }
 void MapEditor::Insert(int x, int y, std::string name){
+	//Find the tile location of where they clicked
 	int i = CalculateIndex(x, y, mBox.w, mBox.h);
-    if (i > -1)
+
+	//If found, set the new tile, and rebuild the map.
+    if (i > -1) {
 	    mTiles.at(i).SetName(name);
+		RebuildMap();
+	}
 }
 void MapEditor::Remove(int x, int y){
 	Tile blank(Recti(0, 0, 0, 0), false, "");

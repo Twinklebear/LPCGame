@@ -115,7 +115,7 @@ void GameState::Free(){
 }
 Json::Value GameState::Save(){
 	Json::Value val = State::Save();
-    val["map"] = mMap->File();
+    val["map"] = mMap->Filename();
 	val["tileset"] = mTileSet->Save();
 
 	Free();
