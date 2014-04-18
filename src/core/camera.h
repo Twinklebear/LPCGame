@@ -70,6 +70,7 @@ public:
 	*  @param box The rect to set the camera box too
 	*/
 	void SetBox(Rectf box);
+	void SetBox(float x, float y, float w, float h);
 	///Returns the camera's box
 	Rectf Box() const;
 	/**
@@ -78,6 +79,7 @@ public:
 	*  @param box The box to set the scene box too
 	*/
 	void SetSceneBox(Rectf box);
+	void SetSceneBox(float x, float y, float w, float h);
 	///Get the scene box
 	Rectf SceneBox() const;
 	/**

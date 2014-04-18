@@ -88,12 +88,18 @@ void Camera::SetBox(Rectf box){
 	else
 		mBox = box;
 }
+void Camera::SetBox(float x, float y, float w, float h){
+	SetBox(Rectf(x,y,w,h));
+}
 void Camera::SetSceneBox(Rectf box){
 	mSceneBox = box;
 	//Make sure the camera is smaller than the scene box
 	mBox.Set(mBox.pos.x, mBox.pos.y,
 		Math::Clamp(mBox.w, 0, mSceneBox.w),
 		Math::Clamp(mBox.h, 0, mSceneBox.h));
+}
+void Camera::SetSceneBox(float x, float y, float w, float h){
+	SetSceneBox(Rectf(x,y,w,h));
 }
 Rectf Camera::SceneBox() const{
 	return mSceneBox;
