@@ -69,6 +69,9 @@ void Map::RebuildMap(){
 	if (mapTexture != nullptr)
 		SDL_DestroyTexture(mapTexture);
 
+	//Save the surface locally (for debugging)
+	//SDL_SaveBMP(newMap,"map.bmp");
+
 	//Set the new map
 	mapTexture = Window::SurfaceToTexture(newMap);
 
@@ -148,9 +151,6 @@ CollisionMap Map::GetCollisionMap(const Recti &target, int distance){
 Recti Map::Box() const {
 	return mBox;
 }
-std::string Map::Filename() const {
-    return filename;
-}
 void Map::Save(){
     JsonHandler jsonHandler(filename);
 
@@ -166,32 +166,47 @@ void Map::Save(){
     jsonHandler.Write(map);
 }
 void Map::Load(const std::string &file){
-	//Read map file
-	JsonHandler handler(file);
-	Json::Value map = handler.Read();
 
-	filename = file;
+	try{
+		//Read map file
+		JsonHandler handler(file);
+		Json::Value map = handler.Read();
 
-	rows = map["rows"].asInt();
-	columns = map["columns"].asInt();
+		rows = map["rows"].asInt();
+		columns = map["columns"].asInt();
+		
+		if (rows*columns == 0)
+			throw std::exception("issue with the map's attributes");
 
-	//Build the map for all tiles
-	for (int i = 0; i < rows * columns; i++){
-		Tile tempTile;
-		mTiles.push_back(tempTile);
-	}
-
-	//Update map for each tile. They won't come in order, thats why we had to build the map first.
-	for (int i = 0; i < map["tiles"].size(); i++){
-		std::string name = map["tiles"].getMemberNames()[i];
-		for (int x = 0; x < map["tiles"][name].size(); x++){
-			int tileNumber = map["tiles"][name][x].asInt();
-			Rectf box(tileNumber % columns * 32, tileNumber / columns * 32,32,32);
-			mTiles[tileNumber].SetName(name);
-			mTiles[tileNumber].SetBox(box);
+		//Build the map for all tiles
+		mTiles.clear();
+		for (int i = 0; i < rows * columns; i++){
+			Tile tempTile;
+			mTiles.push_back(tempTile);
 		}
+
+		//Update map for each tile. They won't come in order, thats why we had to build the map first.
+		for (int i = 0; i < map["tiles"].size(); i++){
+			std::string name = map["tiles"].getMemberNames()[i];
+			for (int x = 0; x < map["tiles"][name].size(); x++){
+				int tileNumber = map["tiles"][name][x].asInt();
+				Rectf box(tileNumber % columns * 32, tileNumber / columns * 32,32,32);
+				mTiles[tileNumber].SetName(name);
+				mTiles[tileNumber].SetBox(box);
+			}
+		}
+
+		//Set the box accordingly
+		mBox.Set(0, 0, columns * 32, rows * 32);
+
+		filename = file;
+
+	} catch( const std::exception &e){
+        std::stringstream ss;
+		ss << "Failed to load map (" << e.what() << ")\n  " << file;
+        std::cout << ss.str() << std::endl;
+		Load(filename);
 	}
 
-	//Set the box accordingly
-	mBox.Set(0, 0, columns * 32, rows * 32);
+
 }

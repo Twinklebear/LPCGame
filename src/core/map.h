@@ -64,7 +64,17 @@ public:
 	///Sets the tileset
 	void LoadTileSet(std::shared_ptr<TileSet> ts) { mTileSet = ts; }
     ///Get the map filename
-    std::string Filename() const;
+	std::string Filename() const { return filename; };
+    ///Set the map filename
+	void Filename(const std::string file) {filename = file;}
+    ///Get the map row count
+	int Rows() const { return rows; };
+    ///Set the map row count
+	void Rows(const int newRows) {rows = newRows;}
+    ///Get the map row count
+	int Columns() const { return columns; };
+    ///Set the map row count
+	void Columns(const int newColumns) {columns = newColumns;}
 	/**
 	*  Save the map data to a Json::Value
 	*  @return The map data as a Json::Value
