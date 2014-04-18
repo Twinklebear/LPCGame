@@ -14,26 +14,27 @@ MapEditor::MapEditor(){
 MapEditor::~MapEditor(){
 	mTiles.clear();
 }
-void MapEditor::GenerateBlank(int x, int y){
+void MapEditor::GenerateBlank(std::string tilename){
 	mTiles.clear();
 	//Setup the tiles
 	int tW = 32, tH = 32;
 	//Set the mapbox
-	mBox.Set(0, 0, x * tW, y * tH);
-	int tPerRow = x;
+	mBox.Set(0, 0, rows * tW, columns * tH);
+	int tPerRow = rows;
 	int row = 0;
 
-	for (int i = 0; i < x * y; ++i){
+	for (int i = 0; i < rows * columns; ++i){
 		if (i != 0 && i % tPerRow == 0)
 			++row;
 		Recti tRect(i % tPerRow * tW, row * tH, tW, tH);
 		Tile tempTile;
 		tempTile.SetBox(tRect);
 		tempTile.SetSolid(false);
+		tempTile.SetName(tilename);
 		mTiles.push_back(tempTile);
 	}
 }
-void MapEditor::Insert(int x, int y, std::string name){
+void MapEditor::Insert(int x, int y, std::string tilename){
 	//Find the tile location of where they clicked
 	int i = CalculateIndex(x, y, mBox.w, mBox.h);
 
