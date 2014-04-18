@@ -12,6 +12,7 @@
 #include "tilebar.h"
 #include "tileset.h"
 #include "editorstate.h"
+#include "dialogbox.h"
 
 EditorState::EditorState() : mTileBar(nullptr){
 }
@@ -33,6 +34,94 @@ std::string EditorState::Run(){
 			SetExit("quit");
 		if (Input::KeyDown(SDL_SCANCODE_ESCAPE))
 			SetExit("mIntro");
+		if (Input::KeyDown("o")){     
+			//Load a map file
+			mMapEditor->Load((std::string)DialogBoxes::Open());
+			mMapEditor->RebuildMap();
+		}
+		if (Input::KeyDown("a")){                          
+			//Save As for a map file
+			std::string filename = (std::string)DialogBoxes::SaveAs();
+			if (filename != "") {
+				mMapEditor->Filename(filename);
+				mMapEditor->Save();
+			}
+		}
+		if (Input::KeyDown("s")){                          
+			//Save the map
+
+			if (mMapEditor->Filename() == "") {
+				std::string filename = (std::string)DialogBoxes::SaveAs();
+				if (filename != "") {
+					mMapEditor->Filename(filename);
+				}
+			}
+			mMapEditor->Save();
+		}
+		if (Input::KeyDown("n")){                         
+			//Retrieve the new size from a dialog box
+			std::pair<int,int> size = DialogBoxes::Editor::New();
+
+			//Update the boxes
+			mCamera->SetSceneBox(0, 0, size.second * 32, size.first * 32);
+			mCamera->SetBox(0, 0, size.second * 32, size.first * 32);
+
+			//Set map properties
+			mMapEditor->Rows(size.second);
+			mMapEditor->Columns(size.first);
+			mMapEditor->Filename("");
+			mMapEditor->GenerateBlank(mTileBar->GetSelection());
+			mMapEditor->RebuildMap();
+		}/*
+		if (Input::MouseDown(MOUSE::RIGHT) && Input::MouseMotion()){
+			//Check for mouse dragging of camera
+			Vector2f pan(-Input::GetMotion().xrel, -Input::GetMotion().yrel);
+			mCamera->Move(pan);
+		}
+		if (Input::KeyDown(SDL_SCANCODE_RIGHT)){  
+			//Move the Box right
+			//Vector2f right(32,0);
+			//mCamera->Move(right);
+			Vector2f disp(1,0);
+			//mMapEditor->MapPan(disp);
+		}	
+		if (Input::KeyDown(SDL_SCANCODE_LEFT)){  
+			//Move the Box left
+			//Vector2f left(-32,0);
+			//mCamera->Move(left);
+			Vector2f disp(-1,0);
+			//mMapEditor->MapPan(disp);
+		}	
+		if (Input::KeyDown(SDL_SCANCODE_DOWN)){  
+			//Move the Box down
+			//Vector2f down(0,32);
+			//mCamera->Move(down);
+			Vector2f disp(0,1);
+			//mMapEditor->MapPan(disp);
+		}	
+		if (Input::KeyDown(SDL_SCANCODE_UP)){  
+			//Move the Box up
+			//Vector2f up(0,-32);
+			//mCamera->Move(up);
+			Vector2f disp(0,-1);
+			//mMapEditor->MapPan(disp);
+		}
+		if (Input::MouseWheelScrollDown()){  
+			//Move the Box down
+			//mMapEditor->IncreaseZoom();
+		}
+		if (Input::MouseWheelScrollUp()){  
+			//Move the Box up
+			//mMapEditor->DecreaseZoom();
+		}
+		*/
+
+
+
+
+
+
+
 		//Check for mouse dragging of camera
 		if (Input::MouseDown(MOUSE::RIGHT) && Input::MouseMotion()){
 			Vector2f pan(-Input::GetMotion().xrel, -Input::GetMotion().yrel);
@@ -49,6 +138,7 @@ std::string EditorState::Run(){
 		Window::Clear();
 		mMapEditor->Draw(mCamera);
 		mManager->Draw();
+		Input::Clear();
 
 		Window::Present();
 
