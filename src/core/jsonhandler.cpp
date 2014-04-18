@@ -7,8 +7,11 @@
 
 JsonHandler::JsonHandler(const std::string file) : mFile(""){
     if (!JsonFile(file)){
-        size_t extensionPos = file.find_last_of('.');
-	    mFile = file.substr(0, extensionPos + 1) + "json";
+		size_t extensionPos = file.find_last_of('.');
+		if (extensionPos > file.length()) 
+			mFile = file + ".json";
+		else
+			mFile = file.substr(0, extensionPos + 1) + "json";
     }
     else
         mFile = file;
