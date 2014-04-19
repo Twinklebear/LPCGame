@@ -40,7 +40,7 @@ void MapEditor::Insert(int x, int y, std::string tilename){
 
 	//If found, set the new tile, and rebuild the map.
     if (i > -1) {
-	    mTiles.at(i).SetName(name);
+	    mTiles.at(i).SetName(tilename);
 		RebuildMap();
 	}
 }
