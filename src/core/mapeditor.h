@@ -20,19 +20,17 @@ public:
 	MapEditor();
 	~MapEditor();
 	/**
-	*  Generate a blank map that is x tiles wide and
-	*  y tiles tall
-	*  @param x The width of the map, in tiles
-	*  @param y The height of the map, in tiles
+	*  Generate a blank map
+	*  @param tilename The name of default tile
 	*/
-	void GenerateBlank(int x, int y);
+	void GenerateBlank(std::string tilename);
 	/**
 	*  Insert a tile at the tile located at some x, y point
 	*  @param x The x coordinate to insert tile at
 	*  @param y The y coordinate to insert tile at
-	*  @param tile The tile to insert at the point
+	*  @param tilename The tile to insert at the point
 	*/
-	void Insert(int x, int y, std::string name);
+	void Insert(int x, int y, std::string tilename);
 	/**
 	*  Remove a tile at some point, really just performs Insert
 	*  of the default tile
